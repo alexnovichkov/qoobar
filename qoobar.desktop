@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Icon=qoobar
+Exec=qoobar %F
+Comment=An audio tagger for classical music
+Comment[ru]=Редактор аудиотегов для классической музыки
+Comment[fr]=Éditeur de tags pour musique classique
+Comment[it]=Editor di tag per musica classica
+Comment[nl]=Label bewerker voor klassikale muziek
+Comment[pl]=Edytor tagów dla muzyki klasycznej
+Name=Qoobar
+Categories=Qt;Audio;AudioVideo;AudioVideoEditing;
+GenericName=An audio tagger
+GenericName[ru]=Редактор аудиотегов

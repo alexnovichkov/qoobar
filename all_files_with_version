@@ -1,0 +1,17 @@
+﻿files_to_process =
+
+Info.plist
+INSTALL
+qoobar.iss
+README
+README.ru
+debian1/changelog
+debian1/qoobar.dsc
+html/appcast.xml
+html/version.js
+rpm/qoobar.spec
+qoobar_app/qoobar.rc
+qoobar_app/qoobar.pro
+qoobar_app/qoobar.qbs
+
+current version = 1.6.6

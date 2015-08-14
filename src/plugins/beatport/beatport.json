@@ -1,0 +1,16 @@
+﻿{
+  "interface": "IQoobarPlugin",
+  "key": "beatport",
+  "icon": "",
+  "version": "1.0.0",
+  "text": {
+    "default": "Fill tags from Beatport",
+    "en_EN": "Fill tags from Beatport",
+    "ru_RU": "Импорт тегов из базы Beatport"
+  },
+  "description": {
+    "default": "Filling in tags from the Beatport database",
+    "en_EN": "Filling in tags from the Beatport database",
+    "ru_RU": "Импорт тегов из базы Beatport"
+  }
+}

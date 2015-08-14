@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<META name="description" content="Qoobar, a tagger for classical music">
+<title>Qoobar, a tagger for classical music</title>
+<link href="../style.css" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700|Open+Sans+Condensed:300,700" rel="stylesheet" />
+<script  type="application/javascript" src="../version.js"></script>
+</head>
+<body class="left-sidebar">
+<div id="wrapper">
+  <div id="content">
+		<div id="content-inner">
+		  <article class="is-post">
+				<header>
+					<h1>Qoobar downloading and installing</h1>
+				</header>
+	      <h3>Linux</h3>
+        <p>The Qoobar project now uses <a href="https://build.opensuse.org/">openSUSE Build Service</a>
+        to build its packages. So it is much easier now to install Qoobar if you have one
+        of the following systems:</p>
+        <ul>
+          <li>Debian 6.0 - 7.0
+          <li>Ubuntu 10.04 - 14.10
+          <li>Fedora 17 - 20
+          <li>CentOS 6 - 7
+          <li>openSUSE 12.1 - 13.2
+          <li>openSUSE Factory
+        </ul>
+        <p>The latest version can be downloaded from
+        <a href="http://software.opensuse.org/search?q=qoobar&amp;include_home=true&amp;exclude_debug=true" target=_blank>openSUSE software search</a>:
+        <ol><li>Type <b>qoobar</b> in the search line
+        <li>Click <b>(search options)</b> and check <b>Include user's home projects</b>
+        <li>Choose your system type and click <b>Search</b>.
+        <li>Choose the right architecture and download the package.
+        </ol>
+        <p>If you are using one of SUSE systems, feel free to use <b>1 Click Install</b>.</p>
+        <h3>Ubuntu PPA</h3>
+        <p>Ubuntu users can add this PPA repository: ppa:aleksej-novichkov/ppa. The installation process is as follows:
+        <pre>sudo add-apt-repository ppa:aleksej-novichkov/ppa
+sudo apt-get update
+sudo apt-get install qoobar</pre>
+        <p>The supported Ubuntu versions: 12.04 (precise), 12.10 (quantal), 13.04 (raring), 13.10 (saucy)
+        both i386 and amd64.</p>
+
+        <h3>Windows</h3>
+        <p>Windows users can download the full 32-bit installer <b>qoobar-<script type="application/javascript">version();</script>.exe</b>
+        	from
+        	<script type="application/javascript">
+        		document.write("<a href=" + windows_installer() + "/download>" + windows_installer() + "<\/a>");
+        	</script>.</p>
+
+        <h3>Mac OS X</h3>
+        <p>Mac version of Qoobar can be downloaded from
+        	<script type="application/javascript">
+        		document.write("<a href=" + mac_installer() + "/download>" + mac_installer() + "<\/a>");
+        	</script>.</p>
+
+        <h3>OS/2</h3>
+        <P>There is also an OS/2 version of Qoobar, maintained by
+        	<a href="mailto:elbert.pol@gmail.com">Elbert Pol</A> ,
+        	you can download it from <a href="ftp://ftp.netlabs.org/pub/qtapps/">
+        		ftp://ftp.netlabs.org/pub/qtapps/</A>. </P>
+        <p>On any issues regarding this version please contact him at <a href="mailto:elbert.pol@gmail.com">elbert.pol@gmail.com</a>.</p>
+
+        <hr>
+        <h3>Building Qoobar manually</h3>
+        <UL>
+        <LI>Under Unix:
+        <OL>
+        <LI>Install Qt-devel &gt;= 4.6, gstreamer-devel, libflac, flac, libdiscid, enca, shntool and gcc tools
+        <LI>Download
+        	<script type="application/javascript">
+        		document.write("<a href=" + sources() + "/download>" + sources() + "<\/a>");
+        	</script>
+         source files
+        <LI>Untar the archive, then go into the folder and in the console type:
+        <pre>
+$ qmake
+$ make
+$ sudo make install
+$ make clean</pre>
+        </LI></OL>
+        <LI>Under Windows:
+        <OL>
+        <LI>Install Qt/Windows Open Source Edition &gt;= 4.6.0
+        <LI>Download <script type="application/javascript">
+        		document.write("<a href=" + sources() + "/download>" + sources() + "<\/a>");
+        	</script>
+        source files and unpack the archive.</li>
+        <li>Download <a href="http://sourceforge.net/projects/qoobar/files/utils/win_utils.tar.gz">win_utils.tar.gz</a>
+          archive with necessary dlls and execs and unpack it into the source folder.</li>
+        <LI> In the console go into the folder and type:
+        <pre>
+&gt; qmake
+&gt; mingw32-make
+&gt; mingw32-make clean</pre>
+        <LI>Copy release/* files to desired location or run release/qoobar.exe</LI>
+        </OL>
+        </LI>
+        </UL>
+        <P>The Git repository of Qoobar is git://git.code.sf.net/p/qoobar/code.
+
+        <hr>
+        <h3>Older versions</h3>
+        <p>Older versions of Qoobar can be found here: <a href="http://sourceforge.net/projects/qoobar/files">http://sourceforge.net/projects/qoobar/files</a></p>
+      </article>
+
+      <div id="nav-bottom"><div class=pages>
+  			<ul>
+  				<li><a href="index.htm" TARGET="_top">Home</a></li>
+  				<li><a href="screenshots.htm" TARGET="_top">Screenshots</a></li>
+  			  <li><a href="download.htm" TARGET="_top" class=active>Download</a></li>
+  			  <li><a href="documentation.htm" TARGET="_top">Documentation</a></li>
+  		    <li><a href="changelog.htm" TARGET="_top">Changelog</a></li>
+  		    <li><a href="about.htm" TARGET="_top">About</a></li>
+  			</ul>
+  		</div></div>
+
+    </div> <!-- content-inner -->
+  </div> <!-- content -->
+
+  <div id="sidebar">
+		<div id="logo">
+			<h1>Qoobar</h1>
+		</div>
+
+		<nav id="nav">
+			<ul>
+				<li><a href="index.htm" TARGET="_top">Home</a></li>
+				<li><a href="screenshots.htm" TARGET="_top">Screenshots</a></li>
+			  <li class="current_page_item"><a href="download.htm" TARGET="_top">Download</a></li>
+			  <li><a href="documentation.htm" TARGET="_top">Documentation</a></li>
+		    <li><a href="changelog.htm" TARGET="_top">Changelog</a></li>
+		    <li><a href="about.htm" TARGET="_top">About</a></li>
+			</ul>
+		</nav>
+
+		<section class="is-text-style1">
+			<div class="inner">
+				<p>
+					Any feedback, wishes, bugs please send via e-mail at <A href="mailto:novichkov.qoobar@gmail.com">novichkov.qoobar@gmail.com</A>.
+				</p>
+			</div>
+		</section>
+
+		<div id="copyright">
+			<p>&copy; 2009-2014 Alex Novichkov.<br />
+				Design: <a href="http://html5up.net/">HTML5 UP</a>
+			</p>
+		</div>
+	</div> <!-- sidebar -->
+</div> <!-- wrapper -->
+</body>
+</html>
+

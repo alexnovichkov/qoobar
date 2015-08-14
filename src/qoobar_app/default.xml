@@ -1,0 +1,565 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<scheme name="Default">
+	<tag name="Composer" id="0">
+		<format id="1">
+			<field>COMPOSER</field>
+		</format>
+		<format id="0">
+			<field>TCOM</field>
+		</format>
+		<format id="2">
+			<field>COMPOSER</field>
+		</format>
+		<format id="4">
+			<field>WM/Composer</field>
+		</format>
+		<format id="3">
+			<field>©wrt</field>
+		</format>
+	</tag>
+	<tag name="Album" id="1">
+		<format id="1">
+			<field>ALBUM</field>
+		</format>
+		<format id="0">
+			<field>TALB</field>
+		</format>
+		<format id="2">
+			<field>ALBUM</field>
+		</format>
+		<format id="4">
+			<field>WM/AlbumTitle</field>
+		</format>
+		<format id="3">
+			<field>©alb</field>
+		</format>
+	</tag>
+	<tag name="Title" id="2">
+		<format id="1">
+			<field>TITLE</field>
+		</format>
+		<format id="0">
+			<field>TIT2</field>
+		</format>
+		<format id="2">
+			<field>TITLE</field>
+		</format>
+		<format id="4">
+			<field>internal</field>
+		</format>
+		<format id="3">
+			<field>©nam</field>
+		</format>
+	</tag>
+	<tag name="Performer" id="3">
+		<format id="1">
+			<field>PERFORMER</field>
+		</format>
+		<format id="0">
+			<field>TXXX:PERFORMER</field>
+		</format>
+		<format id="2">
+			<field>PERFORMER</field>
+		</format>
+		<format id="4">
+			<field>foobar2000/PERFORMER</field>
+		</format>
+		<format id="3">
+			<field>----:com.apple.iTunes:PERFORMER</field>
+		</format>
+	</tag>
+	<tag name="Artist" id="4">
+		<format id="1">
+			<field>ARTIST</field>
+		</format>
+		<format id="0">
+			<field>TPE1</field>
+		</format>
+		<format id="2">
+			<field>ARTIST</field>
+		</format>
+		<format id="4">
+			<field>internal</field>
+		</format>
+		<format id="3">
+			<field>©ART</field>
+		</format>
+	</tag>
+	<tag name="Conductor" id="5">
+		<format id="1">
+			<field>CONDUCTOR</field>
+		</format>
+		<format id="0">
+			<field>TPE3</field>
+		</format>
+		<format id="2">
+			<field>CONDUCTOR</field>
+		</format>
+		<format id="4">
+			<field>WM/Conductor</field>
+		</format>
+		<format id="3">
+			<field>cond</field>
+		</format>
+	</tag>
+	<tag name="Orchestra" id="6">
+		<format id="1">
+			<field>ORCHESTRA</field>
+		</format>
+		<format id="0">
+			<field>TXXX:ORCHESTRA</field>
+		</format>
+		<format id="2">
+			<field>ORCHESTRA</field>
+		</format>
+		<format id="4">
+			<field>Orchestra</field>
+		</format>
+		<format id="3">
+			<field>----:com.apple.iTunes:ORCHESTRA</field>
+		</format>
+	</tag>
+	<tag name="Subtitle" id="7">
+		<format id="1">
+			<field>SUBTITLE</field>
+		</format>
+		<format id="0">
+			<field>TIT3</field>
+		</format>
+		<format id="2">
+			<field>SUBTITLE</field>
+		</format>
+		<format id="4">
+			<field>WM/SubTitle</field>
+		</format>
+		<format id="3">
+			<field>subt</field>
+		</format>
+	</tag>
+	<tag name="Key" id="8">
+		<format id="1">
+			<field>KEY</field>
+		</format>
+		<format id="0">
+			<field>TKEY</field>
+		</format>
+		<format id="2">
+			<field>KEY</field>
+		</format>
+		<format id="4">
+			<field>WM/InitialKey</field>
+		</format>
+		<format id="3">
+			<field>----:com.apple.iTunes:KEY</field>
+		</format>
+	</tag>
+	<tag name="Comment" id="9">
+		<format id="1">
+			<field>COMMENT</field>
+		</format>
+		<format id="0">
+			<field>COMM:</field>
+		</format>
+		<format id="2">
+			<field>COMMENT</field>
+			<field>DESCRIPTION</field>
+		</format>
+		<format id="4">
+			<field>internal</field>
+		</format>
+		<format id="3">
+			<field>©cmt</field>
+		</format>
+	</tag>
+	<tag name="Genre" id="10">
+		<format id="1">
+			<field>GENRE</field>
+		</format>
+		<format id="0">
+			<field>TCON</field>
+		</format>
+		<format id="2">
+			<field>GENRE</field>
+		</format>
+		<format id="4">
+			<field>WM/Genre</field>
+		</format>
+		<format id="3">
+			<field>©gen</field>
+		</format>
+	</tag>
+	<tag name="Year" id="11">
+		<format id="1">
+			<field>DATE</field>
+		</format>
+		<format id="0">
+			<field>TDRC</field>
+		</format>
+		<format id="2">
+			<field>DATE</field>
+		</format>
+		<format id="4">
+			<field>WM/Year</field>
+		</format>
+		<format id="3">
+			<field>©day</field>
+		</format>
+	</tag>
+	<tag name="Track number" id="12">
+		<format id="1">
+			<field>TRACKNUMBER</field>
+		</format>
+		<format id="0">
+			<field>TRCK</field>
+		</format>
+		<format id="2">
+			<field>TRACKNUMBER</field>
+			<field>TRACKNUM</field>
+			<field>TRACK</field>
+		</format>
+		<format id="4">
+			<field>WM/TrackNumber</field>
+		</format>
+		<format id="3">
+			<field>trkn</field>
+		</format>
+	</tag>
+	<tag name="Total tracks" id="13">
+		<format id="1">
+			<field>TRACKNUMBER</field>
+			<field>TOTALTRACKS</field>
+		</format>
+		<format id="0">
+			<field>TRCK</field>
+			<field>TXXX:TOTALTRACKS</field>
+		</format>
+		<format id="2">
+			<field>TRACKNUMBER</field>
+			<field>TOTALTRACKS</field>
+			<field>TRACKTOTAL</field>
+		</format>
+		<format id="4">
+			<field>WM/TrackNumber</field>
+			<field>TotalTracks</field>
+		</format>
+		<format id="3">
+			<field>trkn</field>
+		</format>
+	</tag>
+	<tag name="Album artist" id="14">
+		<format id="1">
+			<field>ALBUM ARTIST</field>
+		</format>
+		<format id="0">
+			<field>TPE2</field>
+			<field>TXXX:ALBUMARTIST</field>
+		</format>
+		<format id="2">
+			<field>ALBUM ARTIST</field>
+		</format>
+		<format id="4">
+			<field>WM/AlbumArtist</field>
+			<field>AlbumArtist</field>
+		</format>
+		<format id="3">
+			<field>aART</field>
+		</format>
+	</tag>
+	<tag name="Category" id="15">
+		<format id="1">
+			<field>GROUPING</field>
+		</format>
+		<format id="0">
+			<field>TIT1</field>
+		</format>
+		<format id="2">
+			<field>GROUPING</field>
+		</format>
+		<format id="4">
+			<field>WM/ContentGroupDescription</field>
+		</format>
+		<format id="3">
+			<field>©grp</field>
+		</format>
+	</tag>
+	<tag name="Publisher" id="16">
+		<format id="1">
+			<field>LABEL</field>
+		</format>
+		<format id="0">
+			<field>TPUB</field>
+		</format>
+		<format id="2">
+			<field>LABEL</field>
+		</format>
+		<format id="4">
+			<field>WM/Publisher</field>
+		</format>
+		<format id="3">
+			<field>labl</field>
+		</format>
+	</tag>
+	<tag name="Copyright" id="17">
+		<format id="1">
+			<field>COPYRIGHT</field>
+		</format>
+		<format id="0">
+			<field>TCOP</field>
+		</format>
+		<format id="2">
+			<field>COPYRIGHT</field>
+		</format>
+		<format id="4">
+			<field>internal</field>
+		</format>
+		<format id="3">
+			<field>©cpy</field>
+			<field>cprt</field>
+		</format>
+	</tag>
+	<tag name="Mood" id="18">
+		<format id="1">
+			<field>MOOD</field>
+		</format>
+		<format id="0">
+			<field>COMM:MusicMatch_Mood</field>
+			<field>PRIV:WM/Mood</field>
+		</format>
+		<format id="2">
+			<field>MOOD</field>
+		</format>
+		<format id="4">
+			<field>WM/Mood</field>
+		</format>
+		<format id="3">
+			<field>mood</field>
+		</format>
+	</tag>
+	<tag name="Tempo" id="19">
+		<format id="1">
+			<field>BPM</field>
+		</format>
+		<format id="0">
+			<field>TBPM</field>
+		</format>
+		<format id="2">
+			<field>BPM</field>
+		</format>
+		<format id="4">
+			<field>WM/BeatsPerMinute</field>
+		</format>
+		<format id="3">
+			<field>tmpo</field>
+		</format>
+	</tag>
+	<tag name="Lyricist" id="20">
+		<format id="1">
+			<field>LYRICIST</field>
+		</format>
+		<format id="0">
+			<field>TEXT</field>
+		</format>
+		<format id="2">
+			<field>LYRICIST</field>
+		</format>
+		<format id="4">
+			<field>WM/Writer</field>
+		</format>
+		<format id="3">
+			<field>lyrt</field>
+		</format>
+	</tag>
+	<tag name="Lyrics" id="21">
+		<format id="1">
+			<field>LYRICS</field>
+		</format>
+		<format id="0">
+			<field>USLT</field>
+		</format>
+		<format id="2">
+			<field>LYRICS</field>
+		</format>
+		<format id="4">
+			<field>WM/Lyrics</field>
+		</format>
+		<format id="3">
+			<field>©lyr</field>
+		</format>
+	</tag>
+	<tag name="Disc number" id="22">
+		<format id="1">
+			<field>DISCNUMBER</field>
+		</format>
+		<format id="0">
+			<field>TPOS</field>
+		</format>
+		<format id="2">
+			<field>DISCNUMBER</field>
+		</format>
+		<format id="4">
+			<field>WM/PartOfSet</field>
+		</format>
+		<format id="3">
+			<field>disk</field>
+		</format>
+	</tag>
+	<tag name="Total discs" id="23">
+		<format id="1">
+			<field>DISCNUMBER</field>
+			<field>TOTALDISCS</field>
+		</format>
+		<format id="0">
+			<field>TPOS</field>
+			<field>TXXX:TOTALDISCS</field>
+		</format>
+		<format id="2">
+			<field>DISCNUMBER</field>
+			<field>TOTALDISCS</field>
+		</format>
+		<format id="4">
+			<field>WM/PartOfSet</field>
+			<field>foobar2000/TOTALDISCS</field>
+		</format>
+		<format id="3">
+			<field>disk</field>
+		</format>
+	</tag>
+	<tag name="Encoded by" id="24">
+		<format id="1">
+			<field>ENCODEDBY</field>
+		</format>
+		<format id="0">
+			<field>TENC</field>
+		</format>
+		<format id="2">
+			<field>ENCODEDBY</field>
+		</format>
+		<format id="4">
+			<field>WM/EncodedBy</field>
+			<field>WM/CodedBy</field>
+		</format>
+		<format id="3">
+			<field>©enc</field>
+		</format>
+	</tag>
+	<tag name="Remixed by" id="25">
+		<format id="1">
+			<field>VERSION</field>
+		</format>
+		<format id="0">
+			<field>TPE4</field>
+		</format>
+		<format id="2">
+			<field>VERSION</field>
+		</format>
+		<format id="4">
+			<field>WM/ModifiedBy</field>
+		</format>
+		<format id="3">
+			<field>rmix</field>
+		</format>
+	</tag>
+	<tag name="Rating" id="26">
+		<format id="1">
+			<field>RATING</field>
+		</format>
+		<format id="0">
+			<field>POPM</field>
+			<field>COMM:MusicMatch_Preference</field>
+		</format>
+		<format id="2">
+			<field>RATING</field>
+		</format>
+		<format id="4">
+			<field>internal</field>
+		</format>
+		<format id="3">
+			<field>rati;rtng</field>
+		</format>
+	</tag>
+	<tag name="Original album" id="27">
+		<format id="1">
+			<field>ORIGINALALBUM</field>
+		</format>
+		<format id="0">
+			<field>TOAL</field>
+		</format>
+		<format id="2">
+			<field>ORIGINALALBUM</field>
+		</format>
+		<format id="4">
+			<field>WM/OriginalAlbumTitle</field>
+		</format>
+		<format id="3">
+			<field>----:com.apple.iTunes:ORIGINALALBUM</field>
+		</format>
+	</tag>
+	<tag name="Original artist" id="28">
+		<format id="1">
+			<field>ORIGINALARTIST</field>
+		</format>
+		<format id="0">
+			<field>TOPE</field>
+		</format>
+		<format id="2">
+			<field>ORIGINALARTIST</field>
+		</format>
+		<format id="4">
+			<field>WM/OriginalArtist</field>
+		</format>
+		<format id="3">
+			<field>©ope</field>
+		</format>
+	</tag>
+	<tag name="Original lyricist" id="29">
+		<format id="1">
+			<field>ORIGINALLYRICIST</field>
+		</format>
+		<format id="0">
+			<field>TOLY</field>
+		</format>
+		<format id="2">
+			<field>ORIGINALLYRICIST</field>
+		</format>
+		<format id="4">
+			<field>WM/OriginalLyricist</field>
+		</format>
+		<format id="3">
+			<field>olyr</field>
+		</format>
+	</tag>
+	<tag name="URL" id="30">
+		<format id="1">
+			<field>URL</field>
+		</format>
+		<format id="0">
+			<field>WXXX:</field>
+		</format>
+		<format id="2">
+			<field>URL</field>
+		</format>
+		<format id="4">
+			<field>WM/URL</field>
+		</format>
+		<format id="3">
+			<field>©url</field>
+		</format>
+	</tag>
+	<tag name="ISRC" id="31">
+		<format id="1">
+			<field>ISRC</field>
+		</format>
+		<format id="0">
+			<field>TSRC</field>
+		</format>
+		<format id="2">
+			<field>ISRC</field>
+		</format>
+		<format id="4">
+			<field>WM/ISRC</field>
+		</format>
+		<format id="3">
+			<field>ISRC</field>
+		</format>
+	</tag>
+</scheme>

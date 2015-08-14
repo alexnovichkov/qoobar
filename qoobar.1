@@ -1,0 +1,530 @@
+.\"                                      Hey, EMACS: \-*\- nroff \-*\-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1\-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH QOOBAR 1 "December  1, 2014"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp \fI<n>\fR    insert n+1 empty lines
+.\" for manpage\-specific macros, see man(7)
+.nh
+.SH NAME
+qoobar \- a tagger for tagging classical music
+.SH SYNOPSIS
+.B qoobar
+[\fB\-h\fR]
+[\fB\-\-version\fR]
+[\fB\-\-\fR]
+[\fB\-c \fI<STRING>\fR]
+[\fB\-a \fI<STRING>\fR]
+[\fB\-t \fI<STRING>\fR]
+[\fB\-A \fI<STRING>\fR]
+[\fB\-C \fI<STRING>\fR]
+[\fB\-g \fI<STRING>\fR]
+[\fB\-y \fI<NUM>\fR]
+[\fB\-n \fI<NUM>\fR]
+[\fB\-T \fI<NUM>\fR]
+[\fB\-s \fI<KEY:STRING>\fR] ...
+[\fB\-\-remove \fI<KEY>\fR] ...
+[\fB\-\-remove\-user\-tags\fR]
+[\fB\-\-remove\-all\fR]
+[\fB\-\-set\-image \fI<PATH>\fR]
+[\fB\-\-set\-image\-description \fI<STRING>\fR]
+[\fB\-\-set\-image\-type \fI<OTHER | ICON | OTHER_ICON | FRONT_COVER | BACK_COVER
+| LEAFLET | MEDIA | LEAD_ARTIST | ARTIST | CONDUCTOR | BAND | COMPOSER | LYRICIST
+| RECORDING_LOCATION | DURING_RECORDING | DURING_PERFORMANCE | VIDEO
+| BRIGHT_COLORED_FISH | ILLUSTRATION | BAND_LOGO | PUBLISHER_LOGO>\fR]
+[\fB\-\-remove\-image\fR]
+[\fB\-\-write\-image \fI<DIR>\fR]
+[\fB\-\-scan\-rg \fI<file|album|dir|tag>\fR]
+[\fB\-\-write\-rg \fI<file|album|dir|tag>\fR]
+[\fB\-\-remove\-rg\fR]
+[\fB\-\-skip\-scanned\-rg\fR]
+[\fB\-\-mpc\-replaygain\-format \fI<header|tags>\fR]
+[\fB\-\-list\-image\-types\fR]
+[\fB\-\-list\-keys\fR]
+[\fB\-\-list\-placeholders\fR]
+[\fB\-\-show\-tags\fR]
+[\fB\-f \fI<PATTERN>\fR]
+[\fB\-\-rename \fI<PATTERN>\fR]
+[\fB\-\-split \fI<PATH>\fR]
+[\fB\-\-format \fI<flac|m4a|alac|mp3|ogg|wma|wv|speex|opus>\fR]
+[\fB\-\-maximum\-length \fI<NUM>\fR]
+[\fB\-\-replace\-win\-chars \fI<on|off>\fR]
+[\fB\-\-output\-dir \fI<DIR>\fR]
+[\fB\-\-replace\-spaces \fI<on|off>\fR]
+[\fB\-\-remove\-diacritics \fI<on|off>\fR]
+[\fB\-\-apply\-to\-folders \fI<on|off>\fR]
+[\fB\-\-change\-case
+\fI<lower|upper|first\-up|every\-first\-up|dont\-change>\fR]
+[\fB\-r\fR]
+[\fB\-\-simplify\-whitespaces \fI<on|off>\fR]
+[\fB\-\-read\-id3v2 \fI<on|off>\fR]
+[\fB\-\-read\-ape \fI<on|off>\fR]
+[\fB\-\-write\-id3v2 \fI<on|off>\fR]
+[\fB\-\-write\-ape \fI<on|off>\fR]
+[\fB\-\-force\-id3v23 \fI<on|off>\fR]
+[\fB\-\-id3v1\-behavior \fI<update\-always|update\-existing|delete>\fR]
+[\fB\-\-id3v1\-transliterate \fI<on|off>\fR]
+[\fB\-\-ogg\-image\-new \fI<on|off>\fR]
+[\fB\-\-verbose\fR]
+[\fB\-\-force\-gui\fR]
+.IR \fI<file>\fR ...
+.SH DESCRIPTION
+.B Qoobar
+is a tagger for tagging classical music. It can:
+.IP * 4
+Edit ID3v2.4, Xiph.org, APE, ASF, MP4 tags.
+.IP * 4
+Edit tags in MP3, Ogg/Vorbis, Ogg/FLAC, FLAC, Musepack, Speex, TrueAudio,
+WavPack, Wma/Asf, APE, Opus, and MP4 files.
+.IP * 4
+Batch tagging - edit any tags in group of files, giving the same value
+or individual values.
+.IP * 4
+Easy copy and paste any tags between groups of files.
+.IP * 4
+Edit the following tags: Composer, Album, Title, Performer, Artist,
+Conductor, Orchestra, Subtitle, Key, Comment, Genre, Year,
+Track number, Total tracks, and many others.
+.IP * 4
+Edit all other tags written in your music files.
+.IP * 4
+Add your own tags and save them.
+.IP * 4
+Generate tags from filenames and filepaths.
+.IP * 4
+Import tags from Discogs, Musicbrainz, freedb and GD3.
+.IP * 4
+Rename / copy / move files by their tags, creating folders if necessary.
+.IP * 4
+Automatically recode tags into UTF8.
+.IP * 4
+Edit cover art in all supported file types.
+.IP * 4
+Undo and redo any tags changes.
+.IP * 4
+Add and remove ReplayGain info
+.SH OPTIONS
+.SS Changing tags
+.TP
+\fB\-c \fI<STRING>\fR, \fB\-\-composer \fI<STRING>\fR
+Sets composer.
+.TP
+\fB\-a \fI<STRING>\fR, \fB\-\-album \fI<STRING>\fR
+Sets album.
+.TP
+\fB\-t \fI<STRING>\fR, \fB\-\-title \fI<STRING>\fR
+Sets title.
+.TP
+\fB\-A \fI<STRING>\fR, \fB\-\-artist \fI<STRING>\fR
+Sets artist.
+.TP
+\fB\-C \fI<STRING>\fR, \fB\-\-comment \fI<STRING>\fR
+Sets comment.
+.TP
+\fB\-g \fI<STRING>\fR, \fB\-\-genre \fI<STRING>\fR
+Sets genre.
+.TP
+\fB\-y \fI<NUM>\fR, \fB\-\-year \fI<NUM>\fR
+Sets year.
+.TP
+\fB\-n \fI<NUM>\fR,  \fB\-\-track\-number \fI<NUM>\fR
+Sets track number.
+.TP
+\fB\-T \fI<NUM>\fR,  \fB\-\-total\-tracks \fI<NUM>\fR
+Sets total tracks.
+.TP
+\fB\-\-set \fI<KEY:STRING>\fR  (accepted multiple times)
+Sets tag with \fIKEY\fR to \fISTRING\fR. See \fB\-\-list\-keys\fR for complete
+list of standard keys. If \fIKEY\fR is not standard, the user tag with key
+\fIKEY\fR will be set.
+.TP
+\fB\-\-remove \fI<KEY>\fR  (accepted multiple times)
+Removes tags by their \fIKEY\fR. See \fB\-\-list\-keys\fR for complete list of
+standard keys. If \fIKEY\fR is not standard, the user tag with
+key \fIKEY\fR will be removed.
+.TP
+\fB\-\-remove\-user\-tags\fR
+Removes all non-standard tags.
+.TP
+\fB\-\-remove\-all\fR
+Removes all tags, including standard tags, user tags, image, and
+replaygain info.
+.SS Changing image
+.TP
+\fB\-\-set\-image \fI<PATH>\fR
+Sets an image to the file. If \fIPATH\fR is empty, image will be removed.
+.TP
+\fB\-\-set\-image\-description \fI<STRING>\fR
+Sets an image description.
+.TP
+\fB\-\-set\-image\-type \fI<TYPE>\fR
+Sets an image type. For list of possible types see \fB\-\-list\-image\-types\fR.
+.TP
+\fB\-\-remove\-image\fR
+Removes the image from the file.
+.TP
+\fB\-\-write\-image \fI<DIR>\fR
+Causes the attached image to be written into \fIDIR\fR directory.
+If \fIDIR\fR is empty, the image will be written where the audio file is.
+.SS ReplayGain info
+.TP
+\fB\-\-scan\-rg \fI<file|album|dir|tag>\fR
+Scans the file without writing ReplayGain info into files. The options are:
+.RS
+.IP - 2
+\fI<file>\fR: Scans per file track gain
+.IP - 2
+\fI<album>\fR: Scans all files as a single album
+.IP - 2
+\fI<dir>\fR: Scans each directory as a single album
+.IP - 2
+\fI<tag>\fR: Scans each ALBUM as a single album
+.RE
+.TP
+\fB\-\-write\-rg \fI<file|album|dir|tag>\fR
+Scans the file and writes ReplayGain info into files. The options are:
+.RS
+.IP - 2
+\fI<file>\fR: Scans per file track gain
+.IP - 2
+\fI<album>\fR: Scans all files as a single album
+.IP - 2
+\fI<dir>\fR: Scans each directory as a single album
+.IP - 2
+\fI<tag>\fR: Scans each ALBUM as a single album
+.RE
+.TP
+\fB\-\-remove\-rg\fR
+Removes ReplayGain info from the file.
+.TP
+\fB\-\-skip\-scanned\-rg\fR
+Switches on skipping files that already have ReplayGain info.
+.TP
+\fB\-\-mpc\-replaygain\-format \fI<header|tags>\fR
+Sets the format of ReplayGain information to be written into Musepack files.
+.RS
+.IP - 2
+\fI<header>\fR: ReplayGain information will be written into the file header.
+It is the default value.
+.IP - 2
+\fI<tags>\fR: ReplayGain information will be written into APEv2 tags and can be changed or deleted.
+.RE
+.SS Filling tags
+.TP
+\fB\-\-fill \fI<PATTERN>\fR
+Fills tags from file name by a pattern using placeholders: %A (artist),
+%a (album), %t (title), etc. See \fB\-\-list\-placeholders\fR for complete list
+of placeholders.
+.SS Renaming files
+.TP
+\fB\-\-rename \fI<PATTERN>\fR
+Rename file (the extension is not affected) based on data in the tag
+using placeholders: %A (artist), %a (album), %t (title), etc.
+See \fB\-\-list\-placeholders\fR for complete list of placeholders.
+.TP
+\fB\-\-maximum\-length \fI<NUM>\fR
+Sets maximum file name length for \fB\-\-rename\fR operation to a specified
+value. If value is 0, file name will not be truncated. The default
+value is 0.
+.TP
+\fB\-\-replace\-win\-chars \fI<on|off>\fR
+Switches on/off Windows chars replacement for \fB\-\-rename\fR operation. The
+default value is "on".
+.TP
+\fB\-\-output\-dir \fI<DIR>\fR
+Specifies the destination directory for \fB\-\-rename\fR operation.
+If \fI<DIR>\fR is empty, the source directory will be used.
+.TP
+\fB\-\-replace\-spaces \fI<on|off>\fR
+Switches on/off spaces replacement for \fB\-\-rename\fR operation. The default
+value is "off".
+.TP
+\fB\-\-remove\-diacritics \fI<on|off>\fR
+Switches on/off diacritics removing for \fB\-\-rename\fR operation. The
+default value is "off".
+.TP
+\fB\-\-apply\-to\-folders \fI<on|off>\fR
+If this option is set, all other options for \fB\-\-rename\fR operation will
+take place for created folders names as well. The default value is
+"off".
+.TP
+\fB\-\-change\-case \fI<lower|upper|first-up|every-first-up|dont-change>\fR
+If this option is set, created file and folders names will be in case
+specified by this option. The default value is "dont\-change".
+.SS Splitting files
+.TP
+\fB\-\-split \fI<CUE>\fR
+Splits an audio file by its CUE sheet.
+.TP
+\fB\-\-format \fI<flac|m4a|alac|mp3|ogg|wma|wv|speex|opus>\fR
+Sets format of splitted files. The default value is "flac". If no ffmpeg or
+avconv is installed, this option is ignored and the format is set to "flac".
+If format is "m4a", AAC codec is used. If format is "alac", "m4a" file extension
+is used.
+.SS Global options
+.TP
+\fB\-r\fR, \fB\-\-recursive\fR
+If set, directories to process are added recursively, that is with all
+their subdirectories. The default behavior is non-recursive.
+.TP
+\fB\-\-simplify\-whitespaces \fI<on|off>\fR
+Switches on/off tags simplifying when saving files. The default value
+is "on".
+.TP
+\fB\-\-read\-id3v2 \fI<on|off>\fR
+Switches on/off reading of id3v2 tags in mp3 files. The default value
+is "on".
+.TP
+\fB\-\-read\-ape \fI<on|off>\fR
+Switches on/off reading of ape tags in mp3 files. The default value is
+"off".
+.TP
+\fB\-\-write\-id3v2 \fI<on|off>\fR
+Switches on/off writing of id3v2 tags in mp3 files. The default value
+is "on".
+.TP
+\fB\-\-write\-ape \fI<on|off>\fR
+Switches on/off writing of ape tags in mp3 files. The default value is
+"off".
+.TP
+\fB\-\-force\-id3v23 \fI<on|off>\fR
+Switches on/off writing of id3v2 tags to id3v2.3 format. The default
+value is "off".
+.TP
+\fB\-\-id3v1\-behavior \fI<update\-always|update\-existing|delete>\fR
+Switches on/off deleting of id3v1 tags when saving mp3 files. The
+default value is "delete".
+.TP
+\fB\-\-id3v1\-transliterate \fI<on|off>\fR
+Switches on/off transliteration of id3v1 tags when saving mp3 files.
+The default value is "on".
+.TP
+\fB\-\-ogg\-image\-new \fI<on|off>\fR
+Switches on/off new ogg image format. The default value is "on".
+.SS Other options
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Displays usage information and exits.
+.TP
+\fB\-\-version\fR
+Displays version information and exits.
+.TP
+\fB\-\-\fR,  \fB\-\-ignore_rest\fR
+Ignores the rest of the labeled arguments following this flag.
+.TP
+\fB\-\-list\-image\-types\fR
+Lists all possible image types and exits.
+.TP
+\fB\-\-list\-keys\fR
+Lists all possible tags keys and exits.
+.TP
+\fB\-\-list\-placeholders\fR
+Lists all possible placeholders and exits.
+.TP
+\fB\-\-show\-tags\fR
+Shows all tags of files.
+.TP
+\fB\-\-verbose\fR
+Switches on verbose mode, in which all messages are shown. By default
+only errors and warnings are shown.
+.TP
+\fB\-\-force\-gui\fR
+Forces the GUI mode after completing all command-line options specified.
+.TP
+\fI<file>\fR  (accepted multiple times)
+Files and directories to process
+.SH EXAMPLES
+.SS The GUI mode
+.PP
+.nf
+qoobar
+.fi
+.RS
+Runs qoobar in the
+.SM GUI
+mode.
+.RE
+.PP
+.nf
+qoobar \-\-force\-id3v23
+.fi
+.RS
+Switches on writing of id3v2 tags to id3v2.3 format and
+runs qoobar in the
+.SM GUI
+mode. Other global options can be specified.
+.PP
+.SM NOTE:
+These options will be saved when closing the qoobar window.
+.RE
+.PP
+.nf
+qoobar \*(lq~/Music/Artist/Album 1\*(rq
+.fi
+.RS
+Runs qoobar in the
+.SM GUI
+mode and adds the content of
+.I \*(lq~/Music/Artist/Album 1\*(rq
+directory.
+.RE
+.PP
+.SS The command line mode
+The command line mode is automatically used if any of the following
+arguments is specified:
+.PP
+\-c, \-\-composer, \-a, \-\-album, \-t, \-\-title,
+\-A, \-\-artist, \-C, \-\-comment, \-g, \-\-genre, \-y, \-\-year,
+\-n, \-\-track\-number, \-T, \-\-total\-tracks, \-\-s,
+\-\-set, \-\-remove, \-\-remove\-user\-tags,
+\-\-remove\-all, \-\-set\-image, \-\-set\-image\-description, \-\-set\-image\-type,
+\-\-remove\-image, \-\-write\-image, \-\-scan-rg, \-\-write\-rg, \-\-remove\-rg,
+\-\-list\-image\-types, \-\-list\-keys, \-\-show\-tags, \-f, \-\-fill, \-\-rename, \-\-split.
+.PP
+.SM NOTE:
+Any global option that is specified in the command line mode will not
+be saved automatically. If you want to change the default settings, either
+edit the
+.I ~/.config/qoobar/global.ini
+file, or set them in the qoobar preferences dialog.
+.PP
+.nf
+qoobar \-a "Sonata No.29 Hammerklavier" "~/Music/Beethoven, L./Sonata 29 (Richter)"
+.fi
+.RS
+Sets album to be "Sonata No.29 Hammerklavier" in all files in \fI"~/Music/Beethoven, L./Sonata 29 (Richter)"\fR
+directory.
+.RE
+.PP
+.nf
+qoobar \-\-write\-id3v2 on \-\-write\-ape off \-\-delete-id3v1 delete \\
+-n 1 "~/Music/ABBA/*.mp3"
+.fi
+.RS
+Automatically sets track numbers from 1 to number of files for all mp3 files
+in the \fI"~/Music/ABBA/"\fR directory. When saving files writes id3v2
+tags only, and strips all ape tags and all id3v1 tags.
+.RE
+.PP
+.nf
+qoobar \-s "ARTIST:%A (piano)" "~/Music/SKRIABIN A./Compilation"
+.fi
+.RS
+Takes ARTIST tag, appends " (piano)" text and writes back into ARTIST tag
+for all files in the \fI"~/Music/SKRIABIN A./Compilation"\fR directory.
+This is equivalent to \fBqoobar \-A "%A (piano)" "~/Music/SKRIABIN A./Compilation"\fR
+.RE
+.PP
+.nf
+qoobar \-\-fill "%c/%a (%A)/%n \- %t" "~/Music/Beethoven, L./Piano concerto No.5 (Arrau)/"
+.fi
+.RS
+Fills tags from files names for all files in
+\fI"~/Music/Beethoven, L./Piano concerto No.5 (Arrau)/"\fR
+directory. The tags to write are:
+.RS 4
+.IP - 2
+.B Composer
+will be "Beethoven, L."
+.IP - 2
+.B Album
+will be "Piano concerto No.5"
+.IP - 2
+.B Artist
+will be "Arrau"
+.IP - 2
+.B Track numbers
+will be all symbols in files names before the first " \- "
+.IP - 2
+.B Track titles
+will be all symbols in files names after the first "\ \-\ "
+(excluding the file extension).
+.RE
+.RE
+.PP
+.nf
+qoobar \-\-split  ~/Music/The\\ path\\ to\\ audio\\ file/cue_file.cue \\
+\-\-artist "Edward \\"Duke\\" Ellington" \-\-rename "%N. %t" \-\-force\-gui
+.fi
+.RS
+Splits an audio image file to separate tracks by the
+.SM CUE
+sheet file \fI"~/Music/The\\ path\\ to\\ audio\\ file/cue_file.cue"\fR
+(the audio file is taken from this file data),
+sets artist to "Edward \\"Duke\\" Ellington" (note the double apostrophes
+in the text) and renames newly created files according to pattern
+"%N. %t", that is track number (01, 02, 03...) followed by a dot and a space
+followed by track title. After that launches Qoobar in the GUI mode and opens these created files for fine tuning.
+.RE
+.SH ARGUMENTS ORDER
+The order in which the command line arguments are processed is independent
+of their order in the command line and is as follows:
+.IP 1. 4
+.BR \-h ", " \-\-help ", " \-\-version ", " \-\-list\-image\-types ", "
+.BR \-\-list\-keys ",  " \-\-list\-placeholders  .
+After executing these commands qoobar quits.
+.IP 2. 4
+Global options:
+.BR \-\-recursive ", " \-\-verbose ", " \-\-simplify-whitespaces ", "
+.BR \-\-read\-id3v2 ", " \-\-read\-ape ", " \-\-write\-id3v2 ", "
+.BR \-\-write\-ape ", " \-\-force\-id3v23 ", " \-\-delete\-id3v1 ", "
+.BR \-\-id3v1\-transliterate ", " \-\-ogg\-image\-new
+.IP 3. 4
+Other options:
+.BR \-\-maximum\-length ", " \-\-replace\-win\-chars  ", " \-\-output\-dir ", "
+.BR \-\-replace\-spaces   ", " \-\-remove\-diacritics ", "
+.BR \-\-apply\-to\-folders ", " \-\-change\-case ", "
+.BR \-\-mpc\-replaygain\-format ", " \-\-format
+.IP 4. 4
+.B \-\-split
+.IP 5. 4
+.B \-\-show\-tags
+.IP 6. 4
+.BR \-\-write\-image ", " \-\-scan\-rg ", " \-\-write\-rg ", " \-\-remove\-rg
+.IP 7. 4
+.BR \-\-remove ", " \-\-remove\-user\-tags ", " \-\-remove\-image ", " \-\-remove\-all
+.IP 8. 4
+.B \-\-fill
+.IP 9. 4
+.BR \-s ", " \-\-set ", " \-c ", " \-\-composer ", " \-a ", " \-\-album ", " \-t ", "
+.BR \-\-title ", " \-A ", " \-\-artist ", " \-C ", " \-\-comment ", " \-g ", "
+.BR \-\-genre ", " \-y ", " \-\-year ", " \-n ", " \-\-track\-number ", "
+.BR \-T ", " \-\-total\-tracks ", " \-\-set\-image ", "
+.BR \-\-set\-image\-description ", " \-\-set\-image\-type
+.IP 10. 4
+After these qoobar saves tags.
+.IP 11. 4
+.BR \-\-rename .
+.SH FILES
+.I /usr/share/doc/qoobar-doc
+.RS
+The qoobar documentation files.
+.RE
+.I ~/.config/qoobar/gui.conf
+.RS
+The GUI configuration file. Contains GUI settings and is not intended to
+be manually changed by the user. Delete it if you want to reset the default
+GUI settings.
+.RE
+.I ~/.config/qoobar/global.ini
+.RS
+The global configuration file. Contains settings that are applicable both in
+GUI and command line mode. You can edit it to set your settings.
+Delete it if you want to reset the default global settings.
+.SH AUTHOR
+The author of
+.B qoobar
+is Alex Novichkov \fI<novichkov.qoobar@gmail.com>\fR.
+.br
+This manual page was written by Alex Novichkov <novichkov.qoobar@gmail.com>
+for the Debian GNU/Linux system (but may be used by others).

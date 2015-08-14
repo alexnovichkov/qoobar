@@ -1,0 +1,17 @@
+{
+  "interface": "IDownloadPlugin",
+  "key": "gd3",
+  "icon": "",
+  "version": "1.0.0",
+  "text": {
+    "default": "GD3 database"
+  },
+  "description": {
+    "default": "Fill tags from GD3 database",
+    "en": "Fill tags from GD3 database",
+    "ru": "Заполнить теги из базы GD3"
+  },
+  "canSearchByFiles": true,
+  "canSearchByCD": true,
+  "canSearchManually": true
+}

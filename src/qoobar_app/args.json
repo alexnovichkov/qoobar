@@ -1,0 +1,501 @@
+{
+"args": [
+{
+    "type": "switch",
+    "shortopt": "h",
+    "longopt": "help",
+    "description": "Displays usage information and exits.",
+    "commandLine": true
+},
+{
+    "type": "switch",
+    "shortopt": "v",
+    "longopt": "version",
+    "description": "Displays version information and exits.",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "c",
+    "longopt": "composer",
+    "description": "Sets composer",
+    "group": "Changing tags",
+    "argType": "string",
+    "typeDescription": "STRING",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "a",
+    "longopt": "album",
+    "description": "Sets album",
+    "group": "Changing tags",
+    "argType": "string",
+    "typeDescription": "STRING",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "t",
+    "longopt": "title",
+    "description": "Sets title",
+    "group": "Changing tags",
+    "argType": "string",
+    "typeDescription": "STRING",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "A",
+    "longopt": "artist",
+    "description": "Sets artist",
+    "group": "Changing tags",
+    "argType": "string",
+    "typeDescription": "STRING",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "C",
+    "longopt": "comment",
+    "description": "Sets comment",
+    "group": "Changing tags",
+    "argType": "string",
+    "typeDescription": "STRING",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "g",
+    "longopt": "genre",
+    "description": "Sets genre",
+    "group": "Changing tags",
+    "argType": "string",
+    "typeDescription": "STRING",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "y",
+    "longopt": "year",
+    "description": "Sets year",
+    "group": "Changing tags",
+    "defaultVal": 0,
+    "argType": "int",
+    "typeDescription": "NUM",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "n",
+    "longopt": "track-number",
+    "description": "Sets track number",
+    "group": "Changing tags",
+    "defaultVal": 0,
+    "argType": "int",
+    "typeDescription": "NUM",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "T",
+    "longopt": "total-tracks",
+    "description": "Sets total tracks",
+    "group": "Changing tags",
+    "defaultVal": 0,
+    "argType": "int",
+    "typeDescription": "NUM",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "s",
+    "longopt": "set",
+    "description": "Sets tag with KEY to STRING. See --list-keys for complete list of standard keys. If KEY is not standard, the user tag with key KEY will be set",
+    "group": "Changing tags",
+    "argType": "string",
+    "typeDescription": "KEY:STRING",
+    "commandLine": true,
+    "allowMore": true
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "remove",
+    "description": "Removes tags by their KEY. See --list-keys for complete list of standard keys. If KEY is not standard, the user tag with key KEY will be removed",
+    "group": "Changing tags",
+    "argType": "string",
+    "typeDescription": "KEY",
+    "commandLine": true,
+    "allowMore": true
+},
+{
+    "type": "switch",
+    "shortopt": "",
+    "longopt": "remove-user-tags",
+    "description": "Removes all non-standard tags",
+    "group": "Changing tags",
+    "commandLine": true
+},
+{
+    "type": "switch",
+    "shortopt": "",
+    "longopt": "remove-all",
+    "description": "Removes all tags, including standard tags, user tags, image, and replaygain info",
+    "group": "Changing tags",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "i",
+    "longopt": "set-image",
+    "description": "Sets an image to the file. If PATH is empty, image will be removed",
+    "group": "Changing image",
+    "argType": "string",
+    "typeDescription": "PATH",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "set-image-description",
+    "description": "Sets an image description",
+    "group": "Changing image",
+    "argType": "string",
+    "typeDescription": "STRING",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "set-image-type",
+    "description": "Sets an image type. For list of possible types see --list-image-types",
+    "group": "Changing image",
+    "argType": "string",
+    "typeDescription": "FRONT_COVER",
+    "commandLine": true,
+    "constraint": "OTHER|ICON|OTHER_ICON|FRONT_COVER|BACK_COVER|LEAFLET|MEDIA|LEAD_ARTIST|ARTIST|CONDUCTOR|BAND|COMPOSER|LYRICIST|RECORDING_LOCATION|DURING_RECORDING|DURING_PERFORMANCE|VIDEO|BRIGHT_COLORED_FISH|ILLUSTRATION|BAND_LOGO|PUBLISHER_LOGO"
+},
+{
+    "type": "switch",
+    "shortopt": "",
+    "longopt": "remove-image",
+    "description": "Removes the image from the file",
+    "group": "Changing image",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "write-image",
+    "description": "Causes the attached image to be written into DIR directory. If DIR is empty, the image will be written where the audio file is. ",
+    "group": "Changing image",
+    "argType": "string",
+    "typeDescription": "DIR",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "scan-rg",
+    "description": "Scans the file without writing ReplayGain info into files.\n        <file>: Scans per file track gain\n        <album>: Scans all files as a single album\n        <dir>: Scans each directory as a single album\n        <tag>: Scans each ALBUM as a single album",
+    "group": "ReplayGain info",
+    "defaultVal": "file",
+    "argType": "string",
+    "commandLine": true,
+    "constraint": "file|album|dir|tag"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "write-rg",
+    "description": "Scans the file and writes ReplayGain info into files.\n        <file>: Scans per file track gain\n        <album>: Scans all files as a single album\n        <dir>: Scans each directory as a single album\n        <tag>: Scans each ALBUM as a single album",
+    "group": "ReplayGain info",
+    "defaultVal": "file",
+    "argType": "string",
+    "commandLine": true,
+    "constraint": "file|album|dir|tag"
+},
+{
+    "type": "switch",
+    "shortopt": "",
+    "longopt": "remove-rg",
+    "description": "Removes ReplayGain info from the file",
+    "group": "ReplayGain info",
+    "commandLine": true
+},
+{
+    "type": "switch",
+    "shortopt": "",
+    "longopt": "skip-scanned-rg",
+    "description": "Switches on skipping files that already have ReplayGain info",
+    "group": "ReplayGain info"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "mpc-replaygain-format",
+    "description": "Sets the format of ReplayGain information to be written into Musepack files.\n        <header> - ReplayGain information will be written into the file header and cannot be changed afterwards.\n        <tags> - ReplayGain information will be written into APEv2 tags and can be changed or deleted.\nThe default value is <header>.",
+    "group": "Global options",
+    "defaultVal": "header",
+    "argType": "string",
+    "constraint": "header|tags"
+},
+{
+    "type": "value",
+    "shortopt": "f",
+    "longopt": "fill",
+    "description": "Fills tags from file name by a pattern using placeholders: %A (artist), %a (album), %t (title), etc. See --list-placeholders for complete list of placeholders",
+    "group": "Filling tags",
+    "argType": "string",
+    "typeDescription": "PATTERN",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "split",
+    "description": "Splits an audio file by its CUE sheet",
+    "group": "Splitting files",
+    "argType": "string",
+    "typeDescription": "PATH",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "format",
+    "description": "Sets format of splitted files",
+    "group": "Splitting files",
+    "argType": "string",
+    "defaultVal": "flac",
+    "constraint": "flac|m4a|alac|mp3|ogg|wma|wv|spx|opus"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "rename",
+    "description": "Rename file (the extension is not affected) based on data in the tag using placeholders: %A (artist), %a (album), %t (title), etc.",
+    "group": "Renaming files",
+    "argType": "string",
+    "typeDescription": "PATTERN",
+    "commandLine": true
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "maximum-length",
+    "description": "Sets maximum file name length for --rename operation to a specified value. If value is 0, file name will not be truncated. The default value is 0",
+    "group": "Renaming files",
+    "defaultVal": 0,
+    "argType": "int",
+    "typeDescription": "NUM"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "replace-win-chars",
+    "description": "Switches on/off Windows chars replacement for --rename operation. The default value is \"on\"",
+    "group": "Renaming files",
+    "defaultVal": "on",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "output-dir",
+    "description": "Specifies the destination directory for --rename operation. If <DIR> is empty, the source directory will be used.",
+    "group": "Renaming files",
+    "argType": "string",
+    "typeDescription": "DIR"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "replace-spaces",
+    "description": "Switches on/off spaces replacement for --rename operation. The default value is \"off\"",
+    "group": "Renaming files",
+    "defaultVal": "off",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "remove-diacritics",
+    "description": "Switches on/off diacritics removing for --rename operation. The default value is \"off\"",
+    "group": "Renaming files",
+    "defaultVal": "off",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "apply-to-folders",
+    "description": "If this option is set, all other options for --rename operation will take place for created folders names as well. The default value is \"off\"",
+    "group": "Renaming files",
+    "defaultVal": "off",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "change-case",
+    "description": "If this option is set, created file and folders names will be in case specified by this option. The default value is \"dont-change\"",
+    "group": "Renaming files",
+    "defaultVal": "dont-change",
+    "argType": "string",
+    "constraint": "lower|upper|first-up|every-first-up|dont-change"
+},
+{
+    "type": "switch",
+    "shortopt": "r",
+    "longopt": "recursive",
+    "description": "If set, directories to process are added recursively, that is with all their subdirectories. The default behavior is not recursive",
+    "group": "Global options"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "simplify-whitespaces",
+    "description": "Switches on/off tags simplifying when saving files. The default value is \"on\"",
+    "group": "Global options",
+    "defaultVal": "on",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "read-id3v2",
+    "description": "Switches on/off reading of id3v2 tags in mp3 files. The default value is \"on\"",
+    "group": "Global options",
+    "defaultVal": "on",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "read-ape",
+    "description": "Switches on/off reading of ape tags in mp3 files. The default value is \"off\"",
+    "group": "Global options",
+    "defaultVal": "off",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "write-id3v2",
+    "description": "Switches on/off writing of id3v2 tags in mp3 files. The default value is \"on\"",
+    "group": "Global options",
+    "defaultVal": "on",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "write-ape",
+    "description": "Switches on/off writing of ape tags in mp3 files. The default value is \"off\"",
+    "group": "Global options",
+    "defaultVal": "off",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "force-id3v23",
+    "description": "Switches on/off writing of id3v2 tags to id3v2.3 format. The default value is \"off\"",
+    "group": "Global options",
+    "defaultVal": "off",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "id3v1-behavior",
+    "description": "Switches on/off deleting of id3v1 tags when saving mp3 files. The default value is \"delete\"",
+    "group": "Global options",
+    "defaultVal": "delete",
+    "argType": "string",
+    "constraint": "update-always|update-existing|delete"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "id3v1-transliterate",
+    "description": "Switches on/off transliteration of id3v1 tags when saving mp3 files. The default value is \"on\"",
+    "group": "Global options",
+    "defaultVal": "on",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "ogg-image-new",
+    "description": "Switches on/off new ogg image format. The default value is \"on\"",
+    "group": "Global options",
+    "defaultVal": "on",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "switch",
+    "shortopt": "",
+    "longopt": "verbose",
+    "description": "Switches on verbose mode, in which all messages are shown. By default only errors and warnings are shown"
+},
+{
+    "type": "switch",
+    "shortopt": "",
+    "longopt": "list-image-types",
+    "description": "Lists all possible image types and exits",
+    "commandLine": true
+},
+{
+    "type": "switch",
+    "shortopt": "",
+    "longopt": "list-keys",
+    "description": "Lists all possible tags keys and exits",
+    "commandLine": true
+},
+{
+    "type": "switch",
+    "shortopt": "",
+    "longopt": "list-placeholders",
+    "description": "Lists all possible placeholders and exits",
+    "commandLine": true
+},
+{
+    "type": "switch",
+    "shortopt": "",
+    "longopt": "show-tags",
+    "description": "Shows all tags of files",
+    "commandLine": true
+},
+{
+    "type": "switch",
+    "shortopt": "",
+    "longopt": "force-gui",
+    "description": "Forces Qoobar to run the GUI mode. Normally Qoobar quits after all performed operations"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "",
+    "description": "Files and directories to process",
+    "argType": "string",
+    "typeDescription": "PATH",
+    "id": "files",
+    "allowMore": true
+}
+]
+}

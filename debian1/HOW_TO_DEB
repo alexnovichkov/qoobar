@@ -1,0 +1,20 @@
+0. go to qoobar-{version} folder
+1. $ qmake
+2. $ make clean
+3. $ DEBFULLNAME="whoever" dh_make --single -c gpl3 --native -e whatever@whatever
+4. edit ./debian folder
+5. $ debuild
+or for source package
+   $ debuild -S -sa
+6. Uploading to my PPA:
+   $ cd ..
+   $ dput ppa:aleksej-novichkov/ppa qoobar_1.6.2_source.changes
+
+Building with openSUSE Build Service:
+1. Edit qoobar.dsc
+2. Edit changelog, control, copyright
+3. Rename rules => debian.rules, changelog => debian.changelog,
+   control => debian.control
+4. Pack qoobar-{version}.tar.gz
+5. Upload qoobar-{version}.tar.gz, debian.*, qoobar.dsc
+6. Wait a little

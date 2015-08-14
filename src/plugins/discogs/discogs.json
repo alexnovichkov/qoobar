@@ -1,0 +1,17 @@
+﻿{
+  "interface": "IDownloadPlugin",
+  "key": "discogs",
+  "icon": "",
+  "version": "1.0.1",
+  "text": {
+    "default": "discogs"
+  },
+  "description": {
+    "default": "Fill tags from Discogs database",
+    "en": "Fill tags from Discogs database",
+    "ru": "Заполнить теги из базы Discogs"
+  },
+  "canSearchByFiles": false,
+  "canSearchByCD": false,
+  "canSearchManually": true
+}

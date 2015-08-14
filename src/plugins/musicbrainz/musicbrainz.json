@@ -1,0 +1,17 @@
+{
+  "interface": "IDownloadPlugin",
+  "key": "musicbrainz",
+  "icon": "",
+  "version": "1.0.2",
+  "text": {
+    "default": "Musicbrainz"
+  },
+  "description": {
+    "default": "Fill tags from Musicbrainz database",
+    "en": "Fill tags from Musicbrainz database",
+    "ru": "Заполнить теги из базы Musicbrainz"
+  },
+  "canSearchByFiles": true,
+  "canSearchByCD": true,
+  "canSearchManually": true
+}

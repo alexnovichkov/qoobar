@@ -1,0 +1,42 @@
+Source: qoobar
+Priority: extra
+Section: sound
+Maintainer: Alex Novichkov <aleksej.novichkov@gmail.com>
+Standards-Version: 3.9.3
+Build-Depends: debhelper, libqt4-dev, pkg-config, libglib2.0-dev, libgstreamer-plugins-base0.10-dev
+Homepage: http://qoobar.sourceforge.net
+
+Package: qoobar
+Section: sound
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libdiscid0, flac, shntool, enca
+Suggests: mp3gain, wavpack, vorbisgain, musepack-tools
+Description: Simple tagger for classical music.
+ Qoobar is designed specially for tagging classical music. With Qoobar you can:
+ - Edit ID3v2.4, APE, ASF, MP4 tags, Vorbis comments
+ - Edit tags in MP3 (*.mp3), Ogg/Vorbis (*.ogg), Ogg/FLAC (*.oga),
+   FLAC (*.flac), Musepack (*.mpc), Speex (*.spx), TrueAudio (*.tta),
+   WavPack (*.wv), Wma/Asf (*.wma), APE (*.ape), Wav (*.wav),
+   Aiff (*.aif, *.aiff), Opus (*.opus), Dsf (*.dsf)
+   and MP4 (*.m4a, *.mp4) files.
+ - Batch tagging - edit any tags in group of files, giving the same value
+   or individual values.
+ - Easy copy & paste any tags between groups of files.
+ - Edit the following tags: Composer, Album, Title, Performer, Artist,
+   Conductor, Orchestra, Subtitle, Key, Comment, Genre, Year, Track Number,
+   Total Tracks, Album artist, Publisher, Mood, Beats per minute (Tempo),
+   Original artist, Original lyricist, Lyricist, Original album, Lyrics,
+   Music category (Grouping), Copyright, Disc number, Total discs, Remixed by,
+   Encoded by, ISRC, URL, Rating.
+ - Edit all other tags written in your music files.
+ - Add your own tags and save them.
+ - Generate tags from filenames and filepaths.
+ - Import tags from Discogs, Musicbraiz, GD3 and freedb.
+ - Rename / copy / move files by their tags, creating folders if necessary.
+ - Rename folders with music
+ - Convert tags with Windows 1251, KOI8-R, CP866 encodings into UTF8.
+ - Edit cover art pictures in all supported file types.
+ - Undo any tag change.
+ - Add and remove replaygain info.
+ - Change the tagging scheme (advanced usage).
+ - Search for music files in standard and user defined locations.
