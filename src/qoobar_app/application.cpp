@@ -225,9 +225,9 @@ void Application::readGuiSettings()
     lastCueFile = se.value(QSL("lastCueFile")).toString();
 
 #ifdef HAVE_QT5
-    columns160 = se.value(QSL("columns160_5.0")).toByteArray();
+    columns167 = se.value(QSL("columns167_5.0")).toByteArray();
 #else
-    columns160 = se.value(QSL("columns160")).toByteArray();
+    columns167 = se.value(QSL("columns167")).toByteArray();
 #endif
     rows=se.value(QSL("rows")).toByteArray();
 
@@ -379,9 +379,9 @@ void Application::writeGuiSettings()
     se.setValue("charsFont",charsFont);
     se.setValue("lastCueFile",lastCueFile);
 #ifdef HAVE_QT5
-    se.setValue("columns160_5.0",columns160);
+    se.setValue("columns167_5.0",columns167);
 #else
-    se.setValue("columns160",columns160);
+    se.setValue("columns167",columns167);
 #endif
 
     se.setValue("rows",rows);

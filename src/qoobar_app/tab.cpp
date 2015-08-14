@@ -34,7 +34,7 @@
 #include "undoactions.h"
 #include "qoobarglobals.h"
 #include "imagebox.h"
-#include "treewidget.h"
+#include "treeview.h"
 #include "tablewidget.h"
 #include "newtagdialog.h"
 #include "macsplitter.h"
@@ -65,13 +65,7 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     searchBar = new SearchBar(this);
 
 
-    tree = new TreeWidget(this);
-    connect(tree,SIGNAL(itemSelectionChanged()), SLOT(filesSelectionChanged()));
-    connect(tree,SIGNAL(itemEntered(QTreeWidgetItem *,int)),SLOT(updateStatusBar(QTreeWidgetItem *)));
-    connect(tree,SIGNAL(itemClicked(QTreeWidgetItem *,int)),SLOT(onItemClicked(QTreeWidgetItem *,int)));
-    connect(tree,SIGNAL(moveToTab(int)),this,SLOT(moveToTab(int)));
-    connect(tree,SIGNAL(showMP3TagsDialog()),SLOT(showMP3TagsDialog()));
-    connect(tree,SIGNAL(sortRequested(int,Qt::SortOrder,int)),SLOT(sortColumn(int,Qt::SortOrder,int)));
+
     //**************************************************************************
     table = new TableWidget(this);
     connect(table,SIGNAL(itemChanged(QTableWidgetItem *)),SLOT(cellChanged(QTableWidgetItem *)));
@@ -83,18 +77,27 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     connect(imageBox,SIGNAL(imageChanged(CoverImage,QString)),SLOT(changeImage(CoverImage,QString)));
     //=======================================================
     model = new Model(this);
-    connect(model,SIGNAL(fileChanged(int,bool)),tree,SLOT(updateFileSaveStatus(int,bool)), Qt::QueuedConnection);
-    connect(model,SIGNAL(fileChanged(int,Tag,QVector<int>)),tree,SLOT(updateRow(int,Tag,QVector<int>)));
-    connect(model,SIGNAL(imageChanged(int,bool)),tree,SLOT(updateImage(int,bool)));
-    connect(model,SIGNAL(fileNameChanged(int,QString)),tree,SLOT(updateFileName(int,QString)));
+
+
+
+    tree = new TreeView(this);
+    tree->setModel(model);
+    tree->resetHeader();
+    connect(tree->selectionModel(),SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),SLOT(filesSelectionChanged()));
+    connect(tree,SIGNAL(entered(const QModelIndex&)),SLOT(updateStatusBar(const QModelIndex&)));
+    connect(tree,SIGNAL(clicked(const QModelIndex&)),SLOT(onItemClicked(const QModelIndex&)));
+    connect(tree,SIGNAL(moveToTab(int)),this,SLOT(moveToTab(int)));
+    connect(tree,SIGNAL(showMP3TagsDialog()),SLOT(showMP3TagsDialog()));
+    connect(tree,SIGNAL(sortRequested(int,Qt::SortOrder,int)),SLOT(sortColumn(int,Qt::SortOrder,int)));
+
     connect(model,SIGNAL(message(int,QString)),SLOT(showMessage(int,QString)));
-    connect(model,SIGNAL(filesAdded(QList<Tag>,bool)),SLOT(addFiles(QList<Tag>,bool)));
+    connect(model,SIGNAL(filesAdded(int,bool)),SLOT(addFiles(int,bool)));
     connect(model,SIGNAL(modelChanged(bool)), SIGNAL(filesChanged(bool)));
     connect(model,SIGNAL(filesCountChanged(int)), SIGNAL(filesCountChanged(int)));
     connect(model,SIGNAL(selectionCleared()), table, SLOT(clearTable()));
     connect(model,SIGNAL(selectionCleared()), this, SLOT(updateImageBox()));
-    connect(model,SIGNAL(fileDeleted(int)), tree, SLOT(deleteRow(int)));
-    connect(model,SIGNAL(allFilesDeleted()), tree, SLOT(clearRows()));
+
+
 
     connect(searchBar, SIGNAL(addFile(Tag)),model,SLOT(addFile(Tag)));
     connect(searchBar, SIGNAL(reset()), this, SLOT(delAllFiles()));
@@ -501,9 +504,9 @@ void Tab::editCell() /*SLOT*/
     TagsEditDialog editor(row,table->verticalHeaderItem(row)->text(),
                           oldValues,table->item(row,0)->text(),plain,win);
     editor.setModel(model);
-    connect(&editor,SIGNAL(rowSelected(int)),tree,SLOT(synchronizeLine(int)));
-    connect(&editor,SIGNAL(destroyed()),tree,SLOT(editingDone()));
+
     connect(&editor,SIGNAL(tagsSent(int,QStringList)),SLOT(tagsChanged(int,QStringList)));
+    connect(&editor,SIGNAL(rowSelected(int)),tree,SLOT(scrollToRow(int)));
 
     if (editor.exec()) {
         QStringList newValues=editor.getList();
@@ -573,7 +576,7 @@ void Tab::doPlugin(IQoobarPlugin *plugin)
         updateTags(oldTags, newTags1, tr("changing tags"));
 
         newTags1 = newTags.mid(oldTags.size(), newTags.size()-oldTags.size());
-        addFiles(newTags1, true);
+        model->addFiles(newTags1, true);
     }
 }
 
@@ -893,9 +896,8 @@ void Tab::delAllFiles() /*SLOT*/
 void Tab::delFiles(bool deleteSilently)
 {DD;
     if (!model->hasSelection()) return;
-    //const QVector<int> inds = model->selectedFilesIndexes();
 
-    if (!deleteSilently && !model->selectedFilesSaved()) {
+    if (!deleteSilently && !model->isSelectedFilesSaved()) {
         QMessageBox msgBox(QMessageBox::Question,tr("Qoobar"),
                            tr("Some files have been modified"),
                            QMessageBox::NoButton, win);
@@ -918,13 +920,10 @@ void Tab::delFiles(bool deleteSilently)
             return;
         }
     }
-    //tree->deleteRows(inds);
 
     model->delFiles();
     undoStack_->clear();
 
-
-   // Q_EMIT filesChanged(!allFilesSaved());
 
     Q_EMIT updateStatusBar(Tag());
     updateTagsTable(QVector<int>());
@@ -954,11 +953,19 @@ void Tab::addFileNames(const QStringList &filesToAdd, bool clearBefore)
     win->statusBar()->showMessage(tr("Please wait while Qoobar is adding files"));
 }
 
-void Tab::addFiles(const QList<Tag> &tagsToAdd, bool update) /*SLOT*/
+void Tab::addFiles(int addedCount, bool update) /*SLOT*/
 {DD;
-    if (tagsToAdd.isEmpty()) return;
+    if (addedCount==0) return;
 
-    tree->addRows(&tagsToAdd, update);
+    if (addedCount<100 && update) {
+        tree->blockSignals(true);
+        tree->clearSelection();
+        for (int i=0; i<addedCount-1; ++i) {
+            tree->selectionModel()->select(model->index(i+model->size()-addedCount,0),QItemSelectionModel::Rows | QItemSelectionModel::Select);
+        }
+        tree->blockSignals(false);
+        tree->selectionModel()->select(model->index(model->size()-1,0),QItemSelectionModel::Rows | QItemSelectionModel::Select);
+    }
 
     Q_EMIT filesChanged(!allFilesSaved());
     win->statusBar()->clearMessage();
@@ -978,21 +985,22 @@ Saving files
 */
 void Tab::saveTags() /*SLOT*/
 {DD;
-    if (model->isSaved()) return;
+    if (model->isFilesSaved()) return;
     const QVector<int> savedFilesIndexes = saveWithProgress();
     model->rereadTags(savedFilesIndexes);
     undoStack_->clear();
 }
 
-void Tab::onItemClicked(QTreeWidgetItem *item,int col) /*SLOT*/
+void Tab::onItemClicked(const QModelIndex &index) /*SLOT*/
 {DD;
-    if (!item) return;
-    if (col==TAGSCOUNT+2) {
+    if (!index.isValid()) return;
+    int col = index.column();
+    if (col == COL_SAVEICON) {
         QString msg;
-        const int index = tree->indexOfTopLevelItem(item);
+        const int row = index.row();
 
-        if (model->saveAt(index, &msg)) {
-            model->rereadTags(QVector<int>()<<index);
+        if (model->saveAt(row, &msg)) {
+            model->rereadTags(QVector<int>()<<row);
             undoStack_->clear();
 
             if (!msg.isEmpty())
@@ -1039,7 +1047,7 @@ bool Tab::maybeSave(const QString &tabText)
 
 bool Tab::allFilesSaved() const
 {DD;
-    return model->isSaved();
+    return model->isFilesSaved();
 }
 
 bool Tab::filesSelected()
@@ -1063,67 +1071,14 @@ void Tab::moveDown() /*SLOT*/
 
 void Tab::moveItems(bool up)
 {DD;
-    QVector<int> indexes = model->selectedFilesIndexes();
     model->move(up);
-    QVector<int> newIndexes = model->selectedFilesIndexes();
-    tree->blockSignals(true);
-
-    int i=up?0:indexes.size()-1;
-    while (1) {
-        tree->insertTopLevelItem(newIndexes.at(i), tree->takeTopLevelItem(indexes.at(i)));
-        if ((up && i==indexes.size()-1) || (!up && i==0)) break;
-        i=up?i+1:i-1;
-    }
-
-    tree->clearSelection();
-    Q_FOREACH (const int &i, newIndexes)
-        tree->topLevelItem(i)->setSelected(true);
-    tree->blockSignals(false);
     undoStack_->clear();
 }
 
 void Tab::sortColumn(int column, Qt::SortOrder order, int sortType)
 {DD;
-    QVector<int> newIndexes;
-
-    QMap<QVariant, int> map;
-    bool ok;
-    for (int i=0; i<model->size(); ++i) {
-        QString s=tree->topLevelItem(i)->text(column);
-        if (sortType==SortTime) map.insertMulti(QTime::fromString(s,"m:ss"),i);
-        else {
-            int intval=s.toInt(&ok);
-            if (ok && !s.isEmpty()) map.insertMulti(intval,i);
-            else map.insertMulti(s,i);
-        }
-    }
-    QMapIterator<QVariant, int> i(map);
-    if (order==Qt::DescendingOrder) {
-        i.toBack();
-        while (i.hasPrevious()) {
-            i.previous();
-            newIndexes << i.value();
-        }
-    }
-    else {
-        while (i.hasNext()) {
-            i.next();
-            newIndexes << i.value();
-        }
-    }
-
-    tree->blockSignals(true);
-
-    for (int i=0; i<newIndexes.size()-1; ++i) {
-        if (newIndexes.at(i) == i) continue;
-        tree->insertTopLevelItem(i, tree->takeTopLevelItem(newIndexes.at(i)));
-        for(int j=i+1; j<newIndexes.size(); ++j) {
-            if (newIndexes.at(j)<newIndexes.at(i)) newIndexes[j]+=1;
-        }
-    }
-    model->sort(newIndexes);
-
-    tree->blockSignals(false);
+    model->sort(column, order, sortType);
+    filesSelectionChanged();
     undoStack_->clear();
 }
 
@@ -1145,8 +1100,10 @@ void Tab::filesSelectionChanged() /*SLOT*/
 {DD;
     QVector<int> indexes;
 
-    for (int i=0; i<tree->topLevelItemCount(); ++i) {
-        if (tree->topLevelItem(i)->isSelected()) {
+    QItemSelection selectedRows = tree->selectionModel()->selection();
+
+    for (int i=0; i<model->size(); ++i) {
+        if (selectedRows.contains(model->index(i,0))) {
             indexes << i;
         }
     }
@@ -1216,7 +1173,7 @@ void Tab::replaygain() /*SLOT*/
 
     //we can only scan saved files, because we need to write
     //replaygain info
-    if (!model->selectedFilesSaved()) {
+    if (!model->isSelectedFilesSaved()) {
         QMessageBox msgBox(QMessageBox::Question, tr("Qoobar - ReplayGain Info"),
                            tr("Qoobar can only scan saved files.\n"
                               "Do you want to save changes?"), QMessageBox::NoButton, win);
@@ -1234,9 +1191,9 @@ void Tab::replaygain() /*SLOT*/
     ReplayGainDialog dialog(model, win);
 
     dialog.exec();
-    //updateFilesTable(model->selection(), QVector<int>());
-    Q_FOREACH (const int &i, model->selectedFilesIndexes())
-        tree->updateRG(i, model->fileAt(i));
+
+//    Q_FOREACH (const int &i, model->selectedFilesIndexes())
+//        tree->updateRG(i, model->fileAt(i));
     Q_EMIT filesChanged(!allFilesSaved());
 }
 
@@ -1245,9 +1202,9 @@ void Tab::startSearch()
     searchBar->show();
 }
 
-void Tab::updateStatusBar(QTreeWidgetItem *item) /*SLOT*/
+void Tab::updateStatusBar(const QModelIndex &index) /*SLOT*/
 {DD;
-    int row=tree->indexOfTopLevelItem(item);
+    int row = index.row();
     if (row<0)
         return;
 

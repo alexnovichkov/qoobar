@@ -280,6 +280,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 TagsEditDialog::~TagsEditDialog()
 {DD
     delete highlighter;
+    model->setCurrentIndex(-1);
 }
 
 void TagsEditDialog::collectTags()
@@ -540,8 +541,9 @@ void TagsEditDialog::cellClicked(int row, int col)
 }
 
 void TagsEditDialog::currentCellChanged(int curRow)
-{DD
-    Q_EMIT rowSelected(model->indexAtIndexInSelection(curRow));
+{DD;
+    model->setCurrentIndex(model->indexAtIndexInSelection(curRow));
+    Q_EMIT rowSelected(curRow);
 }
 
 void TagsEditDialog::insertFromCharsList()

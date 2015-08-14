@@ -1244,60 +1244,85 @@ and &quot; by two single quotes &apos;&apos;</source>
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="312"/>
+        <location filename="model.cpp" line="332"/>
         <source>%1 does not exist</source>
         <translation>%1 не существует</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="313"/>
+        <location filename="model.cpp" line="333"/>
         <source>%1 is not a file</source>
         <translation>%1 не файл</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="314"/>
+        <location filename="model.cpp" line="334"/>
         <source>%1 is read-only</source>
         <translation>%1 только для чтения</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="451"/>
+        <location filename="model.cpp" line="477"/>
         <source>Cannot rename following files:
 </source>
         <translation>Не смог переименовать следующие файлы:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="453"/>
+        <location filename="model.cpp" line="479"/>
         <source>Cannot copy following files:
 </source>
         <translation>Не смог скопировать следующие файлы:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="455"/>
+        <location filename="model.cpp" line="481"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Не смог переименовать следующие папки:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="464"/>
+        <location filename="model.cpp" line="490"/>
         <source>All folders were successfully renamed</source>
         <translation>Все папки были успешно переименованы</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="284"/>
+        <location filename="model.cpp" line="861"/>
+        <source>No.</source>
+        <translation type="unfinished">№</translation>
+    </message>
+    <message>
+        <location filename="model.cpp" line="862"/>
+        <source>File</source>
+        <translation type="unfinished">Файл</translation>
+    </message>
+    <message>
+        <location filename="model.cpp" line="895"/>
+        <source>Length</source>
+        <translation type="unfinished">Длина</translation>
+    </message>
+    <message>
+        <location filename="model.cpp" line="896"/>
+        <source>RG</source>
+        <translation type="unfinished">RG</translation>
+    </message>
+    <message>
+        <location filename="model.cpp" line="897"/>
+        <source>Img</source>
+        <translation type="unfinished">Рис</translation>
+    </message>
+    <message>
+        <location filename="model.cpp" line="304"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Не смог записать теги в файлы:
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="460"/>
+        <location filename="model.cpp" line="486"/>
         <source>All files were successfully renamed</source>
         <translation>Все файлы были успешно переименованы</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="462"/>
+        <location filename="model.cpp" line="488"/>
         <source>All files were successfully copied</source>
         <translation>Все файлы были успешно скопированы</translation>
     </message>
@@ -1938,7 +1963,7 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation>Скрывать</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="400"/>
+        <location filename="tab.cpp" line="409"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;разные&gt;&gt;</translation>
     </message>
@@ -2432,26 +2457,26 @@ Please choose the encoding:</source>
 <context>
     <name>Tab</name>
     <message>
-        <location filename="tab.cpp" line="148"/>
-        <location filename="tab.cpp" line="267"/>
+        <location filename="tab.cpp" line="157"/>
+        <location filename="tab.cpp" line="276"/>
         <source>Ctrl+Up</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="153"/>
-        <location filename="tab.cpp" line="269"/>
+        <location filename="tab.cpp" line="162"/>
+        <location filename="tab.cpp" line="278"/>
         <source>Ctrl+Down</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="146"/>
-        <location filename="tab.cpp" line="266"/>
+        <location filename="tab.cpp" line="155"/>
+        <location filename="tab.cpp" line="275"/>
         <source>Move up</source>
         <translation>Переместить вверх</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="151"/>
-        <location filename="tab.cpp" line="268"/>
+        <location filename="tab.cpp" line="160"/>
+        <location filename="tab.cpp" line="277"/>
         <source>Move down</source>
         <translation>Переместить вниз</translation>
     </message>
@@ -2460,173 +2485,172 @@ Please choose the encoding:</source>
         <translation type="obsolete">Картинка</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1015"/>
+        <location filename="tab.cpp" line="1023"/>
         <source>Files in %1 have been modified.</source>
         <translation>Некоторые файлы в %1 были изменены.</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="468"/>
+        <location filename="tab.cpp" line="477"/>
         <source>clearing tags</source>
         <oldsource>Remove tags</oldsource>
         <translation>удаление тегов</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="174"/>
-        <location filename="tab.cpp" line="275"/>
+        <location filename="tab.cpp" line="183"/>
+        <location filename="tab.cpp" line="284"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="201"/>
-        <location filename="tab.cpp" line="277"/>
+        <location filename="tab.cpp" line="210"/>
+        <location filename="tab.cpp" line="286"/>
         <source>Operations</source>
         <translation>Действия</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="843"/>
+        <location filename="tab.cpp" line="851"/>
         <source>Please set a player in the Settings dialog</source>
         <translation>Сначала задайте плеер в настройках программы</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="899"/>
+        <location filename="tab.cpp" line="907"/>
         <source>Some files have been modified</source>
         <translation>Некоторые файлы были изменены</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="901"/>
+        <location filename="tab.cpp" line="909"/>
         <source>Remove them anyway?</source>
         <translation>Всё равно удалить?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="902"/>
+        <location filename="tab.cpp" line="910"/>
         <source>Yes, remove without saving</source>
         <translation>Да, удалить без сохранения</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="904"/>
+        <location filename="tab.cpp" line="912"/>
         <source>No, save them and then remove</source>
         <translation>Нет, сначала сохранить, а затем удалить</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="225"/>
-        <location filename="tab.cpp" line="898"/>
+        <location filename="tab.cpp" line="234"/>
+        <location filename="tab.cpp" line="906"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1014"/>
+        <location filename="tab.cpp" line="1022"/>
         <source>Closing Qoobar</source>
         <translation>Закрыть Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1174"/>
+        <location filename="tab.cpp" line="1227"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation>Qoobar - Изменение данных ReplayGain</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1175"/>
+        <location filename="tab.cpp" line="1228"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation>Qoobar умеет сканирвоать только сохраненные файлы.
 Вы хотите сохранить выбранные файлы?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="320"/>
-        <location filename="tab.cpp" line="344"/>
-        <location filename="tab.cpp" line="568"/>
-        <location filename="tab.cpp" line="572"/>
+        <location filename="tab.cpp" line="329"/>
+        <location filename="tab.cpp" line="353"/>
+        <location filename="tab.cpp" line="576"/>
+        <location filename="tab.cpp" line="580"/>
         <source>changing tags</source>
         <oldsource>Change tags</oldsource>
         <translation>изменение тегов</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="224"/>
+        <location filename="tab.cpp" line="233"/>
         <source>Abort</source>
         <translation>Прервать</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="156"/>
-        <location filename="tab.cpp" line="270"/>
+        <location filename="tab.cpp" line="165"/>
+        <location filename="tab.cpp" line="279"/>
         <source>&amp;Edit...</source>
         <translation>&amp;Редактировать...</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="159"/>
-        <location filename="tab.cpp" line="271"/>
+        <location filename="tab.cpp" line="168"/>
+        <location filename="tab.cpp" line="280"/>
         <source>Edit as &amp;multiline text...</source>
         <translation>Редактировать как &amp;многострочный текст...</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="163"/>
-        <location filename="tab.cpp" line="273"/>
+        <location filename="tab.cpp" line="172"/>
+        <location filename="tab.cpp" line="282"/>
         <source>C&amp;lear tags</source>
         <translation>&amp;Удалить теги</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="173"/>
-        <location filename="tab.cpp" line="274"/>
+        <location filename="tab.cpp" line="182"/>
+        <location filename="tab.cpp" line="283"/>
         <source>Collect for &amp;future use</source>
         <translation>&amp;Запомнить на будущее</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="953"/>
+        <location filename="tab.cpp" line="961"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation>Пожалуйста, подождите, пока Qoobar добавляет файлы</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="999"/>
         <source>Cannot write tags to file:
 %1</source>
-        <translation>Не смог записать теги в файл:
+        <translation type="vanished">Не смог записать теги в файл:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1018"/>
+        <location filename="tab.cpp" line="1026"/>
         <source>Do you want to save your changes?</source>
         <translation>Вы хотите сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1019"/>
+        <location filename="tab.cpp" line="1027"/>
         <source>Yes, save</source>
         <translation>Да, сохранить</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1021"/>
+        <location filename="tab.cpp" line="1029"/>
         <source>No, don&apos;t save</source>
         <translation>Нет, не сохранять</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="224"/>
+        <location filename="tab.cpp" line="233"/>
         <source>Writing tags...</source>
         <translation>Сохраняю теги...</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="258"/>
+        <location filename="tab.cpp" line="267"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Не смог записать теги в файлы:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="825"/>
+        <location filename="tab.cpp" line="833"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;разные&gt;&gt;</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="554"/>
+        <location filename="tab.cpp" line="562"/>
         <source>filling tags</source>
         <oldsource>Fill tags</oldsource>
         <translation>заполнение тегов</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="608"/>
+        <location filename="tab.cpp" line="616"/>
         <source>rereading tags</source>
         <oldsource>Reread tags</oldsource>
         <translation>Перечитать теги</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="647"/>
-        <location filename="tab.cpp" line="708"/>
+        <location filename="tab.cpp" line="655"/>
+        <location filename="tab.cpp" line="716"/>
         <source>pasting tags</source>
         <oldsource>Paste tags</oldsource>
         <translation>вставку тегов</translation>
@@ -2703,13 +2727,13 @@ Do you want to save changes?</source>
     </message>
     <message>
         <location filename="tagseditor.cpp" line="142"/>
-        <location filename="tagseditor.cpp" line="526"/>
+        <location filename="tagseditor.cpp" line="527"/>
         <source>Hide characters</source>
         <translation>Спрятать символы</translation>
     </message>
     <message>
         <location filename="tagseditor.cpp" line="147"/>
-        <location filename="tagseditor.cpp" line="520"/>
+        <location filename="tagseditor.cpp" line="521"/>
         <source>Show characters</source>
         <translation>Показать символы</translation>
     </message>
@@ -2764,12 +2788,12 @@ Do you want to save changes?</source>
         <translation>Найти/Заменить</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="374"/>
+        <location filename="tagseditor.cpp" line="375"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="374"/>
+        <location filename="tagseditor.cpp" line="375"/>
         <source>Nothing found</source>
         <translation>Ничего не найдено</translation>
     </message>
@@ -2893,35 +2917,43 @@ Do you want to save changes?</source>
     </message>
 </context>
 <context>
+    <name>TreeView</name>
+    <message>
+        <location filename="treeview.cpp" line="33"/>
+        <source>Show/hide columns...</source>
+        <translation type="unfinished">Показать/спрятать колонки...</translation>
+    </message>
+</context>
+<context>
     <name>TreeWidget</name>
     <message>
-        <location filename="treewidget.cpp" line="113"/>
+        <location filename="treewidget.cpp" line="91"/>
         <source>Length</source>
         <translation>Длина</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="114"/>
+        <location filename="treewidget.cpp" line="92"/>
         <source>No.</source>
         <translation>№</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="115"/>
+        <location filename="treewidget.cpp" line="93"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="116"/>
+        <location filename="treewidget.cpp" line="94"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="117"/>
+        <location filename="treewidget.cpp" line="95"/>
         <source>Img</source>
         <translation>Рис</translation>
     </message>
     <message>
         <location filename="treewidget.cpp" line="69"/>
-        <location filename="treewidget.cpp" line="118"/>
+        <location filename="treewidget.cpp" line="96"/>
         <source>Show/hide columns...</source>
         <oldsource>Adjust displayed columns...</oldsource>
         <translation>Показать/спрятать колонки...</translation>
@@ -2931,24 +2963,24 @@ Do you want to save changes?</source>
         <translation type="obsolete">Qoobar</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="269"/>
+        <location filename="treewidget.cpp" line="258"/>
         <source>Some read-only files were added,
 all changes in them will not be saved!</source>
         <translation>Добавлены файлы только для чтения,
 все изменения в них будут потеряны при сохранении!</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="318"/>
+        <location filename="treewidget.cpp" line="307"/>
         <source>Move to the tab...</source>
         <translation>Переместить во вкладку...</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="322"/>
+        <location filename="treewidget.cpp" line="311"/>
         <source>New tab</source>
         <translation>Новая вкладка</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="333"/>
+        <location filename="treewidget.cpp" line="322"/>
         <source>MP3 tag types...</source>
         <translation>Типы тегов MP3...</translation>
     </message>

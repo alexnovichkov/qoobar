@@ -43,7 +43,8 @@ class MainWindow;
 class Settings;
 class QUndoCommand;
 class QDropEvent;
-class TreeWidget;
+//class TreeWidget;
+class TreeView;
 class TableWidget;
 class QSplitter;
 class ImageBox;
@@ -103,7 +104,7 @@ Q_SIGNALS:
     void moveFilesToTab(int,const QList<Tag>&);
     void updateStatusBar(const Tag &);
 public Q_SLOTS:
-    void addFiles(const QList<Tag> &, bool);
+    void addFiles(int, bool);
 
     void copy();
     void paste();
@@ -130,8 +131,8 @@ private Q_SLOTS:
     void pasteFromClipboard();
     void copyToClipboard();
     void remove();
-    void onItemClicked(QTreeWidgetItem *,int);
-    void updateStatusBar(QTreeWidgetItem *);
+    void onItemClicked(const QModelIndex &index);
+    void updateStatusBar(const QModelIndex &index);
     void updateImageBox();
     void tagsChanged(int,const QStringList &);
     void saveSplitterState();
@@ -163,7 +164,8 @@ private:
     static QList<BufferItem> internalBuffer;
 
     TableWidget *table;
-    TreeWidget *tree;
+    //TreeWidget *tree;
+    TreeView *tree;
 
 
     QAction *moveUpAct;

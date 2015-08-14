@@ -90,4 +90,11 @@ enum TagType {
     TAG_ALL   =0xffff
 };
 
+enum SortType {
+    SortString,
+    SortInt,
+    SortTime,
+    SortFloat
+};
+
 #endif // ENUMS_H

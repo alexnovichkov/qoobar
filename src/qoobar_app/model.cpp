@@ -9,9 +9,9 @@
 #include "tagsrenderer.h"
 #include <iostream>
 
+#include <QTime>
 #include <QThread>
 #include <QtDebug>
-
 
 ReadWorker::ReadWorker(QObject *parent) :
     QObject(parent)
@@ -47,12 +47,17 @@ void ReadWorker::run()
 
 
 Model::Model(QObject *parent) :
-    QObject(parent)
+    QAbstractTableModel(parent)
 {DD;
     changedFileIndex  = -1;
     selectedFileIndex = -1;
+    currentFileIndex = -1;
     readWorker = 0;
     readThread = 0;
+
+    uFont = qApp->font();
+    bFont = uFont;
+    bFont.setBold(true);
 }
 
 Model::~Model()
@@ -121,11 +126,16 @@ int Model::nextSelectedFileIndex()
 }
 
 bool Model::hasSelection() const
-{DD
+{DD;
     return !indexes.isEmpty();
 }
 
-bool Model::selectedFilesSaved() const
+QVector<int> Model::selectedFilesIndexes() const
+{DD;
+    return indexes;
+}
+
+bool Model::isSelectedFilesSaved() const
 {DD
     for (int i=0; i<indexes.size(); ++i) {
         if (tags.at(indexes.at(i)).wasChanged())
@@ -171,13 +181,18 @@ QList<Tag> Model::selectedFiles() const
     return files;
 }
 
-bool Model::isSaved() const
+bool Model::isFilesSaved() const
 {DD
     for (int i=0; i<tags.count(); ++i) {
         if (tags[i].wasChanged())
             return false;
     }
     return true;
+}
+
+int Model::selectedFilesCount() const
+{
+    return indexes.size();
 }
 
 bool Model::imagesAreSame()
@@ -238,8 +253,10 @@ void Model::addFiles()
 
 void Model::addFiles(const QList<Tag> &filesToAdd, bool updateSelected)
 {DD;
+    beginInsertRows(QModelIndex(),tags.size(),tags.size()+filesToAdd.size()-1);
     tags.append(filesToAdd);
-    Q_EMIT filesAdded(filesToAdd, updateSelected);
+    endInsertRows();
+    Q_EMIT filesAdded(filesToAdd.size(), updateSelected);
     Q_EMIT filesCountChanged(size());
 }
 
@@ -252,19 +269,18 @@ void Model::addFile(const Tag &fileToAdd)
 
 void Model::delFiles()
 {DD;
+    beginResetModel();
     if (tags.size() == indexes.size()) {
         tags.clear();
-        Q_EMIT allFilesDeleted();
     }
     else {
         for (int i = indexes.size()-1; i>=0; --i) {
             tags.removeAt(indexes.at(i));
-            Q_EMIT fileDeleted(indexes.at(i));
         }
     }
-
+    endResetModel();
     indexes.clear();
-    Q_EMIT modelChanged(!isSaved());
+    Q_EMIT modelChanged(!isFilesSaved());
     Q_EMIT filesCountChanged(size());
     Q_EMIT selectionCleared();
 }
@@ -292,22 +308,22 @@ void Model::save()
  * @param errorMsg
  * @return true if tags were written
  */
-bool Model::saveAt(int index, QString *errorMsg)
+bool Model::saveAt(int row, QString *errorMsg)
 {DD
     // wrong index
-    if (index < 0 || index >= tags.count()) return false;
+    if (row < 0 || row >= tags.count()) return false;
 
     // file was not changed
-    const bool oldWasChanged = tags.at(index).wasChanged();
+    const bool oldWasChanged = tags.at(row).wasChanged();
     if (!oldWasChanged) return false;
 
     int count = changedFilesCount();
 
-    TagsReaderWriter trw(&tags[index]);
+    TagsReaderWriter trw(&tags[row]);
     bool result = trw.writeTags();
     if (!result) {
         if (errorMsg) {
-            QString f=tags.at(index).fullFileName();
+            QString f=tags.at(row).fullFileName();
             QFileInfo info(f);
             if (!info.exists()) *errorMsg = tr("%1 does not exist").arg(f);
             else if (!info.isFile()) *errorMsg = tr("%1 is not a file").arg(f);
@@ -317,9 +333,10 @@ bool Model::saveAt(int index, QString *errorMsg)
     }
 
     //if new status differs from old status, emit signal to update file icon
-    const bool newWasChanged = tags.at(index).wasChanged();
-    if (oldWasChanged != newWasChanged)
-        Q_EMIT fileChanged(index, newWasChanged);
+    const bool newWasChanged = tags.at(row).wasChanged();
+    if (oldWasChanged != newWasChanged) {
+        Q_EMIT dataChanged(index(row,0),index(row,0),QVector<int>()<<Qt::DecorationRole);
+    }
 
     // emit signal to update mainwindow status
     // only if no changed files left
@@ -403,18 +420,21 @@ void Model::rename(const QStringList &newFileNames)
         const QString oldPath = oldFileName.left(oldFileName.lastIndexOf('/'));
         const QString newPath = newFileName.left(newFileName.lastIndexOf('/'));
 
-        if (App->renameOptions.renamingOperation == 2) {
+        if (App->renameOptions.renamingOperation == 2) { /*rename folder*/
             if (QFileInfo(newFileName).exists() || QDir().rename(oldPath, newPath)) {
                 tags[indexes.at(i)].setFile(newFileName);
+                Q_EMIT dataChanged(index(i,COL_FILENAME),index(i,COL_FILENAME));
                 Q_EMIT fileNameChanged(indexes.at(i), tags.at(indexes.at(i)).fileNameExt());
 
-                for (int index = 0; index<tags.size(); ++index) {
-                    if (!indexes.contains(index)) {
-                    const QString s = tags[index].filePath();
+                // rename all other files that have the same old path
+                for (int ind = 0; ind<tags.size(); ++ind) {
+                    if (!indexes.contains(ind)) {
+                    const QString s = tags[ind].filePath();
 
                     if (s == oldPath) {
-                        tags[index].setFile(newPath+"/"+tags[index].fileNameExt());
-                        Q_EMIT fileNameChanged(index, tags.at(index).fileNameExt());
+                        tags[ind].setFile(newPath+"/"+tags[ind].fileNameExt());
+                        Q_EMIT dataChanged(index(ind, COL_FILENAME),index(ind,COL_FILENAME));
+                        Q_EMIT fileNameChanged(ind, tags.at(ind).fileNameExt());
                     }
                     }
                 }
@@ -437,6 +457,7 @@ void Model::rename(const QStringList &newFileNames)
                 notRenamedFiles.append(oldFileName);
             else {
                 tags[indexes.at(i)].setFile(newFileName);
+                Q_EMIT dataChanged(index(indexes.at(i),COL_FILENAME),index(indexes.at(i),COL_FILENAME));
                 Q_EMIT fileNameChanged(indexes.at(i), tags.at(indexes.at(i)).fileNameExt());
             }
             if (App->renameOptions.renamingOperation==0 && App->renameOptions.removeFolder) {
@@ -530,9 +551,9 @@ bool Model::setNewImage(int ind,const CoverImage &image)
     bool res=tags[ind].wasChanged();
     tags[ind].setImage(image);
     if (res!=tags[ind].wasChanged()) {
-        Q_EMIT fileChanged(ind, tags[ind].wasChanged());
+        Q_EMIT dataChanged(index(ind,COL_SAVEICON), index(ind, COL_SAVEICON), QVector<int>()<<Qt::DecorationRole);
     }
-    Q_EMIT imageChanged(ind, tags[ind].imageIsEmpty());
+    Q_EMIT dataChanged(index(ind,COL_IMAGE), index(ind, COL_IMAGE), QVector<int>()<<Qt::DecorationRole);
     return res;
 }
 
@@ -542,18 +563,20 @@ void Model::setOldImage(int ind,const CoverImage &image, bool status)
     tags[ind].setImage(image);
     tags[ind].setChanged(status);
     if (res!=status) {
-        Q_EMIT fileChanged(ind, status);
+        Q_EMIT dataChanged(index(ind,COL_SAVEICON), index(ind, COL_SAVEICON), QVector<int>()<<Qt::DecorationRole);
     }
-    Q_EMIT imageChanged(ind, tags[ind].imageIsEmpty());
+    Q_EMIT dataChanged(index(ind,COL_IMAGE), index(ind, COL_IMAGE), QVector<int>()<<Qt::DecorationRole);
 }
 
-void Model::sort(const QVector<int> &newIndexes)
+void Model::setCurrentIndex(int current)
 {
-   for(int i=0; i<newIndexes.size(); ++i) {
-       tags.move(newIndexes.at(i), i);
-   }
-
-   indexes.clear();
+    if (current == currentFileIndex) return;
+    const int oldCurrent = currentFileIndex;
+    currentFileIndex = current;
+    if (oldCurrent!=-1)
+        Q_EMIT dataChanged(index(oldCurrent,0),index(oldCurrent,TAGSCOUNT+5),QVector<int>()<<Qt::FontRole);
+    if (currentFileIndex!=-1)
+        Q_EMIT dataChanged(index(currentFileIndex,0),index(currentFileIndex,TAGSCOUNT+5),QVector<int>()<<Qt::FontRole);
 }
 
 QVector<int> computeIndexes(QVector<int> notYetMoved, bool up, int totalSize)
@@ -580,15 +603,71 @@ QVector<int> computeIndexes(QVector<int> notYetMoved, bool up, int totalSize)
 }
 
 void Model::move(bool up)
-{DD
+{DD;
     QVector<int> newIndexes = computeIndexes(indexes, up, tags.size());
-    int i=up?0:indexes.size()-1;
-    while (1) {
-        tags.move(indexes.at(i),newIndexes.at(i));
-        if ((up && i==indexes.size()-1) || (!up && i==0)) break;
-        i=up?i+1:i-1;
+    if (indexes==newIndexes) return;
+
+    //up
+    if (up) {
+        for (int I=0; I<indexes.size(); ++I) {
+            if (indexes.at(I)==newIndexes.at(I)) continue;
+            beginMoveRows(QModelIndex(),indexes.at(I),indexes.at(I),QModelIndex(),newIndexes.at(I));
+            tags.move(indexes.at(I),newIndexes.at(I));
+            endMoveRows();
+        }
     }
-    indexes=newIndexes;
+    else {//down
+        for (int I=indexes.size()-1; I>=0; --I) {
+            if (indexes.at(I)==newIndexes.at(I)) continue;
+            beginMoveRows(QModelIndex(),indexes.at(I),indexes.at(I),QModelIndex(),newIndexes.at(I)+1);
+            tags.move(indexes.at(I),newIndexes.at(I));
+            endMoveRows();
+        }
+    }
+
+    indexes = newIndexes;
+}
+
+void Model::sort(int column, Qt::SortOrder order, int sortType)
+{DD;
+    QVector<int> newIndexes;
+
+    QMap<QVariant, int> map;
+    bool ok;
+    for (int i=0; i<size(); ++i) {
+        QString s = data(index(i,column)).toString();
+        if (sortType==SortTime) map.insertMulti(QTime::fromString(s,"m:ss"),i);
+        else {
+            int intval=s.toInt(&ok);
+            if (ok && !s.isEmpty()) map.insertMulti(intval,i);
+            else map.insertMulti(s,i);
+        }
+    }
+    QMapIterator<QVariant, int> i(map);
+    if (order==Qt::DescendingOrder) {
+        i.toBack();
+        while (i.hasPrevious()) {
+            i.previous();
+            newIndexes << i.value();
+        }
+    }
+    else {
+        while (i.hasNext()) {
+            i.next();
+            newIndexes << i.value();
+        }
+    }
+
+    for (int i=0; i<newIndexes.size()-1; ++i) {
+        if (newIndexes.at(i) == i) continue;
+        beginMoveRows(QModelIndex(),newIndexes.at(i),newIndexes.at(i),QModelIndex(),
+                      newIndexes.at(i)>i?i:i+1);
+        tags.move(newIndexes.at(i),i);
+        endMoveRows();
+        for(int j=i+1; j<newIndexes.size(); ++j) {
+            if (newIndexes.at(j)<newIndexes.at(i)) newIndexes[j]+=1;
+        }
+    }
 }
 
 void Model::rereadTags(const QVector<int> &inds)
@@ -598,14 +677,15 @@ void Model::rereadTags(const QVector<int> &inds)
     }
 }
 
-void Model::rereadTagsAt(int index)
+void Model::rereadTagsAt(int ind)
 {DD
-    if (index >= 0 && index < size()) {
-        Tag tag(tags.at(index).fullFileName(), App->currentScheme->tagsCount());
+    if (ind >= 0 && ind < size()) {
+        Tag tag(tags.at(ind).fullFileName(), App->currentScheme->tagsCount());
         TagsReaderWriter t(&tag);
         t.readTags();
-        if (tags.at(index) != tag)
-            setTag(index, tag);
+        if (tags.at(ind) != tag) {
+            setTag(ind, tag);
+        }
     }
 }
 
@@ -615,7 +695,7 @@ void Model::setTags(const QVector<int> &inds, const QList<Tag> &newTags)
     for (int i=0; i<inds.size(); ++i) {
         setTag(inds.at(i), newTags.at(i));
     }
-    Q_EMIT modelChanged(!isSaved());
+    Q_EMIT modelChanged(!isFilesSaved());
 }
 
 void Model::setRow(int tagID, const QString &newValue)
@@ -645,15 +725,10 @@ void Model::setTag(int index, const QString &tagID, const QString &newValue)
     tags[index].setUserTag(tagID, newValue);
 }
 
-void Model::setTag(int index, const Tag &tag)
+void Model::setTag(int ind, const Tag &tag)
 {DD
-    bool status = tags.at(index).wasChanged();
-    bool newStatus = tag.wasChanged();
-    tags.replace(index,tag);
-
-    Q_EMIT fileChanged(index, tag, QVector<int>()); //update whole row
-    if (newStatus != status)
-        Q_EMIT fileChanged(index, newStatus);
+    tags.replace(ind,tag);
+    Q_EMIT dataChanged(index(ind,0),index(ind,TAGSCOUNT+5));
 }
 
 void Model::removeAllTags()
@@ -711,4 +786,175 @@ QStringList Model::tagsByPattern(int tagID, const QString &pattern)
             newValues=QVector<QString>(indexes.size(), pattern).toList();
     }
     return newValues;
+}
+
+
+// Reimplementations of abstract methods of QAbstractItemModel
+
+int Model::rowCount(const QModelIndex &parent) const
+{
+    return tags.size();
+}
+
+int Model::columnCount(const QModelIndex &parent) const
+{
+    return TAGSCOUNT+5;
+}
+
+QVariant Model::data(const QModelIndex &index, int role) const
+{
+    if (!index.isValid()) return QVariant();
+
+    const int row = index.row();
+    const int column = index.column();
+
+    if (row<0 || row>=tags.size()) return QVariant();
+
+    const Tag &tag = tags.at(row);
+
+    if (role == Qt::DisplayRole) {
+        switch (column) {
+            case 0: return QVariant(); break; // save icon
+            case 1: return tag.tracknumber().simplified(); break;
+            case 2: return tag.fileNameExt(); break;
+            case 3: return tag.composer().simplified(); break;
+            case 4: return tag.album().simplified(); break;
+            case 5: return tag.title().simplified(); break;
+            case 6: return tag.performer().simplified(); break;
+            case 7: return tag.artist().simplified(); break;
+            case 8: return tag.conductor().simplified(); break;
+            case 9: return tag.orchestra().simplified(); break;
+            case 10: return tag.subtitle().simplified(); break;
+            case 11: return tag.key().simplified(); break;
+            case 12: return tag.comment().simplified(); break;
+            case 13: return tag.genre().simplified(); break;
+            case 14: return tag.year().simplified(); break;
+            case 15: return tag.totalTracks().simplified(); break;
+            case 16: return tag.albumArtist().simplified(); break;
+            case 17: return tag.category().simplified(); break;
+            case 18: return tag.publisher().simplified(); break;
+            case 19: return tag.copyright().simplified(); break;
+            case 20: return tag.mood().simplified(); break;
+            case 21: return tag.tempo().simplified(); break;
+            case 22: return tag.lyricist().simplified(); break;
+            case 23: return tag.lyrics().simplified(); break;
+            case 24: return tag.discnumber().simplified(); break;
+            case 25: return tag.totaldiscs().simplified(); break;
+            case 26: return tag.encodedby().simplified(); break;
+            case 27: return tag.remixedby().simplified(); break;
+            case 28: return tag.rating().simplified(); break;
+            case 29: return tag.originalalbum().simplified(); break;
+            case 30: return tag.originalartist().simplified(); break;
+            case 31: return tag.originallyricist().simplified(); break;
+            case 32: return tag.url().simplified(); break;
+            case 33: return tag.isrc().simplified(); break;
+            case 34: return Qoobar::formatLength(tag.length()); break;
+            case 35: return QVariant(); // replay gain
+            case 36: return QVariant(); // image
+            default: return QVariant();
+        }
+    }
+    if (role == Qt::DecorationRole) {
+        switch (column) {
+            case 0: return tag.wasChanged()?qApp->style()->standardIcon(QStyle::SP_DialogSaveButton):QIcon(); break; // save icon
+            case 2: return QIcon(tag.icon()); break;
+            case 35: return tag.replayGainInfoIsEmpty() ? QIcon():QIcon(QSL(":/src/icons/replaygain.png")); // replay gain
+            case 36: return tag.imageIsEmpty() ? QIcon():QIcon(QSL(":/src/icons/image.png")); // image
+            default: return QVariant();
+        }
+    }
+    if (role == Qt::ForegroundRole) {
+        switch (column) {
+            case 2: return tag.readOnly()?QBrush(Qt::gray) : qApp->style()->standardPalette().brush(QPalette::WindowText); break;
+            default: return qApp->style()->standardPalette().brush(QPalette::WindowText);
+        }
+    }
+    if (role == Qt::FontRole) {
+        return (row == currentFileIndex ? bFont : uFont);
+    }
+    return QVariant();
+}
+
+//bool Model::setData(const QModelIndex &index, const QVariant &value, int role)
+//{
+//}
+
+QVariant Model::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (orientation == Qt::Vertical) return QAbstractItemModel::headerData(section, orientation, role);
+
+    if (role == Qt::DisplayRole) {
+        switch (section) {
+            case 0: return QVariant(); break; // save icon
+            case 1: return tr("No."); break;
+            case 2: return tr("File"); break;
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14: return App->currentScheme->localizedFieldName[section-3]; break;
+
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 26:
+            case 27:
+            case 28:
+            case 29:
+            case 30:
+            case 31:
+            case 32:
+            case 33: return App->currentScheme->localizedFieldName[section-2]; break;
+            case 34: return tr("Length"); break;
+            case 35: return tr("RG"); // replay gain
+            case 36: return tr("Img"); // image
+            default: return QVariant();
+        }
+    }
+    return QVariant();
+}
+
+//bool Model::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
+//{
+//}
+
+//QMap<int, QVariant> Model::itemData(const QModelIndex &index) const
+//{
+//}
+
+//bool Model::setItemData(const QModelIndex &index, const QMap<int, QVariant> &roles)
+//{
+//}
+
+//bool Model::moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild)
+//{
+//}
+
+//void Model::fetchMore(const QModelIndex &parent)
+//{
+//}
+
+//bool Model::canFetchMore(const QModelIndex &parent) const
+//{
+//}
+
+Qt::ItemFlags Model::flags(const QModelIndex &index) const
+{
+    Q_UNUSED(index)
+    return Qt::ItemIsSelectable | Qt::ItemIsEnabled;
 }

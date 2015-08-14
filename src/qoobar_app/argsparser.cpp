@@ -421,7 +421,7 @@ void CommandLineProcessor::parse()
             }
             appendMessage(message+"</font>");
         }
-        if (!model.selectedFilesSaved()) {
+        if (!model.isSelectedFilesSaved()) {
             model.save();
         }
 
@@ -462,7 +462,7 @@ void CommandLineProcessor::parse()
         if (App->verbose) {
             appendMessage("<font color=blue>Removing ReplayGain info ...</font>");
         }
-        if (!model.selectedFilesSaved())
+        if (!model.isSelectedFilesSaved())
             model.save();
 
         ReplayGainer gainer(&model);

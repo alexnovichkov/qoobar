@@ -156,6 +156,8 @@ public:
     bool mp3writeid3;
     QString player;
     QByteArray columns160; //horizontal header state
+    QByteArray columns167; //horizontal header state
+
     QByteArray rows; //vertical header state
     bool saveChanges; //whether or not save all changes when closing app
     bool trim; //whether or not trim tags when saving files

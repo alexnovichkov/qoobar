@@ -34,13 +34,6 @@ class Tab;
 class QSignalMapper;
 #include "tagger.h"
 
-enum SortType {
-    SortString,
-    SortInt,
-    SortTime,
-    SortFloat
-};
-
 class TreeWidget : public QTreeWidget
 {
     Q_OBJECT

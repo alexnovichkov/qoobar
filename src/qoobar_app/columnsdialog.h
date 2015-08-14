@@ -29,7 +29,7 @@
 
 #include <QDialog>
 
-class QTreeWidget;
+class QTreeView;
 class CheckableHeaderView;
 class QTableWidget;
 
@@ -37,7 +37,7 @@ class ColumnsDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit ColumnsDialog(QTreeWidget *tree);
+    explicit ColumnsDialog(QTreeView *tree);
 
 Q_SIGNALS:
     void tagStatusChanged(int tagID,int status);
@@ -45,7 +45,7 @@ private Q_SLOTS:
     void checkBoxToggled(int row, int column);
     void headerToggled(int column, Qt::CheckState checked);
 private:
-    QTreeWidget *tree;
+    QTreeView *tree;
     CheckableHeaderView *header;
     QTableWidget *table;
 };

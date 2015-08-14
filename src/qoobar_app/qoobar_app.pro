@@ -88,7 +88,8 @@ SOURCES = main.cpp \
     taskbarprogress.cpp \
     clparser.cpp \
     searchbar.cpp \
-    platformprocess.cpp
+    platformprocess.cpp \
+    treeview.cpp
 
 
 HEADERS = mainwindow.h \
@@ -154,7 +155,8 @@ HEADERS = mainwindow.h \
     imageresizedialog.h \
     taskbarprogress.h \
     searchbar.h \
-    platformprocess.h
+    platformprocess.h \
+    treeview.h
 
 lessThan(QT_MAJOR_VERSION, 5) {
     SOURCES *= ereilin/json.cpp

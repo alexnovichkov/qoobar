@@ -36,7 +36,7 @@
 #include "checkableheaderview.h"
 #include "enums.h"
 
-ColumnsDialog::ColumnsDialog(QTreeWidget *tree) :
+ColumnsDialog::ColumnsDialog(QTreeView *tree) :
     QDialog(tree), tree(tree), header(0)
 {
     setWindowTitle(tr("Qoobar - Adjust columns visibility"));
@@ -51,7 +51,7 @@ ColumnsDialog::ColumnsDialog(QTreeWidget *tree) :
     int hidden=tree->header()->hiddenSectionCount();
     int checked = columnCount - hidden;
     for (int i = 0; i < columnCount; ++i) {
-        QTableWidgetItem *item = new QTableWidgetItem(tree->headerItem()->text(i));
+        QTableWidgetItem *item = new QTableWidgetItem(tree->model()->headerData(i,Qt::Horizontal).toString());
         item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
         item->setCheckState(tree->header()->isSectionHidden(i)?Qt::Unchecked:Qt::Checked);
         table->setItem(i,0,item);
