@@ -134,6 +134,7 @@ private Q_SLOTS:
     void onItemClicked(const QModelIndex &index);
     void updateStatusBar(const QModelIndex &index);
     void updateImageBox();
+    void updateTableRow(int,const QString &);
     void tagsChanged(int,const QStringList &);
     void saveSplitterState();
     void handleOperation(const QString &);

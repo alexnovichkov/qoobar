@@ -96,7 +96,7 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     connect(model,SIGNAL(filesCountChanged(int)), SIGNAL(filesCountChanged(int)));
     connect(model,SIGNAL(selectionCleared()), table, SLOT(clearTable()));
     connect(model,SIGNAL(selectionCleared()), this, SLOT(updateImageBox()));
-    connect(model,SIGNAL(tagValueChanged(int,QString,int)),table, SLOT(updateRow(int,QString)));
+    connect(model,SIGNAL(tagValueChanged(int,QString,int)), SLOT(updateTableRow(int,QString)));
 
 
 
@@ -333,7 +333,7 @@ void Tab::handleOperation(const QString &type) /*SLOT*/
         if (App->useUndo)
             undoStack_->push(c);
         else {
-            c->redo();
+            c->redo(); //void Tab::setTags through ChangeFilesCommand
             delete c;
         }
     }
@@ -355,7 +355,7 @@ void Tab::tagsChanged(int row,const QStringList &newValues) /*SLOT*/
         if (App->useUndo)
             undoStack_->push(c);
         else {
-            c->redo();
+            c->redo(); //void Tab::setTags through ChangeFilesCommand
             delete c;
         }
     }
@@ -832,6 +832,13 @@ void Tab::updateImageBox()
         CoverImage img=model->fileAtSelection(0).image();
         imageBox->updatePicture(img,model->fileAtSelection(0).fullFileName());
     }
+}
+
+void Tab::updateTableRow(int row, const QString &value)
+{
+    table->blockSignals(true);
+    table->updateRow(row, value);
+    table->blockSignals(false);
 }
 
 

@@ -768,11 +768,13 @@ QStringList Model::tagsByPattern(int tagID, const QString &pattern)
 
 int Model::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent)
     return tags.size();
 }
 
 int Model::columnCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent)
     return TAGSCOUNT+5;
 }
 
@@ -909,11 +911,13 @@ bool Model::setData(const QModelIndex &index, const QVariant &val, int role)
     if (row<0 || row>=size()) return false;
 
     QString v = val.toString();
-    if (v == value(row,col)) return false;
+    QStringList newValues = tagsByPattern(col, v);
+    if (newValues.size()!=1)
+    if (newValues.first() == value(row,col)) return false;
 
-    setTagValue(row,col,v);
+    setTagValue(row,col,newValues.first());
     Q_EMIT dataChanged(index,index);
-    Q_EMIT tagValueChanged(col, v, row);
+    Q_EMIT tagValueChanged(col, newValues.first(), row);
 
     return true;
 }
@@ -999,5 +1003,5 @@ Qt::ItemFlags Model::flags(const QModelIndex &index) const
     if (col==COL_FILENAME || col==COL_IMAGE || col==COL_LENGTH
         || col==COL_REPLAYGAIN || col==COL_SAVEICON) return QAbstractTableModel::flags(index);
 
-    return QAbstractTableModel::flags(index) /*| Qt::ItemIsEditable*/;
+    return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
 }
