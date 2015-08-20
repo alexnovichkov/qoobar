@@ -1258,7 +1258,7 @@ void TagsReaderWriter::renderTags(const TaggingScheme::TagType type, TagLib::Tag
 
         if (App->currentScheme->fieldName(i)==QSL("Music/Video Kind")) {
             bool ok;
-            ushort v = value.toUShort(&ok);
+            value.toUShort(&ok);
             if (!ok) {
                 if (value == QSL("Movie")) value = "0";
                 else if (value == QSL("Normal")) value = "1";

@@ -40,12 +40,12 @@ public:
     void addRow(int row);
     QString tag(int) const;
     void retranslateUi();
-    void updateRow(int row, const QString &text);
 Q_SIGNALS:
     void cellClicked();
     void tagsSent(int, const QStringList &);
 public Q_SLOTS:
     void clearTable();
+    void updateRow(int row, const QString &text);
 private Q_SLOTS:
     void updateTableHeaderGeometry();
     void adjustDisplayedTags();

@@ -96,6 +96,7 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     connect(model,SIGNAL(filesCountChanged(int)), SIGNAL(filesCountChanged(int)));
     connect(model,SIGNAL(selectionCleared()), table, SLOT(clearTable()));
     connect(model,SIGNAL(selectionCleared()), this, SLOT(updateImageBox()));
+    connect(model,SIGNAL(tagValueChanged(int,QString,int)),table, SLOT(updateRow(int,QString)));
 
 
 
@@ -413,9 +414,9 @@ struct Reduce
 
 void Tab::updateTagsTable(const QVector<int> &rows)
 {DD;
-    bool fullUpdate = (rows.isEmpty() || rows.last()>=App->currentScheme->tagsCount());
+    const bool fullUpdate = (rows.isEmpty() || rows.last()>=App->currentScheme->tagsCount());
 
-    int indexesCount = model->selectedFilesCount();
+    const int indexesCount = model->selectedFilesCount();
     table->blockSignals(true);
 
     if (fullUpdate) {
@@ -450,13 +451,13 @@ void Tab::updateTagsTable(const QVector<int> &rows)
     updateImageBox();
 }
 
-void Tab::updateTagsTableRow(int row, const QStringList &list)
-{DD;
-    table->blockSignals(true);
-    QString text=Reduce(table->width())(list);
-    table->updateRow(row, text);
-    table->blockSignals(false);
-}
+//void Tab::updateTagsTableRow(int row, const QStringList &list)
+//{DD;
+//    table->blockSignals(true);
+//    QString text=Reduce(table->width())(list);
+//    table->updateRow(row, text);
+//    table->blockSignals(false);
+//}
 
 void Tab::remove() /*SLOT*/
 {DD;

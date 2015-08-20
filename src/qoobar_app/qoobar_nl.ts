@@ -731,7 +731,7 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
     <message>
         <location filename="lineedit.cpp" line="165"/>
         <source>Set this block into...</source>
-        <translation type="unfinished">Stel dit blok in...</translation>
+        <translation>Stel dit blok in...</translation>
     </message>
     <message>
         <location filename="lineedit.cpp" line="168"/>
@@ -742,7 +742,7 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
     <message>
         <location filename="lineedit.cpp" line="175"/>
         <source>Set this text into...</source>
-        <translation type="unfinished">Stel deze tekst in...</translation>
+        <translation>Stel deze tekst in...</translation>
     </message>
 </context>
 <context>
@@ -1243,84 +1243,84 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="332"/>
+        <location filename="model.cpp" line="317"/>
         <source>%1 does not exist</source>
         <translation>%1 bestaat niet</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="333"/>
+        <location filename="model.cpp" line="318"/>
         <source>%1 is not a file</source>
         <translation>%1 is geen bestand</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="334"/>
+        <location filename="model.cpp" line="319"/>
         <source>%1 is read-only</source>
         <translation>%1 alleen lezen</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="477"/>
+        <location filename="model.cpp" line="461"/>
         <source>Cannot rename following files:
 </source>
         <translation>Kan de volgende bestanden niet hernoemen:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="479"/>
+        <location filename="model.cpp" line="463"/>
         <source>Cannot copy following files:
 </source>
         <translation>Kan de volgende bestanden niet kopiëren:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="481"/>
+        <location filename="model.cpp" line="465"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Kan de volgende mappen niet hernoemen:</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="490"/>
+        <location filename="model.cpp" line="474"/>
         <source>All folders were successfully renamed</source>
         <translation>Alle mappen zijn succesvol hernoemd</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="861"/>
+        <location filename="model.cpp" line="865"/>
         <source>No.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nr.</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="862"/>
+        <location filename="model.cpp" line="866"/>
         <source>File</source>
-        <translation type="unfinished">Bestand</translation>
+        <translation>Bestand</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="895"/>
+        <location filename="model.cpp" line="899"/>
         <source>Length</source>
-        <translation type="unfinished">Lengte</translation>
+        <translation>Lengte</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="896"/>
+        <location filename="model.cpp" line="900"/>
         <source>RG</source>
-        <translation type="unfinished">RG</translation>
+        <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="897"/>
+        <location filename="model.cpp" line="901"/>
         <source>Img</source>
-        <translation type="unfinished">Img</translation>
+        <translation>Img</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="304"/>
+        <location filename="model.cpp" line="289"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Kan labels niet naar bestanden schrijven:
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="486"/>
+        <location filename="model.cpp" line="470"/>
         <source>All files were successfully renamed</source>
         <translation>Alle bestanden zijn succesvol hernoemd</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="488"/>
+        <location filename="model.cpp" line="472"/>
         <source>All files were successfully copied</source>
         <translation>Alle bestanden zijn succesvol gekopieerd</translation>
     </message>
@@ -1961,14 +1961,14 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
         <translation>ISRC</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="409"/>
+        <location filename="tab.cpp" line="404"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;meerdere&gt;&gt;</translation>
     </message>
     <message>
         <location filename="schemeeditor.cpp" line="60"/>
         <source>Default</source>
-        <translation type="unfinished">Standaard</translation>
+        <translation>Standaard</translation>
     </message>
 </context>
 <context>
@@ -2411,26 +2411,26 @@ Please choose the encoding:</source>
 <context>
     <name>Tab</name>
     <message>
-        <location filename="tab.cpp" line="157"/>
-        <location filename="tab.cpp" line="276"/>
+        <location filename="tab.cpp" line="152"/>
+        <location filename="tab.cpp" line="271"/>
         <source>Ctrl+Up</source>
         <translation>Ctrl+Omhoog</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="162"/>
-        <location filename="tab.cpp" line="278"/>
+        <location filename="tab.cpp" line="157"/>
+        <location filename="tab.cpp" line="273"/>
         <source>Ctrl+Down</source>
         <translation>Ctrl+Omlaag</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="155"/>
-        <location filename="tab.cpp" line="275"/>
+        <location filename="tab.cpp" line="150"/>
+        <location filename="tab.cpp" line="270"/>
         <source>Move up</source>
         <translation>Naar omhoog verplaatsen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="160"/>
-        <location filename="tab.cpp" line="277"/>
+        <location filename="tab.cpp" line="155"/>
+        <location filename="tab.cpp" line="272"/>
         <source>Move down</source>
         <translation>Naar omlaag verplaatsen</translation>
     </message>
@@ -2439,172 +2439,173 @@ Please choose the encoding:</source>
         <translation type="obsolete">Album hoes</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1023"/>
+        <location filename="tab.cpp" line="1024"/>
         <source>Files in %1 have been modified.</source>
         <translation>Bestanden in %1 zijn gewijzerd.</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="477"/>
+        <location filename="tab.cpp" line="472"/>
         <source>clearing tags</source>
         <oldsource>Remove tags</oldsource>
         <translation>Labels opruimen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="183"/>
-        <location filename="tab.cpp" line="284"/>
+        <location filename="tab.cpp" line="178"/>
+        <location filename="tab.cpp" line="279"/>
         <source>Ctrl+H</source>
         <translation>Ctrl H</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="210"/>
-        <location filename="tab.cpp" line="286"/>
+        <location filename="tab.cpp" line="205"/>
+        <location filename="tab.cpp" line="281"/>
         <source>Operations</source>
         <translation>Activiteiten</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="851"/>
+        <location filename="tab.cpp" line="847"/>
         <source>Please set a player in the Settings dialog</source>
         <translation>Stel AUB een speler in het Instellingen venster</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="907"/>
+        <location filename="tab.cpp" line="902"/>
         <source>Some files have been modified</source>
         <translation>Sommige bestanden zijn gewijzigd</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="909"/>
+        <location filename="tab.cpp" line="904"/>
         <source>Remove them anyway?</source>
         <translation>Toch verwijderen?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="910"/>
+        <location filename="tab.cpp" line="905"/>
         <source>Yes, remove without saving</source>
         <translation>Ja, verwijderen zonder op te slaan</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="912"/>
+        <location filename="tab.cpp" line="907"/>
         <source>No, save them and then remove</source>
         <translation>Nee sla op en dan verwijderen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="234"/>
-        <location filename="tab.cpp" line="906"/>
+        <location filename="tab.cpp" line="229"/>
+        <location filename="tab.cpp" line="901"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1022"/>
+        <location filename="tab.cpp" line="1023"/>
         <source>Closing Qoobar</source>
         <translation>Afsluiten Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1227"/>
+        <location filename="tab.cpp" line="1177"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation>Qoobar - ReplayGain Informatie</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1228"/>
+        <location filename="tab.cpp" line="1178"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation>Qoobar scant slechts de opgeslagen bestanden 
 Wilt u de wijzigingen opslaan?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="329"/>
-        <location filename="tab.cpp" line="353"/>
+        <location filename="tab.cpp" line="324"/>
+        <location filename="tab.cpp" line="348"/>
+        <location filename="tab.cpp" line="572"/>
         <location filename="tab.cpp" line="576"/>
-        <location filename="tab.cpp" line="580"/>
         <source>changing tags</source>
         <oldsource>Change tags</oldsource>
         <translation>veranderen van labels</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="233"/>
+        <location filename="tab.cpp" line="228"/>
         <source>Abort</source>
         <translation>Afbreken</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="165"/>
-        <location filename="tab.cpp" line="279"/>
+        <location filename="tab.cpp" line="160"/>
+        <location filename="tab.cpp" line="274"/>
         <source>&amp;Edit...</source>
         <translation>&amp;Bewerken...</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="168"/>
-        <location filename="tab.cpp" line="280"/>
+        <location filename="tab.cpp" line="163"/>
+        <location filename="tab.cpp" line="275"/>
         <source>Edit as &amp;multiline text...</source>
         <translation>Bewerk als &amp;meerregelige tekst...</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="172"/>
-        <location filename="tab.cpp" line="282"/>
+        <location filename="tab.cpp" line="167"/>
+        <location filename="tab.cpp" line="277"/>
         <source>C&amp;lear tags</source>
         <translation>L&amp;abels opruimen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="182"/>
-        <location filename="tab.cpp" line="283"/>
+        <location filename="tab.cpp" line="177"/>
+        <location filename="tab.cpp" line="278"/>
         <source>Collect for &amp;future use</source>
         <translation>Verzamel voor &amp;toekomstig gebruik</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="961"/>
+        <location filename="tab.cpp" line="953"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation>Wacht AUB terwijl Qoobar bestanden toevoegd</translation>
     </message>
     <message>
+        <location filename="tab.cpp" line="1008"/>
         <source>Cannot write tags to file:
 %1</source>
-        <translation type="vanished">Kan labels niet naar bestanden schrijven:
+        <translation>Kan labels niet naar bestanden schrijven:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1026"/>
+        <location filename="tab.cpp" line="1027"/>
         <source>Do you want to save your changes?</source>
         <translation>Wil je de wijzigingen opslaan?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1027"/>
+        <location filename="tab.cpp" line="1028"/>
         <source>Yes, save</source>
         <translation>Ja, opslaan</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1029"/>
+        <location filename="tab.cpp" line="1030"/>
         <source>No, don&apos;t save</source>
         <translation>Nee, niet opslaan</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="233"/>
+        <location filename="tab.cpp" line="228"/>
         <source>Writing tags...</source>
         <translation>Het schrijven van labels...</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="267"/>
+        <location filename="tab.cpp" line="262"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Kan labels niet naar bestanden schrijven:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="833"/>
+        <location filename="tab.cpp" line="829"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;meerdere&gt;&gt;</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="562"/>
+        <location filename="tab.cpp" line="558"/>
         <source>filling tags</source>
         <oldsource>Fill tags</oldsource>
         <translation>Labels invullen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="616"/>
+        <location filename="tab.cpp" line="612"/>
         <source>rereading tags</source>
         <oldsource>Reread tags</oldsource>
         <translation>herlezen labels</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="655"/>
-        <location filename="tab.cpp" line="716"/>
+        <location filename="tab.cpp" line="651"/>
+        <location filename="tab.cpp" line="712"/>
         <source>pasting tags</source>
         <oldsource>Paste tags</oldsource>
         <translation>plakken van labels</translation>
@@ -2873,8 +2874,24 @@ Wilt u de wijzigingen opslaan?</translation>
     <name>TreeView</name>
     <message>
         <location filename="treeview.cpp" line="33"/>
+        <location filename="treeview.cpp" line="77"/>
         <source>Show/hide columns...</source>
-        <translation type="unfinished">Aanpassen weergegeven kolommen...</translation>
+        <translation>Aanpassen/weergegeven kolommen...</translation>
+    </message>
+    <message>
+        <location filename="treeview.cpp" line="106"/>
+        <source>Move to the tab...</source>
+        <translation>Ga naar het tabblad...</translation>
+    </message>
+    <message>
+        <location filename="treeview.cpp" line="110"/>
+        <source>New tab</source>
+        <translation>Nieuw Tabblad</translation>
+    </message>
+    <message>
+        <location filename="treeview.cpp" line="121"/>
+        <source>MP3 tag types...</source>
+        <translation>MP3 label soorten...</translation>
     </message>
 </context>
 <context>

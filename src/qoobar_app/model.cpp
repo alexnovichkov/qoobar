@@ -58,6 +58,10 @@ Model::Model(QObject *parent) :
     uFont = qApp->font();
     bFont = uFont;
     bFont.setBold(true);
+
+    rgIcon = QIcon(QSL(":/src/icons/replaygain.png"));
+    imgIcon = QIcon(QSL(":/src/icons/image.png"));
+    saveIcon = qApp->style()->standardIcon(QStyle::SP_DialogSaveButton);
 }
 
 Model::~Model()
@@ -107,21 +111,6 @@ int Model::nextChangedFileIndex()
             return i;
         }
     }
-    return -1;
-}
-
-int Model::firstSelectedFileIndex()
-{DD
-    selectedFileIndex = -1;
-    return nextSelectedFileIndex();
-}
-
-int Model::nextSelectedFileIndex()
-{DD
-    selectedFileIndex++;
-
-    if (indexes.contains(selectedFileIndex)) return selectedFileIndex;
-
     return -1;
 }
 
@@ -700,10 +689,9 @@ void Model::setTags(const QVector<int> &inds, const QList<Tag> &newTags)
 
 void Model::setRow(int tagID, const QString &newValue)
 {DD
-//    if (tagID>=TAGSCOUNT) return;
     QStringList newValues = tagsByPattern(tagID, newValue);
     for (int i=0; i<indexes.size(); ++i) {
-        setTag(indexes.at(i), tagID, newValues.at(i));
+        setTagValue(indexes.at(i), tagID, newValues.at(i));
     }
 }
 
@@ -711,16 +699,16 @@ void Model::setRow(const QString &stringID, const QString &newValue)
 {DD
     QStringList newValues = tagsByPattern(-1, newValue);
     for (int i=0; i<indexes.size(); ++i) {
-        setTag(indexes.at(i), stringID, newValues.at(i));
+        setTagValue(indexes.at(i), stringID, newValues.at(i));
     }
 }
 
-void Model::setTag(int index, int tagID, const QString &newValue)
+void Model::setTagValue(int index, int tagID, const QString &newValue)
 {DD
     tags[index].setTag(tagID, newValue);
 }
 
-void Model::setTag(int index, const QString &tagID, const QString &newValue)
+void Model::setTagValue(int index, const QString &tagID, const QString &newValue)
 {DD
     tags[index].setUserTag(tagID, newValue);
 }
@@ -749,19 +737,6 @@ void Model::removeImage()
 {DD
     setImage(CoverImage());
 }
-
-//bool Model::newTagsEqual(const QStringList &newTags, int tagID, const QString &stringID)
-//{DD
-//    for (int i=0; i<newTags.size(); ++i) {
-//        QString oldTag;
-//        if (tagID<TAGSCOUNT)
-//            oldTag = tags.at(indexes.at(i)).tag(tagID);
-//        else
-//            oldTag = tags.at(indexes.at(i)).userTag(stringID);
-//        if (newTags.at(i) != oldTag) return false;
-//    }
-//    return true;
-//}
 
 QStringList Model::tagsByPattern(int tagID, const QString &pattern)
 {DD
@@ -854,12 +829,54 @@ QVariant Model::data(const QModelIndex &index, int role) const
             default: return QVariant();
         }
     }
-    if (role == Qt::DecorationRole) {
+    else if (role == Qt::EditRole) {
         switch (column) {
-            case 0: return tag.wasChanged()?qApp->style()->standardIcon(QStyle::SP_DialogSaveButton):QIcon(); break; // save icon
+            case 0: return QVariant(); break; // save icon
+            case 1: return tag.tracknumber(); break;
+            case 2: return tag.fileNameExt(); break;
+            case 3: return tag.composer(); break;
+            case 4: return tag.album(); break;
+            case 5: return tag.title(); break;
+            case 6: return tag.performer(); break;
+            case 7: return tag.artist(); break;
+            case 8: return tag.conductor(); break;
+            case 9: return tag.orchestra(); break;
+            case 10: return tag.subtitle(); break;
+            case 11: return tag.key(); break;
+            case 12: return tag.comment(); break;
+            case 13: return tag.genre(); break;
+            case 14: return tag.year(); break;
+            case 15: return tag.totalTracks(); break;
+            case 16: return tag.albumArtist(); break;
+            case 17: return tag.category(); break;
+            case 18: return tag.publisher(); break;
+            case 19: return tag.copyright(); break;
+            case 20: return tag.mood(); break;
+            case 21: return tag.tempo(); break;
+            case 22: return tag.lyricist(); break;
+            case 23: return tag.lyrics(); break;
+            case 24: return tag.discnumber(); break;
+            case 25: return tag.totaldiscs(); break;
+            case 26: return tag.encodedby(); break;
+            case 27: return tag.remixedby(); break;
+            case 28: return tag.rating(); break;
+            case 29: return tag.originalalbum(); break;
+            case 30: return tag.originalartist(); break;
+            case 31: return tag.originallyricist(); break;
+            case 32: return tag.url(); break;
+            case 33: return tag.isrc(); break;
+            case 34: return Qoobar::formatLength(tag.length()); break;
+            case 35: return QVariant(); // replay gain
+            case 36: return QVariant(); // image
+            default: return QVariant();
+        }
+    }
+    else if (role == Qt::DecorationRole) {
+        switch (column) {
+            case 0: return tag.wasChanged()?saveIcon:QIcon(); break; // save icon
             case 2: return QIcon(tag.icon()); break;
-            case 35: return tag.replayGainInfoIsEmpty() ? QIcon():QIcon(QSL(":/src/icons/replaygain.png")); // replay gain
-            case 36: return tag.imageIsEmpty() ? QIcon():QIcon(QSL(":/src/icons/image.png")); // image
+            case 35: return tag.replayGainInfoIsEmpty() ? QIcon():rgIcon; // replay gain
+            case 36: return tag.imageIsEmpty() ? QIcon():imgIcon; // image
             default: return QVariant();
         }
     }
@@ -875,9 +892,31 @@ QVariant Model::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-//bool Model::setData(const QModelIndex &index, const QVariant &value, int role)
-//{
-//}
+bool Model::setData(const QModelIndex &index, const QVariant &val, int role)
+{
+    if (role != Qt::EditRole) return false;
+    if (!index.isValid()) return false;
+
+    int col = index.column();
+    if (col==COL_FILENAME || col==COL_IMAGE || col==COL_LENGTH
+        || col==COL_REPLAYGAIN || col==COL_SAVEICON) return false;
+    if (col==COL_TRACKNUMBER) col=TRACKNUMBER;
+    else if (col<=14) col -= 3;
+    else col -= 2;
+    if (col>=TAGSCOUNT || col<0) return false;
+
+    const int row = index.row();
+    if (row<0 || row>=size()) return false;
+
+    QString v = val.toString();
+    if (v == value(row,col)) return false;
+
+    setTagValue(row,col,v);
+    Q_EMIT dataChanged(index,index);
+    Q_EMIT tagValueChanged(col, v, row);
+
+    return true;
+}
 
 QVariant Model::headerData(int section, Qt::Orientation orientation, int role) const
 {
@@ -955,6 +994,10 @@ QVariant Model::headerData(int section, Qt::Orientation orientation, int role) c
 
 Qt::ItemFlags Model::flags(const QModelIndex &index) const
 {
-    Q_UNUSED(index)
-    return Qt::ItemIsSelectable | Qt::ItemIsEnabled;
+//    Q_UNUSED(index)
+    const int col = index.column();
+    if (col==COL_FILENAME || col==COL_IMAGE || col==COL_LENGTH
+        || col==COL_REPLAYGAIN || col==COL_SAVEICON) return QAbstractTableModel::flags(index);
+
+    return QAbstractTableModel::flags(index) /*| Qt::ItemIsEditable*/;
 }

@@ -5,9 +5,11 @@
 #include <QVector>
 #include <QStringList>
 #include <QFont>
+#include <QIcon>
 
 #include "tagger.h"
 
+//columns numbers
 #define COL_SAVEICON 0
 #define COL_TRACKNUMBER 1
 #define COL_FILENAME 2
@@ -92,16 +94,6 @@ public:
      */
     QVector<int> selectedFilesIndexes() const;
     /*!
-     * \brief firstSelectedFileIndex
-     * \return first index of file in selection or -1 if no files are selected
-     */
-    int firstSelectedFileIndex();
-    /*!
-     * \brief nextSelectedFileIndex
-     * \return next index of file in selection or -1 if no selected files left
-     */
-    int nextSelectedFileIndex();
-    /*!
      * \brief selectedFiles
      * \return files in selection
      */
@@ -172,22 +164,6 @@ public:
 
 
     /*!
-     * \brief addFiles - adds files to model, emits
-     * filesAdded() and filesCountChanged() signals
-     * \param filesToAdd
-     */
-    Q_SLOT void addFiles(const QList<Tag> &filesToAdd, bool updateSelected = true);
-
-    Q_SLOT void addFile(const Tag &fileToAdd);
-    /**
-      Reads filesToAdd in a separate thread and invokes addFiles(const QList<Tag> &filesToAdd);
-    */
-    Q_SLOT void addFiles(const QStringList &filesToAdd);
-
-    Q_SLOT void delFiles();
-    Q_SLOT void save();
-
-    /*!
      * \brief saveAt saves file at index
      * \param row index of file
      * \param msg string to write an error message
@@ -200,8 +176,6 @@ public:
     void setTags(const QVector<int> &inds,const QList<Tag> &newTags);
     void setRow(int tagID, const QString &newValue);
     void setRow(const QString &stringID, const QString &newValue);
-    void setTag(int index, int tagID, const QString &newValue);
-    void setTag(int index, const QString &tagID, const QString &newValue);
     void setTag(int ind, const Tag &tag);
     void removeAllTags();
     void removeUserTags();
@@ -250,6 +224,21 @@ public:
 public Q_SLOTS:
     void selectAll();
     void setSelection(const QVector<int> &selectedFilesIndexes);
+    /*!
+     * \brief addFiles - adds files to model, emits
+     * filesAdded() and filesCountChanged() signals
+     * \param filesToAdd
+     */
+    void addFiles(const QList<Tag> &filesToAdd, bool updateSelected = true);
+
+    void addFile(const Tag &fileToAdd);
+    /**
+      Reads filesToAdd in a separate thread and invokes addFiles(const QList<Tag> &filesToAdd);
+    */
+    void addFiles(const QStringList &filesToAdd);
+
+    void delFiles();
+    void save();
 
 private Q_SLOTS:
     /*!
@@ -267,7 +256,7 @@ Q_SIGNALS:
     void fileNameChanged(int, const QString newFileName);
     void imageChanged(int index, bool imageEmpty);
     void message(int type, const QString &text);
-    void tagsNeedUpdate();
+    void tagValueChanged(int column,const QString &value,int index);
     void filesAdded(int,bool);
 
     /**
@@ -295,6 +284,9 @@ Q_SIGNALS:
     void filesCountChanged(int); // emits when model size changed
     void selectionCleared();
 private:
+    void setTagValue(int index, int tagID, const QString &newValue);
+    void setTagValue(int index, const QString &tagID, const QString &newValue);
+
     QVector<int> indexes;
     QList<Tag> tags;
     int changedFileIndex;
@@ -305,13 +297,16 @@ private:
 
     QFont uFont;
     QFont bFont;
+    QIcon rgIcon;
+    QIcon saveIcon;
+    QIcon imgIcon;
 
     // QAbstractItemModel interface
 public:
     virtual int rowCount(const QModelIndex &parent) const;
     virtual int columnCount(const QModelIndex &parent) const;
     virtual QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
-//    virtual bool setData(const QModelIndex &index, const QVariant &value, int role);
+    virtual bool setData(const QModelIndex &index, const QVariant &value, int role);
     virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 //    virtual bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role);
 //    virtual QMap<int, QVariant> itemData(const QModelIndex &index) const;

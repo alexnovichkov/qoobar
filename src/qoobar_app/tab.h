@@ -139,7 +139,7 @@ private Q_SLOTS:
     void handleOperation(const QString &);
     void changeImage(const CoverImage &,const QString &);
     void collectTags();
-    void updateTagsTableRow(int row, const QStringList &list);
+//    void updateTagsTableRow(int row, const QStringList &list);
     void moveToTab(int);
     void showMP3TagsDialog();
     void showMessage(int type,const QString &text);
