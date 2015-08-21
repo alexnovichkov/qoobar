@@ -764,9 +764,13 @@ QStringList Model::tagsByPattern(int tagID, const QString &pattern)
     bool ok;
     const int x = pattern.toInt(&ok);
     if (ok && tagID == TRACKNUMBER) {
-        const bool n = pattern.startsWith('0');
-        for (int i=x; i<x+indexes.size(); ++i)
-            newValues << (n?QString::number(i).rightJustified(2,QChar('0')):QString::number(i));
+        const bool padWithZeros = pattern.startsWith('0');
+        for (int i=x; i<x+indexes.size(); ++i) {
+            if (padWithZeros) {
+                newValues << QString::number(i).rightJustified(pattern.length(),QChar('0'));
+            }
+            else newValues << QString::number(i);
+        }
     }
     else {
         if (pattern.contains('[') || pattern.contains('{') || pattern.contains('%')
@@ -893,10 +897,10 @@ QVariant Model::data(const QModelIndex &index, int role) const
     }
     else if (role == Qt::DecorationRole) {
         switch (column) {
-            case 0: return tag.wasChanged()?saveIcon:QIcon(); break; // save icon
-            case 2: return QIcon(tag.icon()); break;
-            case 35: return tag.replayGainInfoIsEmpty() ? QIcon():rgIcon; // replay gain
-            case 36: return tag.imageIsEmpty() ? QIcon():imgIcon; // image
+            case COL_SAVEICON: return tag.wasChanged()?saveIcon:QIcon(); break; // save icon
+            case COL_FILENAME: return QIcon(tag.icon()); break;
+            case COL_REPLAYGAIN: return tag.replayGainInfoIsEmpty() ? QIcon():rgIcon; // replay gain
+            case COL_IMAGE: return tag.imageIsEmpty() ? QIcon():imgIcon; // image
             default: return QVariant();
         }
     }
