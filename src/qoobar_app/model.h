@@ -238,7 +238,14 @@ public Q_SLOTS:
     void addFiles(const QStringList &filesToAdd);
 
     void delFiles();
+    /**
+     * @brief save - saves all changed files
+     */
     void save();
+    /**
+     * @brief saveSelected - saves only selected files if they are changed
+     */
+    void saveSelected();
 
 private Q_SLOTS:
     /*!

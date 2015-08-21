@@ -151,14 +151,8 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
 void ReplayGainDialog::accept()
 {
     if (scanned && !rgList.isEmpty()) {
-        //write RG to files
-        for (int i=0; i<m->selectedFilesCount(); ++i) {
-            Tag &tag = m->fileAtSelection(i);
-            tag.setReplayGainInfo(rgList.at(i));
-            tag.setChanged(true);
-            TagsReaderWriter r(&tag);
-            r.writeTags();
-        }
+        for (int i=0; i<m->selectedFilesCount(); ++i)
+            m->fileAtSelection(i).setReplayGainInfo(rgList.at(i));
 
         QDialog::accept();
     }

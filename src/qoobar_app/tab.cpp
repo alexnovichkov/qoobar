@@ -1199,9 +1199,9 @@ void Tab::replaygain() /*SLOT*/
     ReplayGainDialog dialog(model, win);
 
     dialog.exec();
+    model->saveSelected();
+    model->rereadTags(model->selectedFilesIndexes());
 
-//    Q_FOREACH (const int &i, model->selectedFilesIndexes())
-//        tree->updateRG(i, model->fileAt(i));
     Q_EMIT filesChanged(!allFilesSaved());
 }
 

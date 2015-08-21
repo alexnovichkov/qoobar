@@ -2094,12 +2094,12 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
 <context>
     <name>ReplayGainer</name>
     <message>
-        <location filename="replaygainer.cpp" line="262"/>
+        <location filename="replaygainer.cpp" line="263"/>
         <source>All files already have ReplayGain info!</source>
         <translation>Wszystkie pliki posiadają już informację ReplayGain!</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="320"/>
+        <location filename="replaygainer.cpp" line="321"/>
         <source>Removing ReplayGain info from Musepack files is not supported.</source>
         <translation>Usuwanie informacji ReplayGain z nagłówka Musepack pliku nie jest obsługiwany.</translation>
     </message>
@@ -2131,13 +2131,13 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
         <translation>Podczas skanowania wystąpiły błędy.</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="333"/>
+        <location filename="replaygainer.cpp" line="334"/>
         <source>This type of files is not supported. Sorry
 </source>
         <translation>Ten typ plików nie jest obsługiwany. Przykro mi</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="338"/>
+        <location filename="replaygainer.cpp" line="339"/>
         <source>Cannot find %1.
 Please install it.</source>
         <translation>Nie można znaleźć %1.

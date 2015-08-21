@@ -209,7 +209,7 @@ QList<ReplayGainInfo> ReplayGainer::scanWithUtilities(int fileType, const QVecto
     if (!copiedFiles.isEmpty()) {
         const int tagsCount = App->currentScheme->tagsCount();
         Q_FOREACH(int i, indexes) {
-            QString fileName = m->fileAt(i).fullFileName();
+            QString fileName = m->fileAtSelection(i).fullFileName();
             QString tempFile = copiedFiles.key(fileName);
             Tag tag(tempFile, tagsCount);
             TagsReaderWriter t(&tag);
@@ -225,9 +225,10 @@ QList<ReplayGainInfo> ReplayGainer::scanWithUtilities(int fileType, const QVecto
 QHash<int, QVector<int> > ReplayGainer::sortByFileType(int operation)
 {
     QHash<int, QVector<int> > result;
-    QVector<int> inds = m->selectedFilesIndexes();
-    Q_FOREACH (int i, inds) {
-        Tag tag = m->fileAt(i);
+    int selected = m->selectedFilesCount();
+    //QVector<int> inds = m->selectedFilesIndexes();
+    for (int i=0; i<selected; ++i) {
+        Tag tag = m->fileAtSelection(i);
         if (!tag.replayGainInfoIsEmpty() && skip && operation != RG_SCAN_REMOVE)
             continue;
         int type=tag.fileType();
@@ -304,8 +305,8 @@ QMap<QString, QVector<int> > ReplayGainer::sort(const QVector<int> &indexes, boo
     QMap<QString,QVector<int> > result;
     Q_FOREACH(int i,indexes) {
         QString s;
-        if (byFolder) s = m->fileAt(i).filePath();
-        else s = m->fileAt(i).album();
+        if (byFolder) s = m->fileAtSelection(i).filePath();
+        else s = m->fileAtSelection(i).album();
         QVector<int> list = result.value(s);
         list.append(i);
         result.insert(s,list);
@@ -390,13 +391,13 @@ QStringList ReplayGainer::getFileNames(const QVector<int> &indexes)
     QStringList result;
     copiedFiles.clear();
     Q_FOREACH(int i,indexes) {
-        QString fileName=m->fileAt(i).fullFileName();
+        QString fileName=m->fileAtSelection(i).fullFileName();
 
         QString newName = fileName;
         {
             QTemporaryFile f(QString("%1/temp.XXXXXX.%2")
                              .arg(QDir::tempPath())
-                             .arg(m->fileAt(i).fileExt()));
+                             .arg(m->fileAtSelection(i).fileExt()));
             if (f.open()) newName = f.fileName();
         }
         if (QFile::copy(fileName,newName)) {

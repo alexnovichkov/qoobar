@@ -287,8 +287,26 @@ void Model::save()
 
     if (!errors.isEmpty())
         Q_EMIT message(MT_WARNING, tr("Cannot write tags to files:\n%1")
-                     .arg(errors.join(QChar('\n'))));
+                       .arg(errors.join(QChar('\n'))));
 }
+
+void Model::saveSelected()
+{
+    QStringList errors;
+
+    for (int i=0; i<selectedFilesCount(); ++i) {
+        QString error;
+        saveAt(indexAtIndexInSelection(i), &error);
+        if (!error.isEmpty())
+            errors << error;
+    }
+
+    if (!errors.isEmpty())
+        Q_EMIT message(MT_WARNING, tr("Cannot write tags to files:\n%1")
+                       .arg(errors.join(QChar('\n'))));
+}
+
+
 
 /**
  * @brief Model::saveAt - saves file at index and emits fileChanged(index, newWasChanged)
@@ -323,9 +341,9 @@ bool Model::saveAt(int row, QString *errorMsg)
 
     //if new status differs from old status, emit signal to update file icon
     const bool newWasChanged = tags.at(row).wasChanged();
-    if (oldWasChanged != newWasChanged) {
-        Q_EMIT dataChanged(index(row,0),index(row,0),QVector<int>()<<Qt::DecorationRole);
-    }
+    //if (oldWasChanged != newWasChanged) {
+        Q_EMIT dataChanged(index(row,0),index(row,TAGSCOUNT+5),QVector<int>()<<Qt::DecorationRole);
+    //}
 
     // emit signal to update mainwindow status
     // only if no changed files left

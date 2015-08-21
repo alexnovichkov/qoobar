@@ -2066,12 +2066,12 @@ and &quot; by two single quotes &apos;&apos;</source>
 <context>
     <name>ReplayGainer</name>
     <message>
-        <location filename="replaygainer.cpp" line="262"/>
+        <location filename="replaygainer.cpp" line="263"/>
         <source>All files already have ReplayGain info!</source>
         <translation>Alle Dateien besitzen bereits ReplayGain-Informationen!</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="320"/>
+        <location filename="replaygainer.cpp" line="321"/>
         <source>Removing ReplayGain info from Musepack files is not supported.</source>
         <translation>ReplayGain-Informationen aus Musepack-Dateien zu entfernen wird nicht unterstützt.</translation>
     </message>
@@ -2103,13 +2103,13 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation>Während des Scannen traten Fehler auf.</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="333"/>
+        <location filename="replaygainer.cpp" line="334"/>
         <source>This type of files is not supported. Sorry
 </source>
         <translation>Dieser Dateityp wird nicht unterstützt. Entschuldigung</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="338"/>
+        <location filename="replaygainer.cpp" line="339"/>
         <source>Cannot find %1.
 Please install it.</source>
         <translation>%1 wurde nicht gefunden. Bitte installieren Sie es.</translation>

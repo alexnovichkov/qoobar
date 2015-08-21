@@ -2097,12 +2097,12 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
 <context>
     <name>ReplayGainer</name>
     <message>
-        <location filename="replaygainer.cpp" line="262"/>
+        <location filename="replaygainer.cpp" line="263"/>
         <source>All files already have ReplayGain info!</source>
         <translation>Alle bestanden bevatten al het ReplayGain informatie!</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="320"/>
+        <location filename="replaygainer.cpp" line="321"/>
         <source>Removing ReplayGain info from Musepack files is not supported.</source>
         <translation>Verwijderen van de ReplayGain informatie van de Musepack wordt niet ondersteund.</translation>
     </message>
@@ -2134,13 +2134,13 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
         <translation>Er zijn fouten opgetreden tijdens het scannen.</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="333"/>
+        <location filename="replaygainer.cpp" line="334"/>
         <source>This type of files is not supported. Sorry
 </source>
         <translation>Dit type bestand wordt niet ondersteunt. Sorry</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="338"/>
+        <location filename="replaygainer.cpp" line="339"/>
         <source>Cannot find %1.
 Please install it.</source>
         <translation>Is niet beschikbaar %1

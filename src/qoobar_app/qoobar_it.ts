@@ -2099,12 +2099,12 @@ e &quot; verra sostituito da due virgolette singole &apos;&apos;</translation>
 <context>
     <name>ReplayGainer</name>
     <message>
-        <location filename="replaygainer.cpp" line="262"/>
+        <location filename="replaygainer.cpp" line="263"/>
         <source>All files already have ReplayGain info!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="320"/>
+        <location filename="replaygainer.cpp" line="321"/>
         <source>Removing ReplayGain info from Musepack files is not supported.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2136,13 +2136,13 @@ e &quot; verra sostituito da due virgolette singole &apos;&apos;</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="333"/>
+        <location filename="replaygainer.cpp" line="334"/>
         <source>This type of files is not supported. Sorry
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="338"/>
+        <location filename="replaygainer.cpp" line="339"/>
         <source>Cannot find %1.
 Please install it.</source>
         <translation>Non riesci a trovare %1.
