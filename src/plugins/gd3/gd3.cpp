@@ -171,20 +171,11 @@ Request GD3Plugin::query(const QVector<int> &lengths)
 
 QString GD3Plugin::getRequestString(const QString &operation, const QString &argument, const QString argument1)
 {
-    QSettings settings("qoobar","qoobar");
-    QString login = settings.value("gd3login").toString();
-    QString password = settings.value("gd3password").toString();
+    QMap<QString, QString> auth = authenticationInfo();
+    QString login = auth.value("user");
+    if (login.isEmpty()) login = auth.value("login");
+    QString password = auth.value("password");
 
-    if (login.isEmpty() || password.isEmpty()) {
-        LoginDialog dialog(login, password);
-        if (dialog.exec()) {
-            QStringList l = dialog.getLoginPass();
-            login = l.at(0);
-            password = l.at(1);
-            settings.setValue("gd3login",login);
-            settings.setValue("gd3password",password);
-        }
-    }
     if (login.isEmpty() || password.isEmpty()) {
         QMessageBox msgBox(QMessageBox::Critical, tr("GD3 database"), tr("GD3 user name or password is incorrect"),QMessageBox::Ok);
        // msgBox.setWindowModality(Qt::WindowModal);
@@ -437,4 +428,32 @@ LoginDialog::LoginDialog(const QString &login, const QString &pass, QWidget *par
 QStringList LoginDialog::getLoginPass()
 {
     return QStringList()<<loginEdit->text() << passEdit->text();
+}
+
+
+int GD3Plugin::preferredPauseSize()
+{
+    return 0;
+}
+
+QMap<QString, QString> GD3Plugin::authenticationInfo()
+{
+    QSettings settings("qoobar","qoobar");
+    QString login = settings.value("gd3login").toString();
+    QString password = settings.value("gd3password").toString();
+
+    if (login.isEmpty() || password.isEmpty()) {
+        LoginDialog dialog(login, password);
+        if (dialog.exec()) {
+            QStringList l = dialog.getLoginPass();
+            login = l.at(0);
+            password = l.at(1);
+            settings.setValue("gd3login",login);
+            settings.setValue("gd3password",password);
+        }
+    }
+    QMap<QString, QString> map;
+    map.insert("user",login);
+    map.insert("password", password);
+    return map;
 }

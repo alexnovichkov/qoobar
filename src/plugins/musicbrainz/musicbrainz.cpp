@@ -358,3 +358,14 @@ QStringList MusicbrainzPlugin::releaseToList(const SearchResult &r)
     return result;
 }
 
+
+
+int MusicbrainzPlugin::preferredPauseSize()
+{
+    return 0;
+}
+
+QMap<QString, QString> MusicbrainzPlugin::authenticationInfo()
+{
+    return QMap<QString, QString>();
+}

@@ -493,7 +493,7 @@ void TagsFillDialog::downloadRelease(const QString &url, const int releaseIndex)
 
     if (plugin->needsPause()) {
         QEventLoop loop;
-        QTimer::singleShot(1000, &loop, SLOT(quit()));
+        QTimer::singleShot(plugin->preferredPauseSize(), &loop, SLOT(quit()));
         loop.exec();
     }
     networkStatusInfo->setText(tr("Retrieving release info..."));

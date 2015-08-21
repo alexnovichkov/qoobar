@@ -149,6 +149,7 @@ public:
     QString langID; //language id of the app language
     QString chars; //characters with diacritics
     QString lastDirectory;  //last added directory
+    QString lastTreeDirectory; //last directory added via dirs tree
     QString lastCueFile;
     bool mp3readape;
     bool mp3writeape;

@@ -215,3 +215,14 @@ QStringList DiscogsPlugin::releaseToList(const SearchResult &r)
          <<r.fields.value("extraData");
     return result;
 }
+
+
+int DiscogsPlugin::preferredPauseSize()
+{
+    return 201;
+}
+
+QMap<QString, QString> DiscogsPlugin::authenticationInfo()
+{
+    return QMap<QString, QString>();
+}

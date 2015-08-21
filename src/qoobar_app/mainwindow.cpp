@@ -274,14 +274,20 @@ void MainWindow::initRest()
         sp->setSizes(sizes);
     }
 
-    dirView->setVisible(App->showDirView);
+
 #ifdef Q_OS_WIN
     dirModel->setRootPath(QSL(""));
 #else
     dirModel->setRootPath(QSL("/"));
 #endif
-    dirView->expand(dirModel->index(App->lastDirectory,0));
-    dirView->scrollTo(dirModel->index(App->lastDirectory,0),QAbstractItemView::PositionAtCenter);
+    QString dir=App->lastTreeDirectory;
+    if (dir.isEmpty()) {
+        dir=App->lastDirectory;
+        App->lastTreeDirectory=dir;
+    }
+    dirView->expand(dirModel->index(dir,0));
+    dirView->scrollTo(dirModel->index(dir,0),QAbstractItemView::PositionAtCenter);
+    dirView->setVisible(App->showDirView);
 
     handleArgs();
     retranslateUi();
@@ -580,14 +586,16 @@ void MainWindow::addDir()
 }
 
 void MainWindow::addFromDirViewWithSubfolders() /*SLOT*/
-{DD
-    addDir(dirModel->filePath(dirView->currentIndex()), true, true);
+{DD;
+    App->lastTreeDirectory = dirModel->filePath(dirView->currentIndex());
+    addDir(App->lastTreeDirectory, true, true);
 }
 
 void MainWindow::addFromDirView() /*SLOT*/
 {DD
     if (App->mouseButtons() & Qt::RightButton) return;
-    addDir(dirModel->filePath(dirView->currentIndex()), false, true);
+    App->lastTreeDirectory = dirModel->filePath(dirView->currentIndex());
+    addDir(App->lastTreeDirectory, false, true);
 }
 
 void MainWindow::addDir(const QString &dir, bool withSubfolders, bool clearBefore)

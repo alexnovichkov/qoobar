@@ -62,14 +62,18 @@ public:
     virtual QList<SearchResult> parseResponse(const QByteArray &) = 0;
     /*does actual parsing of a release response*/
     virtual SearchResult parseRelease(const QByteArray &) = 0;
-    /*returns true if the plugin needs a pause between donloads*/
+    /*returns true if the plugin needs a pause between network requests*/
     virtual bool needsPause() = 0;
+    /*preferred pause between network requests in milliseconds */
+    virtual int preferredPauseSize() = 0;
+    /* should contain authentication info (username and password and options) required by a server*/
+    virtual QMap<QString, QString> authenticationInfo() = 0;
     /*returns a string list containing info about an album*/
     virtual QStringList releaseToList(const SearchResult &r) = 0;
 
     virtual QString errorString() = 0;
 };
 
-Q_DECLARE_INTERFACE(IDownloadPlugin, "qoobar.IDownloadPlugin/1.0")
+Q_DECLARE_INTERFACE(IDownloadPlugin, "qoobar.IDownloadPlugin/2.0")
 
 #endif // IDOWNLOADPLUGIN_H

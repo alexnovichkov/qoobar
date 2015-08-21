@@ -210,6 +210,7 @@ void Application::readGuiSettings()
     }
 
     lastDirectory=se.value(QSL("lastDirectory"),lastDirectory).toString();
+    lastTreeDirectory=se.value(QSL("lastTreeDirectory"),lastTreeDirectory).toString();
     splitterState = se.value(QSL("splitter")).toByteArray();
     innerSplitterState = se.value(QSL("innerSplitter")).toByteArray();
     dirSplitterState = se.value(QSL("dirSplitter")).toByteArray();
@@ -362,6 +363,7 @@ void Application::writeGuiSettings()
     se.setValue("lang",langID);
     se.setValue("chars",chars);
     se.setValue("lastDirectory",lastDirectory);
+    se.setValue("lastTreeDirectory",lastTreeDirectory);
     se.setValue("player",player);
     se.setValue("saveChanges",saveChanges);
     se.setValue("renamePatterns", patterns);

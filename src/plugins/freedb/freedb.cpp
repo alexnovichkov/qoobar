@@ -273,3 +273,14 @@ QStringList FreedbPlugin::releaseToList(const SearchResult &r)
     QStringList l = album.split(" / ");
     return l;
 }
+
+
+int FreedbPlugin::preferredPauseSize()
+{
+    return 0;
+}
+
+QMap<QString, QString> FreedbPlugin::authenticationInfo()
+{
+    return QMap<QString, QString>();
+}

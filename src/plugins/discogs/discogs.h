@@ -8,7 +8,7 @@ class DiscogsPlugin : public QObject, IDownloadPlugin
 {
     Q_OBJECT
 #ifdef HAVE_QT5
-    Q_PLUGIN_METADATA(IID "qoobar.IDownloadPlugin/1.0" FILE "discogs.json")
+    Q_PLUGIN_METADATA(IID "qoobar.IDownloadPlugin/2.0" FILE "discogs.json")
 #endif
     Q_INTERFACES(IDownloadPlugin)
 public:
@@ -16,7 +16,7 @@ public:
     QString text() {return QObject::tr("Discogs");}
     QString description() {return QObject::tr("Fill tags from Discogs database");}
     QString key() {return "discogs";}
-    QString version() {return "1.0.0";}
+    QString version() {return "1.0.1";}
     QIcon icon() {return QIcon();}
 #endif
     Request queryForManualSearch(const QStringList &);
@@ -36,6 +36,11 @@ public:
     QString errorString() {return m_errorString;}
 private:
     QString m_errorString;
+
+    // IDownloadPlugin interface
+public:
+    virtual int preferredPauseSize();
+    virtual QMap<QString, QString> authenticationInfo();
 };
 
 #endif //DISCOGSPLUGIN_H
