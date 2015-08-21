@@ -342,7 +342,12 @@ bool Model::saveAt(int row, QString *errorMsg)
     //if new status differs from old status, emit signal to update file icon
     const bool newWasChanged = tags.at(row).wasChanged();
     //if (oldWasChanged != newWasChanged) {
-        Q_EMIT dataChanged(index(row,0),index(row,TAGSCOUNT+5),QVector<int>()<<Qt::DecorationRole);
+
+        Q_EMIT dataChanged(index(row,0),index(row,TAGSCOUNT+5)
+#if QT_VERSION >= 0x050000
+                           ,QVector<int>()<<Qt::DecorationRole
+#endif
+                           );
     //}
 
     // emit signal to update mainwindow status
@@ -558,9 +563,18 @@ bool Model::setNewImage(int ind,const CoverImage &image)
     bool res=tags[ind].wasChanged();
     tags[ind].setImage(image);
     if (res!=tags[ind].wasChanged()) {
-        Q_EMIT dataChanged(index(ind,COL_SAVEICON), index(ind, COL_SAVEICON), QVector<int>()<<Qt::DecorationRole);
+
+        Q_EMIT dataChanged(index(ind,COL_SAVEICON), index(ind, COL_SAVEICON)
+#if QT_VERSION >= 0x050000
+                           , QVector<int>()<<Qt::DecorationRole
+#endif
+                           );
     }
-    Q_EMIT dataChanged(index(ind,COL_IMAGE), index(ind, COL_IMAGE), QVector<int>()<<Qt::DecorationRole);
+    Q_EMIT dataChanged(index(ind,COL_IMAGE), index(ind, COL_IMAGE)
+#if QT_VERSION >= 0x050000
+                       , QVector<int>()<<Qt::DecorationRole
+#endif
+                       );
     return res;
 }
 
@@ -570,9 +584,17 @@ void Model::setOldImage(int ind,const CoverImage &image, bool status)
     tags[ind].setImage(image);
     tags[ind].setChanged(status);
     if (res!=status) {
-        Q_EMIT dataChanged(index(ind,COL_SAVEICON), index(ind, COL_SAVEICON), QVector<int>()<<Qt::DecorationRole);
+        Q_EMIT dataChanged(index(ind,COL_SAVEICON), index(ind, COL_SAVEICON)
+#if QT_VERSION >= 0x050000
+                           , QVector<int>()<<Qt::DecorationRole
+#endif
+                           );
     }
-    Q_EMIT dataChanged(index(ind,COL_IMAGE), index(ind, COL_IMAGE), QVector<int>()<<Qt::DecorationRole);
+    Q_EMIT dataChanged(index(ind,COL_IMAGE), index(ind, COL_IMAGE)
+#if QT_VERSION >= 0x050000
+                       , QVector<int>()<<Qt::DecorationRole
+#endif
+                       );
 }
 
 void Model::setCurrentIndex(int current)
@@ -581,9 +603,17 @@ void Model::setCurrentIndex(int current)
     const int oldCurrent = currentFileIndex;
     currentFileIndex = current;
     if (oldCurrent!=-1)
-        Q_EMIT dataChanged(index(oldCurrent,0),index(oldCurrent,TAGSCOUNT+5),QVector<int>()<<Qt::FontRole);
+        Q_EMIT dataChanged(index(oldCurrent,0),index(oldCurrent,TAGSCOUNT+5)
+#if QT_VERSION >= 0x050000
+                           ,QVector<int>()<<Qt::FontRole
+#endif
+                           );
     if (currentFileIndex!=-1)
-        Q_EMIT dataChanged(index(currentFileIndex,0),index(currentFileIndex,TAGSCOUNT+5),QVector<int>()<<Qt::FontRole);
+        Q_EMIT dataChanged(index(currentFileIndex,0),index(currentFileIndex,TAGSCOUNT+5)
+#if QT_VERSION >= 0x050000
+                           ,QVector<int>()<<Qt::FontRole
+#endif
+                           );
 }
 
 QVector<int> computeIndexes(QVector<int> notYetMoved, bool up, int totalSize)
@@ -635,16 +665,90 @@ void Model::move(bool up)
     indexes = newIndexes;
 }
 
+#if QT_VERSION < 0x050000
+QVector<int> Model::sortString(int column, Qt::SortOrder order, int sortType)
+{
+    Q_UNUSED(sortType)
+    QVector<int> newIndexes;
+
+    QMap<QString, int> map;
+
+    for (int i=0; i<size(); ++i) {
+        QString s = data(index(i,column)).toString();
+        map.insertMulti(s,i);
+    }
+    QMapIterator<QString, int> i(map);
+    if (order==Qt::DescendingOrder) {
+        i.toBack();
+        while (i.hasPrevious()) {
+            i.previous();
+            newIndexes << i.value();
+        }
+    }
+    else {
+        while (i.hasNext()) {
+            i.next();
+            newIndexes << i.value();
+        }
+    }
+    return newIndexes;
+}
+
+QVector<int> Model::sortInteger(int column, Qt::SortOrder order, int sortType)
+{
+    QVector<int> newIndexes;
+
+    QMap<int, int> map;
+
+    bool ok;
+    for (int i=0; i<size(); ++i) {
+        if (sortType==SortTime) {
+            map.insertMulti(tags.at(i).length(),i);
+        }
+        else {
+            QString s = data(index(i,column)).toString();
+            int intval=s.toInt(&ok);
+            map.insertMulti(intval,i);
+        }
+    }
+    QMapIterator<int, int> i(map);
+    if (order==Qt::DescendingOrder) {
+        i.toBack();
+        while (i.hasPrevious()) {
+            i.previous();
+            newIndexes << i.value();
+        }
+    }
+    else {
+        while (i.hasNext()) {
+            i.next();
+            newIndexes << i.value();
+        }
+    }
+
+    return newIndexes;
+}
+#endif
+
 void Model::sort(int column, Qt::SortOrder order, int sortType)
 {DD;
     QVector<int> newIndexes;
 
+#if QT_VERSION < 0x050000
+    if (sortType == SortTime || sortType == SortInt
+        || column == COL_TRACKNUMBER || column == 14 || column == 15
+        || column == 24 || column == 25) newIndexes = sortInteger(column, order, sortType);
+    else newIndexes = sortString(column, order, sortType);
+#else
     QMap<QVariant, int> map;
+
     bool ok;
     for (int i=0; i<size(); ++i) {
-        QString s = data(index(i,column)).toString();
-        if (sortType==SortTime) map.insertMulti(QTime::fromString(s,"m:ss"),i);
+        if (sortType==SortTime) {
+            map.insertMulti(tags.at(i).length(),i);
+        }
         else {
+            QString s = data(index(i,column)).toString();
             int intval=s.toInt(&ok);
             if (ok && !s.isEmpty()) map.insertMulti(intval,i);
             else map.insertMulti(s,i);
@@ -664,6 +768,7 @@ void Model::sort(int column, Qt::SortOrder order, int sortType)
             newIndexes << i.value();
         }
     }
+#endif
 
     for (int i=0; i<newIndexes.size()-1; ++i) {
         if (newIndexes.at(i) == i) continue;

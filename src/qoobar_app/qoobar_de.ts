@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="de_DE">
+<TS version="2.0" language="de_DE">
 <context>
     <name>Application</name>
     <message>
@@ -1213,85 +1213,86 @@ and &quot; by two single quotes &apos;&apos;</source>
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="317"/>
+        <location filename="model.cpp" line="335"/>
         <source>%1 does not exist</source>
         <translation>%1 existiert nicht</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="318"/>
+        <location filename="model.cpp" line="336"/>
         <source>%1 is not a file</source>
         <translation>%1 ist keine Datei</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="319"/>
+        <location filename="model.cpp" line="337"/>
         <source>%1 is read-only</source>
         <translation>%1 ist schreibgeschützt</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="461"/>
+        <location filename="model.cpp" line="479"/>
         <source>Cannot rename following files:
 </source>
         <translation>Dateien können nicht umbenannt werden:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="463"/>
+        <location filename="model.cpp" line="481"/>
         <source>Cannot copy following files:
 </source>
         <translation>Dateien können nicht kopiert werden:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="465"/>
+        <location filename="model.cpp" line="483"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Ordner können nicht umbennant werden:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="474"/>
+        <location filename="model.cpp" line="492"/>
         <source>All folders were successfully renamed</source>
         <translation>Alle Ordner wurden erfolgreich umbenannt</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="932"/>
+        <location filename="model.cpp" line="954"/>
         <source>No.</source>
         <translation>Nr.</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="933"/>
+        <location filename="model.cpp" line="955"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="966"/>
+        <location filename="model.cpp" line="988"/>
         <source>Length</source>
         <translation>Dauer</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="967"/>
+        <location filename="model.cpp" line="989"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="968"/>
+        <location filename="model.cpp" line="990"/>
         <source>Img</source>
         <translation>Bild</translation>
     </message>
     <message>
         <location filename="model.cpp" line="289"/>
+        <location filename="model.cpp" line="305"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Tags konnten nicht in Dateien geschrieben werden:
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="470"/>
+        <location filename="model.cpp" line="488"/>
         <source>All files were successfully renamed</source>
         <translation>Alle Dateien wurden erfolgreich umbenannt</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="472"/>
+        <location filename="model.cpp" line="490"/>
         <source>All files were successfully copied</source>
         <translation>Alle Dateien wurden erfolgreich kopiert</translation>
     </message>

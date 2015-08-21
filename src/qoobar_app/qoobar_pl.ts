@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pl_PL">
+<TS version="2.0" language="pl_PL">
 <context>
     <name>Application</name>
     <message>
@@ -1240,85 +1240,86 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="317"/>
+        <location filename="model.cpp" line="335"/>
         <source>%1 does not exist</source>
         <translation>%1 nie istnieje</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="318"/>
+        <location filename="model.cpp" line="336"/>
         <source>%1 is not a file</source>
         <translation>%1 nie jest plikiem</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="319"/>
+        <location filename="model.cpp" line="337"/>
         <source>%1 is read-only</source>
         <translation>%1 jest tylko do odczytu</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="461"/>
+        <location filename="model.cpp" line="479"/>
         <source>Cannot rename following files:
 </source>
         <translation>Nie można zmienić nazwy następujących plików:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="463"/>
+        <location filename="model.cpp" line="481"/>
         <source>Cannot copy following files:
 </source>
         <translation>Nie można skopiować następujących plików:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="465"/>
+        <location filename="model.cpp" line="483"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Nie można zmienić nazwy następujących katalogów:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="474"/>
+        <location filename="model.cpp" line="492"/>
         <source>All folders were successfully renamed</source>
         <translation>Wszystkie katalogi zostały przemianowane</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="932"/>
+        <location filename="model.cpp" line="954"/>
         <source>No.</source>
         <translation>Numer.</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="933"/>
+        <location filename="model.cpp" line="955"/>
         <source>File</source>
         <translation>Plik</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="966"/>
+        <location filename="model.cpp" line="988"/>
         <source>Length</source>
         <translation>Długość</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="967"/>
+        <location filename="model.cpp" line="989"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="968"/>
+        <location filename="model.cpp" line="990"/>
         <source>Img</source>
         <translation>Obraz</translation>
     </message>
     <message>
         <location filename="model.cpp" line="289"/>
+        <location filename="model.cpp" line="305"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Nie można zapisać tagów do plików:
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="470"/>
+        <location filename="model.cpp" line="488"/>
         <source>All files were successfully renamed</source>
         <translation>Wszystkie pliki zostały przemianowane</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="472"/>
+        <location filename="model.cpp" line="490"/>
         <source>All files were successfully copied</source>
         <translation>Wszystkie pliki zostały skopiowane</translation>
     </message>

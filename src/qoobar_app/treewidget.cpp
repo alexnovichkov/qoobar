@@ -143,8 +143,7 @@ void TreeWidget::resetHeader()
     header()->SETSECTIONRESIZEMODE(IMAGE, QHeaderView::ResizeToContents); //saved
     header()->setStretchLastSection(false);
     header()->setContextMenuPolicy(Qt::ActionsContextMenu);
-    header()->setSectionsClickable(true);
-
+    header()->SETSECTIONSCLICKABLE(true);
     connect(header(),SIGNAL(geometriesChanged()),SLOT(updateTreeHeaderGeometry()));
     connect(header(),SIGNAL(sectionMoved(int,int,int)),SLOT(updateTreeHeaderGeometry()));
     connect(header(),SIGNAL(sectionResized(int,int,int)),SLOT(updateTreeHeaderGeometry()));

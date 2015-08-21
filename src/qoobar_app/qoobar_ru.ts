@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>Application</name>
     <message>
@@ -1244,85 +1244,86 @@ and &quot; by two single quotes &apos;&apos;</source>
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="317"/>
+        <location filename="model.cpp" line="335"/>
         <source>%1 does not exist</source>
         <translation>%1 не существует</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="318"/>
+        <location filename="model.cpp" line="336"/>
         <source>%1 is not a file</source>
         <translation>%1 не файл</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="319"/>
+        <location filename="model.cpp" line="337"/>
         <source>%1 is read-only</source>
         <translation>%1 только для чтения</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="461"/>
+        <location filename="model.cpp" line="479"/>
         <source>Cannot rename following files:
 </source>
         <translation>Не смог переименовать следующие файлы:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="463"/>
+        <location filename="model.cpp" line="481"/>
         <source>Cannot copy following files:
 </source>
         <translation>Не смог скопировать следующие файлы:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="465"/>
+        <location filename="model.cpp" line="483"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Не смог переименовать следующие папки:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="474"/>
+        <location filename="model.cpp" line="492"/>
         <source>All folders were successfully renamed</source>
         <translation>Все папки были успешно переименованы</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="932"/>
+        <location filename="model.cpp" line="954"/>
         <source>No.</source>
         <translation>№</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="933"/>
+        <location filename="model.cpp" line="955"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="966"/>
+        <location filename="model.cpp" line="988"/>
         <source>Length</source>
         <translation>Длина</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="967"/>
+        <location filename="model.cpp" line="989"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="968"/>
+        <location filename="model.cpp" line="990"/>
         <source>Img</source>
         <translation>Рис</translation>
     </message>
     <message>
         <location filename="model.cpp" line="289"/>
+        <location filename="model.cpp" line="305"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Не смог записать теги в файлы:
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="470"/>
+        <location filename="model.cpp" line="488"/>
         <source>All files were successfully renamed</source>
         <translation>Все файлы были успешно переименованы</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="472"/>
+        <location filename="model.cpp" line="490"/>
         <source>All files were successfully copied</source>
         <translation>Все файлы были успешно скопированы</translation>
     </message>

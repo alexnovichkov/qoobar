@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="nl_NL">
+<TS version="2.0" language="nl_NL">
 <context>
     <name>Application</name>
     <message>
@@ -1243,84 +1243,85 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="317"/>
+        <location filename="model.cpp" line="335"/>
         <source>%1 does not exist</source>
         <translation>%1 bestaat niet</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="318"/>
+        <location filename="model.cpp" line="336"/>
         <source>%1 is not a file</source>
         <translation>%1 is geen bestand</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="319"/>
+        <location filename="model.cpp" line="337"/>
         <source>%1 is read-only</source>
         <translation>%1 alleen lezen</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="461"/>
+        <location filename="model.cpp" line="479"/>
         <source>Cannot rename following files:
 </source>
         <translation>Kan de volgende bestanden niet hernoemen:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="463"/>
+        <location filename="model.cpp" line="481"/>
         <source>Cannot copy following files:
 </source>
         <translation>Kan de volgende bestanden niet kopiëren:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="465"/>
+        <location filename="model.cpp" line="483"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Kan de volgende mappen niet hernoemen:</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="474"/>
+        <location filename="model.cpp" line="492"/>
         <source>All folders were successfully renamed</source>
         <translation>Alle mappen zijn succesvol hernoemd</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="932"/>
+        <location filename="model.cpp" line="954"/>
         <source>No.</source>
         <translation>Nr.</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="933"/>
+        <location filename="model.cpp" line="955"/>
         <source>File</source>
         <translation>Bestand</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="966"/>
+        <location filename="model.cpp" line="988"/>
         <source>Length</source>
         <translation>Lengte</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="967"/>
+        <location filename="model.cpp" line="989"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="968"/>
+        <location filename="model.cpp" line="990"/>
         <source>Img</source>
         <translation>Img</translation>
     </message>
     <message>
         <location filename="model.cpp" line="289"/>
+        <location filename="model.cpp" line="305"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Kan labels niet naar bestanden schrijven:
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="470"/>
+        <location filename="model.cpp" line="488"/>
         <source>All files were successfully renamed</source>
         <translation>Alle bestanden zijn succesvol hernoemd</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="472"/>
+        <location filename="model.cpp" line="490"/>
         <source>All files were successfully copied</source>
         <translation>Alle bestanden zijn succesvol gekopieerd</translation>
     </message>
