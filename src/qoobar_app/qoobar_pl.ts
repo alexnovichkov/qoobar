@@ -1240,86 +1240,93 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="335"/>
+        <location filename="model.cpp" line="343"/>
         <source>%1 does not exist</source>
         <translation>%1 nie istnieje</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="336"/>
+        <location filename="model.cpp" line="344"/>
         <source>%1 is not a file</source>
         <translation>%1 nie jest plikiem</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="337"/>
+        <location filename="model.cpp" line="345"/>
         <source>%1 is read-only</source>
         <translation>%1 jest tylko do odczytu</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="484"/>
+        <location filename="model.cpp" line="492"/>
         <source>Cannot rename following files:
 </source>
         <translation>Nie można zmienić nazwy następujących plików:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="486"/>
+        <location filename="model.cpp" line="494"/>
         <source>Cannot copy following files:
 </source>
         <translation>Nie można skopiować następujących plików:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="488"/>
+        <location filename="model.cpp" line="496"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Nie można zmienić nazwy następujących katalogów:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="497"/>
+        <location filename="model.cpp" line="505"/>
         <source>All folders were successfully renamed</source>
         <translation>Wszystkie katalogi zostały przemianowane</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1059"/>
+        <location filename="model.cpp" line="1067"/>
         <source>No.</source>
         <translation>Numer.</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1060"/>
+        <location filename="model.cpp" line="1068"/>
         <source>File</source>
         <translation>Plik</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1093"/>
+        <location filename="model.cpp" line="1101"/>
         <source>Length</source>
         <translation>Długość</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1094"/>
+        <location filename="model.cpp" line="1102"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1095"/>
+        <location filename="model.cpp" line="1103"/>
         <source>Img</source>
         <translation>Obraz</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="289"/>
-        <location filename="model.cpp" line="305"/>
+        <location filename="model.cpp" line="297"/>
+        <location filename="model.cpp" line="313"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Nie można zapisać tagów do plików:
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="493"/>
+        <location filename="model.cpp" line="255"/>
+        <source>Some read-only files were added,
+all changes in them will not be saved!</source>
+        <translation type="unfinished">Część z dodanych plików jest tylko do odczytu,
+wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
+    </message>
+    <message>
+        <location filename="model.cpp" line="501"/>
         <source>All files were successfully renamed</source>
         <translation>Wszystkie pliki zostały przemianowane</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="495"/>
+        <location filename="model.cpp" line="503"/>
         <source>All files were successfully copied</source>
         <translation>Wszystkie pliki zostały skopiowane</translation>
     </message>

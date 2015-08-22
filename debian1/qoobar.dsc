@@ -2,11 +2,11 @@ Format: 1.0
 Source: qoobar
 Binary: qoobar
 Architecture: any
-Version: 1.6.6
+Version: 1.6.7
 Maintainer: Alex Novichkov <novichkov.qoobar@gmail.com>
 Homepage: http://qoobar.sourceforge.net
 Standards-Version: 3.9.1
 Build-Depends: debhelper (>= 7.0.50~), libqt4-dev (>= 4.6), libtag1-dev (>= 1.5), pkg-config
 Files:
- 117db5de4d434db5e0694dafc2218977 2357983 qoobar_1.6.6.orig.tar.gz
- fde57cc10ec469b2ec052a38f9682593 2297 qoobar_1.6.6.diff.gz
+ 117db5de4d434db5e0694dafc2218977 2357983 qoobar_1.6.7.orig.tar.gz
+ fde57cc10ec469b2ec052a38f9682593 2297 qoobar_1.6.7.diff.gz

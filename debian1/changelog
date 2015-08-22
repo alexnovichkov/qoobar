@@ -1,11 +1,8 @@
-qoobar (1.6.6) unstable; urgency=low
+qoobar (1.6.7) unstable; urgency=low
 
-  * Fixed: Bug with updating file paths after folder renaming
-  * Fixed: Bug with scheme names that contain not allowed chars
-  * Fixed: Reading of tags that contain ;
-  * Added: Support to add custom tags to tagging scheme
-  * Added: Support for <placeholders>
-  * Added: <bitrate> placeholder etc.
-  * Added: "Set this text into..." action in the context menu of the main window
+  * Fixed: Bug with deleting of the replaygain info
+  * Fixed: Discogs authentication
+  * Added: Sorting in the Files table
+  * Added: The possibility to edit tags right in the files table
 
- -- Alex Novichkov <aleksej.novichkov@gmail.com>  Wed, 26 Nov 2014 10:10:49 +0300
+ -- Alex Novichkov <aleksej.novichkov@gmail.com>  Sat, 22 Aug 2015 10:10:49 +0300

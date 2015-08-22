@@ -247,6 +247,14 @@ void Model::addFiles(const QList<Tag> &filesToAdd, bool updateSelected)
     endInsertRows();
     Q_EMIT filesAdded(filesToAdd.size(), updateSelected);
     Q_EMIT filesCountChanged(size());
+
+    bool hasReadOnly = false;
+    Q_FOREACH (const Tag &tag, filesToAdd) hasReadOnly |= tag.readOnly();
+
+    if (hasReadOnly) {
+        Q_EMIT message(MT_WARNING,tr("Some read-only files were added,\n"
+                                              "all changes in them will not be saved!"));
+    }
 }
 
 void Model::addFile(const Tag &fileToAdd)

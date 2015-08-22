@@ -1243,85 +1243,92 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="335"/>
+        <location filename="model.cpp" line="343"/>
         <source>%1 does not exist</source>
         <translation>%1 bestaat niet</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="336"/>
+        <location filename="model.cpp" line="344"/>
         <source>%1 is not a file</source>
         <translation>%1 is geen bestand</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="337"/>
+        <location filename="model.cpp" line="345"/>
         <source>%1 is read-only</source>
         <translation>%1 alleen lezen</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="484"/>
+        <location filename="model.cpp" line="492"/>
         <source>Cannot rename following files:
 </source>
         <translation>Kan de volgende bestanden niet hernoemen:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="486"/>
+        <location filename="model.cpp" line="494"/>
         <source>Cannot copy following files:
 </source>
         <translation>Kan de volgende bestanden niet kopiëren:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="488"/>
+        <location filename="model.cpp" line="496"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Kan de volgende mappen niet hernoemen:</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="497"/>
+        <location filename="model.cpp" line="505"/>
         <source>All folders were successfully renamed</source>
         <translation>Alle mappen zijn succesvol hernoemd</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1059"/>
+        <location filename="model.cpp" line="1067"/>
         <source>No.</source>
         <translation>Nr.</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1060"/>
+        <location filename="model.cpp" line="1068"/>
         <source>File</source>
         <translation>Bestand</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1093"/>
+        <location filename="model.cpp" line="1101"/>
         <source>Length</source>
         <translation>Lengte</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1094"/>
+        <location filename="model.cpp" line="1102"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1095"/>
+        <location filename="model.cpp" line="1103"/>
         <source>Img</source>
         <translation>Img</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="289"/>
-        <location filename="model.cpp" line="305"/>
+        <location filename="model.cpp" line="297"/>
+        <location filename="model.cpp" line="313"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Kan labels niet naar bestanden schrijven:
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="493"/>
+        <location filename="model.cpp" line="255"/>
+        <source>Some read-only files were added,
+all changes in them will not be saved!</source>
+        <translation type="unfinished">Sommige alleen lezen bestanden zijn toegevoegd,
+alle veranderingen worden niet opgeslagen!</translation>
+    </message>
+    <message>
+        <location filename="model.cpp" line="501"/>
         <source>All files were successfully renamed</source>
         <translation>Alle bestanden zijn succesvol hernoemd</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="495"/>
+        <location filename="model.cpp" line="503"/>
         <source>All files were successfully copied</source>
         <translation>Alle bestanden zijn succesvol gekopieerd</translation>
     </message>

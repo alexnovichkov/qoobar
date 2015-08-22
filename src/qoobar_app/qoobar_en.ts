@@ -1200,82 +1200,88 @@ and &quot; by two single quotes &apos;&apos;</source>
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="335"/>
+        <location filename="model.cpp" line="343"/>
         <source>%1 does not exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="336"/>
+        <location filename="model.cpp" line="344"/>
         <source>%1 is not a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="337"/>
+        <location filename="model.cpp" line="345"/>
         <source>%1 is read-only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="484"/>
+        <location filename="model.cpp" line="492"/>
         <source>Cannot rename following files:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="486"/>
+        <location filename="model.cpp" line="494"/>
         <source>Cannot copy following files:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="488"/>
+        <location filename="model.cpp" line="496"/>
         <source>Cannot rename following folders:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="497"/>
+        <location filename="model.cpp" line="505"/>
         <source>All folders were successfully renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1059"/>
+        <location filename="model.cpp" line="1067"/>
         <source>No.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1060"/>
+        <location filename="model.cpp" line="1068"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1093"/>
+        <location filename="model.cpp" line="1101"/>
         <source>Length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1094"/>
+        <location filename="model.cpp" line="1102"/>
         <source>RG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1095"/>
+        <location filename="model.cpp" line="1103"/>
         <source>Img</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="289"/>
-        <location filename="model.cpp" line="305"/>
+        <location filename="model.cpp" line="297"/>
+        <location filename="model.cpp" line="313"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="493"/>
+        <location filename="model.cpp" line="255"/>
+        <source>Some read-only files were added,
+all changes in them will not be saved!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="model.cpp" line="501"/>
         <source>All files were successfully renamed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="495"/>
+        <location filename="model.cpp" line="503"/>
         <source>All files were successfully copied</source>
         <translation type="unfinished"></translation>
     </message>

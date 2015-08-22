@@ -1213,86 +1213,92 @@ and &quot; by two single quotes &apos;&apos;</source>
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="335"/>
+        <location filename="model.cpp" line="343"/>
         <source>%1 does not exist</source>
         <translation>%1 existiert nicht</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="336"/>
+        <location filename="model.cpp" line="344"/>
         <source>%1 is not a file</source>
         <translation>%1 ist keine Datei</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="337"/>
+        <location filename="model.cpp" line="345"/>
         <source>%1 is read-only</source>
         <translation>%1 ist schreibgeschützt</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="484"/>
+        <location filename="model.cpp" line="492"/>
         <source>Cannot rename following files:
 </source>
         <translation>Dateien können nicht umbenannt werden:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="486"/>
+        <location filename="model.cpp" line="494"/>
         <source>Cannot copy following files:
 </source>
         <translation>Dateien können nicht kopiert werden:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="488"/>
+        <location filename="model.cpp" line="496"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Ordner können nicht umbennant werden:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="497"/>
+        <location filename="model.cpp" line="505"/>
         <source>All folders were successfully renamed</source>
         <translation>Alle Ordner wurden erfolgreich umbenannt</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1059"/>
+        <location filename="model.cpp" line="1067"/>
         <source>No.</source>
         <translation>Nr.</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1060"/>
+        <location filename="model.cpp" line="1068"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1093"/>
+        <location filename="model.cpp" line="1101"/>
         <source>Length</source>
         <translation>Dauer</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1094"/>
+        <location filename="model.cpp" line="1102"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1095"/>
+        <location filename="model.cpp" line="1103"/>
         <source>Img</source>
         <translation>Bild</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="289"/>
-        <location filename="model.cpp" line="305"/>
+        <location filename="model.cpp" line="297"/>
+        <location filename="model.cpp" line="313"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Tags konnten nicht in Dateien geschrieben werden:
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="493"/>
+        <location filename="model.cpp" line="255"/>
+        <source>Some read-only files were added,
+all changes in them will not be saved!</source>
+        <translation type="unfinished">Einige schreibgeschütze Dateien wurden hinzugefügt. Alle Änderungen an diesen Dateien werden nicht gespeichert!</translation>
+    </message>
+    <message>
+        <location filename="model.cpp" line="501"/>
         <source>All files were successfully renamed</source>
         <translation>Alle Dateien wurden erfolgreich umbenannt</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="495"/>
+        <location filename="model.cpp" line="503"/>
         <source>All files were successfully copied</source>
         <translation>Alle Dateien wurden erfolgreich kopiert</translation>
     </message>

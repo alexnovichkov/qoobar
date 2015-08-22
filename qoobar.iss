@@ -9,7 +9,7 @@
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 
-#define VERSION "1.6.6"
+#define VERSION "1.6.7"
 
 AppId={{59A39891-F88A-49E6-A738-AC5580273280}
 AppName=Qoobar
@@ -101,7 +101,7 @@ Name: "{app}\plugins"; Flags: uninsalwaysuninstall; Components: plugins
 #define QT_VERSION 5
 
 #if QT_VERSION==5
-#define PATH_TO_QT "K:/Qt/Qt5.2.1/5.2.1/mingw48_32"
+#define PATH_TO_QT "K:/Qt/Qt5.5.0/5.2.1/mingw48_32"
 #else
 #define PATH_TO_QT "K:/Qt/4.8.4"
 #endif
