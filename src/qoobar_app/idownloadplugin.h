@@ -68,6 +68,7 @@ public:
     virtual int preferredPauseSize() = 0;
     /* should contain authentication info (username and password and options) required by a server*/
     virtual QMap<QString, QString> authenticationInfo() = 0;
+//    virtual bool authenticate() = 0;
     /*returns a string list containing info about an album*/
     virtual QStringList releaseToList(const SearchResult &r) = 0;
 

@@ -4,6 +4,8 @@
 #include <QObject>
 #include "idownloadplugin.h"
 
+class O1;
+
 class DiscogsPlugin : public QObject, IDownloadPlugin
 {
     Q_OBJECT
@@ -41,6 +43,12 @@ private:
 public:
     virtual int preferredPauseSize();
     virtual QMap<QString, QString> authenticationInfo();
+//    virtual bool authenticate();
+//private Q_SLOTS:
+//    void onLinkedChanged();
+//    void onLinkingSucceeded();
+//    void onOpenBrowser(const QUrl&);
+//    void onCloseBrowser();
 };
 
 #endif //DISCOGSPLUGIN_H

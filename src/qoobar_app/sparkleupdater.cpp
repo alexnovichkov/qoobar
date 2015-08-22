@@ -28,9 +28,9 @@ SparkleUpdater::SparkleUpdater(QObject *parent) :
 
     win = static_cast<MainWindow*>(parent);
 
-    win_sparkle_set_can_shutdown_callback(canShutDownCallback);
+//    win_sparkle_set_can_shutdown_callback(canShutDownCallback);
 
-    win_sparkle_set_shutdown_request_callback(shutDownRequestCallback);
+//    win_sparkle_set_shutdown_request_callback(shutDownRequestCallback);
 }
 
 SparkleUpdater::~SparkleUpdater()
@@ -41,7 +41,7 @@ SparkleUpdater::~SparkleUpdater()
 void SparkleUpdater::checkNow(bool silent)
 {
     if (silent) {
-        win_sparkle_check_update_without_ui();
+//        win_sparkle_check_update_without_ui();
     }
     else {
         win_sparkle_check_update_with_ui();

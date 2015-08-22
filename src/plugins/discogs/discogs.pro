@@ -12,9 +12,15 @@ HEADERS += ../../qoobar_app/idownloadplugin.h \
            ../../qoobar_app/qoobarglobals.h \
            ../../qoobar_app/applicationpaths.h
 
+
+
+
 SOURCES += ../../qoobar_app/coverimage.cpp \
            ../../qoobar_app/qoobarglobals.cpp \
            ../../qoobar_app/applicationpaths.cpp
+
+#HEADERS += ../../qoobar_app/o2/*.h
+#SOURCES += ../../qoobar_app/o2/*.cpp
 
 lessThan(QT_MAJOR_VERSION, 5) {
     HEADERS += ../../qoobar_app/ereilin/json.h

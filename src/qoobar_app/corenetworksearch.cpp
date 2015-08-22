@@ -128,8 +128,11 @@ QByteArray CoreNetworkSearch::get(const Request &request)
     connect(reply, SIGNAL(sslErrors(QList<QSslError>)), this, SLOT(analyseError()));
     loop->exec();
 
+//qDebug()<<reply->error()<<reply->errorString();
+
     if (reply->error()==QNetworkReply::NoError) {
-        response = reply->readAll();
+
+        response = reply->readAll(); //qDebug()<<response;
         if (reply->hasRawHeader("Content-Encoding") && reply->rawHeader("Content-Encoding")=="gzip") {
             //we have to unzip the response
             unzipResponse(response);

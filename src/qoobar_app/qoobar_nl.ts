@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="nl_NL">
+<TS version="2.1" language="nl_NL">
 <context>
     <name>Application</name>
     <message>
@@ -1258,52 +1258,52 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
         <translation>%1 alleen lezen</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="479"/>
+        <location filename="model.cpp" line="484"/>
         <source>Cannot rename following files:
 </source>
         <translation>Kan de volgende bestanden niet hernoemen:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="481"/>
+        <location filename="model.cpp" line="486"/>
         <source>Cannot copy following files:
 </source>
         <translation>Kan de volgende bestanden niet kopiëren:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="483"/>
+        <location filename="model.cpp" line="488"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Kan de volgende mappen niet hernoemen:</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="492"/>
+        <location filename="model.cpp" line="497"/>
         <source>All folders were successfully renamed</source>
         <translation>Alle mappen zijn succesvol hernoemd</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="954"/>
+        <location filename="model.cpp" line="1059"/>
         <source>No.</source>
         <translation>Nr.</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="955"/>
+        <location filename="model.cpp" line="1060"/>
         <source>File</source>
         <translation>Bestand</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="988"/>
+        <location filename="model.cpp" line="1093"/>
         <source>Length</source>
         <translation>Lengte</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="989"/>
+        <location filename="model.cpp" line="1094"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="990"/>
+        <location filename="model.cpp" line="1095"/>
         <source>Img</source>
         <translation>Img</translation>
     </message>
@@ -1316,12 +1316,12 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="488"/>
+        <location filename="model.cpp" line="493"/>
         <source>All files were successfully renamed</source>
         <translation>Alle bestanden zijn succesvol hernoemd</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="490"/>
+        <location filename="model.cpp" line="495"/>
         <source>All files were successfully copied</source>
         <translation>Alle bestanden zijn succesvol gekopieerd</translation>
     </message>
@@ -2934,24 +2934,24 @@ Wilt u de wijzigingen opslaan?</translation>
         <translation type="obsolete">Qoobar</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="258"/>
+        <location filename="treewidget.cpp" line="257"/>
         <source>Some read-only files were added,
 all changes in them will not be saved!</source>
         <translation>Sommige alleen lezen bestanden zijn toegevoegd,
 alle veranderingen worden niet opgeslagen!</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="307"/>
+        <location filename="treewidget.cpp" line="306"/>
         <source>Move to the tab...</source>
         <translation>Ga naar het tabblad...</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="311"/>
+        <location filename="treewidget.cpp" line="310"/>
         <source>New tab</source>
         <translation>Nieuw Tabblad</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="322"/>
+        <location filename="treewidget.cpp" line="321"/>
         <source>MP3 tag types...</source>
         <translation>MP3 label soorten...</translation>
     </message>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr">
+<TS version="2.1" language="fr">
 <context>
     <name>Application</name>
     <message>
@@ -1252,53 +1252,53 @@ et &quot; par deux guillements simples &apos;&apos;</translation>
         <translation>%1 est en lecture seule</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="479"/>
+        <location filename="model.cpp" line="484"/>
         <source>Cannot rename following files:
 </source>
         <translation>Impossible de renommer les fichiers suivants:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="481"/>
+        <location filename="model.cpp" line="486"/>
         <source>Cannot copy following files:
 </source>
         <translation>Impossible de copier les fichiers suivants:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="483"/>
+        <location filename="model.cpp" line="488"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Impossible de renommer les dossiers suivants:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="492"/>
+        <location filename="model.cpp" line="497"/>
         <source>All folders were successfully renamed</source>
         <translation>Tous les dossiers ont été renommés avec succès</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="954"/>
+        <location filename="model.cpp" line="1059"/>
         <source>No.</source>
         <translation>N°</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="955"/>
+        <location filename="model.cpp" line="1060"/>
         <source>File</source>
         <translation>Fichier</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="988"/>
+        <location filename="model.cpp" line="1093"/>
         <source>Length</source>
         <translation>Durée</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="989"/>
+        <location filename="model.cpp" line="1094"/>
         <source>RG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="990"/>
+        <location filename="model.cpp" line="1095"/>
         <source>Img</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1311,12 +1311,12 @@ et &quot; par deux guillements simples &apos;&apos;</translation>
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="488"/>
+        <location filename="model.cpp" line="493"/>
         <source>All files were successfully renamed</source>
         <translation>Tous les fichiers ont été renommés avec succès</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="490"/>
+        <location filename="model.cpp" line="495"/>
         <source>All files were successfully copied</source>
         <translation>Tous les fichiers ont été copiés avec succès</translation>
     </message>
@@ -2926,23 +2926,23 @@ Voulez-vous enregistrer les modifications?</translation>
         <translation type="obsolete">Qoobar</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="258"/>
+        <location filename="treewidget.cpp" line="257"/>
         <source>Some read-only files were added,
 all changes in them will not be saved!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="307"/>
+        <location filename="treewidget.cpp" line="306"/>
         <source>Move to the tab...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="311"/>
+        <location filename="treewidget.cpp" line="310"/>
         <source>New tab</source>
         <translation>Nouvel onglet</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="322"/>
+        <location filename="treewidget.cpp" line="321"/>
         <source>MP3 tag types...</source>
         <translation type="unfinished"></translation>
     </message>

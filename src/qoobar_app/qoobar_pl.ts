@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<TS version="2.1" language="pl_PL">
 <context>
     <name>Application</name>
     <message>
@@ -1255,53 +1255,53 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
         <translation>%1 jest tylko do odczytu</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="479"/>
+        <location filename="model.cpp" line="484"/>
         <source>Cannot rename following files:
 </source>
         <translation>Nie można zmienić nazwy następujących plików:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="481"/>
+        <location filename="model.cpp" line="486"/>
         <source>Cannot copy following files:
 </source>
         <translation>Nie można skopiować następujących plików:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="483"/>
+        <location filename="model.cpp" line="488"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Nie można zmienić nazwy następujących katalogów:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="492"/>
+        <location filename="model.cpp" line="497"/>
         <source>All folders were successfully renamed</source>
         <translation>Wszystkie katalogi zostały przemianowane</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="954"/>
+        <location filename="model.cpp" line="1059"/>
         <source>No.</source>
         <translation>Numer.</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="955"/>
+        <location filename="model.cpp" line="1060"/>
         <source>File</source>
         <translation>Plik</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="988"/>
+        <location filename="model.cpp" line="1093"/>
         <source>Length</source>
         <translation>Długość</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="989"/>
+        <location filename="model.cpp" line="1094"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="990"/>
+        <location filename="model.cpp" line="1095"/>
         <source>Img</source>
         <translation>Obraz</translation>
     </message>
@@ -1314,12 +1314,12 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="488"/>
+        <location filename="model.cpp" line="493"/>
         <source>All files were successfully renamed</source>
         <translation>Wszystkie pliki zostały przemianowane</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="490"/>
+        <location filename="model.cpp" line="495"/>
         <source>All files were successfully copied</source>
         <translation>Wszystkie pliki zostały skopiowane</translation>
     </message>
@@ -2927,24 +2927,24 @@ Czy zapisać zmiany?</translation>
         <translation type="obsolete">Qoobar</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="258"/>
+        <location filename="treewidget.cpp" line="257"/>
         <source>Some read-only files were added,
 all changes in them will not be saved!</source>
         <translation>Część z dodanych plików jest tylko do odczytu,
 wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="307"/>
+        <location filename="treewidget.cpp" line="306"/>
         <source>Move to the tab...</source>
         <translation>Przenieś do karty...</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="311"/>
+        <location filename="treewidget.cpp" line="310"/>
         <source>New tab</source>
         <translation>Nowa karta</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="322"/>
+        <location filename="treewidget.cpp" line="321"/>
         <source>MP3 tag types...</source>
         <translation>Rodzaje tagów MP3...</translation>
     </message>
