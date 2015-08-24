@@ -1085,7 +1085,7 @@ void Tab::moveItems(bool up)
 
 void Tab::sortColumn(int column, Qt::SortOrder order, int sortType)
 {DD;
-    model->sort(column, order, sortType);
+    model->sortByColumn(column, order, sortType);
     filesSelectionChanged();
     undoStack_->clear();
 }

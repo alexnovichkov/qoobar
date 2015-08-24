@@ -49,6 +49,18 @@ QSize MacSplitterHandle::sizeHint() const
         return QSize(1, parent.height());
 }
 
+void MacSplitterHandle::enterEvent(QEvent *e)
+{
+    QSplitterHandle::enterEvent(e);
+    setCursor(orientation() == Qt::Vertical?Qt::SplitVCursor:Qt::SplitHCursor);
+}
+
+void MacSplitterHandle::leaveEvent(QEvent *e)
+{
+    QSplitterHandle::leaveEvent(e);
+    setCursor(Qt::ArrowCursor);
+}
+
 QSplitterHandle *MacSplitter::createHandle()
 {DD
     return new MacSplitterHandle(orientation(), this);

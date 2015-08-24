@@ -7,9 +7,9 @@ make  install
 #done
 PLUGINS="beatport autonumber discogs freedb gd3 musicbrainz playlists"
 FRAMEWORKS="QtNetwork QtGui QtCore QtConcurrent QtWidgets"
-path_to_qt="/Users/ab/QtSDK/Desktop/Qt/4.8.0/gcc/lib/"
-#path_to_qt="/Users/admin/Qt5.2.0/5.2.0/clang_64/lib/"
-version=4
+#path_to_qt="/Users/ab/QtSDK/Desktop/Qt/4.8.0/gcc/lib/"
+path_to_qt="/Users/admin/Qt5.5.0/5.5/clang_64/lib/"
+version=5
 for plugin in $PLUGINS
 do
   echo "Processing ${plugin}"

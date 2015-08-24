@@ -738,7 +738,7 @@ QVector<int> Model::sortInteger(int column, Qt::SortOrder order, int sortType)
 }
 #endif
 
-void Model::sort(int column, Qt::SortOrder order, int sortType)
+void Model::sortByColumn(int column, Qt::SortOrder order, int sortType)
 {DD;
     QVector<int> newIndexes;
 

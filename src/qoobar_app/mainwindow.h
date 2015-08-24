@@ -32,6 +32,13 @@
 #include <QHash>
 #include <QTimer>
 
+//#ifdef Q_OS_MAC
+//#include <QtMacExtras>
+//#define TOOLBAR QMacToolBar
+//#else
+//#define TOOLBAR QToolBar
+//#endif
+
 class QAction;
 class QLabel;
 class TabWidget;
@@ -46,6 +53,7 @@ class QTreeView;
 class QSplitter;
 
 class SparkleUpdater;
+class Toolbar;
 
 struct Act {
     const char *key;
@@ -77,7 +85,9 @@ public:
     QHash<QString, QAction *> actions;
     QList<QAction *> pluginsActions;
     QMap<int, QString> allTabsNames();
+#ifdef Q_OS_WIN
     int allTabsSaved();
+#endif
 protected Q_SLOTS:
     void dragEnterEvent(QDragEnterEvent *);
     void dropEvent(QDropEvent *);
@@ -143,7 +153,7 @@ private:
     QHash<QString, IQoobarPlugin *> loadedPlugins;
 
     QUndoGroup *undoGroup;
-    QToolBar *filesToolBar;
+    Toolbar *filesToolBar;
 
     TabWidget *tabWidget;
     Tab *currentTab;

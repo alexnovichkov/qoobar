@@ -91,7 +91,6 @@ SOURCES = main.cpp \
     platformprocess.cpp \
     treeview.cpp
 
-
 HEADERS = mainwindow.h \
     tagseditor.h \
     tablewidget.h \
@@ -156,7 +155,8 @@ HEADERS = mainwindow.h \
     taskbarprogress.h \
     searchbar.h \
     platformprocess.h \
-    treeview.h
+    treeview.h \
+    mactoolbar.h
 
 lessThan(QT_MAJOR_VERSION, 5) {
     SOURCES *= ereilin/json.cpp
@@ -237,9 +237,11 @@ HEADERS += qocoa/qocoa_mac.h \
 mac {
     OBJECTIVE_SOURCES += qocoa/qbutton_mac.mm \
                          qocoa/qprogressindicatorspinning_mac.mm
+    OBJECTIVE_SOURCES += mactoolbar.mm
 } else {
     SOURCES += qocoa/qbutton_nonmac.cpp \
                qocoa/qprogressindicatorspinning_nonmac.cpp
+    SOURCES += mactoolbar.cpp
 }
 
 
@@ -470,7 +472,7 @@ mac|macx {
 
     discid_framework.path = $$INSTALL_PATH/Frameworks/discid.framework
     discid_framework.files = ../../mac_os/discid.framework/*
-    #discid_framework.extra= $$[QT_INSTALL_BINS]/macdeployqt $$DESTDIR/qoobar.app
+    discid_framework.extra= $$[QT_INSTALL_BINS]/macdeployqt $$DESTDIR/qoobar.app
 
     sparkle_framework.path = $$INSTALL_PATH/Frameworks/Sparkle.framework
     sparkle_framework.files = ../../mac_os/Sparkle.framework/*

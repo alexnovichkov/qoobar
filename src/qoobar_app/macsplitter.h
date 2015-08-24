@@ -19,6 +19,9 @@ public:
     MacSplitterHandle(Qt::Orientation orientation, QSplitter *parent);
     void paintEvent(QPaintEvent *);
     QSize sizeHint() const;
+protected:
+    void enterEvent(QEvent *e);
+    void leaveEvent(QEvent *e);
 };
 
 #endif // MACSPLITTER_H

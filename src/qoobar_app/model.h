@@ -214,7 +214,7 @@ public:
     bool setNewImage(int ind,const CoverImage &image);
     void setOldImage(int ind,const CoverImage &image, bool status);
 
-    void sort(int column, Qt::SortOrder order, int sortType);
+    void sortByColumn(int column, Qt::SortOrder order, int sortType);
 
     /**
      * @brief setCurrentIndex sets index of a file currently selected in the Tags editor

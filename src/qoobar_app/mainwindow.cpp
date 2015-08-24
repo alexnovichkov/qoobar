@@ -49,6 +49,7 @@
 
 #include "sparkleupdater.h"
 #include "model.h"
+#include "mactoolbar.h"
 
 // We mark these strings as translatable so not to deploy all of qt_xx.qm files
 static const char *macapp_strings[] = {
@@ -167,8 +168,10 @@ void MainWindow::init()
     setAcceptDrops(true);
 
 #ifdef Q_OS_MAC
-    setUnifiedTitleAndToolBarOnMac(true);
+    //setUnifiedTitleAndToolBarOnMac(true);
 #endif
+
+
 
     undoGroup = new QUndoGroup(this);
     undoAct=0;
@@ -176,18 +179,30 @@ void MainWindow::init()
     currentTab=0;
 
     createActions();
+    //menu
+    createMenus();
+    menuSeparator = menus[QSL("edit")]->actions().first();
 
-    filesToolBar=addToolBar(tr("Toolbar"));
-    filesToolBar->setIconSize(QSize(24,24));
     const QStringList toolBarActs =
             QString("addDir,addFiles,split,,save,rereadTags,,*,rename,fill,"
                     "removeTags,delAllFiles,,play,,cut,copy,paste,newTag").split(QSL(","));
+
+    createUndoRedoActs();
+
+    filesToolBar = new Toolbar(this);
     Q_FOREACH (const QString &a,toolBarActs) {
         if (a.isEmpty()) filesToolBar->addSeparator();
-        else if (a=="*") separator = filesToolBar->addSeparator();
-        else filesToolBar->addAction(actions[a]);
+        else if (a=="*") {
+            filesToolBar->addAction(undoAct);
+            filesToolBar->addAction(redoAct);
+        }
+        else {
+            if (actions.value(a))
+                filesToolBar->addAction(actions.value(a));
+        }
     }
-    filesToolBar->setMovable(false);
+    filesToolBar->attachToWindow(this);
+
 
 //========================================================================
     dirModel = new QFileSystemModel(this);
@@ -244,11 +259,6 @@ void MainWindow::init()
     statusBar_ = new StatusBar(this);
     setStatusBar(statusBar_);
 
-    //menu
-    createMenus();
-    menuSeparator = menus[QSL("edit")]->actions().first();
-
-    //createUndoRedoActs();
     connect(qApp->clipboard(),SIGNAL(dataChanged()),SLOT(onClipboardChanged()));
 }
 
@@ -330,8 +340,7 @@ void MainWindow::createUndoRedoActs()
     redoAct->setIcon(QIcon(QSL(":/src/icons/edit-redo.png")));
 #endif
     redoAct->setShortcut(QKeySequence(QKeySequence::Redo).toString());
-    filesToolBar->insertAction(separator,undoAct);
-    filesToolBar->insertAction(separator,redoAct);
+
     menus[QSL("edit")]->insertAction(menuSeparator,undoAct);
     menus[QSL("edit")]->insertAction(menuSeparator,redoAct);
 }
@@ -339,7 +348,7 @@ void MainWindow::createUndoRedoActs()
 void MainWindow::retranslateUi()
 {DD
     setWindowTitle(tr("Qoobar - Tag editor for classical music")+QSL("[*]"));
-    createUndoRedoActs();
+//    createUndoRedoActs();
     App->currentScheme->retranslateUI();
     retranslateActions();
 
@@ -410,18 +419,35 @@ void MainWindow::createActions()
 
 
 void MainWindow::retranslateActions()
-{DD
-    Q_FOREACH (QAction *a, actions) {
-        int index=a->property("key").toInt();
-        a->setText(tr(actionsDescr[index].text));
-        if (actionsDescr[index].shortcut) {
-            a->setShortcut(tr(actionsDescr[index].shortcut));
-            a->setToolTip(QString("%1 <font color=gray size=-1>%2</font>")
-                              .arg(tr(actionsDescr[index].tooltip))
-                              .arg(a->shortcut().toString()));
+{DD;
+    Q_FOREACH(const QString &key,actions.keys()) {
+        QAction *a = actions[key];
+        if (a) {
+            int index=a->property("key").toInt();
+            a->setText(tr(actionsDescr[index].text));
+            if (actionsDescr[index].shortcut) {
+                a->setShortcut(tr(actionsDescr[index].shortcut));
+                a->setToolTip(QString("%1 <font color=gray size=-1>%2</font>")
+                                  .arg(tr(actionsDescr[index].tooltip))
+                                  .arg(a->shortcut().toString()));
+            }
+            else a->setToolTip(tr(actionsDescr[index].tooltip));
         }
-        else a->setToolTip(tr(actionsDescr[index].tooltip));
     }
+    if (undoAct) undoAct->setText(tr("&Undo"));
+    if (redoAct) redoAct->setText(tr("&Redo"));
+
+//#ifdef Q_OS_MAC
+//    QList<QMacToolBarItem*> items = filesToolBar->items();
+//    Q_FOREACH(QMacToolBarItem * item,items) {
+//        int index=item->property("key").toInt();
+//        item->set
+//        item->setText(tr(actionsDescr[index].text));
+//    }
+
+//#endif
+    filesToolBar->retranslateUI();
+
 #ifdef HAVE_QT5
     Q_FOREACH (QAction *a, pluginsActions) {
         QJsonObject metaData = App->plugins.at(a->property("id").toInt());
@@ -533,10 +559,10 @@ void MainWindow::aboutQt()
 void MainWindow::showAboutDialog()
 {DD
     QString about=tr("<b>Qoobar, a Simple Tag Editor</b><br>released under the GPL 3"
-                           "<br>Version: %1<br>Copyright 2009-2013 Alex Novichkov"
+                           "<br>Version: %1<br>Copyright 2009-2015 Alex Novichkov"
                            "<p>Web site: <a href=http://qoobar.sourceforge.net>http://qoobar.sourceforge.net</a>\n"
                            "<br>E-mail: <a href=mailto:novichkov.qoobar@gmail.com>novichkov.qoobar@gmail.com</a>"
-                           "<br>(I am very interested in your feedback)<hr>")
+                           "<br><hr>")
             .arg(QOOBAR_VERSION);
 
     // Libraries
@@ -660,6 +686,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
+#ifdef Q_OS_WIN
 int MainWindow::allTabsSaved()
 {
     for (int i=0; i<tabWidget->count(); ++i) {
@@ -671,6 +698,7 @@ int MainWindow::allTabsSaved()
 
     return TRUE;
 }
+#endif
 
 void MainWindow::onSelectionChanged(bool filesSelected)
 {DD
