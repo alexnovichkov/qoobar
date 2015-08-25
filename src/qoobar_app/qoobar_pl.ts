@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<TS version="2.1" language="pl_PL">
 <context>
     <name>Application</name>
     <message>
@@ -897,7 +897,7 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
     </message>
     <message>
         <location filename="mainwindow.cpp" line="82"/>
-        <location filename="mainwindow.cpp" line="597"/>
+        <location filename="mainwindow.cpp" line="586"/>
         <source>&amp;About Qoobar</source>
         <translation>&amp;O programie Qoobar</translation>
     </message>
@@ -1169,35 +1169,34 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
     </message>
     <message>
         <location filename="mainwindow.cpp" line="167"/>
-        <location filename="mainwindow.cpp" line="361"/>
+        <location filename="mainwindow.cpp" line="350"/>
         <source>Qoobar - Tag editor for classical music</source>
         <translation>Qoobar - Edytor tagów dla muzyki klasycznej</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="205"/>
         <source>Toolbar</source>
-        <translation>Pasek narzędzi</translation>
+        <translation type="vanished">Pasek narzędzi</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="334"/>
-        <location filename="mainwindow.cpp" line="448"/>
+        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="437"/>
         <source>&amp;Undo</source>
         <translation>&amp;Cofnij</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="343"/>
-        <location filename="mainwindow.cpp" line="449"/>
+        <location filename="mainwindow.cpp" line="335"/>
+        <location filename="mainwindow.cpp" line="438"/>
         <source>&amp;Redo</source>
         <translation>&amp;Ponów</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="376"/>
-        <location filename="mainwindow.cpp" line="516"/>
+        <location filename="mainwindow.cpp" line="365"/>
+        <location filename="mainwindow.cpp" line="505"/>
         <source>Tab %1</source>
         <translation>Karta %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="572"/>
+        <location filename="mainwindow.cpp" line="561"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2013 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
@@ -1206,37 +1205,37 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;(Jestem bardzo zainteresowany wszelkimi uwagami)&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="580"/>
+        <location filename="mainwindow.cpp" line="569"/>
         <source>not installed</source>
         <translation>nie zainstalowane</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="592"/>
+        <location filename="mainwindow.cpp" line="581"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Qoobar używa:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Biblioteki:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="604"/>
+        <location filename="mainwindow.cpp" line="593"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - dodawanie plików</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="605"/>
+        <location filename="mainwindow.cpp" line="594"/>
         <source>audio files (%1)</source>
         <translation>pliki audio (%1)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="612"/>
+        <location filename="mainwindow.cpp" line="601"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - dodawanie katalogów</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="829"/>
+        <location filename="mainwindow.cpp" line="818"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - zmienianie nazwy karty</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="830"/>
+        <location filename="mainwindow.cpp" line="819"/>
         <source>Set a tab name</source>
         <translation>Ustaw nazwę karty</translation>
     </message>

@@ -3,6 +3,7 @@
 #include <QToolBar>
 #include <QAction>
 
+#include "mainwindow.h"
 
 
 class Impl
@@ -19,8 +20,14 @@ Toolbar::Toolbar(QMainWindow *parent) : QObject(parent)
     d->toolbar->setMovable(false);
 }
 
-void Toolbar::addAction(QAction *act)
+Toolbar::~Toolbar()
 {
+    delete d;
+}
+
+void Toolbar::addAction(QAction *act, const Act *descr)
+{
+    Q_UNUSED(descr)
     if (!act) return;
 
     d->toolbar->addAction(act);
@@ -34,5 +41,11 @@ void Toolbar::retranslateUI()
 void Toolbar::addSeparator()
 {
     d->toolbar->addSeparator();
+}
+
+void Toolbar::attachToWindow(QMainWindow *window)
+{
+    Q_UNUSED(window)
+    //do nothing
 }
 

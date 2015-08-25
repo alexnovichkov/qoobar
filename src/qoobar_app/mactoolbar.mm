@@ -2,11 +2,14 @@
 #include <QMainWindow>
 #include <QtMacExtras>
 #include <QAction>
+#include <QHash>
+#include "mainwindow.h"
 
 class Impl
 {
 public:
     QMacToolBar *toolbar;
+    QHash<QMacToolBarItem*, Act*> descriptions;
 };
 
 Toolbar::Toolbar(QMainWindow *parent) : QObject(parent)
@@ -20,17 +23,29 @@ Toolbar::~Toolbar()
     delete d;
 }
 
-void Toolbar::addAction(QAction *act)
+void Toolbar::addAction(QAction *act, const Act *descr)
 {
     if (!act) return;
 
-    QMacToolBarItem *toolBarItem = d->toolbar->addItem(act->icon(),"");
+    QMacToolBarItem *toolBarItem = d->toolbar->addItem(act->icon(), descr->shortText?descr->shortText:descr->tooltip);
+    d->descriptions.insert(toolBarItem,descr);
     connect(toolBarItem,SIGNAL(activated()),act,SLOT(trigger()));
+
+    if (!act->isEnabled()) {
+        toolBarItem->setDisabled();
+    }
 }
 
 void Toolbar::retranslateUI()
 {
-    //do nothing
+    QList<QMacToolBarItem *> items = d->toolbar->items();
+    Q_FOREACH(QMacToolBarItem *item, items) {
+        Act *descr = d->descriptions.value(item);
+        if (descr) {
+            item->setText(descr->shortText?descr->shortText:descr->tooltip);
+            //item->setToolTip()
+        }
+    }
 }
 
 void Toolbar::addSeparator()

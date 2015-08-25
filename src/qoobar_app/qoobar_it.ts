@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>Application</name>
     <message>
@@ -804,7 +804,7 @@ e &quot; verra sostituito da due virgolette singole &apos;&apos;</translation>
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.cpp" line="167"/>
-        <location filename="mainwindow.cpp" line="361"/>
+        <location filename="mainwindow.cpp" line="350"/>
         <source>Qoobar - Tag editor for classical music</source>
         <translation>Qoobar - Editor di tag per musica classica</translation>
     </message>
@@ -864,7 +864,7 @@ e &quot; verra sostituito da due virgolette singole &apos;&apos;</translation>
         <translation>Incolla</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="572"/>
+        <location filename="mainwindow.cpp" line="561"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2013 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
@@ -873,7 +873,7 @@ e &quot; verra sostituito da due virgolette singole &apos;&apos;</translation>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;(Sono molto interessato alle vostre impressioni)&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="830"/>
+        <location filename="mainwindow.cpp" line="819"/>
         <source>Set a tab name</source>
         <translation>Impostare un nome sulla scheda</translation>
     </message>
@@ -1140,11 +1140,6 @@ e &quot; verra sostituito da due virgolette singole &apos;&apos;</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="205"/>
-        <source>Toolbar</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="mainwindow.cpp" line="138"/>
         <source>&amp;File</source>
         <translation>&amp;File</translation>
@@ -1171,40 +1166,40 @@ e &quot; verra sostituito da due virgolette singole &apos;&apos;</translation>
         <translation>&amp;Aiuto</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="334"/>
-        <location filename="mainwindow.cpp" line="448"/>
+        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="437"/>
         <source>&amp;Undo</source>
         <translation>&amp;Annulla</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="343"/>
-        <location filename="mainwindow.cpp" line="449"/>
+        <location filename="mainwindow.cpp" line="335"/>
+        <location filename="mainwindow.cpp" line="438"/>
         <source>&amp;Redo</source>
         <translation>&amp;Ripeti</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="580"/>
+        <location filename="mainwindow.cpp" line="569"/>
         <source>not installed</source>
         <translation>non è installato</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="592"/>
+        <location filename="mainwindow.cpp" line="581"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Qoobar usa:&lt;/b&gt; &lt;br&gt; &lt;b&gt;Libraries:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="82"/>
-        <location filename="mainwindow.cpp" line="597"/>
+        <location filename="mainwindow.cpp" line="586"/>
         <source>&amp;About Qoobar</source>
         <translation>&amp;Informazioni su Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="829"/>
+        <location filename="mainwindow.cpp" line="818"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - rinominare la scheda</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="612"/>
+        <location filename="mainwindow.cpp" line="601"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - Scegli una cartella</translation>
     </message>
@@ -1224,8 +1219,8 @@ e &quot; verra sostituito da due virgolette singole &apos;&apos;</translation>
         <translation>Aggiungi un nuovo tag...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="376"/>
-        <location filename="mainwindow.cpp" line="516"/>
+        <location filename="mainwindow.cpp" line="365"/>
+        <location filename="mainwindow.cpp" line="505"/>
         <source>Tab %1</source>
         <translation>Scheda %1</translation>
     </message>
@@ -1235,12 +1230,12 @@ e &quot; verra sostituito da due virgolette singole &apos;&apos;</translation>
         <translation>Informazioni su Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="604"/>
+        <location filename="mainwindow.cpp" line="593"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - Scegli i file</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="605"/>
+        <location filename="mainwindow.cpp" line="594"/>
         <source>audio files (%1)</source>
         <translation>file audio (%1)</translation>
     </message>

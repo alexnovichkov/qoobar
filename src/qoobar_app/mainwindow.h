@@ -59,6 +59,7 @@ struct Act {
     const char *key;
     const char *text;
     const char *tooltip;
+    const char *shortText;
     const char *slot;
     const char *shortcut;
     const QKeySequence::StandardKey standardShortcut;

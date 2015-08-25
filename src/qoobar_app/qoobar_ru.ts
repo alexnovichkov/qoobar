@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru_RU">
+<TS version="2.1" language="ru_RU">
 <context>
     <name>Application</name>
     <message>
@@ -803,13 +803,13 @@ and &quot; by two single quotes &apos;&apos;</source>
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.cpp" line="167"/>
-        <location filename="mainwindow.cpp" line="361"/>
+        <location filename="mainwindow.cpp" line="350"/>
         <source>Qoobar - Tag editor for classical music</source>
         <oldsource>Tag editor just like foobar</oldsource>
         <translation>Qoobar - редактор тегов для классической музыки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="829"/>
+        <location filename="mainwindow.cpp" line="818"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - переименование вкладки</translation>
     </message>
@@ -1101,9 +1101,8 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="205"/>
         <source>Toolbar</source>
-        <translation>Панель инструментов</translation>
+        <translation type="vanished">Панель инструментов</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="138"/>
@@ -1132,45 +1131,45 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation>&amp;Справка</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="334"/>
-        <location filename="mainwindow.cpp" line="448"/>
+        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="437"/>
         <source>&amp;Undo</source>
         <translation>&amp;Отменить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="343"/>
-        <location filename="mainwindow.cpp" line="449"/>
+        <location filename="mainwindow.cpp" line="335"/>
+        <location filename="mainwindow.cpp" line="438"/>
         <source>&amp;Redo</source>
         <translation>&amp;Повторить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="580"/>
+        <location filename="mainwindow.cpp" line="569"/>
         <source>not installed</source>
         <translation>не установлена</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="592"/>
+        <location filename="mainwindow.cpp" line="581"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Qoobar использует:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Библиотеки:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="82"/>
-        <location filename="mainwindow.cpp" line="597"/>
+        <location filename="mainwindow.cpp" line="586"/>
         <source>&amp;About Qoobar</source>
         <translation>&amp;О Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="604"/>
+        <location filename="mainwindow.cpp" line="593"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - добавление файлов</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="605"/>
+        <location filename="mainwindow.cpp" line="594"/>
         <source>audio files (%1)</source>
         <translation>Файлы аудио (%1)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="612"/>
+        <location filename="mainwindow.cpp" line="601"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - добавление папки</translation>
     </message>
@@ -1210,7 +1209,7 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation>Вставить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="572"/>
+        <location filename="mainwindow.cpp" line="561"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2013 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
@@ -1219,13 +1218,13 @@ and &quot; by two single quotes &apos;&apos;</source>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="830"/>
+        <location filename="mainwindow.cpp" line="819"/>
         <source>Set a tab name</source>
         <translation>Введите новое название</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="376"/>
-        <location filename="mainwindow.cpp" line="516"/>
+        <location filename="mainwindow.cpp" line="365"/>
+        <location filename="mainwindow.cpp" line="505"/>
         <source>Tab %1</source>
         <translation>Вкладка %1</translation>
     </message>

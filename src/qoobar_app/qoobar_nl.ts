@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="nl_NL">
+<TS version="2.1" language="nl_NL">
 <context>
     <name>Application</name>
     <message>
@@ -803,18 +803,18 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.cpp" line="167"/>
-        <location filename="mainwindow.cpp" line="361"/>
+        <location filename="mainwindow.cpp" line="350"/>
         <source>Qoobar - Tag editor for classical music</source>
         <translation>Qoobar - Label bewerker voor klassikale muziek</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="376"/>
-        <location filename="mainwindow.cpp" line="516"/>
+        <location filename="mainwindow.cpp" line="365"/>
+        <location filename="mainwindow.cpp" line="505"/>
         <source>Tab %1</source>
         <translation>Tabblad %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="572"/>
+        <location filename="mainwindow.cpp" line="561"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2013 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
@@ -823,14 +823,13 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&quot;&lt;br&gt;(Ik ben erg geïnteresseerd in uw feedback)&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="830"/>
+        <location filename="mainwindow.cpp" line="819"/>
         <source>Set a tab name</source>
         <translation>Stel a tabnaam in</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="205"/>
         <source>Toolbar</source>
-        <translation>Werkbalk</translation>
+        <translation type="vanished">Werkbalk</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="138"/>
@@ -1196,50 +1195,50 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="334"/>
-        <location filename="mainwindow.cpp" line="448"/>
+        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="437"/>
         <source>&amp;Undo</source>
         <translation>&amp;Ondedaan maken</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="343"/>
-        <location filename="mainwindow.cpp" line="449"/>
+        <location filename="mainwindow.cpp" line="335"/>
+        <location filename="mainwindow.cpp" line="438"/>
         <source>&amp;Redo</source>
         <translation>&amp;Opnieuw</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="580"/>
+        <location filename="mainwindow.cpp" line="569"/>
         <source>not installed</source>
         <translation>niet geinstalleerd</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="592"/>
+        <location filename="mainwindow.cpp" line="581"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Qoobar gebruikt:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Bibliotheken:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="82"/>
-        <location filename="mainwindow.cpp" line="597"/>
+        <location filename="mainwindow.cpp" line="586"/>
         <source>&amp;About Qoobar</source>
         <translation>&amp;Over Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="612"/>
+        <location filename="mainwindow.cpp" line="601"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoodar - Map toevoegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="829"/>
+        <location filename="mainwindow.cpp" line="818"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - Hernoem tabblad</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="604"/>
+        <location filename="mainwindow.cpp" line="593"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - bestanden toevoegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="605"/>
+        <location filename="mainwindow.cpp" line="594"/>
         <source>audio files (%1)</source>
         <translation>audio bestanden (%1)</translation>
     </message>

@@ -63,75 +63,73 @@ static const char *macapp_strings[] = {
 };
 
 const Act MainWindow::actionsDescr[] = {
-    {"addDir", QT_TR_NOOP("&Add folder..."), QT_TR_NOOP("Add folder..."),
+    {"addDir", QT_TR_NOOP("&Add folder..."), QT_TR_NOOP("Add folder..."), QT_TR_NOOP("Add folder"),
      SLOT(addDir()), 0, QKeySequence::Open, "folder-new",0},
-    {"addFiles", QT_TR_NOOP("Add &files..."), QT_TR_NOOP("Add files..."),
+    {"addFiles", QT_TR_NOOP("Add &files..."), QT_TR_NOOP("Add files..."), QT_TR_NOOP("Add files"),
      SLOT(addFiles()), QT_TR_NOOP("Shift+Ctrl+O"), QKeySequence::UnknownKey, "document-new",0},
-    {"save", QT_TR_NOOP("&Save current tab"), QT_TR_NOOP("Save current tab"),
+    {"save", QT_TR_NOOP("&Save current tab"), QT_TR_NOOP("Save current tab"), QT_TR_NOOP("Save"),
      0, 0, QKeySequence::Save, "document-save",SLOT(saveTags())},
-    {"saveAll", QT_TR_NOOP("Save all &tabs"), QT_TR_NOOP("Save all tabs"),
+    {"saveAll", QT_TR_NOOP("Save all &tabs"), QT_TR_NOOP("Save all tabs"), QT_TR_NOOP("Save all"),
      SLOT(saveAll()), 0, QKeySequence::UnknownKey, 0,0},
-    {"rename", QT_TR_NOOP("&Rename files..."), QT_TR_NOOP("Rename files..."),
+    {"rename", QT_TR_NOOP("&Rename files..."), QT_TR_NOOP("Rename files..."), QT_TR_NOOP("Rename"),
      0, QT_TR_NOOP("Ctrl+R"), QKeySequence::UnknownKey, "document-save-as",SLOT(renameFiles())},
-    {"fill", QT_TR_NOOP("&Fill tags..."), QT_TR_NOOP("Fill tags..."),
+    {"fill", QT_TR_NOOP("&Fill tags..."), QT_TR_NOOP("Fill tags..."), QT_TR_NOOP("Fill"),
      0, QT_TR_NOOP("Ctrl+F"), QKeySequence::UnknownKey, "fill", SLOT(fill())},
-    {"rereadTags", QT_TR_NOOP("&Reread tags"), QT_TR_NOOP("Reread tags"),
+    {"rereadTags", QT_TR_NOOP("&Reread tags"), QT_TR_NOOP("Reread tags"), QT_TR_NOOP("Reread"),
      0, 0, QKeySequence::UnknownKey, "view-refresh", SLOT(rereadTags())},
-    {"help", QT_TR_NOOP("&Help"), QT_TR_NOOP("Help on Qoobar"),
+    {"help", QT_TR_NOOP("&Help"), QT_TR_NOOP("Help on Qoobar"), QT_TR_NOOP("Help"),
      SLOT(showHelp()), 0, QKeySequence::HelpContents, "help-contents",0},
-    {"about", QT_TR_NOOP("&About Qoobar"), QT_TR_NOOP("About Qoobar"),
+    {"about", QT_TR_NOOP("&About Qoobar"), QT_TR_NOOP("About Qoobar"), QT_TR_NOOP("About"),
      SLOT(showAboutDialog()), 0, QKeySequence::UnknownKey, "help-about",0},
-    {"aboutQt", QT_TR_NOOP("About &Qt"), QT_TR_NOOP("About Qt"),
+    {"aboutQt", QT_TR_NOOP("About &Qt"), QT_TR_NOOP("About Qt"), QT_TR_NOOP("About Qt"),
      SLOT(aboutQt()), 0, QKeySequence::UnknownKey, 0,0},
-    {"settings", QT_TR_NOOP("&Settings..."), QT_TR_NOOP("Settings..."),
+    {"settings", QT_TR_NOOP("&Settings..."), QT_TR_NOOP("Settings..."), QT_TR_NOOP("Settings"),
      SLOT(showSettingsDialog()), 0, QKeySequence::UnknownKey, "preferences-system",0},
-    {"delFiles", QT_TR_NOOP("Re&move from the list"), QT_TR_NOOP("Remove from the list"),
+    {"delFiles", QT_TR_NOOP("Re&move from the list"), QT_TR_NOOP("Remove from the list"), QT_TR_NOOP("Remove"),
      0, QT_TR_NOOP("Delete"), QKeySequence::UnknownKey, "edit-delete",SLOT(delFiles())},
-    {"delAllFiles", QT_TR_NOOP("C&lear the list"), QT_TR_NOOP("Clear the list"),
+    {"delAllFiles", QT_TR_NOOP("C&lear the list"), QT_TR_NOOP("Clear the list"), QT_TR_NOOP("Remove"),
      0, QT_TR_NOOP("Ctrl+Delete"), QKeySequence::UnknownKey, "edit-clear",SLOT(delAllFiles())},
-    {"play", QT_TR_NOOP("&Play selected"), QT_TR_NOOP("Play selected"),
+    {"play", QT_TR_NOOP("&Play selected"), QT_TR_NOOP("Play selected"), QT_TR_NOOP("Play"),
      0, QT_TR_NOOP("Ctrl+P"), QKeySequence::UnknownKey, "media-playback-start",SLOT(play())},
-    {"removeTags", QT_TR_NOOP("Clear all tags"), QT_TR_NOOP("Clear all tags"),
+    {"removeTags", QT_TR_NOOP("Clear all tags"), QT_TR_NOOP("Clear all tags"), QT_TR_NOOP("Clear"),
      0, 0, QKeySequence::UnknownKey, "Delete", SLOT(removeAllTags())},
-    {"cut", QT_TR_NOOP("Cu&t"), QT_TR_NOOP("Cut"),
+    {"cut", QT_TR_NOOP("Cu&t"), QT_TR_NOOP("Cut"), QT_TR_NOOP("Cut"),
      0, 0, QKeySequence::Cut, "edit-cut",SLOT(cut())},
-    {"copy", QT_TR_NOOP("&Copy"), QT_TR_NOOP("Copy"),
+    {"copy", QT_TR_NOOP("&Copy"), QT_TR_NOOP("Copy"), QT_TR_NOOP("Copy"),
      0, 0, QKeySequence::Copy, "edit-copy",SLOT(copy())},
-    {"paste", QT_TR_NOOP("&Paste"), QT_TR_NOOP("Paste"),
+    {"paste", QT_TR_NOOP("&Paste"), QT_TR_NOOP("Paste"), QT_TR_NOOP("Paste"),
      0, 0, QKeySequence::Paste, "edit-paste",SLOT(paste())},
-    {"copyToClipboard", QT_TR_NOOP("Copy to clipboard"), QT_TR_NOOP("Copy to clipboard"),
+    {"copyToClipboard", QT_TR_NOOP("Copy to clipboard"), QT_TR_NOOP("Copy to clipboard"), QT_TR_NOOP("Copy to clipboard"),
      0, QT_TR_NOOP("Shift+Ctrl+C"), QKeySequence::UnknownKey, 0,SLOT(copyToClipboard())},
-    {"pasteFromClipboard", QT_TR_NOOP("Paste from clipboard"), QT_TR_NOOP("Paste from clipboard"),
+    {"pasteFromClipboard", QT_TR_NOOP("Paste from clipboard"), QT_TR_NOOP("Paste from clipboard"), 0,
      0, QT_TR_NOOP("Shift+Ctrl+V"), QKeySequence::UnknownKey, 0,SLOT(pasteFromClipboard())},
-    {"newTag", QT_TR_NOOP("&Add new tag..."), QT_TR_NOOP("Add new tag..."),
+    {"newTag", QT_TR_NOOP("&Add new tag..."), QT_TR_NOOP("Add new tag..."), QT_TR_NOOP("New tag"),
      0, 0, QKeySequence::New, "list-add",SLOT(newTag())},
-    {"split", QT_TR_NOOP("Split &disc..."), QT_TR_NOOP("Split disc..."),
+    {"split", QT_TR_NOOP("Split &disc..."), QT_TR_NOOP("Split disc..."), QT_TR_NOOP("Split"),
      SLOT(showSplitDialog()), 0, QKeySequence::UnknownKey, "media-import-audio-cd",0},
-    {"exit", QT_TR_NOOP("E&xit"), QT_TR_NOOP("Exit"),
+    {"exit", QT_TR_NOOP("E&xit"), QT_TR_NOOP("Exit"), QT_TR_NOOP("Exit"),
      SLOT(close()), QT_TR_NOOP("Ctrl+Q"), QKeySequence::UnknownKey, "application-exit",0},
-    {"newTab", QT_TR_NOOP("&New tab"), QT_TR_NOOP("New tab"),
+    {"newTab", QT_TR_NOOP("&New tab"), QT_TR_NOOP("New tab"), QT_TR_NOOP("New tab"),
      SLOT(newTab()), 0, QKeySequence::AddTab, "newTab", 0},
-    {"closeTab", QT_TR_NOOP("&Close the tab"), QT_TR_NOOP("Close the tab"),
+    {"closeTab", QT_TR_NOOP("&Close the tab"), QT_TR_NOOP("Close the tab"), 0,
      SLOT(closeCurrentTab()), 0, QKeySequence::Close, 0,0},
-    {"closeOtherTabs", QT_TR_NOOP("Close &other tabs"), QT_TR_NOOP("Close other tabs"),
+    {"closeOtherTabs", QT_TR_NOOP("Close &other tabs"), QT_TR_NOOP("Close other tabs"), 0,
      SLOT(closeOtherTabs()), 0, QKeySequence::UnknownKey, 0,0},
-    {"renameTab", QT_TR_NOOP("&Rename the tab..."), QT_TR_NOOP("Rename the tab..."),
+    {"renameTab", QT_TR_NOOP("&Rename the tab..."), QT_TR_NOOP("Rename the tab..."), 0,
      SLOT(renameTab()), 0, QKeySequence::UnknownKey, 0,0},
-    {"replaygain",QT_TR_NOOP("ReplayGain info..."), QT_TR_NOOP("Edit ReplayGain Info..."),
+    {"replaygain",QT_TR_NOOP("ReplayGain info..."), QT_TR_NOOP("Edit ReplayGain Info..."), 0,
      0, 0, QKeySequence::UnknownKey, 0, SLOT(replaygain())},
 
-    {"addFromDirView", QT_TR_NOOP("List this folder"), QT_TR_NOOP("List this folder"),
+    {"addFromDirView", QT_TR_NOOP("List this folder"), QT_TR_NOOP("List this folder"), 0,
      SLOT(addFromDirView()), 0, QKeySequence::UnknownKey, 0,0},
     {"addFromDirViewWithSubfolders", QT_TR_NOOP("List this folder with all subfolders"),
-     QT_TR_NOOP("List this folder with all subfolders"),
+     QT_TR_NOOP("List this folder with all subfolders"), 0,
      SLOT(addFromDirViewWithSubfolders()), 0, QKeySequence::UnknownKey, 0,0},
-    {"checkUpdates", QT_TR_NOOP("&Check for updates..."),
-     QT_TR_NOOP("Check for updates..."),
+    {"checkUpdates", QT_TR_NOOP("&Check for updates..."), QT_TR_NOOP("Check for updates..."), 0,
      SLOT(checkUpdates()), 0, QKeySequence::UnknownKey, 0,0},
-    {"searchFiles", QT_TR_NOOP("S&earch files..."),
-     QT_TR_NOOP("Search files..."),
+    {"searchFiles", QT_TR_NOOP("S&earch files..."), QT_TR_NOOP("Search files..."), 0,
      SLOT(searchFiles()), QT_TR_NOOP("Shift+Ctrl+F"), QKeySequence::UnknownKey, 0,0},
-    {0,0,0,0,0,QKeySequence::UnknownKey,0,0}
+    {0,0,0,0,0,0,QKeySequence::UnknownKey,0,0}
 };
 
 const Menu MainWindow::menusDescr[] = {
@@ -167,12 +165,6 @@ void MainWindow::init()
     setWindowTitle(tr("Qoobar - Tag editor for classical music")+QSL("[*]"));
     setAcceptDrops(true);
 
-#ifdef Q_OS_MAC
-    //setUnifiedTitleAndToolBarOnMac(true);
-#endif
-
-
-
     undoGroup = new QUndoGroup(this);
     undoAct=0;
     redoAct=0;
@@ -197,8 +189,10 @@ void MainWindow::init()
             filesToolBar->addAction(redoAct);
         }
         else {
-            if (actions.value(a))
-                filesToolBar->addAction(actions.value(a));
+            if (actions.value(a)) {
+                int index = actions.value(a)->property("key").toInt();
+                filesToolBar->addAction(actions.value(a), &actionsDescr[index]);
+            }
         }
     }
     filesToolBar->attachToWindow(this);

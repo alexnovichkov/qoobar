@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr">
+<TS version="2.1" language="fr">
 <context>
     <name>Application</name>
     <message>
@@ -797,7 +797,7 @@ et &quot; par deux guillements simples &apos;&apos;</translation>
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.cpp" line="167"/>
-        <location filename="mainwindow.cpp" line="361"/>
+        <location filename="mainwindow.cpp" line="350"/>
         <source>Qoobar - Tag editor for classical music</source>
         <translation>Qoobar - Éditeur de tags pour musique classique</translation>
     </message>
@@ -822,8 +822,8 @@ et &quot; par deux guillements simples &apos;&apos;</translation>
         <translation>Vider la liste</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="376"/>
-        <location filename="mainwindow.cpp" line="516"/>
+        <location filename="mainwindow.cpp" line="365"/>
+        <location filename="mainwindow.cpp" line="505"/>
         <source>Tab %1</source>
         <translation>Onglet %1</translation>
     </message>
@@ -863,7 +863,7 @@ et &quot; par deux guillements simples &apos;&apos;</translation>
         <translation>Coller</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="572"/>
+        <location filename="mainwindow.cpp" line="561"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2013 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
@@ -872,7 +872,7 @@ et &quot; par deux guillements simples &apos;&apos;</translation>
 &lt;br&gt;Email: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;(Je suis très intéressé par votre avis)&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="830"/>
+        <location filename="mainwindow.cpp" line="819"/>
         <source>Set a tab name</source>
         <translation>Définissez un nom d&apos;onglet</translation>
     </message>
@@ -1154,9 +1154,8 @@ et &quot; par deux guillements simples &apos;&apos;</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="205"/>
         <source>Toolbar</source>
-        <translation>Barre d&apos;outils</translation>
+        <translation type="vanished">Barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="138"/>
@@ -1185,40 +1184,40 @@ et &quot; par deux guillements simples &apos;&apos;</translation>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="334"/>
-        <location filename="mainwindow.cpp" line="448"/>
+        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="437"/>
         <source>&amp;Undo</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="343"/>
-        <location filename="mainwindow.cpp" line="449"/>
+        <location filename="mainwindow.cpp" line="335"/>
+        <location filename="mainwindow.cpp" line="438"/>
         <source>&amp;Redo</source>
         <translation>&amp;Répéter</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="580"/>
+        <location filename="mainwindow.cpp" line="569"/>
         <source>not installed</source>
         <translation>n&apos;est pas installé</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="592"/>
+        <location filename="mainwindow.cpp" line="581"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Qoobar utilise:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="82"/>
-        <location filename="mainwindow.cpp" line="597"/>
+        <location filename="mainwindow.cpp" line="586"/>
         <source>&amp;About Qoobar</source>
         <translation>À &amp;propos de Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="612"/>
+        <location filename="mainwindow.cpp" line="601"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - ajout d&apos;un répertoire</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="829"/>
+        <location filename="mainwindow.cpp" line="818"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - renommer de l&apos;onglet</translation>
     </message>
@@ -1228,12 +1227,12 @@ et &quot; par deux guillements simples &apos;&apos;</translation>
         <translation>À propos de Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="604"/>
+        <location filename="mainwindow.cpp" line="593"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - ajout de fichiers</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="605"/>
+        <location filename="mainwindow.cpp" line="594"/>
         <source>audio files (%1)</source>
         <translation>fichiers audio (%1)</translation>
     </message>
