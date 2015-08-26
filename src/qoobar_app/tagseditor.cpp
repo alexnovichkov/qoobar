@@ -45,6 +45,7 @@
 #include "enums.h"
 #include "stringroutines.h"
 #include "qbutton.h"
+#include "imagedialog.h"
 
 #define USE_CONCURRENT
 #ifdef USE_CONCURRENT
@@ -55,6 +56,64 @@
 #endif
 #endif
 
+#include <QPainter>
+#include <QStyleOption>
+
+StyledBar::StyledBar(QWidget *parent)
+    : QWidget(parent)
+{
+}
+void StyledBar::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event)
+    QPainter painter(this);
+    QStyleOptionToolBar option;
+    option.rect = rect();
+    option.state = QStyle::State_Horizontal;
+    style()->drawControl(QStyle::CE_ToolBar, &option, &painter, this);
+}
+
+StyledSeparator::StyledSeparator(QWidget *parent)
+    : QWidget(parent)
+{
+    setFixedWidth(10);
+}
+
+void StyledSeparator::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event)
+    QPainter painter(this);
+    QStyleOption option;
+    option.rect = rect();
+    option.state = QStyle::State_Horizontal;
+    option.palette = palette();
+    style()->drawPrimitive(QStyle::PE_IndicatorToolBarSeparator, &option, &painter, this);
+}
+
+FancyToolButton::FancyToolButton(QWidget *parent)
+    : QToolButton(parent)
+{
+    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+}
+
+void FancyToolButton::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event)
+    QPainter painter(this);
+
+    QRect iconRect(0,0,iconSize().width(),iconSize().height());
+    iconRect.moveCenter(rect().center());
+    QPixmap px = icon().pixmap(iconRect.size());
+
+    if (isDown()) {
+        QLinearGradient grad(rect().topLeft(), rect().bottomLeft());
+        grad.setColorAt(0, Qt::transparent);
+        grad.setColorAt(1, Qt::lightGray);
+        painter.fillRect(rect(),grad);
+    }
+
+    painter.drawPixmap(iconRect, px);
+}
 
 TagsEditDialog::TagsEditDialog(int type, const QString &caption,
                        const QStringList &list,
@@ -126,15 +185,20 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     charsWidget->setLayout(charsLayout);
     scroll->setWidget(charsWidget);
 
-    showIcon = style()->standardIcon(QStyle::SP_ToolBarVerticalExtensionButton);
-    QPixmap hidePixmap = showIcon.pixmap(showIcon.availableSizes().first());
+
+    hideIcon = QIcon(":/src/icons/fold.png");
+    QPixmap showPixmap = hideIcon.pixmap(hideIcon.availableSizes().first());
     QTransform transform;
     transform.rotate(180);
-    hideIcon.addPixmap(hidePixmap.transformed(transform));
+    showIcon.addPixmap(showPixmap.transformed(transform));
 
     toggleCharsAct = new QAction(this);
     connect(toggleCharsAct,SIGNAL(triggered()),this,SLOT(toggleCharsWidget()));
+#ifdef Q_OS_MAC
+    FancyToolButton *toggleCharsButton = new FancyToolButton(this);
+#else
     QToolButton *toggleCharsButton = new QToolButton(this);
+#endif
     toggleCharsButton->setAutoRaise(true);
     toggleCharsButton->setDefaultAction(toggleCharsAct);
     if (App->charsShown) {
@@ -188,9 +252,9 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     collectIntoMenu->addActions(acts);
     connect(mapper,SIGNAL(mapped(int)),this,SLOT(collectTags(int)));
 
-    QAction *a = new QAction(tr("Collect for future use"),this);
-    connect(a,SIGNAL(triggered()),this,SLOT(collectTags()));
-    a->setMenu(collectIntoMenu);
+    QAction *collect = new QAction(tr("Collect for future use"),this);
+    connect(collect,SIGNAL(triggered()),this,SLOT(collectTags()));
+    collect->setMenu(collectIntoMenu);
 
     searchPanel = new SearchPanel(this);
     connect(searchPanel,SIGNAL(find(bool)),SLOT(find(bool)));
@@ -217,12 +281,6 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     QSignalMapper *operationsMapper = new QSignalMapper(this);
     connect(operationsMapper,SIGNAL(mapped(QString)),SLOT(handleOperation(QString)));
 
-    QToolBar *operationsToolBar = new QToolBar(this);
-    operationsToolBar->addWidget(toggleCharsButton);
-    operationsToolBar->addSeparator();
-
-    operationsToolBar->setMovable(false);
-    operationsToolBar->setIconSize(QSize(16,16));
     static const struct Operation {
         const char *text;
         const char *icon;
@@ -237,6 +295,42 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
         {QT_TR_NOOP("Transliterate"),":/src/icons/transliterate.png","transliterate"},
         {QT_TR_NOOP("Fix encoding"),":/src/icons/fix.png","recode"}
     };
+
+
+
+#ifdef Q_OS_MAC
+    StyledBar *operationsToolBar = new StyledBar(this);
+    QHBoxLayout *l = new QHBoxLayout;
+    l->setSpacing(0);
+    l->setMargin(0);
+    l->addWidget(toggleCharsButton);
+    l->addWidget(new StyledSeparator(this));
+    for (int i=0; i<8; ++i) {
+        QAction *a = new QAction(QIcon(operations[i].icon),
+                                 operations[i].text,this);
+        connect(a,SIGNAL(triggered()),operationsMapper,SLOT(map()));
+        operationsMapper->setMapping(a, operations[i].map);
+        QToolButton *tb = new FancyToolButton(this);
+        tb->setDefaultAction(a);
+        l->addWidget(tb);
+    }
+    QToolButton *tb=new FancyToolButton(this);
+    tb->setDefaultAction(startSearchAct);
+    l->addWidget(tb);
+    tb=new QToolButton(this);
+    tb->setDefaultAction(collect);
+    l->addWidget(new StyledSeparator(this));
+    l->addWidget(tb);
+    l->addStretch();
+    operationsToolBar->setLayout(l);
+#else
+    QToolBar *operationsToolBar = new QToolBar(this);
+    operationsToolBar->addWidget(toggleCharsButton);
+    operationsToolBar->addSeparator();
+
+    operationsToolBar->setMovable(false);
+    operationsToolBar->setIconSize(QSize(16,16));
+
     for (int i=0; i<8; ++i)
         operationsMapper->setMapping(
                     operationsToolBar->addAction(QIcon(operations[i].icon),
@@ -247,9 +341,8 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     operationsToolBar->insertSeparator(operationsToolBar->actions().at(4));
     operationsToolBar->addAction(startSearchAct);
     operationsToolBar->addSeparator();
-    operationsToolBar->addAction(a);
-
-
+    operationsToolBar->addAction(collect);
+#endif
 
     //synthesizing
     QGridLayout *tagsEditorLayout = new QGridLayout;
@@ -271,6 +364,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 #endif
     setLayout(tagsEditorLayout);
     this->layout()->setMenuBar(operationsToolBar);
+
     searchPanel->hide();
 
     resize(800,300);
@@ -599,3 +693,4 @@ void TagsEditDialog::delegateDidFinishEditing()
     for (int i=0; i<count; ++i)
         table->item(i,0)->setData(Qt::UserRole+1,QVariant());
 }
+

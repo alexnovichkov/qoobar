@@ -1,21 +1,27 @@
+#import <Foundation/NSString.h>
+#import <AppKit/NSToolbarItem.h>
+
 #include "mactoolbar.h"
 #include <QMainWindow>
 #include <QtMacExtras>
 #include <QAction>
 #include <QHash>
+#include <QMessageBox>
 #include "mainwindow.h"
 
 class Impl
 {
 public:
     QMacToolBar *toolbar;
-    QHash<QMacToolBarItem*, Act*> descriptions;
+    QHash<QMacToolBarItem*, QAction*> toolbarItems;
 };
 
 Toolbar::Toolbar(QMainWindow *parent) : QObject(parent)
 {
     d = new Impl();
     d->toolbar = new QMacToolBar(parent);
+    NSToolbar *t = d->toolbar->nativeToolbar();
+    [t setSizeMode: NSToolbarSizeModeSmall];
 }
 
 Toolbar::~Toolbar()
@@ -23,27 +29,23 @@ Toolbar::~Toolbar()
     delete d;
 }
 
-void Toolbar::addAction(QAction *act, const Act *descr)
+void Toolbar::addAction(QAction *act)
 {
     if (!act) return;
 
-    QMacToolBarItem *toolBarItem = d->toolbar->addItem(act->icon(), descr->shortText?descr->shortText:descr->tooltip);
-    d->descriptions.insert(toolBarItem,descr);
+    QMacToolBarItem *toolBarItem = d->toolbar->addItem(act->icon(),"");
+    toolBarItem->setText(act->property("shortDescr").toString());
     connect(toolBarItem,SIGNAL(activated()),act,SLOT(trigger()));
-
-    if (!act->isEnabled()) {
-        toolBarItem->setDisabled();
-    }
+    d->toolbarItems.insert(toolBarItem,act);
 }
 
 void Toolbar::retranslateUI()
 {
     QList<QMacToolBarItem *> items = d->toolbar->items();
     Q_FOREACH(QMacToolBarItem *item, items) {
-        Act *descr = d->descriptions.value(item);
-        if (descr) {
-            item->setText(descr->shortText?descr->shortText:descr->tooltip);
-            //item->setToolTip()
+        QAction *act = d->toolbarItems.value(item);
+        if (act) {
+            item->setText(act->property("shortDescr").toString());
         }
     }
 }
@@ -57,5 +59,17 @@ void Toolbar::attachToWindow(QMainWindow *window)
 {
     window->window()->winId(); // create window->windowhandle()
     d->toolbar->attachToWindow(window->window()->windowHandle());
+}
+
+void Toolbar::updateEnabled(QAction *act)
+{
+//    QMacToolBarItem *item = d->toolbarItems.key(act);
+//    if (item) {
+//        NSToolbarItem *ns = item->nativeToolBarItem();
+//        if (act->isEnabled())
+//            [ns setEnabled:YES];
+//        else
+//            [ns setEnabled:NO];
+//    }
 }
 

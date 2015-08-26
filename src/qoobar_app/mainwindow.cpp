@@ -101,7 +101,7 @@ const Act MainWindow::actionsDescr[] = {
      0, 0, QKeySequence::Paste, "edit-paste",SLOT(paste())},
     {"copyToClipboard", QT_TR_NOOP("Copy to clipboard"), QT_TR_NOOP("Copy to clipboard"), QT_TR_NOOP("Copy to clipboard"),
      0, QT_TR_NOOP("Shift+Ctrl+C"), QKeySequence::UnknownKey, 0,SLOT(copyToClipboard())},
-    {"pasteFromClipboard", QT_TR_NOOP("Paste from clipboard"), QT_TR_NOOP("Paste from clipboard"), 0,
+    {"pasteFromClipboard", QT_TR_NOOP("Paste from clipboard"), QT_TR_NOOP("Paste from clipboard"), QT_TR_NOOP("Paste from clipboard"),
      0, QT_TR_NOOP("Shift+Ctrl+V"), QKeySequence::UnknownKey, 0,SLOT(pasteFromClipboard())},
     {"newTag", QT_TR_NOOP("&Add new tag..."), QT_TR_NOOP("Add new tag..."), QT_TR_NOOP("New tag"),
      0, 0, QKeySequence::New, "list-add",SLOT(newTag())},
@@ -111,23 +111,23 @@ const Act MainWindow::actionsDescr[] = {
      SLOT(close()), QT_TR_NOOP("Ctrl+Q"), QKeySequence::UnknownKey, "application-exit",0},
     {"newTab", QT_TR_NOOP("&New tab"), QT_TR_NOOP("New tab"), QT_TR_NOOP("New tab"),
      SLOT(newTab()), 0, QKeySequence::AddTab, "newTab", 0},
-    {"closeTab", QT_TR_NOOP("&Close the tab"), QT_TR_NOOP("Close the tab"), 0,
+    {"closeTab", QT_TR_NOOP("&Close the tab"), QT_TR_NOOP("Close the tab"), QT_TR_NOOP("Close tab"),
      SLOT(closeCurrentTab()), 0, QKeySequence::Close, 0,0},
-    {"closeOtherTabs", QT_TR_NOOP("Close &other tabs"), QT_TR_NOOP("Close other tabs"), 0,
+    {"closeOtherTabs", QT_TR_NOOP("Close &other tabs"), QT_TR_NOOP("Close other tabs"), QT_TR_NOOP("Close other tabs"),
      SLOT(closeOtherTabs()), 0, QKeySequence::UnknownKey, 0,0},
-    {"renameTab", QT_TR_NOOP("&Rename the tab..."), QT_TR_NOOP("Rename the tab..."), 0,
+    {"renameTab", QT_TR_NOOP("&Rename the tab..."), QT_TR_NOOP("Rename the tab..."), QT_TR_NOOP("Rename tab"),
      SLOT(renameTab()), 0, QKeySequence::UnknownKey, 0,0},
-    {"replaygain",QT_TR_NOOP("ReplayGain info..."), QT_TR_NOOP("Edit ReplayGain Info..."), 0,
+    {"replaygain",QT_TR_NOOP("ReplayGain info..."), QT_TR_NOOP("Edit ReplayGain Info..."), QT_TR_NOOP("ReplayGain"),
      0, 0, QKeySequence::UnknownKey, 0, SLOT(replaygain())},
 
-    {"addFromDirView", QT_TR_NOOP("List this folder"), QT_TR_NOOP("List this folder"), 0,
+    {"addFromDirView", QT_TR_NOOP("List this folder"), QT_TR_NOOP("List this folder"), QT_TR_NOOP("List folder"),
      SLOT(addFromDirView()), 0, QKeySequence::UnknownKey, 0,0},
     {"addFromDirViewWithSubfolders", QT_TR_NOOP("List this folder with all subfolders"),
-     QT_TR_NOOP("List this folder with all subfolders"), 0,
+     QT_TR_NOOP("List this folder with all subfolders"), QT_TR_NOOP("List this folder with all subfolders"),
      SLOT(addFromDirViewWithSubfolders()), 0, QKeySequence::UnknownKey, 0,0},
-    {"checkUpdates", QT_TR_NOOP("&Check for updates..."), QT_TR_NOOP("Check for updates..."), 0,
+    {"checkUpdates", QT_TR_NOOP("&Check for updates..."), QT_TR_NOOP("Check for updates..."), QT_TR_NOOP("Check updates"),
      SLOT(checkUpdates()), 0, QKeySequence::UnknownKey, 0,0},
-    {"searchFiles", QT_TR_NOOP("S&earch files..."), QT_TR_NOOP("Search files..."), 0,
+    {"searchFiles", QT_TR_NOOP("S&earch files..."), QT_TR_NOOP("Search files..."), QT_TR_NOOP("Search"),
      SLOT(searchFiles()), QT_TR_NOOP("Shift+Ctrl+F"), QKeySequence::UnknownKey, 0,0},
     {0,0,0,0,0,0,QKeySequence::UnknownKey,0,0}
 };
@@ -190,8 +190,7 @@ void MainWindow::init()
         }
         else {
             if (actions.value(a)) {
-                int index = actions.value(a)->property("key").toInt();
-                filesToolBar->addAction(actions.value(a), &actionsDescr[index]);
+                filesToolBar->addAction(actions.value(a));
             }
         }
     }
@@ -234,8 +233,8 @@ void MainWindow::init()
 #ifndef Q_OS_MAC
     sp = new QSplitter(Qt::Horizontal,this);
 #else
-    sp = new MacSplitter();
-    sp->setOrientation(Qt::Horizontal);
+    sp = new MacSplitter(Qt::Horizontal,this);
+    sp->setChildrenCollapsible(false);
 #endif
     sp->setOpaqueResize(false);
     sp->addWidget(dirView);
@@ -325,6 +324,7 @@ void MainWindow::createUndoRedoActs()
     undoAct->setIcon(QIcon(QSL(":/src/icons/edit-undo.png")));
 #endif
     undoAct->setShortcut(QKeySequence(QKeySequence::Undo).toString());
+    undoAct->setProperty("shortDescr",tr("Undo"));
 
     redoAct = undoGroup->createRedoAction(this,tr("&Redo"));
     redoAct->setShortcutContext(Qt::ApplicationShortcut);
@@ -334,6 +334,7 @@ void MainWindow::createUndoRedoActs()
     redoAct->setIcon(QIcon(QSL(":/src/icons/edit-redo.png")));
 #endif
     redoAct->setShortcut(QKeySequence(QKeySequence::Redo).toString());
+    redoAct->setProperty("shortDescr",tr("Redo"));
 
     menus[QSL("edit")]->insertAction(menuSeparator,undoAct);
     menus[QSL("edit")]->insertAction(menuSeparator,redoAct);
@@ -342,7 +343,7 @@ void MainWindow::createUndoRedoActs()
 void MainWindow::retranslateUi()
 {DD
     setWindowTitle(tr("Qoobar - Tag editor for classical music")+QSL("[*]"));
-//    createUndoRedoActs();
+
     App->currentScheme->retranslateUI();
     retranslateActions();
 
@@ -382,6 +383,7 @@ void MainWindow::createActions()
 #endif
         }
         a->setText(tr(actionsDescr[i].text));
+        a->setProperty("shortDescr",tr(actionsDescr[i].shortText));
         if (actionsDescr[i].standardShortcut>0)
             a->setShortcut(actionsDescr[i].standardShortcut);
         if (actionsDescr[i].shortcut) {
@@ -426,20 +428,18 @@ void MainWindow::retranslateActions()
                                   .arg(a->shortcut().toString()));
             }
             else a->setToolTip(tr(actionsDescr[index].tooltip));
+            a->setProperty("shortDescr",tr(actionsDescr[index].shortText));
         }
     }
-    if (undoAct) undoAct->setText(tr("&Undo"));
-    if (redoAct) redoAct->setText(tr("&Redo"));
+    if (undoAct) {
+        undoAct->setText(tr("&Undo"));
+        undoAct->setProperty("shortDescr",tr("Undo"));
+    }
+    if (redoAct) {
+        redoAct->setText(tr("&Redo"));
+        redoAct->setProperty("shortDescr",tr("Redo"));
+    }
 
-//#ifdef Q_OS_MAC
-//    QList<QMacToolBarItem*> items = filesToolBar->items();
-//    Q_FOREACH(QMacToolBarItem * item,items) {
-//        int index=item->property("key").toInt();
-//        item->set
-//        item->setText(tr(actionsDescr[index].text));
-//    }
-
-//#endif
     filesToolBar->retranslateUI();
 
 #ifdef HAVE_QT5
@@ -523,6 +523,7 @@ void MainWindow::changeCurrentTab(int currentIndex)
     onFilesChanged(!tab->allFilesSaved());
     onSelectionChanged(tab->filesSelected());
     actions[QSL("delAllFiles")]->setEnabled(!tab->isEmpty());
+    filesToolBar->updateEnabled(actions[QSL("delAllFiles")]);
     tab->handleCutCopy();
     tab->undoStack()->setActive();
 
@@ -704,16 +705,27 @@ void MainWindow::onSelectionChanged(bool filesSelected)
     actions[QSL("play")]->setEnabled(filesSelected);
     actions[QSL("newTag")]->setEnabled(filesSelected);
     actions[QSL("replaygain")]->setEnabled(filesSelected);
+    filesToolBar->updateEnabled(actions[QSL("rereadTags")]);
+    filesToolBar->updateEnabled(actions[QSL("rename")]);
+    filesToolBar->updateEnabled(actions[QSL("fill")]);
+    filesToolBar->updateEnabled(actions[QSL("delFiles")]);
+    filesToolBar->updateEnabled(actions[QSL("removeTags")]);
+    filesToolBar->updateEnabled(actions[QSL("play")]);
+    filesToolBar->updateEnabled(actions[QSL("newTag")]);
+    filesToolBar->updateEnabled(actions[QSL("replaygain")]);
 }
 
 void MainWindow::onFilesCountChanged(int count)
 {DD
     actions[QSL("delAllFiles")]->setEnabled(count>0);
+    filesToolBar->updateEnabled(actions[QSL("delAllFiles")]);
 }
 
 void MainWindow::onFilesChanged(bool filesChanged)
 {DD
     actions[QSL("save")]->setEnabled(filesChanged);
+    filesToolBar->updateEnabled(actions[QSL("save")]);
+
     updateTabText(filesChanged,tabWidget->currentIndex());
     setWindowModified(filesChanged);
 }
@@ -738,6 +750,7 @@ void MainWindow::updateTabText(bool filesChanged, int index)
 void MainWindow::onBufferChanged(bool bufferIsEmpty)
 {DD
     actions[QSL("paste")]->setDisabled(bufferIsEmpty);
+    filesToolBar->updateEnabled(actions[QSL("paste")]);
 }
 
 void MainWindow::onClipboardChanged()
@@ -746,6 +759,7 @@ void MainWindow::onClipboardChanged()
         actions[QSL("pasteFromClipboard")]->setDisabled(qApp->clipboard()->text().isEmpty());
     else
         actions[QSL("pasteFromClipboard")]->setDisabled(true);
+    filesToolBar->updateEnabled(actions[QSL("pasteFromClipboard")]);
 }
 
 void MainWindow::onTagsSelectionChanged(bool tagsSelected)
@@ -755,6 +769,11 @@ void MainWindow::onTagsSelectionChanged(bool tagsSelected)
     actions[QSL("copyToClipboard")]->setEnabled(tagsSelected);
     //actions[QSL("paste")]->setEnabled(tagsSelected);
     actions[QSL("pasteFromClipboard")]->setEnabled(tagsSelected && !qApp->clipboard()->text().isEmpty());
+
+    filesToolBar->updateEnabled(actions[QSL("cut")]);
+    filesToolBar->updateEnabled(actions[QSL("copy")]);
+    filesToolBar->updateEnabled(actions[QSL("copyToClipboard")]);
+    filesToolBar->updateEnabled(actions[QSL("pasteFromClipboard")]);
 }
 
 void MainWindow::closeCurrentTab()

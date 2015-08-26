@@ -25,9 +25,8 @@ Toolbar::~Toolbar()
     delete d;
 }
 
-void Toolbar::addAction(QAction *act, const Act *descr)
+void Toolbar::addAction(QAction *act)
 {
-    Q_UNUSED(descr)
     if (!act) return;
 
     d->toolbar->addAction(act);
@@ -49,3 +48,8 @@ void Toolbar::attachToWindow(QMainWindow *window)
     //do nothing
 }
 
+void Toolbar::updateEnabled(QAction *act)
+{
+    Q_UNUSED(act)
+    //do nothing
+}

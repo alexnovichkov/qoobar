@@ -760,53 +760,34 @@ and &quot; by two single quotes &apos;&apos;</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.cpp" line="167"/>
-        <location filename="mainwindow.cpp" line="350"/>
+        <location filename="mainwindow.cpp" line="165"/>
+        <location filename="mainwindow.cpp" line="345"/>
         <source>Qoobar - Tag editor for classical music</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="365"/>
-        <location filename="mainwindow.cpp" line="505"/>
-        <source>Tab %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="561"/>
-        <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
-&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
-        <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2013 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
-&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;(I am very interested in your feedback)&lt;hr&gt;</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="819"/>
-        <source>Set a tab name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="138"/>
+        <location filename="mainwindow.cpp" line="136"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="141"/>
+        <location filename="mainwindow.cpp" line="139"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="144"/>
+        <location filename="mainwindow.cpp" line="142"/>
         <source>&amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="145"/>
+        <location filename="mainwindow.cpp" line="143"/>
         <source>Tab&amp;s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="80"/>
-        <location filename="mainwindow.cpp" line="146"/>
+        <location filename="mainwindow.cpp" line="144"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
@@ -846,6 +827,11 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="mainwindow.cpp" line="70"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="mainwindow.cpp" line="72"/>
         <source>Save all &amp;tabs</source>
         <translation type="unfinished"></translation>
@@ -866,6 +852,11 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="mainwindow.cpp" line="74"/>
+        <source>Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="mainwindow.cpp" line="75"/>
         <source>Ctrl+R</source>
         <translation type="unfinished"></translation>
@@ -878,6 +869,11 @@ and &quot; by two single quotes &apos;&apos;</source>
     <message>
         <location filename="mainwindow.cpp" line="76"/>
         <source>Fill tags...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="76"/>
+        <source>Fill</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -936,6 +932,12 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="mainwindow.cpp" line="88"/>
+        <location filename="mainwindow.cpp" line="90"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="mainwindow.cpp" line="89"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
@@ -966,6 +968,11 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="mainwindow.cpp" line="92"/>
+        <source>Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="mainwindow.cpp" line="93"/>
         <source>Ctrl+P</source>
         <translation type="unfinished"></translation>
@@ -973,6 +980,11 @@ and &quot; by two single quotes &apos;&apos;</source>
     <message>
         <location filename="mainwindow.cpp" line="94"/>
         <source>Clear all tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="94"/>
+        <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1128,71 +1140,105 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="129"/>
+        <location filename="mainwindow.cpp" line="128"/>
         <source>Check for updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="131"/>
+        <location filename="mainwindow.cpp" line="130"/>
         <source>S&amp;earch files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="132"/>
+        <location filename="mainwindow.cpp" line="130"/>
         <source>Search files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="133"/>
+        <location filename="mainwindow.cpp" line="130"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="131"/>
         <source>Shift+Ctrl+F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="326"/>
-        <location filename="mainwindow.cpp" line="437"/>
+        <location filename="mainwindow.cpp" line="319"/>
+        <location filename="mainwindow.cpp" line="435"/>
         <source>&amp;Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="335"/>
-        <location filename="mainwindow.cpp" line="438"/>
+        <location filename="mainwindow.cpp" line="327"/>
+        <location filename="mainwindow.cpp" line="436"/>
+        <source>Undo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="329"/>
+        <location filename="mainwindow.cpp" line="439"/>
         <source>&amp;Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="569"/>
+        <location filename="mainwindow.cpp" line="337"/>
+        <location filename="mainwindow.cpp" line="440"/>
+        <source>Redo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="360"/>
+        <location filename="mainwindow.cpp" line="499"/>
+        <source>Tab %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="556"/>
+        <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
+&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="564"/>
         <source>not installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="581"/>
+        <location filename="mainwindow.cpp" line="576"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="82"/>
-        <location filename="mainwindow.cpp" line="586"/>
-        <source>&amp;About Qoobar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="601"/>
-        <source>Qoobar - adding folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="818"/>
-        <source>Qoobar - renaming the tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="593"/>
+        <location filename="mainwindow.cpp" line="588"/>
         <source>Qoobar - adding files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="594"/>
+        <location filename="mainwindow.cpp" line="589"/>
         <source>audio files (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="596"/>
+        <source>Qoobar - adding folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="831"/>
+        <source>Qoobar - renaming the tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="832"/>
+        <source>Set a tab name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="82"/>
+        <location filename="mainwindow.cpp" line="581"/>
+        <source>&amp;About Qoobar</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1916,7 +1962,7 @@ all changes in them will not be saved!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="405"/>
+        <location filename="tab.cpp" line="404"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2333,194 +2379,194 @@ Please choose the encoding:</source>
 <context>
     <name>Tab</name>
     <message>
-        <location filename="tab.cpp" line="153"/>
-        <location filename="tab.cpp" line="272"/>
+        <location filename="tab.cpp" line="152"/>
+        <location filename="tab.cpp" line="271"/>
         <source>Ctrl+Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="158"/>
-        <location filename="tab.cpp" line="274"/>
+        <location filename="tab.cpp" line="157"/>
+        <location filename="tab.cpp" line="273"/>
         <source>Ctrl+Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="151"/>
-        <location filename="tab.cpp" line="271"/>
+        <location filename="tab.cpp" line="150"/>
+        <location filename="tab.cpp" line="270"/>
         <source>Move up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="156"/>
-        <location filename="tab.cpp" line="273"/>
+        <location filename="tab.cpp" line="155"/>
+        <location filename="tab.cpp" line="272"/>
         <source>Move down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1032"/>
+        <location filename="tab.cpp" line="1035"/>
         <source>Files in %1 have been modified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="473"/>
+        <location filename="tab.cpp" line="472"/>
         <source>clearing tags</source>
         <oldsource>Remove tags</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="229"/>
+        <location filename="tab.cpp" line="228"/>
         <source>Writing tags...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="229"/>
+        <location filename="tab.cpp" line="228"/>
         <source>Abort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="263"/>
+        <location filename="tab.cpp" line="262"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="179"/>
-        <location filename="tab.cpp" line="280"/>
+        <location filename="tab.cpp" line="178"/>
+        <location filename="tab.cpp" line="279"/>
         <source>Ctrl+H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="206"/>
-        <location filename="tab.cpp" line="282"/>
+        <location filename="tab.cpp" line="205"/>
+        <location filename="tab.cpp" line="281"/>
         <source>Operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="855"/>
+        <location filename="tab.cpp" line="858"/>
         <source>Please set a player in the Settings dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="910"/>
+        <location filename="tab.cpp" line="913"/>
         <source>Some files have been modified</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="912"/>
+        <location filename="tab.cpp" line="915"/>
         <source>Remove them anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="913"/>
+        <location filename="tab.cpp" line="916"/>
         <source>Yes, remove without saving</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="915"/>
+        <location filename="tab.cpp" line="918"/>
         <source>No, save them and then remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="230"/>
-        <location filename="tab.cpp" line="909"/>
+        <location filename="tab.cpp" line="229"/>
+        <location filename="tab.cpp" line="912"/>
         <source>Qoobar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1031"/>
+        <location filename="tab.cpp" line="1034"/>
         <source>Closing Qoobar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1185"/>
+        <location filename="tab.cpp" line="1188"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1186"/>
+        <location filename="tab.cpp" line="1189"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="325"/>
-        <location filename="tab.cpp" line="349"/>
-        <location filename="tab.cpp" line="573"/>
-        <location filename="tab.cpp" line="577"/>
+        <location filename="tab.cpp" line="324"/>
+        <location filename="tab.cpp" line="348"/>
+        <location filename="tab.cpp" line="574"/>
+        <location filename="tab.cpp" line="578"/>
         <source>changing tags</source>
         <oldsource>Change tags</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="161"/>
-        <location filename="tab.cpp" line="275"/>
+        <location filename="tab.cpp" line="160"/>
+        <location filename="tab.cpp" line="274"/>
         <source>&amp;Edit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="164"/>
-        <location filename="tab.cpp" line="276"/>
+        <location filename="tab.cpp" line="163"/>
+        <location filename="tab.cpp" line="275"/>
         <source>Edit as &amp;multiline text...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="168"/>
-        <location filename="tab.cpp" line="278"/>
+        <location filename="tab.cpp" line="167"/>
+        <location filename="tab.cpp" line="277"/>
         <source>C&amp;lear tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="178"/>
-        <location filename="tab.cpp" line="279"/>
+        <location filename="tab.cpp" line="177"/>
+        <location filename="tab.cpp" line="278"/>
         <source>Collect for &amp;future use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="961"/>
+        <location filename="tab.cpp" line="964"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1016"/>
+        <location filename="tab.cpp" line="1019"/>
         <source>Cannot write tags to file:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1035"/>
+        <location filename="tab.cpp" line="1038"/>
         <source>Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1036"/>
+        <location filename="tab.cpp" line="1039"/>
         <source>Yes, save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1038"/>
+        <location filename="tab.cpp" line="1041"/>
         <source>No, don&apos;t save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="830"/>
+        <location filename="tab.cpp" line="831"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="559"/>
+        <location filename="tab.cpp" line="560"/>
         <source>filling tags</source>
         <oldsource>Fill tags</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="613"/>
+        <location filename="tab.cpp" line="614"/>
         <source>rereading tags</source>
         <oldsource>Reread tags</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="652"/>
-        <location filename="tab.cpp" line="713"/>
+        <location filename="tab.cpp" line="653"/>
+        <location filename="tab.cpp" line="714"/>
         <source>pasting tags</source>
         <oldsource>Paste tags</oldsource>
         <translation type="unfinished"></translation>
@@ -2586,84 +2632,84 @@ Do you want to save changes?</source>
 <context>
     <name>TagsEditDialog</name>
     <message>
-        <location filename="tagseditor.cpp" line="73"/>
+        <location filename="tagseditor.cpp" line="132"/>
         <source>Multiple values:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="112"/>
+        <location filename="tagseditor.cpp" line="171"/>
         <source>%1 (%2 with Shift key)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="142"/>
-        <location filename="tagseditor.cpp" line="527"/>
+        <location filename="tagseditor.cpp" line="206"/>
+        <location filename="tagseditor.cpp" line="621"/>
         <source>Hide characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="147"/>
-        <location filename="tagseditor.cpp" line="521"/>
+        <location filename="tagseditor.cpp" line="211"/>
+        <location filename="tagseditor.cpp" line="615"/>
         <source>Show characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="231"/>
+        <location filename="tagseditor.cpp" line="289"/>
         <source>lower</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="232"/>
+        <location filename="tagseditor.cpp" line="290"/>
         <source>UPPER</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="233"/>
+        <location filename="tagseditor.cpp" line="291"/>
         <source>Only first up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="234"/>
+        <location filename="tagseditor.cpp" line="292"/>
         <source>Every First Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="235"/>
+        <location filename="tagseditor.cpp" line="293"/>
         <source>Simplify whitespaces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="236"/>
+        <location filename="tagseditor.cpp" line="294"/>
         <source>Remove diacritics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="237"/>
+        <location filename="tagseditor.cpp" line="295"/>
         <source>Transliterate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="238"/>
+        <location filename="tagseditor.cpp" line="296"/>
         <source>Fix encoding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="191"/>
+        <location filename="tagseditor.cpp" line="255"/>
         <source>Collect for future use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="201"/>
+        <location filename="tagseditor.cpp" line="265"/>
         <source>Find/Replace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="375"/>
+        <location filename="tagseditor.cpp" line="469"/>
         <source>Qoobar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="375"/>
+        <location filename="tagseditor.cpp" line="469"/>
         <source>Nothing found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2692,7 +2738,7 @@ Do you want to save changes?</source>
     </message>
     <message>
         <location filename="tagsfiller.cpp" line="176"/>
-        <location filename="tagsfiller.cpp" line="762"/>
+        <location filename="tagsfiller.cpp" line="760"/>
         <source>Source</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2742,27 +2788,27 @@ Do you want to save changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="337"/>
+        <location filename="tagsfiller.cpp" line="335"/>
         <source>from network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="348"/>
+        <location filename="tagsfiller.cpp" line="346"/>
         <source>No download plugins found. Internet search is inaccessible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="427"/>
+        <location filename="tagsfiller.cpp" line="425"/>
         <source>Searching %1...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="457"/>
+        <location filename="tagsfiller.cpp" line="455"/>
         <source>Nothing found</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="tagsfiller.cpp" line="462"/>
+        <location filename="tagsfiller.cpp" line="460"/>
         <source>Found %n album(s)</source>
         <translation>
             <numerusform>Found %n album</numerusform>
@@ -2770,17 +2816,17 @@ Do you want to save changes?</source>
         </translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="499"/>
+        <location filename="tagsfiller.cpp" line="497"/>
         <source>Retrieving release info...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="512"/>
+        <location filename="tagsfiller.cpp" line="510"/>
         <source>Done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="422"/>
+        <location filename="tagsfiller.cpp" line="420"/>
         <source>Please specify an artist and an album for the manual search</source>
         <translation type="unfinished"></translation>
     </message>

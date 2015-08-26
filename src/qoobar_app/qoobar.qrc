@@ -72,5 +72,6 @@
         <file>icons/font.png</file>
         <file>icons/magnifier_nomenu.png</file>
         <file>icons/progressindicator.gif</file>
+        <file>icons/fold.png</file>
     </qresource>
 </RCC>

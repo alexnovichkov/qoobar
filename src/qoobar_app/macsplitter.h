@@ -3,13 +3,14 @@
 
 #include <QSplitter>
 #include <QSplitterHandle>
+#include <QCursor>
 
 class MacSplitter : public QSplitter
 {
 Q_OBJECT
 public:
+    MacSplitter(Qt::Orientation orientation, QWidget * parent = 0) : QSplitter(orientation, parent) {}
     QSplitterHandle *createHandle();
-
 };
 
 class MacSplitterHandle : public QSplitterHandle

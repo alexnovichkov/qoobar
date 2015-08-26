@@ -46,6 +46,8 @@ private:
     QPixmap cursor;
 };
 
+
+
 class ImageDialog : public QDialog
 {
     Q_OBJECT

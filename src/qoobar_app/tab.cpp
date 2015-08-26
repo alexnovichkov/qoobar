@@ -126,8 +126,7 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     QSplitter *sp = new QSplitter(Qt::Vertical,this);
     sp->setContentsMargins(0,0,0,0);
 #else
-    QSplitter *sp = new MacSplitter();
-    sp->setOrientation(Qt::Vertical);
+    QSplitter *sp = new MacSplitter(Qt::Vertical,this);
 #endif
     sp->setProperty("id", "splitter");
     sp->setOpaqueResize(false);
@@ -487,6 +486,8 @@ void Tab::remove() /*SLOT*/
 
 void Tab::removeAllTags() /*SLOT*/
 {DD;
+    QAction *a=qobject_cast<QAction*>(sender());
+    if (!a->isEnabled()) return;
     table->selectAll();
     remove();
 }
@@ -850,6 +851,8 @@ void Tab::updateTableRow(int row, const QString &value)
 
 void Tab::play() /*SLOT*/
 {DD;
+    if (!model->hasSelection()) return; //nothing to play
+
     QString s=App->player;
     if (s.isEmpty()) {
         warningMessage(win, QSL("Qoobar"),tr("Please set a player in the Settings dialog"));

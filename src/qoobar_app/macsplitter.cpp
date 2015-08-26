@@ -34,7 +34,7 @@ void MacSplitterHandle::paintEvent(QPaintEvent *)
         painter.fillRect(QRect(QPoint(0,1), size() - QSize(0, 2)), QBrush(linearGrad));
     } else
     {
-        QColor topColor(0, 0, 0);
+        QColor topColor(Qt::darkGray);
         painter.setPen(topColor);
         painter.drawLine(0, 0, 0, height());
     }

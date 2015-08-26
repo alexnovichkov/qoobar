@@ -315,13 +315,11 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     nl->addSpacing(50);
     nl->addWidget(networkErrorInfo);
     nl->addStretch();
-#ifndef Q_OS_MAC
-    QSplitter *splitter = new QSplitter(Qt::Horizontal,this);
-#else
+
+#ifdef Q_OS_MAC
     searchResultsList->setFrameShape(QFrame::NoFrame);
-    QSplitter *splitter = new MacSplitter();
-    splitter->setOrientation(Qt::Horizontal);
 #endif
+    QSplitter *splitter = new QSplitter(Qt::Horizontal,this);
     splitter->addWidget(searchResultsList);
     splitter->addWidget(releaseInfoWidget);
 

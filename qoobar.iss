@@ -101,7 +101,7 @@ Name: "{app}\plugins"; Flags: uninsalwaysuninstall; Components: plugins
 #define QT_VERSION 5
 
 #if QT_VERSION==5
-#define PATH_TO_QT "K:/Qt/Qt5.5.0/5.2.1/mingw48_32"
+#define PATH_TO_QT "K:/Qt/Qt5.5.0/5.5/mingw492_32"
 #else
 #define PATH_TO_QT "K:/Qt/4.8.4"
 #endif
@@ -136,20 +136,20 @@ Source: {#PATH_TO_QT+"/bin/mingwm10.dll"}; DestDir: "{app}"; Flags: ignoreversio
 #endif
 Source: {#PATH_TO_QT+"/bin/libgcc_s_dw2-1.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 ; libraries that do not change
-Source: "windows\libdiscid.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
-Source: "windows\libz-1.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
-Source: "windows\WinSparkle.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
-Source: "windows\flac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "windows\mac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "windows\shntool.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "windows\enca.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "windows\aacgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "windows\metaflac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "windows\mpcgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "windows\vorbisgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "windows\wvgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "windows\replaygain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "windows\mppdec.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\libdiscid.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
+Source: "..\windows\libz-1.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
+Source: "..\windows\WinSparkle.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
+Source: "..\windows\flac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\mac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\shntool.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\enca.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\aacgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\metaflac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\mpcgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\vorbisgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\wvgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\replaygain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\mppdec.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
 ; other files
 Source: "src\qoobar_app\args.json"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly; Components: main
 Source: "src\qoobar_app\splitandconvert.bat"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly; Components: main
