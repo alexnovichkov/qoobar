@@ -89,7 +89,8 @@ SOURCES = main.cpp \
     clparser.cpp \
     searchbar.cpp \
     platformprocess.cpp \
-    treeview.cpp
+    treeview.cpp \
+    styledbar.cpp
 
 HEADERS = mainwindow.h \
     tagseditor.h \
@@ -156,7 +157,8 @@ HEADERS = mainwindow.h \
     searchbar.h \
     platformprocess.h \
     treeview.h \
-    mactoolbar.h
+    mactoolbar.h \
+    styledbar.h
 
 lessThan(QT_MAJOR_VERSION, 5) {
     SOURCES *= ereilin/json.cpp
@@ -235,17 +237,14 @@ HEADERS += qocoa/qocoa_mac.h \
            qocoa/qprogressindicatorspinning.h
 
 mac {
-    OBJECTIVE_SOURCES += qocoa/qbutton_mac.mm \
-                         qocoa/qprogressindicatorspinning_mac.mm
+    OBJECTIVE_SOURCES += qocoa/qbutton_mac.mm
+    OBJECTIVE_SOURCES += qocoa/qprogressindicatorspinning_mac.mm
     OBJECTIVE_SOURCES += mactoolbar.mm
 } else {
-    SOURCES += qocoa/qbutton_nonmac.cpp \
-               qocoa/qprogressindicatorspinning_nonmac.cpp
+    SOURCES += qocoa/qbutton_nonmac.cpp
+    SOURCES += qocoa/qprogressindicatorspinning_nonmac.cpp
     SOURCES += mactoolbar.cpp
 }
-
-
-
 
 DEFINES += QOOBAR_NO_PROPERTY_MAPS
 DEFINES += HAVE_ZLIB

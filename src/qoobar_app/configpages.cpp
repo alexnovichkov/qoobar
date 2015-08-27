@@ -45,41 +45,42 @@
 #include <QVector>
 #include <QtConcurrentRun>
 
-ConfigPage::ConfigPage(QWidget *parent) : QWidget(parent)
+ConfigPage::ConfigPage(QWidget *parent) : QWidget(parent),
+    iconLabel(0), captionLabel(0)
 {DD;
-    iconLabel = new QLabel(this);
-    captionLabel = new QLabel(description(),this);
     contentsWidget = new QWidget(this);
     contentsWidget->setContentsMargins(0,0,0,0);
 
+    QVBoxLayout *contentsLayout = new QVBoxLayout;
+    contentsLayout->setContentsMargins(0,0,0,0);
+
+    contentsLayout->addWidget(contentsWidget);
+
+#ifndef Q_OS_MAC
+    iconLabel = new QLabel(this);
+    captionLabel = new QLabel(description(),this);
     QFrame *line = new QFrame(this);
     line->setFrameShape(QFrame::HLine);
-
     QHBoxLayout *captionLayout = new QHBoxLayout;
     captionLayout->addWidget(iconLabel);
     captionLayout->addWidget(captionLabel);
     captionLayout->addStretch();
-
-    QVBoxLayout *contentsLayout = new QVBoxLayout;
-    contentsLayout->setContentsMargins(0,0,0,0);
-    contentsLayout->addLayout(captionLayout);
-    contentsLayout->addWidget(line);
-    contentsLayout->addWidget(contentsWidget);
-    //contentsLayout->addStretch();
+    contentsLayout->insertWidget(0,line);
+    contentsLayout->insertLayout(0,captionLayout);
+#endif
     setLayout(contentsLayout);
 }
 
 void ConfigPage::retranslateUI()
 {DD;
-    captionLabel->setText(description());
+    if (captionLabel) captionLabel->setText(description());
 }
 
 void ConfigPage::finalize(QLayout *layout)
 {DD;
     contentsWidget->setLayout(layout);
 
-    iconLabel->setPixmap(QPixmap(iconFilename()));
-    //captionLabel->setText(description());
+    if (iconLabel) iconLabel->setPixmap(QPixmap(iconFilename()));
     setSettings();
 }
 

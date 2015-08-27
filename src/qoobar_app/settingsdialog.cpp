@@ -33,11 +33,6 @@
 #endif
 #include "application.h"
 
-#ifdef Q_OS_MAC
-#include <QtMacExtras>
-#include "mactoolbar.h"
-#endif
-
 /** These classes were taken from QtCreator */
 class Category {
 public:
@@ -156,12 +151,18 @@ void SettingsDialog::changePage(const QModelIndex &current)
         pagesWidget->setCurrentIndex(current.row());
 }
 
-SettingsDialog::SettingsDialog(QWidget *parent) : QMainWindow(parent)
+SettingsDialog::SettingsDialog(QWidget *parent) :
+#ifdef Q_OS_MAC
+    QMainWindow(parent)
+#else
+    QDialog(parent)
+#endif
 {
-    setAttribute(Qt::WA_DeleteOnClose, true);
     setWindowTitle(tr("Qoobar settings"));
-    this->setWindowModality(Qt::ApplicationModal);
-
+#ifdef Q_OS_MAC
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setWindowModality(Qt::ApplicationModal);
+#endif
     InterfacePage *page = new InterfacePage;
     connect(page,SIGNAL(retranslate()),this,SLOT(retranslateUI()));
     connect(page,SIGNAL(retranslate()),this,SIGNAL(retranslate()));
@@ -219,9 +220,13 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QMainWindow(parent)
     connect(resetSettingsButton,SIGNAL(clicked()),this,SLOT(resetSettings()));
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+#ifdef Q_OS_MAC
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(close()));
-
+#else
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+#endif
 
 
     //laying out
@@ -240,16 +245,15 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QMainWindow(parent)
     //mainLayout->addStretch(1);
     mainLayout->addSpacing(12);
     mainLayout->addLayout(bottomLayout);
+#ifdef Q_OS_MAC
     QWidget *w = new QWidget(this);
     w->setLayout(mainLayout);
     setCentralWidget(w);
-
+#else
+    setLayout(mainLayout);
+#endif
     resize(640,420);
     retranslateUI();
-}
-
-SettingsDialog::~SettingsDialog()
-{
 }
 
 void SettingsDialog::retranslateUI()
@@ -274,7 +278,11 @@ void SettingsDialog::accept()
         if (page)
             page->saveSettings();
     }
+#ifdef Q_OS_MAC
     close();
+#else
+    QDialog::accept();
+#endif
 }
 
 void SettingsDialog::resetSettings()

@@ -59,7 +59,9 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     : QDialog(parent), m(model)
 {
     setWindowTitle(tr("Move/Copy/Rename files"));
-    //setWindowModality(Qt::WindowModal);
+#ifdef Q_OS_MAC
+    setWindowModality(Qt::WindowModal);
+#endif
     if (!m || !m->hasSelection()) return;
 
     oldFileNames = m->selectedFilesNames();

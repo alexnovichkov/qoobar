@@ -120,6 +120,7 @@ void Searcher::maybeAdd(const QString &file)
 SearchBar::SearchBar(QWidget *parent) :
     QToolBar(parent)
 {DD;
+    progress=0;
     qRegisterMetaType<Tag>("Tag");
 
     pathsButton = new QPushButton(this);
@@ -128,7 +129,6 @@ SearchBar::SearchBar(QWidget *parent) :
 #endif
     pathsMenu = createPathsMenu();
     pathsButton->setMenu(pathsMenu);
-
     addWidget(pathsButton);
 
     startSearchButton = new QPushButton(this);
@@ -141,13 +141,13 @@ SearchBar::SearchBar(QWidget *parent) :
     addWidget(textEdit);
     addWidget(startSearchButton);
 
-    progress = new QProgressIndicatorSpinning(this);
-    progress->animate(false);
 #ifndef Q_OS_MAC
     QWidget* spacer = new QWidget(this);
     spacer->setFixedSize(5,1);
     addWidget(spacer);
 #endif
+    progress = new QProgressIndicatorSpinning(this);
+    progress->animate(false);
     addWidget(progress);
     progress->hide();
 #ifndef Q_OS_MAC
@@ -168,7 +168,6 @@ SearchBar::SearchBar(QWidget *parent) :
     closeSearchPanel->setIcon(style()->standardPixmap(QStyle::SP_DockWidgetCloseButton));
     connect(closeSearchPanel,SIGNAL(triggered()),this,SLOT(hide()));
     addAction(closeSearchPanel);
-
 
 
     textEdit->setFocus();
@@ -268,9 +267,10 @@ void SearchBar::startSearch()
     currentPathLabel->clear();
 
     startSearchButton->setText(tr("Stop search"));
-    progress->show();
-    progress->animate(true);
-
+    if (progress) {
+        progress->show();
+        progress->animate(true);
+    }
     searcher->stop();
     searcher->setSearchParametres(textEdit->caseSensitive(), textEdit->useRegularExpressions(),
                       textEdit->wholeWord(), textEdit->text());
@@ -289,8 +289,10 @@ void SearchBar::stopSearch()
 void SearchBar::resetSearch()
 {DD;
     startSearchButton->setText(tr("Start search"));
-    progress->animate(false);
-    progress->hide();
+    if (progress) {
+        progress->animate(false);
+        progress->hide();
+    }
 }
 
 void SearchBar::quitSearch()

@@ -28,6 +28,7 @@
 #define SETTINGSDIALOG_H
 
 #include <QMainWindow>
+#include <QDialog>
 
 class QStackedWidget;
 class CategoryListView;
@@ -35,15 +36,13 @@ class CategoryModel;
 class QModelIndex;
 class ConfigPage;
 class QPushButton;
-class Toolbar;
 
+#ifdef Q_OS_MAC
 class SettingsDialog : public QMainWindow
 {
 Q_OBJECT
-
 public:
     SettingsDialog(QWidget *parent = 0);
-    ~SettingsDialog();
 public Q_SLOTS:
     void accept();
 Q_SIGNALS:
@@ -60,10 +59,33 @@ private:
     CategoryListView *contentsWidget;
     QList<ConfigPage *> configPages;
     QPushButton *resetSettingsButton;
-#ifdef Q_OS_MAC
+
     QToolBar * toolBar;
-#endif;
 };
+#else
+class SettingsDialog : public QDialog
+{
+Q_OBJECT
+public:
+    SettingsDialog(QWidget *parent = 0);
+public Q_SLOTS:
+    void accept();
+Q_SIGNALS:
+    void retranslate();
+    void closed();
+//    void tableUpdateModeChanged(bool);
+private Q_SLOTS:
+    void changePage(const QModelIndex &current);
+    void retranslateUI();
+    void resetSettings();
+private:
+    QStackedWidget *pagesWidget;
+    CategoryModel *pagesModel;
+    CategoryListView *contentsWidget;
+    QList<ConfigPage *> configPages;
+    QPushButton *resetSettingsButton;
+};
+#endif
 
 #endif
 

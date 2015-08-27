@@ -121,12 +121,11 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
         innerSplitter->restoreState(App->innerSplitterState);
     connect(innerSplitter,SIGNAL(splitterMoved(int,int)),SLOT(saveSplitterState()));
 
-
-#ifndef Q_OS_MAC
+#ifdef Q_OS_MAC
+    QSplitter *sp = new MacSplitter(Qt::Vertical,this);
+#else
     QSplitter *sp = new QSplitter(Qt::Vertical,this);
     sp->setContentsMargins(0,0,0,0);
-#else
-    QSplitter *sp = new MacSplitter(Qt::Vertical,this);
 #endif
     sp->setProperty("id", "splitter");
     sp->setOpaqueResize(false);
@@ -136,8 +135,6 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     if (!App->splitterState.isEmpty())
         sp->restoreState(App->splitterState);
     connect(sp,SIGNAL(splitterMoved(int,int)),SLOT(saveSplitterState()));
-
-
 
     QVBoxLayout *la=new QVBoxLayout;
     la->setContentsMargins(0,0,0,0);
