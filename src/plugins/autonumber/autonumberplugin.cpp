@@ -71,8 +71,8 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
     tree->setSelectionMode(QAbstractItemView::SingleSelection);
     tree->setUniformRowHeights(true);
 #ifdef Q_OS_MAC
-    tree->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
-    //setAttribute(Qt::WA_MacShowFocusRect, false);
+    //tree->setFrameStyle(/*QFrame::NoFrame |*/ QFrame::Plain);
+    tree->setAttribute(Qt::WA_MacShowFocusRect, false);
     tree->setAutoFillBackground(true);
 #endif
     tree->setHeaderLabels(QStringList()<<tr("Old #")

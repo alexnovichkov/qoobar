@@ -212,6 +212,8 @@ void MainWindow::init()
     dirView->setContextMenuPolicy(Qt::ActionsContextMenu);
 #ifdef Q_OS_MAC
     dirView->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
+
+    dirView->setAttribute(Qt::WA_MacShowFocusRect,false);
 #endif
 
 #ifndef Q_OS_WIN
@@ -852,9 +854,20 @@ void MainWindow::checkUpdates()
 
 void MainWindow::showSettingsDialog()
 {DD;
+#ifdef Q_OS_MAC
+    SettingsDialog *settingsDialog = new SettingsDialog();
+    connect(settingsDialog,SIGNAL(retranslate()),SLOT(retranslateUi()));
+
+    QEventLoop q;
+    connect(settingsDialog,SIGNAL(destroyed()),&q,SLOT(quit()));
+
+    settingsDialog->show();
+    q.exec();
+#else
     SettingsDialog settingsDialog(this);
     connect(&settingsDialog,SIGNAL(retranslate()),SLOT(retranslateUi()));
     settingsDialog.exec();
+#endif
     if (!App->useUndo)
         Q_FOREACH (QUndoStack *stack,undoGroup->stacks()) stack->clear();
     tabWidget->hideTabBar(App->hideTabBar && tabWidget->count() <= 1);

@@ -114,9 +114,11 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     tree->header()->resizeSection(1,350);
 
 #ifdef Q_OS_MAC
-    tree->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
+    //tree->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
     tree->setAutoFillBackground(true);
+    tree->setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
+
     tree->header()->SETSECTIONRESIZEMODE(0, QHeaderView::ResizeToContents);
     tree->header()->SETSECTIONRESIZEMODE(2, QHeaderView::ResizeToContents);
     tree->header()->SETSECTIONRESIZEMODE(3, QHeaderView::ResizeToContents);

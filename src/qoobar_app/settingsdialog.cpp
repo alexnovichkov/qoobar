@@ -33,6 +33,10 @@
 #endif
 #include "application.h"
 
+#ifdef Q_OS_MAC
+#include <QtMacExtras>
+#include "mactoolbar.h"
+#endif
 
 /** These classes were taken from QtCreator */
 class Category {
@@ -104,7 +108,7 @@ void CategoryModel::setPages(const QList<ConfigPage*> &pages)
     Q_FOREACH (ConfigPage *page, pages) {
         Category *category = new Category;
         category->displayName = page->description();
-        category->icon = page->icon();
+        category->icon = page->iconFilename();
         m_categories.append(category);
     }
     this->beginResetModel();
@@ -148,17 +152,15 @@ public:
 
 void SettingsDialog::changePage(const QModelIndex &current)
 {
-
     if (current.isValid())
         pagesWidget->setCurrentIndex(current.row());
 }
 
-SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent)
+SettingsDialog::SettingsDialog(QWidget *parent) : QMainWindow(parent)
 {
-
+    setAttribute(Qt::WA_DeleteOnClose, true);
     setWindowTitle(tr("Qoobar settings"));
-
-    pagesModel = new CategoryModel(this);
+    this->setWindowModality(Qt::ApplicationModal);
 
     InterfacePage *page = new InterfacePage;
     connect(page,SIGNAL(retranslate()),this,SLOT(retranslateUI()));
@@ -172,6 +174,35 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent)
     configPages << new NetworkPage;
     configPages << new PluginsPage;
 
+    pagesWidget = new QStackedWidget;
+
+    Q_FOREACH (ConfigPage *page, configPages)
+        pagesWidget->addWidget(page);
+
+#ifdef Q_OS_MAC
+    setUnifiedTitleAndToolBarOnMac(true);
+    toolBar = addToolBar("ttolbar");
+    toolBar->setMovable(false);
+    toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    QSignalMapper *mapper = new QSignalMapper(this);
+    connect(mapper,SIGNAL(mapped(int)),pagesWidget,SLOT(setCurrentIndex(int)));
+
+    QActionGroup *ag = new QActionGroup(this);
+    for (int i=0; i<configPages.size(); ++i) {
+        ConfigPage *page = configPages.at(i);
+        QAction *a = new QAction(QIcon(page->iconFilename()), page->description(),this);
+        a->setCheckable(true);
+        a->setActionGroup(ag);
+        if (i==0) a->setChecked(true);
+        mapper->setMapping(a,i);
+        connect(a,SIGNAL(triggered()),mapper,SLOT(map()));
+        toolBar->addAction(a);
+    }
+
+
+
+#else
+    pagesModel = new CategoryModel(this);
     pagesModel->setPages(configPages);
 
     contentsWidget = new CategoryListView(this);
@@ -182,22 +213,22 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent)
 
     connect(contentsWidget->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(changePage(QModelIndex)));
-
-    pagesWidget = new QStackedWidget;
-
-    Q_FOREACH (ConfigPage *page, configPages)
-        pagesWidget->addWidget(page);
+#endif
 
     resetSettingsButton = new QPushButton(tr("Reset Settings"),this);
     connect(resetSettingsButton,SIGNAL(clicked()),this,SLOT(resetSettings()));
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(close()));
+
+
 
     //laying out
     QHBoxLayout *horizontalLayout = new QHBoxLayout;
+#ifndef Q_OS_MAC
     horizontalLayout->addWidget(contentsWidget);
+#endif
     horizontalLayout->addWidget(pagesWidget, 1);
 
     QHBoxLayout *bottomLayout = new QHBoxLayout;
@@ -209,28 +240,41 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent)
     //mainLayout->addStretch(1);
     mainLayout->addSpacing(12);
     mainLayout->addLayout(bottomLayout);
-    setLayout(mainLayout);
+    QWidget *w = new QWidget(this);
+    w->setLayout(mainLayout);
+    setCentralWidget(w);
+
     resize(640,420);
     retranslateUI();
+}
+
+SettingsDialog::~SettingsDialog()
+{
 }
 
 void SettingsDialog::retranslateUI()
 {
     setWindowTitle(tr("Qoobar settings"));
     Q_FOREACH (ConfigPage *page,configPages) page->retranslateUI();
+#ifdef Q_OS_MAC
+    QList<QAction *> actions = toolBar->actions();
+    for (int i=0; i<configPages.size(); ++i) {
+        actions[i]->setText(configPages.at(i)->description());
+    }
+#else
     pagesModel->setPages(configPages);
+#endif
     resetSettingsButton->setText(tr("Reset Settings"));
 }
 
 void SettingsDialog::accept()
 {
-
     for (int i=0; i<pagesWidget->count(); ++i) {
         ConfigPage *page = qobject_cast<ConfigPage *>(pagesWidget->widget(i));
         if (page)
             page->saveSettings();
     }
-    QDialog::accept();
+    close();
 }
 
 void SettingsDialog::resetSettings()
@@ -241,5 +285,4 @@ void SettingsDialog::resetSettings()
         if (page)
             page->setSettings();
     }
-
 }

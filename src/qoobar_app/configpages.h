@@ -49,7 +49,7 @@ class ConfigPage : public QWidget
 public:
     ConfigPage(QWidget *parent = 0);
     virtual QString description() {return "";}
-    virtual QString icon() {return "";}
+    virtual QString iconFilename() {return "";}
     virtual void retranslateUI();
     virtual void saveSettings() {}
     virtual void setSettings() {}
@@ -66,7 +66,7 @@ class InterfacePage : public ConfigPage
 public:
     InterfacePage(QWidget *parent = 0);
     QString description();
-    QString icon();
+    QString iconFilename();
     void retranslateUI();
     void saveSettings();
     void setSettings();
@@ -94,7 +94,7 @@ class CompletionPage : public ConfigPage
 public:
     CompletionPage(QWidget *parent = 0);
     QString description();
-    QString icon();
+    QString iconFilename();
     void retranslateUI();
     void saveSettings();
     void setSettings();
@@ -116,7 +116,7 @@ class WritingPage : public ConfigPage
 public:
     WritingPage(QWidget *parent = 0);
     QString description();
-    QString icon();
+    QString iconFilename();
     void retranslateUI();
     void saveSettings();
     void setSettings();
@@ -156,7 +156,7 @@ class PatternsPage : public ConfigPage
 public:
     PatternsPage(QWidget *parent = 0);
     QString description();
-    QString icon();
+    QString iconFilename();
     void retranslateUI();
     void saveSettings();
     void setSettings();
@@ -192,7 +192,7 @@ class UtilitiesPage : public ConfigPage
 public:
     UtilitiesPage(QWidget *parent = 0);
     QString description();
-    QString icon();
+    QString iconFilename();
     void retranslateUI();
     void saveSettings();
     void setSettings();
@@ -220,7 +220,7 @@ class NetworkPage : public ConfigPage
 public:
     NetworkPage(QWidget *parent = 0);
     QString description();
-    QString icon();
+    QString iconFilename();
     void retranslateUI();
     void saveSettings();
     void setSettings();
@@ -242,7 +242,7 @@ class PluginsPage : public ConfigPage
 public:
     PluginsPage(QWidget *parent = 0);
     QString description();
-    QString icon();
+    QString iconFilename();
     void retranslateUI();
     //void saveSettings();
     void setSettings();

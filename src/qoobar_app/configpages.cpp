@@ -78,7 +78,7 @@ void ConfigPage::finalize(QLayout *layout)
 {DD;
     contentsWidget->setLayout(layout);
 
-    iconLabel->setPixmap(QPixmap(icon()));
+    iconLabel->setPixmap(QPixmap(iconFilename()));
     //captionLabel->setText(description());
     setSettings();
 }
@@ -154,7 +154,7 @@ QString InterfacePage::description()
 {DD;
     return tr("Interface");
 }
-QString InterfacePage::icon()
+QString InterfacePage::iconFilename()
 {DD;
     return QSL(":/src/icons/interface.png");
 }
@@ -268,7 +268,7 @@ QString CompletionPage::description()
 {DD;
     return tr("Autocompletion");
 }
-QString CompletionPage::icon()
+QString CompletionPage::iconFilename()
 {DD;
     return QSL(":/src/icons/completion.png");
 }
@@ -413,7 +413,7 @@ QString WritingPage::description()
 {DD;
     return tr("Tags Writing");
 }
-QString WritingPage::icon()
+QString WritingPage::iconFilename()
 {DD;
     return QSL(":/src/icons/writing.png");
 }
@@ -568,7 +568,7 @@ QString PatternsPage::description()
 {DD;
     return tr("Patterns");
 }
-QString PatternsPage::icon()
+QString PatternsPage::iconFilename()
 {DD;
     return QSL(":/src/icons/patterns.png");
 }
@@ -784,7 +784,7 @@ QString UtilitiesPage::description()
     return tr("Utilities");
 }
 
-QString UtilitiesPage::icon()
+QString UtilitiesPage::iconFilename()
 {DD;
     return QSL(":/src/icons/utilities.png");
 }
@@ -882,7 +882,7 @@ QString NetworkPage::description()
 {DD;
     return tr("Network");
 }
-QString NetworkPage::icon()
+QString NetworkPage::iconFilename()
 {DD;
     return QSL(":/src/icons/network.png");
 }
@@ -940,7 +940,7 @@ QString PluginsPage::description()
     return tr("Plugins");
 }
 
-QString PluginsPage::icon()
+QString PluginsPage::iconFilename()
 {DD;
     return QSL(":/src/icons/plugin.png");
 }

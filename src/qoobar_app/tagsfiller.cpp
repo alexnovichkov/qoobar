@@ -275,6 +275,9 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     searchResultsList->setRootIsDecorated(false);
     searchResultsList->header()->hide();
     searchResultsList->setSelectionMode(QAbstractItemView::SingleSelection);
+#ifdef Q_OS_MAC
+    searchResultsList->setAttribute(Qt::WA_MacShowFocusRect,false);
+#endif
     connect(searchResultsList,SIGNAL(itemClicked(QTreeWidgetItem*,int)),
             SLOT(handleAlbumSelection(QTreeWidgetItem*)));
     connect(searchResultsList,SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),

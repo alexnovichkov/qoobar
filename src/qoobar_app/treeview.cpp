@@ -26,7 +26,7 @@ TreeView::TreeView(Tab *parent) : QTreeView(parent)
 
 #ifdef Q_OS_MAC
     setFrameStyle(QFrame::NoFrame | QFrame::Plain);
-    //setAttribute(Qt::WA_MacShowFocusRect, false);
+    setAttribute(Qt::WA_MacShowFocusRect, false);
     setAutoFillBackground(true);
 #endif
 
