@@ -76,7 +76,7 @@ const Act MainWindow::actionsDescr[] = {
     {"fill", QT_TR_NOOP("&Fill tags..."), QT_TR_NOOP("Fill tags..."), QT_TR_NOOP("Fill"),
      0, QT_TR_NOOP("Ctrl+F"), QKeySequence::UnknownKey, "fill", SLOT(fill())},
     {"rereadTags", QT_TR_NOOP("&Reread tags"), QT_TR_NOOP("Reread tags"), QT_TR_NOOP("Reread"),
-     0, 0, QKeySequence::UnknownKey, "view-refresh", SLOT(rereadTags())},
+     0, 0, QKeySequence::UnknownKey, "document-revert", SLOT(rereadTags())},
     {"help", QT_TR_NOOP("&Help"), QT_TR_NOOP("Help on Qoobar"), QT_TR_NOOP("Help"),
      SLOT(showHelp()), 0, QKeySequence::HelpContents, "help-contents",0},
     {"about", QT_TR_NOOP("&About Qoobar"), QT_TR_NOOP("About Qoobar"), QT_TR_NOOP("About"),
@@ -86,7 +86,7 @@ const Act MainWindow::actionsDescr[] = {
     {"settings", QT_TR_NOOP("&Settings..."), QT_TR_NOOP("Settings..."), QT_TR_NOOP("Settings"),
      SLOT(showSettingsDialog()), 0, QKeySequence::UnknownKey, "preferences-system",0},
     {"delFiles", QT_TR_NOOP("Re&move from the list"), QT_TR_NOOP("Remove from the list"), QT_TR_NOOP("Remove"),
-     0, QT_TR_NOOP("Delete"), QKeySequence::UnknownKey, "edit-delete",SLOT(delFiles())},
+     0, QT_TR_NOOP("Delete"), QKeySequence::UnknownKey, 0,SLOT(delFiles())},
     {"delAllFiles", QT_TR_NOOP("C&lear the list"), QT_TR_NOOP("Clear the list"), QT_TR_NOOP("Remove"),
      0, QT_TR_NOOP("Ctrl+Delete"), QKeySequence::UnknownKey, "edit-clear",SLOT(delAllFiles())},
     {"play", QT_TR_NOOP("&Play selected"), QT_TR_NOOP("Play selected"), QT_TR_NOOP("Play"),
@@ -374,15 +374,15 @@ void MainWindow::createActions()
 
         if (actionsDescr[i].slot) connect(a,SIGNAL(triggered()),this,actionsDescr[i].slot);
         if (actionsDescr[i].icon) {
-#if QT_VERSION >= 0x040600
-            QIcon themeIcon=QIcon::fromTheme(actionsDescr[i].icon);
-            if (themeIcon.isNull())
-                themeIcon=QIcon(QString(":/src/icons/%1.png").arg(actionsDescr[i].icon));
-            a->setIcon(themeIcon);
-#else
+//#if QT_VERSION >= 0x040600
+//            QIcon themeIcon=QIcon::fromTheme(actionsDescr[i].icon);
+//            if (themeIcon.isNull())
+//                themeIcon=QIcon(QString(":/src/icons/%1.png").arg(actionsDescr[i].icon));
+//            a->setIcon(themeIcon);
+//#else
             a->setIcon(QIcon(QString(":/src/icons/%1.png").arg(actionsDescr[i].icon)));
 
-#endif
+//#endif
         }
         a->setText(tr(actionsDescr[i].text));
         a->setProperty("shortDescr",tr(actionsDescr[i].shortText));
@@ -405,9 +405,6 @@ void MainWindow::createActions()
     actions[QSL("copy")]->setEnabled(false);
     actions[QSL("paste")]->setEnabled(false);
     actions[QSL("copyToClipboard")]->setEnabled(false);
-#ifndef Q_OS_LINUX
-    actions[QSL("rereadTags")]->setIcon(style()->standardIcon(QStyle::SP_BrowserReload));
-#endif
     actions[QSL("about")]->setMenuRole(QAction::AboutRole);
     actions[QSL("aboutQt")]->setMenuRole(QAction::AboutQtRole);
     actions[QSL("settings")]->setMenuRole(QAction::PreferencesRole);

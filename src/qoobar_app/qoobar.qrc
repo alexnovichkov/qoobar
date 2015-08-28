@@ -17,7 +17,6 @@
         <file>icons/newTab.png</file>
         <file>icons/ape.png</file>
         <file>icons/zoom-in.png</file>
-        <file>icons/remove_tags.png</file>
         <file>icons/list-add.png</file>
         <file>icons/list-remove.png</file>
         <file>icons/edit-redo.png</file>
@@ -47,7 +46,6 @@
         <file>icons/edit-clear.png</file>
         <file>icons/edit-copy.png</file>
         <file>icons/edit-cut.png</file>
-        <file>icons/edit-delete.png</file>
         <file>icons/edit-paste.png</file>
         <file>icons/folder-new.png</file>
         <file>icons/list-add1.png</file>
@@ -73,5 +71,6 @@
         <file>icons/magnifier_nomenu.png</file>
         <file>icons/progressindicator.gif</file>
         <file>icons/fold.png</file>
+        <file>icons/document-revert.png</file>
     </qresource>
 </RCC>

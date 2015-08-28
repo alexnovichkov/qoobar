@@ -33,123 +33,6 @@
 #endif
 #include "application.h"
 
-/** These classes were taken from QtCreator */
-class Category {
-public:
-    QString displayName;
-    QString icon;
-};
-
-class CategoryModel : public QAbstractListModel
-{
-public:
-    CategoryModel(QObject *parent = 0);
-    ~CategoryModel();
-
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-
-    void setPages(const QList<ConfigPage*> &pages);
-private:
-    QList<Category*> m_categories;
-    QIcon m_emptyIcon;
-};
-
-CategoryModel::CategoryModel(QObject *parent)
-    : QAbstractListModel(parent)
-{
-
-    QPixmap empty(32, 32);
-    empty.fill(Qt::transparent);
-    m_emptyIcon = QIcon(empty);
-}
-
-CategoryModel::~CategoryModel()
-{
-
-    qDeleteAll(m_categories);
-}
-
-int CategoryModel::rowCount(const QModelIndex &parent) const
-{
-
-    return parent.isValid() ? 0 : m_categories.size();
-}
-
-QVariant CategoryModel::data(const QModelIndex &index, int role) const
-{
-
-    switch (role) {
-    case Qt::DisplayRole:
-        return m_categories.at(index.row())->displayName;
-    case Qt::DecorationRole: {
-            QIcon icon = QIcon(m_categories.at(index.row())->icon);
-            if (icon.isNull())
-                icon = m_emptyIcon;
-            return icon;
-        }
-    }
-    return QVariant();
-}
-
-void CategoryModel::setPages(const QList<ConfigPage*> &pages)
-{
-
-    // Clear any previous categories
-    qDeleteAll(m_categories);
-    m_categories.clear();
-
-    // Put the pages in categories
-    Q_FOREACH (ConfigPage *page, pages) {
-        Category *category = new Category;
-        category->displayName = page->description();
-        category->icon = page->iconFilename();
-        m_categories.append(category);
-    }
-    this->beginResetModel();
-    endResetModel();
-}
-
-class CategoryListViewDelegate : public QStyledItemDelegate
-{
-public:
-    CategoryListViewDelegate(QObject *parent) : QStyledItemDelegate(parent) {}
-    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
-    {
-        QSize size = QStyledItemDelegate::sizeHint(option, index);
-        size.setHeight(qMax(size.height(), 32));
-        return size;
-    }
-};
-
-class CategoryListView : public QListView
-{
-public:
-    CategoryListView(QWidget *parent = 0) : QListView(parent)
-    {
-
-        setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
-        setItemDelegate(new CategoryListViewDelegate(this));
-        setSpacing(2);
-    }
-
-    virtual QSize sizeHint() const
-    {
-
-        int width = sizeHintForColumn(0) + frameWidth() * 2 + 5;
-        if (verticalScrollBar()->isVisible())
-            width += verticalScrollBar()->width();
-        return QSize(width, 100);
-    }
-};
-/** end of taken from QtCreator*/
-
-
-void SettingsDialog::changePage(const QModelIndex &current)
-{
-    if (current.isValid())
-        pagesWidget->setCurrentIndex(current.row());
-}
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
 #ifdef Q_OS_MAC
@@ -183,8 +66,13 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 #ifdef Q_OS_MAC
     setUnifiedTitleAndToolBarOnMac(true);
     toolBar = addToolBar("ttolbar");
+#else
+    toolBar = new QToolBar(this);
+#endif
+
     toolBar->setMovable(false);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    toolBar->setIconSize(QSize(48,48));
     QSignalMapper *mapper = new QSignalMapper(this);
     connect(mapper,SIGNAL(mapped(int)),pagesWidget,SLOT(setCurrentIndex(int)));
 
@@ -202,19 +90,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
 
 
-#else
-    pagesModel = new CategoryModel(this);
-    pagesModel->setPages(configPages);
 
-    contentsWidget = new CategoryListView(this);
-    contentsWidget->setIconSize(QSize(32, 32));
-    contentsWidget->setModel(pagesModel);
-    contentsWidget->setSelectionMode(QAbstractItemView::SingleSelection);
-    contentsWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-
-    connect(contentsWidget->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
-            this, SLOT(changePage(QModelIndex)));
-#endif
 
     resetSettingsButton = new QPushButton(tr("Reset Settings"),this);
     connect(resetSettingsButton,SIGNAL(clicked()),this,SLOT(resetSettings()));
@@ -231,9 +107,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
     //laying out
     QHBoxLayout *horizontalLayout = new QHBoxLayout;
-#ifndef Q_OS_MAC
-    horizontalLayout->addWidget(contentsWidget);
-#endif
     horizontalLayout->addWidget(pagesWidget, 1);
 
     QHBoxLayout *bottomLayout = new QHBoxLayout;
@@ -250,9 +123,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     w->setLayout(mainLayout);
     setCentralWidget(w);
 #else
+    mainLayout->setMenuBar(toolBar);
     setLayout(mainLayout);
 #endif
-    resize(640,420);
+    resize(300,300);
     retranslateUI();
 }
 
@@ -260,14 +134,12 @@ void SettingsDialog::retranslateUI()
 {
     setWindowTitle(tr("Qoobar settings"));
     Q_FOREACH (ConfigPage *page,configPages) page->retranslateUI();
-#ifdef Q_OS_MAC
+
     QList<QAction *> actions = toolBar->actions();
     for (int i=0; i<configPages.size(); ++i) {
         actions[i]->setText(configPages.at(i)->description());
     }
-#else
-    pagesModel->setPages(configPages);
-#endif
+
     resetSettingsButton->setText(tr("Reset Settings"));
 }
 

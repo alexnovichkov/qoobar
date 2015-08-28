@@ -31,14 +31,16 @@
 #include <QDialog>
 
 class QStackedWidget;
-class CategoryListView;
-class CategoryModel;
-class QModelIndex;
 class ConfigPage;
 class QPushButton;
 
-#ifdef Q_OS_MAC
-class SettingsDialog : public QMainWindow
+
+class SettingsDialog : public
+        #ifdef Q_OS_MAC
+        QMainWindow
+        #else
+        QDialog
+        #endif
 {
 Q_OBJECT
 public:
@@ -50,42 +52,15 @@ Q_SIGNALS:
     void closed();
 //    void tableUpdateModeChanged(bool);
 private Q_SLOTS:
-    void changePage(const QModelIndex &current);
     void retranslateUI();
     void resetSettings();
 private:
     QStackedWidget *pagesWidget;
-    CategoryModel *pagesModel;
-    CategoryListView *contentsWidget;
     QList<ConfigPage *> configPages;
     QPushButton *resetSettingsButton;
 
     QToolBar * toolBar;
 };
-#else
-class SettingsDialog : public QDialog
-{
-Q_OBJECT
-public:
-    SettingsDialog(QWidget *parent = 0);
-public Q_SLOTS:
-    void accept();
-Q_SIGNALS:
-    void retranslate();
-    void closed();
-//    void tableUpdateModeChanged(bool);
-private Q_SLOTS:
-    void changePage(const QModelIndex &current);
-    void retranslateUI();
-    void resetSettings();
-private:
-    QStackedWidget *pagesWidget;
-    CategoryModel *pagesModel;
-    CategoryListView *contentsWidget;
-    QList<ConfigPage *> configPages;
-    QPushButton *resetSettingsButton;
-};
-#endif
 
 #endif
 

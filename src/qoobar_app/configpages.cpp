@@ -45,42 +45,29 @@
 #include <QVector>
 #include <QtConcurrentRun>
 
-ConfigPage::ConfigPage(QWidget *parent) : QWidget(parent),
-    iconLabel(0), captionLabel(0)
+ConfigPage::ConfigPage(QWidget *parent) : QWidget(parent)
 {DD;
-    contentsWidget = new QWidget(this);
+    contentsWidget = new QFrame(this);
     contentsWidget->setContentsMargins(0,0,0,0);
-
+#ifdef Q_OS_WIN
+    contentsWidget->setFrameShape(QFrame::StyledPanel);
+#endif
     QVBoxLayout *contentsLayout = new QVBoxLayout;
     contentsLayout->setContentsMargins(0,0,0,0);
 
     contentsLayout->addWidget(contentsWidget);
 
-#ifndef Q_OS_MAC
-    iconLabel = new QLabel(this);
-    captionLabel = new QLabel(description(),this);
-    QFrame *line = new QFrame(this);
-    line->setFrameShape(QFrame::HLine);
-    QHBoxLayout *captionLayout = new QHBoxLayout;
-    captionLayout->addWidget(iconLabel);
-    captionLayout->addWidget(captionLabel);
-    captionLayout->addStretch();
-    contentsLayout->insertWidget(0,line);
-    contentsLayout->insertLayout(0,captionLayout);
-#endif
     setLayout(contentsLayout);
 }
 
 void ConfigPage::retranslateUI()
 {DD;
-    if (captionLabel) captionLabel->setText(description());
+
 }
 
 void ConfigPage::finalize(QLayout *layout)
 {DD;
     contentsWidget->setLayout(layout);
-
-    if (iconLabel) iconLabel->setPixmap(QPixmap(iconFilename()));
     setSettings();
 }
 
@@ -239,10 +226,11 @@ CompletionPage::CompletionPage(QWidget *parent) : ConfigPage(parent)
     autocompletionLayout->addWidget(completionStyleLabel,1,0);
     autocompletionLayout->addWidget(completionStyle,1,1);
     autocompletionLayout->addWidget(completionTree,2,0,1,2);
+#ifndef Q_OS_WIN
     QMargins m=autocompletionLayout->contentsMargins();
     m.setBottom(0);
     autocompletionLayout->setContentsMargins(m);
-
+#endif
     finalize(autocompletionLayout);
 }
 
@@ -925,9 +913,11 @@ PluginsPage::PluginsPage(QWidget *parent) : ConfigPage(parent)
     editingTree->header()->setStretchLastSection(false);
 
     QVBoxLayout *l = new QVBoxLayout;
+#ifndef Q_OS_WIN
     QMargins m=l->contentsMargins();
     m.setBottom(0);
     l->setContentsMargins(m);
+#endif
     l->addWidget(downloadLabel);
     l->addWidget(downloadTree);
     l->addWidget(editingLabel);

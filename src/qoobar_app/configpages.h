@@ -40,6 +40,7 @@ class QMenu;
 class QRadioButton;
 class ClearLineEdit;
 class FancyLineEdit;
+class QFrame;
 
 //#define USE_DELAYED_UPDATE
 
@@ -55,9 +56,7 @@ public:
     virtual void setSettings() {}
     virtual void finalize(QLayout *layout);
 protected:
-    QWidget *contentsWidget;
-    QLabel *iconLabel;
-    QLabel *captionLabel;
+    QFrame *contentsWidget;
 };
 
 class InterfacePage : public ConfigPage

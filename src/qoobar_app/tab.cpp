@@ -162,11 +162,6 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
 
 
     removeAct = new QAction(tr("C&lear tags"),this);
-#if QT_VERSION >= 0x040600
-    removeAct->setIcon(QIcon::fromTheme(QSL("edit-delete"),QIcon(QSL(":/src/icons/remove_tags.png"))));
-#else
-    removeAct->setIcon(QIcon(QSL(":/src/icons/remove_tags.png")));
-#endif
     removeAct->setShortcut(Qt::Key_Delete);
     removeAct->setShortcutContext(Qt::WidgetShortcut);
     connect(removeAct,SIGNAL(triggered()),this,SLOT(remove()));
