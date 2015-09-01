@@ -133,6 +133,9 @@ const Act MainWindow::actionsDescr[] = {
     {"addFromDirViewWithSubfolders", QT_TR_NOOP("List this folder with all subfolders"),
      QT_TR_NOOP("List this folder with all subfolders"), QT_TR_NOOP("List this folder with all subfolders"),
      SLOT(addFromDirViewWithSubfolders()), 0, QKeySequence::UnknownKey, 0,0},
+    {"setAsRoot", QT_TR_NOOP("Set as folder tree root"),
+     QT_TR_NOOP("Set as folder tree root"), QT_TR_NOOP("Set as folder tree root"),
+     SLOT(setAsTreeRoot()), 0, QKeySequence::UnknownKey, 0,0},
     {"checkUpdates", QT_TR_NOOP("&Check for updates..."), QT_TR_NOOP("Check for updates..."), QT_TR_NOOP("Check updates"),
      SLOT(checkUpdates()), 0, QKeySequence::UnknownKey, 0,0},
     {"searchFiles", QT_TR_NOOP("S&earch files..."), QT_TR_NOOP("Search files..."), QT_TR_NOOP("Search"),
@@ -220,7 +223,6 @@ void MainWindow::init()
     dirView->setContextMenuPolicy(Qt::ActionsContextMenu);
 #ifdef Q_OS_MAC
     dirView->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
-
     dirView->setAttribute(Qt::WA_MacShowFocusRect,false);
 #endif
 
@@ -231,6 +233,7 @@ void MainWindow::init()
 
     dirView->addAction(actions[QSL("addFromDirView")]);
     dirView->addAction(actions[QSL("addFromDirViewWithSubfolders")]);
+    dirView->addAction(actions[QSL("setAsRoot")]);
 
     tabWidget = new TabWidget(this);
     connect(tabWidget,SIGNAL(newTab()),this, SLOT(newTab()));
@@ -287,12 +290,8 @@ void MainWindow::initRest()
         sp->setSizes(sizes);
     }
 
-
-#ifdef Q_OS_WIN
-    dirModel->setRootPath(QSL(""));
-#else
-    dirModel->setRootPath(QSL("/"));
-#endif
+    dirModel->setRootPath(App->dirViewRoot);
+    dirView->setRootIndex(dirModel->index(App->dirViewRoot));
     QString dir=App->lastTreeDirectory;
     if (dir.isEmpty()) {
         dir=App->lastDirectory;
@@ -865,7 +864,12 @@ void MainWindow::showSettingsDialog()
         Q_FOREACH (QUndoStack *stack,undoGroup->stacks()) stack->clear();
     tabWidget->hideTabBar(App->hideTabBar && tabWidget->count() <= 1);
 
+
     dirView->setVisible(App->showDirView);
+    dirModel->setRootPath(App->dirViewRoot);
+    dirView->setRootIndex(dirModel->index(App->dirViewRoot));
+    dirView->expand(dirModel->index(App->lastTreeDirectory,0));
+    dirView->scrollTo(dirModel->index(App->lastTreeDirectory,0),QAbstractItemView::PositionAtCenter);
 }
 
 QMap<int, QString> MainWindow::allTabsNames()
@@ -958,6 +962,15 @@ void MainWindow::searchFiles()
         newTab();
 
     currentTab->startSearch();
+}
+
+void MainWindow::setAsTreeRoot()
+{
+    App->dirViewRoot = dirModel->filePath(dirView->currentIndex());
+    dirModel->setRootPath(App->dirViewRoot);
+    dirView->setRootIndex(dirModel->index(App->dirViewRoot));
+    dirView->expand(dirModel->index(App->lastTreeDirectory,0));
+    dirView->scrollTo(dirModel->index(App->lastTreeDirectory,0),QAbstractItemView::PositionAtCenter);
 }
 
 

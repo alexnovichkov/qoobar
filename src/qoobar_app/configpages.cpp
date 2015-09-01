@@ -74,6 +74,22 @@ void ConfigPage::finalize(QLayout *layout)
 InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 {DD;
     dirBox = new QCheckBox(tr("Show folder tree"),this);
+    dirRoot = new FancyLineEdit(this);
+    QPixmap pixmap(16, 16);
+    pixmap.fill(Qt::transparent);
+    QPainter painter(&pixmap);
+    painter.drawText(0,14,QSL("..."));
+    dirRoot->setButtonPixmap(FancyLineEdit::Right, pixmap);
+    dirRoot->setButtonVisible(FancyLineEdit::Right, true);
+    dirRoot->setButtonToolTip(FancyLineEdit::Right, tr("Choose..."));
+    dirRoot->setAutoHideButton(FancyLineEdit::Right, false);
+#if QT_VERSION >= 0x040700
+    dirRoot->setPlaceholderText(tr("All disks"));
+    //dirRoot->setMinimumWidth(dirRoot->fontMetrics().width(QSL("Path/to/player"))*3/2);
+#endif
+    connect(dirRoot, SIGNAL(rightButtonClicked()), this, SLOT(chooseDirRoot()));
+
+    dirRootLabel = new QLabel(tr("Folder tree root"),this);
     useUndo = new QCheckBox(tr("Use undo / redo"),this);
 
     autoexpand = new QCheckBox(tr("Automatically fill a tag "
@@ -110,6 +126,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     UIlayout->addRow(useUndo);
     UIlayout->addRow(autoexpand);
     UIlayout->addRow(dirBox);
+    UIlayout->addRow(dirRootLabel,dirRoot);
     UIlayout->addRow(hideTabBar);
     UIlayout->addRow(charsBox,chars);
     UIlayout->addRow(langLabel,lang);
@@ -126,6 +143,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 void InterfacePage::setSettings()
 {DD;
     dirBox->setChecked(App->showDirView);
+    dirRoot->setText(App->dirViewRoot);
     useUndo->setChecked(App->useUndo);
 
     autoexpand->setChecked(App->autoexpand);
@@ -157,6 +175,10 @@ void InterfacePage::retranslateUI()
     useUndo->setText(tr("Use undo / redo"));
     dirBox->setText(tr("Show folder tree"));
     hideTabBar->setText(tr("Hide Tab bar with only one tab"));
+#if QT_VERSION >= 0x040700
+    dirRoot->setPlaceholderText(tr("All disks"));
+#endif
+    dirRootLabel->setText(tr("Folder tree root"));
 }
 void InterfacePage::saveSettings()
 {DD;
@@ -165,6 +187,7 @@ void InterfacePage::saveSettings()
     App->useUndo = useUndo->isChecked();
     App->showDirView = dirBox->isChecked();
     App->hideTabBar = hideTabBar->isChecked();
+    App->dirViewRoot = dirRoot->text();
 }
 
 void InterfacePage::changeCharsFont()
@@ -182,6 +205,17 @@ void InterfacePage::updateLanguage(const int index)
     App->langID=langID;
     App->loadTranslations();
     Q_EMIT retranslate();
+}
+
+void InterfacePage::chooseDirRoot()
+{
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a folder tree root"),
+                                                    App->dirViewRoot,
+                                                    QFileDialog::ShowDirsOnly
+                                                    | QFileDialog::DontResolveSymlinks);
+    if (!dir.isEmpty()) {
+        dirRoot->setText(dir);
+    }
 }
 
 

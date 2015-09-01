@@ -215,6 +215,14 @@ void Application::readGuiSettings()
     innerSplitterState = se.value(QSL("innerSplitter")).toByteArray();
     dirSplitterState = se.value(QSL("dirSplitter")).toByteArray();
     showDirView = se.value(QSL("showDirView"), showDirView).toBool();
+    dirViewRoot = se.value(QSL("dirViewRoot"), dirViewRoot).toString();
+    if (dirViewRoot.isEmpty()) {
+#ifdef Q_OS_WIN
+        dirViewRoot = QSL("");
+#else
+        dirViewRoot = QSL("/");
+#endif
+    }
 
     useProxy = se.value(QSL("useProxy"), useProxy).toBool();
     proxyServer = se.value(QSL("proxyServer")).toString();
@@ -372,6 +380,7 @@ void Application::writeGuiSettings()
     se.setValue("innerSplitter",innerSplitterState);
     se.setValue("dirSplitter",dirSplitterState);
     se.setValue("showDirView",showDirView);
+    se.setValue("dirViewRoot",dirViewRoot);
     se.setValue("useProxy",useProxy);
     se.setValue("proxyServer",proxyServer);
     se.setValue("proxyPort",proxyPort);

@@ -74,6 +74,7 @@ Q_SIGNALS:
 private Q_SLOTS:
     void changeCharsFont();
     void updateLanguage(const int);
+    void chooseDirRoot();
 private:
     QLabel *charsBox;
     FancyLineEdit *chars;
@@ -83,6 +84,8 @@ private:
     QCheckBox *useUndo;
     QCheckBox *dirBox;
     QCheckBox *hideTabBar;
+    FancyLineEdit *dirRoot;
+    QLabel *dirRootLabel;
 };
 
 class QFormLayout;

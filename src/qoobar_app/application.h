@@ -157,7 +157,7 @@ public:
     bool mp3writeid3;
     QString player;
     QByteArray columns160; //horizontal header state
-    QByteArray columns167; //horizontal header state
+    QByteArray columns167; //horizontal header state since version 1.6.7
 
     QByteArray rows; //vertical header state
     bool saveChanges; //whether or not save all changes when closing app
@@ -199,6 +199,7 @@ public:
     QByteArray innerSplitterState;
     QByteArray dirSplitterState;
     bool showDirView;
+    QString dirViewRoot;
 
 
     QString currentSchemeName;

@@ -125,6 +125,7 @@ private Q_SLOTS:
 //    void setTableUpdateMode(bool useDelayedUpdate);
 
     void searchFiles();
+    void setAsTreeRoot();
 private:
     void createActions();
     void createMenus();
