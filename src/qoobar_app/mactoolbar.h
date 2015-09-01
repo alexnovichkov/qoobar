@@ -12,10 +12,11 @@ class Toolbar : public QObject
 public:
     explicit Toolbar(QMainWindow *parent = 0);
     ~Toolbar();
-    void addAction(QAction *act);
+    void addAction(QAction *act, const QString &key, bool showText=true);
     void retranslateUI();
     void addSeparator();
     void attachToWindow(QMainWindow *window);
+    void writeState();
 public Q_SLOTS:
     void updateEnabled(QAction *act);
 private:

@@ -63,11 +63,17 @@ static const char *macapp_strings[] = {
 };
 
 const Act MainWindow::actionsDescr[] = {
-    {"addDir", QT_TR_NOOP("&Add folder..."), QT_TR_NOOP("Add folder..."), QT_TR_NOOP("Add folder"),
+    {"addDir", QT_TR_NOOP("&Add folder..."),
+     QT_TR_NOOP("Add folder..."),
+     QT_TR_NOOP("Add folder"),
      SLOT(addDir()), 0, QKeySequence::Open, "folder-new",0},
-    {"addFiles", QT_TR_NOOP("Add &files..."), QT_TR_NOOP("Add files..."), QT_TR_NOOP("Add files"),
+    {"addFiles", QT_TR_NOOP("Add &files..."),
+     QT_TR_NOOP("Add files..."),
+     QT_TR_NOOP("Add files"),
      SLOT(addFiles()), QT_TR_NOOP("Shift+Ctrl+O"), QKeySequence::UnknownKey, "document-new",0},
-    {"save", QT_TR_NOOP("&Save current tab"), QT_TR_NOOP("Save current tab"), QT_TR_NOOP("Save"),
+    {"save", QT_TR_NOOP("&Save current tab"),
+     QT_TR_NOOP("Save current tab"),
+     QT_TR_NOOP("Save"),
      0, 0, QKeySequence::Save, "document-save",SLOT(saveTags())},
     {"saveAll", QT_TR_NOOP("Save all &tabs"), QT_TR_NOOP("Save all tabs"), QT_TR_NOOP("Save all"),
      SLOT(saveAll()), 0, QKeySequence::UnknownKey, 0,0},
@@ -103,7 +109,9 @@ const Act MainWindow::actionsDescr[] = {
      0, QT_TR_NOOP("Shift+Ctrl+C"), QKeySequence::UnknownKey, 0,SLOT(copyToClipboard())},
     {"pasteFromClipboard", QT_TR_NOOP("Paste from clipboard"), QT_TR_NOOP("Paste from clipboard"), QT_TR_NOOP("Paste from clipboard"),
      0, QT_TR_NOOP("Shift+Ctrl+V"), QKeySequence::UnknownKey, 0,SLOT(pasteFromClipboard())},
-    {"newTag", QT_TR_NOOP("&Add new tag..."), QT_TR_NOOP("Add new tag..."), QT_TR_NOOP("New tag"),
+    {"newTag", QT_TR_NOOP("&Add new tag..."),
+     QT_TR_NOOP("Add new tag..."),
+     QT_TR_NOOP("New tag"),
      0, 0, QKeySequence::New, "list-add",SLOT(newTag())},
     {"split", QT_TR_NOOP("Split &disc..."), QT_TR_NOOP("Split disc..."), QT_TR_NOOP("Split"),
      SLOT(showSplitDialog()), 0, QKeySequence::UnknownKey, "media-import-audio-cd",0},
@@ -156,8 +164,7 @@ MainWindow::MainWindow()
 }
 
 MainWindow::~MainWindow()
-{DD
-
+{DD;
 }
 
 void MainWindow::init()
@@ -185,16 +192,17 @@ void MainWindow::init()
     Q_FOREACH (const QString &a,toolBarActs) {
         if (a.isEmpty()) filesToolBar->addSeparator();
         else if (a=="*") {
-            filesToolBar->addAction(undoAct);
-            filesToolBar->addAction(redoAct);
+            filesToolBar->addAction(undoAct,"undo",false);
+            filesToolBar->addAction(redoAct,"redo",false);
         }
         else {
             if (actions.value(a)) {
-                filesToolBar->addAction(actions.value(a));
+                filesToolBar->addAction(actions.value(a), a);
             }
         }
     }
     filesToolBar->attachToWindow(this);
+    filesToolBar->updateEnabled(actions[QSL("paste")]);
 
 
 //========================================================================
@@ -318,25 +326,20 @@ void MainWindow::createUndoRedoActs()
 {DD
     delete undoAct;
     delete redoAct;
-    undoAct = undoGroup->createUndoAction(this,tr("&Undo"));
+    undoAct = undoGroup->createUndoAction(this/*,tr("&Undo")*/);
     undoAct->setShortcutContext(Qt::ApplicationShortcut);
-#if QT_VERSION >= 0x040600
-    undoAct->setIcon(QIcon::fromTheme(QSL("edit-undo"),QIcon(QSL(":/src/icons/edit-undo.png"))));
-#else
     undoAct->setIcon(QIcon(QSL(":/src/icons/edit-undo.png")));
-#endif
     undoAct->setShortcut(QKeySequence(QKeySequence::Undo).toString());
     undoAct->setProperty("shortDescr",tr("Undo"));
+    undoAct->setPriority(QAction::LowPriority);
+    undoAct->setText("");
 
-    redoAct = undoGroup->createRedoAction(this,tr("&Redo"));
+    redoAct = undoGroup->createRedoAction(this/*,tr("&Redo")*/);
     redoAct->setShortcutContext(Qt::ApplicationShortcut);
-#if QT_VERSION >= 0x040600
-    redoAct->setIcon(QIcon::fromTheme(QSL("edit-redo"),QIcon(QSL(":/src/icons/edit-redo.png"))));
-#else
     redoAct->setIcon(QIcon(QSL(":/src/icons/edit-redo.png")));
-#endif
     redoAct->setShortcut(QKeySequence(QKeySequence::Redo).toString());
     redoAct->setProperty("shortDescr",tr("Redo"));
+    redoAct->setPriority(QAction::LowPriority);
 
     menus[QSL("edit")]->insertAction(menuSeparator,undoAct);
     menus[QSL("edit")]->insertAction(menuSeparator,redoAct);
@@ -374,15 +377,7 @@ void MainWindow::createActions()
 
         if (actionsDescr[i].slot) connect(a,SIGNAL(triggered()),this,actionsDescr[i].slot);
         if (actionsDescr[i].icon) {
-//#if QT_VERSION >= 0x040600
-//            QIcon themeIcon=QIcon::fromTheme(actionsDescr[i].icon);
-//            if (themeIcon.isNull())
-//                themeIcon=QIcon(QString(":/src/icons/%1.png").arg(actionsDescr[i].icon));
-//            a->setIcon(themeIcon);
-//#else
             a->setIcon(QIcon(QString(":/src/icons/%1.png").arg(actionsDescr[i].icon)));
-
-//#endif
         }
         a->setText(tr(actionsDescr[i].text));
         a->setProperty("shortDescr",tr(actionsDescr[i].shortText));
@@ -677,6 +672,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     }
 
     App->geometry=saveGeometry();
+    filesToolBar->writeState();
     event->accept();
 }
 

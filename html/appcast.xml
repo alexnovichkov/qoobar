@@ -7,28 +7,28 @@
       <language>en</language>
 
          <item>
-            <title>Version 1.6.6 for OS X</title>
-            <description>This version adds the ability to change tagging schemes and fixes some bugs.</description>
-            <pubDate>Mon, 1 Dec 2014 08:35:42 +0300</pubDate>
+            <title>Version 1.6.7 for OS X</title>
+            <description>This version adds the ability to sort files and fixes the Discogs import.</description>
+            <pubDate>Mon, 31 Aug 2015 18:35:42 +0300</pubDate>
             <sparkle:releaseNotesLink>http://qoobar.sourceforge.net/en/changelog_latest.htm</sparkle:releaseNotesLink>
             <enclosure
-              sparkle:version="1.6.6"
-              sparkle:dsaSignature="MCwCFH6N06XhnB5YHnMBGsAql0lKql6RAhQjURiFpfHyZk1iWllEb0JWXrIuXQ=="
-              url="http://sourceforge.net/projects/qoobar/files/qoobar-1.6.6/Mac_OS_X/qoobar-1.6.6.dmg/download"
-              length="13308680"
+              sparkle:version="1.6.7"
+              sparkle:dsaSignature="MC0CFQCPG+3TgHv/XupZaKKmxPOD/YXdkAIUTRCsiwwKLJ/sKGMHjd/J4/9TTn8="
+              url="http://sourceforge.net/projects/qoobar/files/qoobar-1.6.7/Mac_OS_X/qoobar-1.6.7.dmg/download"
+              length="12781235"
               type="application/octet-stream"/>
          </item>
 
          <item>
-            <title>Version 1.6.6 for Windows</title>
-            <description>This version adds the ability to change tagging schemes and fixes some bugs.</description>
-            <pubDate>Mon, 1 Dec 2014 08:35:42 +0300</pubDate>
+            <title>Version 1.6.7 for Windows</title>
+            <description>This version adds the ability to sort files and fixes the Discogs import.</description>
+            <pubDate>Sat, 29 Aug 2015 16:40:42 +0300</pubDate>
             <sparkle:releaseNotesLink>http://qoobar.sourceforge.net/en/changelog_latest.htm</sparkle:releaseNotesLink>
             <enclosure
               sparkle:os="windows"
-              sparkle:version="1.6.6"
-              url="http://sourceforge.net/projects/qoobar/files/qoobar-1.6.6/Windows/qoobar-1.6.6.exe"
-              length="16151073"
+              sparkle:version="1.6.7"
+              url="http://sourceforge.net/projects/qoobar/files/qoobar-1.6.7/Windows/qoobar-1.6.7.exe"
+              length="10193838"
               type="application/octet-stream"/>
          </item>
 

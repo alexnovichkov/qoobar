@@ -6,11 +6,11 @@
   "text": {
     "default": "Autonumber selected files",
     "en_EN": "Autonumber selected files",
-    "ru_RU": "Автоматическая нумерация файлов"
+    "ru": "Автоматическая нумерация файлов"
   },
   "description": {
     "default": "Automatically number selected files according to some options",
     "en_EN": "Automatically number selected files according to some options",
-    "ru_RU": "Автоматическая нумерация файлов по различным параметрам"
+    "ru": "Автоматическая нумерация файлов по различным параметрам"
   }
 }

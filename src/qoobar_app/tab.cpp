@@ -886,7 +886,15 @@ void Tab::renameFiles() /*SLOT*/
   */
 void Tab::delFiles() /*SLOT*/
 {DD;
+#ifdef Q_OS_MAC
+    // Why Qt 5.5.0 ignores widget-shortcut context?
+    QWidget *w = QApplication::focusWidget();
+    if (qobject_cast<QTreeView*>(w))
     delFiles(false);
+    else remove();
+#else
+    delFiles(false);
+#endif
 }
 
 void Tab::delAllFiles() /*SLOT*/
@@ -906,9 +914,9 @@ void Tab::delFiles(bool deleteSilently)
                            QMessageBox::NoButton, win);
         msgBox.setInformativeText(tr("Remove them anyway?"));
         QPushButton *delB=msgBox.addButton(tr("Yes, remove without saving"),QMessageBox::YesRole);
-        delB->setIcon(qApp->style()->standardIcon(QStyle::SP_DialogSaveButton));
+        delB->setIcon(qApp->style()->standardIcon(QStyle::SP_DialogDiscardButton));
         QPushButton *saveB=msgBox.addButton(tr("No, save them and then remove"),QMessageBox::NoRole);
-        saveB->setIcon(qApp->style()->standardIcon(QStyle::SP_DialogDiscardButton));
+        saveB->setIcon(qApp->style()->standardIcon(QStyle::SP_DialogSaveButton));
         QPushButton *cancB=msgBox.addButton(QMessageBox::Cancel);
         cancB->setIcon(qApp->style()->standardIcon(QStyle::SP_DialogCancelButton));
         msgBox.setDefaultButton(saveB);

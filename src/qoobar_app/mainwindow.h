@@ -32,13 +32,6 @@
 #include <QHash>
 #include <QTimer>
 
-//#ifdef Q_OS_MAC
-//#include <QtMacExtras>
-//#define TOOLBAR QMacToolBar
-//#else
-//#define TOOLBAR QToolBar
-//#endif
-
 class QAction;
 class QLabel;
 class TabWidget;

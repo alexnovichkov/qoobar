@@ -4,5 +4,7 @@ qoobar (1.6.7) unstable; urgency=low
   * Fixed: Discogs authentication
   * Added: Sorting in the Files table
   * Added: The possibility to edit tags right in the files table
+  * Changed: The Settings dialog interface
+  * Changed: The toolbar icons
 
  -- Alex Novichkov <aleksej.novichkov@gmail.com>  Sat, 22 Aug 2015 10:10:49 +0300

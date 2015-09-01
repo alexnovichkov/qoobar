@@ -13,7 +13,7 @@
 
 AppId={{59A39891-F88A-49E6-A738-AC5580273280}
 AppName=Qoobar
-AppCopyright=Copyright (C) 2009-2014 Alex Novichkov
+AppCopyright=Copyright (C) 2009-2015 Alex Novichkov
 AppVersion={#VERSION}
 AppVerName=Qoobar {#VERSION}
 AppPublisher=Alex Novichkov
@@ -101,7 +101,7 @@ Name: "{app}\plugins"; Flags: uninsalwaysuninstall; Components: plugins
 #define QT_VERSION 5
 
 #if QT_VERSION==5
-#define PATH_TO_QT "K:/Qt/Qt5.5.0/5.5/mingw492_32"
+#define PATH_TO_QT "D:/Qt/Qt5.5.0/5.5/mingw492_32"
 #else
 #define PATH_TO_QT "K:/Qt/4.8.4"
 #endif
@@ -124,7 +124,7 @@ Source: {#PATH_TO_QT+"/bin/Qt5Widgets.dll"}; DestDir: "{app}"; Flags: ignorevers
 Source: {#PATH_TO_QT+"/bin/Qt5WinExtras.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/libwinpthread-1.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/libstdc++-6.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/icu*.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+;Source: {#PATH_TO_QT+"/bin/icu*.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 #else
 Source: {#PATH_TO_QT+"/plugins/imageformats/qjpeg4.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/plugins/imageformats/qgif4.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main

@@ -352,9 +352,9 @@ win32|win {
         INCLUDEPATH += K:/My/build/winsparkle/include
         LIBS += K:/My/build/winsparkle/Release/WinSparkle.lib
     }
-    exists("D:/soft/Programming/WinSparkle-0.3/WinSparkle.lib") {
-        INCLUDEPATH += D:/soft/Programming/WinSparkle-0.3
-        LIBS += D:/soft/Programming/WinSparkle-0.3/WinSparkle.lib
+    exists("D:/soft/Programming/WinSparkle/Release/WinSparkle.lib") {
+        INCLUDEPATH += D:/soft/Programming/WinSparkle/include
+        LIBS += D:/soft/Programming/WinSparkle/Release/WinSparkle.lib
     }
     SOURCES += sparkleupdater.cpp
 }
@@ -471,11 +471,11 @@ mac|macx {
 
     discid_framework.path = $$INSTALL_PATH/Frameworks/discid.framework
     discid_framework.files = ../../mac_os/discid.framework/*
-    discid_framework.extra= $$[QT_INSTALL_BINS]/macdeployqt $$DESTDIR/qoobar.app
+    discid_framework.extra= $$[QT_INSTALL_BINS]/macdeployqt $$DESTDIR/qoobar.app -verbose=3
 
     sparkle_framework.path = $$INSTALL_PATH/Frameworks/Sparkle.framework
     sparkle_framework.files = ../../mac_os/Sparkle.framework/*
-    sparkle_framework.extra= $$[QT_INSTALL_BINS]/macdeployqt $$DESTDIR/qoobar.app
+    sparkle_framework.extra= $$[QT_INSTALL_BINS]/macdeployqt $$DESTDIR/qoobar.app -verbose=3
 
     utilities.path = $$INSTALL_PATH/Resources
     utilities.files = ../../mac_os/shntool ../../mac_os/flac ../../mac_os/mac \

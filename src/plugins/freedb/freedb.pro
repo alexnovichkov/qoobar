@@ -5,6 +5,7 @@ DEFINES += PLUGIN_VERSION=\\\"$$PVERSION\\\"
 
 HEADERS = freedb.h
 SOURCES = freedb.cpp
+OTHER_FILES += freedb.json
 
 HEADERS += ../../qoobar_app/discidhelper.h \
            ../../qoobar_app/idownloadplugin.h \

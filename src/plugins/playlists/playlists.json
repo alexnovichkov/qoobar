@@ -6,11 +6,11 @@
   "text": {
     "default": "Create playlist",
     "en_EN": "Create playlist",
-    "ru_RU": "Создать плейлист"
+    "ru": "Создать плейлист"
   },
   "description": {
     "default": "Create playlist for selected files",
     "en_EN": "Create playlist for selected files",
-    "ru_RU": "Создание плейлиста для выделенных файлов"
+    "ru": "Создание плейлиста для выделенных файлов"
   }
 }
