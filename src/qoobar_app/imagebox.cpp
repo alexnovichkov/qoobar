@@ -196,27 +196,18 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
     imagePanel = new Panel(this);
 
 #ifdef IMAGEBOX_TOOLBAR
-    addImageAct = makeAction(SLOT(addImage()),QSL("list-add"),
-                                             QSL(":/src/icons/list-add1.png"));
-    removeImageAct = makeAction(SLOT(removeImage()),QSL("list-remove"),
-                                                QSL(":/src/icons/list-remove.png"));
-    saveImageAct = makeAction(SLOT(saveImage()),QSL("document-save"),
-                                              QSL(":/src/icons/document-save.png"));
+    addImageAct = makeAction(SLOT(addImage()), QSL(":/src/icons/list-add1.png"));
+    removeImageAct = makeAction(SLOT(removeImage()), QSL(":/src/icons/list-remove.png"));
+    saveImageAct = makeAction(SLOT(saveImage()), QSL(":/src/icons/document-save.png"));
 
     addImageAct->setEnabled(true);
 
-    typeButton = makeButton(SLOT(changeType()),QString(),
-                            QSL(":/src/icons/TextEdit.png"));
-    descriptionButton = makeButton(SLOT(changeDescription()),QString(),
-                                   QSL(":/src/icons/TextEdit.png"));
-    copyAct = makeAction(SLOT(copyImage()),
-                            QSL("edit-copy"), QSL(":/src/icons/edit-copy.png"));
-    cutAct = makeAction(SLOT(cutImage()),
-                           QSL("edit-cut"), QSL(":/src/icons/edit-cut.png"));
-    pasteAct = makeAction(SLOT(pasteImage()),
-                             QSL("edit-paste"), QSL(":/src/icons/edit-paste.png"));
-    resizeAct = makeAction(SLOT(resizeImage()),
-                              "", QSL(":/src/icons/image_resize.png"));
+    typeButton = makeButton(SLOT(changeType()),QSL(":/src/icons/TextEdit.png"));
+    descriptionButton = makeButton(SLOT(changeDescription()),QSL(":/src/icons/TextEdit.png"));
+    copyAct = makeAction(SLOT(copyImage()), QSL(":/src/icons/edit-copy.png"));
+    cutAct = makeAction(SLOT(cutImage()), QSL(":/src/icons/edit-cut.png"));
+    pasteAct = makeAction(SLOT(pasteImage()), QSL(":/src/icons/edit-paste.png"));
+    resizeAct = makeAction(SLOT(resizeImage()),QSL(":/src/icons/image_resize.png"));
     typePanel->addWidget(typeButton);
     descriptionPanel->addWidget(descriptionButton);
 
@@ -235,13 +226,13 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
     removeImageAct = new QAction(this);
     saveImageAct = new QAction(this);
     QToolButton *addImageButton = makeButton(addImageAct,
-                                             SLOT(addImage()),QSL("list-add"),
+                                             SLOT(addImage()),
                                              QSL(":/src/icons/list-add1.png"));
     QToolButton *removeImageButton = makeButton(removeImageAct,
-                                                SLOT(removeImage()),QSL("list-remove"),
+                                                SLOT(removeImage()),
                                                 QSL(":/src/icons/list-remove.png"));
     QToolButton *saveImageButton = makeButton(saveImageAct,
-                                              SLOT(saveImage()),QSL("document-save"),
+                                              SLOT(saveImage()),
                                               QSL(":/src/icons/document-save.png"));
 
 
@@ -254,18 +245,17 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
     pasteAct = new QAction(this);
     resizeAct = new QAction(this);
 
-    typePanel->addWidget(makeButton(typeAct, SLOT(changeType()),QString(),
-                                    QSL(":/src/icons/TextEdit.png")));
-    descriptionPanel->addWidget(makeButton(descriptionAct, SLOT(changeDescription()),QString(),
+    typePanel->addWidget(makeButton(typeAct, SLOT(changeType()),QSL(":/src/icons/TextEdit.png")));
+    descriptionPanel->addWidget(makeButton(descriptionAct, SLOT(changeDescription()),
                                            QSL(":/src/icons/TextEdit.png")));
     imagePanel->addWidget(makeButton(cutAct, SLOT(cutImage()),
-                                     QSL("edit-cut"), QSL(":/src/icons/edit-cut.png")));
+                                     QSL(":/src/icons/edit-cut.png")));
     imagePanel->addWidget(makeButton(copyAct, SLOT(copyImage()),
-                                     QSL("edit-copy"), QSL(":/src/icons/edit-copy.png")));
+                                     QSL(":/src/icons/edit-copy.png")));
     imagePanel->addWidget(makeButton(pasteAct, SLOT(pasteImage()),
-                                     QSL("edit-paste"), QSL(":/src/icons/edit-paste.png")));
+                                     QSL(":/src/icons/edit-paste.png")));
     imagePanel->addWidget(makeButton(resizeAct, SLOT(resizeImage()),
-                                     "", QSL(":/src/icons/image_resize.png")));
+                                     QSL(":/src/icons/image_resize.png")));
 #endif
 
     QGridLayout *imageLayout=new QGridLayout;
@@ -407,49 +397,34 @@ void ImageBox::removeImage()
     Q_EMIT imageChanged(img,tr("removing cover art"));
 }
 
-QToolButton *ImageBox::makeButton(QAction *act, const char *slot,
-                       const QString &themeIcon, const QString &icon)
+QToolButton *ImageBox::makeButton(QAction *act, const char *slot, const QString &icon)
 {DD
     connect(act,SIGNAL(triggered()),slot);
     QToolButton *button = new QToolButton(this);
     button->setAutoRaise(true);
     button->setDefaultAction(act);
-#if QT_VERSION >= 0x040600
-    act->setIcon(QIcon::fromTheme(themeIcon,QIcon(icon)));
-#else
     act->setIcon(QIcon(icon));
-#endif
     act->setEnabled(false);
     return button;
 }
 
-QPushButton *ImageBox::makeButton(const char *slot, const QString &themeIcon, const QString &icon)
+QPushButton *ImageBox::makeButton(const char *slot, const QString &icon)
 {DD
     QPushButton *button = new QPushButton(this);
     connect(button,SIGNAL(clicked()),slot);
 
     button->setFlat(true);
     button->setMaximumSize(24,24);
-
-#if QT_VERSION >= 0x040600
-    button->setIcon(QIcon::fromTheme(themeIcon,QIcon(icon)));
-#else
     button->setIcon(QIcon(icon));
-#endif
     button->setEnabled(false);
     return button;
 }
 
-QAction *ImageBox::makeAction(const char *slot, const QString &themeIcon, const QString &icon)
+QAction *ImageBox::makeAction(const char *slot, const QString &icon)
 {DD
     QAction *act = new QAction(this);
     connect(act,SIGNAL(triggered()),slot);
-
-#if QT_VERSION >= 0x040600
-    act->setIcon(QIcon::fromTheme(themeIcon,QIcon(icon)));
-#else
     act->setIcon(QIcon(icon));
-#endif
     act->setEnabled(false);
     return act;
 }

@@ -103,12 +103,9 @@ private Q_SLOTS:
     void changeType();
     void changeDescription();
 private:
-    QToolButton *makeButton(QAction *act, const char *slot,
-                           const QString &themeIcon, const QString &icon);
-    QPushButton *makeButton(const char *slot,
-                           const QString &themeIcon, const QString &icon);
-    QAction *makeAction(const char *slot,
-                        const QString &themeIcon, const QString &icon);
+    QToolButton *makeButton(QAction *act, const char *slot, const QString &icon);
+    QPushButton *makeButton(const char *slot, const QString &icon);
+    QAction *makeAction(const char *slot, const QString &icon);
 
     QPushButton *typeButton;
     QPushButton *descriptionButton;

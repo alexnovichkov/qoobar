@@ -1040,6 +1040,8 @@ bool Model::setData(const QModelIndex &index, const QVariant &val, int role)
     if (col==COL_TRACKNUMBER) col=TRACKNUMBER;
     else if (col<=14) col -= 3;
     else col -= 2;
+
+
     if (col>=TAGSCOUNT || col<0) return false;
 
     const int row = index.row();
