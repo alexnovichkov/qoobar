@@ -694,7 +694,7 @@ void Tab::pasteFromClipboard() /*SLOT*/
     if (text.isEmpty()) return;
     QStringList newValues=text.split(QRegExp(QSL("\\n|\\r|\\n\\r|\\r\\n")));
     if (newValues.size()==1 && App->autoexpand) {
-        while (indexes.size()>newValues.size()) newValues<<newValues.first();
+        newValues = QVector<QString>(indexes.size(),newValues.first()).toList();
     }
     while (indexes.size()<newValues.size()) newValues.removeLast();
     while (indexes.size()>newValues.size()) newValues<<QString();
@@ -947,6 +947,8 @@ void Tab::delFiles(bool deleteSilently)
 
     handleCutCopy();
 }
+
+#include <QMimeDatabase>
 
 void Tab::addFileNames(const QStringList &filesToAdd, bool clearBefore)
 {DD;

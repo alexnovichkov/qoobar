@@ -107,7 +107,7 @@ QList<Artist> parseArtists(QXmlStreamReader &x)
         else if (x.isStartElement()) {
             QStringRef name=x.name();
             if (name=="artist")
-                result.append(Artist());
+                result << Artist();
             else if (name=="name") {
                 if (result.isEmpty()) result << Artist();
                 result.last().fields.insert("name", x.readElementText());
@@ -269,7 +269,7 @@ QList<SearchResult> MusicbrainzPlugin::parseResponse(const QByteArray &response)
                 results.last().fields.insert("album",
                                              results.last().fields.value("album")
                                              + " / "
-                                             +SearchResult::artistsText(parseArtists(x)));
+                                             +artistsText(parseArtists(x)));
             }
             else if (name=="label-info-list") {
                 results.last().fields.insert("label", parseLabels(x));

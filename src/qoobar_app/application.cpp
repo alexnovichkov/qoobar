@@ -42,6 +42,71 @@
 #include "enums.h"
 #include "qoobarglobals.h"
 
+//#include <QProxyStyle>
+
+//class ProxyStyle : public QProxyStyle
+//{
+//public:
+//    void drawPrimitive(PrimitiveElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget = 0)
+//    {
+//        QRect rect = option->rect;
+//        if (element == PE_PanelButtonTool /*&& widget->property("fancy").toBool()*/) {
+//            qDebug()<<1;
+//            bool pressed = option->state & State_Sunken || option->state & State_On;
+//            if (pressed) {
+//                painter->save();
+//                QLinearGradient grad(rect.topLeft(), rect.topRight());
+//                grad.setColorAt(0, QColor(255, 255, 255, 140));
+//                grad.setColorAt(1, QColor(255, 255, 255, 210));
+//                painter->fillRect(rect.adjusted(0, 0, 0, -1), grad);
+//                painter->restore();
+
+//                //shadows
+//                painter->setPen(QColor(0, 0, 0, 110));
+//                painter->drawLine(rect.topLeft() + QPoint(1,-1), rect.topRight() - QPoint(0,1));
+//                painter->drawLine(rect.bottomLeft(), rect.bottomRight());
+//                painter->setPen(QColor(0, 0, 0, 40));
+//                painter->drawLine(rect.topLeft(), rect.bottomLeft());
+
+//                //highlights
+//                painter->setPen(QColor(255, 255, 255, 50));
+//                painter->drawLine(rect.topLeft() + QPoint(0, -2), rect.topRight() - QPoint(0,2));
+//                painter->drawLine(rect.bottomLeft() + QPoint(0, 1), rect.bottomRight() + QPoint(0,1));
+//                painter->setPen(QColor(255, 255, 255, 40));
+//                painter->drawLine(rect.topLeft() + QPoint(0, 0), rect.topRight());
+//                painter->drawLine(rect.topRight() + QPoint(0, 1), rect.bottomRight() - QPoint(0, 1));
+//                painter->drawLine(rect.bottomLeft() + QPoint(0,-1), rect.bottomRight()-QPoint(0,1));
+//                painter->restore();
+//            }
+////            QColor shadow(0, 0, 0, 30);
+////            painter->setPen(shadow);
+////            if (pressed) {
+////                QColor shade = option->palette.base().color();
+////                shade.setHsv(shade.hue(), shade.saturation(), 255 - shade.value(), 40);
+////                painter->fillRect(rect, shade);
+////                painter->drawLine(rect.topLeft() + QPoint(1, 0), rect.topRight() - QPoint(1, 0));
+////                painter->drawLine(rect.topLeft(), rect.bottomLeft());
+////                painter->drawLine(rect.topRight(), rect.bottomRight());
+////            } else if (option->state & State_Enabled && option->state & State_MouseOver) {
+////                painter->fillRect(rect, QColor("#25ffffff"));
+////            }
+////            if (option->state & State_HasFocus && (option->state & State_KeyboardFocusChange)) {
+////                QColor highlight = option->palette.highlight().color();
+////                highlight.setAlphaF(0.4);
+////                painter->setPen(QPen(highlight.lighter(), 1));
+////                highlight.setAlphaF(0.3);
+////                painter->setBrush(highlight);
+////                painter->setRenderHint(QPainter::Antialiasing);
+////                const QRectF rect = option->rect;
+////                painter->drawRoundedRect(rect.adjusted(2.5, 2.5, -2.5, -2.5), 2, 2);
+////            }
+//        }
+//        else
+//            QProxyStyle::drawPrimitive(element, option, painter, widget);
+
+//    }
+//};
+
 bool isValidLibrary(const QFileInfo &path)
 {
     QLibrary lib(path.canonicalFilePath());
@@ -61,6 +126,8 @@ Application::Application(int &argc, char **argv, bool useGui)
     qtTranslator = new QTranslator(this);
     installTranslator(appTranslator);
     installTranslator(qtTranslator);
+
+//    setStyle(new ProxyStyle);
 
     // Setting default values
     langID = QSL("en");

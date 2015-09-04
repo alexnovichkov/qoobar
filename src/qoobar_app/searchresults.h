@@ -56,6 +56,14 @@ struct Artist {
     }
 };
 
+static QString artistsText(const QList<Artist> &l)
+    {
+        QStringList result;
+        Q_FOREACH(const Artist &a,l)
+            result << a.toString();
+        return result.join(QSL("; "));
+    }
+
 struct Track {
     QMap<QString,QString> fields;
     QList<Artist> artists;
@@ -63,11 +71,10 @@ struct Track {
     const QStringList toStringList() const
     {
         QStringList result;
-        QStringList artistsList;
-        Q_FOREACH (const Artist &a, artists) artistsList << a.toString();
+
         result << fields.value(QSL("tracknumber"))
                << fields.value(QSL("title"))
-               << artistsList.join(QSL("; "))
+               << artistsText(artists)
                << fields.value(QSL("extraData"))
                << fields.value(QSL("length"));
         return result;
@@ -78,14 +85,6 @@ struct Track {
 
 struct SearchResult {
     SearchResult() : loaded(false), cdCount(1) {}
-
-    static QString artistsText(const QList<Artist> &l)
-    {
-        QStringList result;
-        Q_FOREACH(const Artist &a,l)
-            result << a.toString();
-        return result.join(QSL("; "));
-    }
 
     const QStringList toStringList() const
     {

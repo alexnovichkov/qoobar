@@ -26,6 +26,8 @@ CONFIG *= no_keywords
 
 QT *=  network
 
+QT += multimedia
+
 # main sources and headers
 SOURCES = main.cpp \
     mainwindow.cpp \

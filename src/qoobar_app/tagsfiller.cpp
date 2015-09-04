@@ -650,7 +650,7 @@ void TagsFillDialog::updateTagsFromNetwork()
             QStringList trackConductors = excludeByRole(artists,QStringList(QSL("conduct")));
             QStringList tracklyricists = excludeByRole(artists,QStringList()<<QSL("lyrics by") << QSL("words by")<< QSL("lyricist"));
 
-            QString artist = res.artistsText(artists);
+            QString artist = artistsText(artists);
 
             Tag &tag = newTags[c];
 

@@ -36,6 +36,7 @@
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
 #ifdef Q_OS_MAC
+    // We define settings dialog as QMainWindow to obtain nice-looking OSX-style toolbar
     QMainWindow(parent)
 #else
     QDialog(parent)
@@ -86,6 +87,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
         mapper->setMapping(a,i);
         connect(a,SIGNAL(triggered()),mapper,SLOT(map()));
         toolBar->addAction(a);
+        QWidget *w = toolBar->widgetForAction(a);
+        if (w && i!=1) w->setProperty("fancy",true);
     }
 
 

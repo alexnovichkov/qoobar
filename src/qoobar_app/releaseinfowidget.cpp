@@ -104,7 +104,7 @@ ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
 
 void ReleaseInfoWidget::setSearchResult(SearchResult &r,int cdNum)
 {
-    QString artists = r.artistsText(r.artists);
+    QString artists = artistsText(r.artists);
     if (!artists.isEmpty()) r.fields.insert("artist", artists);
 
     albumTable->clear();
