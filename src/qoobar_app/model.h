@@ -265,6 +265,7 @@ Q_SIGNALS:
     void message(int type, const QString &text);
     void tagValueChanged(int column,const QString &value,int index);
     void filesAdded(int,bool);
+    void tagChangeRequested(const QString &newValue, int index, int tagID);
 
     /**
      * @brief fileAdded emitted when file with number seqNumber was added to model

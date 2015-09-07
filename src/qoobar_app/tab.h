@@ -125,6 +125,7 @@ public Q_SLOTS:
 private Q_SLOTS:
     void filesSelectionChanged();
     void cellChanged(QTableWidgetItem *);
+    void changeSingleTag(const QString &value,int index, int tagID);
     void moveUp();
     void moveDown();
     void editCell();
@@ -145,6 +146,7 @@ private Q_SLOTS:
     void showMP3TagsDialog();
     void showMessage(int type,const QString &text);
     void sortColumn(int column, Qt::SortOrder order, int sortType);
+
 private:
 //    void updateFilesTable(const QVector<int> &, const QVector<int> &);
     void updateTagsTable(const QVector<int> & rows);
