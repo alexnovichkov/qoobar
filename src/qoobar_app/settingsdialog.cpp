@@ -44,6 +44,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 {
     setWindowTitle(tr("Qoobar settings"));
 #ifdef Q_OS_MAC
+    setWindowFlags(Qt::Dialog);
     setAttribute(Qt::WA_DeleteOnClose, true);
     setWindowModality(Qt::ApplicationModal);
 #endif
