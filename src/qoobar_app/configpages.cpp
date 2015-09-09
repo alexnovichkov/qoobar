@@ -74,6 +74,7 @@ void ConfigPage::finalize(QLayout *layout)
 InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 {DD;
     dirBox = new QCheckBox(tr("Show folder tree"),this);
+    dirBox->setWhatsThis(tr("Check this box to show or hide the Folders navigation tree"));
     dirRoot = new FancyLineEdit(this);
     QPixmap pixmap(16, 16);
     pixmap.fill(Qt::transparent);
@@ -83,6 +84,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     dirRoot->setButtonVisible(FancyLineEdit::Right, true);
     dirRoot->setButtonToolTip(FancyLineEdit::Right, tr("Choose..."));
     dirRoot->setAutoHideButton(FancyLineEdit::Right, false);
+    dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
 #if QT_VERSION >= 0x040700
     dirRoot->setPlaceholderText(tr("All disks"));
     //dirRoot->setMinimumWidth(dirRoot->fontMetrics().width(QSL("Path/to/player"))*3/2);
@@ -90,7 +92,10 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     connect(dirRoot, SIGNAL(rightButtonClicked()), this, SLOT(chooseDirRoot()));
 
     dirRootLabel = new QLabel(tr("Folder tree root"),this);
+    dirRootLabel->setBuddy(dirRoot);
+    dirRootLabel->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
     useUndo = new QCheckBox(tr("Use undo / redo"),this);
+    useUndo->setWhatsThis(tr("This box allows you to turn off the Undo/Redo system in Qoobar"));
 
     autoexpand = new QCheckBox(tr("Automatically fill a tag "
                                   "when pasting a single line"),this);
@@ -100,6 +105,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     chars->setButtonToolTip(FancyLineEdit::Right, tr("Font..."));
     chars->setAutoHideButton(FancyLineEdit::Right, false);
     connect(chars, SIGNAL(rightButtonClicked()), this, SLOT(changeCharsFont()));
+    chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
 
     lang = new QComboBox(this);
     QStringList ts=QDir(ApplicationPaths::translationsPath()).entryList(QStringList(QSL("*.qm")), QDir::Files | QDir::Readable);
@@ -119,6 +125,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 
     langLabel= new QLabel(tr("User interface language"),this);
     charsBox = new QLabel(tr("Characters"),this);
+    charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
 
     hideTabBar = new QCheckBox(tr("Hide Tab bar with only one tab"), this);
 
@@ -179,6 +186,13 @@ void InterfacePage::retranslateUI()
     dirRoot->setPlaceholderText(tr("All disks"));
 #endif
     dirRootLabel->setText(tr("Folder tree root"));
+
+    dirBox->setWhatsThis(tr("Check this box to show or hide the Folders navigation tree"));
+    dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
+    dirRootLabel->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
+    useUndo->setWhatsThis(tr("This box allows you to turn off the Undo/Redo system in Qoobar"));
+    chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
+    charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
 }
 void InterfacePage::saveSettings()
 {DD;
@@ -226,6 +240,14 @@ CompletionPage::CompletionPage(QWidget *parent) : ConfigPage(parent)
     collectText->addItem(tr("Automatically"));
     collectText->addItem(tr("Manually"));
     collectTextLabel = new QLabel(tr("Collect text"),this);
+    collectText->setWhatsThis(tr("Sets the mode of remembering the text you are typing for future use.<br>"
+                                 "<b>Automatically</b> - every text line you are typing will be remembered.<br>"
+                                 "<b>Manually</b> - the text line will be remembered only after you press the"
+                                 " <i>Ctrl+H</i> shortcut"));
+    collectTextLabel->setWhatsThis(tr("Sets the mode of remembering the text you are typing for future use.<br>"
+                                      "<b>Automatically</b> - every text line you are typing will be remembered.<br>"
+                                      "<b>Manually</b> - the text line will be remembered only after you press the"
+                                      " <i>Ctrl+H</i> shortcut"));
 
     completionStyle = new QComboBox(this);
     completionStyle->setEditable(false);
@@ -242,6 +264,8 @@ CompletionPage::CompletionPage(QWidget *parent) : ConfigPage(parent)
     completionTree->setHeaderHidden(true);
     completionTree->header()->setStretchLastSection(false);
     completionTree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
+    completionTree->setWhatsThis(tr("Check the tags for which you wish to use the autocompletion.<br>"
+                                    "<br>The <i>Edit...</i> buttons allows you to manually change the remembered text lines"));
 
     const int tagsCount = App->currentScheme->tagsCount();
     for (int i=0; i<tagsCount; ++i) {
@@ -310,6 +334,16 @@ void CompletionPage::retranslateUI()
     collectText->setItemText(0,tr("Automatically"));
     collectText->setItemText(1,tr("Manually"));
     collectTextLabel->setText(tr("Collect text"));
+    collectText->setWhatsThis(tr("Sets the mode of remembering the text you are typing for future use.<br>"
+                                 "<b>Automatically</b> - every text line you are typing will be remembered.<br>"
+                                 "<b>Manually</b> - the text line will be remembered only after you press the"
+                                 " <i>Ctrl+H</i> shortcut"));
+    collectTextLabel->setWhatsThis(tr("Sets the mode of remembering the text you are typing for future use.<br>"
+                                      "<b>Automatically</b> - every text line you are typing will be remembered.<br>"
+                                      "<b>Manually</b> - the text line will be remembered only after you press the"
+                                      " <i>Ctrl+H</i> shortcut"));
+    completionTree->setWhatsThis(tr("Check the tags for which you wish to use the autocompletion.<br>"
+                                    "<br>The <i>Edit...</i> buttons allows you to manually change the remembered text lines"));
 }
 
 void CompletionPage::saveSettings()
