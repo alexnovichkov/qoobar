@@ -170,7 +170,7 @@ lessThan(QT_MAJOR_VERSION, 5) {
 OTHER_FILES *= splitandconvert.bat \
                splitandconvert.sh
 
-RESOURCES *= qoobar.qrc
+
 TRANSLATIONS = qoobar_ru.ts \
     qoobar_en.ts \
     qoobar_de.ts \
@@ -179,6 +179,12 @@ TRANSLATIONS = qoobar_ru.ts \
     qoobar_pl.ts \
     qoobar_nl.ts
 
+#win32|win|os2 {
+    RESOURCES *= qoobar-win.qrc
+#}
+#else {
+#    RESOURCES *= qoobar.qrc
+#}
 
 system(lupdate qoobar_app.pro&&lrelease qoobar_app.pro)
 system(lupdate-qt4 qoobar_app.pro&&lrelease-qt4 qoobar_app.pro)

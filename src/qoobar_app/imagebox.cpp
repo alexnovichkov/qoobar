@@ -198,15 +198,15 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
 #ifdef IMAGEBOX_TOOLBAR
     addImageAct = makeAction(SLOT(addImage()), QSL(":/src/icons/list-add1.png"));
     removeImageAct = makeAction(SLOT(removeImage()), QSL(":/src/icons/list-remove.png"));
-    saveImageAct = makeAction(SLOT(saveImage()), QSL(":/src/icons/document-save.png"));
+    saveImageAct = makeAction(SLOT(saveImage()), QSL(":/src/document-save"));
 
     addImageAct->setEnabled(true);
 
     typeButton = makeButton(SLOT(changeType()),QSL(":/src/icons/TextEdit.png"));
     descriptionButton = makeButton(SLOT(changeDescription()),QSL(":/src/icons/TextEdit.png"));
-    copyAct = makeAction(SLOT(copyImage()), QSL(":/src/icons/edit-copy.png"));
-    cutAct = makeAction(SLOT(cutImage()), QSL(":/src/icons/edit-cut.png"));
-    pasteAct = makeAction(SLOT(pasteImage()), QSL(":/src/icons/edit-paste.png"));
+    copyAct = makeAction(SLOT(copyImage()), QSL(":/src/edit-copy"));
+    cutAct = makeAction(SLOT(cutImage()), QSL(":/src/edit-cut"));
+    pasteAct = makeAction(SLOT(pasteImage()), QSL(":/src/edit-paste"));
     resizeAct = makeAction(SLOT(resizeImage()),QSL(":/src/icons/image_resize.png"));
     typePanel->addWidget(typeButton);
     descriptionPanel->addWidget(descriptionButton);
@@ -233,7 +233,7 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
                                                 QSL(":/src/icons/list-remove.png"));
     QToolButton *saveImageButton = makeButton(saveImageAct,
                                               SLOT(saveImage()),
-                                              QSL(":/src/icons/document-save.png"));
+                                              QSL(":/src/document-save"));
 
 
     addImageAct->setEnabled(true);
@@ -249,11 +249,11 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
     descriptionPanel->addWidget(makeButton(descriptionAct, SLOT(changeDescription()),
                                            QSL(":/src/icons/TextEdit.png")));
     imagePanel->addWidget(makeButton(cutAct, SLOT(cutImage()),
-                                     QSL(":/src/icons/edit-cut.png")));
+                                     QSL(":/src/edit-cut")));
     imagePanel->addWidget(makeButton(copyAct, SLOT(copyImage()),
-                                     QSL(":/src/icons/edit-copy.png")));
+                                     QSL(":/src/edit-copy")));
     imagePanel->addWidget(makeButton(pasteAct, SLOT(pasteImage()),
-                                     QSL(":/src/icons/edit-paste.png")));
+                                     QSL(":/src/edit-paste")));
     imagePanel->addWidget(makeButton(resizeAct, SLOT(resizeImage()),
                                      QSL(":/src/icons/image_resize.png")));
 #endif

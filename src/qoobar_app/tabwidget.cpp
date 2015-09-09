@@ -137,7 +137,7 @@ TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent)
     setTabBar(m_tabBar);
 
     QToolButton *newTabButton = new QToolButton();
-    QAction *a = new QAction(QIcon(QSL(":/src/icons/newTab.png")),tr("New tab"),this);
+    QAction *a = new QAction(QIcon(QSL(":/src/newTab")),tr("New tab"),this);
     connect(a,SIGNAL(triggered()),this,SIGNAL(newTab()));
     newTabButton->setDefaultAction(a);
     newTabButton->setAutoRaise(true);

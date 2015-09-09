@@ -75,15 +75,25 @@ const Act MainWindow::actionsDescr[] = {
      QT_TR_NOOP("Save current tab"),
      QT_TR_NOOP("Save"),
      0, 0, QKeySequence::Save, "document-save",SLOT(saveTags())},
-    {"saveAll", QT_TR_NOOP("Save all &tabs"), QT_TR_NOOP("Save all tabs"), QT_TR_NOOP("Save all"),
+    {"saveAll", QT_TR_NOOP("Save all &tabs"),
+     QT_TR_NOOP("Save all tabs"),
+     QT_TR_NOOP("Save all"),
      SLOT(saveAll()), 0, QKeySequence::UnknownKey, 0,0},
-    {"rename", QT_TR_NOOP("&Rename files..."), QT_TR_NOOP("Rename files..."), QT_TR_NOOP("Rename"),
+    {"rename", QT_TR_NOOP("&Rename files..."),
+     QT_TR_NOOP("Rename files..."),
+     QT_TR_NOOP("Rename"),
      0, QT_TR_NOOP("Ctrl+R"), QKeySequence::UnknownKey, "document-save-as",SLOT(renameFiles())},
-    {"fill", QT_TR_NOOP("&Fill tags..."), QT_TR_NOOP("Fill tags..."), QT_TR_NOOP("Fill"),
+    {"fill", QT_TR_NOOP("&Fill tags..."),
+     QT_TR_NOOP("Fill tags..."),
+     QT_TR_NOOP("Fill"),
      0, QT_TR_NOOP("Ctrl+F"), QKeySequence::UnknownKey, "fill", SLOT(fill())},
-    {"rereadTags", QT_TR_NOOP("&Reread tags"), QT_TR_NOOP("Reread tags"), QT_TR_NOOP("Reread"),
+    {"rereadTags", QT_TR_NOOP("&Reread tags"),
+     QT_TR_NOOP("Reread tags"),
+     QT_TR_NOOP("Reread"),
      0, 0, QKeySequence::UnknownKey, "document-revert", SLOT(rereadTags())},
-    {"help", QT_TR_NOOP("&Help"), QT_TR_NOOP("Help on Qoobar"), QT_TR_NOOP("Help"),
+    {"help", QT_TR_NOOP("&Help"),
+     QT_TR_NOOP("Help on Qoobar"),
+     QT_TR_NOOP("Help"),
      SLOT(showHelp()), 0, QKeySequence::HelpContents, "help-contents",0},
     {"about", QT_TR_NOOP("&About Qoobar"), QT_TR_NOOP("About Qoobar"), QT_TR_NOOP("About"),
      SLOT(showAboutDialog()), 0, QKeySequence::UnknownKey, "help-about",0},
@@ -327,7 +337,7 @@ void MainWindow::createUndoRedoActs()
     delete redoAct;
     undoAct = undoGroup->createUndoAction(this/*,tr("&Undo")*/);
     undoAct->setShortcutContext(Qt::ApplicationShortcut);
-    undoAct->setIcon(QIcon(QSL(":/src/icons/edit-undo.png")));
+    undoAct->setIcon(QIcon(QSL(":/src/edit-undo")));
     undoAct->setShortcut(QKeySequence(QKeySequence::Undo).toString());
     undoAct->setProperty("shortDescr",tr("Undo"));
     undoAct->setPriority(QAction::LowPriority);
@@ -335,7 +345,7 @@ void MainWindow::createUndoRedoActs()
 
     redoAct = undoGroup->createRedoAction(this/*,tr("&Redo")*/);
     redoAct->setShortcutContext(Qt::ApplicationShortcut);
-    redoAct->setIcon(QIcon(QSL(":/src/icons/edit-redo.png")));
+    redoAct->setIcon(QIcon(QSL(":/src/edit-redo")));
     redoAct->setShortcut(QKeySequence(QKeySequence::Redo).toString());
     redoAct->setProperty("shortDescr",tr("Redo"));
     redoAct->setPriority(QAction::LowPriority);
@@ -376,7 +386,7 @@ void MainWindow::createActions()
 
         if (actionsDescr[i].slot) connect(a,SIGNAL(triggered()),this,actionsDescr[i].slot);
         if (actionsDescr[i].icon) {
-            a->setIcon(QIcon(QString(":/src/icons/%1.png").arg(actionsDescr[i].icon)));
+            a->setIcon(QIcon(QString(":/src/%1").arg(actionsDescr[i].icon)));
         }
         a->setText(tr(actionsDescr[i].text));
         a->setProperty("shortDescr",tr(actionsDescr[i].shortText));

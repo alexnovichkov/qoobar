@@ -145,12 +145,12 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
 
     searchBar->hide();
 
-    moveUpAct = new QAction(qApp->style()->standardIcon(QStyle::SP_ArrowUp),tr("Move up"),this);
+    moveUpAct = new QAction(QIcon(QSL(":/src/icons/go-up.png")),tr("Move up"),this);
     connect(moveUpAct,SIGNAL(triggered()),this,SLOT(moveUp()));
     moveUpAct->setShortcut(tr("Ctrl+Up"));
     moveUpAct->setDisabled(true);
 
-    moveDownAct = new QAction(qApp->style()->standardIcon(QStyle::SP_ArrowDown),tr("Move down"),this);
+    moveDownAct = new QAction(QIcon(QSL(":/src/icons/go-down.png")),tr("Move down"),this);
     connect(moveDownAct,SIGNAL(triggered()),this,SLOT(moveDown()));
     moveDownAct->setShortcut(tr("Ctrl+Down"));
     moveDownAct->setDisabled(true);
@@ -162,7 +162,7 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     connect(multilineEditAct,SIGNAL(triggered()),this,SLOT(editCell()));
 
 
-    removeAct = new QAction(tr("C&lear tags"),this);
+    removeAct = new QAction(QIcon(QSL(":/src/edit-clear")),tr("C&lear tags"),this);
     removeAct->setShortcut(Qt::Key_Delete);
     removeAct->setShortcutContext(Qt::WidgetShortcut);
     connect(removeAct,SIGNAL(triggered()),this,SLOT(remove()));
