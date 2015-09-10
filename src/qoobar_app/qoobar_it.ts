@@ -2878,74 +2878,74 @@ Vuoi salvare i cambiamenti?</translation>
         <translation>%1 (%2 col tasto Shift)</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="150"/>
-        <location filename="tagseditor.cpp" line="565"/>
+        <location filename="tagseditor.cpp" line="147"/>
+        <location filename="tagseditor.cpp" line="562"/>
         <source>Hide characters</source>
         <translation>Nascondere i caratteri</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="155"/>
-        <location filename="tagseditor.cpp" line="559"/>
+        <location filename="tagseditor.cpp" line="152"/>
+        <location filename="tagseditor.cpp" line="556"/>
         <source>Show characters</source>
         <translation>Mostra i caratteri</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="233"/>
+        <location filename="tagseditor.cpp" line="230"/>
         <source>lower</source>
         <translation>minuscole</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="234"/>
+        <location filename="tagseditor.cpp" line="231"/>
         <source>UPPER</source>
         <translation>MAIUSCOLE</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="235"/>
+        <location filename="tagseditor.cpp" line="232"/>
         <source>Only first up</source>
         <translation>Solo la prima parola maiuscola</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="236"/>
+        <location filename="tagseditor.cpp" line="233"/>
         <source>Every First Up</source>
         <translation>Solo La Prima Lettera Maiuscola</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="237"/>
+        <location filename="tagseditor.cpp" line="234"/>
         <source>Simplify whitespaces</source>
         <translation>Semplificagli spazzi</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="238"/>
+        <location filename="tagseditor.cpp" line="235"/>
         <source>Remove diacritics</source>
         <translation>Rimuovi i segni diacritici</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="239"/>
+        <location filename="tagseditor.cpp" line="236"/>
         <source>Transliterate</source>
         <translation>Traslitterare</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="240"/>
+        <location filename="tagseditor.cpp" line="237"/>
         <source>Fix encoding</source>
         <translation>Aggiusta codifica Russa</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="199"/>
+        <location filename="tagseditor.cpp" line="196"/>
         <source>Collect for future use</source>
         <translation>Raccogliere per un uso futuro</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="209"/>
+        <location filename="tagseditor.cpp" line="206"/>
         <source>Find/Replace</source>
         <translation>Trova/Sostituisci</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="413"/>
+        <location filename="tagseditor.cpp" line="410"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="413"/>
+        <location filename="tagseditor.cpp" line="410"/>
         <source>Nothing found</source>
         <translation>Nessun dato trovato</translation>
     </message>

@@ -375,6 +375,7 @@ void MainWindow::retranslateUi()
             updateTabText(!tab->allFilesSaved(),i);
         }
     }
+//    statusBar_->updateIcon();
 }
 
 void MainWindow::createActions()

@@ -26,8 +26,6 @@ CONFIG *= no_keywords
 
 QT *=  network
 
-QT += multimedia
-
 # main sources and headers
 SOURCES = main.cpp \
     mainwindow.cpp \
@@ -179,12 +177,8 @@ TRANSLATIONS = qoobar_ru.ts \
     qoobar_pl.ts \
     qoobar_nl.ts
 
-#win32|win|os2 {
-    RESOURCES *= qoobar-win.qrc
-#}
-#else {
-#    RESOURCES *= qoobar.qrc
-#}
+
+RESOURCES *= qoobar.qrc
 
 system(lupdate qoobar_app.pro&&lrelease qoobar_app.pro)
 system(lupdate-qt4 qoobar_app.pro&&lrelease-qt4 qoobar_app.pro)

@@ -6,7 +6,7 @@
 #else
 #include <QtGui>
 #endif
-
+#include "application.h"
 
 StatusBar::StatusBar(QWidget *parent) :
     QStatusBar(parent)
@@ -30,14 +30,27 @@ StatusBar::StatusBar(QWidget *parent) :
     totalLengthLabel->setAlignment(Qt::AlignTop | Qt::AlignCenter);
     totalLengthLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
-    addWidget(filenameLabel,10);
+//    unfoldAct = new QAction(tr("Show files properties"),this);
+//    connect(unfoldAct,SIGNAL(triggered()),SLOT(switchFilesProperties()));
+//    updateIcon();
+//    QToolButton *unfoldButton = new QToolButton(this);
+//    unfoldButton->setDefaultAction(unfoldAct);
+//    unfoldButton->setAutoRaise(true);
+
+//    addWidget(unfoldButton,1);
+    addWidget(filenameLabel,100);
     addPermanentWidget(typeLabel,1);
     addPermanentWidget(lengthLabel,1);
     addPermanentWidget(totalLengthLabel,1);
 }
 
+void StatusBar::retranslateUI()
+{DD;
+
+}
+
 void StatusBar::update(const Tag &tag)
-{DD
+{DD;
     QString elided=filenameLabel->fontMetrics().elidedText(tag.fullFileName(), Qt::ElideLeft, filenameLabel->width());
     filenameLabel->setText(elided);
     if (tag.bitrate().isEmpty() && tag.sampleRate()==0 && tag.channels()==0)
@@ -52,6 +65,19 @@ void StatusBar::update(const Tag &tag)
 }
 
 void StatusBar::updateTotalLength(int totalLength)
-{DD
+{DD;
     totalLengthLabel->setText(totalLength==0?QString():Qoobar::formatLength(totalLength));
 }
+
+//void StatusBar::switchFilesProperties()
+//{
+//    App->showFullFilesProperties = !App->showFullFilesProperties;
+//    updateIcon();
+//    // now show or hide widgets
+//}
+
+//void StatusBar::updateIcon()
+//{
+//    unfoldAct->setIcon(App->showFullFilesProperties?QIcon(":/src/icons/unfold.png"):QIcon(":/src/icons/fold.png"));
+//    unfoldAct->setText(App->showFullFilesProperties?tr("Hide files properties"):tr("Show files properties"));
+//}

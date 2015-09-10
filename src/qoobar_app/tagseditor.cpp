@@ -131,10 +131,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 
 
     hideIcon = QIcon(":/src/icons/fold.png");
-    QPixmap showPixmap = hideIcon.pixmap(hideIcon.availableSizes().first());
-    QTransform transform;
-    transform.rotate(180);
-    showIcon.addPixmap(showPixmap.transformed(transform));
+    showIcon = QIcon(":/src/icons/unfold.png");
 
     toggleCharsAct = new QAction(this);
     connect(toggleCharsAct,SIGNAL(triggered()),this,SLOT(toggleCharsWidget()));

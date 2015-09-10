@@ -207,6 +207,7 @@ public:
 
     bool useUndo;
 //    bool useDelayedUpdate;
+//    bool showFullFilesProperties;
 
     QString encaGuessLanguage;
     QByteArray geometry;

@@ -185,7 +185,7 @@ Application::Application(int &argc, char **argv, bool useGui)
     recursive = false;
     consoleMode = false;
     mpcWriteRg = true;
-
+//    showFullFilesProperties = false;
 
     /*Testing for loadable libraries*/
     /*that is discid*/
@@ -337,6 +337,7 @@ void Application::readGuiSettings()
     }
 
     hideTabBar = se.value(QSL("hideTabBar"), false).toBool();
+//    showFullFilesProperties = se.value(QSL("showFullFilesProperties"),false).toBool();
 }
 
 void Application::readGlobalSettings()
@@ -472,6 +473,7 @@ void Application::writeGuiSettings()
     se.setValue("fill_Patterns",fillPatterns);
     se.setValue(QSL("searchPaths"), searchPaths);
     se.setValue(QSL("hideTabBar"), hideTabBar);
+//    se.setValue(QSL("showFullFilesProperties"), showFullFilesProperties);
 
     autocompletions->write(se);
 }

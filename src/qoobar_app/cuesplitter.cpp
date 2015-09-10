@@ -46,8 +46,6 @@
 #include <windows.h>
 #endif
 
-#include <QtMultimedia>
-
 QString getShortFileName(const QString &fileName)
 {
 #ifdef Q_OS_WIN
@@ -95,25 +93,6 @@ CueSplitter::CueSplitter(QObject *parent) :
     flacInstalled = Qoobar::programInstalled(QSL("flac"),0);
     macInstalled = Qoobar::programInstalled(QSL("mac"),0);
     ffmpegInstalled = Qoobar::programInstalled(QSL("ffmpeg"),0) || Qoobar::programInstalled(QSL("avconv"),0);
-
-
-
-    QAudioDecoder *ad=new QAudioDecoder(this);
-    qDebug()<<"audio/mpeg"<<ad->hasSupport("audio/mpeg");
-    qDebug()<<"audio/x-musepack"<<ad->hasSupport("audio/x-musepack");
-    qDebug()<<"audio/x-vorbis+ogg"<<ad->hasSupport("audio/x-vorbis+ogg");
-    qDebug()<<"audio/x-ms-wma"<<ad->hasSupport("audio/x-ms-wma");
-    qDebug()<<"audio/x-wavpack"<<ad->hasSupport("audio/x-wavpack");
-    qDebug()<<"audio/x-aiff"<<ad->hasSupport("audio/x-aiff");
-    qDebug()<<"audio/mp4"<<ad->hasSupport("audio/mp4");
-    qDebug()<<"audio/flac"<<ad->hasSupport("audio/flac");
-    qDebug()<<"audio/x-ape"<<ad->hasSupport("audio/x-ape");
-//    QList<QAudioDeviceInfo> adi=QAudioDeviceInfo::availableDevices(QAudio::AudioOutput);
-//    qDebug()<<adi.size();
-//    Q_FOREACH (QAudioDeviceInfo ad, adi) {
-//        qDebug()<<ad.deviceName()<<ad.supportedCodecs();
-//    }
-    delete ad;
 }
 
 CueSplitter::~CueSplitter()

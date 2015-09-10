@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/src">
         <file>icons/qoobar.png</file>
-        <file alias="Delete">icons/Delete.png</file>
         <file>icons/flac.png</file>
         <file>icons/m4a.png</file>
         <file>icons/mp3.png</file>
@@ -13,14 +12,10 @@
         <file>icons/wav.png</file>
         <file>icons/wma.png</file>
         <file>icons/wv.png</file>
-        <file alias="fill">icons/fill.png</file>
         <file alias="newTab">icons/newTab.png</file>
         <file>icons/ape.png</file>
         <file>icons/zoom-in.png</file>
-        <file alias="list-add">icons/list-add.png</file>
         <file>icons/list-remove.png</file>
-        <file alias="edit-redo">icons/edit-redo.png</file>
-        <file alias="edit-undo">icons/edit-undo.png</file>
         <file>icons/TextEdit.png</file>
         <file>icons/writing.png</file>
         <file>icons/completion.png</file>
@@ -40,16 +35,7 @@
         <file>icons/small.png</file>
         <file>default.xml</file>
         <file>icons/flip.png</file>
-        <file alias="document-new">icons/document-new.png</file>
-        <file alias="document-save-as">icons/document-save-as.png</file>
-        <file alias="edit-clear">icons/edit-clear.png</file>
-        <file alias="edit-copy">icons/edit-copy.png</file>
-        <file alias="edit-cut">icons/edit-cut.png</file>
-        <file alias="edit-paste">icons/edit-paste.png</file>
-        <file alias="folder-new">icons/folder-new.png</file>
         <file>icons/list-add1.png</file>
-        <file alias="media-import-audio-cd">icons/media-import-audio-cd.png</file>
-        <file alias="media-playback-start">icons/media-playback-start.png</file>
         <file alias="preferences-system">icons/preferences-system.png</file>
         <file>icons/exclamation.png</file>
         <file>icons/tick.png</file>
@@ -69,9 +55,24 @@
         <file>icons/magnifier_nomenu.png</file>
         <file>icons/progressindicator.gif</file>
         <file>icons/fold.png</file>
-        <file alias="document-revert">icons/document-revert.png</file>
         <file>icons/go-down.png</file>
         <file>icons/go-up.png</file>
-        <file alias="document-save">icons/document-save.png</file>
+        <file alias="document-save">icons/document-save.ico</file>
+        <file alias="folder-new">icons/folder-new.ico</file>
+        <file alias="document-new">icons/document-new.ico</file>
+        <file alias="media-import-audio-cd">icons/media-import-audio-cd.ico</file>
+        <file alias="document-revert">icons/document-revert.ico</file>
+        <file alias="edit-redo">icons/edit-redo.ico</file>
+        <file alias="edit-undo">icons/edit-undo.ico</file>
+        <file alias="document-save-as">icons/document-save-as.ico</file>
+        <file alias="fill">icons/fill.ico</file>
+        <file alias="Delete">icons/Delete.ico</file>
+        <file alias="edit-clear">icons/edit-clear.ico</file>
+        <file alias="media-playback-start">icons/media-playback-start.ico</file>
+        <file alias="edit-copy">icons/edit-copy.ico</file>
+        <file alias="edit-cut">icons/edit-cut.ico</file>
+        <file alias="edit-paste">icons/edit-paste.ico</file>
+        <file alias="list-add">icons/list-add.ico</file>
+        <file>icons/unfold.png</file>
     </qresource>
 </RCC>
