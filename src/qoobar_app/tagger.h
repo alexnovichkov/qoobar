@@ -101,6 +101,7 @@ public:
     int filetype;
     bool readOnly;
     int tagsCount;
+    qint64 size;
 
     QVector<QString> tags;
 
@@ -209,6 +210,8 @@ public:
     bool readOnly() const {return d->readOnly;}
 
     int tagsCount() const {return d->tagsCount;}
+
+    qint64 size() const {return d->size;}
 
     QString tag(const int &) const;
     QString nonEmptyTag(const int & tagID,const QString &defaultVal) const;

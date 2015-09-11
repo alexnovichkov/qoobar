@@ -78,7 +78,6 @@ public:
     bool allFilesSaved() const;
     void setTabNumber(int n) {tabnumber=n;}
     int tabNumber() {return tabnumber;}
-    bool filesSelected();
     bool isEmpty();
     void setStatus();
     void retranslateUi();
@@ -100,11 +99,13 @@ Q_SIGNALS:
     void bufferChanged(bool);
     void tagsSelectionChanged(bool tagsSelected);
     void filesCountChanged(int);
-    void totalLengthChanged(int);
+    void selectedLengthChanged(int,int);
+    void totalLengthChanged(int,int);
     void moveFilesToTab(int,const QList<Tag>&);
     void updateStatusBar(const Tag &);
 public Q_SLOTS:
     void addFiles(int, bool);
+    void setAsCurrent();
 
     void copy();
     void paste();

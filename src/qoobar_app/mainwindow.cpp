@@ -355,7 +355,7 @@ void MainWindow::createUndoRedoActs()
 }
 
 void MainWindow::retranslateUi()
-{DD
+{DD;
     setWindowTitle(tr("Qoobar - Tag editor for classical music")+QSL("[*]"));
 
     App->currentScheme->retranslateUI();
@@ -375,7 +375,7 @@ void MainWindow::retranslateUi()
             updateTabText(!tab->allFilesSaved(),i);
         }
     }
-//    statusBar_->updateIcon();
+    statusBar_->retranslateUI();
 }
 
 void MainWindow::createActions()
@@ -497,8 +497,9 @@ void MainWindow::createNewTab(bool quick)
     connect(tab,SIGNAL(tagsSelectionChanged(bool)),SLOT(onTagsSelectionChanged(bool)));
     connect(tab,SIGNAL(filesCountChanged(int)),SLOT(onFilesCountChanged(int)));
     connect(tab,SIGNAL(moveFilesToTab(int,QList<Tag>)),SLOT(moveFilesToTab(int,QList<Tag>)));
-    connect(tab,SIGNAL(updateStatusBar(Tag)),statusBar_,SLOT(update(Tag)));
-    connect(tab,SIGNAL(totalLengthChanged(int)),statusBar_,SLOT(updateTotalLength(int)));
+    connect(tab,SIGNAL(updateStatusBar(const Tag&)),statusBar_,SLOT(update(const Tag&)));
+    connect(tab,SIGNAL(totalLengthChanged(int,int)),statusBar_,SLOT(updateTotalLength(int,int)));
+    connect(tab,SIGNAL(selectedLengthChanged(int,int)),statusBar_,SLOT(updateSelectedLength(int,int)));
 
     int i=tabWidget->addTab(tab,tr("Tab %1").arg(sequenceNumber));
     tab->setTabNumber(sequenceNumber);
@@ -523,13 +524,11 @@ void MainWindow::changeCurrentTab(int currentIndex)
 
     if (!tab) return;
     currentTab = tab;
+    currentTab->setAsCurrent();
 
-    onFilesChanged(!tab->allFilesSaved());
-    onSelectionChanged(tab->filesSelected());
     actions[QSL("delAllFiles")]->setEnabled(!tab->isEmpty());
     filesToolBar->updateEnabled(actions[QSL("delAllFiles")]);
-    tab->handleCutCopy();
-    tab->undoStack()->setActive();
+
 
     int i=0;
     while (actionsDescr[i].key) {

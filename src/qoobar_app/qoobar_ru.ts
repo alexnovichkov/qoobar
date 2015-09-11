@@ -4,12 +4,12 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="application.cpp" line="434"/>
+        <location filename="application.cpp" line="435"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="434"/>
+        <location filename="application.cpp" line="435"/>
         <source>Cannot write settings. The settings file is read-only</source>
         <translation>Не могу сохранить настройки программы. Файл настроек только для чтения</translation>
     </message>
@@ -31,13 +31,13 @@ Please check the file</source>
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="682"/>
-        <location filename="application.cpp" line="703"/>
+        <location filename="application.cpp" line="684"/>
+        <location filename="application.cpp" line="705"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="682"/>
+        <location filename="application.cpp" line="684"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
@@ -46,7 +46,7 @@ Please check the folder</source>
 Пожалуйста, проверьте папку</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="703"/>
+        <location filename="application.cpp" line="705"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation>Не могу записать %1.
@@ -118,13 +118,13 @@ Please check the file</source>
         <location filename="configpages.cpp" line="337"/>
         <location filename="configpages.cpp" line="341"/>
         <source>Sets the mode of remembering the text you are typing for future use.&lt;br&gt;&lt;b&gt;Automatically&lt;/b&gt; - every text line you are typing will be remembered.&lt;br&gt;&lt;b&gt;Manually&lt;/b&gt; - the text line will be remembered only after you press the &lt;i&gt;Ctrl+H&lt;/i&gt; shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Задает режим запоминания текста, который вы печатаете.&lt;br&gt;&lt;b&gt;Автоматически&lt;/b&gt; - сохраняется каждая строчка.&lt;br&gt;&lt;b&gt;Вручную&lt;/b&gt; - строки сохраняются только после нажатия клавиш &lt;i&gt;Ctrl+H&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="267"/>
         <location filename="configpages.cpp" line="345"/>
         <source>Check the tags for which you wish to use the autocompletion.&lt;br&gt;&lt;br&gt;The &lt;i&gt;Edit...&lt;/i&gt; buttons allows you to manually change the remembered text lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Отметьте теги, для которых вы будете использовать автодополнение.&lt;br&gt;&lt;br&gt;Кнопка &lt;i&gt;Редактировать...&lt;/i&gt; позваляет вручную изменить соохраненные строки</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="328"/>
@@ -144,34 +144,34 @@ Please check the file</source>
         <translation type="obsolete">Убедитесь, что в папке с qoobar.exe имеются shntool.exe и flac.exe.&lt;br&gt;Вы можете скачать их с &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="130"/>
+        <location filename="cuesplitter.cpp" line="109"/>
         <source>Please install shntool.</source>
         <translation>Установите shntool.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="132"/>
+        <location filename="cuesplitter.cpp" line="111"/>
         <source>Please install flac.</source>
         <translation>Установите flac.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="176"/>
+        <location filename="cuesplitter.cpp" line="155"/>
         <source>Opening cue file: &quot;%1&quot;</source>
         <translation>Открываю файл cue: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="189"/>
-        <location filename="cuesplitter.cpp" line="208"/>
+        <location filename="cuesplitter.cpp" line="168"/>
+        <location filename="cuesplitter.cpp" line="187"/>
         <source>Cannot open cue file %1</source>
         <translation>Не могу прочитать файл %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="497"/>
+        <location filename="cuesplitter.cpp" line="476"/>
         <source>Cannot find the file to split: %1</source>
         <translation>Не могу найти файл, чтобы разрезать:
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="533"/>
+        <location filename="cuesplitter.cpp" line="512"/>
         <source>Processing %1 ...
 
 </source>
@@ -185,33 +185,33 @@ Please check the file</source>
         <translation type="obsolete">Обрабатываю %1 ...</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="260"/>
+        <location filename="cuesplitter.cpp" line="239"/>
         <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</source>
         <translation>Убедитесь, что в папке с qoobar.exe имеется файл mac.exe.&lt;br&gt;Вы можете скачать его с &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="266"/>
+        <location filename="cuesplitter.cpp" line="245"/>
         <source>Please install mac. You can download it from &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</source>
         <translation>Установите mac. Вы можете скачать его с &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="270"/>
+        <location filename="cuesplitter.cpp" line="249"/>
         <source>Please install mac</source>
         <translation>Установите mac</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="248"/>
+        <location filename="cuesplitter.cpp" line="227"/>
         <source>Nothing to split.</source>
         <translation>Нечего резать.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="276"/>
+        <location filename="cuesplitter.cpp" line="255"/>
         <source>Please wait while Qoobar is splitting the file %1</source>
         <translation>Пожалуйста, подождите - shntool разрезает образ
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="517"/>
+        <location filename="cuesplitter.cpp" line="496"/>
         <source>Total track count: &quot;%1&quot;</source>
         <translation>Всего частей: &quot;%1&quot;</translation>
     </message>
@@ -686,12 +686,12 @@ and &quot; by two single quotes &apos;&apos;</source>
         <location filename="configpages.cpp" line="77"/>
         <location filename="configpages.cpp" line="190"/>
         <source>Check this box to show or hide the Folders navigation tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Отметьте это поле, чтобы показать/спрятать дерево папок</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="85"/>
         <source>Choose...</source>
-        <translation type="unfinished">Выбрать...</translation>
+        <translation>Выбрать...</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="87"/>
@@ -699,25 +699,25 @@ and &quot; by two single quotes &apos;&apos;</source>
         <location filename="configpages.cpp" line="191"/>
         <location filename="configpages.cpp" line="192"/>
         <source>Sets the top level folder for the Folders navigation tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Задает верхний уровень дерева каталогов</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="89"/>
         <location filename="configpages.cpp" line="186"/>
         <source>All disks</source>
-        <translation type="unfinished"></translation>
+        <translation>Все диски</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="94"/>
         <location filename="configpages.cpp" line="188"/>
         <source>Folder tree root</source>
-        <translation type="unfinished"></translation>
+        <translation>Корень дерева папок</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="98"/>
         <location filename="configpages.cpp" line="193"/>
         <source>This box allows you to turn off the Undo/Redo system in Qoobar</source>
-        <translation type="unfinished"></translation>
+        <translation>Это поле позволяет отключить систему отмен в программе</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="108"/>
@@ -725,7 +725,7 @@ and &quot; by two single quotes &apos;&apos;</source>
         <location filename="configpages.cpp" line="194"/>
         <location filename="configpages.cpp" line="195"/>
         <source>Characters that will be shown in the Tags edit dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Символы, которые будут показаны в диалоге изменения тегов</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="126"/>
@@ -752,7 +752,7 @@ and &quot; by two single quotes &apos;&apos;</source>
     <message>
         <location filename="configpages.cpp" line="226"/>
         <source>Choose a folder tree root</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите корень дерева папок</translation>
     </message>
 </context>
 <context>
@@ -873,7 +873,7 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation>Qoobar - редактор тегов для классической музыки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="835"/>
+        <location filename="mainwindow.cpp" line="837"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - переименование вкладки</translation>
     </message>
@@ -911,7 +911,7 @@ and &quot; by two single quotes &apos;&apos;</source>
     <message>
         <location filename="mainwindow.cpp" line="68"/>
         <source>Add folder</source>
-        <translation type="unfinished">Папка</translation>
+        <translation>Папка</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="70"/>
@@ -921,7 +921,7 @@ and &quot; by two single quotes &apos;&apos;</source>
     <message>
         <location filename="mainwindow.cpp" line="72"/>
         <source>Add files</source>
-        <translation type="unfinished">Файлы</translation>
+        <translation>Файлы</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="73"/>
@@ -1217,7 +1217,7 @@ and &quot; by two single quotes &apos;&apos;</source>
     <message>
         <location filename="mainwindow.cpp" line="138"/>
         <source>ReplayGain</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="141"/>
@@ -1239,7 +1239,7 @@ and &quot; by two single quotes &apos;&apos;</source>
         <location filename="mainwindow.cpp" line="146"/>
         <location filename="mainwindow.cpp" line="147"/>
         <source>Set as folder tree root</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить в качестве корня дерева</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="149"/>
@@ -1307,43 +1307,43 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation>&amp;Справка</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="438"/>
+        <location filename="mainwindow.cpp" line="439"/>
         <source>&amp;Undo</source>
         <translation>&amp;Отменить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="442"/>
+        <location filename="mainwindow.cpp" line="443"/>
         <source>&amp;Redo</source>
         <translation>&amp;Повторить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="567"/>
+        <location filename="mainwindow.cpp" line="569"/>
         <source>not installed</source>
         <translation>не установлена</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="579"/>
+        <location filename="mainwindow.cpp" line="581"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Qoobar использует:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Библиотеки:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="98"/>
-        <location filename="mainwindow.cpp" line="584"/>
+        <location filename="mainwindow.cpp" line="586"/>
         <source>&amp;About Qoobar</source>
         <translation>&amp;О Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="591"/>
+        <location filename="mainwindow.cpp" line="593"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - добавление файлов</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="592"/>
+        <location filename="mainwindow.cpp" line="594"/>
         <source>audio files (%1)</source>
         <translation>Файлы аудио (%1)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="599"/>
+        <location filename="mainwindow.cpp" line="601"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - добавление папки</translation>
     </message>
@@ -1384,18 +1384,18 @@ and &quot; by two single quotes &apos;&apos;</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="342"/>
-        <location filename="mainwindow.cpp" line="439"/>
+        <location filename="mainwindow.cpp" line="440"/>
         <source>Undo</source>
         <translation>Отменить</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="350"/>
-        <location filename="mainwindow.cpp" line="443"/>
+        <location filename="mainwindow.cpp" line="444"/>
         <source>Redo</source>
         <translation>Повторить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="559"/>
+        <location filename="mainwindow.cpp" line="561"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2013 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
@@ -1404,13 +1404,13 @@ and &quot; by two single quotes &apos;&apos;</source>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="836"/>
+        <location filename="mainwindow.cpp" line="838"/>
         <source>Set a tab name</source>
         <translation>Введите новое название</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="374"/>
-        <location filename="mainwindow.cpp" line="502"/>
+        <location filename="mainwindow.cpp" line="504"/>
         <source>Tab %1</source>
         <translation>Вкладка %1</translation>
     </message>
@@ -1933,54 +1933,117 @@ all changes in them will not be saved!</source>
     </message>
 </context>
 <context>
+    <name>PropertiesPanel</name>
+    <message>
+        <location filename="statusbar.cpp" line="59"/>
+        <location filename="statusbar.cpp" line="106"/>
+        <source>File is read only</source>
+        <translation>Файл только для чтения</translation>
+    </message>
+    <message>
+        <location filename="statusbar.cpp" line="66"/>
+        <location filename="statusbar.cpp" line="107"/>
+        <source>Size</source>
+        <translation>Размер</translation>
+    </message>
+    <message>
+        <location filename="statusbar.cpp" line="74"/>
+        <location filename="statusbar.cpp" line="108"/>
+        <source>Length</source>
+        <translation>Длина</translation>
+    </message>
+    <message>
+        <location filename="statusbar.cpp" line="135"/>
+        <source>%1 kbps, %2 Hz, %3 ch.</source>
+        <translation>%1 kbps, %2 Hz, %3 ch.</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="statusbar.cpp" line="172"/>
+        <source>%n file(s)</source>
+        <translation>
+            <numerusform>%n файл</numerusform>
+            <numerusform>%n файла</numerusform>
+            <numerusform>%n файлов</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="statusbar.cpp" line="173"/>
+        <source>Overall length %1</source>
+        <translation>Общая длина %1</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="statusbar.cpp" line="176"/>
+        <source>Selected %n file(s) of %1</source>
+        <oldsource>Selected %n file(s) of </oldsource>
+        <translation>
+            <numerusform>Выделен %n файл из %1</numerusform>
+            <numerusform>Выделены %n файла из %1</numerusform>
+            <numerusform>Выделены %n файлов из %1</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>Selected %n file(s) of %2</source>
+        <translation type="vanished">
+            <numerusform>Выделен %n файл из %2</numerusform>
+            <numerusform>Выделены %n файла из %2</numerusform>
+            <numerusform>Выделены %n файлов из %2</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="statusbar.cpp" line="177"/>
+        <source>Selected length %1 of %2</source>
+        <translation>Выделено %1 из %2</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
-        <location filename="qoobarglobals.cpp" line="176"/>
+        <location filename="qoobarglobals.cpp" line="177"/>
         <source>Composer</source>
         <translation>Композитор</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="185"/>
+        <location filename="qoobarglobals.cpp" line="186"/>
         <source>Comment</source>
         <translation>Комментарий</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="177"/>
+        <location filename="qoobarglobals.cpp" line="178"/>
         <source>Album</source>
         <translation>Альбом</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="180"/>
+        <location filename="qoobarglobals.cpp" line="181"/>
         <source>Artist</source>
         <translation>Артист</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="178"/>
+        <location filename="qoobarglobals.cpp" line="179"/>
         <source>Title</source>
         <translation>Название</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="189"/>
+        <location filename="qoobarglobals.cpp" line="190"/>
         <source>Total tracks</source>
         <translation>Всего частей</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="188"/>
+        <location filename="qoobarglobals.cpp" line="189"/>
         <source>Track number</source>
         <translation>Номер части</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="186"/>
+        <location filename="qoobarglobals.cpp" line="187"/>
         <source>Genre</source>
         <translation>Жанр</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="187"/>
+        <location filename="qoobarglobals.cpp" line="188"/>
         <source>Year</source>
         <translation>Год</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="179"/>
+        <location filename="qoobarglobals.cpp" line="180"/>
         <source>Performer</source>
         <translation>Исполнитель</translation>
     </message>
@@ -2035,114 +2098,133 @@ all changes in them will not be saved!</source>
         <translation>Исправить русскую кодировку</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="181"/>
+        <location filename="qoobarglobals.cpp" line="182"/>
         <source>Conductor</source>
         <translation>Дирижёр</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="182"/>
+        <location filename="qoobarglobals.cpp" line="183"/>
         <source>Orchestra</source>
         <translation>Оркестр</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="183"/>
+        <location filename="qoobarglobals.cpp" line="184"/>
         <source>Subtitle</source>
         <translation>Подзаголовок</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="184"/>
+        <location filename="qoobarglobals.cpp" line="185"/>
         <source>Key</source>
         <translation>Тональность</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="190"/>
+        <location filename="qoobarglobals.cpp" line="191"/>
         <source>Album artist</source>
         <translation>Артист альбома</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="191"/>
+        <location filename="qoobarglobals.cpp" line="192"/>
         <source>Music category</source>
         <translation>Музыкальная форма</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="192"/>
+        <location filename="qoobarglobals.cpp" line="193"/>
         <source>Publisher</source>
         <translation>Издатель</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="193"/>
+        <location filename="qoobarglobals.cpp" line="194"/>
         <source>Copyright</source>
         <translation>Копирайт</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="194"/>
+        <location filename="qoobarglobals.cpp" line="195"/>
         <source>Mood</source>
         <translation>Настроение</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="195"/>
+        <location filename="qoobarglobals.cpp" line="196"/>
         <source>Beats per minute</source>
         <translation>Темп</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="196"/>
+        <location filename="qoobarglobals.cpp" line="197"/>
         <source>Lyricist</source>
         <translation>Автор слов</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="197"/>
+        <location filename="qoobarglobals.cpp" line="198"/>
         <source>Lyrics</source>
         <translation>Слова</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="198"/>
+        <location filename="qoobarglobals.cpp" line="199"/>
         <source>Disc number</source>
         <translation>Номер диска</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="199"/>
+        <location filename="qoobarglobals.cpp" line="200"/>
         <source>Total discs</source>
         <translation>Всего дисков</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="200"/>
+        <location filename="qoobarglobals.cpp" line="201"/>
         <source>Encoded by</source>
         <translation>Закодировано</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="201"/>
+        <location filename="qoobarglobals.cpp" line="202"/>
         <source>Remixed by</source>
         <translation>Ремикс</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="202"/>
+        <location filename="qoobarglobals.cpp" line="203"/>
         <source>Rating</source>
         <translation>Оценка</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="203"/>
+        <location filename="qoobarglobals.cpp" line="204"/>
         <source>Original album</source>
         <translation>Оригинальный альбом</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="204"/>
+        <location filename="qoobarglobals.cpp" line="205"/>
         <source>Original artist</source>
         <translation>Оригинальный артист</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="205"/>
+        <location filename="qoobarglobals.cpp" line="206"/>
         <source>Original lyricist</source>
         <translation>Оригинальный автор слов</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="206"/>
+        <location filename="qoobarglobals.cpp" line="207"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="207"/>
+        <location filename="qoobarglobals.cpp" line="208"/>
         <source>ISRC</source>
         <translation>ISRC</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="qoobarglobals.cpp" line="308"/>
+        <source>%n byte(s)</source>
+        <translation>
+            <numerusform>%n байт</numerusform>
+            <numerusform>%n байта</numerusform>
+            <numerusform>%n байтов</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="qoobarglobals.cpp" line="311"/>
+        <source>%1 KiB</source>
+        <translation>%1 КиБ</translation>
+    </message>
+    <message>
+        <location filename="qoobarglobals.cpp" line="313"/>
+        <source>%1 MiB</source>
+        <translation>%1 МиБ</translation>
     </message>
     <message>
         <location filename="displayedtagsdialog.cpp" line="70"/>
@@ -2626,7 +2708,7 @@ Please choose the encoding:</source>
         <location filename="splitdialog.cpp" line="135"/>
         <source>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</source>
         <oldsource>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;</oldsource>
-        <translation type="unfinished">Если вы хотите изменить формат файлов по умолчанию, скопируйте ffmpeg.exe в папку с qoobar.exe. &lt;br&gt;FFmpeg можно взять здесь: &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;</translation>
+        <translation>Если вы хотите изменить формат файлов по умолчанию, скопируйте ffmpeg.exe в папку с qoobar.exe. &lt;br&gt;FFmpeg можно взять здесь: &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;Пользователи OS/2 могут взять ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;здесь&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="splitdialog.cpp" line="123"/>
@@ -2647,9 +2729,8 @@ Please choose the encoding:</source>
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="statusbar.cpp" line="46"/>
         <source>%1 kbps, %2 Hz, %3 ch.</source>
-        <translation>%1 kbps, %2 Hz, %3 ch.</translation>
+        <translation type="vanished">%1 kbps, %2 Hz, %3 ch.</translation>
     </message>
 </context>
 <context>
@@ -2683,7 +2764,7 @@ Please choose the encoding:</source>
         <translation type="obsolete">Картинка</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1045"/>
+        <location filename="tab.cpp" line="1048"/>
         <source>Files in %1 have been modified.</source>
         <translation>Некоторые файлы в %1 были изменены.</translation>
     </message>
@@ -2737,17 +2818,17 @@ Please choose the encoding:</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1044"/>
+        <location filename="tab.cpp" line="1047"/>
         <source>Closing Qoobar</source>
         <translation>Закрыть Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1198"/>
+        <location filename="tab.cpp" line="1203"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation>Qoobar - Изменение данных ReplayGain</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1199"/>
+        <location filename="tab.cpp" line="1204"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation>Qoobar умеет сканирвоать только сохраненные файлы.
@@ -2792,29 +2873,29 @@ Do you want to save changes?</source>
         <translation>&amp;Запомнить на будущее</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="974"/>
+        <location filename="tab.cpp" line="975"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation>Пожалуйста, подождите, пока Qoobar добавляет файлы</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1029"/>
+        <location filename="tab.cpp" line="1032"/>
         <source>Cannot write tags to file:
 %1</source>
         <translation>Не смог записать теги в файл:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1048"/>
+        <location filename="tab.cpp" line="1051"/>
         <source>Do you want to save your changes?</source>
         <translation>Вы хотите сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1049"/>
+        <location filename="tab.cpp" line="1052"/>
         <source>Yes, save</source>
         <translation>Да, сохранить</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1051"/>
+        <location filename="tab.cpp" line="1054"/>
         <source>No, don&apos;t save</source>
         <translation>Нет, не сохранять</translation>
     </message>

@@ -4,12 +4,12 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="application.cpp" line="434"/>
+        <location filename="application.cpp" line="435"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="434"/>
+        <location filename="application.cpp" line="435"/>
         <source>Cannot write settings. The settings file is read-only</source>
         <translation>Kan niet naar instellingen schrijven. De instellingen zijn alleen te lezen</translation>
     </message>
@@ -31,13 +31,13 @@ Controleer het bestand</translation>
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="682"/>
-        <location filename="application.cpp" line="703"/>
+        <location filename="application.cpp" line="684"/>
+        <location filename="application.cpp" line="705"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="682"/>
+        <location filename="application.cpp" line="684"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
@@ -46,7 +46,7 @@ Please check the folder</source>
 Controleer de map</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="703"/>
+        <location filename="application.cpp" line="705"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation>Kan niet schrijven %1
@@ -144,35 +144,35 @@ Controleer het bestand</translation>
         <translation type="obsolete">Wees er zeker van dat je shntool.exe en flac.exe heb gecopieerd in zelfde map als Qoobar.exe&lt;br&gt;Je kunt downloaden van &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="130"/>
+        <location filename="cuesplitter.cpp" line="109"/>
         <source>Please install shntool.</source>
         <translation>Installeer shntool AUB.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="132"/>
+        <location filename="cuesplitter.cpp" line="111"/>
         <source>Please install flac.</source>
         <translation>Installeer Flac AUB.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="176"/>
+        <location filename="cuesplitter.cpp" line="155"/>
         <source>Opening cue file: &quot;%1&quot;</source>
         <translation>Open een cue bestand: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="189"/>
-        <location filename="cuesplitter.cpp" line="208"/>
+        <location filename="cuesplitter.cpp" line="168"/>
+        <location filename="cuesplitter.cpp" line="187"/>
         <source>Cannot open cue file %1</source>
         <translation>Kan cue bestand niet openen
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="497"/>
+        <location filename="cuesplitter.cpp" line="476"/>
         <source>Cannot find the file to split: %1</source>
         <translation>Kan het bestand om te splitsen niet vinden:
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="533"/>
+        <location filename="cuesplitter.cpp" line="512"/>
         <source>Processing %1 ...
 
 </source>
@@ -186,33 +186,33 @@ Controleer het bestand</translation>
         <translation type="obsolete">Verwerken %1 ...</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="260"/>
+        <location filename="cuesplitter.cpp" line="239"/>
         <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</source>
         <translation>Wees er zeker van dat je mac.exe heb gecopieerd in zelfde map als Qoobar.exe&lt;br&gt;Je kunt downloaden van &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="266"/>
+        <location filename="cuesplitter.cpp" line="245"/>
         <source>Please install mac. You can download it from &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</source>
         <translation>Installeer Mac AUB. Je kunt downloaden van &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="270"/>
+        <location filename="cuesplitter.cpp" line="249"/>
         <source>Please install mac</source>
         <translation>Installeer Mac AUB</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="248"/>
+        <location filename="cuesplitter.cpp" line="227"/>
         <source>Nothing to split.</source>
         <translation>Niets om te splitsen.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="276"/>
+        <location filename="cuesplitter.cpp" line="255"/>
         <source>Please wait while Qoobar is splitting the file %1</source>
         <translation>Wacht AUB terwijl Qoobar het bestand aan het splitsen is
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="517"/>
+        <location filename="cuesplitter.cpp" line="496"/>
         <source>Total track count: &quot;%1&quot;</source>
         <translation>Totaal aantal nummers: &quot;%1&quot;</translation>
     </message>
@@ -873,12 +873,12 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="374"/>
-        <location filename="mainwindow.cpp" line="502"/>
+        <location filename="mainwindow.cpp" line="504"/>
         <source>Tab %1</source>
         <translation>Tabblad %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="559"/>
+        <location filename="mainwindow.cpp" line="561"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2013 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
@@ -887,7 +887,7 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="836"/>
+        <location filename="mainwindow.cpp" line="838"/>
         <source>Set a tab name</source>
         <translation>Stel a tabnaam in</translation>
     </message>
@@ -1371,60 +1371,60 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="438"/>
+        <location filename="mainwindow.cpp" line="439"/>
         <source>&amp;Undo</source>
         <translation>&amp;Ondedaan maken</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="342"/>
-        <location filename="mainwindow.cpp" line="439"/>
+        <location filename="mainwindow.cpp" line="440"/>
         <source>Undo</source>
         <translation>Ondedaan maken</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="442"/>
+        <location filename="mainwindow.cpp" line="443"/>
         <source>&amp;Redo</source>
         <translation>&amp;Opnieuw</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="350"/>
-        <location filename="mainwindow.cpp" line="443"/>
+        <location filename="mainwindow.cpp" line="444"/>
         <source>Redo</source>
         <translation>Opnieuw</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="567"/>
+        <location filename="mainwindow.cpp" line="569"/>
         <source>not installed</source>
         <translation>niet geinstalleerd</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="579"/>
+        <location filename="mainwindow.cpp" line="581"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Qoobar gebruikt:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Bibliotheken:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="98"/>
-        <location filename="mainwindow.cpp" line="584"/>
+        <location filename="mainwindow.cpp" line="586"/>
         <source>&amp;About Qoobar</source>
         <translation>&amp;Over Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="599"/>
+        <location filename="mainwindow.cpp" line="601"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoodar - Map toevoegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="835"/>
+        <location filename="mainwindow.cpp" line="837"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - Hernoem tabblad</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="591"/>
+        <location filename="mainwindow.cpp" line="593"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - bestanden toevoegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="592"/>
+        <location filename="mainwindow.cpp" line="594"/>
         <source>audio files (%1)</source>
         <translation>audio bestanden (%1)</translation>
     </message>
@@ -1931,6 +1931,59 @@ alle veranderingen worden niet opgeslagen!</translation>
     </message>
 </context>
 <context>
+    <name>PropertiesPanel</name>
+    <message>
+        <location filename="statusbar.cpp" line="59"/>
+        <location filename="statusbar.cpp" line="106"/>
+        <source>File is read only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="statusbar.cpp" line="66"/>
+        <location filename="statusbar.cpp" line="107"/>
+        <source>Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="statusbar.cpp" line="74"/>
+        <location filename="statusbar.cpp" line="108"/>
+        <source>Length</source>
+        <translation type="unfinished">Lengte</translation>
+    </message>
+    <message>
+        <location filename="statusbar.cpp" line="135"/>
+        <source>%1 kbps, %2 Hz, %3 ch.</source>
+        <translation type="unfinished">%1 kbps, %2 Hz, %3 ch.</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="statusbar.cpp" line="172"/>
+        <source>%n file(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="statusbar.cpp" line="173"/>
+        <source>Overall length %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="statusbar.cpp" line="176"/>
+        <source>Selected %n file(s) of %1</source>
+        <oldsource>Selected %n file(s) of </oldsource>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="statusbar.cpp" line="177"/>
+        <source>Selected length %1 of %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="displayedtagsdialog.cpp" line="70"/>
@@ -1998,164 +2051,182 @@ alle veranderingen worden niet opgeslagen!</translation>
         <translation>Repareer codering</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="176"/>
+        <location filename="qoobarglobals.cpp" line="177"/>
         <source>Composer</source>
         <translation>Componist</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="177"/>
+        <location filename="qoobarglobals.cpp" line="178"/>
         <source>Album</source>
         <translation>Album</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="178"/>
+        <location filename="qoobarglobals.cpp" line="179"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="179"/>
+        <location filename="qoobarglobals.cpp" line="180"/>
         <source>Performer</source>
         <translation>Uitvoerende</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="180"/>
+        <location filename="qoobarglobals.cpp" line="181"/>
         <source>Artist</source>
         <translation>Artiest</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="181"/>
+        <location filename="qoobarglobals.cpp" line="182"/>
         <source>Conductor</source>
         <translation>Dirigent</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="182"/>
+        <location filename="qoobarglobals.cpp" line="183"/>
         <source>Orchestra</source>
         <translation>Orkest</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="183"/>
+        <location filename="qoobarglobals.cpp" line="184"/>
         <source>Subtitle</source>
         <translation>Ondertiteling</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="184"/>
+        <location filename="qoobarglobals.cpp" line="185"/>
         <source>Key</source>
         <translation>Sleutel</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="185"/>
+        <location filename="qoobarglobals.cpp" line="186"/>
         <source>Comment</source>
         <translation>Opmerking</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="186"/>
+        <location filename="qoobarglobals.cpp" line="187"/>
         <source>Genre</source>
         <translation>Soort</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="187"/>
+        <location filename="qoobarglobals.cpp" line="188"/>
         <source>Year</source>
         <translation>Jaar</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="188"/>
+        <location filename="qoobarglobals.cpp" line="189"/>
         <source>Track number</source>
         <translation>Spoor nummer</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="189"/>
+        <location filename="qoobarglobals.cpp" line="190"/>
         <source>Total tracks</source>
         <translation>Totaal aantal nummers</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="190"/>
+        <location filename="qoobarglobals.cpp" line="191"/>
         <source>Album artist</source>
         <translation>Album artiest</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="191"/>
+        <location filename="qoobarglobals.cpp" line="192"/>
         <source>Music category</source>
         <translation>Muziek rubriek</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="192"/>
+        <location filename="qoobarglobals.cpp" line="193"/>
         <source>Publisher</source>
         <translation>Uitgever</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="193"/>
+        <location filename="qoobarglobals.cpp" line="194"/>
         <source>Copyright</source>
         <translation>Auteursrecht</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="194"/>
+        <location filename="qoobarglobals.cpp" line="195"/>
         <source>Mood</source>
         <translation>Stemming</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="195"/>
+        <location filename="qoobarglobals.cpp" line="196"/>
         <source>Beats per minute</source>
         <translation>Slagen per minuut</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="196"/>
+        <location filename="qoobarglobals.cpp" line="197"/>
         <source>Lyricist</source>
         <translation>Tekstschrijver</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="197"/>
+        <location filename="qoobarglobals.cpp" line="198"/>
         <source>Lyrics</source>
         <translation>Songtekst</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="198"/>
+        <location filename="qoobarglobals.cpp" line="199"/>
         <source>Disc number</source>
         <translation>Cd nummer</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="199"/>
+        <location filename="qoobarglobals.cpp" line="200"/>
         <source>Total discs</source>
         <translation>Totaal aantal cd&apos;s</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="200"/>
+        <location filename="qoobarglobals.cpp" line="201"/>
         <source>Encoded by</source>
         <translation>Gecodeerd door</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="201"/>
+        <location filename="qoobarglobals.cpp" line="202"/>
         <source>Remixed by</source>
         <translation>Remixed door</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="202"/>
+        <location filename="qoobarglobals.cpp" line="203"/>
         <source>Rating</source>
         <translation>Score</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="203"/>
+        <location filename="qoobarglobals.cpp" line="204"/>
         <source>Original album</source>
         <translation>Orginele album</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="204"/>
+        <location filename="qoobarglobals.cpp" line="205"/>
         <source>Original artist</source>
         <translation>Orginele artiest</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="205"/>
+        <location filename="qoobarglobals.cpp" line="206"/>
         <source>Original lyricist</source>
         <translation>Orginele tekstschrijver</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="206"/>
+        <location filename="qoobarglobals.cpp" line="207"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="207"/>
+        <location filename="qoobarglobals.cpp" line="208"/>
         <source>ISRC</source>
         <translation>ISRC</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="qoobarglobals.cpp" line="308"/>
+        <source>%n byte(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="qoobarglobals.cpp" line="311"/>
+        <source>%1 KiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qoobarglobals.cpp" line="313"/>
+        <source>%1 MiB</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="397"/>
@@ -2602,9 +2673,8 @@ Kies een codering:</translation>
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="statusbar.cpp" line="46"/>
         <source>%1 kbps, %2 Hz, %3 ch.</source>
-        <translation>%1 kbps, %2 Hz, %3 ch.</translation>
+        <translation type="vanished">%1 kbps, %2 Hz, %3 ch.</translation>
     </message>
 </context>
 <context>
@@ -2638,7 +2708,7 @@ Kies een codering:</translation>
         <translation type="obsolete">Album hoes</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1045"/>
+        <location filename="tab.cpp" line="1048"/>
         <source>Files in %1 have been modified.</source>
         <translation>Bestanden in %1 zijn gewijzerd.</translation>
     </message>
@@ -2692,17 +2762,17 @@ Kies een codering:</translation>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1044"/>
+        <location filename="tab.cpp" line="1047"/>
         <source>Closing Qoobar</source>
         <translation>Afsluiten Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1198"/>
+        <location filename="tab.cpp" line="1203"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation>Qoobar - ReplayGain Informatie</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1199"/>
+        <location filename="tab.cpp" line="1204"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation>Qoobar scant slechts de opgeslagen bestanden 
@@ -2747,29 +2817,29 @@ Wilt u de wijzigingen opslaan?</translation>
         <translation>Verzamel voor &amp;toekomstig gebruik</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="974"/>
+        <location filename="tab.cpp" line="975"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation>Wacht AUB terwijl Qoobar bestanden toevoegd</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1029"/>
+        <location filename="tab.cpp" line="1032"/>
         <source>Cannot write tags to file:
 %1</source>
         <translation>Kan labels niet naar bestanden schrijven:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1048"/>
+        <location filename="tab.cpp" line="1051"/>
         <source>Do you want to save your changes?</source>
         <translation>Wil je de wijzigingen opslaan?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1049"/>
+        <location filename="tab.cpp" line="1052"/>
         <source>Yes, save</source>
         <translation>Ja, opslaan</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1051"/>
+        <location filename="tab.cpp" line="1054"/>
         <source>No, don&apos;t save</source>
         <translation>Nee, niet opslaan</translation>
     </message>

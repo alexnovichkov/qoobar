@@ -198,7 +198,7 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     operationsAct = new QAction(tr("Operations"),this);
     table->addAction(operationsAct);
 
-    Q_EMIT totalLengthChanged(0);
+    Q_EMIT totalLengthChanged(0,0);
     tree->setFocus();
 }
 
@@ -948,7 +948,8 @@ void Tab::delFiles(bool deleteSilently)
     updateTagsTable(QVector<int>());
 
     Q_EMIT selectionChanged(false);
-    Q_EMIT totalLengthChanged(0);
+    Q_EMIT totalLengthChanged(model->totalLength(), model->size());
+    Q_EMIT selectedLengthChanged(model->totalLengthOfSelectedFiles(), model->selectedFilesCount());
 
     moveUpAct->setEnabled(false);
     moveDownAct->setEnabled(false);
@@ -991,6 +992,19 @@ void Tab::addFiles(int addedCount, bool update) /*SLOT*/
     Q_EMIT filesChanged(!allFilesSaved());
     win->statusBar()->clearMessage();
     QApplication::restoreOverrideCursor();
+    Q_EMIT totalLengthChanged(model->totalLength(),model->size());
+    Q_EMIT selectedLengthChanged(model->totalLengthOfSelectedFiles(), model->selectedFilesCount());
+}
+
+void Tab::setAsCurrent()
+{
+    Q_EMIT filesChanged(!model->isFilesSaved());
+    Q_EMIT selectionChanged(model->hasSelection());
+    handleCutCopy();
+    undoStack_->setActive();
+    Q_EMIT totalLengthChanged(model->totalLength(),model->size());
+    Q_EMIT selectedLengthChanged(model->totalLengthOfSelectedFiles(), model->selectedFilesCount());
+    Q_EMIT updateStatusBar(Tag());
 }
 
 void Tab::moveFiles(const QList<Tag> &filesToMove)
@@ -1071,11 +1085,6 @@ bool Tab::allFilesSaved() const
     return model->isFilesSaved();
 }
 
-bool Tab::filesSelected()
-{DD;
-    return model->hasSelection();
-}
-
 /**
   Moving files up and down
   */
@@ -1132,7 +1141,9 @@ void Tab::filesSelectionChanged() /*SLOT*/
     model->setSelection(indexes);
 
     Q_EMIT selectionChanged(indexes.size()>0);
-    Q_EMIT totalLengthChanged(model->totalLength());
+    Q_EMIT selectedLengthChanged(model->totalLengthOfSelectedFiles(),model->selectedFilesCount());
+
+    if (indexes.isEmpty()) Q_EMIT updateStatusBar(Tag());
 
     moveUpAct->setEnabled(indexes.size()>0);
     moveDownAct->setEnabled(indexes.size()>0);
@@ -1227,9 +1238,9 @@ void Tab::updateStatusBar(const QModelIndex &index) /*SLOT*/
 {DD;
     int row = index.row();
     if (row<0)
-        return;
-
-    Q_EMIT updateStatusBar(model->fileAt(row));
+        Q_EMIT updateStatusBar(Tag());
+    else
+        Q_EMIT updateStatusBar(model->fileAt(row));
 }
 
 void Tab::collectTags() /*SLOT*/

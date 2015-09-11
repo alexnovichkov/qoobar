@@ -177,7 +177,6 @@ TRANSLATIONS = qoobar_ru.ts \
     qoobar_pl.ts \
     qoobar_nl.ts
 
-
 RESOURCES *= qoobar.qrc
 
 system(lupdate qoobar_app.pro&&lrelease qoobar_app.pro)

@@ -32,6 +32,7 @@
 #include <QDir>
 #include "enums.h"
 #include "applicationpaths.h"
+#include "application.h"
 #include <QDesktopServices>
 #include <QUrl>
 
@@ -298,4 +299,16 @@ QString caseById(const Case id)
     return "dont-change";
 }
 
+}
+
+
+QString Qoobar::formatSize(qint64 size)
+{DD;
+    //size in bytes, format in 1024
+    if (size < 1024) return QObject::tr("%n byte(s)","",size); // bytes
+    float kib = float(size) / 1024.0;
+
+    if (kib < 1024.0) return QObject::tr("%1 KiB").arg(QLocale(App->langID).toString(kib,'f',2)); //kibibytes
+    kib /= 1024.0;
+    return QObject::tr("%1 MiB").arg(QLocale(App->langID).toString(kib,'f',2));
 }

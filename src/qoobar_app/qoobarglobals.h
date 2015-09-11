@@ -32,6 +32,7 @@
 namespace Qoobar {
 
 QString formatLength(int i);
+QString formatSize(qint64 size);
 QString tagByID(int id);
 QString untranslatedTagByID(int id);
 bool programInstalled(const QString &program, QString *path);

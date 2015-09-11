@@ -80,7 +80,7 @@ TagData::TagData(int tagsCount) :
     wasChanged(false),
     filetype(-1),
     readOnly(false),
-    tagsCount(tagsCount)
+    tagsCount(tagsCount), size(0)
 {
     tags.resize(tagsCount);
 }
@@ -103,7 +103,8 @@ TagData::TagData(const TagData &other) :
     tags(other.tags),
     replayGainInfo(other.replayGainInfo),
     image(other.image),
-    otherTags(other.otherTags)
+    otherTags(other.otherTags),
+    size(other.size)
 {
 
 }
@@ -151,6 +152,7 @@ void Tag::setFile(const QString &fileName)
     d->filePath     = fi.canonicalPath();
     d->filetype     = fileTypeByExt(d->fileExt.toLower(), d->icon);
     d->readOnly     = !fi.isWritable();
+    d->size         = fi.size();
 }
 
 void Tag::setTag1(const int tagID,const QString &value)
