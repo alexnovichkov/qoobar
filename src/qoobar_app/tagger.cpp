@@ -45,7 +45,7 @@ int fileTypeByExt(QString extension, QString &icon)
     else if (extension=="aif") extension=QSL("aiff");
 
     static const QStringList list=QString("mp3.ogg.wma.flac.m4a.mpc.wv.wav.spx.tta.oga.ape.aiff.opus.dsf").split(QSL("."));
-    icon = QString(":/src/icons/%1.png").arg(extension);
+    icon = QString("%1.png").arg(extension);
     return list.indexOf(extension);
 }
 

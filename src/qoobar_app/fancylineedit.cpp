@@ -44,6 +44,7 @@
 
 #include "enums.h"
 #include "qoobarglobals.h"
+#include "application.h"
 
 /*! Opens a menu at the specified widget position.
  * This functions computes the position where to show the menu, and opens it with
@@ -362,7 +363,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) : FancyLineEdit(parent)
     QIcon icon = QIcon::fromTheme(layoutDirection() == Qt::LeftToRight ?
                      QSL("edit-clear-locationbar-rtl") :
                      QSL("edit-clear-locationbar-ltr"),
-                     QIcon::fromTheme(QSL("edit-clear"), QIcon(QSL(":/src/icons/editclear.png"))));
+                     QIcon::fromTheme(QSL("edit-clear"), QIcon(App->iconThemeIcon("editclear.png"))));
 
     setButtonPixmap(FancyLineEdit::Right, icon.pixmap(16));
     setButtonVisible(FancyLineEdit::Right, true);
@@ -379,15 +380,15 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) : FancyLineEdit(parent)
         const char *slot;
         const char *icon;
     } options[] = {
-        {QT_TR_NOOP("Case Sensitive"),SLOT(setCaseSensitive(bool)),":/src/icons/casesensitively.png"},
-        {QT_TR_NOOP("Whole Words Only"),SLOT(setWholeWord(bool)),":/src/icons/wholewords.png"},
-        {QT_TR_NOOP("Use Regular Expressions"),SLOT(setRegularExpressions(bool)),":/src/icons/regexp.png"}
+        {QT_TR_NOOP("Case Sensitive"),SLOT(setCaseSensitive(bool)),"casesensitively.png"},
+        {QT_TR_NOOP("Whole Words Only"),SLOT(setWholeWord(bool)),"wholewords.png"},
+        {QT_TR_NOOP("Use Regular Expressions"),SLOT(setRegularExpressions(bool)),"regexp.png"}
     };
     for (int i=0; i<3; ++i) {
         QAction *a = new QAction(options[i].text, this);
         a->setCheckable(true);
         a->setChecked(false);
-        a->setIcon(QIcon(QLatin1String(options[i].icon)));
+        a->setIcon(QIcon(App->iconThemeIcon(options[i].icon)));
         connect(a, SIGNAL(triggered(bool)), this, options[i].slot);
         lineEditMenu->addAction(a);
     }
@@ -404,7 +405,7 @@ void SearchLineEdit::findFlagsChanged()
         QPixmap pixmap(17, 17);
         pixmap.fill(Qt::transparent);
         QPainter painter(&pixmap);
-        const QPixmap mag = QPixmap(QSL(":/src/icons/magnifier.png"));
+        const QPixmap mag = QPixmap(App->iconThemeIcon("magnifier.png"));
         painter.drawPixmap(0, (pixmap.height() - mag.height()) / 2, mag);
         setButtonPixmap(FancyLineEdit::Left, pixmap);
     } else {
@@ -414,9 +415,9 @@ void SearchLineEdit::findFlagsChanged()
 
 QPixmap SearchLineEdit::pixmapForFindFlags()
 {DD;
-    static const QPixmap casesensitiveIcon = QPixmap(QSL(":/src/icons/casesensitively.png"));
-    static const QPixmap regexpIcon = QPixmap(QSL(":/src/icons/regexp.png"));
-    static const QPixmap wholewordsIcon = QPixmap(QSL(":/src/icons/wholewords.png"));
+    static const QPixmap casesensitiveIcon = QPixmap(App->iconThemeIcon("casesensitively.png"));
+    static const QPixmap regexpIcon = QPixmap(App->iconThemeIcon("regexp.png"));
+    static const QPixmap wholewordsIcon = QPixmap(App->iconThemeIcon("wholewords.png"));
 
     int width = 0;
     if (m_caseSensitive) width += 6;

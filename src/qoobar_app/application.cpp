@@ -121,7 +121,7 @@ bool isValidLibrary(const QFileInfo &path)
 Application::Application(int &argc, char **argv, bool useGui)
     :  QApplication(argc,argv,useGui), autocompletions(0)
 {DD;
-    if (useGui) setWindowIcon(QIcon(QSL(":/src/icons/qoobar.png")));
+    if (useGui) setWindowIcon(QIcon(QSL(":/src/icons/qoobar.ico")));
     appTranslator = new QTranslator(this);
     qtTranslator = new QTranslator(this);
     installTranslator(appTranslator);
@@ -185,7 +185,7 @@ Application::Application(int &argc, char **argv, bool useGui)
     recursive = false;
     consoleMode = false;
     mpcWriteRg = true;
-//    showFullFilesProperties = false;
+    iconTheme = "default";
 
     /*Testing for loadable libraries*/
     /*that is discid*/
@@ -243,7 +243,11 @@ void Application::setId3v1Encoding(const QString &s)
 
 void Application::readGuiSettings()
 {DD;
+#ifdef QOOBAR_PORTABLE
+    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
+#else
     QSettings se(QSL("qoobar"),QSL("gui"));
+#endif
 
     //Interface
     useUndo = se.value(QSL("useUndo"), useUndo).toBool();
@@ -327,7 +331,7 @@ void Application::readGuiSettings()
         se.remove(QSL("fillPatterns"));
     }
 
-    searchPaths = se.value("searchPaths").toStringList();
+    searchPaths = se.value(QSL("searchPaths")).toStringList();
     if (searchPaths.isEmpty()) {
 #ifdef HAVE_QT5
         searchPaths = QStandardPaths::standardLocations(QStandardPaths::MusicLocation);
@@ -337,6 +341,7 @@ void Application::readGuiSettings()
     }
 
     hideTabBar = se.value(QSL("hideTabBar"), false).toBool();
+
 //    showFullFilesProperties = se.value(QSL("showFullFilesProperties"),false).toBool();
 }
 
@@ -347,8 +352,14 @@ void Application::readGlobalSettings()
 #elif defined(Q_OS_MAC)
     QSettings se(QSL("qoobar"),QSL("global"));
 #else
+#ifdef QOOBAR_PORTABLE
+    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
+#else
     QSettings se(QSL("qoobar"),QSL("gui"));
 #endif
+#endif
+
+
 
     currentSchemeName = se.value("scheme", currentSchemeName).toString();
     if (!currentScheme)
@@ -426,11 +437,16 @@ void Application::readGlobalSettings()
 #else
     defaultSplitFormat = se.value("default-split-format", "flac").toString();
 #endif
+    iconTheme = se.value(QSL("iconTheme"),QSL("default")).toString();
 }
 
 void Application::writeGuiSettings()
 {DD;
-    QSettings se("qoobar","gui");
+#ifdef QOOBAR_PORTABLE
+    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
+#else
+    QSettings se(QSL("qoobar"),QSL("gui"));
+#endif
     if (!se.isWritable()) {
         criticalMessage(0,tr("Qoobar"),tr("Cannot write settings. The settings file is read-only"));
         return;
@@ -473,6 +489,7 @@ void Application::writeGuiSettings()
     se.setValue("fill_Patterns",fillPatterns);
     se.setValue(QSL("searchPaths"), searchPaths);
     se.setValue(QSL("hideTabBar"), hideTabBar);
+
 //    se.setValue(QSL("showFullFilesProperties"), showFullFilesProperties);
 
     autocompletions->write(se);
@@ -485,7 +502,11 @@ void Application::writeGlobalSettings()
 #elif defined(Q_OS_MAC)
     QSettings se(QSL("qoobar"),QSL("global"));
 #else
+#ifdef QOOBAR_PORTABLE
+    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
+#else
     QSettings se(QSL("qoobar"),QSL("gui"));
+#endif
 #endif
     if (!se.isWritable()) {
         qCritical("Cannot write settings. The settings file is read-only");
@@ -539,6 +560,15 @@ void Application::writeGlobalSettings()
     se.setValue("verbose",verbose);
     se.setValue("mpc-replaygain-format", mpcWriteRg ? "header" : "tags");
     se.setValue("default-split-format", defaultSplitFormat);
+    se.setValue(QSL("iconTheme"),iconTheme);
+}
+
+QString Application::iconThemeIcon(const QString &icon)
+{
+    return QString("%1/icons/%2/%3")
+            .arg(ApplicationPaths::sharedPath())
+            .arg(App->iconTheme)
+            .arg(icon);
 }
 
 void Application::clearSettings()
@@ -551,7 +581,11 @@ void Application::clearSettings()
     QSettings se(QSL("qoobar"),QSL("global"));
     se.clear();
 #endif
-    QSettings se1("qoobar","gui");
+#ifdef QOOBAR_PORTABLE
+    QSettings se1(QSL("qoobar.ini"),QSettings::IniFormat);
+#else
+    QSettings se1(QSL("qoobar"),QSL("gui"));
+#endif
     se1.clear();
 }
 

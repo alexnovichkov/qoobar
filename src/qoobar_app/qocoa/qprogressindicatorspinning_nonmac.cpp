@@ -25,6 +25,7 @@ THE SOFTWARE.
 #include <QVBoxLayout>
 #include <QMovie>
 #include <QLabel>
+#include "application.h"
 
 class QProgressIndicatorSpinningPrivate : public QObject
 {
@@ -45,7 +46,7 @@ QProgressIndicatorSpinning::QProgressIndicatorSpinning(QWidget *parent,
 
     QSize size(thickness, thickness);
     QMovie *movie = new QMovie(this);
-    movie->setFileName(":/src/icons/progressindicator.gif");
+    movie->setFileName(App->iconThemeIcon("progressindicator.gif"));
     movie->setScaledSize(size);
     // Roughly match OSX speed.
     movie->setSpeed(200);

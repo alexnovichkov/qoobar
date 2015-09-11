@@ -33,6 +33,7 @@
 #endif
 
 #include "enums.h"
+#include "application.h"
 
 void ClickableLabel::mouseReleaseEvent(QMouseEvent *ev)
 {
@@ -45,7 +46,7 @@ void ClickableLabel::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);
     if (pixmap()) {
-        if (cursor.isNull()) cursor = QPixmap(QSL(":src/icons/zoom-in.png"));
+        if (cursor.isNull()) cursor = QPixmap(App->iconThemeIcon("zoom-in.png"));
         setCursor(cursor);
     }
 }

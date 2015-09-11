@@ -136,7 +136,7 @@ void PropertiesPanel::updateFileName()
             typeLabel->setText(tr("%1 kbps, %2 Hz, %3 ch.").arg(currentHover.bitrate())
                                .arg(currentHover.sampleRate()).arg(currentHover.channels()));
         readOnlyLabel->setVisible(currentHover.readOnly());
-        fileIconLabel->setPixmap(QPixmap(currentHover.icon()));
+        fileIconLabel->setPixmap(QPixmap(App->iconThemeIcon(currentHover.icon())));
     }
     else {
         fileNameLabel->clear();

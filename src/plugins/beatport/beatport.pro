@@ -1,4 +1,5 @@
 include(../plugins.pri)
+include(../../portable.pri)
 
 QT *= network
 

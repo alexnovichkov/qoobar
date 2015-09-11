@@ -59,8 +59,8 @@ Model::Model(QObject *parent) :
     bFont = uFont;
     bFont.setBold(true);
 
-    rgIcon = QIcon(QSL(":/src/icons/replaygain.png"));
-    imgIcon = QIcon(QSL(":/src/icons/image.png"));
+    rgIcon = QIcon(App->iconThemeIcon("replaygain.png"));
+    imgIcon = QIcon(App->iconThemeIcon("image.png"));
     saveIcon = qApp->style()->standardIcon(QStyle::SP_DialogSaveButton);
 }
 
@@ -1011,7 +1011,7 @@ QVariant Model::data(const QModelIndex &index, int role) const
     else if (role == Qt::DecorationRole) {
         switch (column) {
             case COL_SAVEICON: return tag.wasChanged()?saveIcon:QIcon(); break; // save icon
-            case COL_FILENAME: return QIcon(tag.icon()); break;
+            case COL_FILENAME: return QIcon(App->iconThemeIcon(tag.icon())); break;
             case COL_REPLAYGAIN: return tag.replayGainInfoIsEmpty() ? QIcon():rgIcon; // replay gain
             case COL_IMAGE: return tag.imageIsEmpty() ? QIcon():imgIcon; // image
             default: return QVariant();

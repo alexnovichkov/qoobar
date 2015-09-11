@@ -105,7 +105,7 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     QIcon icon = QIcon::fromTheme(layoutDirection() == Qt::LeftToRight ?
                      QSL("edit-clear-locationbar-rtl") :
                      QSL("edit-clear-locationbar-ltr"),
-                     QIcon::fromTheme(QSL("edit-clear"), QIcon(QSL(":/src/icons/editclear.png"))));
+                     QIcon::fromTheme(QSL("edit-clear"), QIcon(App->iconThemeIcon("editclear.png"))));
 
     patternLineEdit->setButtonPixmap(FancyLineEdit::Right, icon.pixmap(16));
     patternLineEdit->setButtonVisible(FancyLineEdit::Right, true);

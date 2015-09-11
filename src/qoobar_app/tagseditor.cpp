@@ -130,8 +130,8 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     scroll->setWidget(charsWidget);
 
 
-    hideIcon = QIcon(":/src/icons/fold.png");
-    showIcon = QIcon(":/src/icons/unfold.png");
+    hideIcon = QIcon(App->iconThemeIcon("fold.png"));
+    showIcon = QIcon(App->iconThemeIcon("unfold.png"));
 
     toggleCharsAct = new QAction(this);
     connect(toggleCharsAct,SIGNAL(triggered()),this,SLOT(toggleCharsWidget()));
@@ -203,7 +203,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     connect(searchPanel,SIGNAL(replaceAll()),SLOT(replaceAll()));
     connect(searchPanel,SIGNAL(replaceAndFind()),SLOT(replaceAndFind()));
 
-    QAction *startSearchAct = new QAction(QIcon(QSL(":/src/icons/edit-find.png")),tr("Find/Replace"),this);
+    QAction *startSearchAct = new QAction(QIcon(App->iconThemeIcon("edit-find.png")),tr("Find/Replace"),this);
     startSearchAct->setShortcut(QKeySequence::Find);
     connect(startSearchAct,SIGNAL(triggered()),SLOT(startSearch()));
     addAction(startSearchAct);
@@ -227,14 +227,14 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
         const char *icon;
         const char *map;
     } operations[] = {
-        {QT_TR_NOOP("lower"),":/src/icons/small.png","lower"},
-        {QT_TR_NOOP("UPPER"),":/src/icons/caps.png","upper"},
-        {QT_TR_NOOP("Only first up"),":/src/icons/word.png","caps3"},
-        {QT_TR_NOOP("Every First Up"),":/src/icons/everyword.png","caps"},
-        {QT_TR_NOOP("Simplify whitespaces"),":/src/icons/trim.png","simplify"},
-        {QT_TR_NOOP("Remove diacritics"),":/src/icons/diacritics.png","ansi"},
-        {QT_TR_NOOP("Transliterate"),":/src/icons/transliterate.png","transliterate"},
-        {QT_TR_NOOP("Fix encoding"),":/src/icons/fix.png","recode"}
+        {QT_TR_NOOP("lower"),"small.png","lower"},
+        {QT_TR_NOOP("UPPER"),"caps.png","upper"},
+        {QT_TR_NOOP("Only first up"),"word.png","caps3"},
+        {QT_TR_NOOP("Every First Up"),"everyword.png","caps"},
+        {QT_TR_NOOP("Simplify whitespaces"),"trim.png","simplify"},
+        {QT_TR_NOOP("Remove diacritics"),"diacritics.png","ansi"},
+        {QT_TR_NOOP("Transliterate"),"transliterate.png","transliterate"},
+        {QT_TR_NOOP("Fix encoding"),"fix.png","recode"}
     };
 
 
@@ -247,7 +247,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     l->addWidget(toggleCharsButton);
     l->addWidget(new StyledSeparator(this));
     for (int i=0; i<8; ++i) {
-        QAction *a = new QAction(QIcon(operations[i].icon),
+        QAction *a = new QAction(QIcon(App->iconThemeIcon(operations[i].icon)),
                                  operations[i].text,this);
         connect(a,SIGNAL(triggered()),operationsMapper,SLOT(map()));
         operationsMapper->setMapping(a, operations[i].map);
@@ -274,7 +274,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 
     for (int i=0; i<8; ++i)
         operationsMapper->setMapping(
-                    operationsToolBar->addAction(QIcon(operations[i].icon),
+                    operationsToolBar->addAction(QIcon(App->iconThemeIcon(operations[i].icon)),
                                                  operations[i].text,
                                                  operationsMapper,
                                                  SLOT(map()))

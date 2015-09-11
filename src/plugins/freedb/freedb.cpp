@@ -5,7 +5,6 @@
 //#include <QUrl>
 #include "discidhelper.h"
 #include "qoobarglobals.h"
-#include <QSettings>
 
 #include <QtDebug>
 

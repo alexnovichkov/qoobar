@@ -144,6 +144,7 @@ public:
     void resetSettings();
     void writeGuiSettings();
     void writeGlobalSettings();
+    QString iconThemeIcon(const QString &icon);
 
     bool consoleMode;
     QString langID; //language id of the app language
@@ -183,6 +184,7 @@ public:
 
 
     CoverImage imageBuffer;
+    QString iconTheme;
 
     bool charsShown;
     QFont charsFont;

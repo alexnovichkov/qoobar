@@ -7,6 +7,8 @@
 
 #include "clearlineedit.h"
 #include "enums.h"
+#include "applicationpaths.h"
+#include "application.h"
 /*
  *A FancyLineEdit with a clear button
  **/
@@ -24,7 +26,7 @@ ClearLineEdit::ClearLineEdit(QWidget *parent) :
     QIcon icon = QIcon::fromTheme(layoutDirection() == Qt::LeftToRight ?
                      QSL("edit-clear-locationbar-rtl") :
                      QSL("edit-clear-locationbar-ltr"),
-                     QIcon::fromTheme(QSL("edit-clear"), QIcon(QSL(":/src/icons/editclear.png"))));
+                     QIcon::fromTheme(QSL("edit-clear"), QIcon(App->iconThemeIcon(QSL("editclear.png")))));
 
     setButtonPixmap(Right, icon.pixmap(16));
     setButtonVisible(Right, true);

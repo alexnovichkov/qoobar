@@ -51,8 +51,8 @@ TreeWidget::TreeWidget(Tab *parent) :
 {DD;
     tab=parent;
     saveIcon = qApp->style()->standardIcon(QStyle::SP_DialogSaveButton);
-    replayGainIcon = QIcon(QSL(":/src/icons/replaygain.png"));
-    imageIcon = QIcon(QSL(":/src/icons/image.png"));
+    replayGainIcon = QIcon(App->iconThemeIcon("replaygain.png"));
+    imageIcon = QIcon(App->iconThemeIcon("image.png"));
     setMouseTracking(true);
     setRootIsDecorated(false);
     setAllColumnsShowFocus(true);
@@ -241,8 +241,8 @@ QTreeWidgetItem *getItem(const Tag &tag, bool &hasReadOnly)
     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
     item->setIcon(FILENAME,QIcon(tag.icon()));
     item->setIcon(SAVEICON,tag.wasChanged()?qApp->style()->standardIcon(QStyle::SP_DialogSaveButton):QIcon());
-    item->setIcon(REPLAYGAIN,tag.replayGainInfoIsEmpty() ? QIcon():QIcon(QSL(":/src/icons/replaygain.png")));
-    item->setIcon(IMAGE,tag.imageIsEmpty() ? QIcon():QIcon(QSL(":/src/icons/image.png")));
+    item->setIcon(REPLAYGAIN,tag.replayGainInfoIsEmpty() ? QIcon():QIcon(App->iconThemeIcon("replaygain.png")));
+    item->setIcon(IMAGE,tag.imageIsEmpty() ? QIcon():QIcon(App->iconThemeIcon("image.png")));
     return item;
 }
 

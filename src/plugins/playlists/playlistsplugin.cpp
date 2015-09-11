@@ -55,7 +55,11 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
 {
     setWindowTitle(tr("Create playlist"));
 
+#ifdef QOOBAR_PORTABLE
+    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
+#else
     QSettings se("qoobar","qoobar");
+#endif
     se.beginGroup("playlistsPlugin");
     QString playlistFormat = se.value("playlistFormat", "m3u").toString();
     int pathType = se.value("pathType", 1).toInt(); // 0 - absolute, 1 - relative
@@ -100,7 +104,11 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
 
 Dialog::~Dialog()
 {
+#ifdef QOOBAR_PORTABLE
+    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
+#else
     QSettings se("qoobar","qoobar");
+#endif
     se.beginGroup("playlistsPlugin");
     se.setValue("playlistFormat", formatComboBox->currentText());
     se.setValue("pathType", pathsComboBox->currentIndex());

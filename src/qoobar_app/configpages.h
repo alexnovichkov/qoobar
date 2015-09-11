@@ -86,6 +86,8 @@ private:
     QCheckBox *hideTabBar;
     FancyLineEdit *dirRoot;
     QLabel *dirRootLabel;
+    QLabel *iconThemeLabel;
+    QComboBox *iconTheme;
 };
 
 class QFormLayout;

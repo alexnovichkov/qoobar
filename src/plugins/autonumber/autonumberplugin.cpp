@@ -53,8 +53,11 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
     : QDialog(parent), oldTags(oldTags)
 {
     setWindowTitle(tr("Autonumbering dialog"));
-
+#ifdef QOOBAR_PORTABLE
+    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
+#else
     QSettings se("qoobar","qoobar");
+#endif
     se.beginGroup("autonumberPlugin");
     int startNumber = se.value("startNumber",1).toInt();
     int formatNumber = se.value("formatNumber",0).toInt();
@@ -170,7 +173,11 @@ Dialog::~Dialog()
     bool addTotalTracks = addTotalTracksCheckBox->isChecked();
     int  actionIndex    = actionComboBox->currentIndex();
 
+#ifdef QOOBAR_PORTABLE
+    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
+#else
     QSettings se("qoobar","qoobar");
+#endif
     se.beginGroup("autonumberPlugin");
     se.setValue("startNumber", firstNumber);
     se.setValue("formatNumber", numberFormat);

@@ -1,4 +1,5 @@
 include(../plugins.pri)
+include(../../portable.pri)
 
 PVERSION = 1.0.2
 DEFINES += PLUGIN_VERSION=\\\"$$PVERSION\\\"

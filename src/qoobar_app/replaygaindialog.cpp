@@ -193,7 +193,7 @@ void ReplayGainDialog::showHelp()
 void setRg(QTreeWidgetItem *item, const ReplayGainInfo &replayGainInfo)
 {
     item->setIcon(RG_NUMBER,replayGainInfo.isEmpty()?
-                      QIcon():QIcon(QSL(":/src/icons/tick.png")));
+                      QIcon():QIcon(App->iconThemeIcon("tick.png")));
     item->setText(RG_ALBUMGAIN,replayGainInfo.albumGain);
     item->setText(RG_ALBUMPEAK,replayGainInfo.albumPeak);
     item->setText(RG_TRACKGAIN,replayGainInfo.trackGain);

@@ -337,7 +337,7 @@ void MainWindow::createUndoRedoActs()
     delete redoAct;
     undoAct = undoGroup->createUndoAction(this/*,tr("&Undo")*/);
     undoAct->setShortcutContext(Qt::ApplicationShortcut);
-    undoAct->setIcon(QIcon(QSL(":/src/edit-undo")));
+    undoAct->setIcon(QIcon(App->iconThemeIcon("edit-undo.ico")));
     undoAct->setShortcut(QKeySequence(QKeySequence::Undo).toString());
     undoAct->setProperty("shortDescr",tr("Undo"));
     undoAct->setPriority(QAction::LowPriority);
@@ -345,7 +345,7 @@ void MainWindow::createUndoRedoActs()
 
     redoAct = undoGroup->createRedoAction(this/*,tr("&Redo")*/);
     redoAct->setShortcutContext(Qt::ApplicationShortcut);
-    redoAct->setIcon(QIcon(QSL(":/src/edit-redo")));
+    redoAct->setIcon(QIcon(App->iconThemeIcon("edit-redo.ico")));
     redoAct->setShortcut(QKeySequence(QKeySequence::Redo).toString());
     redoAct->setProperty("shortDescr",tr("Redo"));
     redoAct->setPriority(QAction::LowPriority);
@@ -387,7 +387,7 @@ void MainWindow::createActions()
 
         if (actionsDescr[i].slot) connect(a,SIGNAL(triggered()),this,actionsDescr[i].slot);
         if (actionsDescr[i].icon) {
-            a->setIcon(QIcon(QString(":/src/%1").arg(actionsDescr[i].icon)));
+            a->setIcon(QIcon(App->iconThemeIcon(QString("%1.ico").arg(actionsDescr[i].icon))));
         }
         a->setText(tr(actionsDescr[i].text));
         a->setProperty("shortDescr",tr(actionsDescr[i].shortText));

@@ -100,7 +100,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     autoexpand = new QCheckBox(tr("Automatically fill a tag "
                                   "when pasting a single line"),this);
     chars=new FancyLineEdit(this);
-    chars->setButtonPixmap(FancyLineEdit::Right, QPixmap(":/src/icons/font.png"));
+    chars->setButtonPixmap(FancyLineEdit::Right, QPixmap(App->iconThemeIcon("font.png")));
     chars->setButtonVisible(FancyLineEdit::Right, true);
     chars->setButtonToolTip(FancyLineEdit::Right, tr("Font..."));
     chars->setAutoHideButton(FancyLineEdit::Right, false);
@@ -129,14 +129,22 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 
     hideTabBar = new QCheckBox(tr("Hide Tab bar with only one tab"), this);
 
+    iconThemeLabel = new QLabel(tr("Toolbar icons theme"),this);
+    iconTheme = new QComboBox(this);
+    QStringList iconThemes = QDir(ApplicationPaths::sharedPath()+"/icons").entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
+    Q_FOREACH(const QString &dir, iconThemes) {
+        iconTheme->addItem(dir);
+    }
+
     QFormLayout *UIlayout = new QFormLayout;
     UIlayout->addRow(useUndo);
     UIlayout->addRow(autoexpand);
+    UIlayout->addRow(hideTabBar);
     UIlayout->addRow(dirBox);
     UIlayout->addRow(dirRootLabel,dirRoot);
-    UIlayout->addRow(hideTabBar);
-    UIlayout->addRow(charsBox,chars);
-    UIlayout->addRow(langLabel,lang);
+    UIlayout->addRow(charsBox, chars);
+    UIlayout->addRow(langLabel, lang);
+    UIlayout->addRow(iconThemeLabel, iconTheme);
     UIlayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
 
     QVBoxLayout *UIML = new QVBoxLayout;
@@ -160,6 +168,10 @@ void InterfacePage::setSettings()
     int langIndex = lang->findData(App->langID);
     if (langIndex>=0) lang->setCurrentIndex(langIndex);
 
+    int iconThemeIndex = iconTheme->findText(App->iconTheme);
+    if (iconThemeIndex<0) iconThemeIndex = iconTheme->findText(QSL("default"));
+    if (iconThemeIndex>=0) iconTheme->setCurrentIndex(iconThemeIndex);
+
     hideTabBar->setChecked(App->hideTabBar);
 }
 
@@ -169,7 +181,7 @@ QString InterfacePage::description()
 }
 QString InterfacePage::iconFilename()
 {DD;
-    return QSL(":/src/icons/interface.png");
+    return App->iconThemeIcon("interface.png");
 }
 void InterfacePage::retranslateUI()
 {DD;
@@ -186,6 +198,7 @@ void InterfacePage::retranslateUI()
     dirRoot->setPlaceholderText(tr("All disks"));
 #endif
     dirRootLabel->setText(tr("Folder tree root"));
+    iconThemeLabel->setText(tr("Toolbar icons theme"));
 
     dirBox->setWhatsThis(tr("Check this box to show or hide the Folders navigation tree"));
     dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
@@ -193,6 +206,7 @@ void InterfacePage::retranslateUI()
     useUndo->setWhatsThis(tr("This box allows you to turn off the Undo/Redo system in Qoobar"));
     chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
     charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
+
 }
 void InterfacePage::saveSettings()
 {DD;
@@ -202,6 +216,10 @@ void InterfacePage::saveSettings()
     App->showDirView = dirBox->isChecked();
     App->hideTabBar = hideTabBar->isChecked();
     App->dirViewRoot = dirRoot->text();
+    if (App->iconTheme != iconTheme->currentText())
+        QMessageBox::information(this,tr("Qoobar"),tr("The toolbar icons theme will be changed\n"
+                                                      "after you restart Qoobar"));
+    App->iconTheme = iconTheme->currentText();
 }
 
 void InterfacePage::changeCharsFont()
@@ -317,7 +335,7 @@ QString CompletionPage::description()
 }
 QString CompletionPage::iconFilename()
 {DD;
-    return QSL(":/src/icons/completion.png");
+    return App->iconThemeIcon("completion.png");
 }
 void CompletionPage::retranslateUI()
 {DD;
@@ -472,7 +490,7 @@ QString WritingPage::description()
 }
 QString WritingPage::iconFilename()
 {DD;
-    return QSL(":/src/icons/writing.png");
+    return App->iconThemeIcon("writing.png");
 }
 void WritingPage::retranslateUI()
 {DD;
@@ -627,7 +645,7 @@ QString PatternsPage::description()
 }
 QString PatternsPage::iconFilename()
 {DD;
-    return QSL(":/src/icons/patterns.png");
+    return App->iconThemeIcon("patterns.png");
 }
 void PatternsPage::retranslateUI()
 {DD;
@@ -843,7 +861,7 @@ QString UtilitiesPage::description()
 
 QString UtilitiesPage::iconFilename()
 {DD;
-    return QSL(":/src/icons/utilities.png");
+    return App->iconThemeIcon("utilities.png");
 }
 
 void UtilitiesPage::retranslateUI()
@@ -865,11 +883,11 @@ void UtilitiesPage::retranslateUI()
     for (int i=0; i<tree->topLevelItemCount(); ++i) {
         QString programPath;
         if (Qoobar::programInstalled(tree->topLevelItem(i)->text(1),&programPath)) {
-            tree->topLevelItem(i)->setIcon(0,QIcon(QSL(":/src/icons/tick.png")));
+            tree->topLevelItem(i)->setIcon(0,QIcon(App->iconThemeIcon("tick.png")));
             tree->topLevelItem(i)->setText(2,programPath);
         }
         else {
-            tree->topLevelItem(i)->setIcon(0,QIcon(QSL(":/src/icons/exclamation.png")));
+            tree->topLevelItem(i)->setIcon(0,QIcon(App->iconThemeIcon("exclamation.png")));
             tree->topLevelItem(i)->setToolTip(0,tr("Not installed"));
         }
     }
@@ -941,7 +959,7 @@ QString NetworkPage::description()
 }
 QString NetworkPage::iconFilename()
 {DD;
-    return QSL(":/src/icons/network.png");
+    return App->iconThemeIcon("network.png");
 }
 void NetworkPage::retranslateUI()
 {DD;
@@ -1001,7 +1019,7 @@ QString PluginsPage::description()
 
 QString PluginsPage::iconFilename()
 {DD;
-    return QSL(":/src/icons/plugin.png");
+    return App->iconThemeIcon("plugin.png");
 }
 
 void PluginsPage::retranslateUI()
@@ -1057,9 +1075,9 @@ void PluginsPage::setSettings()
                                                     <<version <<description
                                                     <<QString()<<QString()<<QString());
         item->setData(0, Qt::UserRole, metaData);
-        if (metaData.value(QSL("canSearchManually")).toBool()) item->setIcon(3,QIcon(QSL(":/src/icons/tick.png")));
-        if (metaData.value(QSL("canSearchByCD")).toBool()) item->setIcon(4,QIcon(QSL(":/src/icons/tick.png")));
-        if (metaData.value(QSL("canSearchByFiles")).toBool()) item->setIcon(5,QIcon(QSL(":/src/icons/tick.png")));
+        if (metaData.value(QSL("canSearchManually")).toBool()) item->setIcon(3,QIcon(App->iconThemeIcon("tick.png")));
+        if (metaData.value(QSL("canSearchByCD")).toBool()) item->setIcon(4,QIcon(App->iconThemeIcon("tick.png")));
+        if (metaData.value(QSL("canSearchByFiles")).toBool()) item->setIcon(5,QIcon(App->iconThemeIcon("tick.png")));
     }
 #else
     for (QMap<QString, IDownloadPlugin *>::const_iterator it = App->downloadPlugins.begin();
@@ -1071,9 +1089,9 @@ void PluginsPage::setSettings()
                                                     <<QString()
                                                     <<QString()
                                                     <<QString());
-        if (it.value()->canSearchManually()) item->setIcon(3,QIcon(QSL(":/src/icons/tick.png")));
-        if (it.value()->canSearchByCD()) item->setIcon(4,QIcon(QSL(":/src/icons/tick.png")));
-        if (it.value()->canSearchByFiles()) item->setIcon(5,QIcon(QSL(":/src/icons/tick.png")));
+        if (it.value()->canSearchManually()) item->setIcon(3,QIcon(App->iconThemeIcon("tick.png")));
+        if (it.value()->canSearchByCD()) item->setIcon(4,QIcon(App->iconThemeIcon("tick.png")));
+        if (it.value()->canSearchByFiles()) item->setIcon(5,QIcon(App->iconThemeIcon("tick.png")));
     }
 #endif
 

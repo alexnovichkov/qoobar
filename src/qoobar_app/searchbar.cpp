@@ -321,7 +321,7 @@ QWidgetAction *SearchBar::createAction(const QString &text)
 
     QLabel *label = new QLabel(text, this);
     QPushButton *button = new QPushButton(this);
-    button->setIcon(QIcon(QSL(":/src/icons/editclear.png")));
+    button->setIcon(QIcon(App->iconThemeIcon("editclear.png")));
     button->setIconSize(QSize(16,16));
     button->setFlat(true);
     button->setProperty("path", text);

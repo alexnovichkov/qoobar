@@ -8,6 +8,8 @@ DEFINES *= QOOBAR_VERSION=\\\"$$VERSION\\\"
 DEFINES *= QOOBAR_SHARED_PATH=\\\"$${SHARED_PATH}/qoobar\\\"
 DEFINES *= QOOBAR_DOC_PATH=\\\"$${DOC_PATH}/qoobar-doc\\\"
 
+include(../portable.pri)
+
 # place this define in OS-specific section to enable command-line interface
 # DEFINES *= QOOBAR_ENABLE_CLI
 
@@ -323,7 +325,11 @@ unix {
     target.path = $$EXEC_PATH
     docfiles.path = $${DOC_PATH}/qoobar
     docfiles.files = ../../README*
-    INSTALLS += target icon docfiles resources
+    icons.files = icons/*.ico
+    icons.files += icons/*.png
+    icons.files += icons/*.gif
+    icons.path = $${SHARED_PATH}/qoobar/icons/default
+    INSTALLS += target icon docfiles resources icons
     INSTALLS += schemes desktop manfiles completions
 
     # documentation
@@ -393,9 +399,13 @@ os2 {
     target.path = $$EXEC_PATH
     docfiles.path = $${DOC_PATH}
     docfiles.files = README*
+    icons.files = icons/*.ico
+    icons.files += icons/*.png
+    icons.files += icons/*.gif
+    icons.path = $${SHARED_PATH}/icons/default
     INSTALLS += target
     #INSTALLS += icon desktop
-    INSTALLS += docfiles resources
+    INSTALLS += docfiles resources icons
     INSTALLS += schemes manfiles completions
 
     # documentation
@@ -458,8 +468,12 @@ mac|macx {
     schemes.files = schemes/*.xml
     completions.path = $$INSTALL_PATH/Resources/completions
     completions.files = completions/*.txt
+    icons.files = icons/*.ico
+    icons.files += icons/*.png
+    icons.files += icons/*.gif
+    icons.path = $$INSTALL_PATH/Resources/icons/default
 
-    INSTALLS += icon resources schemes completions
+    INSTALLS += icon resources schemes completions icons
 
     # documentation
     htmldocfiles.path = $$INSTALL_PATH/Resources/html

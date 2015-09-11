@@ -438,7 +438,11 @@ int GD3Plugin::preferredPauseSize()
 
 QMap<QString, QString> GD3Plugin::authenticationInfo()
 {
+#ifdef QOOBAR_PORTABLE
+    QSettings settings(QSL("qoobar.ini"),QSettings::IniFormat);
+#else
     QSettings settings("qoobar","qoobar");
+#endif
     QString login = settings.value("gd3login").toString();
     QString password = settings.value("gd3password").toString();
 

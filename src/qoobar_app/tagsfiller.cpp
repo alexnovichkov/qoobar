@@ -262,7 +262,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     filesSearchRadioButton->setChecked(true);
 
 
-    QPushButton *swapButton = new QPushButton(QIcon(QSL(":/src/icons/flip.png")),QString(),this);
+    QPushButton *swapButton = new QPushButton(QIcon(App->iconThemeIcon("flip.png")),QString(),this);
     swapButton->setFlat(true);
     connect(swapButton,SIGNAL(clicked()),SLOT(swapArtistAndAlbum()));
 
