@@ -1,5 +1,5 @@
 TEMPLATE = app
-VERSION = 1.6.7
+VERSION = 1.6.8
 INSTALL_PREFIX = /usr
 SHARED_PATH = $${INSTALL_PREFIX}/share
 DOC_PATH = $${SHARED_PATH}/doc
@@ -305,12 +305,22 @@ unix {
 
     EXEC_PATH = $${INSTALL_PREFIX}/bin
     PIXMAP_PATH = $${SHARED_PATH}/pixmaps
+    ICON_PATH = $${SHARED_PATH}/icons/hicolor
     MAN_PATH = $${SHARED_PATH}/man/man1
     DESKTOP_PATH = $${SHARED_PATH}/applications
 
     # targets for binary package
-    icon.path = $$PIXMAP_PATH
-    icon.files = icons/qoobar.png
+    icon16.path = $$PIXMAP_PATH/16x16/apps
+    icon16.files = icons/app/16/qoobar.png
+    icon32.path = $$PIXMAP_PATH/32x32/apps
+    icon32.files = icons/app/32/qoobar.png
+    icon48.path = $$PIXMAP_PATH/48x48/apps
+    icon48.files = icons/app/48/qoobar.png
+    icon64.path = $$PIXMAP_PATH/64x64/apps
+    icon64.files = icons/app/64/qoobar.png
+    icon128.path = $$PIXMAP_PATH/128x128/apps
+    icon128.files = icons/app/128/qoobar.png
+    INSTALLS += icon16 icon32 icon48 icon64 icon128
     resources.path = /usr/share/qoobar
     resources.files = *.qm
     resources.files += args.json splitandconvert.sh
@@ -329,7 +339,7 @@ unix {
     icons.files += icons/*.png
     icons.files += icons/*.gif
     icons.path = $${SHARED_PATH}/qoobar/icons/default
-    INSTALLS += target icon docfiles resources icons
+    INSTALLS += target docfiles resources icons
     INSTALLS += schemes desktop manfiles completions
 
     # documentation
@@ -449,7 +459,7 @@ mac|macx {
     }
 
 
-    ICON = qoobar.icns
+    ICON = icons/app/qoobar.icns
     INSTALL_PATH = $$DESTDIR/qoobar.app/Contents
 
     OTHER_FILES += ../../Info.plist

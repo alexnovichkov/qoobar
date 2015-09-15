@@ -7,12 +7,12 @@
       <language>en</language>
 
          <item>
-            <title>Version 1.6.7 for OS X</title>
+            <title>Version 1.6.8 for OS X</title>
             <description>This version adds the ability to sort files and fixes the Discogs import.</description>
             <pubDate>Mon, 31 Aug 2015 18:35:42 +0300</pubDate>
             <sparkle:releaseNotesLink>http://qoobar.sourceforge.net/en/changelog_latest.htm</sparkle:releaseNotesLink>
             <enclosure
-              sparkle:version="1.6.7"
+              sparkle:version="1.6.8"
               sparkle:dsaSignature="MC0CFQCPG+3TgHv/XupZaKKmxPOD/YXdkAIUTRCsiwwKLJ/sKGMHjd/J4/9TTn8="
               url="http://sourceforge.net/projects/qoobar/files/qoobar-1.6.7/Mac_OS_X/qoobar-1.6.7.dmg/download"
               length="12781235"
@@ -20,13 +20,13 @@
          </item>
 
          <item>
-            <title>Version 1.6.7 for Windows</title>
+            <title>Version 1.6.8 for Windows</title>
             <description>This version adds the ability to sort files and fixes the Discogs import.</description>
             <pubDate>Sat, 29 Aug 2015 16:40:42 +0300</pubDate>
             <sparkle:releaseNotesLink>http://qoobar.sourceforge.net/en/changelog_latest.htm</sparkle:releaseNotesLink>
             <enclosure
               sparkle:os="windows"
-              sparkle:version="1.6.7"
+              sparkle:version="1.6.8"
               url="http://sourceforge.net/projects/qoobar/files/qoobar-1.6.7/Windows/qoobar-1.6.7.exe"
               length="10193838"
               type="application/octet-stream"/>

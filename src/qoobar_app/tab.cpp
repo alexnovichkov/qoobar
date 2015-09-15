@@ -824,6 +824,7 @@ void Tab::updateImageBox()
 {DD;
     if (!imageBox->isVisible()) return; //do not paint image if it is not visible
     imageBox->clear();
+    imageBox->update(model->hasSelection());
 
     if (!model->hasSelection()) return;
 
@@ -905,16 +906,20 @@ void Tab::delFiles() /*SLOT*/
 #endif
 }
 
-void Tab::delAllFiles() /*SLOT*/
+/**
+ * @brief Tab::delAllFiles
+ * @return true if success
+ */
+bool Tab::delAllFiles() /*SLOT*/
 {DD;
-    if (model->isEmpty()) return;
+    if (model->isEmpty()) return true;
     model->selectAll();
-    delFiles(false);
+    return delFiles(false);
 }
 
-void Tab::delFiles(bool deleteSilently)
+bool Tab::delFiles(bool deleteSilently)
 {DD;
-    if (!model->hasSelection()) return;
+    if (!model->hasSelection()) return true;
 
     if (!deleteSilently && !model->isSelectedFilesSaved()) {
         QMessageBox msgBox(QMessageBox::Question,tr("Qoobar"),
@@ -936,7 +941,7 @@ void Tab::delFiles(bool deleteSilently)
             saveWithProgress();
         }
         else if (msgBox.clickedButton() == cancB) {
-            return;
+            return false;
         }
     }
 
@@ -955,6 +960,7 @@ void Tab::delFiles(bool deleteSilently)
     moveDownAct->setEnabled(false);
 
     handleCutCopy();
+    return true;
 }
 
 #include <QMimeDatabase>
@@ -963,16 +969,19 @@ void Tab::addFileNames(const QStringList &filesToAdd, bool clearBefore)
 {DD;
     if (filesToAdd.isEmpty()) return;
 
-    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-    if (clearBefore) delAllFiles();
+    bool proceed=true;
+    if (clearBefore)
+        proceed = delAllFiles();
+    if (proceed) {
+        QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+        TaskBarProgress *progress = new TaskBarProgress(win, this);
+        progress->setRange(0, filesToAdd.size());
+        connect(model,SIGNAL(fileAdded(int)),progress,SLOT(setValue(int)));
+        connect(model,SIGNAL(allFilesAdded()), progress,SLOT(finalize()));
 
-    TaskBarProgress *progress = new TaskBarProgress(win, this);
-    progress->setRange(0, filesToAdd.size());
-    connect(model,SIGNAL(fileAdded(int)),progress,SLOT(setValue(int)));
-    connect(model,SIGNAL(allFilesAdded()), progress,SLOT(finalize()));
-
-    model->addFiles(filesToAdd);
-    win->statusBar()->showMessage(tr("Please wait while Qoobar is adding files"));
+        model->addFiles(filesToAdd);
+        win->statusBar()->showMessage(tr("Please wait while Qoobar is adding files"));
+    }
 }
 
 void Tab::addFiles(int addedCount, bool update) /*SLOT*/
@@ -1133,8 +1142,10 @@ void Tab::filesSelectionChanged() /*SLOT*/
     QItemSelection selectedRows = tree->selectionModel()->selection();
 
     for (int i=0; i<model->size(); ++i) {
-        if (selectedRows.contains(model->index(i,0))) {
-            indexes << i;
+        QList<QItemSelectionRange>::const_iterator it = selectedRows.begin();
+        for (; it != selectedRows.end(); ++it) {
+            if ((*it).top()<=i && (*it).bottom()>=i)
+              indexes << i;
         }
     }
     indexes.squeeze();

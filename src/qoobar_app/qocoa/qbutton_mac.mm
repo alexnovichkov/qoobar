@@ -197,6 +197,8 @@ void QButton::setText(const QString &text)
 
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     [pimpl->nsButton setTitle:fromQString(text)];
+    int w = QFontMetrics(font()).width(text)+20;
+    setMinimumWidth(w);
     [pool drain];
 }
 
@@ -218,6 +220,13 @@ void QButton::setChecked(bool checked)
         [pimpl->nsButton setState:checked];
 }
 
+void QButton::setFlat(bool flat)
+{
+    Q_ASSERT(pimpl);
+    if (pimpl)
+        [pimpl->nsButton setShowsBorderOnlyWhileMouseInside:flat?YES:NO];
+}
+
 void QButton::setCheckable(bool checkable)
 {
     const NSInteger cellMask = checkable ? NSChangeBackgroundCellMask : NSNoCellMask;
@@ -234,4 +243,12 @@ bool QButton::isChecked()
         return false;
 
     return [pimpl->nsButton state];
+}
+
+bool QButton::isFlat() const
+{
+    Q_ASSERT(pimpl);
+    if (pimpl)
+        return [pimpl->nsButton showsBorderOnlyWhileMouseInside]==YES;
+    return false;
 }

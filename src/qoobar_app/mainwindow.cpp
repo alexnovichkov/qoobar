@@ -576,12 +576,17 @@ void MainWindow::showAboutDialog()
 #endif
 
     QString libraries=QString("%1<ul><li>Qt %2</li><li>%3</li><li>%4</li></ul>")
-            .arg(tr("<b>Qoobar uses:</b><br><b>Libraries:</b>"))
+            .arg(tr("<b>Qoobar uses:</b>"))
             .arg(qVersion())
             .arg(taglib)
             .arg(libdiscid);
 
-    QMessageBox::about(this, tr("&About Qoobar"), about + libraries);
+    QString portable;
+#ifdef QOOBAR_PORTABLE
+    portable = tr("<p>This version is compiled as portable");
+#endif
+
+    QMessageBox::about(this, tr("About Qoobar"), about + libraries + portable);
 }
 
 

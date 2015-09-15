@@ -89,6 +89,7 @@ Q_SIGNALS:
 public Q_SLOTS:
     void updatePicture(const QString &);
     void updatePicture(const CoverImage &, const QString &);
+    void update(bool selected);
     void clear();
 private Q_SLOTS:
     void addImage();

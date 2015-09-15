@@ -121,7 +121,7 @@ bool isValidLibrary(const QFileInfo &path)
 Application::Application(int &argc, char **argv, bool useGui)
     :  QApplication(argc,argv,useGui), autocompletions(0)
 {DD;
-    if (useGui) setWindowIcon(QIcon(QSL(":/src/icons/qoobar.ico")));
+    if (useGui) setWindowIcon(QIcon(QSL(":/src/icons/app/qoobar.ico")));
     appTranslator = new QTranslator(this);
     qtTranslator = new QTranslator(this);
     installTranslator(appTranslator);
@@ -244,7 +244,7 @@ void Application::setId3v1Encoding(const QString &s)
 void Application::readGuiSettings()
 {DD;
 #ifdef QOOBAR_PORTABLE
-    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
+    QSettings se(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
 #else
     QSettings se(QSL("qoobar"),QSL("gui"));
 #endif
@@ -347,19 +347,17 @@ void Application::readGuiSettings()
 
 void Application::readGlobalSettings()
 {DD;
+#ifdef QOOBAR_PORTABLE
+    QSettings se(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
+#else
 #ifdef Q_OS_LINUX
     QSettings se(QString("%1/.config/qoobar/global.ini").arg(QDir::homePath()), QSettings::IniFormat);
 #elif defined(Q_OS_MAC)
     QSettings se(QSL("qoobar"),QSL("global"));
 #else
-#ifdef QOOBAR_PORTABLE
-    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
-#else
     QSettings se(QSL("qoobar"),QSL("gui"));
 #endif
 #endif
-
-
 
     currentSchemeName = se.value("scheme", currentSchemeName).toString();
     if (!currentScheme)
@@ -443,7 +441,7 @@ void Application::readGlobalSettings()
 void Application::writeGuiSettings()
 {DD;
 #ifdef QOOBAR_PORTABLE
-    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
+    QSettings se(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
 #else
     QSettings se(QSL("qoobar"),QSL("gui"));
 #endif
@@ -497,13 +495,13 @@ void Application::writeGuiSettings()
 
 void Application::writeGlobalSettings()
 {DD;
+#ifdef QOOBAR_PORTABLE
+    QSettings se(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
+#else
 #ifdef Q_OS_LINUX
     QSettings se(QString("%1/.config/qoobar/global.ini").arg(QDir::homePath()), QSettings::IniFormat);
 #elif defined(Q_OS_MAC)
     QSettings se(QSL("qoobar"),QSL("global"));
-#else
-#ifdef QOOBAR_PORTABLE
-    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
 #else
     QSettings se(QSL("qoobar"),QSL("gui"));
 #endif
@@ -582,7 +580,7 @@ void Application::clearSettings()
     se.clear();
 #endif
 #ifdef QOOBAR_PORTABLE
-    QSettings se1(QSL("qoobar.ini"),QSettings::IniFormat);
+    QSettings se(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
 #else
     QSettings se1(QSL("qoobar"),QSL("gui"));
 #endif

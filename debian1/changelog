@@ -1,4 +1,4 @@
-qoobar (1.6.7) unstable; urgency=low
+qoobar (1.6.8) unstable; urgency=low
 
   * Fixed: Bug with deleting of the replaygain info
   * Fixed: Discogs authentication

@@ -114,7 +114,7 @@ public Q_SLOTS:
     void rereadTags();
     void renameFiles();
     void delFiles();
-    void delAllFiles();
+    bool delAllFiles();
     void fill();
     void removeAllTags();
     void saveTags();
@@ -154,7 +154,7 @@ private:
 
 
     void updateTags(QList<Tag> &oldTags, QList<Tag> &newTags, const QString &motivation);
-    void delFiles(bool silently);
+    bool delFiles(bool silently);
     QStringList getTags(int);
     void moveItems(bool up);
     void rename(const QStringList &);

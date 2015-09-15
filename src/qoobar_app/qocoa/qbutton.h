@@ -34,10 +34,11 @@ public Q_SLOTS:
     void setText(const QString &text);
     void setImage(const QPixmap &image);
     void setChecked(bool checked);
-
+    void setFlat(bool flat);
 public:
     void setCheckable(bool checkable);
     bool isChecked();
+    bool isFlat() const;
 
 Q_SIGNALS:
     void clicked(bool checked = false);

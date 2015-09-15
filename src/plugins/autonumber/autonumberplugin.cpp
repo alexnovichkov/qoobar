@@ -92,21 +92,6 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
     tree->header()->setStretchLastSection(false);
 
 
-    for (int i=0; i<oldTags.size(); ++i) {
-        QTreeWidgetItem *item = new QTreeWidgetItem(
-                    QStringList()<<oldTags.at(i).tracknumber()
-                    <<oldTags.at(i).tracknumber()
-                    <<oldTags.at(i).totalTracks()
-                    <<oldTags.at(i).totalTracks()
-                    <<oldTags.at(i).fileNameExt()
-                    <<oldTags.at(i).artist()
-                    <<oldTags.at(i).composer()
-                    <<oldTags.at(i).album()
-                    <<oldTags.at(i).title());
-        item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
-        tree->addTopLevelItem(item);
-    }
-
     startNumberEdit = new QSpinBox(this);
     startNumberEdit->setRange(1,9999);
     startNumberEdit->setValue(startNumber);
@@ -195,18 +180,30 @@ QList<Tag> Dialog::getNewTags()
 
 QString formatNumber(int number, int format)
 {
-    QString s = QString::number(number);
-    while (s.length()<format+1) s.prepend('0');
+    QString s = QString::number(number).rightJustified(format+1,'0');
     return s;
 }
 
 void Dialog::updateTrackNumbers()
 {
     int totalCount = oldTags.size();
+    tree->blockSignals(true);
+    tree->clear();
 
-    for (int i=0; i<totalCount; ++i) {
-        tree->topLevelItem(i)->setText(1, "");
-        tree->topLevelItem(i)->setText(3, "");
+    QList<QTreeWidgetItem*> items;
+    for (int i=0; i<oldTags.size(); ++i) {
+        QTreeWidgetItem *item = new QTreeWidgetItem(
+                    QStringList()<<oldTags.at(i).tracknumber()
+                    <<oldTags.at(i).tracknumber()
+                    <<oldTags.at(i).totalTracks()
+                    <<oldTags.at(i).totalTracks()
+                    <<oldTags.at(i).fileNameExt()
+                    <<oldTags.at(i).artist()
+                    <<oldTags.at(i).composer()
+                    <<oldTags.at(i).album()
+                    <<oldTags.at(i).title());
+        item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
+        items << item;
     }
 
     int  firstNumber    = startNumberEdit->value();
@@ -216,9 +213,7 @@ void Dialog::updateTrackNumbers()
     bool addTotalTracks = addTotalTracksCheckBox->isChecked();
     int  actionIndex    = actionComboBox->currentIndex();
 
-
     QMap<QString, QVector<int> > byFolder;
-    Q_ASSERT_X(totalCount<=oldTags.size(), "autonumberplugin.cpp line 214","index out of bounds");
     if (resetFolder) {
         for (int i=0; i<totalCount; ++i) {
             QString path = oldTags.at(i).filePath();
@@ -272,9 +267,9 @@ void Dialog::updateTrackNumbers()
                         break;
                     }
                     case 1: {//1 - Keep old track number
-                        trackNumber = tree->topLevelItem(indexesA.at(i))->text(0);
+                        trackNumber = oldTags.at(indexesA.at(i)).tracknumber();
                         if (addTotalTracks)
-                            totalTracks = tree->topLevelItem(indexesA.at(i))->text(2);
+                            totalTracks = oldTags.at(indexesA.at(i)).totalTracks();
                         break;
                     }
                     case 2: {//2 - Set "1" as track number
@@ -289,9 +284,9 @@ void Dialog::updateTrackNumbers()
                     }
                 }
 
-                tree->topLevelItem(indexesA.at(i))->setText(1, trackNumber);
+                items[indexesA.at(i)]->setText(1, trackNumber);
                 if (addTotalTracks)
-                    tree->topLevelItem(indexesA.at(i))->setText(3, totalTracks);
+                    items[indexesA.at(i)]->setText(3, totalTracks);
 
             }
         }
@@ -300,12 +295,14 @@ void Dialog::updateTrackNumbers()
             for (int i=0; i<indexesLast.size(); ++i) {
                 QString trackNumber = formatNumber(i+firstNumber, numberFormat);
                 QString totalTracks = formatNumber(indexesLast.size(), numberFormat);
-                tree->topLevelItem(indexesLast.at(i))->setText(1, trackNumber);
+                items[indexesLast.at(i)]->setText(1, trackNumber);
                 if (addTotalTracks)
-                    tree->topLevelItem(indexesLast.at(i))->setText(3, totalTracks);
+                    items[indexesLast.at(i)]->setText(3, totalTracks);
             }
         }
     }
+    tree->addTopLevelItems(items);
+    tree->blockSignals(false);
 }
 
 void Dialog::accept()

@@ -65,6 +65,25 @@ void QButton::setImage(const QPixmap &image)
         pimpl->abstractButton->setIcon(image);
 }
 
+void QButton::setFlat(bool flat)
+{
+    Q_ASSERT(pimpl);
+    if (pimpl) {
+        QPushButton *pushButton = qobject_cast<QPushButton*>(pimpl->abstractButton);
+        if (pushButton) pushButton->setFlat(flat);
+    }
+}
+
+bool QButton::isFlat() const
+{
+    Q_ASSERT(pimpl);
+    if (pimpl) {
+        QPushButton *pushButton = qobject_cast<QPushButton*>(pimpl->abstractButton);
+        if (pushButton) return pushButton->isFlat();
+    }
+    return false;
+}
+
 void QButton::setChecked(bool checked)
 {
     Q_ASSERT(pimpl);

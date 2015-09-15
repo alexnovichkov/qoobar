@@ -236,7 +236,7 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
                                               App->iconThemeIcon("document-save.ico"));
 
 
-    addImageAct->setEnabled(true);
+    addImageAct->setEnabled(false);
 
     typeAct = new QAction(this);
     descriptionAct = new QAction(this);
@@ -544,5 +544,10 @@ void ImageBox::updatePicture(const CoverImage &img, const QString &filename)
         pasteAct->setEnabled(App->imageBuffer != CoverImage());
         resizeAct->setEnabled(true);
     }
+}
+
+void ImageBox::update(bool selected)
+{
+    addImageAct->setEnabled(selected);
 }
 

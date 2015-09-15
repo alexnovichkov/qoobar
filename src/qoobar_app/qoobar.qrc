@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/src">
         <file>default.xml</file>
-        <file>icons/qoobar.ico</file>
+        <file>icons/app/qoobar.ico</file>
     </qresource>
 </RCC>

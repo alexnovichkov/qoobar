@@ -1,4 +1,4 @@
-QOOBAR v.1.6.7 INSTALLATION:
+QOOBAR v.1.6.8 INSTALLATION:
 ---------------------------
 
 ** Linux
@@ -31,7 +31,7 @@ Manual compilation: (MinGW support only)
 
 1. Install Qt/Windows Open Source Edition >= 4.5.0
 2. Download http://sourceforge.net/projects/qoobar/files/utils/win_utils.tar.gz
-   archive with necessary dlls and execs and unpack it into qoobar-1.6.7
+   archive with necessary dlls and execs and unpack it into qoobar-1.6.8
 3. Build manually:
 
 > qmake
@@ -41,7 +41,7 @@ Manual compilation: (MinGW support only)
 4. Copy release/* files to desired location or run release/qoobar.exe
 
 Or you can install qoobar from
-http://sourceforge.net/projects/qoobar/files/qoobar-1.6.7/Windows/qoobar-1.6.7.exe/download
+http://sourceforge.net/projects/qoobar/files/qoobar-1.6.8/Windows/qoobar-1.6.8.exe/download
 
 ** Mac OS X
 -----------
@@ -50,8 +50,8 @@ Manual compilation:
 
 1. Install Qt SDK
 2. Download http://sourceforge.net/projects/qoobar/files/utils/mac_os_utils.tar.gz
-   archive with necessary libs and execs and unpack it into qoobar-1.6.7
+   archive with necessary libs and execs and unpack it into qoobar-1.6.8
 3. qmake && make && make install
 
 Or you can install qoobar from
-http://sourceforge.net/projects/qoobar/files/qoobar-1.6.7/Mac_OS_X/qoobar-1.6.7.dmg/download
+http://sourceforge.net/projects/qoobar/files/qoobar-1.6.8/Mac_OS_X/qoobar-1.6.8.dmg/download
