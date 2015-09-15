@@ -13,6 +13,36 @@
 #include "mainwindow.h"
 #include "model.h"
 
+class ColumnSelectorButton : public QToolButton
+{
+public:
+    explicit ColumnSelectorButton(QHeaderView *header, QWidget*parent=0) : QToolButton(parent),
+        m_header(header)
+    {}
+    void paintEvent(QPaintEvent * pe)
+    {
+        int w = width();
+        int h = m_header->height();
+#ifdef Q_OS_MAC
+        w++;
+#endif
+
+        QPainter p(this);
+        p.setClipRect(pe->rect());
+
+        QStyleOptionHeader opt;
+        opt.initFrom(m_header);
+        opt.state |= QStyle::State_Horizontal |
+                     QStyle::State_Enabled |
+                     QStyle::State_Raised;
+        opt.rect = QRect(0,0, w,h);
+        style()->drawControl(QStyle::CE_Header, &opt, &p, m_header);
+        p.end();
+    }
+private:
+    QHeaderView *m_header;
+};
+
 TreeView::TreeView(Tab *parent) : QTreeView(parent)
 {
     tab=parent;
@@ -23,6 +53,8 @@ TreeView::TreeView(Tab *parent) : QTreeView(parent)
     setAlternatingRowColors(true);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setUniformRowHeights(true);
+    ColumnSelectorButton *selector = new ColumnSelectorButton(this->header(), this);
+    this->addScrollBarWidget(selector,Qt::AlignTop);
 
 #ifdef Q_OS_MAC
     setFrameStyle(QFrame::NoFrame | QFrame::Plain);
@@ -32,6 +64,7 @@ TreeView::TreeView(Tab *parent) : QTreeView(parent)
 
     showAct = new QAction(tr("Show/hide columns..."), this);
     connect(showAct,SIGNAL(triggered()),this,SLOT(adjustDisplayedTags()));
+    selector->setDefaultAction(showAct);
 
     if (!App->columns167.isEmpty()) {
         header()->restoreState(App->columns167);

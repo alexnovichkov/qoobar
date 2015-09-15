@@ -2696,7 +2696,7 @@ Please choose the encoding:</source>
         <translation type="obsolete">Bild</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1060"/>
+        <location filename="tab.cpp" line="1068"/>
         <source>Files in %1 have been modified.</source>
         <translation>Dateien in %1 wurden geändert.</translation>
     </message>
@@ -2724,43 +2724,43 @@ Please choose the encoding:</source>
         <translation>Bitte legen Sie ein Musikabspielprogramm im Einstellungs-Dialog fest</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="922"/>
+        <location filename="tab.cpp" line="926"/>
         <source>Some files have been modified</source>
         <translation>Einige Dateien wurden geändert</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="924"/>
+        <location filename="tab.cpp" line="928"/>
         <source>Remove them anyway?</source>
         <translation>Trotzdem löschen?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="925"/>
+        <location filename="tab.cpp" line="929"/>
         <source>Yes, remove without saving</source>
         <translation>Ja, ohne Sichern löschen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="927"/>
+        <location filename="tab.cpp" line="931"/>
         <source>No, save them and then remove</source>
         <translation>Nein, sichern und dann löschen</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="222"/>
-        <location filename="tab.cpp" line="921"/>
+        <location filename="tab.cpp" line="925"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1059"/>
+        <location filename="tab.cpp" line="1067"/>
         <source>Closing Qoobar</source>
         <translation>Qoobar beenden</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1212"/>
+        <location filename="tab.cpp" line="1220"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation>Qoobar - ReplayGain-Informationen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1213"/>
+        <location filename="tab.cpp" line="1221"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation>Qoobar kann die Dateien nur scannen, nachdem die Änderungen gespeichert wurden. Möchten Sie die Änderungen speichern?</translation>
@@ -2804,28 +2804,28 @@ Do you want to save changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="976"/>
+        <location filename="tab.cpp" line="983"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation>Bitte warten während Qoobar die Dateien hinzufügt</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1044"/>
+        <location filename="tab.cpp" line="1052"/>
         <source>Cannot write tags to file:
 %1</source>
         <translation>Tags konnten nicht in Datei geschrieben werden: %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1063"/>
+        <location filename="tab.cpp" line="1071"/>
         <source>Do you want to save your changes?</source>
         <translation>Sollen die Änderungen gespeichert werden?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1064"/>
+        <location filename="tab.cpp" line="1072"/>
         <source>Yes, save</source>
         <translation>Ja, speichern</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1066"/>
+        <location filename="tab.cpp" line="1074"/>
         <source>No, don&apos;t save</source>
         <translation>Nein, verwerfen</translation>
     </message>

@@ -2818,22 +2818,22 @@ Proszę wybrać kodowanie:</translation>
         <translation>Proszę ustawić odtwarzacz w oknie Ustawień</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="922"/>
+        <location filename="tab.cpp" line="926"/>
         <source>Some files have been modified</source>
         <translation>Niektóre pliki zostały zmodyfikowane</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="924"/>
+        <location filename="tab.cpp" line="928"/>
         <source>Remove them anyway?</source>
         <translation>Czy usunąć je mimo wszystko?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="925"/>
+        <location filename="tab.cpp" line="929"/>
         <source>Yes, remove without saving</source>
         <translation>Tak, usunąć bez zapisywania</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="927"/>
+        <location filename="tab.cpp" line="931"/>
         <source>No, save them and then remove</source>
         <translation>Nie, najpierw zapisz a potem usuń</translation>
     </message>
@@ -2844,7 +2844,7 @@ Proszę wybrać kodowanie:</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="222"/>
-        <location filename="tab.cpp" line="921"/>
+        <location filename="tab.cpp" line="925"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
@@ -2856,49 +2856,49 @@ Proszę wybrać kodowanie:</translation>
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="976"/>
+        <location filename="tab.cpp" line="983"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1044"/>
+        <location filename="tab.cpp" line="1052"/>
         <source>Cannot write tags to file:
 %1</source>
         <translation>Nie można zapisać tagów do pliku:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1059"/>
+        <location filename="tab.cpp" line="1067"/>
         <source>Closing Qoobar</source>
         <translation>Zamykanie programu Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1060"/>
+        <location filename="tab.cpp" line="1068"/>
         <source>Files in %1 have been modified.</source>
         <translation>Pliki w %1 zostały zmodyfikowane.</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1063"/>
+        <location filename="tab.cpp" line="1071"/>
         <source>Do you want to save your changes?</source>
         <translation>Czy chcesz zapisać zmiany?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1064"/>
+        <location filename="tab.cpp" line="1072"/>
         <source>Yes, save</source>
         <translation>Tak, zapisz</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1066"/>
+        <location filename="tab.cpp" line="1074"/>
         <source>No, don&apos;t save</source>
         <translation>Nie, nie zapisuj</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1212"/>
+        <location filename="tab.cpp" line="1220"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation>Qoobar - Informacje ReplayGain</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1213"/>
+        <location filename="tab.cpp" line="1221"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation>Qoobar może skanować jedynie zapisane pliki.

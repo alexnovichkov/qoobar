@@ -100,11 +100,11 @@ TagData::TagData(const TagData &other) :
     wasChanged(other.wasChanged),
     filetype(other.filetype),
     readOnly(other.readOnly),
+    size(other.size),
     tags(other.tags),
     replayGainInfo(other.replayGainInfo),
     image(other.image),
-    otherTags(other.otherTags),
-    size(other.size)
+    otherTags(other.otherTags)
 {
 
 }
