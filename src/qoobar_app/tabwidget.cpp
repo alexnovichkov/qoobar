@@ -39,7 +39,6 @@ TabBar::TabBar(QWidget *parent) : QTabBar(parent), index(-1)
 {DD;
     setAcceptDrops(true);
 
-    setTabsClosable(true);
     connect(this, SIGNAL(tabCloseRequested(int)), this, SIGNAL(closeTab(int)));
     setSelectionBehaviorOnRemove(QTabBar::SelectPreviousTab);
     setMovable(true);
@@ -144,7 +143,6 @@ TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent)
     newTabButton->setAutoRaise(true);
     setCornerWidget(newTabButton);
 
-    setTabsClosable(true);
     setDocumentMode(true);
     setMovable(true);
 }

@@ -66,6 +66,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 {DD
     setWindowTitle(caption);
     setWindowModality(Qt::WindowModal);
+
     m_type=type;
     plain=p;
     edit=0;
@@ -95,6 +96,10 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     connect(table,SIGNAL(cellClicked(int,int)),this,SLOT(cellClicked(int,int)));
     connect(table,SIGNAL(currentCellChanged(int,int,int,int)),this,SLOT(currentCellChanged(int)));
 
+    hideIcon = QIcon(App->iconThemeIcon("fold.png"));
+    showIcon = QIcon(App->iconThemeIcon("unfold.png"));
+
+#ifndef Q_OS_MAC
     scroll = new QScrollArea;
     scroll->setWidgetResizable(true);
     scroll->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -129,19 +134,14 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     charsWidget->setLayout(charsLayout);
     scroll->setWidget(charsWidget);
 
-
-    hideIcon = QIcon(App->iconThemeIcon("fold.png"));
-    showIcon = QIcon(App->iconThemeIcon("unfold.png"));
-
     toggleCharsAct = new QAction(this);
+    toggleCharsAct->setShortcut(tr("Ctrl+Meta+Space"));
     connect(toggleCharsAct,SIGNAL(triggered()),this,SLOT(toggleCharsWidget()));
-#ifdef Q_OS_MAC
-    FancyToolButton *toggleCharsButton = new FancyToolButton(this);
-#else
+
     QToolButton *toggleCharsButton = new QToolButton(this);
-#endif
     toggleCharsButton->setAutoRaise(true);
     toggleCharsButton->setDefaultAction(toggleCharsAct);
+
     if (App->charsShown) {
         toggleCharsAct->setIcon(hideIcon);
         toggleCharsAct->setToolTip(tr("Hide characters"));
@@ -151,7 +151,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
         toggleCharsAct->setIcon(showIcon);
         toggleCharsAct->setToolTip(tr("Show characters"));
     }
-
+#endif
 
     if (plain) {
         edit = new LineEdit(false,this);
@@ -244,8 +244,6 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     QHBoxLayout *l = new QHBoxLayout;
     l->setSpacing(0);
     l->setMargin(0);
-    l->addWidget(toggleCharsButton);
-    l->addWidget(new StyledSeparator(this));
     for (int i=0; i<8; ++i) {
         QAction *a = new QAction(QIcon(App->iconThemeIcon(operations[i].icon)),
                                  operations[i].text,this);
@@ -287,7 +285,9 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 
     //synthesizing
     QGridLayout *tagsEditorLayout = new QGridLayout;
+#ifndef Q_OS_MAC
     tagsEditorLayout->addWidget(scroll,1,0,plain?3:4,1);
+#endif
     if (plain) tagsEditorLayout->addWidget(edit,1,1);
     else tagsEditorLayout->addWidget(pedit,1,1,2,1);
     tagsEditorLayout->addWidget(legendButton,1,2);
@@ -549,7 +549,8 @@ void TagsEditDialog::handleSentTag(int tagID,bool fromTable)
 }
 
 void TagsEditDialog::toggleCharsWidget()
-{DD
+{DD;
+#ifndef Q_OS_MAC
     if (scroll->isVisible()) {
         scroll->hide();
         toggleCharsAct->setIcon(showIcon);
@@ -562,6 +563,7 @@ void TagsEditDialog::toggleCharsWidget()
         toggleCharsAct->setToolTip(tr("Hide characters"));
         App->charsShown = true;
     }
+#endif
 }
 
 void TagsEditDialog::insertLegend(const QString &s)
@@ -618,7 +620,10 @@ void TagsEditDialog::setModel(Model *model)
 }
 
 void TagsEditDialog::accept()
-{DD
+{DD;
+    if (edit) edit->setFocus();
+    if (pedit) pedit->setFocus();
+
     if (plain)
         spread(edit->text());
     else
@@ -626,6 +631,8 @@ void TagsEditDialog::accept()
 
     if (plain && edit->completer())
         edit->completer()->popup()->hide();
+
+
     QDialog::accept();
 }
 

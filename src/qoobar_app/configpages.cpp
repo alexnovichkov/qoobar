@@ -99,6 +99,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 
     autoexpand = new QCheckBox(tr("Automatically fill a tag "
                                   "when pasting a single line"),this);
+#ifndef Q_OS_MAC
     chars=new FancyLineEdit(this);
     chars->setButtonPixmap(FancyLineEdit::Right, QPixmap(App->iconThemeIcon("font.png")));
     chars->setButtonVisible(FancyLineEdit::Right, true);
@@ -106,7 +107,9 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     chars->setAutoHideButton(FancyLineEdit::Right, false);
     connect(chars, SIGNAL(rightButtonClicked()), this, SLOT(changeCharsFont()));
     chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
-
+    charsBox = new QLabel(tr("Characters"),this);
+    charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
+#endif
     lang = new QComboBox(this);
     QStringList ts=QDir(ApplicationPaths::translationsPath()).entryList(QStringList(QSL("*.qm")), QDir::Files | QDir::Readable);
     QTranslator translator;
@@ -124,9 +127,6 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     connect(lang,SIGNAL(currentIndexChanged(int)),this,SLOT(updateLanguage(int)));
 
     langLabel= new QLabel(tr("User interface language"),this);
-    charsBox = new QLabel(tr("Characters"),this);
-    charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
-
     hideTabBar = new QCheckBox(tr("Hide Tab bar with only one tab"), this);
 
     iconThemeLabel = new QLabel(tr("Toolbar icons theme"),this);
@@ -142,7 +142,9 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     UIlayout->addRow(hideTabBar);
     UIlayout->addRow(dirBox);
     UIlayout->addRow(dirRootLabel,dirRoot);
+#ifndef Q_OS_MAC
     UIlayout->addRow(charsBox, chars);
+#endif
     UIlayout->addRow(langLabel, lang);
     UIlayout->addRow(iconThemeLabel, iconTheme);
     UIlayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
@@ -162,9 +164,10 @@ void InterfacePage::setSettings()
     useUndo->setChecked(App->useUndo);
 
     autoexpand->setChecked(App->autoexpand);
+#ifndef Q_OS_MAC
     chars->setText(App->chars);
     chars->setCursorPosition(0);
-
+#endif
     int langIndex = lang->findData(App->langID);
     if (langIndex>=0) lang->setCurrentIndex(langIndex);
 
@@ -188,8 +191,12 @@ void InterfacePage::retranslateUI()
     ConfigPage::retranslateUI();
     autoexpand->setText(tr("Automatically fill a tag "
                            "when pasting a single line"));
+#ifndef Q_OS_MAC
     chars->setButtonToolTip(FancyLineEdit::Right, tr("Font..."));
     charsBox->setText(tr("Characters"));
+    chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
+    charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
+#endif
     langLabel->setText(tr("User interface language"));
     useUndo->setText(tr("Use undo / redo"));
     dirBox->setText(tr("Show folder tree"));
@@ -204,13 +211,12 @@ void InterfacePage::retranslateUI()
     dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
     dirRootLabel->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
     useUndo->setWhatsThis(tr("This box allows you to turn off the Undo/Redo system in Qoobar"));
-    chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
-    charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
-
 }
 void InterfacePage::saveSettings()
 {DD;
+#ifndef Q_OS_MAC
     App->chars=chars->text();
+#endif
     App->autoexpand=autoexpand->isChecked();
     App->useUndo = useUndo->isChecked();
     App->showDirView = dirBox->isChecked();

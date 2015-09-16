@@ -92,7 +92,6 @@ private:
     LineEdit *edit;
     int count;
 
-    QTabWidget *tab;
     QPlainTextEdit *pedit;
     bool plain;
     int m_type;

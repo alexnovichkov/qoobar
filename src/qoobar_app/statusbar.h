@@ -3,7 +3,26 @@
 
 #include <QStatusBar>
 #include "tagger.h"
-class QLabel;
+#include <QLabel>
+
+class  ElidingLabel : public QLabel
+{
+    Q_OBJECT
+    Q_PROPERTY(Qt::TextElideMode elideMode READ elideMode WRITE setElideMode DESIGNABLE true)
+
+public:
+    explicit ElidingLabel(QWidget *parent = 0);
+    explicit ElidingLabel(const QString &text, QWidget *parent = 0);
+
+    Qt::TextElideMode elideMode() const;
+    void setElideMode(const Qt::TextElideMode &elideMode);
+
+protected:
+    void paintEvent(QPaintEvent *event);
+
+private:
+    Qt::TextElideMode m_elideMode;
+};
 
 class PropertiesPanel: public QWidget
 {
@@ -19,7 +38,7 @@ public:
 
 private:
     QLabel *fileIconLabel;
-    QLabel *fileNameLabel;
+    ElidingLabel *fileNameLabel;
     QLabel *readOnlyLabel;
     QLabel *typeLabel;
     QLabel *sizeLabel;

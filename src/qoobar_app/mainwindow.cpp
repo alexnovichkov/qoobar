@@ -150,6 +150,10 @@ const Act MainWindow::actionsDescr[] = {
      SLOT(checkUpdates()), 0, QKeySequence::UnknownKey, 0,0},
     {"searchFiles", QT_TR_NOOP("S&earch files..."), QT_TR_NOOP("Search files..."), QT_TR_NOOP("Search"),
      SLOT(searchFiles()), QT_TR_NOOP("Shift+Ctrl+F"), QKeySequence::UnknownKey, 0,0},
+//#ifdef Q_OS_MAC
+//    {"specialCharacters", QT_TR_NOOP("Special Characters..."), QT_TR_NOOP("Special Characters..."), QT_TR_NOOP("Special Characters"),
+//     SLOT(specialCharacters()), QT_TR_NOOP("Ctrl+Command+Space"), QKeySequence::UnknownKey, 0,0},
+//#endif
     {0,0,0,0,0,0,QKeySequence::UnknownKey,0,0}
 };
 
@@ -159,7 +163,11 @@ const Menu MainWindow::menusDescr[] = {
                                    "delAllFiles,,exit"},
     {"edit", QT_TR_NOOP("&Edit"), ",cut,copy,paste,copyToClipboard,"
                                    "pasteFromClipboard,,removeTags,"
-                                   "newTag,,settings"},
+                                   "newTag,,settings"
+//#ifdef Q_OS_MAC
+//     ",specialCharacters"
+//#endif
+    },
     {"tools", QT_TR_NOOP("&Tools"), "rename,fill,play,replaygain,"},
     {"tabs", QT_TR_NOOP("Tab&s"), "newTab,closeTab,closeOtherTabs,renameTab"},
     {"help", QT_TR_NOOP("&Help"),"help,about,aboutQt,,checkUpdates"},
@@ -508,8 +516,10 @@ void MainWindow::createNewTab(bool quick)
     tab->undoStack()->setActive();
     sequenceNumber++;
     if (!quick) tab->retranslateUi();
-    if (tabWidget->count()>1)
+    if (tabWidget->count()>1) {
         tabWidget->hideTabBar(false);
+        tabWidget->setTabsClosable(true);
+    }
 }
 
 void MainWindow::newTab()
@@ -807,6 +817,7 @@ void MainWindow::closeTab(int i)
         tab->deleteLater();
     }
     tabWidget->hideTabBar(App->hideTabBar && tabWidget->count() <= 1);
+    tabWidget->setTabsClosable(tabWidget->count()>1);
 }
 
 void MainWindow::closeOtherTabs()
@@ -988,4 +999,11 @@ void MainWindow::setAsTreeRoot()
     dirView->scrollTo(dirModel->index(App->lastTreeDirectory,0),QAbstractItemView::PositionAtCenter);
 }
 
+//#ifdef Q_OS_MAC
+//void MainWindow::specialCharacters()
+//{
+//   // QKeyEvent ev(QEvent::KeyPress, Qt::Key_Space, Qt::ControlModifier | Qt::MetaModifier);
+//   // qApp->sendEvent(qApp,&ev);
+//}
+//#endif
 

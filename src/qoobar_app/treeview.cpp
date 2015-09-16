@@ -13,6 +13,7 @@
 #include "mainwindow.h"
 #include "model.h"
 
+#ifdef Q_OS_MAC
 class ColumnSelectorButton : public QToolButton
 {
 public:
@@ -42,6 +43,7 @@ public:
 private:
     QHeaderView *m_header;
 };
+#endif
 
 TreeView::TreeView(Tab *parent) : QTreeView(parent)
 {
@@ -53,18 +55,19 @@ TreeView::TreeView(Tab *parent) : QTreeView(parent)
     setAlternatingRowColors(true);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setUniformRowHeights(true);
-    ColumnSelectorButton *selector = new ColumnSelectorButton(this->header(), this);
-    this->addScrollBarWidget(selector,Qt::AlignTop);
+
+    showAct = new QAction(tr("Show/hide columns..."), this);
+    connect(showAct,SIGNAL(triggered()),this,SLOT(adjustDisplayedTags()));
 
 #ifdef Q_OS_MAC
+    ColumnSelectorButton *selector = new ColumnSelectorButton(this->header(), this);
+    this->addScrollBarWidget(selector,Qt::AlignTop);
+    selector->setDefaultAction(showAct);
+
     setFrameStyle(QFrame::NoFrame | QFrame::Plain);
     setAttribute(Qt::WA_MacShowFocusRect, false);
     setAutoFillBackground(true);
 #endif
-
-    showAct = new QAction(tr("Show/hide columns..."), this);
-    connect(showAct,SIGNAL(triggered()),this,SLOT(adjustDisplayedTags()));
-    selector->setDefaultAction(showAct);
 
     if (!App->columns167.isEmpty()) {
         header()->restoreState(App->columns167);
