@@ -989,13 +989,16 @@ void Tab::addFiles(int addedCount, bool update) /*SLOT*/
     if (addedCount==0) return;
 
     if (addedCount<100 && update) {
-        tree->blockSignals(true);
+       // tree->blockSignals(true);
         tree->clearSelection();
-        for (int i=0; i<addedCount-1; ++i) {
-            tree->selectionModel()->select(model->index(i+model->size()-addedCount,0),QItemSelectionModel::Rows | QItemSelectionModel::Select);
-        }
-        tree->blockSignals(false);
-        tree->selectionModel()->select(model->index(model->size()-1,0),QItemSelectionModel::Rows | QItemSelectionModel::Select);
+        tree->selectionModel()->select(QItemSelection(model->index(model->size()-addedCount,0),
+                                                      model->index(model->size()-1,0)),
+                                       QItemSelectionModel::Rows | QItemSelectionModel::Select);
+//        for (int i=0; i<addedCount-1; ++i) {
+//            tree->selectionModel()->select(model->index(i+model->size()-addedCount,0),);
+//        }
+//        tree->blockSignals(false);
+//        tree->selectionModel()->select(model->index(model->size()-1,0),QItemSelectionModel::Rows | QItemSelectionModel::Select);
     }
 
     Q_EMIT filesChanged(!allFilesSaved());

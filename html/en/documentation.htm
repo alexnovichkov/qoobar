@@ -95,7 +95,7 @@
             <div>
               <h2><a id=interface>Qoobar interface</a></h2>
               <h3>The Qoobar Menu</h3>
-              <h4>Menu File</h4>
+              <h4>File</h4>
               <ul>
                 <li><b>Add folder...</b> - adds a directory with all its subdirectories <span class=hotkey>Ctrl+O</span></li>
                 <li><b>Add files...</b> - adds a file / files <span class=hotkey>Ctrl+Shift+O</span></li>
@@ -108,20 +108,20 @@
                 <li><b>Clear the list</b> - clears the current tab <span class=hotkey>Ctrl+Del</span></li>
                 <li><b>Exit</b> - exits from Qoobar <span class=hotkey>Ctrl+Del</span></li>
               </ul>
-              <h4>Menu Edit</h4>
+              <h4>Edit</h4>
               <ul>
                 <li><b>Undo</b> last operation <span class=hotkey>Ctrl+Z</span></li>
                 <li><b>Redo</b> last operation <span class=hotkey>Ctrl+Shift+Z</span> or <span class=hotkey>Ctrl+Y</span></li>
                 <li><b>Cut</b> - cuts selected tags of selected files <span class=hotkey>Ctrl+X</span></li>
                 <li><b>Copy</b> - copies selected tags of selected files <span class=hotkey>Ctrl+C</span></li>
                 <li><b>Paste</b> - pastes copied tags <span class=hotkey>Ctrl+V</span></li>
-                <li><b>Copy to clipboard</b> - copies selected tags of selected files to the clipboard<span class=hotkey>Ctrl+Shift+C</span></li>
-                <li><b>Paste from clipboard</b> - pastes copied tags from the clipboard<span class=hotkey>Ctrl+Shift+V</span></li>
+                <li><b>Copy to clipboard</b> - copies selected tags of selected files to the clipboard <span class=hotkey>Ctrl+Shift+C</span></li>
+                <li><b>Paste from clipboard</b> - pastes copied tags from the clipboard <span class=hotkey>Ctrl+Shift+V</span></li>
                 <li><b>Clear all tags</b> - clears all tags in the selected files</li>
                 <li><b>Add new tag...</b> - adds a new tag to selected files <span class=hotkey>Ctrl+N</span></li>
                 <li><b>Settings...</b> - shows Qoobar settings dialog</li>
               </ul>
-              <h4>Menu Tools</h4>
+              <h4>Tools</h4>
               <ul>
                 <li><b>Rename files...</b> - renames / moves files according to its tags <span class=hotkey>Ctrl+R</span></li>
                 <li><b>Fill tags...</b> - fills tags from file name, tags or Internet <span class=hotkey>Ctrl+F</span></li>
@@ -129,14 +129,14 @@
                 <li><b>ReplayGain info...</b> - adds or removes ReplayGain info from files</li>
                 <li><b>Tags editing plugins</b> installed with Qoobar</li>
               </ul>
-              <h4>Menu Tabs</h4>
+              <h4>Tabs</h4>
               <ul>
                 <li><b>New tab</b> - adds a new tab <span class=hotkey>Ctrl+T</span></li>
                 <li><b>Close the tab</b> - closes the current tab <span class=hotkey>Ctrl+F4</span></li>
                 <li><b>Close other tabs</b> - closes all tabs except the current one</li>
                 <li><b>Rename the tab...</b> - opens the dialog to rename the tab</li>
               </ul>
-              <h4>Menu Help</h4>
+              <h4>Help</h4>
               <ul>
                 <li><b>Help</b> - shows help on Qoobar <span class=hotkey>F1</span></li>
                 <li><b>About Qoobar</b> - shows a brief info about the current version</li>
@@ -178,7 +178,8 @@
                 <li>file name with full path</li>
                 <li>file bitrate, sample rate, and number of channels</li>
                 <li>file length (duration)</li>
-                <li>total length of selected files.</li>
+                <li>total count and length of files in the current tab</li>
+                <li>total count and length of selected files</li>
               </ul>
             </div>
 
@@ -195,7 +196,8 @@
               <p>You can also drag&amp;drop any folders and any files into the Qoobar window;
                 or use command line like this:</p>
               <pre>qoobar "/home/I/music/first dir" /home/I/music/just_file.mp3</pre>
-              <p>Using <b>the Folder Tree</b> you can easily browse your music library. The folder you click will be placed into the Files Table.
+              <p>The <b>Folder Tree</b> allows you to easily browse your music library. The folder you click will be placed into the Files Table.
+                All files currently present in the tab will be removed.
                 To add a folder with all its subfolders and musical files right-click on this folder and choose "List this folder with all subfolders"
               </p>
               <p>Files are always appended to the end of the current tab.</p>
@@ -213,7 +215,7 @@
               <h3>Files removing</h3>
               <p>To remove all files in the current tab click
               <img src="images/edit-clear.png" alt="Clear button">.</p>
-              <p>Or click in the Files Table, press <span class=hotkey>Ctrl+A</span>, then <span class=hotkey>Del</span>.</p>
+              <p>Or click anywhere in the Files Table, press <span class=hotkey>Ctrl+A</span>, then <span class=hotkey>Del</span>.</p>
               <p>Or just press <span class=hotkey>Ctrl+Del</span>.</p>
               <p>To remove some of the added files select them and press <span class=hotkey>Del</span>.</p>
               <p>When removing some not saved files, a simple dialog appears where you can choose whether to save changes or discard them:</p>
@@ -245,7 +247,7 @@
                   <img src="images/Delete.png" alt="">. It removes all tags which Qoobar can read.
                   You can undo the deletion.
                 </li>
-                <li>To move selected files into (an)other tab choose the desired tab name under the "Move to the tab..." item
+                <li>To move selected files into (an)other tab right-click on these files and choose the desired tab name under the "Move to the tab..." item
                   in the context menu.
                 </li>
               </ol>
@@ -529,7 +531,7 @@
             </div>
 
             <div>
-            <h2><a id="split"></a>Splitting files by CUE sheet</h2>
+            <h2><a id="split"></a>Splitting of files by CUE sheet</h2>
               <p>If you have a disc image (ape or flac or wav) and a cue file with it, Qoobar
                 can split it to separate tracks, just click
                 <img src="images/media-import-audio-cd.png" alt="Split button">.<br />
@@ -587,7 +589,7 @@
 
 
             <div>
-              <h2><a id="importing"></a>Importing tags from the Internet</h2>
+              <h2><a id="importing"></a>Tags importing</h2>
               <p>You can import tags of an album from the Internet.
                 Qoobar can search tags in freedb, Discogs, Musicbrainz and other databases, depending on the installed plugins.
                 Click the button <img src="images/fill.png" alt="">
@@ -608,7 +610,7 @@
             </div>
 
             <div>
-              <h2><a id=renaming>Renaming files</a></h2>
+              <h2><a id=renaming>Files renaming</a></h2>
               <p>To open the Renaming files dialog click the button
                 <img src="images/document-save-as.png" alt="">
                 or press <span class=hotkey>Ctrl+R</span>.</p>
@@ -711,22 +713,25 @@
               <h2><a id=settings>Qoobar Settings</a></h2>
               <p>You can reset all settings to their defaults by clicking the "Reset Settings" button in the bottom left corner.</p>
 
-              <h3>Interface.</h3>
+              <h3>Interface</h3>
               <p><img src="images/qoobar-settings1.png" alt="Interface settings"></p>
               <ul>
-                <li><b>Use undo / redo</b> - this option lets you switch on/off the undo system. If the undo / redo operations are switched off, Qoobar runs faster and consumes less memory.</li>
+                <li><b>Use undo / redo</b>: this option lets you switch on/off the undo system. If the undo / redo operations are switched off, 
+                  Qoobar runs faster and consumes less memory.</li>
                 <li><b>Automatically fill a tag in all selected files when pasting a single line</b>: if this feature is on,
                   you can select one file, copy its tags, then select <i>several</i> files and paste the copied tags
                   right into all files, not only the 1st of them.
                 </li>
-                <li><b>Show folder tree</b> - shows/hides the Folder Tree in the main window.</li>
                 <li><b>Hide Tab bar with only one tab</b> - If this option is set, the Tab bar will automatically be hidden if less than 2 tabs are opened.</li>
+                <li><b>Show folder tree</b>: shows/hides the Folder Tree in the main window.</li>
+                <li><b>Folder tree root</b>: allows you to set the top-level folder for the Folder tree</li>
                 <li><b>Characters</b>: characters with diacritical marks of the Tags Edit dialog - edit the text to add or remove characters.
-                  You can also change the font if characters are too small or not recognisable.</li>
-                <li><b>User interface language</b> - the user interface language. </li>
+                  You can also change the font if characters are too small or not recognisable. <i>Note:</i> This option is removed since v.1.6.8 in OS X</li>
+                <li><b>User interface language</b>: the user interface language</li>
+                <li><b>Toolbar icons theme</b>: the current set of Qoobar icons</li>
               </ul>
 
-              <h3>Autocompletion.</h3>
+              <h3>Autocompletion</h3>
               <p><img src="images/qoobar-settings2.png" alt="Autocompletion settings"></p>
               <ul>
                 <li><b>Collect text</b> - choose automatic / manual text collecting.</li>

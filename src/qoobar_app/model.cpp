@@ -434,7 +434,7 @@ void Model::rename(const QStringList &newFileNames)
 
     for (int i=0; i<indexes.size(); ++i) {
         const QString oldFileName = tags[indexes.at(i)].fullFileName();
-        const QString newFileName = newFileNames.at(i);
+        QString newFileName = newFileNames.at(i);
         if (oldFileName == newFileName) continue;
 
         const QString oldPath = oldFileName.left(oldFileName.lastIndexOf('/'));
@@ -449,13 +449,13 @@ void Model::rename(const QStringList &newFileNames)
                 // rename all other files that have the same old path
                 for (int ind = 0; ind<tags.size(); ++ind) {
                     if (!indexes.contains(ind)) {
-                    const QString s = tags[ind].filePath();
+                        const QString s = tags[ind].filePath();
 
-                    if (s == oldPath) {
-                        tags[ind].setFile(newPath+"/"+tags[ind].fileNameExt());
-                        Q_EMIT dataChanged(index(ind, COL_FILENAME),index(ind,COL_FILENAME));
-                        Q_EMIT fileNameChanged(ind, tags.at(ind).fileNameExt());
-                    }
+                        if (s == oldPath) {
+                            tags[ind].setFile(newPath+"/"+tags[ind].fileNameExt());
+                            Q_EMIT dataChanged(index(ind, COL_FILENAME),index(ind,COL_FILENAME));
+                            Q_EMIT fileNameChanged(ind, tags.at(ind).fileNameExt());
+                        }
                     }
                 }
             }
@@ -469,6 +469,16 @@ void Model::rename(const QStringList &newFileNames)
             bool processed = true;
             if (!dir.exists()) created = QDir().mkpath(newPath);
 
+            //check if the file newFileName already exists
+            QFileInfo fi= QFileInfo(newFileName);
+            if (fi.exists()) {
+                int index=1;
+                QString justName = fi.completeBaseName();
+                QString justSuffix = fi.suffix();
+                while (QFileInfo(QString("%1/%2 (%3).%4").arg(newPath).arg(justName).arg(index).arg(justSuffix)).exists())
+                    index++;
+                newFileName = QString("%1/%2 (%3).%4").arg(newPath).arg(justName).arg(index).arg(justSuffix);
+            }
             if (created)
                 processed = (App->renameOptions.renamingOperation != 1 ? QFile::rename(oldFileName, newFileName)
                                                                        : QFile::copy(oldFileName, newFileName));

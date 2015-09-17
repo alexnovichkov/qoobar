@@ -674,8 +674,16 @@ void Autocompletions::read(QSettings &se)
     collectSilently = se.value(QSL("collectSilently"), false).toBool();
 
     QVariantList variantList = se.value(QSL("useCompletion")).toList();
-    completions.resize(variantList.size());
 
+    completions.resize(variantList.size());
+    if (variantList.isEmpty()) {
+        completions.clear();
+        completions.resize(TAGSCOUNT);
+        completions[COMPOSER].use = true;
+        completions[GENRE].use = true;
+        completions[MOOD].use = true;
+    }
+    else
     for (int i=0; i<variantList.size(); ++i) {
         completions[i].use = variantList.at(i).toBool();
         completions[i].name = App->currentScheme->fieldName(i);
