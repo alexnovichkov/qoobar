@@ -284,7 +284,7 @@ CompletionPage::CompletionPage(QWidget *parent) : ConfigPage(parent)
 
     completionTree = new QTreeWidget(this);
     completionTree->setRootIsDecorated(false);
-    completionTree->setColumnCount(2);
+    completionTree->setColumnCount(3);
     completionTree->setHeaderHidden(true);
     completionTree->header()->setStretchLastSection(false);
     completionTree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
@@ -294,25 +294,21 @@ CompletionPage::CompletionPage(QWidget *parent) : ConfigPage(parent)
     const int tagsCount = App->currentScheme->tagsCount();
     for (int i=0; i<tagsCount; ++i) {
         QTreeWidgetItem *item = new QTreeWidgetItem(completionTree);
-        //item->setText(0, App->currentScheme->localizedFieldName[i]);
 
         QPushButton *button = new QPushButton(this);
         connect(button,SIGNAL(clicked()),mapper,SLOT(map()));
         mapper->setMapping(button,i);
-        completionTree->setItemWidget(item,1,button);
+        completionTree->setItemWidget(item,2,button);
     }
 
+    QFormLayout *l = new QFormLayout;
+    l->addRow(collectTextLabel,collectText);
+    l->addRow(completionStyleLabel,completionStyle);
+
     QGridLayout *autocompletionLayout = new QGridLayout;
-    autocompletionLayout->addWidget(collectTextLabel,0,0);
-    autocompletionLayout->addWidget(collectText,0,1);
-    autocompletionLayout->addWidget(completionStyleLabel,1,0);
-    autocompletionLayout->addWidget(completionStyle,1,1);
-    autocompletionLayout->addWidget(completionTree,2,0,1,2);
-#ifndef Q_OS_WIN
-    QMargins m=autocompletionLayout->contentsMargins();
-    m.setBottom(0);
-    autocompletionLayout->setContentsMargins(m);
-#endif
+    autocompletionLayout->addLayout(l,0,0);
+    autocompletionLayout->addWidget(completionTree,1,0);
+
     finalize(autocompletionLayout);
 }
 
@@ -332,6 +328,9 @@ void CompletionPage::editList(const int tagID)
     CompletionsDialog dialog(tagID,this);
     if (dialog.exec()) {
         completionTree->topLevelItem(tagID)->setCheckState(0,Qt::Checked);
+        int count = App->autocompletions->variantsCount(tagID);
+        if (count==0) completionTree->topLevelItem(tagID)->setText(1,tr("Empty"));
+        else completionTree->topLevelItem(tagID)->setText(1, tr("%n record(s)","",count));
     }
 }
 
@@ -348,8 +347,11 @@ void CompletionPage::retranslateUI()
     ConfigPage::retranslateUI();
     for (int i=0; i<completionTree->topLevelItemCount(); ++i) {
         completionTree->topLevelItem(i)->setText(0, App->currentScheme->localizedFieldName[i]);
-        QPushButton *b = qobject_cast<QPushButton *>(completionTree->itemWidget(completionTree->topLevelItem(i),1));
+        QPushButton *b = qobject_cast<QPushButton *>(completionTree->itemWidget(completionTree->topLevelItem(i),2));
         if (b) b->setText(tr("Edit..."));
+        int count = App->autocompletions->variantsCount(i);
+        if (count==0) completionTree->topLevelItem(i)->setText(1,tr("Empty"));
+        else completionTree->topLevelItem(i)->setText(1, tr("%n record(s)","",count));
     }
     completionStyleLabel->setText(tr("Completion style"));
     completionStyle->setItemText(0,tr("Completer matches the previous word"));
@@ -839,10 +841,11 @@ UtilitiesPage::UtilitiesPage(QWidget *parent) : ConfigPage(parent)
     QFormLayout *utilitiesl = new QFormLayout;
     utilitiesl->addRow(playerLabel,player);
     utilitiesl->addRow(cdromLabel,cdromDevice);
-    utilitiesl->addRow(cueEncodingLabel, cueEncoding);
     utilitiesl->addRow(programsLabel,tree);
+    utilitiesl->addRow(cueEncodingLabel, cueEncoding);
     utilitiesl->addRow(encaLanguageLabel,encaGuessLanguage);
     utilitiesl->addRow(copyFiles);
+    utilitiesl->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
 
     QVBoxLayout *utilitieslayout = new QVBoxLayout;
     utilitieslayout->addLayout(utilitiesl);
@@ -941,6 +944,7 @@ NetworkPage::NetworkPage(QWidget *parent) : ConfigPage(parent)
     proxyLayout->addRow(portLabel,proxyPort);
     proxyLayout->addRow(loginLabel,proxyLogin);
     proxyLayout->addRow(passwordLabel,proxyPassword);
+    proxyLayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
     useProxy->setLayout(proxyLayout);
 
     QVBoxLayout *networkLayout = new QVBoxLayout;

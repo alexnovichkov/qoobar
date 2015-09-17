@@ -2,7 +2,7 @@
   "interface": "IQoobarPlugin",
   "key": "autonumber",
   "icon": "",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "text": {
     "default": "Autonumber selected files",
     "en_EN": "Autonumber selected files",

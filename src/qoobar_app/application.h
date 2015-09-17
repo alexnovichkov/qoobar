@@ -100,6 +100,9 @@ public:
     QStringList variants(int tagID) const {
         return completions.value(tagID).variants;
     }
+    int variantsCount(int tagID) const {
+        return completions.value(tagID).variants.size();
+    }
 
     void update(int tagID, const QStringList &newVariants);
     void set(int tagID, const QStringList &newVariants);
