@@ -91,7 +91,7 @@ void TaggingScheme::read(bool nameOnly)
 }
 
 void TaggingScheme::retranslateUI()
-{
+{DD;
     localizedFieldName.resize(tagsCount());
     for (int i=0; i<TAGSCOUNT; ++i) localizedFieldName[i] = Qoobar::tagByID(i);
     for (int i=TAGSCOUNT; i<tagsCount(); ++i) localizedFieldName[i] = fieldName(i);

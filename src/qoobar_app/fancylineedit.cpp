@@ -331,7 +331,7 @@ IconButton::IconButton(QWidget *parent)
 }
 
 void IconButton::paintEvent(QPaintEvent *)
-{DD
+{
     QPainter painter(this);
     QRect pixmapRect = QRect(0, 0, m_pixmap.width(), m_pixmap.height());
     pixmapRect.moveCenter(rect().center());

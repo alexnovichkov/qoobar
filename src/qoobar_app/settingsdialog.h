@@ -54,6 +54,7 @@ Q_SIGNALS:
 private Q_SLOTS:
     void retranslateUI();
     void resetSettings();
+    void switchPage(int page);
 private:
     QStackedWidget *pagesWidget;
     QList<ConfigPage *> configPages;

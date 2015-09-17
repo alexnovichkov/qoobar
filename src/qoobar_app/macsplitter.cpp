@@ -16,7 +16,7 @@ MacSplitterHandle::MacSplitterHandle(Qt::Orientation orientation, QSplitter *par
 // Paint the horizontal handle as a gradient, paint
 // the vertical handle as a line.
 void MacSplitterHandle::paintEvent(QPaintEvent *)
-{DD
+{
     QPainter painter(this);
     if (orientation() == Qt::Vertical) {
         QColor topColor(145, 145, 145);

@@ -339,7 +339,11 @@ unix {
     icons.files += icons/*.png
     icons.files += icons/*.gif
     icons.path = $${SHARED_PATH}/qoobar/icons/default
-    INSTALLS += target docfiles resources icons
+    coloredicons.files = icons/coloured/*.ico
+    coloredicons.files += icons/coloured/*.png
+    coloredicons.files += icons/coloured/*.gif
+    coloredicons.path = $${SHARED_PATH}/qoobar/icons/coloured
+    INSTALLS += target docfiles resources icons coloredicons
     INSTALLS += schemes desktop manfiles completions
 
     # documentation
@@ -413,9 +417,13 @@ os2 {
     icons.files += icons/*.png
     icons.files += icons/*.gif
     icons.path = $${SHARED_PATH}/icons/default
+    coloredicons.files = icons/coloured/*.ico
+    coloredicons.files += icons/coloured/*.png
+    coloredicons.files += icons/coloured/*.gif
+    coloredicons.path = $${SHARED_PATH}/qoobar/icons/coloured
     INSTALLS += target
     #INSTALLS += icon desktop
-    INSTALLS += docfiles resources icons
+    INSTALLS += docfiles resources icons coloredicons
     INSTALLS += schemes manfiles completions
 
     # documentation
@@ -470,7 +478,7 @@ mac|macx {
                             mactaskbar.mm
 
     icon.path = $$INSTALL_PATH/Resources
-    icon.files = qoobar.icns
+    icon.files = icons/app/qoobar.icns
     resources.path = $$INSTALL_PATH/Resources
     resources.files = *.qm
     resources.files += args.json splitandconvert.sh
@@ -482,8 +490,12 @@ mac|macx {
     icons.files += icons/*.png
     icons.files += icons/*.gif
     icons.path = $$INSTALL_PATH/Resources/icons/default
+    coloredicons.files = icons/coloured/*.ico
+    coloredicons.files += icons/coloured/*.png
+    coloredicons.files += icons/coloured/*.gif
+    coloredicons.path = $$INSTALL_PATH/Resources/icons/coloured
 
-    INSTALLS += icon resources schemes completions icons
+    INSTALLS += icon resources schemes completions icons coloredicons
 
     # documentation
     htmldocfiles.path = $$INSTALL_PATH/Resources/html

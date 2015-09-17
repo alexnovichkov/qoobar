@@ -589,6 +589,8 @@ void Application::clearSettings()
 
 void Application::resetSettings()
 {DD;
+    delete currentScheme;
+    currentScheme=0;
     clearSettings();
     Q_EMIT settingsCleared();
     readGlobalSettings();

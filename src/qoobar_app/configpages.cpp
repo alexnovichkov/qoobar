@@ -137,10 +137,17 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     }
 
     QFormLayout *UIlayout = new QFormLayout;
+#ifdef Q_OS_MAC
+    UIlayout->addRow("",useUndo);
+    UIlayout->addRow("",autoexpand);
+    UIlayout->addRow("",hideTabBar);
+    UIlayout->addRow("",dirBox);
+#else
     UIlayout->addRow(useUndo);
     UIlayout->addRow(autoexpand);
     UIlayout->addRow(hideTabBar);
     UIlayout->addRow(dirBox);
+#endif
     UIlayout->addRow(dirRootLabel,dirRoot);
 #ifndef Q_OS_MAC
     UIlayout->addRow(charsBox, chars);
@@ -242,6 +249,7 @@ void InterfacePage::updateLanguage(const int index)
     QString langID=lang->itemData(index).toString();
     App->langID=langID;
     App->loadTranslations();
+    App->currentScheme->retranslateUI();
     Q_EMIT retranslate();
 }
 
@@ -290,7 +298,7 @@ CompletionPage::CompletionPage(QWidget *parent) : ConfigPage(parent)
     completionTree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
     completionTree->setWhatsThis(tr("Check the tags for which you wish to use the autocompletion.<br>"
                                     "<br>The <i>Edit...</i> buttons allows you to manually change the remembered text lines"));
-
+    completionTree->setMinimumHeight(300);
     const int tagsCount = App->currentScheme->tagsCount();
     for (int i=0; i<tagsCount; ++i) {
         QTreeWidgetItem *item = new QTreeWidgetItem(completionTree);
@@ -561,6 +569,7 @@ PatternsPage::PatternsPage(QWidget *parent) : ConfigPage(parent)
     patterns->viewport()->setAcceptDrops(true);
     patterns->setDropIndicatorShown(true);
     patterns->setDragDropMode(QAbstractItemView::InternalMove);
+    patterns->setMinimumHeight(200);
 
     addPatternButton = new QPushButton(tr("Add pattern"),this);
     connect(addPatternButton,SIGNAL(clicked()),this,SLOT(addPattern()));
@@ -821,6 +830,7 @@ UtilitiesPage::UtilitiesPage(QWidget *parent) : ConfigPage(parent)
     tree->setColumnCount(3);
     tree->setRootIsDecorated(false);
     tree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
+    tree->setMinimumHeight(150);
 
 
     static const char *externalPrograms[] = {
@@ -1001,12 +1011,14 @@ PluginsPage::PluginsPage(QWidget *parent) : ConfigPage(parent)
     downloadTree->setHeaderLabels(QVector<QString>(6).toList());
     downloadTree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
     downloadTree->header()->setStretchLastSection(false);
+    downloadTree->setMinimumHeight(150);
 
     editingTree = new QTreeWidget(this);
     editingTree->setRootIsDecorated(false);
     editingTree->setHeaderLabels(QVector<QString>(3).toList());
     editingTree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
     editingTree->header()->setStretchLastSection(false);
+    editingTree->setMinimumHeight(150);
 
     QVBoxLayout *l = new QVBoxLayout;
 #ifndef Q_OS_WIN

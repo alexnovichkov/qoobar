@@ -93,8 +93,10 @@ TableWidget::TableWidget(QWidget* parent) : QTableWidget(App->currentScheme->tag
 void TableWidget::retranslateUi()
 {DD;
     const int tagscount = App->currentScheme->tagsCount();
-    for (int i=0; i<tagscount; ++i)
-        verticalHeaderItem(i)->setText(App->currentScheme->localizedFieldName[i]);
+    for (int i=0; i<tagscount; ++i) {
+        QString name=App->currentScheme->localizedFieldName[i];
+        verticalHeaderItem(i)->setText(name);
+    }
     verticalHeader()->actions().at(0)->setText(tr("Show/hide tags..."));
     verticalHeader()->actions().at(1)->setText(tr("Add this tag to the scheme"));
 }

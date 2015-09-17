@@ -97,6 +97,7 @@ Name: "{app}\completions"; Flags: uninsalwaysuninstall; Components: main
 Name: "{app}\platforms"; Flags: uninsalwaysuninstall; Components: main
 Name: "{app}\plugins"; Flags: uninsalwaysuninstall; Components: plugins
 Name: "{app}\icons\default"; Flags: uninsalwaysuninstall; Components: main
+Name: "{app}\icons\coloured"; Flags: uninsalwaysuninstall; Components: main
 
 [Files]
 #define QT_VERSION 5
@@ -162,6 +163,9 @@ Source: "LICENSE.rtf"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly 
 Source: "src\qoobar_app\icons\*.ico"; DestDir: "{app}\icons\default"; Flags: ignoreversion overwritereadonly; Components: main
 Source: "src\qoobar_app\icons\*.png"; DestDir: "{app}\icons\default"; Flags: ignoreversion overwritereadonly; Components: main
 Source: "src\qoobar_app\icons\*.gif"; DestDir: "{app}\icons\default"; Flags: ignoreversion overwritereadonly; Components: main
+Source: "src\qoobar_app\icons\coloured\*.ico"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly; Components: main
+Source: "src\qoobar_app\icons\coloured\*.png"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly; Components: main
+Source: "src\qoobar_app\icons\coloured\*.gif"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly; Components: main
 
 ; help
 Source: "html\*"; DestDir: "{app}\html"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help

@@ -46,7 +46,7 @@ private:
 #endif
 
 TreeView::TreeView(Tab *parent) : QTreeView(parent)
-{
+{DD;
     tab=parent;
 
     setMouseTracking(true);
@@ -81,7 +81,7 @@ TreeView::TreeView(Tab *parent) : QTreeView(parent)
 }
 
 void TreeView::resetHeader()
-{
+{DD;
     header()->setSortIndicatorShown(true);
 #ifdef Q_OS_LINUX
     header()->setMinimumSectionSize(fontMetrics().width(QSL("5555")));
@@ -104,7 +104,7 @@ void TreeView::resetHeader()
 }
 
 void TreeView::updateTreeHeaderGeometry()
-{
+{DD;
     App->columns167 = header()->saveState();
 }
 
@@ -114,7 +114,7 @@ void TreeView::retranslateUi()
 }
 
 void TreeView::scrollToRow(int row)
-{
+{DD;
     if (row<=0) scrollToTop();
     else if (row>=model()->rowCount()) scrollToBottom();
     else scrollTo(model()->index(row,0));
@@ -127,14 +127,14 @@ void TreeView::adjustDisplayedTags()
 }
 
 void TreeView::sortIndicatorChanged(int section, Qt::SortOrder order)
-{
+{DD;
     int sortType = SortString;
     if (section==COL_LENGTH) sortType = SortTime;
     Q_EMIT sortRequested(section, order, sortType);
 }
 
 void TreeView::contextMenuEvent(QContextMenuEvent *event)
-{
+{DD;
     QMenu *menu = new QMenu(this);
     menu->insertActions(0,this->actions());
 
