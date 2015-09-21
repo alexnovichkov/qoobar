@@ -320,7 +320,9 @@ unix {
     icon64.files = icons/app/64/qoobar.png
     icon128.path = $$PIXMAP_PATH/128x128/apps
     icon128.files = icons/app/128/qoobar.png
-    INSTALLS += icon16 icon32 icon48 icon64 icon128
+    icon256.path = $$PIXMAP_PATH/256x256/apps
+    icon256.files = icons/app/256/qoobar.png
+    INSTALLS += icon16 icon32 icon48 icon64 icon128 icon256
     resources.path = /usr/share/qoobar
     resources.files = *.qm
     resources.files += args.json splitandconvert.sh

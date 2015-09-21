@@ -65,7 +65,7 @@ void ElidingLabel::setElideMode(const Qt::TextElideMode &elideMode)
     update();
 }
 
-void ElidingLabel::paintEvent(QPaintEvent *)
+void ElidingLabel::paintEvent(QPaintEvent *e)
 {
     const int m = margin();
     QRect contents = contentsRect().adjusted(m, m, -m, -m);
@@ -74,18 +74,26 @@ void ElidingLabel::paintEvent(QPaintEvent *)
     if (txt.length() > 4 && fm.width(txt) > contents.width()) {
         setToolTip(txt);
         txt = fm.elidedText(txt, m_elideMode, contents.width());
+        int flags = QStyle::visualAlignment(layoutDirection(), alignment()) | Qt::TextSingleLine;
+
+        QPainter painter(this);
+        drawFrame(&painter);
+
+        if (selectedText()==text()) {
+            painter.fillRect(contents, palette().highlight());
+            painter.setPen(palette().color(QPalette::HighlightedText));
+        }
+        painter.drawText(contents, flags, txt);
     } else {
         setToolTip(QString());
+        QLabel::paintEvent(e);
     }
-    int flags = QStyle::visualAlignment(layoutDirection(), alignment()) | Qt::TextSingleLine;
-
-    QPainter painter(this);
-    drawFrame(&painter);
-    painter.drawText(contents, flags, txt);
 }
-
-
+/*       end of Eliding label     */
 /**********************************/
+
+
+
 StatusBar::StatusBar(QWidget *parent) :
     QStatusBar(parent)
 {DD;
@@ -174,6 +182,9 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
 #ifdef Q_OS_MAC
     l->setMargin(2);
     l->setContentsMargins(0,0,0,0);
+#else
+    l->setMargin(0);
+    l->setContentsMargins(2,0,2,2);
 #endif
     l->addWidget(selectedLabel,0,0,1,1,Qt::AlignLeft | Qt::AlignVCenter);
     l->addItem(new QSpacerItem(10,1),0,1,1,1,Qt::AlignLeft | Qt::AlignVCenter);

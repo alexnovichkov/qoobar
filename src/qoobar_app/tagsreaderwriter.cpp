@@ -96,23 +96,21 @@ void TagsReaderWriter::readTags(int tagTypes)
     if (f) {
         TagLib::AudioProperties  *properties = f->audioProperties();
         if (properties) {
-            tag->setLength(properties->length());
-            tag->setBitrate(QString::number(properties->bitrate()));
-            tag->setSampleRate(properties->sampleRate());
-            tag->setChannels(properties->channels());
+            tag->d->length = properties->length();
+            tag->d->bitrate = QString::number(properties->bitrate());
+            tag->d->sampleRate = properties->sampleRate();
+            tag->d->channels = properties->channels();
 
             TagLib::MPC::Properties *p=dynamic_cast<TagLib::MPC::Properties *>(properties);
             if (p) {
-                ReplayGainInfo rg;
                 if (p->trackPeak()!=0)
-                    rg.trackPeak = peak(p->trackPeak());
+                    tag->d->replayGainInfo.trackPeak = peak(p->trackPeak());
                 if (p->trackGain()!=0)
-                    rg.trackGain = gain(p->trackGain());
+                    tag->d->replayGainInfo.trackGain = gain(p->trackGain());
                 if (p->albumPeak()!=0)
-                    rg.albumPeak = peak(p->albumPeak());
+                    tag->d->replayGainInfo.albumPeak = peak(p->albumPeak());
                 if (p->albumGain()!=0)
-                    rg.albumGain = gain(p->albumGain());
-                if (!rg.isEmpty()) tag->setReplayGainInfo(rg);
+                    tag->d->replayGainInfo.albumGain = gain(p->albumGain());
             }
         }
         delete f;
@@ -121,9 +119,10 @@ void TagsReaderWriter::readTags(int tagTypes)
     QHashIterator<int, QStringList> i(rawValues);
     while (i.hasNext()) {
         i.next();
+        if (i.key() >= tag->d->tags.size()) break;
         QStringList l = i.value();
         l.removeDuplicates();
-        tag->setTag1(i.key(), l.join(";"));
+        tag->d->tags[i.key()] = l.join(";");
     }
 
     QHashIterator<QString, QStringList> ii(rawUserValues);
@@ -131,7 +130,7 @@ void TagsReaderWriter::readTags(int tagTypes)
         ii.next();
         QStringList l = ii.value();
         l.removeDuplicates();
-        tag->setTag1(ii.key(), l.join(";"));
+        tag->d->otherTags[ii.key()] = l.join(";");
     }
 
 
@@ -139,7 +138,7 @@ void TagsReaderWriter::readTags(int tagTypes)
     static int intTags[] = {YEAR, TRACKNUMBER, TOTALTRACKS, RATING, DISCNUMBER, TOTALDISCS, TEMPO};
     for (int i=0; i<7; ++i) {
         if (tag->tag(intTags[i])=="0")
-            tag->setTag1(intTags[i],QSL(""));
+            tag->d->tags[intTags[i]] = QSL("");
     }
 }
 
@@ -321,10 +320,10 @@ void TagsReaderWriter::readID3v2(TagLib::ID3v2::Tag *id3v2tag)
                         dynamic_cast<TagLib::ID3v2::AttachedPictureFrame *>((*it).second[0]);
                 if (!frame) continue;
                 TagLib::ByteVector data=frame->picture();
-                tag->setImageType(frame->type(), false);
-                tag->setImageMimetype(QS(frame->mimeType()), false);
-                tag->setImageDescription(QS(frame->description()), false);
-                tag->setImagePixmap(QByteArray(data.data(),data.size()), false);
+                tag->d->image.setType(frame->type());
+                tag->d->image.setMimetype(QS(frame->mimeType()));
+                tag->d->image.setDescription(QS(frame->description()));
+                tag->d->image.setPixmap(QByteArray(data.data(),data.size()));
             }
         }
         else if (id=="POPM") {
@@ -735,19 +734,19 @@ void TagsReaderWriter::readID3v1(TagLib::ID3v1::Tag *id3v1tag)
     if (!id3v1tag) return;
 
     if (tag->tag(ALBUM).isEmpty())
-        tag->setTag1(ALBUM,QS(id3v1tag->album()));
+        tag->d->tags[ALBUM] = QS(id3v1tag->album());
     if (tag->tag(ARTIST).isEmpty())
-        tag->setTag1(ARTIST,QS(id3v1tag->artist()));
+        tag->d->tags[ARTIST] = QS(id3v1tag->artist());
     if (tag->tag(TITLE).isEmpty())
-        tag->setTag1(TITLE,QS(id3v1tag->title()));
+        tag->d->tags[TITLE] = QS(id3v1tag->title());
     if (tag->tag(GENRE).isEmpty())
-        tag->setTag1(GENRE,QS(id3v1tag->genre()));
+        tag->d->tags[GENRE] = QS(id3v1tag->genre());
     if (tag->tag(COMMENT).isEmpty())
-        tag->setTag1(COMMENT,QS(id3v1tag->comment()));
+        tag->d->tags[COMMENT] = QS(id3v1tag->comment());
     if (tag->tag(YEAR).isEmpty() || tag->tag(YEAR)=="0")
-        tag->setTag1(YEAR,QString::number(id3v1tag->year()));
+        tag->d->tags[YEAR] = QString::number(id3v1tag->year());
     if (tag->tag(TRACKNUMBER).isEmpty() || tag->tag(TRACKNUMBER)=="0")
-        tag->setTag1(TRACKNUMBER,QString::number(id3v1tag->track()));
+        tag->d->tags[TRACKNUMBER] = QString::number(id3v1tag->track());
 }
 
 void TagsReaderWriter::writeID3v1(TagLib::ID3v1::Tag *id3v1tag)
@@ -785,10 +784,10 @@ void TagsReaderWriter::readFlacPicture(TagLib::FLAC::File *f)
     TagLib::List<TagLib::FLAC::Picture *>::ConstIterator it = find_if(pictures.begin(),pictures.end(),isFrontCover);
     if (it==pictures.end())  it=pictures.begin();
 
-    tag->setImageType((*it)->type(), false);
-    tag->setImageMimetype(QS((*it)->mimeType()), false);
-    tag->setImageDescription(QS((*it)->description()), false);
-    tag->setImagePixmap(QByteArray((*it)->data().data(),(*it)->data().size()), false);
+    tag->d->image.setType((*it)->type());
+    tag->d->image.setMimetype(QS((*it)->mimeType()));
+    tag->d->image.setDescription(QS((*it)->description()));
+    tag->d->image.setPixmap(QByteArray((*it)->data().data(),(*it)->data().size()));
 }
 
 TagLib::FLAC::Picture *createFlacPicture(const CoverImage &image)
@@ -834,19 +833,19 @@ void TagsReaderWriter::readXiph(TagLib::Ogg::XiphComment *xiph)
             QByteArray rawData = QByteArray::fromBase64(value.toLatin1());
             TagLib::ByteVector data=TagLib::ByteVector(rawData.data(),rawData.length());
             TagLib::FLAC::Picture pic(data);
-            tag->setImageDescription(QS(pic.description()), false);
-            tag->setImageType(pic.type(), false);
-            tag->setImageMimetype(QS(pic.mimeType()), false);
-            tag->setImagePixmap(QByteArray(pic.data().data(),pic.data().size()), false);
+            tag->d->image.setDescription(QS(pic.description()));
+            tag->d->image.setType(pic.type());
+            tag->d->image.setMimetype(QS(pic.mimeType()));
+            tag->d->image.setPixmap(QByteArray(pic.data().data(),pic.data().size()));
         }
         else if (id=="COVERARTMIME" && tag->fileType()!=Tag::FLAC_FILE)
-            tag->setImageMimetype(value, false);
+            tag->d->image.setMimetype(value);
         else if (id=="COVERART" && tag->image().pixmap().isNull())
-            tag->setImagePixmap(QByteArray::fromBase64(value.toLatin1()), false);
+            tag->d->image.setPixmap(QByteArray::fromBase64(value.toLatin1()));
         else if (id=="COVERARTTYPE" && tag->fileType()!=Tag::FLAC_FILE)
-            tag->setImageType(value.toInt(), false);
+            tag->d->image.setType(value.toInt());
         else if (id=="COVERARTDESCRIPTION" && tag->fileType()!=Tag::FLAC_FILE)
-            tag->setImageDescription(value, false);
+            tag->d->image.setDescription(value);
         else parseTag(id,TaggingScheme::VORBIS,value);
     }
 }
@@ -914,10 +913,10 @@ void TagsReaderWriter::readAsf(TagLib::ASF::Tag *asftag)
 {DD;
     if (!asftag) return;
 
-    tag->setTag1(TITLE, QS(asftag->title()));
-    tag->setTag1(ARTIST, QS(asftag->artist()));
-    tag->setTag1(COPYRIGHT, QS(asftag->copyright()));
-    tag->setTag1(RATING, QS(asftag->rating()));
+    tag->d->tags[TITLE] = QS(asftag->title());
+    tag->d->tags[ARTIST]= QS(asftag->artist());
+    tag->d->tags[COPYRIGHT]= QS(asftag->copyright());
+    tag->d->tags[RATING]=QS(asftag->rating());
 
     TagLib::ASF::AttributeListMap &map=asftag->attributeListMap();
     for (TagLib::ASF::AttributeListMap::ConstIterator it = map.begin(); it != map.end(); ++it)  {
@@ -929,10 +928,10 @@ void TagsReaderWriter::readAsf(TagLib::ASF::Tag *asftag)
         if (id=="WM/Picture") {
             TagLib::ASF::Picture picture = (*it).second[0].toPicture();
             if (picture.isValid()) {
-                tag->setImagePixmap(QByteArray(picture.picture().data(),picture.picture().size()), false);
-                tag->setImageMimetype(QS(picture.mimeType()), false);
-                tag->setImageDescription(QS(picture.description()), false);
-                tag->setImageType((int)picture.type(), false);
+                tag->d->image.setPixmap(QByteArray(picture.picture().data(),picture.picture().size()));
+                tag->d->image.setMimetype(QS(picture.mimeType()));
+                tag->d->image.setDescription(QS(picture.description()));
+                tag->d->image.setType((int)picture.type());
             }
             continue;
         }
@@ -942,9 +941,9 @@ void TagsReaderWriter::readAsf(TagLib::ASF::Tag *asftag)
     // two more fields that are stored internally in wma, so read them if
     // specified fields are empty.
     if (tag->tag(COMMENT).isEmpty())
-        tag->setTag1(COMMENT, QS(asftag->comment()));
+        tag->d->tags[COMMENT]= QS(asftag->comment());
     if (tag->tag(TRACKNUMBER).isEmpty())
-        tag->setTag1(TRACKNUMBER, QString::number(asftag->track()));
+        tag->d->tags[TRACKNUMBER] = QString::number(asftag->track());
 }
 
 void writeAsfItem(TagLib::ASF::Tag *tag,const QString &s,const TagLib::String &key)
@@ -1049,11 +1048,11 @@ void TagsReaderWriter::readMP4(TagLib::MP4::Tag *mp4tag)
             TagLib::MP4::CoverArtList coverList=(*it).second.toCoverArtList();
             if (!coverList.isEmpty()) {
                 TagLib::MP4::CoverArt cover=coverList[0];
-                tag->setImageMimetype(cover.format()==TagLib::MP4::CoverArt::JPEG ? QSL("image/jpeg"):QSL("image/png"), false);
-                tag->setImageDescription(QSL(""), false);
+                tag->d->image.setMimetype(cover.format()==TagLib::MP4::CoverArt::JPEG ? QSL("image/jpeg"):QSL("image/png"));
+                tag->d->image.setDescription(QSL(""));
                 TagLib::ByteVector data=cover.data();
                 QByteArray bytes(data.data(),data.size());
-                tag->setImagePixmap(bytes, false);
+                tag->d->image.setPixmap(bytes);
             }
         }
         else if (id==QSL("----:com.apple.iTunes:iTunNORM") || id==QSL("----:com.apple.iTunes:iTunSMPB")) {
@@ -1177,13 +1176,13 @@ void TagsReaderWriter::readAPE(TagLib::APE::Tag *apetag)
             int pos=data.indexOf('\0',0);
             int pos1=data.lastIndexOf('.',pos);
             QByteArray descr=data.mid(0,pos);
-            tag->setImageDescription(QString::fromUtf8(descr.constData()), false);
+            tag->d->image.setDescription(QString::fromUtf8(descr.constData()));
             QByteArray mime=data.mid(pos1+1,pos-pos1-1);
-            tag->setImageMimetype(QSL("image/png"), false);
+            tag->d->image.setMimetype(QSL("image/png"));
             if (mime.toUpper()=="JPG" || mime.toUpper()=="JPEG")
-                tag->setImageMimetype(QSL("image/jpeg"), false);
-            tag->setImagePixmap(data.mid(pos+1), false);
-            tag->setImageType(3, false);
+                tag->d->image.setMimetype(QSL("image/jpeg"));
+            tag->d->image.setPixmap(data.mid(pos+1));
+            tag->d->image.setType(3);
         }
         else if ((*it).second.type()==TagLib::APE::Item::Text) {
             QString value=QS((*it).second.toString());
@@ -1341,7 +1340,7 @@ bool TagsReaderWriter::writeTags()
     if (App->trim) {
         const int tagsCount = App->currentScheme->tagsCount();
         for (int i=0; i<tagsCount; ++i) {
-            if (i!=COMMENT && i!=LYRICS) tag->setTag1(i, tag->tag(i).simplified());
+            if (i!=COMMENT && i!=LYRICS) tag->d->tags[i] = tag->tag(i).simplified();
         }
         QMap<QString, QString> other = tag->userTags();
         QMutableMapIterator<QString, QString> i(other);
@@ -1349,18 +1348,18 @@ bool TagsReaderWriter::writeTags()
             i.next();
             i.setValue(i.value().simplified());
         }
-        tag->setUserTags1(other);
+        tag->d->otherTags = other;
     }
 
     QString lyrics = tag->tag(LYRICS);
     lyrics.replace(QLS("\n"),QLS("\r\n"));
     lyrics.replace(QLS("\r\r"),QLS("\r"));
-    tag->setTag1(LYRICS,lyrics);
+    tag->d->tags[LYRICS] = lyrics;
 
-    if (tag->image().mimetype().isEmpty())
-        tag->setImageMimetype(QSL("image/png"), false);
-    if (tag->image().type() < 0 || tag->image().type() > 0x14)
-        tag->setImageType(3, false);
+    if (tag->d->image.mimetype().isEmpty())
+        tag->d->image.setMimetype(QSL("image/png"));
+    if (tag->d->image.type() < 0 || tag->image().type() > 0x14)
+        tag->d->image.setType(3);
 
 
 

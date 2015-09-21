@@ -161,7 +161,7 @@ TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent)
 
     setTabBar(m_tabBar);
 #ifndef Q_OS_MAC
-    QToolButton *newTabButton = new TabButton(this);
+    QToolButton *newTabButton = new QToolButton(this);
     QAction *a = new QAction(QIcon(App->iconThemeIcon("list-add1.png")),tr("New tab"),this);
     connect(a,SIGNAL(triggered()),this,SIGNAL(newTab()));
     newTabButton->setDefaultAction(a);

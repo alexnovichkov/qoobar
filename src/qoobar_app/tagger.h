@@ -138,7 +138,7 @@ public:
     void clear();
 
     ReplayGainInfo replayGainInfo() const {return d->replayGainInfo;}
-    void setReplayGainInfo(const ReplayGainInfo &rg, bool updateStatus=true);
+    void setReplayGainInfo(const ReplayGainInfo &rg);
     void removeReplayGainInfo(bool updateStatus=true);
     bool replayGainInfoIsEmpty() const {return d->replayGainInfo.isEmpty();}
     void setAlbumPeak(const QString &value, bool updateStatus=true);
@@ -151,13 +151,13 @@ public:
     void setReplayGainUndo(const QString &value, bool updateStatus=true);
 
     CoverImage image() const;
-    void setImage(const CoverImage &image, bool updateStatus=true);
+    void setImage(const CoverImage &image);
     void removeImage(bool updateStatus=true);
     bool imageIsEmpty() const {return d->image.isEmpty();}
-    void setImagePixmap(const QByteArray &pixmap, bool updateStatus=true);
-    void setImageDescription(const QString &description, bool updateStatus=true);
-    void setImageMimetype(const QString &mimetype, bool updateStatus=true);
-    void setImageType(int type, bool updateStatus=true);
+    void setImagePixmap(const QByteArray &pixmap);
+    void setImageDescription(const QString &description);
+    void setImageMimetype(const QString &mimetype);
+    void setImageType(int type);
 
 
     void setFile(const QString & fullFileName);
@@ -191,16 +191,9 @@ public:
 
 
     int length() const {return d->length;}
-    void setLength(int length);
-
     QString bitrate() const {return d->bitrate;}
-    void setBitrate(const QString &bitrate) {d->bitrate=bitrate;}
-
     int sampleRate() const {return d->sampleRate;}
-    void setSampleRate(int sampleRate) {d->sampleRate = sampleRate;}
-
     int channels() const {return d->channels;}
-    void setChannels(int channels) {d->channels = channels;}
 
     QString icon() const {return d->icon;}
 
@@ -220,10 +213,7 @@ public:
     QMap<QString,QString> userTags() const {return d->otherTags;}
 
     void setTag(const int tagID,const QString &value);
-    void setTag1(const int tagID,const QString &value);
-    void setTag1(const QString &tagID, const QString &value);
     void setUserTag(const QString &tagKey,const QString &value);
-    void setUserTags1(const QMap<QString,QString> &other);
 
     void removeStandardTags(bool updateStatus=true);
     void removeAllTags(bool updateStatus=true);
@@ -265,8 +255,9 @@ public:
     bool operator==(const Tag &t) const;
     bool operator!=(const Tag &t) const;
 private:
-//    void setTag(QString &tag,const QString &newTag);
     QSharedDataPointer<TagData> d;
+    friend class TagsReaderWriter;
+
 };
 
 Q_DECLARE_METATYPE(Tag)

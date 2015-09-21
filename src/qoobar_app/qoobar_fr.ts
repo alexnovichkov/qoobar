@@ -259,83 +259,83 @@ S&apos;il vous plaît vérifiez le fichier</translation>
 <context>
     <name>FileRenameDialog</name>
     <message>
-        <location filename="filesrenamer.cpp" line="61"/>
+        <location filename="filesrenamer.cpp" line="65"/>
         <source>Move/Copy/Rename files</source>
         <translation>Déplacer/Copier/Renommer des fichiers</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="75"/>
+        <location filename="filesrenamer.cpp" line="79"/>
         <source>rename/move files</source>
         <translation>renommer/déplacer les fichiers</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="76"/>
+        <location filename="filesrenamer.cpp" line="80"/>
         <source>copy files</source>
         <translation>copier les fichiers</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="77"/>
+        <location filename="filesrenamer.cpp" line="81"/>
         <source>rename folder</source>
         <translation>renommer le répertoire</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="95"/>
+        <location filename="filesrenamer.cpp" line="99"/>
         <source>Open existing folder</source>
         <translation>Importer un répertoire existant</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="112"/>
+        <location filename="filesrenamer.cpp" line="116"/>
         <source>Remove this pattern</source>
         <translation>Supprimer le format</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="182"/>
+        <location filename="filesrenamer.cpp" line="186"/>
         <source>Apply these options to created folders as well</source>
         <translation>Appliquer ces options pour les dossiers créés ainsi</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="186"/>
+        <location filename="filesrenamer.cpp" line="190"/>
         <source>Options</source>
         <translation>Options</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="228"/>
+        <location filename="filesrenamer.cpp" line="235"/>
         <source>Run</source>
         <translation>Éxécuter</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="209"/>
+        <location filename="filesrenamer.cpp" line="213"/>
         <source>Old names</source>
         <translation>Anciens noms</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="209"/>
+        <location filename="filesrenamer.cpp" line="213"/>
         <source>New names</source>
         <translation>Nouveau noms</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="137"/>
+        <location filename="filesrenamer.cpp" line="141"/>
         <source>Delete empty folder after renaming</source>
         <translation>Supprimer un dossier video après renommage</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="243"/>
-        <location filename="filesrenamer.cpp" line="259"/>
+        <location filename="filesrenamer.cpp" line="250"/>
+        <location filename="filesrenamer.cpp" line="266"/>
         <source>Do what:</source>
         <translation>Action:</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="83"/>
+        <location filename="filesrenamer.cpp" line="87"/>
         <source>Output folder</source>
         <translation>Répertoire de sortie</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="141"/>
+        <location filename="filesrenamer.cpp" line="145"/>
         <source>Replace special Windows characters \/:*?&quot;&lt;&gt;| with</source>
         <translation>Remplacer les caractères spéciaux Windows \/:*?&quot;&lt;&gt;| par</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="142"/>
+        <location filename="filesrenamer.cpp" line="146"/>
         <source>Characters \/:*| will be replaced by this text
 character ? will be removed
 characters &lt;&gt; will be replaced by (),
@@ -346,58 +346,58 @@ les caractères &lt;&gt; seront remplacés par (),
 et &quot; par deux guillements simples &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="152"/>
+        <location filename="filesrenamer.cpp" line="156"/>
         <source>Replace spaces with</source>
         <translation>Remplacer blancs par</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="179"/>
+        <location filename="filesrenamer.cpp" line="183"/>
         <source>Remove diacritics</source>
         <translation>Retirer signes diacritiques</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="167"/>
+        <location filename="filesrenamer.cpp" line="171"/>
         <source>Case</source>
         <translation>Cas</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="172"/>
+        <location filename="filesrenamer.cpp" line="176"/>
         <source>lower</source>
         <translation>minuscule</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="173"/>
+        <location filename="filesrenamer.cpp" line="177"/>
         <source>UPPER</source>
         <translation>MAJUSCULE</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="174"/>
+        <location filename="filesrenamer.cpp" line="178"/>
         <source>Only first up</source>
         <translation>Seulement d&apos;abord vers le haut</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="175"/>
+        <location filename="filesrenamer.cpp" line="179"/>
         <source>Every First Up</source>
         <translation>Chaque Premier Vers Le Haut</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="164"/>
+        <location filename="filesrenamer.cpp" line="168"/>
         <source>Maximum file name length</source>
         <translation>Longueur maximale nom de fichier</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="247"/>
-        <location filename="filesrenamer.cpp" line="264"/>
+        <location filename="filesrenamer.cpp" line="254"/>
+        <location filename="filesrenamer.cpp" line="271"/>
         <source>Output file name pattern</source>
         <translation>Format des noms de fichier de sortie</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="433"/>
+        <location filename="filesrenamer.cpp" line="440"/>
         <source>Nothing to rename, file names not changed.</source>
         <translation>Rien à renommer, les noms de fichier ne change pas.</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="415"/>
+        <location filename="filesrenamer.cpp" line="422"/>
         <source>Folder to move/copy files</source>
         <translation>Réperoire où déplacer/copier les fichiers</translation>
     </message>
@@ -3086,77 +3086,82 @@ Voulez-vous enregistrer les modifications?</translation>
     </message>
     <message>
         <location filename="tagsfiller.cpp" line="176"/>
-        <location filename="tagsfiller.cpp" line="763"/>
+        <location filename="tagsfiller.cpp" line="770"/>
         <source>Source</source>
         <translation>Source</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="203"/>
+        <location filename="tagsfiller.cpp" line="208"/>
         <source>Source:</source>
         <translation>Source:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="214"/>
+        <location filename="tagsfiller.cpp" line="219"/>
         <source>from other tags</source>
         <translation>d&apos;autres tags</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="255"/>
+        <location filename="tagsfiller.cpp" line="260"/>
         <source>manually</source>
         <translation>recherche manuelle</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="258"/>
+        <location filename="tagsfiller.cpp" line="263"/>
         <source>by CD in CD-ROM</source>
         <translation>de CD dans le CD-ROM</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="260"/>
+        <location filename="tagsfiller.cpp" line="265"/>
         <source>by selected files</source>
         <translation>par les fichiers sélectionnés</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="269"/>
+        <location filename="tagsfiller.cpp" line="274"/>
         <source>Search</source>
         <translation>Chercher</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="299"/>
+        <location filename="tagsfiller.cpp" line="282"/>
+        <source>Search results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tagsfiller.cpp" line="309"/>
         <source>artist:</source>
         <translation>artiste:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="302"/>
+        <location filename="tagsfiller.cpp" line="312"/>
         <source>album:</source>
         <translation>album:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="306"/>
+        <location filename="tagsfiller.cpp" line="316"/>
         <source>Search in</source>
         <translation>Chercher sur</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="338"/>
+        <location filename="tagsfiller.cpp" line="345"/>
         <source>from network</source>
         <translation>depuis le réseau</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="349"/>
+        <location filename="tagsfiller.cpp" line="356"/>
         <source>No download plugins found. Internet search is inaccessible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="428"/>
+        <location filename="tagsfiller.cpp" line="435"/>
         <source>Searching %1...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="458"/>
+        <location filename="tagsfiller.cpp" line="465"/>
         <source>Nothing found</source>
         <translation>Aucun résultat trouvé</translation>
     </message>
     <message numerus="yes">
-        <location filename="tagsfiller.cpp" line="463"/>
+        <location filename="tagsfiller.cpp" line="470"/>
         <source>Found %n album(s)</source>
         <translation>
             <numerusform>Trouvé %n album</numerusform>
@@ -3164,17 +3169,17 @@ Voulez-vous enregistrer les modifications?</translation>
         </translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="500"/>
+        <location filename="tagsfiller.cpp" line="507"/>
         <source>Retrieving release info...</source>
         <translation>Chargement des informations...</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="513"/>
+        <location filename="tagsfiller.cpp" line="520"/>
         <source>Done</source>
         <translation>Fait</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="423"/>
+        <location filename="tagsfiller.cpp" line="430"/>
         <source>Please specify an artist and an album for the manual search</source>
         <translation>S&apos;il vous plaît spécifier un artiste et un album pour la recherche manuelle</translation>
     </message>
@@ -3332,9 +3337,8 @@ in the ReplayGain dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="912"/>
         <source>Not installed</source>
-        <translation>N&apos;est pas installé</translation>
+        <translation type="vanished">N&apos;est pas installé</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="878"/>

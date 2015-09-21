@@ -155,16 +155,6 @@ void Tag::setFile(const QString &fileName)
     d->size         = fi.size();
 }
 
-void Tag::setTag1(const int tagID,const QString &value)
-{
-    if (tagID < d->tags.size()) d->tags[tagID] = value;
-}
-
-void Tag::setTag1(const QString &tag, const QString &value)
-{
-    d->otherTags[tag] = value;
-}
-
 void Tag::setTag(const int tagID,const QString &value)
 {
     if (tagID >= d->tags.size())
@@ -188,38 +178,38 @@ CoverImage Tag::image() const
     return d->image;
 }
 
-void Tag::setImage(const CoverImage &image, bool updateStatus)
+void Tag::setImage(const CoverImage &image)
 {
     if (d->image==image) return;
-    if (updateStatus)  d->wasChanged = true;
+    d->wasChanged = true;
     d->image = image;
 }
 
-void Tag::setImagePixmap(const QByteArray &pixmap, bool updateStatus)
+void Tag::setImagePixmap(const QByteArray &pixmap)
 {
     if (d->image.pixmap() == pixmap) return;
-    if (updateStatus) d->wasChanged = true;
+    d->wasChanged = true;
     d->image.setPixmap(pixmap);
 }
 
-void Tag::setImageDescription(const QString &description, bool updateStatus)
+void Tag::setImageDescription(const QString &description)
 {
     if (d->image.description() == description) return;
-    if (updateStatus) d->wasChanged = true;
+    d->wasChanged = true;
     d->image.setDescription(description);
 }
 
-void Tag::setImageMimetype(const QString &mimetype, bool updateStatus)
+void Tag::setImageMimetype(const QString &mimetype)
 {
     if (d->image.mimetype() == mimetype) return;
-    if (updateStatus) d->wasChanged = true;
+    d->wasChanged = true;
     d->image.setMimetype(mimetype);
 }
 
-void Tag::setImageType(int type, bool updateStatus)
+void Tag::setImageType(int type)
 {
     if (d->image.type() == type) return;
-    if (updateStatus) d->wasChanged = true;
+    d->wasChanged = true;
     d->image.setType(type);
 }
 
@@ -288,16 +278,11 @@ void Tag::removeReplayGainInfo(bool updateStatus)
     d->replayGainInfo.clear();
 }
 
-void Tag::setReplayGainInfo(const ReplayGainInfo &rg, bool updateStatus)
+void Tag::setReplayGainInfo(const ReplayGainInfo &rg)
 {
     if (d->replayGainInfo == rg) return;
-    if (updateStatus) d->wasChanged = true;
+    d->wasChanged = true;
     d->replayGainInfo = rg;
-}
-
-void Tag::setLength(int length)
-{
-    d->length=length;
 }
 
 void Tag::setAlbumPeak(const QString &value, bool updateStatus)
@@ -354,11 +339,6 @@ void Tag::setReplayGainUndo(const QString &value, bool updateStatus)
     if (d->replayGainInfo.undo==value) return;
     if (updateStatus) d->wasChanged = true;
     d->replayGainInfo.undo = value;
-}
-
-void Tag::setUserTags1(const QMap<QString, QString> &other)
-{
-    d->otherTags = other;
 }
 
 void Tag::removeStandardTags(bool updateStatus)
