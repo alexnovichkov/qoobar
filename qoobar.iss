@@ -103,7 +103,7 @@ Name: "{app}\icons\coloured"; Flags: uninsalwaysuninstall; Components: main
 #define QT_VERSION 5
 
 #if QT_VERSION==5
-#define PATH_TO_QT "D:/Qt/Qt5.5.0/5.5/mingw492_32"
+#define PATH_TO_QT "K:/Qt/Qt5.5.0/5.5/mingw492_32"
 #else
 #define PATH_TO_QT "K:/Qt/4.8.4"
 #endif

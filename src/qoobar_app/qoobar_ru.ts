@@ -130,16 +130,16 @@ Please check the file</source>
         <location filename="configpages.cpp" line="340"/>
         <location filename="configpages.cpp" line="361"/>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Пусто</translation>
     </message>
     <message numerus="yes">
         <location filename="configpages.cpp" line="341"/>
         <location filename="configpages.cpp" line="362"/>
         <source>%n record(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n запись</numerusform>
+            <numerusform>%n записи</numerusform>
+            <numerusform>%n записей</numerusform>
         </translation>
     </message>
     <message>
@@ -759,7 +759,7 @@ and &quot; by two single quotes &apos;&apos;</source>
         <location filename="configpages.cpp" line="132"/>
         <location filename="configpages.cpp" line="215"/>
         <source>Toolbar icons theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Набор иконок программы</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="190"/>
@@ -769,13 +769,14 @@ and &quot; by two single quotes &apos;&apos;</source>
     <message>
         <location filename="configpages.cpp" line="233"/>
         <source>Qoobar</source>
-        <translation type="unfinished">Qoobar</translation>
+        <translation>Qoobar</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="233"/>
         <source>The toolbar icons theme will be changed
 after you restart Qoobar</source>
-        <translation type="unfinished"></translation>
+        <translation>Тема иконок панели инструментов будет изменена
+после перезапуска программы</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="241"/>
@@ -1359,7 +1360,7 @@ after you restart Qoobar</source>
         <location filename="mainwindow.cpp" line="582"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</oldsource>
-        <translation type="unfinished">&lt;b&gt;Qoobar использует:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Библиотеки:&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Qoobar использует:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="98"/>
@@ -1440,7 +1441,7 @@ after you restart Qoobar</source>
     <message>
         <location filename="mainwindow.cpp" line="589"/>
         <source>&lt;p&gt;This version is compiled as portable</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Эта версия скомпилирована как переносимая (portable)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="845"/>
@@ -1974,30 +1975,30 @@ all changes in them will not be saved!</source>
 <context>
     <name>PropertiesPanel</name>
     <message>
-        <location filename="statusbar.cpp" line="138"/>
-        <location filename="statusbar.cpp" line="198"/>
+        <location filename="statusbar.cpp" line="146"/>
+        <location filename="statusbar.cpp" line="209"/>
         <source>File is read only</source>
         <translation>Файл только для чтения</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="147"/>
-        <location filename="statusbar.cpp" line="199"/>
+        <location filename="statusbar.cpp" line="155"/>
+        <location filename="statusbar.cpp" line="210"/>
         <source>Size</source>
         <translation>Размер</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="157"/>
-        <location filename="statusbar.cpp" line="200"/>
+        <location filename="statusbar.cpp" line="165"/>
+        <location filename="statusbar.cpp" line="211"/>
         <source>Length</source>
         <translation>Длина</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="224"/>
+        <location filename="statusbar.cpp" line="235"/>
         <source>%1 kbps, %2 Hz, %3 ch.</source>
         <translation>%1 kbps, %2 Hz, %3 ch.</translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="261"/>
+        <location filename="statusbar.cpp" line="272"/>
         <source>%n file(s)</source>
         <translation>
             <numerusform>%n файл</numerusform>
@@ -2006,12 +2007,12 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="263"/>
+        <location filename="statusbar.cpp" line="274"/>
         <source>Overall length %1</source>
         <translation>Общая длина %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="268"/>
+        <location filename="statusbar.cpp" line="279"/>
         <source>Selected %n file(s) of %1</source>
         <oldsource>Selected %n file(s) of </oldsource>
         <translation>
@@ -2029,7 +2030,7 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="271"/>
+        <location filename="statusbar.cpp" line="282"/>
         <source>Selected length %1 of %2</source>
         <translation>Выделено %1 из %2</translation>
     </message>
@@ -2631,7 +2632,7 @@ Please install it.</source>
     <message>
         <location filename="searchpanel.cpp" line="25"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть</translation>
     </message>
     <message>
         <location filename="searchpanel.cpp" line="39"/>
@@ -3054,7 +3055,7 @@ Do you want to save changes?</source>
     <message>
         <location filename="tagseditor.cpp" line="138"/>
         <source>Ctrl+Meta+Space</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="tagseditor.cpp" line="147"/>
@@ -3190,7 +3191,7 @@ Do you want to save changes?</source>
     <message>
         <location filename="tagsfiller.cpp" line="282"/>
         <source>Search results</source>
-        <translation type="unfinished">Результаты поиска</translation>
+        <translation>Результаты поиска</translation>
     </message>
     <message>
         <location filename="tagsfiller.cpp" line="309"/>
@@ -3409,7 +3410,7 @@ in the ReplayGain dialog</source>
     <message>
         <location filename="configpages.cpp" line="911"/>
         <source>Cannot find in </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу найти в </translation>
     </message>
     <message>
         <source>Not installed</source>

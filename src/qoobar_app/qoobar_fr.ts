@@ -1965,30 +1965,30 @@ all changes in them will not be saved!</source>
 <context>
     <name>PropertiesPanel</name>
     <message>
-        <location filename="statusbar.cpp" line="138"/>
-        <location filename="statusbar.cpp" line="198"/>
+        <location filename="statusbar.cpp" line="146"/>
+        <location filename="statusbar.cpp" line="209"/>
         <source>File is read only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="147"/>
-        <location filename="statusbar.cpp" line="199"/>
+        <location filename="statusbar.cpp" line="155"/>
+        <location filename="statusbar.cpp" line="210"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="157"/>
-        <location filename="statusbar.cpp" line="200"/>
+        <location filename="statusbar.cpp" line="165"/>
+        <location filename="statusbar.cpp" line="211"/>
         <source>Length</source>
         <translation type="unfinished">Durée</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="224"/>
+        <location filename="statusbar.cpp" line="235"/>
         <source>%1 kbps, %2 Hz, %3 ch.</source>
         <translation type="unfinished">%1 kbps, %2 Hz, %3 ch.</translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="261"/>
+        <location filename="statusbar.cpp" line="272"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1996,12 +1996,12 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="263"/>
+        <location filename="statusbar.cpp" line="274"/>
         <source>Overall length %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="268"/>
+        <location filename="statusbar.cpp" line="279"/>
         <source>Selected %n file(s) of %1</source>
         <oldsource>Selected %n file(s) of </oldsource>
         <translation type="unfinished">
@@ -2010,7 +2010,7 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="271"/>
+        <location filename="statusbar.cpp" line="282"/>
         <source>Selected length %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>

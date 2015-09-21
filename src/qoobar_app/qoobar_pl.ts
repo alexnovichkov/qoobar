@@ -705,7 +705,7 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
     <message>
         <location filename="configpages.cpp" line="85"/>
         <source>Choose...</source>
-        <translation type="unfinished">Wybierz...</translation>
+        <translation>Wybierz...</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="87"/>
@@ -767,7 +767,7 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
     <message>
         <location filename="configpages.cpp" line="233"/>
         <source>Qoobar</source>
-        <translation type="unfinished">Qoobar</translation>
+        <translation>Qoobar</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="233"/>
@@ -1432,7 +1432,7 @@ after you restart Qoobar</source>
         <location filename="mainwindow.cpp" line="582"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</oldsource>
-        <translation type="unfinished">&lt;b&gt;Qoobar używa:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Biblioteki:&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Qoobar używa:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="589"/>
@@ -1970,30 +1970,30 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
 <context>
     <name>PropertiesPanel</name>
     <message>
-        <location filename="statusbar.cpp" line="138"/>
-        <location filename="statusbar.cpp" line="198"/>
+        <location filename="statusbar.cpp" line="146"/>
+        <location filename="statusbar.cpp" line="209"/>
         <source>File is read only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="147"/>
-        <location filename="statusbar.cpp" line="199"/>
+        <location filename="statusbar.cpp" line="155"/>
+        <location filename="statusbar.cpp" line="210"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="157"/>
-        <location filename="statusbar.cpp" line="200"/>
+        <location filename="statusbar.cpp" line="165"/>
+        <location filename="statusbar.cpp" line="211"/>
         <source>Length</source>
-        <translation type="unfinished">Długość</translation>
+        <translation>Długość</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="224"/>
+        <location filename="statusbar.cpp" line="235"/>
         <source>%1 kbps, %2 Hz, %3 ch.</source>
-        <translation type="unfinished">%1 kbps, %2 Hz, %3 ch.</translation>
+        <translation>%1 kbps, %2 Hz, %3 ch.</translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="261"/>
+        <location filename="statusbar.cpp" line="272"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2002,12 +2002,12 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="263"/>
+        <location filename="statusbar.cpp" line="274"/>
         <source>Overall length %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="268"/>
+        <location filename="statusbar.cpp" line="279"/>
         <source>Selected %n file(s) of %1</source>
         <oldsource>Selected %n file(s) of </oldsource>
         <translation type="unfinished">
@@ -2017,7 +2017,7 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="271"/>
+        <location filename="statusbar.cpp" line="282"/>
         <source>Selected length %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2575,7 +2575,7 @@ Proszę go zainstalować.</translation>
     <message>
         <location filename="searchpanel.cpp" line="25"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij</translation>
     </message>
     <message>
         <location filename="searchpanel.cpp" line="39"/>
