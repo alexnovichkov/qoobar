@@ -142,8 +142,8 @@ bool Qoobar::programInstalled(const QString &program, QString *path)
     QDir dir(qApp->applicationDirPath());
     dir.cdUp();
     QString s = QString("%1/Resources/%2").arg(dir.canonicalPath()).arg(program);
+    if (path) *path = s;
     if (QFile::exists(s)) {
-        if (path) *path = s;
         return true;
     }
     else {
@@ -152,9 +152,11 @@ bool Qoobar::programInstalled(const QString &program, QString *path)
         p.waitForFinished();
         QByteArray b=p.readAll();
         s=QString(b).simplified();
-        if (b.isEmpty()) return false;
+        if (path && path->isEmpty()) *path = s;
+        if (b.isEmpty()) {
+            return false;
+        }
         else if (QFile::exists(s)) {
-            if (path) *path = s;
             return true;
         }
     }

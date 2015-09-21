@@ -178,5 +178,5 @@ void SettingsDialog::switchPage(int page)
 {DD;
     pagesWidget->removeWidget(pagesWidget->widget(0));
     pagesWidget->addWidget(configPages[page]);
-    resize(500,300);
+    resize(550,300);
 }

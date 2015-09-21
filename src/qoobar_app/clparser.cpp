@@ -1,5 +1,7 @@
 #include "clparser.h"
 
+#ifdef QOOBAR_ENABLE_CLI
+
 #ifdef HAVE_QT5
 #include <QJsonDocument>
 #else
@@ -464,3 +466,4 @@ QString CLParser::failure(const QString &mess, const QString &s) const
     exit(1);
 }
 
+#endif //QOOBAR_ENABLE_CLI

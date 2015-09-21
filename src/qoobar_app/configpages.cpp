@@ -901,14 +901,16 @@ void UtilitiesPage::retranslateUI()
 
     for (int i=0; i<tree->topLevelItemCount(); ++i) {
         QString programPath;
-        if (Qoobar::programInstalled(tree->topLevelItem(i)->text(1),&programPath)) {
+        bool installed = Qoobar::programInstalled(tree->topLevelItem(i)->text(1),&programPath);
+        if (installed) {
             tree->topLevelItem(i)->setIcon(0,QIcon(App->iconThemeIcon("tick.png")));
             tree->topLevelItem(i)->setText(2,programPath);
         }
         else {
             tree->topLevelItem(i)->setIcon(0,QIcon(App->iconThemeIcon("exclamation.png")));
-            tree->topLevelItem(i)->setToolTip(0,tr("Not installed"));
+            tree->topLevelItem(i)->setText(2,tr("Cannot find in ")+programPath);
         }
+        tree->topLevelItem(i)->setToolTip(2, tree->topLevelItem(i)->text(2));
     }
 }
 

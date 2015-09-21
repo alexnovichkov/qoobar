@@ -132,49 +132,61 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     fileNameLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     fileNameLabel->setElideMode(Qt::ElideLeft);
     fileNameLabel->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
+    fileNameLabel->setAttribute(Qt::WA_MacSmallSize);
 
     readOnlyLabel = new QLabel(QSL("<font color=#505050>RO</font>"),this);
     readOnlyLabel->setToolTip(tr("File is read only"));
+    readOnlyLabel->setAttribute(Qt::WA_MacSmallSize);
 
     typeLabel = new QLabel(this);
     typeLabel->setFixedWidth(typeLabel->fontMetrics().width(QSL("0000 kbps, 44100 Hz, 2 ch.")));
     typeLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     typeLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    typeLabel->setAttribute(Qt::WA_MacSmallSize);
 
     sizeLabel = new QLabel(QString("<font color=#505050>%1:</font>").arg(tr("Size")),this);
     sizeLabel->setAlignment(Qt::AlignTop | Qt::AlignRight);
+    sizeLabel->setAttribute(Qt::WA_MacSmallSize);
 
     sizeContentsLabel = new QLabel(this);
     sizeContentsLabel->setFixedWidth(sizeContentsLabel->fontMetrics().width(QSL("000.000 Mib  ")));
     sizeContentsLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     sizeContentsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    sizeContentsLabel->setAttribute(Qt::WA_MacSmallSize);
 
     lengthLabel = new QLabel(QString("<font color=#505050>%1:</font>").arg(tr("Length")),this);
     lengthLabel->setAlignment(Qt::AlignTop | Qt::AlignRight);
+    lengthLabel->setAttribute(Qt::WA_MacSmallSize);
 
     lengthContentsLabel = new QLabel(this);
     lengthContentsLabel->setFixedWidth(lengthContentsLabel->fontMetrics().width(QSL("h:mm:ss  ")));
     lengthContentsLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     lengthContentsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    lengthContentsLabel->setAttribute(Qt::WA_MacSmallSize);
 
     selectedLabel = new QLabel(this);
+    selectedLabel->setAttribute(Qt::WA_MacSmallSize);
     selectedLengthLabel = new QLabel(this);
+    selectedLengthLabel->setAttribute(Qt::WA_MacSmallSize);
     updateSelected();
 
     QGridLayout *l = new QGridLayout(this);
-    l->setMargin(0);
-    l->addWidget(selectedLabel,0,0);
-    l->addItem(new QSpacerItem(10,1),0,1);
-    l->addWidget(fileIconLabel,0,2);
-    l->addWidget(fileNameLabel,0,3);
-    l->addWidget(sizeLabel,0,4);
-    l->addWidget(sizeContentsLabel,0,5);
+#ifdef Q_OS_MAC
+    l->setMargin(2);
+    l->setContentsMargins(0,0,0,0);
+#endif
+    l->addWidget(selectedLabel,0,0,1,1,Qt::AlignLeft | Qt::AlignVCenter);
+    l->addItem(new QSpacerItem(10,1),0,1,1,1,Qt::AlignLeft | Qt::AlignVCenter);
+    l->addWidget(fileIconLabel,0,2,1,1,Qt::AlignLeft | Qt::AlignVCenter);
+    l->addWidget(fileNameLabel,0,3,1,1,Qt::AlignLeft | Qt::AlignVCenter);
+    l->addWidget(sizeLabel,0,4,1,1,Qt::AlignRight | Qt::AlignVCenter);
+    l->addWidget(sizeContentsLabel,0,5,1,1,Qt::AlignLeft | Qt::AlignVCenter);
 
-    l->addWidget(selectedLengthLabel,1,0);
-    l->addWidget(readOnlyLabel,1,2);
-    l->addWidget(typeLabel,1,3);
-    l->addWidget(lengthLabel,1,4);
-    l->addWidget(lengthContentsLabel,1,5);
+    l->addWidget(selectedLengthLabel,1,0,1,1,Qt::AlignLeft | Qt::AlignVCenter);
+    l->addWidget(readOnlyLabel,1,2,1,1,Qt::AlignLeft | Qt::AlignVCenter);
+    l->addWidget(typeLabel,1,3,1,1,Qt::AlignLeft | Qt::AlignVCenter);
+    l->addWidget(lengthLabel,1,4,1,1,Qt::AlignRight | Qt::AlignVCenter);
+    l->addWidget(lengthContentsLabel,1,5,1,1,Qt::AlignLeft | Qt::AlignVCenter);
 
     readOnlyLabel->hide();
     sizeLabel->hide();

@@ -150,10 +150,6 @@ const Act MainWindow::actionsDescr[] = {
      SLOT(checkUpdates()), 0, QKeySequence::UnknownKey, 0,0},
     {"searchFiles", QT_TR_NOOP("S&earch files..."), QT_TR_NOOP("Search files..."), QT_TR_NOOP("Search"),
      SLOT(searchFiles()), QT_TR_NOOP("Shift+Ctrl+F"), QKeySequence::UnknownKey, 0,0},
-//#ifdef Q_OS_MAC
-//    {"specialCharacters", QT_TR_NOOP("Special Characters..."), QT_TR_NOOP("Special Characters..."), QT_TR_NOOP("Special Characters"),
-//     SLOT(specialCharacters()), QT_TR_NOOP("Ctrl+Command+Space"), QKeySequence::UnknownKey, 0,0},
-//#endif
     {0,0,0,0,0,0,QKeySequence::UnknownKey,0,0}
 };
 
@@ -164,9 +160,6 @@ const Menu MainWindow::menusDescr[] = {
     {"edit", QT_TR_NOOP("&Edit"), ",cut,copy,paste,copyToClipboard,"
                                    "pasteFromClipboard,,removeTags,"
                                    "newTag,,settings"
-//#ifdef Q_OS_MAC
-//     ",specialCharacters"
-//#endif
     },
     {"tools", QT_TR_NOOP("&Tools"), "rename,fill,play,replaygain,"},
     {"tabs", QT_TR_NOOP("Tab&s"), "newTab,closeTab,closeOtherTabs,renameTab"},

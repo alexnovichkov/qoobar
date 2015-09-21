@@ -241,52 +241,57 @@ void Application::setId3v1Encoding(const QString &s)
         stringHandler->setCodec(QTextCodec::codecForName(id3v1Encoding.toLatin1()));
 }
 
+QSettings *Application::guiSettings()
+{
+#ifdef QOOBAR_PORTABLE
+    return new QSettings(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
+#else
+    return new QSettings(QSL("qoobar"),QSL("gui"));
+#endif
+}
+
 void Application::readGuiSettings()
 {DD;
-#ifdef QOOBAR_PORTABLE
-    QSettings se(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
-#else
-    QSettings se(QSL("qoobar"),QSL("gui"));
-#endif
+    QSettings *se = guiSettings();
 
     //Interface
-    useUndo = se.value(QSL("useUndo"), useUndo).toBool();
-    autoexpand=se.value(QSL("autoexpand"), autoexpand).toBool();
+    useUndo = se->value(QSL("useUndo"), useUndo).toBool();
+    autoexpand=se->value(QSL("autoexpand"), autoexpand).toBool();
 
-    chars=se.value(QSL("chars"), chars).toString();
-    QVariant charsFontV=se.value(QSL("charsFont"),font());
+    chars=se->value(QSL("chars"), chars).toString();
+    QVariant charsFontV=se->value(QSL("charsFont"),font());
     charsFont=charsFontV.value<QFont>();
 
-    langID=se.value(QSL("lang"),QSL("en")).toString();
+    langID=se->value(QSL("lang"),QSL("en")).toString();
     loadTranslations();
 
-    player=se.value(QSL("player")).toString();
-    saveChanges=se.value(QSL("saveChanges"),saveChanges).toBool();
+    player=se->value(QSL("player")).toString();
+    saveChanges=se->value(QSL("saveChanges"),saveChanges).toBool();
 
-    patterns = se.value(QSL("renamePatterns"), QStringList()<<"[%N. ]%t"
+    patterns = se->value(QSL("renamePatterns"), QStringList()<<"[%N. ]%t"
                         << "%a/[%N. ]%t"
                         << "[%N. ]%A - %t").toStringList();
 
     // old setting, contains patterns in a string separated by ;
     // use and then remove if present
-    if (se.contains(QSL("patterns"))) {
-        QStringList l = se.value(QSL("patterns")).toString().split(';');
+    if (se->contains(QSL("patterns"))) {
+        QStringList l = se->value(QSL("patterns")).toString().split(';');
         Q_FOREACH (const QString &s, l) addPattern(s, patterns);
-        se.remove(QSL("patterns"));
+        se->remove(QSL("patterns"));
     }
-    QString pattern = se.value(QSL("pattern")).toString();
+    QString pattern = se->value(QSL("pattern")).toString();
     if (!pattern.isEmpty()) {
         addPattern(pattern,patterns);
-        se.remove(QSL("pattern"));
+        se->remove(QSL("pattern"));
     }
 
-    lastDirectory=se.value(QSL("lastDirectory"),lastDirectory).toString();
-    lastTreeDirectory=se.value(QSL("lastTreeDirectory"),lastTreeDirectory).toString();
-    splitterState = se.value(QSL("splitter")).toByteArray();
-    innerSplitterState = se.value(QSL("innerSplitter")).toByteArray();
-    dirSplitterState = se.value(QSL("dirSplitter")).toByteArray();
-    showDirView = se.value(QSL("showDirView"), showDirView).toBool();
-    dirViewRoot = se.value(QSL("dirViewRoot"), dirViewRoot).toString();
+    lastDirectory=se->value(QSL("lastDirectory"),lastDirectory).toString();
+    lastTreeDirectory=se->value(QSL("lastTreeDirectory"),lastTreeDirectory).toString();
+    splitterState = se->value(QSL("splitter")).toByteArray();
+    innerSplitterState = se->value(QSL("innerSplitter")).toByteArray();
+    dirSplitterState = se->value(QSL("dirSplitter")).toByteArray();
+    showDirView = se->value(QSL("showDirView"), showDirView).toBool();
+    dirViewRoot = se->value(QSL("dirViewRoot"), dirViewRoot).toString();
     if (dirViewRoot.isEmpty()) {
 #ifdef Q_OS_WIN
         dirViewRoot = QSL("");
@@ -295,23 +300,23 @@ void Application::readGuiSettings()
 #endif
     }
 
-    useProxy = se.value(QSL("useProxy"), useProxy).toBool();
-    proxyServer = se.value(QSL("proxyServer")).toString();
-    proxyPort = se.value(QSL("proxyPort")).toString();
-    proxyLogin = se.value(QSL("proxyLogin")).toString();
-    proxyPassword = se.value(QSL("proxyPassword")).toString();
-    cdromDevice=se.value(QSL("cdromDevice")).toString();
+    useProxy = se->value(QSL("useProxy"), useProxy).toBool();
+    proxyServer = se->value(QSL("proxyServer")).toString();
+    proxyPort = se->value(QSL("proxyPort")).toString();
+    proxyLogin = se->value(QSL("proxyLogin")).toString();
+    proxyPassword = se->value(QSL("proxyPassword")).toString();
+    cdromDevice=se->value(QSL("cdromDevice")).toString();
 
-    lastCueFile = se.value(QSL("lastCueFile")).toString();
+    lastCueFile = se->value(QSL("lastCueFile")).toString();
 
 #ifdef HAVE_QT5
-    columns167 = se.value(QSL("columns167_5.0")).toByteArray();
+    columns167 = se->value(QSL("columns167_5.0")).toByteArray();
 #else
-    columns167 = se.value(QSL("columns167")).toByteArray();
+    columns167 = se->value(QSL("columns167")).toByteArray();
 #endif
-    rows=se.value(QSL("rows")).toByteArray();
+    rows=se->value(QSL("rows")).toByteArray();
 
-    QVariantList variantList = se.value(QSL("tagStatus")).toList();
+    QVariantList variantList = se->value(QSL("tagStatus")).toList();
     for (int i=0; i<variantList.size(); ++i)
             tagStatus << variantList.at(i).toInt();
     tagStatus.resize(currentScheme->tagsCount());
@@ -320,18 +325,18 @@ void Application::readGuiSettings()
     autocompletions = new Autocompletions(this);
     autocompletions->read(se);
 
-    charsShown = se.value(QSL("charsShown"), charsShown).toBool();
-    geometry = se.value(QSL("geometry")).toByteArray();
+    charsShown = se->value(QSL("charsShown"), charsShown).toBool();
+    geometry = se->value(QSL("geometry")).toByteArray();
 
-    fillPatterns = se.value(QSL("fill_Patterns"), QStringList("%n. %A - %a")).toStringList();
+    fillPatterns = se->value(QSL("fill_Patterns"), QStringList("%n. %A - %a")).toStringList();
 
-    if (se.contains(QSL("fillPatterns"))) {
-        QStringList l = se.value(QSL("fillPatterns")).toString().split(';');
+    if (se->contains(QSL("fillPatterns"))) {
+        QStringList l = se->value(QSL("fillPatterns")).toString().split(';');
         Q_FOREACH (const QString &s, l) addPattern(s, fillPatterns);
-        se.remove(QSL("fillPatterns"));
+        se->remove(QSL("fillPatterns"));
     }
 
-    searchPaths = se.value(QSL("searchPaths")).toStringList();
+    searchPaths = se->value(QSL("searchPaths")).toStringList();
     if (searchPaths.isEmpty()) {
 #ifdef HAVE_QT5
         searchPaths = QStandardPaths::standardLocations(QStandardPaths::MusicLocation);
@@ -340,63 +345,69 @@ void Application::readGuiSettings()
 #endif
     }
 
-    hideTabBar = se.value(QSL("hideTabBar"), false).toBool();
+    hideTabBar = se->value(QSL("hideTabBar"), false).toBool();
 
-//    showFullFilesProperties = se.value(QSL("showFullFilesProperties"),false).toBool();
+//    showFullFilesProperties = se->value(QSL("showFullFilesProperties"),false).toBool();
+    delete se;
+}
+
+QSettings *Application::globalSettings()
+{
+#ifdef QOOBAR_PORTABLE
+    return new QSettings(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
+#else
+#ifdef Q_OS_LINUX
+    return new QSettings(QString("%1/.config/qoobar/global.ini").arg(QDir::homePath()), QSettings::IniFormat);
+#elif defined(Q_OS_MAC)
+    return new QSettings(QSL("qoobar"),QSL("global"));
+#else
+    return new QSettings(QSL("qoobar"),QSL("gui"));
+#endif
+#endif
 }
 
 void Application::readGlobalSettings()
 {DD;
-#ifdef QOOBAR_PORTABLE
-    QSettings se(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
-#else
-#ifdef Q_OS_LINUX
-    QSettings se(QString("%1/.config/qoobar/global.ini").arg(QDir::homePath()), QSettings::IniFormat);
-#elif defined(Q_OS_MAC)
-    QSettings se(QSL("qoobar"),QSL("global"));
-#else
-    QSettings se(QSL("qoobar"),QSL("gui"));
-#endif
-#endif
+    QSettings *se = globalSettings();
 
-    currentSchemeName = se.value("scheme", currentSchemeName).toString();
+    currentSchemeName = se->value("scheme", currentSchemeName).toString();
     if (!currentScheme)
         currentScheme = new TaggingScheme(currentSchemeName);
     else
         currentScheme->setFilePath(currentSchemeName);
     currentScheme->read();
 
-    trim=se.value(QSL("simplify-whitespaces"),QSL("on")).toString()=="on";
+    trim=se->value(QSL("simplify-whitespaces"),QSL("on")).toString()=="on";
 
-    mp3readape=se.value(QSL("read-ape"), QSL("off")).toString()=="on";
-    mp3writeape=se.value(QSL("write-ape"), QSL("off")).toString()=="on";
-    mp3readid3=se.value(QSL("read-id3v2"), QSL("on")).toString()=="on";
-    mp3writeid3=se.value(QSL("write-id3v2"), QSL("on")).toString()=="on";
+    mp3readape=se->value(QSL("read-ape"), QSL("off")).toString()=="on";
+    mp3writeape=se->value(QSL("write-ape"), QSL("off")).toString()=="on";
+    mp3readid3=se->value(QSL("read-id3v2"), QSL("on")).toString()=="on";
+    mp3writeid3=se->value(QSL("write-id3v2"), QSL("on")).toString()=="on";
 
-    QString id3v1 = se.value(QSL("id3v1-behavior"), QSL("delete")).toString();
+    QString id3v1 = se->value(QSL("id3v1-behavior"), QSL("delete")).toString();
     if (id3v1=="update-always") id3v1Synchro = ID3V1_UPDATE_ALWAYS;
     else if (id3v1=="update-existing") id3v1Synchro = ID3V1_UPDATE_ONLY_EXISTING;
 
-    id3v1Transliterate = se.value("id3v1-transliterate", "on").toString()=="on";
-    setId3v1Encoding(se.value("id3v1-encoding", id3v1Encoding).toString());
+    id3v1Transliterate = se->value("id3v1-transliterate", "on").toString()=="on";
+    setId3v1Encoding(se->value("id3v1-encoding", id3v1Encoding).toString());
 
-    cueEncoding = se.value(QSL("cue-encoding"), QSL("Locale")).toString();
+    cueEncoding = se->value(QSL("cue-encoding"), QSL("Locale")).toString();
 
-    oggPictureNew = se.value("ogg-image-new","on").toString()=="on";
+    oggPictureNew = se->value("ogg-image-new","on").toString()=="on";
 
     /** rename options*/
-    renameOptions.destinationFolder = se.value("output-dir","").toString();
-    renameOptions.replaceWinChars   = se.value("replace-win-chars", "on").toString()=="on";
-    renameOptions.winCharsReplacer  = se.value("win-chars-replacer", renameOptions.winCharsReplacer).toString();
-    renameOptions.replaceSpaces     = se.value("replace-spaces", "off").toString()=="on";
-    renameOptions.spacesReplacer    = se.value("spaces-replacer", renameOptions.spacesReplacer).toString();
-    renameOptions.removeDiacritics  = se.value("remove-diacritics", "off").toString()=="on";
+    renameOptions.destinationFolder = se->value("output-dir","").toString();
+    renameOptions.replaceWinChars   = se->value("replace-win-chars", "on").toString()=="on";
+    renameOptions.winCharsReplacer  = se->value("win-chars-replacer", renameOptions.winCharsReplacer).toString();
+    renameOptions.replaceSpaces     = se->value("replace-spaces", "off").toString()=="on";
+    renameOptions.spacesReplacer    = se->value("spaces-replacer", renameOptions.spacesReplacer).toString();
+    renameOptions.removeDiacritics  = se->value("remove-diacritics", "off").toString()=="on";
 
-    QString s = se.value("change-case", "dont-change").toString();
+    QString s = se->value("change-case", "dont-change").toString();
     renameOptions.ccase = Case::caseByValue(s);
     renameOptions.changeCase = renameOptions.ccase!=Case::DontChange;
 
-    int length = se.value("maximum-length", 0).toInt();
+    int length = se->value("maximum-length", 0).toInt();
     if (length<=0) {
         renameOptions.maximumLength = 255;
         renameOptions.trimFileLength = false;
@@ -406,7 +417,7 @@ void Application::readGlobalSettings()
         renameOptions.trimFileLength = true;
     }
 
-    QString renamingOperationStr = se.value("rename-operation", "rename").toString();
+    QString renamingOperationStr = se->value("rename-operation", "rename").toString();
     if (renamingOperationStr == "rename")
         renameOptions.renamingOperation = 0;
     else if (renamingOperationStr == "copy")
@@ -414,151 +425,143 @@ void Application::readGlobalSettings()
     else if (renamingOperationStr == "rename-folder")
         renameOptions.renamingOperation = 2;
 
-    renameOptions.removeFolder      = se.value("remove-folder", "on").toString()=="on";
-    renameOptions.applyToFolders    = se.value("apply-to-folders", "off").toString()=="on";
+    renameOptions.removeFolder      = se->value("remove-folder", "on").toString()=="on";
+    renameOptions.applyToFolders    = se->value("apply-to-folders", "off").toString()=="on";
 
 
 
-    encaGuessLanguage  = se.value("enca-guess-language", encaGuessLanguage).toString();
-    writeFieldsSeparately  = se.value("write-fields-separately","off").toString()=="on";
-    copyFiles = se.value("rg-copy-files","off").toString()=="on";
-    id3v2version = se.value("force-id3v23","off").toString()=="on"?3:4;
+    encaGuessLanguage  = se->value("enca-guess-language", encaGuessLanguage).toString();
+    writeFieldsSeparately  = se->value("write-fields-separately","off").toString()=="on";
+    copyFiles = se->value("rg-copy-files","off").toString()=="on";
+    id3v2version = se->value("force-id3v23","off").toString()=="on"?3:4;
 
-    verbose = se.value("verbose",false).toBool();
+    verbose = se->value("verbose",false).toBool();
 
     //"header" - write rg into file header
     //"tags" - write rg into ape tags
-    mpcWriteRg = se.value("mpc-replaygain-format", "header").toString()=="header";
+    mpcWriteRg = se->value("mpc-replaygain-format", "header").toString()=="header";
 
 #ifdef Q_OS_MAC
-    defaultSplitFormat = se.value("default-split-format", "m4a").toString();
+    defaultSplitFormat = se->value("default-split-format", "m4a").toString();
 #else
-    defaultSplitFormat = se.value("default-split-format", "flac").toString();
+    defaultSplitFormat = se->value("default-split-format", "flac").toString();
 #endif
-    iconTheme = se.value(QSL("iconTheme"),QSL("default")).toString();
+    iconTheme = se->value(QSL("iconTheme"),QSL("default")).toString();
+    delete se;
 }
 
 void Application::writeGuiSettings()
 {DD;
-#ifdef QOOBAR_PORTABLE
-    QSettings se(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
-#else
-    QSettings se(QSL("qoobar"),QSL("gui"));
-#endif
-    if (!se.isWritable()) {
+    QSettings *se = guiSettings();
+
+    if (!se->isWritable()) {
         criticalMessage(0,tr("Qoobar"),tr("Cannot write settings. The settings file is read-only"));
+        delete se;
         return;
     }
-    se.setValue("writeGuiSettings",true);
-    se.setValue("lang",langID);
-    se.setValue("chars",chars);
-    se.setValue("lastDirectory",lastDirectory);
-    se.setValue("lastTreeDirectory",lastTreeDirectory);
-    se.setValue("player",player);
-    se.setValue("saveChanges",saveChanges);
-    se.setValue("renamePatterns", patterns);
-    se.setValue("autoexpand",autoexpand);
-    se.setValue("splitter",splitterState);
-    se.setValue("innerSplitter",innerSplitterState);
-    se.setValue("dirSplitter",dirSplitterState);
-    se.setValue("showDirView",showDirView);
-    se.setValue("dirViewRoot",dirViewRoot);
-    se.setValue("useProxy",useProxy);
-    se.setValue("proxyServer",proxyServer);
-    se.setValue("proxyPort",proxyPort);
-    se.setValue("proxyLogin",proxyLogin);
-    se.setValue("proxyPassword",proxyPassword);
-    se.setValue("cdromDevice",cdromDevice);
-    se.setValue("charsFont",charsFont);
-    se.setValue("lastCueFile",lastCueFile);
+    se->setValue("writeGuiSettings",true);
+    se->setValue("lang",langID);
+    se->setValue("chars",chars);
+    se->setValue("lastDirectory",lastDirectory);
+    se->setValue("lastTreeDirectory",lastTreeDirectory);
+    se->setValue("player",player);
+    se->setValue("saveChanges",saveChanges);
+    se->setValue("renamePatterns", patterns);
+    se->setValue("autoexpand",autoexpand);
+    se->setValue("splitter",splitterState);
+    se->setValue("innerSplitter",innerSplitterState);
+    se->setValue("dirSplitter",dirSplitterState);
+    se->setValue("showDirView",showDirView);
+    se->setValue("dirViewRoot",dirViewRoot);
+    se->setValue("useProxy",useProxy);
+    se->setValue("proxyServer",proxyServer);
+    se->setValue("proxyPort",proxyPort);
+    se->setValue("proxyLogin",proxyLogin);
+    se->setValue("proxyPassword",proxyPassword);
+    se->setValue("cdromDevice",cdromDevice);
+    se->setValue("charsFont",charsFont);
+    se->setValue("lastCueFile",lastCueFile);
 #ifdef HAVE_QT5
-    se.setValue("columns167_5.0",columns167);
+    se->setValue("columns167_5.0",columns167);
 #else
-    se.setValue("columns167",columns167);
+    se->setValue("columns167",columns167);
 #endif
 
-    se.setValue("rows",rows);
-    se.setValue("tagStatus",QVariant(makeList(tagStatus)));
+    se->setValue("rows",rows);
+    se->setValue("tagStatus",QVariant(makeList(tagStatus)));
 
 
-    se.setValue("charsShown", charsShown);
-    se.setValue("useUndo",useUndo);
-    se.setValue("geometry",geometry);
-    se.setValue("fill_Patterns",fillPatterns);
-    se.setValue(QSL("searchPaths"), searchPaths);
-    se.setValue(QSL("hideTabBar"), hideTabBar);
+    se->setValue("charsShown", charsShown);
+    se->setValue("useUndo",useUndo);
+    se->setValue("geometry",geometry);
+    se->setValue("fill_Patterns",fillPatterns);
+    se->setValue(QSL("searchPaths"), searchPaths);
+    se->setValue(QSL("hideTabBar"), hideTabBar);
 
-//    se.setValue(QSL("showFullFilesProperties"), showFullFilesProperties);
+//    se->setValue(QSL("showFullFilesProperties"), showFullFilesProperties);
 
     autocompletions->write(se);
+    delete se;
 }
 
 void Application::writeGlobalSettings()
 {DD;
-#ifdef QOOBAR_PORTABLE
-    QSettings se(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
-#else
-#ifdef Q_OS_LINUX
-    QSettings se(QString("%1/.config/qoobar/global.ini").arg(QDir::homePath()), QSettings::IniFormat);
-#elif defined(Q_OS_MAC)
-    QSettings se(QSL("qoobar"),QSL("global"));
-#else
-    QSettings se(QSL("qoobar"),QSL("gui"));
-#endif
-#endif
-    if (!se.isWritable()) {
+    QSettings *se = globalSettings();
+    if (!se->isWritable()) {
         qCritical("Cannot write settings. The settings file is read-only");
+        delete se;
         return;
     }
-    se.setValue("writeGlobalSettings",true);
+    se->setValue("writeGlobalSettings",true);
 
-    se.setValue("simplify-whitespaces", trim?"on":"off");
-    se.setValue("read-ape", mp3readape?"on":"off");
-    se.setValue("write-ape", mp3writeape?"on":"off");
-    se.setValue("read-id3v2",mp3readid3?"on":"off");
-    se.setValue("write-id3v2", mp3writeid3?"on":"off");
+    se->setValue("simplify-whitespaces", trim?"on":"off");
+    se->setValue("read-ape", mp3readape?"on":"off");
+    se->setValue("write-ape", mp3writeape?"on":"off");
+    se->setValue("read-id3v2",mp3readid3?"on":"off");
+    se->setValue("write-id3v2", mp3writeid3?"on":"off");
 
-    if (id3v1Synchro == ID3V1_DELETE) se.setValue("id3v1-behavior", "delete");
-    else if (id3v1Synchro == ID3V1_UPDATE_ALWAYS) se.setValue("id3v1-behavior", "update-always");
-    else if (id3v1Synchro == ID3V1_UPDATE_ONLY_EXISTING) se.setValue("id3v1-behavior", "update-existing");
+    if (id3v1Synchro == ID3V1_DELETE) se->setValue("id3v1-behavior", "delete");
+    else if (id3v1Synchro == ID3V1_UPDATE_ALWAYS) se->setValue("id3v1-behavior", "update-always");
+    else if (id3v1Synchro == ID3V1_UPDATE_ONLY_EXISTING) se->setValue("id3v1-behavior", "update-existing");
 
-    se.setValue("id3v1-transliterate", id3v1Transliterate?"on":"off");
-    se.setValue("id3v1-encoding", id3v1Encoding);
-    se.setValue("ogg-image-new", oggPictureNew?"on":"off");
+    se->setValue("id3v1-transliterate", id3v1Transliterate?"on":"off");
+    se->setValue("id3v1-encoding", id3v1Encoding);
+    se->setValue("ogg-image-new", oggPictureNew?"on":"off");
 
-    se.setValue("cue-encoding", cueEncoding);
+    se->setValue("cue-encoding", cueEncoding);
 
     /** rename options*/
-    se.setValue("output-dir", renameOptions.destinationFolder);
-    se.setValue("replace-win-chars",renameOptions.replaceWinChars? "on":"off");
-    se.setValue("win-chars-replacer", renameOptions.winCharsReplacer);
-    se.setValue("replace-spaces", renameOptions.replaceSpaces? "on":"off");
-    se.setValue("spaces-replacer", renameOptions.spacesReplacer);
-    se.setValue("remove-diacritics", renameOptions.removeDiacritics? "on":"off");
+    se->setValue("output-dir", renameOptions.destinationFolder);
+    se->setValue("replace-win-chars",renameOptions.replaceWinChars? "on":"off");
+    se->setValue("win-chars-replacer", renameOptions.winCharsReplacer);
+    se->setValue("replace-spaces", renameOptions.replaceSpaces? "on":"off");
+    se->setValue("spaces-replacer", renameOptions.spacesReplacer);
+    se->setValue("remove-diacritics", renameOptions.removeDiacritics? "on":"off");
 
-    if (!renameOptions.changeCase) se.setValue("change-case", "dont-change");
-    else se.setValue("change-case", Case::caseById(Case::Case(renameOptions.ccase)));
+    if (!renameOptions.changeCase) se->setValue("change-case", "dont-change");
+    else se->setValue("change-case", Case::caseById(Case::Case(renameOptions.ccase)));
 
-    se.setValue("maximum-length", renameOptions.trimFileLength ? renameOptions.maximumLength : 0);
+    se->setValue("maximum-length", renameOptions.trimFileLength ? renameOptions.maximumLength : 0);
 
     if (renameOptions.renamingOperation==0)
-        se.setValue("rename-operation", "rename");
+        se->setValue("rename-operation", "rename");
     else if (renameOptions.renamingOperation==1)
-        se.setValue("rename-operation", "copy");
+        se->setValue("rename-operation", "copy");
     else if (renameOptions.renamingOperation==2)
-        se.setValue("rename-operation", "rename-folder");
+        se->setValue("rename-operation", "rename-folder");
 
-    se.setValue("remove-folder", renameOptions.removeFolder?"on":"off");
-    se.setValue("apply-to-folders", renameOptions.applyToFolders?"on":"off");
-    se.setValue("scheme", currentSchemeName);
-    se.setValue("enca-guess-language", encaGuessLanguage);
-    se.setValue("write-fields-separately", writeFieldsSeparately?"on":"off");
-    se.setValue("rg-copy-files", copyFiles?"on":"off");
-    se.setValue("force-id3v23", id3v2version==3?"on":"off");
-    se.setValue("verbose",verbose);
-    se.setValue("mpc-replaygain-format", mpcWriteRg ? "header" : "tags");
-    se.setValue("default-split-format", defaultSplitFormat);
-    se.setValue(QSL("iconTheme"),iconTheme);
+    se->setValue("remove-folder", renameOptions.removeFolder?"on":"off");
+    se->setValue("apply-to-folders", renameOptions.applyToFolders?"on":"off");
+    se->setValue("scheme", currentSchemeName);
+    se->setValue("enca-guess-language", encaGuessLanguage);
+    se->setValue("write-fields-separately", writeFieldsSeparately?"on":"off");
+    se->setValue("rg-copy-files", copyFiles?"on":"off");
+    se->setValue("force-id3v23", id3v2version==3?"on":"off");
+    se->setValue("verbose",verbose);
+    se->setValue("mpc-replaygain-format", mpcWriteRg ? "header" : "tags");
+    se->setValue("default-split-format", defaultSplitFormat);
+    se->setValue(QSL("iconTheme"),iconTheme);
+    delete se;
 }
 
 QString Application::iconThemeIcon(const QString &icon)
@@ -668,12 +671,12 @@ Autocompletions::Autocompletions(QObject *parent)
     completions[MOOD].use = true;
 }
 
-void Autocompletions::read(QSettings &se)
+void Autocompletions::read(QSettings *se)
 {DD;
-    completionStyle = se.value(QSL("completionStyle"), false).toBool();
-    collectSilently = se.value(QSL("collectSilently"), false).toBool();
+    completionStyle = se->value(QSL("completionStyle"), false).toBool();
+    collectSilently = se->value(QSL("collectSilently"), false).toBool();
 
-    QVariantList variantList = se.value(QSL("useCompletion")).toList();
+    QVariantList variantList = se->value(QSL("useCompletion")).toList();
 
     completions.resize(variantList.size());
     if (variantList.isEmpty()) {
@@ -707,16 +710,16 @@ void Autocompletions::read(QSettings &se)
     }
 }
 
-bool Autocompletions::write(QSettings &se)
+bool Autocompletions::write(QSettings *se)
 {DD;
-    se.setValue("completionStyle", completionStyle);
-    se.setValue("collectSilently", collectSilently);
+    se->setValue("completionStyle", completionStyle);
+    se->setValue("collectSilently", collectSilently);
 
     QVariantList useCompletion;
     for (int tagID = 0; tagID < completions.size(); ++tagID) {
         useCompletion.append(completions.at(tagID).use);
     }
-    se.setValue("useCompletion", QVariant(useCompletion));
+    se->setValue("useCompletion", QVariant(useCompletion));
 
     if (!wasChanged) return true;
 

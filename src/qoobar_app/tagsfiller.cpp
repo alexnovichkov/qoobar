@@ -174,9 +174,13 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
 
     table = new QTableWidget(count,2,this);
     table->setHorizontalHeaderLabels(QStringList() << QSL("") << tr("Source"));
+
+#ifdef Q_OS_MAC
+    table->setAttribute(Qt::WA_MacSmallSize, true);
+    table->setWordWrap(true);
+#else
     table->setWordWrap(false);
-    table->setColumnWidth(0,25);
-    table->setColumnWidth(1,500);
+#endif
     for (int i=0; i<count; ++i) {
         QTableWidgetItem *item = new QTableWidgetItem(QSL(""));
         item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
@@ -189,8 +193,9 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     }
 
     header = new CheckableHeaderView(Qt::Horizontal,table);
-
     table->setHorizontalHeader(header);
+    table->setColumnWidth(0,25);
+    table->setColumnWidth(1,400);
     header->setCheckable(0,true);
     header->setCheckState(0,Qt::Checked);
     connect(header,SIGNAL(toggled(int,Qt::CheckState)),this,SLOT(headerToggled(int,Qt::CheckState)));
@@ -273,11 +278,15 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     searchResultsList->setAlternatingRowColors(true);
     searchResultsList->setColumnCount(1);
     searchResultsList->setRootIsDecorated(false);
-    searchResultsList->header()->hide();
-    searchResultsList->setSelectionMode(QAbstractItemView::SingleSelection);
 #ifdef Q_OS_MAC
-    searchResultsList->setAttribute(Qt::WA_MacShowFocusRect,false);
+    searchResultsList->setHeaderLabels(QStringList()<<tr("Search results"));
+    searchResultsList->setAlternatingRowColors(true);
+    searchResultsList->header()->setDefaultAlignment(Qt::AlignCenter);
+#else
+    searchResultsList->header()->hide();
 #endif
+    searchResultsList->setSelectionMode(QAbstractItemView::SingleSelection);
+
     connect(searchResultsList,SIGNAL(itemClicked(QTreeWidgetItem*,int)),
             SLOT(handleAlbumSelection(QTreeWidgetItem*)));
     connect(searchResultsList,SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
@@ -285,6 +294,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     searchResultsList->setItemDelegate(new SearchResultsListDelegate(this));
 
     releaseInfoWidget = new ReleaseInfoWidget(this);
+
 
     progress = new QProgressIndicatorSpinning(this);
     progress->animate(false);
@@ -319,9 +329,6 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     nl->addWidget(networkErrorInfo);
     nl->addStretch();
 
-#ifdef Q_OS_MAC
-    searchResultsList->setFrameShape(QFrame::NoFrame);
-#endif
     QSplitter *splitter = new QSplitter(Qt::Horizontal,this);
     splitter->addWidget(searchResultsList);
     splitter->addWidget(releaseInfoWidget);

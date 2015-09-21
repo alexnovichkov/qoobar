@@ -24,6 +24,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef QOOBAR_ENABLE_CLI
+
 #include "argsparser.h"
 
 
@@ -722,3 +724,5 @@ void CommandLineProcessor::setBool(bool &dest, const QString &id, const QString 
         if (App->verbose) showMessage(MT_SUCCESS, message+v);
     }
 }
+
+#endif //QOOBAR_ENABLE_CLI

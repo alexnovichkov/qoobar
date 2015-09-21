@@ -35,6 +35,30 @@
 #include "qoobarglobals.h"
 #include "application.h"
 
+#ifdef Q_OS_MAC
+class TabButton : public QToolButton
+{
+public:
+    explicit TabButton(QTabWidget *header, QWidget*parent=0) : QToolButton(parent),
+        m_header(header)
+    {}
+    void paintEvent(QPaintEvent * pe)
+    {
+        QPainter p(this);
+
+        QStyleOptionTabBarBaseV2 opt;
+        opt.initFrom(m_header);
+        opt.rect = pe->rect();
+
+        //style()->drawPrimitive(QStyle::PE_FrameTabBarBase,&opt,&p);
+        style()->drawItemPixmap(&p,opt.rect,Qt::AlignCenter,this->icon().pixmap(16,16));
+        p.end();
+    }
+private:
+    QTabWidget *m_header;
+};
+#endif
+
 TabBar::TabBar(QWidget *parent) : QTabBar(parent), index(-1)
 {DD;
     setAcceptDrops(true);
@@ -42,6 +66,7 @@ TabBar::TabBar(QWidget *parent) : QTabBar(parent), index(-1)
     connect(this, SIGNAL(tabCloseRequested(int)), this, SIGNAL(closeTab(int)));
     setSelectionBehaviorOnRemove(QTabBar::SelectPreviousTab);
     setMovable(true);
+    setDocumentMode(true);
 
     editor = new QLineEdit(this);
     editor->hide();
@@ -123,7 +148,7 @@ void TabBar::editTabName()
 
 
 
-
+#include "qocoa/qbutton.h"
 
 TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent)
     , m_tabBar(new TabBar(this))
@@ -135,16 +160,14 @@ TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent)
     connect(m_tabBar, SIGNAL(tabTextChanged(QString)), this, SIGNAL(tabTextChanged(QString)));
 
     setTabBar(m_tabBar);
-
-    QToolButton *newTabButton = new QToolButton();
+#ifndef Q_OS_MAC
+    QToolButton *newTabButton = new TabButton(this);
     QAction *a = new QAction(QIcon(App->iconThemeIcon("list-add1.png")),tr("New tab"),this);
     connect(a,SIGNAL(triggered()),this,SIGNAL(newTab()));
     newTabButton->setDefaultAction(a);
     newTabButton->setAutoRaise(true);
     setCornerWidget(newTabButton);
-
-    setDocumentMode(true);
-    setMovable(true);
+#endif
 }
 
 void TabWidget::hideTabBar(bool hide)

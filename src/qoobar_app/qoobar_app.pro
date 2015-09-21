@@ -159,6 +159,7 @@ HEADERS = mainwindow.h \
     searchbar.h \
     platformprocess.h \
     treeview.h \
+    clparser.h \
     mactoolbar.h \
     styledbar.h
 
@@ -232,6 +233,8 @@ SOURCES += taglib/*.cpp \
            taglib/dsf/*.cpp
 
 HEADERS += sparkleupdater.h
+HEADERS += argsparser.h
+SOURCES += argsparser.cpp
 
 # QOCOA wrappers for OS X
 INCLUDEPATH += qocoa
@@ -270,10 +273,7 @@ unix {
 
     DEFINES *= QOOBAR_ENABLE_CLI
 
-    HEADERS += clparser.h \
-               argsparser.h
-    SOURCES += argsparser.cpp \
-               sparkleupdater_dummy.cpp
+    SOURCES += sparkleupdater_dummy.cpp
 
     INCLUDEPATH += libebur128
     SOURCES += libebur128/ebur128.c
@@ -442,9 +442,8 @@ os2 {
 
 mac|macx {
     message(Mac OS build)
-# Don't want to enable cli in Mac OS X because can you ever imagine invoking
-# "/Applications/qoobar.app/Contents/MacOS/qoobar smth..." in terminal?
-#    DEFINES *= QOOBAR_ENABLE_CLI
+
+    DEFINES *= QOOBAR_ENABLE_CLI
 
     greaterThan(QT_MAJOR_VERSION, 4) {
         qtHaveModule(macextras) {
@@ -452,7 +451,6 @@ mac|macx {
         }
     }
 
-    QMAKE_LFLAGS += -F/Frameworks
     LIBS += -F../../mac_os/ -framework discid
     INCLUDEPATH += ../../mac_os/discid.framework/Versions/A/Headers
     DEPENDPATH += ../../mac_os/discid.framework/Versions/A/Headers
@@ -505,24 +503,6 @@ mac|macx {
     htmldocfiles_imgs_en.path = $$INSTALL_PATH/Resources/html/en/images
     htmldocfiles_imgs_en.files = ../../html/en/images/*.png
     INSTALLS += htmldocfiles htmldocfiles_html_en htmldocfiles_imgs_en
-
-    discid_framework.path = $$INSTALL_PATH/Frameworks/discid.framework
-    discid_framework.files = ../../mac_os/discid.framework/*
-    discid_framework.extra= $$[QT_INSTALL_BINS]/macdeployqt $$DESTDIR/qoobar.app -verbose=3
-
-    sparkle_framework.path = $$INSTALL_PATH/Frameworks/Sparkle.framework
-    sparkle_framework.files = ../../mac_os/Sparkle.framework/*
-    sparkle_framework.extra= $$[QT_INSTALL_BINS]/macdeployqt $$DESTDIR/qoobar.app -verbose=3
-
-    utilities.path = $$INSTALL_PATH/Resources
-    utilities.files = ../../mac_os/shntool ../../mac_os/flac ../../mac_os/mac \
-    ../../mac_os/mp3gain ../../mac_os/enca ../../mac_os/vorbisgain ../../mac_os/metaflac \
-    ../../mac_os/replaygain ../../mac_os/mppdec ../../mac_os/aacgain ../../mac_os/wvgain \
-    ../../mac_os/*.dylib
-
-    INSTALLS += discid_framework
-    INSTALLS += utilities
-    INSTALLS += sparkle_framework
 
     public_key.path = $$INSTALL_PATH/Resources
     public_key.files = ../../mac_os/dsa_pub.pem

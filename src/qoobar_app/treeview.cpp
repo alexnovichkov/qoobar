@@ -24,9 +24,7 @@ public:
     {
         int w = width();
         int h = m_header->height();
-#ifdef Q_OS_MAC
         w++;
-#endif
 
         QPainter p(this);
         p.setClipRect(pe->rect());

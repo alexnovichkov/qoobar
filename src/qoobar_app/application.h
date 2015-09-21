@@ -86,8 +86,8 @@ public:
 
     explicit Autocompletions(QObject *parent = 0);
 
-    void read(QSettings &se);
-    bool write(QSettings &se);
+    void read(QSettings *se);
+    bool write(QSettings *se);
 
     bool use(int tagID) const {
         return completions.value(tagID).use;
@@ -127,6 +127,8 @@ class Application : public QApplication
 public:
     explicit Application(int & argc, char ** argv, bool useGui=true);
     ~Application();
+    QSettings *globalSettings();
+    QSettings *guiSettings();
     void loadTranslations();
     void setId3v1Encoding(const QString &s);
     void addPattern(const QString &s, QStringList &where);

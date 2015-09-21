@@ -19,7 +19,6 @@ SearchPanel::SearchPanel(QWidget *parent) :
 
     replaceByEdit = new ClearLineEdit(this);
     replaceByEdit->setMinimumWidth(200);
-    replaceByEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
 
 #ifdef Q_OS_MAC
     QButton *closeSearchPanel = new QButton(this, QButton::RoundRect);

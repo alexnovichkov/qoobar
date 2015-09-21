@@ -1,6 +1,8 @@
 #ifndef CLPARSER_H
 #define CLPARSER_H
 
+#ifdef QOOBAR_ENABLE_CLI
+
 #include <QStringList>
 #include <QVariant>
 #include <QHash>
@@ -150,5 +152,6 @@ private:
     bool m_isCommandLineMode;
 };
 
+#endif //QOOBAR_ENABLE_CLI
 
 #endif // CLPARSER_H

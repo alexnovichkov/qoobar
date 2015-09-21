@@ -27,7 +27,10 @@
 #ifndef ARGSPARSER_H
 #define ARGSPARSER_H
 
+#ifdef QOOBAR_ENABLE_CLI
+
 #include <QStringList>
+#include <QObject>
 
 class CLParser;
 class Model;
@@ -53,5 +56,7 @@ private:
     void setTag(CLParser *parser, Model *model, const QString &id, int row, const QString &mess, const QString &mess1);
     QStringList files;
 };
+
+#endif //QOOBAR_ENABLE_CLI
 
 #endif // ARGSPARSER_H

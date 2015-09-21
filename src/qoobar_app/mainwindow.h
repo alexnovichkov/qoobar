@@ -126,9 +126,6 @@ private Q_SLOTS:
 
     void searchFiles();
     void setAsTreeRoot();
-#ifdef Q_OS_MAC
-    void specialCharacters();
-#endif
 private:
     void createActions();
     void createMenus();

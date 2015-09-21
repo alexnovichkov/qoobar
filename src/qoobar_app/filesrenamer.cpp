@@ -47,7 +47,11 @@ QWidgetAction *createWidgetAction(QWidget *widget1,QWidget *widget2, QWidget *pa
     QWidgetAction *a = new QWidgetAction(parent);
     QWidget *inner = new QWidget(parent);
     QHBoxLayout *l = new QHBoxLayout;
+#ifdef Q_OS_MAC
+    l->setContentsMargins(5,1,5,1);
+#else
     l->setContentsMargins(0,1,0,1);
+#endif
     if (widget1) l->addWidget(widget1);
     if (widget2) l->addWidget(widget2);
     inner->setLayout(l);
@@ -210,6 +214,9 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     table->horizontalHeader()->setStretchLastSection(true);
     table->horizontalHeader()->resizeSection(0, 350);
     table->setTextElideMode(Qt::ElideLeft);
+#ifdef Q_OS_MAC
+    table->setAttribute(Qt::WA_MacSmallSize, true);
+#endif
     HighlightDelegate *delegate = new HighlightDelegate(this);
     delegate->setHighlighter(highlighter);
     table->setItemDelegateForColumn(1, delegate);
