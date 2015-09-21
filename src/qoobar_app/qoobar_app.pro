@@ -46,7 +46,6 @@ SOURCES = main.cpp \
     imagedialog.cpp \
     tabwidget.cpp \
     imagebox.cpp \
-    treewidget.cpp \
     legendbutton.cpp \
     displayedtagsdialog.cpp \
     application.cpp \
@@ -110,7 +109,6 @@ HEADERS = mainwindow.h \
     imagedialog.h \
     tabwidget.h \
     imagebox.h \
-    treewidget.h \
     searchresults.h \
     legendbutton.h \
     displayedtagsdialog.h \

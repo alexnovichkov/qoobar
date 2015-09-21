@@ -1440,92 +1440,92 @@ after you restart Qoobar</source>
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="343"/>
+        <location filename="model.cpp" line="344"/>
         <source>%1 does not exist</source>
         <translation>%1 existiert nicht</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="344"/>
+        <location filename="model.cpp" line="345"/>
         <source>%1 is not a file</source>
         <translation>%1 ist keine Datei</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="345"/>
+        <location filename="model.cpp" line="346"/>
         <source>%1 is read-only</source>
         <translation>%1 ist schreibgeschützt</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="502"/>
+        <location filename="model.cpp" line="503"/>
         <source>Cannot rename following files:
 </source>
         <translation>Dateien können nicht umbenannt werden:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="504"/>
+        <location filename="model.cpp" line="505"/>
         <source>Cannot copy following files:
 </source>
         <translation>Dateien können nicht kopiert werden:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="506"/>
+        <location filename="model.cpp" line="507"/>
         <source>Cannot rename following folders:
 </source>
         <translation>Ordner können nicht umbennant werden:
 </translation>
     </message>
     <message>
-        <location filename="model.cpp" line="515"/>
+        <location filename="model.cpp" line="516"/>
         <source>All folders were successfully renamed</source>
         <translation>Alle Ordner wurden erfolgreich umbenannt</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1082"/>
+        <location filename="model.cpp" line="1083"/>
         <source>No.</source>
         <translation>Nr.</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1083"/>
+        <location filename="model.cpp" line="1084"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1116"/>
+        <location filename="model.cpp" line="1117"/>
         <source>Length</source>
         <translation>Dauer</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1117"/>
+        <location filename="model.cpp" line="1118"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1118"/>
+        <location filename="model.cpp" line="1119"/>
         <source>Img</source>
         <translation>Bild</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="297"/>
-        <location filename="model.cpp" line="313"/>
+        <location filename="model.cpp" line="298"/>
+        <location filename="model.cpp" line="314"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Tags konnten nicht in Dateien geschrieben werden:
 %1</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="255"/>
+        <location filename="model.cpp" line="256"/>
         <source>Some read-only files were added,
 all changes in them will not be saved!</source>
         <translation>Einige schreibgeschütze Dateien wurden hinzugefügt. Alle Änderungen an diesen Dateien werden nicht gespeichert!</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="511"/>
+        <location filename="model.cpp" line="512"/>
         <source>All files were successfully renamed</source>
         <translation>Alle Dateien wurden erfolgreich umbenannt</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="513"/>
+        <location filename="model.cpp" line="514"/>
         <source>All files were successfully copied</source>
         <translation>Alle Dateien wurden erfolgreich kopiert</translation>
     </message>
@@ -3177,61 +3177,50 @@ Do you want to save changes?</source>
 <context>
     <name>TreeWidget</name>
     <message>
-        <location filename="treewidget.cpp" line="91"/>
         <source>Length</source>
-        <translation>Dauer</translation>
+        <translation type="vanished">Dauer</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="92"/>
         <source>No.</source>
-        <translation>Nr.</translation>
+        <translation type="vanished">Nr.</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="93"/>
         <source>File</source>
-        <translation>Datei</translation>
+        <translation type="vanished">Datei</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="94"/>
         <source>RG</source>
-        <translation>RG</translation>
+        <translation type="vanished">RG</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="95"/>
         <source>Img</source>
-        <translation>Bild</translation>
+        <translation type="vanished">Bild</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="69"/>
-        <location filename="treewidget.cpp" line="96"/>
         <source>Show/hide columns...</source>
         <oldsource>Adjust displayed columns...</oldsource>
-        <translation>Spalten anzeigen/verstecken...</translation>
+        <translation type="vanished">Spalten anzeigen/verstecken...</translation>
     </message>
     <message>
         <source>Qoobar</source>
         <translation type="obsolete">Qoobar</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="257"/>
         <source>Some read-only files were added,
 all changes in them will not be saved!</source>
-        <translation>Einige schreibgeschütze Dateien wurden hinzugefügt. Alle Änderungen an diesen Dateien werden nicht gespeichert!</translation>
+        <translation type="vanished">Einige schreibgeschütze Dateien wurden hinzugefügt. Alle Änderungen an diesen Dateien werden nicht gespeichert!</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="306"/>
         <source>Move to the tab...</source>
-        <translation>In Tab verschieben...</translation>
+        <translation type="vanished">In Tab verschieben...</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="310"/>
         <source>New tab</source>
-        <translation>Neuer Tab</translation>
+        <translation type="vanished">Neuer Tab</translation>
     </message>
     <message>
-        <location filename="treewidget.cpp" line="321"/>
         <source>MP3 tag types...</source>
-        <translation>MP3-Tag Typen...</translation>
+        <translation type="vanished">MP3-Tag Typen...</translation>
     </message>
 </context>
 <context>

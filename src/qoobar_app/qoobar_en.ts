@@ -1421,88 +1421,88 @@ after you restart Qoobar</source>
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="343"/>
+        <location filename="model.cpp" line="344"/>
         <source>%1 does not exist</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="344"/>
+        <location filename="model.cpp" line="345"/>
         <source>%1 is not a file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="345"/>
+        <location filename="model.cpp" line="346"/>
         <source>%1 is read-only</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="502"/>
+        <location filename="model.cpp" line="503"/>
         <source>Cannot rename following files:
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="504"/>
+        <location filename="model.cpp" line="505"/>
         <source>Cannot copy following files:
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="506"/>
+        <location filename="model.cpp" line="507"/>
         <source>Cannot rename following folders:
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="515"/>
+        <location filename="model.cpp" line="516"/>
         <source>All folders were successfully renamed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1082"/>
+        <location filename="model.cpp" line="1083"/>
         <source>No.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1083"/>
+        <location filename="model.cpp" line="1084"/>
         <source>File</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1116"/>
+        <location filename="model.cpp" line="1117"/>
         <source>Length</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1117"/>
+        <location filename="model.cpp" line="1118"/>
         <source>RG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1118"/>
+        <location filename="model.cpp" line="1119"/>
         <source>Img</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="297"/>
-        <location filename="model.cpp" line="313"/>
+        <location filename="model.cpp" line="298"/>
+        <location filename="model.cpp" line="314"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="255"/>
+        <location filename="model.cpp" line="256"/>
         <source>Some read-only files were added,
 all changes in them will not be saved!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="511"/>
+        <location filename="model.cpp" line="512"/>
         <source>All files were successfully renamed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="513"/>
+        <location filename="model.cpp" line="514"/>
         <source>All files were successfully copied</source>
         <translation></translation>
     </message>
@@ -3115,62 +3115,6 @@ Do you want to save changes?</source>
     </message>
     <message>
         <location filename="treeview.cpp" line="155"/>
-        <source>MP3 tag types...</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
-    <name>TreeWidget</name>
-    <message>
-        <location filename="treewidget.cpp" line="91"/>
-        <source>Length</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="treewidget.cpp" line="92"/>
-        <source>No.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="treewidget.cpp" line="93"/>
-        <source>File</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="treewidget.cpp" line="94"/>
-        <source>RG</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="treewidget.cpp" line="95"/>
-        <source>Img</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="treewidget.cpp" line="69"/>
-        <location filename="treewidget.cpp" line="96"/>
-        <source>Show/hide columns...</source>
-        <oldsource>Adjust displayed columns...</oldsource>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="treewidget.cpp" line="257"/>
-        <source>Some read-only files were added,
-all changes in them will not be saved!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="treewidget.cpp" line="306"/>
-        <source>Move to the tab...</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="treewidget.cpp" line="310"/>
-        <source>New tab</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="treewidget.cpp" line="321"/>
         <source>MP3 tag types...</source>
         <translation></translation>
     </message>

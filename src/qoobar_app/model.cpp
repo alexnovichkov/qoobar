@@ -61,7 +61,8 @@ Model::Model(QObject *parent) :
 
     rgIcon = QIcon(App->iconThemeIcon("replaygain.png"));
     imgIcon = QIcon(App->iconThemeIcon("image.png"));
-    saveIcon = qApp->style()->standardIcon(QStyle::SP_DialogSaveButton);
+    //saveIcon = qApp->style()->standardIcon(QStyle::SP_DialogSaveButton);
+    saveIcon = QIcon(App->iconThemeIcon("document-save.ico"));
 }
 
 Model::~Model()
