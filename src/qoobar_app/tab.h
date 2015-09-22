@@ -126,7 +126,7 @@ public Q_SLOTS:
 private Q_SLOTS:
     void filesSelectionChanged();
     void cellChanged(QTableWidgetItem *);
-    void changeSingleTag(const QString &value,int index, int tagID);
+    void changeSingleTag(const QString &value, int tagID);
     void moveUp();
     void moveDown();
     void editCell();

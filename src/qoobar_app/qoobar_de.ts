@@ -1481,27 +1481,27 @@ after you restart Qoobar</source>
         <translation>Alle Ordner wurden erfolgreich umbenannt</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1083"/>
+        <location filename="model.cpp" line="1075"/>
         <source>No.</source>
         <translation>Nr.</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1084"/>
+        <location filename="model.cpp" line="1076"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1117"/>
+        <location filename="model.cpp" line="1109"/>
         <source>Length</source>
         <translation>Dauer</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1118"/>
+        <location filename="model.cpp" line="1110"/>
         <source>RG</source>
         <translation>RG</translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1119"/>
+        <location filename="model.cpp" line="1111"/>
         <source>Img</source>
         <translation>Bild</translation>
     </message>
@@ -2236,7 +2236,7 @@ all changes in them will not be saved!</source>
         <translation>Versteckt</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="397"/>
+        <location filename="tab.cpp" line="396"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;verschiedene&gt;&gt;</translation>
     </message>
@@ -2683,26 +2683,26 @@ Please choose the encoding:</source>
 <context>
     <name>Tab</name>
     <message>
-        <location filename="tab.cpp" line="150"/>
-        <location filename="tab.cpp" line="264"/>
+        <location filename="tab.cpp" line="149"/>
+        <location filename="tab.cpp" line="263"/>
         <source>Ctrl+Up</source>
         <translation>Strg+Up</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="155"/>
-        <location filename="tab.cpp" line="266"/>
+        <location filename="tab.cpp" line="154"/>
+        <location filename="tab.cpp" line="265"/>
         <source>Ctrl+Down</source>
         <translation>Strg+Down</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="148"/>
-        <location filename="tab.cpp" line="263"/>
+        <location filename="tab.cpp" line="147"/>
+        <location filename="tab.cpp" line="262"/>
         <source>Move up</source>
         <translation>Nach oben verschieben</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="153"/>
-        <location filename="tab.cpp" line="265"/>
+        <location filename="tab.cpp" line="152"/>
+        <location filename="tab.cpp" line="264"/>
         <source>Move down</source>
         <translation>Nach unten verschieben</translation>
     </message>
@@ -2711,171 +2711,171 @@ Please choose the encoding:</source>
         <translation type="obsolete">Bild</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1071"/>
+        <location filename="tab.cpp" line="1070"/>
         <source>Files in %1 have been modified.</source>
         <translation>Dateien in %1 wurden geändert.</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="465"/>
+        <location filename="tab.cpp" line="464"/>
         <source>clearing tags</source>
         <oldsource>Remove tags</oldsource>
         <translation>Tags löschen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="171"/>
-        <location filename="tab.cpp" line="272"/>
+        <location filename="tab.cpp" line="170"/>
+        <location filename="tab.cpp" line="271"/>
         <source>Ctrl+H</source>
         <translation>Strg+H</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="198"/>
-        <location filename="tab.cpp" line="274"/>
+        <location filename="tab.cpp" line="197"/>
+        <location filename="tab.cpp" line="273"/>
         <source>Operations</source>
         <translation>Operationen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="859"/>
+        <location filename="tab.cpp" line="858"/>
         <source>Please set a player in the Settings dialog</source>
         <translation>Bitte legen Sie ein Musikabspielprogramm im Einstellungs-Dialog fest</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="926"/>
+        <location filename="tab.cpp" line="925"/>
         <source>Some files have been modified</source>
         <translation>Einige Dateien wurden geändert</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="928"/>
+        <location filename="tab.cpp" line="927"/>
         <source>Remove them anyway?</source>
         <translation>Trotzdem löschen?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="929"/>
+        <location filename="tab.cpp" line="928"/>
         <source>Yes, remove without saving</source>
         <translation>Ja, ohne Sichern löschen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="931"/>
+        <location filename="tab.cpp" line="930"/>
         <source>No, save them and then remove</source>
         <translation>Nein, sichern und dann löschen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="222"/>
-        <location filename="tab.cpp" line="925"/>
+        <location filename="tab.cpp" line="221"/>
+        <location filename="tab.cpp" line="924"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1070"/>
+        <location filename="tab.cpp" line="1069"/>
         <source>Closing Qoobar</source>
         <translation>Qoobar beenden</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1223"/>
+        <location filename="tab.cpp" line="1222"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation>Qoobar - ReplayGain-Informationen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1224"/>
+        <location filename="tab.cpp" line="1223"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation>Qoobar kann die Dateien nur scannen, nachdem die Änderungen gespeichert wurden. Möchten Sie die Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="317"/>
-        <location filename="tab.cpp" line="341"/>
-        <location filename="tab.cpp" line="567"/>
-        <location filename="tab.cpp" line="571"/>
+        <location filename="tab.cpp" line="316"/>
+        <location filename="tab.cpp" line="340"/>
+        <location filename="tab.cpp" line="566"/>
+        <location filename="tab.cpp" line="570"/>
         <source>changing tags</source>
         <oldsource>Change tags</oldsource>
         <translation>Tags ändern</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="221"/>
+        <location filename="tab.cpp" line="220"/>
         <source>Abort</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="158"/>
-        <location filename="tab.cpp" line="267"/>
+        <location filename="tab.cpp" line="157"/>
+        <location filename="tab.cpp" line="266"/>
         <source>&amp;Edit...</source>
         <translation>&amp;Bearbeiten...</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="161"/>
-        <location filename="tab.cpp" line="268"/>
+        <location filename="tab.cpp" line="160"/>
+        <location filename="tab.cpp" line="267"/>
         <source>Edit as &amp;multiline text...</source>
         <translation>Als &amp;mehrzeiligen Text bearbeiten...</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="165"/>
-        <location filename="tab.cpp" line="270"/>
+        <location filename="tab.cpp" line="164"/>
+        <location filename="tab.cpp" line="269"/>
         <source>C&amp;lear tags</source>
         <translation>Tags &amp;entfernen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="170"/>
-        <location filename="tab.cpp" line="271"/>
+        <location filename="tab.cpp" line="169"/>
+        <location filename="tab.cpp" line="270"/>
         <source>Collect for &amp;future use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="983"/>
+        <location filename="tab.cpp" line="982"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation>Bitte warten während Qoobar die Dateien hinzufügt</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1055"/>
+        <location filename="tab.cpp" line="1054"/>
         <source>Cannot write tags to file:
 %1</source>
         <translation>Tags konnten nicht in Datei geschrieben werden: %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1074"/>
+        <location filename="tab.cpp" line="1073"/>
         <source>Do you want to save your changes?</source>
         <translation>Sollen die Änderungen gespeichert werden?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1075"/>
+        <location filename="tab.cpp" line="1074"/>
         <source>Yes, save</source>
         <translation>Ja, speichern</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1077"/>
+        <location filename="tab.cpp" line="1076"/>
         <source>No, don&apos;t save</source>
         <translation>Nein, verwerfen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="221"/>
+        <location filename="tab.cpp" line="220"/>
         <source>Writing tags...</source>
         <translation>Tags schreiben...</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="255"/>
+        <location filename="tab.cpp" line="254"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Tags konnten nicht geschrieben werden:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="832"/>
+        <location filename="tab.cpp" line="831"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;verschiedene&gt;&gt;</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="553"/>
+        <location filename="tab.cpp" line="552"/>
         <source>filling tags</source>
         <oldsource>Fill tags</oldsource>
         <translation>Tags erzeugen</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="607"/>
+        <location filename="tab.cpp" line="606"/>
         <source>rereading tags</source>
         <oldsource>Reread tags</oldsource>
         <translation>Tags aktualisieren</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="653"/>
-        <location filename="tab.cpp" line="714"/>
+        <location filename="tab.cpp" line="652"/>
+        <location filename="tab.cpp" line="713"/>
         <source>pasting tags</source>
         <oldsource>Paste tags</oldsource>
         <translation>Tags einfügen</translation>

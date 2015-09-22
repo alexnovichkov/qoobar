@@ -1060,15 +1060,7 @@ bool Model::setData(const QModelIndex &index, const QVariant &val, int role)
 
     QString v = val.toString();
     if (v != data(index))
-        Q_EMIT tagChangeRequested(v,row,col);
-
-//    QStringList newValues = tagsByPattern(col, v);
-//    if (newValues.size()!=1)
-//    if (newValues.first() == value(row,col)) return false;
-
-//    setTagValue(row,col,newValues.first());
-//    Q_EMIT dataChanged(index,index);
-//    Q_EMIT tagValueChanged(col, newValues.first(), row);
+        Q_EMIT tagChangeRequested(v, col);
 
     return true;
 }

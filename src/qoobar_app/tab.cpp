@@ -96,8 +96,7 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     connect(model,SIGNAL(filesCountChanged(int)), SIGNAL(filesCountChanged(int)));
     connect(model,SIGNAL(selectionCleared()), table, SLOT(clearTable()));
     connect(model,SIGNAL(selectionCleared()), this, SLOT(updateImageBox()));
-    connect(model,SIGNAL(tagValueChanged(int,QString,int)), SLOT(updateTableRow(int,QString)));
-    connect(model,SIGNAL(tagChangeRequested(QString,int,int)),SLOT(changeSingleTag(QString,int,int)));
+    connect(model,SIGNAL(tagChangeRequested(QString,int)),SLOT(changeSingleTag(QString,int)));
 
 
 
@@ -636,7 +635,7 @@ void Tab::cellChanged(QTableWidgetItem *item) /*SLOT*/
     }
 }
 
-void Tab::changeSingleTag(const QString &value, int index, int tagID)
+void Tab::changeSingleTag(const QString &value, int tagID)
 {DD;
     QStringList newValues=model->tagsByPattern(tagID, value);
     if (newValues.size()>1) qDebug()<<"size mismatch";

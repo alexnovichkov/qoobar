@@ -260,12 +260,10 @@ Q_SIGNALS:
     void modelChanged(bool); // emits when tag save state changed
 
     void fileChanged(int, const Tag&, const QVector<int>&); //emits when whole file needs updating
-    void fileNameChanged(int, const QString newFileName);
-    void imageChanged(int index, bool imageEmpty);
+    void fileNameChanged(int, const QString &newFileName);
     void message(int type, const QString &text);
-    void tagValueChanged(int column,const QString &value,int index);
     void filesAdded(int,bool);
-    void tagChangeRequested(const QString &newValue, int index, int tagID);
+    void tagChangeRequested(const QString &newValue, int tagID);
 
     /**
      * @brief fileAdded emitted when file with number seqNumber was added to model

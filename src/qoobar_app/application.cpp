@@ -583,7 +583,7 @@ void Application::clearSettings()
     se.clear();
 #endif
 #ifdef QOOBAR_PORTABLE
-    QSettings se(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
+    QSettings se1(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
 #else
     QSettings se1(QSL("qoobar"),QSL("gui"));
 #endif

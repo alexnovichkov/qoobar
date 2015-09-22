@@ -1,10 +1,15 @@
 qoobar (1.6.8) unstable; urgency=low
 
-  * Fixed: Bug with deleting of the replaygain info
-  * Fixed: Discogs authentication
-  * Added: Sorting in the Files table
-  * Added: The possibility to edit tags right in the files table
-  * Changed: The Settings dialog interface
-  * Changed: The toolbar icons
+  * Fixed: Undoing of the Files table editing
+  * Fixed: Small-size icons in menus
+  * Fixed: Qoobar deploying (OS X)
+  * Fixed: Cancelling of files removing
+  * Fixed: Closing of the Tags edit dialog with not closed editor (OS X)
+  * Added: The possibility to change folder tree root
+  * Added: The portable version of Qoobar
+  * Added: Changeable toolbar icons
+  * Changed: The Status bar with extended functionality
+  * Changed: The application icon
+  * Changed: The Settings dialog interface (OS X)
 
- -- Alex Novichkov <aleksej.novichkov@gmail.com>  Sat, 22 Aug 2015 10:10:49 +0300
+ -- Alex Novichkov <aleksej.novichkov@gmail.com>  Tue, 22 Sep 2015 10:10:49 +0300
