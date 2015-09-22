@@ -13,9 +13,9 @@
             <sparkle:releaseNotesLink>http://qoobar.sourceforge.net/en/changelog_latest.htm</sparkle:releaseNotesLink>
             <enclosure
               sparkle:version="1.6.8"
-              sparkle:dsaSignature="MC0CFQCPG+3TgHv/XupZaKKmxPOD/YXdkAIUTRCsiwwKLJ/sKGMHjd/J4/9TTn8="
+              sparkle:dsaSignature="MCwCFDTLZNIv+85IsrBAloySsbTEMdkRAhQedWfj/MvsNgTG+b1i6P1CE7ftgw=="
               url="http://sourceforge.net/projects/qoobar/files/qoobar-1.6.8/Mac_OS_X/qoobar-1.6.8.dmg/download"
-              length="12781235"
+              length="14080081"
               type="application/octet-stream"/>
          </item>
 
