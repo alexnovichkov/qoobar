@@ -27,7 +27,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6</string>
 	<key>LSApplicationCategoryType</key>
-        <string>public.app-category.productivity</string>
+        <string>public.app-category.music</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>

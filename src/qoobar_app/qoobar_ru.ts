@@ -1976,29 +1976,29 @@ all changes in them will not be saved!</source>
     <name>PropertiesPanel</name>
     <message>
         <location filename="statusbar.cpp" line="146"/>
-        <location filename="statusbar.cpp" line="209"/>
+        <location filename="statusbar.cpp" line="212"/>
         <source>File is read only</source>
         <translation>Файл только для чтения</translation>
     </message>
     <message>
         <location filename="statusbar.cpp" line="155"/>
-        <location filename="statusbar.cpp" line="210"/>
+        <location filename="statusbar.cpp" line="213"/>
         <source>Size</source>
         <translation>Размер</translation>
     </message>
     <message>
         <location filename="statusbar.cpp" line="165"/>
-        <location filename="statusbar.cpp" line="211"/>
+        <location filename="statusbar.cpp" line="214"/>
         <source>Length</source>
         <translation>Длина</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="235"/>
+        <location filename="statusbar.cpp" line="238"/>
         <source>%1 kbps, %2 Hz, %3 ch.</source>
         <translation>%1 kbps, %2 Hz, %3 ch.</translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="272"/>
+        <location filename="statusbar.cpp" line="275"/>
         <source>%n file(s)</source>
         <translation>
             <numerusform>%n файл</numerusform>
@@ -2007,12 +2007,12 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="274"/>
+        <location filename="statusbar.cpp" line="277"/>
         <source>Overall length %1</source>
         <translation>Общая длина %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="279"/>
+        <location filename="statusbar.cpp" line="282"/>
         <source>Selected %n file(s) of %1</source>
         <oldsource>Selected %n file(s) of </oldsource>
         <translation>
@@ -2030,7 +2030,7 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="282"/>
+        <location filename="statusbar.cpp" line="285"/>
         <source>Selected length %1 of %2</source>
         <translation>Выделено %1 из %2</translation>
     </message>

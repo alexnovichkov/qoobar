@@ -470,7 +470,8 @@ mac|macx {
     ICON = icons/app/qoobar.icns
     INSTALL_PATH = $$DESTDIR/qoobar.app/Contents
 
-    OTHER_FILES += ../../Info.plist
+    OTHER_FILES += ../../Info.plist \
+                   ../../Entitlements.plist
     QMAKE_INFO_PLIST = ../../Info.plist
     HEADERS +=              cocoainit.h
     OBJECTIVE_SOURCES +=    sparkleupdater.mm \

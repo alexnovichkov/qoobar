@@ -1970,29 +1970,29 @@ le modifiche non verranno registrate!</translation>
     <name>PropertiesPanel</name>
     <message>
         <location filename="statusbar.cpp" line="146"/>
-        <location filename="statusbar.cpp" line="209"/>
+        <location filename="statusbar.cpp" line="212"/>
         <source>File is read only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="statusbar.cpp" line="155"/>
-        <location filename="statusbar.cpp" line="210"/>
+        <location filename="statusbar.cpp" line="213"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="statusbar.cpp" line="165"/>
-        <location filename="statusbar.cpp" line="211"/>
+        <location filename="statusbar.cpp" line="214"/>
         <source>Length</source>
         <translation type="unfinished">Lunghezza</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="235"/>
+        <location filename="statusbar.cpp" line="238"/>
         <source>%1 kbps, %2 Hz, %3 ch.</source>
         <translation type="unfinished">%1 kbps, %2 Hz, %3 ch.</translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="272"/>
+        <location filename="statusbar.cpp" line="275"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2000,12 +2000,12 @@ le modifiche non verranno registrate!</translation>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="274"/>
+        <location filename="statusbar.cpp" line="277"/>
         <source>Overall length %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="279"/>
+        <location filename="statusbar.cpp" line="282"/>
         <source>Selected %n file(s) of %1</source>
         <oldsource>Selected %n file(s) of </oldsource>
         <translation type="unfinished">
@@ -2014,7 +2014,7 @@ le modifiche non verranno registrate!</translation>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="282"/>
+        <location filename="statusbar.cpp" line="285"/>
         <source>Selected length %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>

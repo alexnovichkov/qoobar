@@ -174,14 +174,17 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
 
     selectedLabel = new QLabel(this);
     selectedLabel->setAttribute(Qt::WA_MacSmallSize);
+    selectedLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     selectedLengthLabel = new QLabel(this);
     selectedLengthLabel->setAttribute(Qt::WA_MacSmallSize);
+    selectedLengthLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     updateSelected();
 
     QGridLayout *l = new QGridLayout(this);
 #ifdef Q_OS_MAC
     l->setMargin(2);
-    l->setContentsMargins(0,0,0,0);
+    l->setContentsMargins(1,1,1,1);
+    l->setVerticalSpacing(3);
 #else
     l->setMargin(0);
     l->setContentsMargins(2,0,2,2);
