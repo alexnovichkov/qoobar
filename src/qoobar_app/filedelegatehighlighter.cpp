@@ -31,6 +31,7 @@
 #else
 #include <QtGui>
 #endif
+#include "qoobarglobals.h"
 
 FileDelegateHighlighter::FileDelegateHighlighter()
 {
@@ -39,7 +40,7 @@ FileDelegateHighlighter::FileDelegateHighlighter()
 QList<QTextLayout::FormatRange> FileDelegateHighlighter::generateFormats(QStyleOptionViewItemV4 *option,
                                                                          const QRect &textRect,
                                                                          const QModelIndex &index)
-{
+{DD;
     QList<QTextLayout::FormatRange> formats;
 
     QString text = index.data().toString();

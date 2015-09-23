@@ -43,7 +43,7 @@
  * @return next unique file name with appended (%1)
  */
 QString uniqueSchemeName(const QString &name)
-{
+{DD;
     QFileInfoList schemeFiles = QDir(ApplicationPaths::userSchemesPath()).entryInfoList(QStringList(QLS("*.xml")))
             +QDir(ApplicationPaths::schemesPath()).entryInfoList(QStringList(QLS("*.xml")));
 
@@ -233,7 +233,7 @@ void SchemeEditor::yHeader(int section)
 }
 
 void SchemeEditor::updateRemoveRowAct()
-{
+{DD;
     int row = table->currentRow();
     removeFieldAct->setEnabled(row >= TAGSCOUNT);
 }

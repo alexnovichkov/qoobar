@@ -33,15 +33,16 @@
 #include <QtGui>
 #endif
 #include "delegatehighlighter.h"
+#include "qoobarglobals.h"
 
 CompleterDelegate::CompleterDelegate(int type, bool useInTagsEditor, QObject *parent)
     : QStyledItemDelegate(parent), m_type(type), useInTagsEditor_(useInTagsEditor), highlighter(0)
-{
+{DD;
 
 }
 
 QWidget *CompleterDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
+{DD;
     Q_UNUSED(option);
     Q_UNUSED(index);
     LineEdit *edit = new LineEdit(useInTagsEditor_, parent);
@@ -57,7 +58,7 @@ QWidget *CompleterDelegate::createEditor(QWidget *parent, const QStyleOptionView
 }
 
 void CompleterDelegate::commitAndCloseEditor()
-{
+{DD;
     QLineEdit *edit = qobject_cast<QLineEdit *>(sender());
     if (!edit) return;
     edit->setCompleter(0);
@@ -66,7 +67,7 @@ void CompleterDelegate::commitAndCloseEditor()
 }
 
 void CompleterDelegate::setHighlighter(DelegateHighlighter *highlighter)
-{
+{DD;
     this->highlighter = highlighter;
 }
 

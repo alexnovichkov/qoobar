@@ -19,6 +19,9 @@ SOURCES += ../../qoobar_app/coverimage.cpp \
            ../../qoobar_app/discidhelper.cpp \
            ../../qoobar_app/applicationpaths.cpp
 
+HEADERS += ../../qoobar_app/logging.h
+SOURCES += ../../qoobar_app/logging.cpp
+
 os2:TARGET = muscbrnz
 !os2:TARGET = musicbrainz
 

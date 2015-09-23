@@ -7,7 +7,7 @@
 #include <QtDebug>
 
 void FileNameRenderer::updateTags()
-{
+{DD;
     TagsRenderer::updateTags();
     if (m_pattern.isEmpty()) return;
 
@@ -95,7 +95,7 @@ void FileNameRenderer::updateTags()
 }
 
 void FileNameRenderer::preprocess()
-{
+{DD;
     TagsRenderer::preprocess();
 
     if (App->renameOptions.renamingOperation == 2) {

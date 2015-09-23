@@ -41,6 +41,7 @@
 
 #include "enums.h"
 #include "qoobarglobals.h"
+#include "logging.h"
 #include "tagparser.h"
 
 #include "idownloadplugin.h"
@@ -108,8 +109,7 @@ public:
 };
 
 QStringList excludeByRole(QList<Artist> &l, const QStringList &patterns)
-{
-
+{DD;
     QStringList result;
 
     //I ignore artist tracks because I don't know its pattern.

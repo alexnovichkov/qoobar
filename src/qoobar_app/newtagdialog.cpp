@@ -31,10 +31,11 @@
 #include <QtGui>
 #endif
 #include "enums.h"
+#include "qoobarglobals.h"
 
 NewTagDialog::NewTagDialog(QWidget *parent) :
     QDialog(parent)
-{
+{DD;
     setWindowModality(Qt::WindowModal);
     setWindowTitle(tr("New tag"));
     edit = new QLineEdit(this);
@@ -53,8 +54,7 @@ NewTagDialog::NewTagDialog(QWidget *parent) :
 }
 
 void NewTagDialog::accept()
-{
-
+{DD;
     newTagName = edit->text();
     QDialog::accept();
 }

@@ -41,6 +41,7 @@
 #endif
 
 #include "qoobarglobals.h"
+#include "logging.h"
 #include "enums.h"
 
 #include <QProcess>

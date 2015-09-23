@@ -34,10 +34,11 @@
 #include "enums.h"
 #include "placeholders.h"
 #include "application.h"
+#include "qoobarglobals.h"
 
 LegendButton::LegendButton(QWidget *parent) :
     QPushButton(parent), categories(NoPlaceholders), menu(new QMenu(this))
-{
+{DD;
     setText(tr("Legend"));
 
     connect(menu,SIGNAL(triggered(QAction *)),SLOT(actionTriggered(QAction *)));
@@ -54,7 +55,7 @@ bool LegendButton::event(QEvent *e)
 }
 
 void LegendButton::retranslateUi()
-{
+{DD;
     setText(tr("Legend"));
     menu->clear();
 
@@ -111,7 +112,7 @@ void LegendButton::retranslateUi()
 }
 
 void LegendButton::actionTriggered(QAction *a)
-{
+{DD;
     QString data = a->data().toString();
     if (!data.isEmpty()) Q_EMIT placeholderChosen(QString("%%1").arg(data));
     else Q_EMIT placeholderChosen(a->text());

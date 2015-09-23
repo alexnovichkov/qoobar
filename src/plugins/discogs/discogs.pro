@@ -10,14 +10,15 @@ OTHER_FILES += discogs.json
 
 HEADERS += ../../qoobar_app/idownloadplugin.h \
            ../../qoobar_app/coverimage.h \
-           ../../qoobar_app/qoobarglobals.h \
            ../../qoobar_app/applicationpaths.h
 
+#HEADERS += ../../qoobar_app/qoobarglobals.h
+#SOURCES += ../../qoobar_app/qoobarglobals.cpp
 
-
+HEADERS += ../../qoobar_app/logging.h
+SOURCES += ../../qoobar_app/logging.cpp
 
 SOURCES += ../../qoobar_app/coverimage.cpp \
-           ../../qoobar_app/qoobarglobals.cpp \
            ../../qoobar_app/applicationpaths.cpp
 
 #HEADERS += ../../qoobar_app/o2/*.h

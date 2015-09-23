@@ -9,20 +9,21 @@
 #include "enums.h"
 #include "applicationpaths.h"
 #include "application.h"
+#include "qoobarglobals.h"
 /*
  *A FancyLineEdit with a clear button
  **/
 #if QT_VERSION >= QT_VERSION_CHECK(5,2,0)
 ClearLineEdit::ClearLineEdit(QWidget *parent) :
     QLineEdit(parent)
-{
+{DD;
     this->setClearButtonEnabled(true);
 }
 
 #else
 ClearLineEdit::ClearLineEdit(QWidget *parent) :
     FancyLineEdit(parent)
-{
+{DD;
     QIcon icon = QIcon::fromTheme(layoutDirection() == Qt::LeftToRight ?
                      QSL("edit-clear-locationbar-rtl") :
                      QSL("edit-clear-locationbar-ltr"),

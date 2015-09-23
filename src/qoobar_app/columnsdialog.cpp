@@ -38,7 +38,7 @@
 
 ColumnsDialog::ColumnsDialog(QTreeView *tree) :
     QDialog(tree), tree(tree), header(0)
-{
+{DD;
     setWindowTitle(tr("Qoobar - Adjust columns visibility"));
 
     QVBoxLayout *layout = new QVBoxLayout;
@@ -78,7 +78,7 @@ ColumnsDialog::ColumnsDialog(QTreeView *tree) :
 
 
 void ColumnsDialog::checkBoxToggled(int row, int column)
-{
+{DD;
     QTableWidgetItem *item=table->item(row,column);
     if (!item) return;
 
@@ -104,7 +104,7 @@ void ColumnsDialog::checkBoxToggled(int row, int column)
 }
 
 void ColumnsDialog::headerToggled(int column, Qt::CheckState checked)
-{
+{DD;
     if (column<0 || column >= table->columnCount()) return;
 
     if (checked==Qt::PartiallyChecked) return;

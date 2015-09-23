@@ -36,7 +36,7 @@
 
 CompletionsDialog::CompletionsDialog(const int &tagID, QWidget *parent) :
     QDialog(parent) , m_tagID(tagID)
-{
+{DD;
     setWindowTitle(App->currentScheme->localizedFieldName[tagID]);
 
 
@@ -55,7 +55,7 @@ CompletionsDialog::CompletionsDialog(const int &tagID, QWidget *parent) :
 }
 
 void CompletionsDialog::accept()
-{
+{DD;
     QString text = edit->toPlainText();
     App->autocompletions->set(m_tagID, text.split(QSL("\n")));
     QDialog::accept();

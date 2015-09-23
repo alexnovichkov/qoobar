@@ -8,10 +8,11 @@
 
 #include <QPainter>
 #include <QStyleOption>
+#include "qoobarglobals.h"
 
 StyledBar::StyledBar(QWidget *parent)
     : QWidget(parent)
-{
+{DD;
 }
 void StyledBar::paintEvent(QPaintEvent *event)
 {
@@ -25,7 +26,7 @@ void StyledBar::paintEvent(QPaintEvent *event)
 
 StyledSeparator::StyledSeparator(QWidget *parent)
     : QWidget(parent)
-{
+{DD;
     setFixedWidth(10);
 }
 
@@ -42,7 +43,7 @@ void StyledSeparator::paintEvent(QPaintEvent *event)
 
 FancyToolButton::FancyToolButton(QWidget *parent)
     : QToolButton(parent)
-{
+{DD;
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 }
 

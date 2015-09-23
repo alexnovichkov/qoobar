@@ -171,6 +171,6 @@ TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent)
 }
 
 void TabWidget::hideTabBar(bool hide)
-{
+{DD;
     this->tabBar()->setHidden(hide);
 }

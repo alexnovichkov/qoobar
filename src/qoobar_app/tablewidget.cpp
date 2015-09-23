@@ -31,7 +31,7 @@
 #endif
 
 #include "tablewidget.h"
-#include "qoobarglobals.h"
+#include "logging.h"
 #include "completerdelegate.h"
 #include "application.h"
 #include "displayedtagsdialog.h"
@@ -224,7 +224,7 @@ void TableWidget::addRow(const QString &header)
 }
 
 void TableWidget::addRow(int row)
-{
+{DD;
     blockSignals(true);
     setItem(row,0,new QTableWidgetItem(QString()));
     CompleterDelegate *d = new CompleterDelegate(row,false,this);

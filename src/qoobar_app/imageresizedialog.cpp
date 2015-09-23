@@ -5,10 +5,11 @@
 #else
 #include <QtGui>
 #endif
+#include "qoobarglobals.h"
 
 ImageResizeDialog::ImageResizeDialog(CoverImage &img, QWidget *parent) :
     QDialog(parent), image(img)
-{
+{DD;
     setWindowTitle(tr("Resize cover art"));
 
     QPixmap x;
@@ -53,14 +54,14 @@ ImageResizeDialog::ImageResizeDialog(CoverImage &img, QWidget *parent) :
 }
 
 void ImageResizeDialog::accept()
-{
+{DD;
     newWidth = widthBox->value();
     newHeight = heightBox->value();
     QDialog::accept();
 }
 
 void ImageResizeDialog::widthChanged(int width)
-{
+{DD;
     if (keepCheckBox->isChecked()) {
         heightBox->blockSignals(true);
         heightBox->setValue( int(width / proportion));
@@ -69,7 +70,7 @@ void ImageResizeDialog::widthChanged(int width)
 }
 
 void ImageResizeDialog::heightChanged(int height)
-{
+{DD;
     if (keepCheckBox->isChecked()) {
         widthBox->blockSignals(true);
         widthBox->setValue( int(height * proportion));

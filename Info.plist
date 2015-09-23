@@ -4,10 +4,12 @@
 <dict>
 	<key>CFBundleExecutable</key>
 	<string>qoobar</string>
+	<key>CFBundleDisplayName</key>
+	<string>Qoobar</string>
 	<key>CFBundleIconFile</key>
 	<string>qoobar.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>qoobar</string>
+	<string>qoobar.qoobar</string>
 	<key>CFBundleName</key>
 	<string>Qoobar</string>
 	<key>CFBundleShortVersionString</key>
@@ -17,13 +19,15 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>Russian</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6</string>
+	<key>LSApplicationCategoryType</key>
+        <string>public.app-category.productivity</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>

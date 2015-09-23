@@ -119,14 +119,14 @@ void StatusBar::updateTotalLength(int totalLength, int totalCount)
 }
 
 void StatusBar::updateSelectedLength(int length, int count)
-{
+{DD;
     panel->selectedCount = count;
     panel->selectedLength = length;
     panel->updateSelected();
 }
 
 PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
-{
+{DD;
     overallCount=0;
     selectedCount=0;
     overallLength=0;
@@ -205,7 +205,7 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
 }
 
 void PropertiesPanel::retranslateUI()
-{
+{DD;
     readOnlyLabel->setToolTip(tr("File is read only"));
     sizeLabel->setText(QString("<font color=#505050>%1:</font>").arg(tr("Size")));
     lengthLabel->setText(QString("<font color=#505050>%1:</font>").arg(tr("Length")));
@@ -215,7 +215,7 @@ void PropertiesPanel::retranslateUI()
     updateSizeContents();
 }
 void PropertiesPanel::updateLengthContents()
-{
+{DD;
     if (currentHover.length()!=0) {
         lengthContentsLabel->setText(Qoobar::formatLength(currentHover.length()));
         lengthLabel->setVisible(true);
@@ -226,7 +226,7 @@ void PropertiesPanel::updateLengthContents()
     }
 }
 void PropertiesPanel::updateFileName()
-{
+{DD;
     if (!currentHover.fileName().isEmpty()) {
         fileNameLabel->setText(currentHover.fullFileName());
         if (currentHover.bitrate().isEmpty() && currentHover.sampleRate()==0 && currentHover.channels()==0)
@@ -245,7 +245,7 @@ void PropertiesPanel::updateFileName()
     }
 }
 void PropertiesPanel::updateSizeContents()
-{
+{DD;
     if (currentHover.size()>0) {
         sizeContentsLabel->setText(Qoobar::formatSize(currentHover.size()));
         sizeLabel->show();
@@ -256,14 +256,14 @@ void PropertiesPanel::updateSizeContents()
     }
 }
 void PropertiesPanel::updateHover(const Tag& tag)
-{
+{DD;
     currentHover = tag;
     updateFileName();
     updateLengthContents();
     updateSizeContents();
 }
 void PropertiesPanel::updateSelected()
-{
+{DD;
     if (overallCount==0) {//tab is empty
         selectedLabel->clear();
         selectedLengthLabel->clear();

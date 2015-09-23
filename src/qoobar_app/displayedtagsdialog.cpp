@@ -37,7 +37,7 @@
 QWidget *ComboBoxItemDelegate::createEditor(QWidget *parent,
                                             const QStyleOptionViewItem &/* option */,
                                             const QModelIndex &/* index */) const
-{
+{DD;
     QComboBox *editor = new QComboBox(parent);
     if (editor) {
         for (int i=0; i<3; ++i) editor->addItem(tagStatusByID(i));
@@ -47,7 +47,7 @@ QWidget *ComboBoxItemDelegate::createEditor(QWidget *parent,
 
 void ComboBoxItemDelegate::setEditorData(QWidget *editor,
                                          const QModelIndex &index) const
-{
+{DD;
     int row = index.model()->data(index, Qt::UserRole).toInt();
 
     QComboBox *box = qobject_cast<QComboBox*>(editor);
@@ -56,7 +56,7 @@ void ComboBoxItemDelegate::setEditorData(QWidget *editor,
 
 void ComboBoxItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
                                         const QModelIndex &index) const
-{
+{DD;
     QComboBox *box = qobject_cast<QComboBox*>(editor);
     if (box) {
         model->setData(index, box->currentIndex(), Qt::UserRole);
@@ -65,7 +65,7 @@ void ComboBoxItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
 }
 
 QString tagStatusByID(const int id)
-{
+{DD;
     switch (id) {
     case ALWAYSVISIBLE: return QObject::tr("Always visible"); break;
     case VISIBLEIFNOTEMPTY: return QObject::tr("Visible if not empty"); break;
@@ -76,7 +76,7 @@ QString tagStatusByID(const int id)
 
 DisplayedTagsDialog::DisplayedTagsDialog(QWidget *parent) :
     QDialog(parent)
-{
+{DD;
     setWindowTitle(tr("Qoobar - Adjust tags visibility"));
 
     QVBoxLayout *layout = new QVBoxLayout;
@@ -109,12 +109,12 @@ DisplayedTagsDialog::DisplayedTagsDialog(QWidget *parent) :
 }
 
 void DisplayedTagsDialog::cellClicked(const int row, const int col)
-{
+{DD;
     table->editItem(table->item(row,col));
 }
 
 void DisplayedTagsDialog::indexChanged(const int row,const int column)
-{
+{DD;
     int status = table->item(row,column)->data(Qt::UserRole).toInt();
     Q_EMIT tagStatusChanged(row,status);
 }

@@ -34,7 +34,8 @@
 #include "application.h"
 #include "completerdelegate.h"
 #include "lineedit.h"
-#include "qoobarglobals.h"
+//#include "qoobarglobals.h"
+#include "logging.h"
 #include "tagsrenderer.h"
 #include "legendbutton.h"
 #include "texteditdelegate.h"
@@ -455,7 +456,7 @@ void TagsEditDialog::replaceAll()
 }
 
 void TagsEditDialog::showHelp()
-{
+{DD;
     Qoobar::showHelp(QSL("tags_editing"));
 }
 

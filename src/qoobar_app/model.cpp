@@ -181,7 +181,7 @@ bool Model::isFilesSaved() const
 }
 
 int Model::selectedFilesCount() const
-{
+{DD;
     return indexes.size();
 }
 
@@ -300,7 +300,7 @@ void Model::save()
 }
 
 void Model::saveSelected()
-{
+{DD;
     QStringList errors;
 
     for (int i=0; i<selectedFilesCount(); ++i) {
@@ -686,7 +686,7 @@ void Model::move(bool up)
 
 #if QT_VERSION < 0x050000
 QVector<int> Model::sortString(int column, Qt::SortOrder order, int sortType)
-{
+{DD;
     Q_UNUSED(sortType)
     QVector<int> newIndexes;
 

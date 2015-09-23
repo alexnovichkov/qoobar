@@ -41,6 +41,7 @@
 #include "iqoobarplugin.h"
 #include "taglib/toolkit/taglib.h"
 #include "qoobarglobals.h"
+#include "logging.h"
 #include "macsplitter.h"
 
 #ifdef Q_OS_WIN32
@@ -601,7 +602,7 @@ void MainWindow::addFiles()
     currentTab->addFileNames(filesToAdd);
 }
 
-void MainWindow::addDir()
+void MainWindow::addDir() /*SLOT*/
 {DD
     QString directory = QFileDialog::getExistingDirectory(this,
                                                           tr("Qoobar - adding folder"),
@@ -695,7 +696,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 #ifdef Q_OS_WIN
 int MainWindow::allTabsSaved()
-{
+{DD;
     for (int i=0; i<tabWidget->count(); ++i) {
         Tab *tab=qobject_cast<Tab *>(tabWidget->widget(i));
         if (tab) {
@@ -984,19 +985,10 @@ void MainWindow::searchFiles()
 }
 
 void MainWindow::setAsTreeRoot()
-{
+{DD;
     App->dirViewRoot = dirModel->filePath(dirView->currentIndex());
     dirModel->setRootPath(App->dirViewRoot);
     dirView->setRootIndex(dirModel->index(App->dirViewRoot));
     dirView->expand(dirModel->index(App->lastTreeDirectory,0));
     dirView->scrollTo(dirModel->index(App->lastTreeDirectory,0),QAbstractItemView::PositionAtCenter);
 }
-
-//#ifdef Q_OS_MAC
-//void MainWindow::specialCharacters()
-//{
-//   // QKeyEvent ev(QEvent::KeyPress, Qt::Key_Space, Qt::ControlModifier | Qt::MetaModifier);
-//   // qApp->sendEvent(qApp,&ev);
-//}
-//#endif
-

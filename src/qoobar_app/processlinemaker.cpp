@@ -23,17 +23,17 @@
 
 #include <QtCore/QProcess>
 #include <QtCore/QStringList>
-
+#include "qoobarglobals.h"
 
 ProcessLineMaker::ProcessLineMaker(QObject *parent) :
     QObject(parent), m_proc(0)
-{
+{DD;
 
 }
 
 ProcessLineMaker::ProcessLineMaker(QProcess *process, QObject *parent)
     : QObject(parent), m_proc(process)
-{
+{DD;
     if (m_proc) {
         m_proc->setTextModeEnabled(true);
         connect(m_proc, SIGNAL(readyReadStandardOutput()),
@@ -44,7 +44,7 @@ ProcessLineMaker::ProcessLineMaker(QProcess *process, QObject *parent)
 }
 
 void ProcessLineMaker::slotReadyReadStdout()
-{
+{DD;
     if (m_proc) {
         stdoutbuf += m_proc->readAllStandardOutput();
         processStdOut();
@@ -52,7 +52,7 @@ void ProcessLineMaker::slotReadyReadStdout()
 }
 
 void ProcessLineMaker::slotReadyReadStderr()
-{
+{DD;
     if (m_proc) {
         stderrbuf += m_proc->readAllStandardError();
         processStdErr();
@@ -60,8 +60,7 @@ void ProcessLineMaker::slotReadyReadStderr()
 }
 
 void ProcessLineMaker::processStdOut()
-{
-
+{DD;
     QStringList lineList;
     int pos;
     while ((pos = stdoutbuf.indexOf('\n')) != -1) {
@@ -75,8 +74,7 @@ void ProcessLineMaker::processStdOut()
 }
 
 void ProcessLineMaker::processStdErr()
-{
-
+{DD;
     QStringList lineList;
     int pos;
     while ((pos = stderrbuf.indexOf('\n')) != -1) {
@@ -90,15 +88,13 @@ void ProcessLineMaker::processStdErr()
 }
 
 void ProcessLineMaker::discardBuffers()
-{
-
+{DD;
     stderrbuf.clear();
     stdoutbuf.clear();
 }
 
 void ProcessLineMaker::flushBuffers()
-{
-
+{DD;
     if (!stdoutbuf.isEmpty())
         Q_EMIT receivedStdoutLines(QStringList(QString::fromLocal8Bit(stdoutbuf)));
     if (!stderrbuf.isEmpty())

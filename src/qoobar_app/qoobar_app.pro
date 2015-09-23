@@ -91,7 +91,8 @@ SOURCES = main.cpp \
     searchbar.cpp \
     platformprocess.cpp \
     treeview.cpp \
-    styledbar.cpp
+    styledbar.cpp \
+    logging.cpp
 
 HEADERS = mainwindow.h \
     tagseditor.h \
@@ -159,7 +160,8 @@ HEADERS = mainwindow.h \
     treeview.h \
     clparser.h \
     mactoolbar.h \
-    styledbar.h
+    styledbar.h \
+    logging.h
 
 lessThan(QT_MAJOR_VERSION, 5) {
     SOURCES *= ereilin/json.cpp

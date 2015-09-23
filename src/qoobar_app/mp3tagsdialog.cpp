@@ -6,10 +6,11 @@
 #endif
 #include "application.h"
 #include "enums.h"
+#include "qoobarglobals.h"
 
 MP3TagsDialog::MP3TagsDialog(int fileCount, QWidget *parent) :
     QDialog(parent), m_tagTypes(0)
-{
+{DD;
 
     setWindowTitle(tr("MP3 tag types (%n file(s))",0,fileCount));
 
@@ -37,8 +38,7 @@ MP3TagsDialog::MP3TagsDialog(int fileCount, QWidget *parent) :
 }
 
 void MP3TagsDialog::accept()
-{
-
+{DD;
     if (id3v1CheckBox->isChecked())
         m_tagTypes |= ID3V1;
     if (id3v2CheckBox->isChecked())

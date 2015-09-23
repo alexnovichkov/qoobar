@@ -34,6 +34,7 @@
 
 #include "enums.h"
 #include "application.h"
+#include "qoobarglobals.h"
 
 void ClickableLabel::mouseReleaseEvent(QMouseEvent *ev)
 {
@@ -59,7 +60,7 @@ void ClickableLabel::leaveEvent(QEvent *event)
 
 ImageDialog::ImageDialog(QWidget *parent) :
     QDialog(parent)
-{
+{DD;
     setWindowTitle(tr("Cover Art"));
     label = new ClickableLabel();
 
@@ -71,7 +72,7 @@ ImageDialog::ImageDialog(QWidget *parent) :
 }
 
 void ImageDialog::setImage(const QPixmap &data,const QString &toolTip)
-{
+{DD;
     setWindowTitle(QString("%1, %2").arg(windowTitle()).arg(toolTip));
     QPixmap pixmap=data;
 

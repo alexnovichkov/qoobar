@@ -36,29 +36,8 @@
 #include <QDesktopServices>
 #include <QUrl>
 
-#ifndef QT_NO_DEBUG
-#include <QTime>
-#include <QtDebug>
-#define DO_TRACE
-Trace::Trace(const QString &msg) : _msg(msg)
-{
-#ifdef DO_TRACE
-    time = new QTime();
-    time->start();
-    qDebug()<<"Entering "<<_msg;
-#endif
-}
-Trace::~Trace()
-{
-#ifdef DO_TRACE
-    qDebug()<<"Leaving  "<<_msg << "time" << time->elapsed();
-    delete time;
-#endif
-}
-#endif
-
 void Qoobar::showHelp(const QString &section)
-{//DD;
+{DD;
     QString path = ApplicationPaths::documentationPath();
     if (!QFileInfo(path).exists())
         path = QSL("http://qoobar.sourceforge.net/en/documentation.htm");
@@ -67,39 +46,6 @@ void Qoobar::showHelp(const QString &section)
         path.append(QSL("#") + section);
     QDesktopServices::openUrl(QUrl(path));
 }
-
-//void Qoobar::moveFolderInto(const QString &oldPath, const QString &newPath, QHash<QString, QString> &renamedFiles)
-//{DD;
-//    // create newPath
-//    QDir dir(newPath);
-//    bool created = true;
-//    if (!dir.exists()) created = QDir().mkpath(newPath);
-
-//    if (created) {
-//        QDir oldDir(oldPath);
-//        QFileInfoList oldFiles = oldDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files);
-
-//        Q_FOREACH (const QFileInfo &fi, oldFiles) {
-//            if (fi.isSymLink())
-//                return;
-
-//            if (fi.isDir()) {
-//                QString oldP = fi.canonicalFilePath();
-//                QString newP = newPath + QDir::separator() + fi.fileName();
-//                moveFolderInto(oldP, newP, renamedFiles);
-//            }
-//            else {
-//                QString oldName = fi.canonicalFilePath();
-//                QString newName = newPath + QDir::separator() + fi.fileName();
-//                QFile::rename(oldName, newName);
-//                renamedFiles.insert(oldName, newName);
-//            }
-//        }
-//    }
-//    QDir().rmdir(oldPath);
-//}
-
-#include <QtDebug>
 
 bool Qoobar::programInstalled(const QString &program, QString *path)
 {DD;

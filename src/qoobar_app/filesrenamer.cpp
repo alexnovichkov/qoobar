@@ -39,11 +39,12 @@
 #include "fancylineedit.h"
 #include "model.h"
 #include "qoobarglobals.h"
+#include "logging.h"
 
 #include "qbutton.h"
 
 QWidgetAction *createWidgetAction(QWidget *widget1,QWidget *widget2, QWidget *parent=0)
-{
+{DD;
     QWidgetAction *a = new QWidgetAction(parent);
     QWidget *inner = new QWidget(parent);
     QHBoxLayout *l = new QHBoxLayout;
@@ -61,7 +62,7 @@ QWidgetAction *createWidgetAction(QWidget *widget1,QWidget *widget2, QWidget *pa
 
 FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     : QDialog(parent), m(model)
-{
+{DD;
     setWindowTitle(tr("Move/Copy/Rename files"));
 #ifdef Q_OS_MAC
     setWindowModality(Qt::WindowModal);
@@ -306,18 +307,18 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
 }
 
 FileRenameDialog::~FileRenameDialog()
-{
+{DD;
     delete highlighter;
 }
 
 void FileRenameDialog::patternChanged(const QString &pattern)
-{
+{DD;
     if (filenameRenderer->setPattern(pattern))
         updateTable();
 }
 
 void FileRenameDialog::directoryChanged()
-{
+{DD;
     directoryEdit->setEnabled(directoryGroup->isChecked());
     if (directoryGroup->isChecked())
         App->renameOptions.destinationFolder = directoryEdit->text();
@@ -327,7 +328,7 @@ void FileRenameDialog::directoryChanged()
 }
 
 void FileRenameDialog::replaceWinCharsChanged()
-{
+{DD;
     App->renameOptions.replaceWinChars = charactersCheckBox->isChecked();
     App->renameOptions.winCharsReplacer = replaceCharacterEdit->text();
     replaceCharacterEdit->setEnabled(charactersCheckBox->isChecked());
@@ -335,7 +336,7 @@ void FileRenameDialog::replaceWinCharsChanged()
 }
 
 void FileRenameDialog::replaceSpacesChanged()
-{
+{DD;
     App->renameOptions.replaceSpaces = spacesCheckBox->isChecked();
     App->renameOptions.spacesReplacer = spacesEdit->text();
     spacesEdit->setEnabled(spacesCheckBox->isChecked());
@@ -343,57 +344,57 @@ void FileRenameDialog::replaceSpacesChanged()
 }
 
 void FileRenameDialog::diacriticsChanged()
-{
+{DD;
     App->renameOptions.removeDiacritics = diacriticsCheckBox->isChecked();
     updateTable();
 }
 
 void FileRenameDialog::caseChanged(const int value)
-{
+{DD;
     App->renameOptions.ccase = value;
     updateTable();
 }
 
 void FileRenameDialog::updateCase(bool b)
-{
+{DD;
     caseComboBox->setEnabled(b);
     App->renameOptions.changeCase = b;
     updateTable();
 }
 
 void FileRenameDialog::fileLengthChanged(int value)
-{
+{DD;
     App->renameOptions.maximumLength = value;
     updateTable();
 }
 
 void FileRenameDialog::updateFileLength(bool value)
-{
+{DD;
     fileLengthSpinBox->setEnabled(value);
     App->renameOptions.trimFileLength = value;
     updateTable();
 }
 
 void FileRenameDialog::applyToFoldersChanged()
-{
+{DD;
     App->renameOptions.applyToFolders = applyToFoldersCheckBox->isChecked();
     updateTable();
 }
 
 void FileRenameDialog::removePattern()
-{
+{DD;
     QString pattern = patternEdit->currentText();
     patternEdit->removeItem(patternEdit->currentIndex());
     App->removePattern(pattern, App->patterns);
 }
 
 void FileRenameDialog::showHelp()
-{
+{DD;
     Qoobar::showHelp(QSL("renaming"));
 }
 
 void FileRenameDialog::handleOperation(int index)
-{
+{DD;
     removeFolderCheckBox->setEnabled(index == 0);
     directoryGroup->setEnabled(index != 2);
     directoryEdit->setEnabled(index != 2 && directoryGroup->isChecked());
@@ -407,17 +408,17 @@ void FileRenameDialog::handleOperation(int index)
 }
 
 void FileRenameDialog::handleRemoveFolders()
-{
+{DD;
     App->renameOptions.removeFolder = removeFolderCheckBox->isChecked();
 }
 
 void FileRenameDialog::insertLegend(const QString &s)
-{
+{DD;
     patternEdit->lineEdit()->insert(s);
 }
 
 void FileRenameDialog::setExistingDirectory()
-{
+{DD;
     QString directory = QFileDialog::getExistingDirectory(this,
             tr("Folder to move/copy files"),
             oldFileNames.isEmpty() ? QDir::homePath() : QDir(oldFileNames.at(0)).canonicalPath(),
@@ -427,7 +428,7 @@ void FileRenameDialog::setExistingDirectory()
 }
 
 void FileRenameDialog::updateTable()
-{
+{DD;
     filenameRenderer->setPattern(patternEdit->currentText());
     QStringList newFileNames = filenameRenderer->newTags();
     QStringList prefixes = filenameRenderer->getPrefixes();
@@ -441,7 +442,7 @@ void FileRenameDialog::updateTable()
 }
 
 void FileRenameDialog::run()
-{
+{DD;
     //add pattern to file renaming patterns
     App->addPattern(patternEdit->currentText(), App->patterns);
 

@@ -836,7 +836,7 @@ void Tab::updateImageBox()
 }
 
 void Tab::updateTableRow(int row, const QString &value)
-{
+{DD;
     table->blockSignals(true);
     table->updateRow(row, value);
     table->blockSignals(false);
@@ -1008,7 +1008,7 @@ void Tab::addFiles(int addedCount, bool update) /*SLOT*/
 }
 
 void Tab::setAsCurrent()
-{
+{DD;
     Q_EMIT filesChanged(!model->isFilesSaved());
     Q_EMIT selectionChanged(model->hasSelection());
     handleCutCopy();
@@ -1243,7 +1243,7 @@ void Tab::replaygain() /*SLOT*/
 }
 
 void Tab::startSearch()
-{
+{DD;
     searchBar->show();
 }
 

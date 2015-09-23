@@ -46,7 +46,7 @@ static void getAllData(struct filename_list_node *fln, QList<ReplayGainInfo> *li
 #endif
 
 QString getArgument(int fileType, int operation)
-{
+{DD;
     const char *argument=0;
     switch(operation) {
     case RG_SCAN_AS_FILES:
@@ -62,7 +62,7 @@ QString getArgument(int fileType, int operation)
 }
 
 QString fileTypeByFileID(int fileID)
-{
+{DD;
     if (fileID<0 || fileID>Tag::FILES_NUM) return QString();
     return options[fileID].type;
 }
@@ -71,12 +71,12 @@ QString fileTypeByFileID(int fileID)
 
 ReplayGainer::ReplayGainer(Model *model, QObject *parent) :
     QObject(parent), m(model)
-{
+{DD;
 
 }
 
 QList<ReplayGainInfo> ReplayGainer::scanWithDecoding(int fileType, const QVector<int> &indexes, int operation)
-{
+{DD;
     QList<ReplayGainInfo> newRg;
 
 #ifndef WITH_DECODING
@@ -160,7 +160,7 @@ QList<ReplayGainInfo> ReplayGainer::scanWithDecoding(int fileType, const QVector
 }
 
 QList<ReplayGainInfo> ReplayGainer::scanWithUtilities(int fileType, const QVector<int> &indexes, int operation)
-{
+{DD;
     QList<ReplayGainInfo> newRg;
     if (!checkFileType(fileType)) return newRg;
 
@@ -223,7 +223,7 @@ QList<ReplayGainInfo> ReplayGainer::scanWithUtilities(int fileType, const QVecto
 }
 
 QHash<int, QVector<int> > ReplayGainer::sortByFileType(int operation)
-{
+{DD;
     QHash<int, QVector<int> > result;
     int selected = m->selectedFilesCount();
     //QVector<int> inds = m->selectedFilesIndexes();
@@ -251,7 +251,7 @@ QHash<int, QVector<int> > ReplayGainer::sortByFileType(int operation)
 }
 
 bool ReplayGainer::start(int operation)
-{
+{DD;
     rgInfo.clear();
     for (int i=0; i<m->selectedFilesCount(); ++i) {
         rgInfo << m->fileAtSelection(i).replayGainInfo();
@@ -277,7 +277,7 @@ bool ReplayGainer::start(int operation)
 }
 
 void ReplayGainer::scanGroup(int fileType, const QVector<int> &indexes, const int operation)
-{
+{DD;
     switch (operation) {
     case RG_SCAN_AS_FILES:
     case RG_SCAN_AS_ALBUM:
@@ -301,7 +301,7 @@ void ReplayGainer::scanGroup(int fileType, const QVector<int> &indexes, const in
 }
 
 QMap<QString, QVector<int> > ReplayGainer::sort(const QVector<int> &indexes, bool byFolder)
-{
+{DD;
     QMap<QString,QVector<int> > result;
     Q_FOREACH(int i,indexes) {
         QString s;
@@ -315,7 +315,7 @@ QMap<QString, QVector<int> > ReplayGainer::sort(const QVector<int> &indexes, boo
 }
 
 void ReplayGainer::removeRG(int fileType, const QVector<int> &indexes)
-{
+{DD;
     if (fileType==Tag::MPC_FILE && App->mpcWriteRg) {
         Q_EMIT message(MT_WARNING, "<font color=green><b>"+fileTypeByFileID(fileType)+"</b> - "
                      +tr("Removing ReplayGain info from Musepack files is not supported.")
@@ -328,7 +328,7 @@ void ReplayGainer::removeRG(int fileType, const QVector<int> &indexes)
 }
 
 bool ReplayGainer::checkFileType(int fileType)
-{
+{DD;
     if (!options[fileType].program) {
         Q_EMIT message(MT_ERROR, fileTypeByFileID(fileType)+" - "
                      +tr("This type of files is not supported. Sorry\n"));
@@ -346,7 +346,7 @@ bool ReplayGainer::checkFileType(int fileType)
 }
 
 void ReplayGainer::scan(int fileType, const QVector<int> &indexes, int operation)
-{
+{DD;
     if (fileType<0 || fileType>Tag::FILES_NUM) return;
     if (operation<=0 || operation>5) return;
     if (indexes.isEmpty()) return;
@@ -372,7 +372,7 @@ void ReplayGainer::scan(int fileType, const QVector<int> &indexes, int operation
 }
 
 void ReplayGainer::messages(const QStringList &messages)
-{
+{DD;
     Q_FOREACH (QString s, messages) {
 #ifdef Q_OS_WIN
         s.replace("\n", "\r\n");
@@ -387,7 +387,7 @@ void ReplayGainer::messages(const QStringList &messages)
 #endif
 
 QStringList ReplayGainer::getFileNames(const QVector<int> &indexes)
-{
+{DD;
     QStringList result;
     copiedFiles.clear();
     Q_FOREACH(int i,indexes) {
@@ -426,14 +426,14 @@ QStringList ReplayGainer::getFileNames(const QVector<int> &indexes)
 }
 
 void ReplayGainer::init()
-{
+{DD;
 #ifdef WITH_DECODING
     input_init(PLUGIN_GSTREAMER);
 #endif
 }
 
 void ReplayGainer::deinit()
-{
+{DD;
 #ifdef WITH_DECODING
     input_deinit();
 #endif

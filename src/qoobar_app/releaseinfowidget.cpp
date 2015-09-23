@@ -37,7 +37,7 @@
 #include "checkableheaderview.h"
 
 QPixmap previewIcon(const QPixmap &pixmap)
-{
+{DD;
     int max_dimension=100;
     int w=pixmap.width();
     int h = pixmap.height();
@@ -46,7 +46,7 @@ QPixmap previewIcon(const QPixmap &pixmap)
 }
 
 ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
-{
+{DD;
     tracksCheckBox = new QCheckBox(tr("Tracks"),this);
     imageCheckBox = new QCheckBox(tr("Cover art"),this);
     tracksCheckBox->setChecked(true);
@@ -103,7 +103,7 @@ ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
 }
 
 void ReleaseInfoWidget::setSearchResult(SearchResult &r,int cdNum)
-{
+{DD;
     QString artists = artistsText(r.artists);
     if (!artists.isEmpty()) r.fields.insert("artist", artists);
 
@@ -134,7 +134,7 @@ void ReleaseInfoWidget::setSearchResult(SearchResult &r,int cdNum)
 }
 
 bool ReleaseInfoWidget::use(const int &tagID)
-{
+{DD;
     Q_UNUSED(tagID)
 //    switch (tagID) {
 //    case ALBUM: return albumCheckBox->isChecked();
@@ -151,7 +151,7 @@ bool ReleaseInfoWidget::use(const int &tagID)
 }
 
 bool ReleaseInfoWidget::use(const QString &key)
-{
+{DD;
     for (int i=0; i<albumTable->topLevelItemCount(); ++i) {
         if (albumTable->topLevelItem(i)->text(0)==key
                 && albumTable->topLevelItem(i)->checkState(0)==Qt::Checked)
@@ -164,13 +164,13 @@ bool ReleaseInfoWidget::use(const QString &key)
 }
 
 bool ReleaseInfoWidget::useTrack(const int track)
-{
+{DD;
     if (track <0 || track>=tracksTable->topLevelItemCount()) return false;
     return tracksTable->topLevelItem(track)->checkState(0)==Qt::Checked;
 }
 
 void ReleaseInfoWidget::headerToggled(int column, Qt::CheckState checked)
-{
+{DD;
     if (column<0 || column >= tracksTable->columnCount()) return;
 
     if (checked==Qt::PartiallyChecked) return;
@@ -181,7 +181,7 @@ void ReleaseInfoWidget::headerToggled(int column, Qt::CheckState checked)
 }
 
 void ReleaseInfoWidget::checkBoxToggled(QTreeWidgetItem *item, int column)
-{
+{DD;
     if (!header->isSectionCheckable(column)) return;
 
     if (!item) return;

@@ -17,6 +17,9 @@ SOURCES += ../../qoobar_app/coverimage.cpp \
            ../../qoobar_app/qoobarglobals.cpp \
            ../../qoobar_app/applicationpaths.cpp
 
+HEADERS += ../../qoobar_app/logging.h
+SOURCES += ../../qoobar_app/logging.cpp
+
 TARGET = gd3
 
 #include(../../libdiscid.pri)

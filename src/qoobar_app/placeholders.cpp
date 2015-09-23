@@ -1,5 +1,6 @@
 #include "placeholders.h"
 #include "enums.h"
+#include "qoobarglobals.h"
 
 #include <QCoreApplication>
 

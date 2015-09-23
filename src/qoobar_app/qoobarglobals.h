@@ -28,6 +28,7 @@
 #define QOOBARGLOBALS_H
 
 #include <QStringList>
+#include "logging.h"
 
 namespace Qoobar {
 
@@ -65,23 +66,5 @@ enum Case {
 Case caseByValue(const QString &value);
 QString caseById(const Case id);
 }
-
-#ifndef QT_NO_DEBUG
-class QTime;
-class Trace {
-public:
-    Trace(const QString &msg);
-    ~Trace();
-private:
-    QString _msg;
-    QTime *time;
-};
-
-#define DD  Trace trace(Q_FUNC_INFO);
-#else
-#define DD
-#endif
-
-
 
 #endif // QOOBARGLOBALS_H

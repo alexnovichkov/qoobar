@@ -53,7 +53,7 @@
  * \param widget The widget next to which to open the menu
  */
 static void execMenuAtWidget(QMenu *menu, QWidget *widget)
-{
+{DD;
     QPoint p;
     QRect screen = qApp->desktop()->availableGeometry(widget);
     QSize sh = menu->sizeHint();

@@ -50,7 +50,7 @@ enum {
 
 ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     QDialog(parent), m(model), scanned(false)
-{
+{DD;
     setWindowTitle(tr("Qoobar - Changing ReplayGain Info"));
     setWindowModality(Qt::WindowModal);
 
@@ -151,7 +151,7 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
 }
 
 void ReplayGainDialog::accept()
-{
+{DD;
     if (scanned && !rgList.isEmpty()) {
         for (int i=0; i<m->selectedFilesCount(); ++i)
             m->fileAtSelection(i).setReplayGainInfo(rgList.at(i));
@@ -161,7 +161,7 @@ void ReplayGainDialog::accept()
 }
 
 void ReplayGainDialog::appendText(const QString &text)
-{
+{DD;
     if (text.isEmpty() || text==" ") return;
     const bool atBottom = (edit->verticalScrollBar()->value()==edit->verticalScrollBar()->maximum());
     edit->appendHtml(text);
@@ -170,28 +170,28 @@ void ReplayGainDialog::appendText(const QString &text)
 }
 
 void ReplayGainDialog::appendText(int type, const QString &text)
-{
+{DD;
     Q_UNUSED(type)
     appendText(text);
 }
 
 void ReplayGainDialog::tick()
-{
+{DD;
     edit->insertPlainText(QSL("."));
 }
 
 void ReplayGainDialog::setSkip()
-{
+{DD;
     replayGainer->setSkip(skipCheckBox->isChecked());
 }
 
 void ReplayGainDialog::showHelp()
-{
+{DD;
     Qoobar::showHelp(QSL("replaygain"));
 }
 
 void setRg(QTreeWidgetItem *item, const ReplayGainInfo &replayGainInfo)
-{
+{DD;
     item->setIcon(RG_NUMBER,replayGainInfo.isEmpty()?
                       QIcon():QIcon(App->iconThemeIcon("tick.png")));
     item->setText(RG_ALBUMGAIN,replayGainInfo.albumGain);
@@ -201,7 +201,7 @@ void setRg(QTreeWidgetItem *item, const ReplayGainInfo &replayGainInfo)
 }
 
 void ReplayGainDialog::operate(int operation)
-{
+{DD;
     edit->clear();
 
     scanFileButton->setEnabled(false);
@@ -230,7 +230,7 @@ void ReplayGainDialog::operate(int operation)
 }
 
 void ReplayGainDialog::initTable()
-{
+{DD;
     for (int i=0; i<m->selectedFilesCount(); ++i) {
         QTreeWidgetItem *item = new QTreeWidgetItem(tree);
         item->setText(RG_NUMBER,QString::number(i+1));

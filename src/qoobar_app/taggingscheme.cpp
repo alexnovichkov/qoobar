@@ -136,7 +136,7 @@ bool TaggingScheme::save()
 }
 
 bool TaggingScheme::operator==(const TaggingScheme &other) const
-{
+{DD;
     if (tagsCount() != other.tagsCount()) return false;
     return (m_fields == other.m_fields);
 }

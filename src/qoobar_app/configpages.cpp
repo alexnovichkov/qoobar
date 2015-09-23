@@ -254,7 +254,7 @@ void InterfacePage::updateLanguage(const int index)
 }
 
 void InterfacePage::chooseDirRoot()
-{
+{DD;
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a folder tree root"),
                                                     App->dirViewRoot,
                                                     QFileDialog::ShowDirsOnly

@@ -5,16 +5,17 @@
 #else
 #include <QtGui>
 #endif
+#include "qoobarglobals.h"
 
 HighlightDelegate::HighlightDelegate(QObject *parent) :
     QStyledItemDelegate(parent), highlighter(0)
 
-{
+{DD;
     textLayout = new QTextLayout();
 }
 
 HighlightDelegate::~HighlightDelegate()
-{
+{DD;
 
 }
 
@@ -60,6 +61,6 @@ void HighlightDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
 }
 
 void HighlightDelegate::setHighlighter(DelegateHighlighter *highlighter)
-{
+{DD;
     this->highlighter = highlighter;
 }

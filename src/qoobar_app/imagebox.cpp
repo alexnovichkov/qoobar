@@ -547,7 +547,7 @@ void ImageBox::updatePicture(const CoverImage &img, const QString &filename)
 }
 
 void ImageBox::update(bool selected)
-{
+{DD;
     addImageAct->setEnabled(selected);
 }
 

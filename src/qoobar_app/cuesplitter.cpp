@@ -47,7 +47,7 @@
 #endif
 
 QString getShortFileName(const QString &fileName)
-{
+{DD;
 #ifdef Q_OS_WIN
     QString result;
     long size=0;
@@ -70,7 +70,7 @@ QString getShortFileName(const QString &fileName)
 }
 
 QStringList CueSplitter::formats()
-{
+{DD;
     QStringList list;
     list.append("flac");
     list.append("alac");
@@ -104,7 +104,7 @@ CueSplitter::~CueSplitter()
 }
 
 void CueSplitter::check()
-{
+{DD;
     if (!shntoolInstalled)
         Q_EMIT message(MT_ERROR, tr("Please install shntool."));
     if (!ffmpegInstalled) {

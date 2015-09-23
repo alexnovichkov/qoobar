@@ -19,6 +19,9 @@ SOURCES += ../../qoobar_app/discidhelper.cpp \
            ../../qoobar_app/qoobarglobals.cpp \
            ../../qoobar_app/applicationpaths.cpp
 
+HEADERS += ../../qoobar_app/logging.h
+SOURCES += ../../qoobar_app/logging.cpp
+
 TARGET = freedb
 
 include(../../libdiscid.pri)

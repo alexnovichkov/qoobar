@@ -1,10 +1,11 @@
 #include "platformprocess.h"
 
 #include "applicationpaths.h"
+#include "qoobarglobals.h"
 
 PlatformProcess::PlatformProcess(QObject *parent) :
     QProcess(parent)
-{
+{DD;
     setReadChannel(QProcess::StandardOutput);
     setProcessChannelMode(QProcess::MergedChannels);
 
