@@ -35,6 +35,7 @@
 #include "application.h"
 #include <QDesktopServices>
 #include <QUrl>
+#include <QLocale>
 
 void Qoobar::showHelp(const QString &section)
 {DD;

@@ -19,15 +19,19 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>Russian</string>
+	<string>en</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>Qoobar.Help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>qoobar.qoobar.help</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6</string>
 	<key>LSApplicationCategoryType</key>
-        <string>public.app-category.music</string>
+  <string>public.app-category.music</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>

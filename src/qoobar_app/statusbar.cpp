@@ -67,6 +67,7 @@ void ElidingLabel::setElideMode(const Qt::TextElideMode &elideMode)
 
 void ElidingLabel::paintEvent(QPaintEvent *e)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(4, 7, 0))
     const int m = margin();
     QRect contents = contentsRect().adjusted(m, m, -m, -m);
     QFontMetrics fm = fontMetrics();
@@ -88,6 +89,9 @@ void ElidingLabel::paintEvent(QPaintEvent *e)
         setToolTip(QString());
         QLabel::paintEvent(e);
     }
+#else
+    QLabel::paintEvent(e);
+#endif
 }
 /*       end of Eliding label     */
 /**********************************/

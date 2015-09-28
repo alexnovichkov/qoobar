@@ -422,7 +422,7 @@ os2 {
     coloredicons.files = icons/coloured/*.ico
     coloredicons.files += icons/coloured/*.png
     coloredicons.files += icons/coloured/*.gif
-    coloredicons.path = $${SHARED_PATH}/qoobar/icons/coloured
+    coloredicons.path = $${SHARED_PATH}/icons/coloured
     INSTALLS += target
     #INSTALLS += icon desktop
     INSTALLS += docfiles resources icons coloredicons

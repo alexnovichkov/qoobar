@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pl_PL">
+<TS version="2.0" language="pl_PL">
 <context>
     <name>Application</name>
     <message>
@@ -160,33 +160,33 @@ Proszę sprawdzić ten plik</translation>
         <translation type="obsolete">Proszę upewnić się, że shntool.exe oraz flac.exe są skopiowane do katalogu zawierającego program qoobar.exe .&lt;br&gt;Programy te można pobrać z adresu &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="109"/>
+        <location filename="cuesplitter.cpp" line="107"/>
         <source>Please install shntool.</source>
         <translation>Proszę zainstalować shntool.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="111"/>
+        <location filename="cuesplitter.cpp" line="109"/>
         <source>Please install flac.</source>
         <translation>Proszę zainstalować flac.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="155"/>
+        <location filename="cuesplitter.cpp" line="153"/>
         <source>Opening cue file: &quot;%1&quot;</source>
         <translation>Otwieranie pliku cue: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="168"/>
-        <location filename="cuesplitter.cpp" line="187"/>
+        <location filename="cuesplitter.cpp" line="166"/>
+        <location filename="cuesplitter.cpp" line="185"/>
         <source>Cannot open cue file %1</source>
         <translation>Nie można otworzyć pliku cue %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="476"/>
+        <location filename="cuesplitter.cpp" line="474"/>
         <source>Cannot find the file to split: %1</source>
         <translation>Nie można znależć pliku do podziału: %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="512"/>
+        <location filename="cuesplitter.cpp" line="510"/>
         <source>Processing %1 ...
 
 </source>
@@ -200,32 +200,32 @@ Proszę sprawdzić ten plik</translation>
         <translation type="obsolete">Przetwarzanie %1 ...</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="239"/>
+        <location filename="cuesplitter.cpp" line="237"/>
         <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</source>
         <translation>Proszę upewnić się, że mac.exe jest skopiowany do katalogu z programem qoobar.exe.&lt;br&gt;Program ten można pobrać z adresu &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="245"/>
+        <location filename="cuesplitter.cpp" line="243"/>
         <source>Please install mac. You can download it from &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</source>
         <translation>Proszę zainstalować program mac. Można go pobrać z adresu &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="249"/>
+        <location filename="cuesplitter.cpp" line="247"/>
         <source>Please install mac</source>
         <translation>Proszę zainstalować mac</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="227"/>
+        <location filename="cuesplitter.cpp" line="225"/>
         <source>Nothing to split.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="255"/>
+        <location filename="cuesplitter.cpp" line="253"/>
         <source>Please wait while Qoobar is splitting the file %1</source>
         <translation>Proszę czekać, Qoobar dzieli plik %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="496"/>
+        <location filename="cuesplitter.cpp" line="494"/>
         <source>Total track count: &quot;%1&quot;</source>
         <translation>Liczba utworów: &quot;%1&quot;</translation>
     </message>
@@ -1970,30 +1970,30 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
 <context>
     <name>PropertiesPanel</name>
     <message>
-        <location filename="statusbar.cpp" line="146"/>
-        <location filename="statusbar.cpp" line="212"/>
+        <location filename="statusbar.cpp" line="150"/>
+        <location filename="statusbar.cpp" line="216"/>
         <source>File is read only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="155"/>
-        <location filename="statusbar.cpp" line="213"/>
+        <location filename="statusbar.cpp" line="159"/>
+        <location filename="statusbar.cpp" line="217"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="165"/>
-        <location filename="statusbar.cpp" line="214"/>
+        <location filename="statusbar.cpp" line="169"/>
+        <location filename="statusbar.cpp" line="218"/>
         <source>Length</source>
         <translation>Długość</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="238"/>
+        <location filename="statusbar.cpp" line="242"/>
         <source>%1 kbps, %2 Hz, %3 ch.</source>
         <translation>%1 kbps, %2 Hz, %3 ch.</translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="275"/>
+        <location filename="statusbar.cpp" line="279"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2002,12 +2002,12 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="277"/>
+        <location filename="statusbar.cpp" line="281"/>
         <source>Overall length %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="282"/>
+        <location filename="statusbar.cpp" line="286"/>
         <source>Selected %n file(s) of %1</source>
         <oldsource>Selected %n file(s) of </oldsource>
         <translation type="unfinished">
@@ -2017,7 +2017,7 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="285"/>
+        <location filename="statusbar.cpp" line="289"/>
         <source>Selected length %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2644,13 +2644,13 @@ Proszę go zainstalować.</translation>
     <name>SettingsDialog</name>
     <message>
         <location filename="settingsdialog.cpp" line="49"/>
-        <location filename="settingsdialog.cpp" line="145"/>
+        <location filename="settingsdialog.cpp" line="143"/>
         <source>Qoobar settings</source>
         <translation>Ustawienia Qoobar</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="105"/>
-        <location filename="settingsdialog.cpp" line="153"/>
+        <location filename="settingsdialog.cpp" line="103"/>
+        <location filename="settingsdialog.cpp" line="151"/>
         <source>Reset Settings</source>
         <translation>Resetuj ustawienia</translation>
     </message>
@@ -2872,49 +2872,49 @@ Proszę wybrać kodowanie:</translation>
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="982"/>
+        <location filename="tab.cpp" line="980"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1054"/>
+        <location filename="tab.cpp" line="1052"/>
         <source>Cannot write tags to file:
 %1</source>
         <translation>Nie można zapisać tagów do pliku:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1069"/>
+        <location filename="tab.cpp" line="1067"/>
         <source>Closing Qoobar</source>
         <translation>Zamykanie programu Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1070"/>
+        <location filename="tab.cpp" line="1068"/>
         <source>Files in %1 have been modified.</source>
         <translation>Pliki w %1 zostały zmodyfikowane.</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1073"/>
+        <location filename="tab.cpp" line="1071"/>
         <source>Do you want to save your changes?</source>
         <translation>Czy chcesz zapisać zmiany?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1074"/>
+        <location filename="tab.cpp" line="1072"/>
         <source>Yes, save</source>
         <translation>Tak, zapisz</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1076"/>
+        <location filename="tab.cpp" line="1074"/>
         <source>No, don&apos;t save</source>
         <translation>Nie, nie zapisuj</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1222"/>
+        <location filename="tab.cpp" line="1220"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation>Qoobar - Informacje ReplayGain</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1223"/>
+        <location filename="tab.cpp" line="1221"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation>Qoobar może skanować jedynie zapisane pliki.
@@ -3218,28 +3218,28 @@ Czy zapisać zmiany?</translation>
     <name>TreeWidget</name>
     <message>
         <source>Length</source>
-        <translation type="vanished">Długość</translation>
+        <translation type="obsolete">Długość</translation>
     </message>
     <message>
         <source>No.</source>
-        <translation type="vanished">Numer.</translation>
+        <translation type="obsolete">Numer.</translation>
     </message>
     <message>
         <source>File</source>
-        <translation type="vanished">Plik</translation>
+        <translation type="obsolete">Plik</translation>
     </message>
     <message>
         <source>RG</source>
-        <translation type="vanished">RG</translation>
+        <translation type="obsolete">RG</translation>
     </message>
     <message>
         <source>Img</source>
-        <translation type="vanished">Obraz</translation>
+        <translation type="obsolete">Obraz</translation>
     </message>
     <message>
         <source>Show/hide columns...</source>
         <oldsource>Adjust displayed columns...</oldsource>
-        <translation type="vanished">Pokaż / ukryj kolumny...</translation>
+        <translation type="obsolete">Pokaż / ukryj kolumny...</translation>
     </message>
     <message>
         <source>Qoobar</source>
@@ -3248,20 +3248,20 @@ Czy zapisać zmiany?</translation>
     <message>
         <source>Some read-only files were added,
 all changes in them will not be saved!</source>
-        <translation type="vanished">Część z dodanych plików jest tylko do odczytu,
+        <translation type="obsolete">Część z dodanych plików jest tylko do odczytu,
 wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
     </message>
     <message>
         <source>Move to the tab...</source>
-        <translation type="vanished">Przenieś do karty...</translation>
+        <translation type="obsolete">Przenieś do karty...</translation>
     </message>
     <message>
         <source>New tab</source>
-        <translation type="vanished">Nowa karta</translation>
+        <translation type="obsolete">Nowa karta</translation>
     </message>
     <message>
         <source>MP3 tag types...</source>
-        <translation type="vanished">Rodzaje tagów MP3...</translation>
+        <translation type="obsolete">Rodzaje tagów MP3...</translation>
     </message>
 </context>
 <context>
@@ -3339,7 +3339,7 @@ w oknie dialogowym ReplayGain</translation>
     </message>
     <message>
         <source>Not installed</source>
-        <translation type="vanished">Nie zainstalowane</translation>
+        <translation type="obsolete">Nie zainstalowane</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="878"/>

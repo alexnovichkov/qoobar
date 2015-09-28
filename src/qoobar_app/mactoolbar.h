@@ -5,6 +5,8 @@
 class QMainWindow;
 class QAction;
 class Impl;
+#include <QToolBar>
+#include <QHash>
 
 class Toolbar : public QObject
 {
@@ -21,6 +23,20 @@ public Q_SLOTS:
     void updateEnabled(QAction *act);
 private:
     Impl *d;
+};
+
+class CustomToolBar : public QToolBar
+{
+    Q_OBJECT
+public:
+    explicit CustomToolBar(Impl *impl, QWidget * parent = 0);
+protected:
+    void contextMenuEvent(QContextMenuEvent * event);
+private Q_SLOTS:
+    void toggle(bool);
+private:
+    Impl *impl;
+    QHash<QAction *,QAction*> hash;
 };
 
 #endif // MACTOOLBAR_H

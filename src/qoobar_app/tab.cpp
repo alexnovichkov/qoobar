@@ -962,8 +962,6 @@ bool Tab::delFiles(bool deleteSilently)
     return true;
 }
 
-#include <QMimeDatabase>
-
 void Tab::addFileNames(const QStringList &filesToAdd, bool clearBefore)
 {DD;
     if (filesToAdd.isEmpty()) return;

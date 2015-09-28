@@ -25,7 +25,7 @@ THE SOFTWARE.
 #include <QVBoxLayout>
 #include <QMovie>
 #include <QLabel>
-#include "application.h"
+#include "../application.h"
 
 class QProgressIndicatorSpinningPrivate : public QObject
 {

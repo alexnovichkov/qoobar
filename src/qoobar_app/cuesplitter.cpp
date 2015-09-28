@@ -84,8 +84,6 @@ QStringList CueSplitter::formats()
     return list;
 }
 
-#include <QMimeDatabase>
-
 CueSplitter::CueSplitter(QObject *parent) :
     QObject(parent), process(0), _trackCount(0), _notLatin1(false)
 {DD;

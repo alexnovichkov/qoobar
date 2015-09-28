@@ -52,6 +52,9 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose, true);
     setWindowModality(Qt::ApplicationModal);
 #endif
+
+    QSignalMapper *mapper = new QSignalMapper(this);
+
     InterfacePage *page = new InterfacePage;
     connect(page,SIGNAL(retranslate()),this,SLOT(retranslateUI()));
     connect(page,SIGNAL(retranslate()),this,SIGNAL(retranslate()));
@@ -65,11 +68,13 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     configPages << new PluginsPage;
 
     pagesWidget = new QStackedWidget;
-#ifndef DYNAMICPAGES
+#ifdef DYNAMICPAGES
+    pagesWidget->addWidget(page);
+    connect(mapper,SIGNAL(mapped(int)),this,SLOT(switchPage(int)));
+#else
     Q_FOREACH (ConfigPage *page, configPages)
         pagesWidget->addWidget(page);
-#else
-    pagesWidget->addWidget(page);
+    connect(mapper,SIGNAL(mapped(int)),pagesWidget,SLOT(setCurrentIndex(int)));
 #endif
 
 #ifdef Q_OS_MAC
@@ -82,12 +87,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     toolBar->setMovable(false);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolBar->setIconSize(QSize(48,48));
-    QSignalMapper *mapper = new QSignalMapper(this);
-#ifndef DYNAMICPAGES
-    connect(mapper,SIGNAL(mapped(int)),pagesWidget,SLOT(setCurrentIndex(int)));
-#else
-    connect(mapper,SIGNAL(mapped(int)),SLOT(switchPage(int)));
-#endif
+
     QActionGroup *ag = new QActionGroup(this);
     for (int i=0; i<configPages.size(); ++i) {
         ConfigPage *page = configPages.at(i);
@@ -98,8 +98,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
         mapper->setMapping(a,i);
         connect(a,SIGNAL(triggered()),mapper,SLOT(map()));
         toolBar->addAction(a);
-        QWidget *w = toolBar->widgetForAction(a);
-        if (w && i!=1) w->setProperty("fancy",true);
     }
 
     resetSettingsButton = new QPushButton(tr("Reset Settings"),this);
@@ -178,5 +176,6 @@ void SettingsDialog::switchPage(int page)
 {DD;
     pagesWidget->removeWidget(pagesWidget->widget(0));
     pagesWidget->addWidget(configPages[page]);
-    resize(550,300);
+
+    adjustSize();
 }

@@ -121,7 +121,25 @@ rm -rf %{buildroot}
 %{_datadir}/doc/%{name}
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/qoobar.png
+%dir %{_datadir}/icons/hicolor
+%dir %{_datadir}/icons/hicolor/16x16
+%dir %{_datadir}/icons/hicolor/32x32
+%dir %{_datadir}/icons/hicolor/64x64
+%dir %{_datadir}/icons/hicolor/48x48
+%dir %{_datadir}/icons/hicolor/128x128
+%dir %{_datadir}/icons/hicolor/256x256
+%dir %{_datadir}/icons/hicolor/16x16/apps
+%dir %{_datadir}/icons/hicolor/32x32/apps
+%dir %{_datadir}/icons/hicolor/64x64/apps
+%dir %{_datadir}/icons/hicolor/48x48/apps
+%dir %{_datadir}/icons/hicolor/128x128/apps
+%dir %{_datadir}/icons/hicolor/256x256/apps
+%{_datadir}/icons/hicolor/16x16/apps/qoobar.png
+%{_datadir}/icons/hicolor/32x32/apps/qoobar.png
+%{_datadir}/icons/hicolor/64x64/apps/qoobar.png
+%{_datadir}/icons/hicolor/48x48/apps/qoobar.png
+%{_datadir}/icons/hicolor/128x128/apps/qoobar.png
+%{_datadir}/icons/hicolor/256x256/apps/qoobar.png
 %{_prefix}/lib/%{name}
 %doc %{_mandir}/man1/qoobar.1*
 
