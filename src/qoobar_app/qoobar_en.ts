@@ -2038,167 +2038,167 @@ all changes in them will not be saved!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="125"/>
+        <location filename="qoobarglobals.cpp" line="126"/>
         <source>Composer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="126"/>
+        <location filename="qoobarglobals.cpp" line="127"/>
         <source>Album</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="127"/>
+        <location filename="qoobarglobals.cpp" line="128"/>
         <source>Title</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="128"/>
+        <location filename="qoobarglobals.cpp" line="129"/>
         <source>Performer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="129"/>
+        <location filename="qoobarglobals.cpp" line="130"/>
         <source>Artist</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="130"/>
+        <location filename="qoobarglobals.cpp" line="131"/>
         <source>Conductor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="131"/>
+        <location filename="qoobarglobals.cpp" line="132"/>
         <source>Orchestra</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="132"/>
+        <location filename="qoobarglobals.cpp" line="133"/>
         <source>Subtitle</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="133"/>
+        <location filename="qoobarglobals.cpp" line="134"/>
         <source>Key</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="134"/>
+        <location filename="qoobarglobals.cpp" line="135"/>
         <source>Comment</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="135"/>
+        <location filename="qoobarglobals.cpp" line="136"/>
         <source>Genre</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="136"/>
+        <location filename="qoobarglobals.cpp" line="137"/>
         <source>Year</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="137"/>
+        <location filename="qoobarglobals.cpp" line="138"/>
         <source>Track number</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="138"/>
+        <location filename="qoobarglobals.cpp" line="139"/>
         <source>Total tracks</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="139"/>
+        <location filename="qoobarglobals.cpp" line="140"/>
         <source>Album artist</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="140"/>
+        <location filename="qoobarglobals.cpp" line="141"/>
         <source>Music category</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="141"/>
+        <location filename="qoobarglobals.cpp" line="142"/>
         <source>Publisher</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="142"/>
+        <location filename="qoobarglobals.cpp" line="143"/>
         <source>Copyright</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="143"/>
+        <location filename="qoobarglobals.cpp" line="144"/>
         <source>Mood</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="144"/>
+        <location filename="qoobarglobals.cpp" line="145"/>
         <source>Beats per minute</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="145"/>
+        <location filename="qoobarglobals.cpp" line="146"/>
         <source>Lyricist</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="146"/>
+        <location filename="qoobarglobals.cpp" line="147"/>
         <source>Lyrics</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="147"/>
+        <location filename="qoobarglobals.cpp" line="148"/>
         <source>Disc number</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="148"/>
+        <location filename="qoobarglobals.cpp" line="149"/>
         <source>Total discs</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="149"/>
+        <location filename="qoobarglobals.cpp" line="150"/>
         <source>Encoded by</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="150"/>
+        <location filename="qoobarglobals.cpp" line="151"/>
         <source>Remixed by</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="151"/>
+        <location filename="qoobarglobals.cpp" line="152"/>
         <source>Rating</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="152"/>
+        <location filename="qoobarglobals.cpp" line="153"/>
         <source>Original album</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="153"/>
+        <location filename="qoobarglobals.cpp" line="154"/>
         <source>Original artist</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="154"/>
+        <location filename="qoobarglobals.cpp" line="155"/>
         <source>Original lyricist</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="155"/>
+        <location filename="qoobarglobals.cpp" line="156"/>
         <source>URL</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="156"/>
+        <location filename="qoobarglobals.cpp" line="157"/>
         <source>ISRC</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="qoobarglobals.cpp" line="256"/>
+        <location filename="qoobarglobals.cpp" line="257"/>
         <source>%n byte(s)</source>
         <translation>
             <numerusform>%n byte</numerusform>
@@ -2206,12 +2206,12 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="259"/>
+        <location filename="qoobarglobals.cpp" line="260"/>
         <source>%1 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="261"/>
+        <location filename="qoobarglobals.cpp" line="262"/>
         <source>%1 MiB</source>
         <translation></translation>
     </message>

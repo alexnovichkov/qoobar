@@ -98,7 +98,6 @@ h1,h2,h3,h4,h5,h6 {
   font-size:100%;
   font:inherit;
   vertical-align:baseline;
-
 }
 
 h1 {
@@ -112,6 +111,11 @@ h1 {
   font-size: 3.25em;
   line-height: 1.25em;
   margin-bottom: 0.5em;
+  margin-top: 1.5em;
+}
+
+.is-post h1:first-of-type {
+  margin-top: 0em;
 }
 
 h2 {
@@ -124,8 +128,8 @@ h2 {
 .is-post h2 {
   font-size: 2.5em;
   line-height: 1.25em;
+  margin-top: 1.5em;
   margin-bottom: 0.5em;
-  margin-top: 0.5em;
 }
 
 h3 {
@@ -138,6 +142,7 @@ h3 {
 .is-post h3 {
   font-size: 2.0em;
   line-height: 1.25em;
+  margin-top: 2em;
   margin-bottom: 0.5em;
 }
 
@@ -152,6 +157,34 @@ h4 {
   font-size: 1.5em;
   line-height: 1.25em;
   margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+
+.notebox{
+  border:1px solid #5088C5;
+  background-color:#FFF;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 2em;
+  margin-right: 0em;
+  padding:0 .667em .083em .750em;
+  text-align:left;
+  clear:right
+}
+.notebox p,.noteboxdef p{
+ /* font:100% 'Lucida Grande','Lucida Sans Unicode',Helvetica,Arial,Verdana,sans-serif;*/
+  margin-top:.583em;
+  margin-bottom:0.350em
+}
+
+.button {
+  border: 1px solid #5088C5;
+  background-color:#D2E1F0;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight:bold;
+  font-size: 90%;
+  color: #333333;
 }
 
 a {
@@ -539,14 +572,15 @@ span.hotkey {
 table {
   margin-top: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #5088C5;
   border-collapse:collapse;
 }
 
 th {
-  background-color: #DCDDD4;
+  background-color: #4480C1;
   text-align: center;
   font-weight: bolder;
+  color: white;
 }
 
 .inner {
@@ -558,7 +592,7 @@ th {
 
 tr, th {
   border-collapse:collapse;
-  border: 1px solid #ccc;
+  border: 1px solid #5088C5;
   padding-left: 10px;
   padding-right: 5px;
 }
@@ -567,7 +601,7 @@ td {
   vertical-align: middle;
   border-collapse:collapse;
   /*font-size: small;*/
-  border: 1px solid #ccc;
+  border: 1px solid #5088C5;
   padding-left: 10px;
   padding-right: 5px;
 }
@@ -579,15 +613,16 @@ code, samp, kbd {
 }
 pre code {
   line-height: 1.6em;
-  font-size: 11px;
+  /*font-size: 13px;*/
 }
 pre {
-  border: 1px dashed #888;
-  border-left: 11px solid #ccc;
+  border:1px solid #5088C5;
+  border-left: 5px solid #5088C5;
   overflow: auto;
   width: 100%;
   padding: 5px 10px;
   margin: 0 0 1em 0;
+  font-size: 13px;
 }
 /* target IE7 and IE6 */
 *:first-child+html pre {
@@ -613,4 +648,5 @@ hr {
 
 code {
   font-family:monospace, monospace;
+ /* font-size: 110%;*/
 }

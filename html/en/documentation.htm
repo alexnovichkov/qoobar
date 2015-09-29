@@ -16,7 +16,7 @@
             <header>
               <h1>Documentation</h1>
             </header>
-            <h3>Contents</h3>
+            <h2>Contents</h2>
             <ul>
               <li><a href="#features">Qoobar features</a></li>
               <li><a href="#interface">Qoobar interface</a></li>
@@ -205,10 +205,15 @@
               <p>If some files you are adding are read-only, a warning message will appear, and these files will be grayed-out in the Files table.</p>
 
               <h3>Files search</h3>
-              <p>Pressing <span class=hotkey>Ctrl+Shift+F</span> (or menu File -&gt; Search files) enables the files search. If the current tab is empty, the Search Bar shows in it, otherwise another tab will be opened with the Search Bar.</p>
+              <p>If you want to search files in your Music folder by some pattern in file names or file tags, you can use the built-in search feature.</p>
+              <p>To enable it, press <span class=hotkey>Ctrl+Shift+F</span> (or choose menu item File → Search files). 
+                If the current tab is empty, the Search Bar will be shown in this tab, otherwise another tab will be opened with the Search Bar.</p>
               <p><img src="images/qoobar-search-bar.png" alt="Search bar">.</p>
-              <p>First of all you need to set up the search location(s). There is already one default location - your Music folder, but you can add as many other folders as you wish to perform search in them.</p>
-              <p>Next, type the text to search, f.e. <i>Madonna</i> (kidding, it will obviously be <i>Pettersson</i>), click 'Start search' and wait for the search to finish. If you have found enough files or just tired of waiting, click 'Stop search'.</p>
+              <p>First of all you need to set up the search location(s). There is already one default location - your Music folder, 
+                but you can add as many other folders as you wish to perform search in them.</p>
+              <p>Next, type the text to search, f.e. <code>Madonna</code> (or <code>Pettersson</code>, or <code>concerto</code>), 
+                click <span class="button">Start search</span> and wait for the search to finish. 
+                If you have found enough files or just tired of waiting, click <span class="button">Stop search</span>.</p>
               <p>You can specify additional search options in the menu of the search field. By default search is case-insensitive and diacritics are also ignored.</p>
 
 
@@ -260,9 +265,9 @@
               <p>To edit <b>one tag file by file</b> - double-click the tag.</p>
               <p>To number tracks starting from 1 to N (N is the number of selected files)
               - click on the "Track number" tag, type <code>1</code> and press Enter.</p>
-              <p><strong>Note:</strong> If you type <code>01</code>, track numbers will be two-digit formatted: 01, 02 etc.</p>
-              <p>To remove some tags select these tags in the Tags Table and press Delete.</p>
-              <p><strong>Note:</strong> You can change a tag in the Files table by double clicking on it.</p>
+              <div class="notebox"><p><strong>Note:</strong> If you type <code>01</code>, track numbers will be two-digit formatted: 01, 02 etc.</p></div>
+              <p>To remove some tags select these tags in the Tags Table and press <span class=hotkey>Del</span>.</p>
+              <div class="notebox"><p><strong>Note:</strong> You can change a tag in the Files table by double clicking on it.</p></div>
               <h3>Copying and pasting tags</h3>
               <p>If you copy only one tag (only one line in the Tags Table), you can paste
                 it where you want, even if you select other files.</p>
@@ -301,7 +306,7 @@
               </p>
               <p>If the automatic collecting is turned on in the Settings dialog, then tags will be collected (remembered for future use) automatically
                 when you press <span class=hotkey>Enter</span>
-                in the Tags Table or OK in the Edit Dialog.
+                in the Tags Table or click <span class="button">OK</span> in the Edit Dialog.
               </p>
               <img src="images/qoobar-composer1.png" alt="Autocompletion">
 
@@ -312,7 +317,7 @@
               </p>
               <img src="images/qoobar-newfield.png" alt="New field">
               <p>Type a tag name with latin characters, spaces and underscores.
-              Then click OK. The newly added tag will be appended to the Tags Table.</p>
+              Then click <span class=button>OK</span>. The newly added tag will be appended to the Tags Table.</p>
               <p>If you don't add something in the newly added tag, it will be lost. </p>
               <p>If you want to make this tag permanent (that is to add it to your tagging scheme),
                 then select the tag row and choose the option "Add this tag to the scheme" in the context menu
@@ -326,18 +331,19 @@
               you can make use of placeholders. A <i>placeholder</i> is a variable that contains a tag or other info of one file.</p>
               <p>There are two types of placeholders: short and long ones.</p>
               </p><strong>Short placeholders</strong> begin with '%', followed by one latin letter, for example <code>%t</code> for title, <code>%a</code>
-                for album, <code>%n</code> for track number, and so on. There are only 44 predefinite short placeholders that cover
+                for album, <code>%n</code> for track number, and so on. There are only 44 predefined short placeholders that cover
                 all standard tags and file properties supported by Qoobar.</p>
-              <p><strong>Long placeholder</strong> is a tag name enclosed in &lt; and &gt;, f.e. &lt;title&gt; or &lt;performer&gt;.
-                Note that long placeholders are case and spaces irrelevant, so &lt;tracknumber&gt; and &lt;Track Number&gt; are equivalent.
+              <p><strong>Long placeholder</strong> is a tag name enclosed in &lt; and &gt;, f.e. <code>&lt;title&gt;</code> or <code>&lt;performer&gt;</code>.
+                Note that long placeholders are case and spaces irrelevant, so <code>&lt;tracknumber&gt;</code> and <code>&lt;Track Number&gt;</code> are equivalent.
                 You can also use localized tag name instead of the English name, that is if the German language is chosen as the user interface language,
-              you can use either %c, &lt;composer&gt; or &lt;komponist&gt; for the composer tag.</p>
+              you can use either <code>%c</code>, <code>&lt;composer&gt;</code> or <code>&lt;komponist&gt;</code> for the composer tag.</p>
               <p>Unlike short placeholders, long placeholders are not limited by 44 predefinite tags: <strong>any</strong> tag name shown in the Tags Table
                 can be used as a long placeholder. In other words, every user tag added to the tagging scheme, any new tag added to the Tags Table, and even any
               non-standard tag added by other tagging program can be addressed by its name.</p>
-              <p>Examples: &lt;TSSE&gt; in some mp3 files (Software/Hardware and settings used for encoding) or &lt;----:com.apple.iTunes:TAGGINGTIME&gt; in mp4 files.</p>
+              <p>Examples: <code>&lt;TSSE&gt;</code> in some mp3 files (Software/Hardware and settings used for encoding) or 
+                <code>&lt;----:com.apple.iTunes:TAGGINGTIME&gt;</code> in mp4 files.</p>
               <p>The full list of available placeholders can be found in <a href="#placeholders">Appendix 3</a>.</p>
-              <p><b>Examples</b></p>
+              <p>The table below shows some <b>examples</b> of using placeholders in Qoobar.</p>
               <table>
                 <tr><th>Scheme</th><th>Source</th><th>Result</th></tr>
                 <tr>
@@ -393,7 +399,7 @@
                 <code>[Section from 2nd to 20th character of album is $section(%a,2,20)]</code> will be removed if the album tag is shorter
               than 2 characters.</p>
               <p>The full list of functions can be found in <a href="#placeholders">Appendix 3</a>.</p>
-              <p><strong>Note:</strong> Not all functions works identical to their Foobar equivalents, please test it before using.</p>
+              <div class="notebox"><p><strong>Note:</strong> Not all functions works identical to their Foobar equivalents, please test it before using.</p></div>
 
 
               <h3>Using autonumbering function</h3>
@@ -447,19 +453,19 @@
               </table>
 
               <p>Let's compose our functions according to what we want to achieve:</p>
-              <p>Acts number from 1, Act 1 lasts 9 tracks, Act 2 lasts 6 tracks, so we have:</p>
-              <pre>For acts: {1, 1:9, 2:6}</pre>
-              <p>Act 1 consists of 3 scenes, where Scene 1 contains 3 tracks, Scene 2 - 4 tracks, and Scene 3 - 2 tracks.
-              Then Act 2 begins, so we need to start numeration from the beginning (thus ';').
-              Scene 1 of Act 1 contains 3 tracks, so we get</p>
-              <pre>For scenes: {1-3, 1:3, 2:4, 3:2; 1-1, 1:3}</pre>
-              <p>We do not need Scene 2 in Act 2, so we should use square brackets:</p>
+              <p>Acts number from 1, Act 1 lasts 9 tracks, Act 2 lasts 6 tracks, so for the acts we have:</p>
+              <pre>{1, 1:9, 2:6}</pre>
+              <p>Act 1 consists of 3 scenes, where Scene 1 contains 3 tracks, Scene 2 contains 4 tracks, and Scene 3 is 2 tracks.
+              Then Act 2 begins, so we need to start numeration from the beginning (thus adding ';').
+              Scene 1 of Act 1 contains 3 tracks, so for the scenes we get </p>
+              <pre>{1-3, 1:3, 2:4, 3:2; 1-1, 1:3}</pre>
+              <p>We do not need Scene 2 in Act 2, so we should use square brackets to exclude this text:</p>
               <pre>Act {1, 1:9, 2:6}. [Scene {1-3, 1:3, 2:4, 3:2; 1-1, 1:3}. ]%t</pre>
               <p>Type this text into the title tag to achieve our goal!</p>
-              <p><b>Tip:</b> You can omit commas: <code>{1-3 1:3 2:4 3:2; 1-1 1:3}</code>.</p>
+              <div class="notebox"><p><b>Tip:</b> You can omit commas: <code>{1-3 1:3 2:4 3:2; 1-1 1:3}</code>.</p></div>
               <p><strong>More examples: we have selected 7 files</strong></p>
               <table>
-                <tr><th>Function</th><th>What we get file by file</th></tr>
+                <tr><th>Function</th><th>&nbsp;&nbsp;What we get file by file&nbsp;&nbsp;</th></tr>
                 <tr><td><code>{}</code></td><td>1, 2, 3, 4, 5, 6, 7</td></tr>
                 <tr><td><code>{1}</code></td><td>1, 2, 3, 4, 5, 6, 7</td></tr>
                 <tr><td><code>{2}</code></td><td>2, 3, 4, 5, 6, 7, 8</td></tr>
@@ -549,9 +555,9 @@
               <p>If you have ffmpeg installed on your computer, you can choose the output files format. By default
                 the format is flac, but you can set it to be m4a (ALAC codec), m4a (AAC codec), ogg, wma, wavpack, tta, speex,
                 opus or mp3. I recommend to set 'alac' in Mac OS X and 'flac' in other systems, as they are lossless formats.</p>
-                <p><b>Note:</b> By default all lossy formats are encoded with bitrate 320kb/s. If you want to
+                <div class="notebox"><p><strong>Note:</strong> By default all lossy formats are encoded with bitrate 320kb/s. If you want to
                  change the bitrate, edit splitandconvert.sh or splitandconvert.bat script file and change
-                 the line "bitrate=320K" (or "set bitrate=320K").
+                the line "bitrate=320K" (or "set bitrate=320K").</p></div>
               <p>Since ffmpeg is rather heavy, it is not shipped with the Qoobar installation. On Windows you
                 can download ffmpeg.exe from <a href=\"http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z\">
                 http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z</a>.
@@ -698,15 +704,15 @@
                   </ul>
                 </li>
               </ol>
-              <p><b>Note 1:</b> Qoobar can skip already scanned files. Just click on the "Skip already scanned files" checkbox.</p>
-              <p><b>Note 2:</b> If you are encountering messages like "Couldn't find file" or
+              <div class="notebox"><p><strong>Note:</strong> Qoobar can skip already scanned files. Just click on the "Skip already scanned files" checkbox.</p></div>
+              <div class="notebox"><p><strong>Note:</strong> If you are encountering messages like "Couldn't find file" or
                 "The FLAC file could not be opened", open the Qoobar settings dialog
                 and on the Utilities page set the "Copy files into temp folder before replaygaining them" option.
-              </p>
-              <p><b>Note 3:</b> Using of external utilities is not a good way to do scanning.
+              </p></div>
+              <div class="notebox"><p><strong>Note:</strong> Using of external utilities is not a good way to do scanning.
                 Maybe in some distant releases I will implement a unified algorithm
                 just like one Foobar uses.
-              </p>
+              </p></div>
             </div>
 
             <div>
@@ -726,7 +732,7 @@
                 <li><b>Show folder tree</b>: shows/hides the Folder Tree in the main window.</li>
                 <li><b>Folder tree root</b>: allows you to set the top-level folder for the Folder tree</li>
                 <li><b>Characters</b>: characters with diacritical marks of the Tags Edit dialog - edit the text to add or remove characters.
-                  You can also change the font if characters are too small or not recognisable. <i>Note:</i> This option is removed since v.1.6.8 in OS X</li>
+                  You can also change the font if characters are too small or not recognisable. <i>Note:</i> This option is removed in OS X since v.1.6.8</li>
                 <li><b>User interface language</b>: the user interface language</li>
                 <li><b>Toolbar icons theme</b>: the current set of Qoobar icons</li>
               </ul>
@@ -814,7 +820,7 @@
                   <p>If you want to remove some tag from the scheme, click on any field on the tag row and then click "-". Removing of standard tags
                     (that is Composer through ISRC) is not supported. If you want to remove them, simply hide them by choosing the "Show/hide tags..."
                   option in the Tags Table context menu.</p>
-                  <p><b>Note:</b> Please if possible restart Qoobar so the scheme changes can fully be applied.</p>
+                  <div class="notebox"><p><b>Note:</b> Please if possible restart Qoobar so the scheme changes can fully be applied.</p></div>
                   <p>There are some peculiarities for ID3v2, Asf and Mp4 formats:</p>
                   <ul>
                     <li><b>ID3v2:</b> Use prefix <code>TXXX:</code> for non-standard text fields,
