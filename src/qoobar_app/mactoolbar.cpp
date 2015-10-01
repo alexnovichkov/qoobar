@@ -153,6 +153,11 @@ void Toolbar::attachToWindow(QMainWindow *window)
     delete se;
 }
 
+void Toolbar::detachFromWindow()
+{
+
+}
+
 void Toolbar::updateEnabled(QAction *act)
 {DD;
     QAction *a = d->hash.value(act);

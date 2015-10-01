@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="The default tagging scheme fields"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Appendix 1. Default tagging scheme</title>
+  </head>
+  <body><a name="appendix1"></a>
+    <a name="defaultscheme"></a>
+    <nav>
+      <ul>
+  			<li><a href="index.htm">Overview</a></li>
+  			<li><a href="interface-nav.html">Interface</a></li>
+  			<li><a href="howto-nav.html">How to...</a></li>
+  			<li><a href="more-nav.html">Advanced</a></li>
+  			<li><a href="preferences-nav.html">Preferences</a></li>
+  			<li><a href="appendixes-nav.html">Appendixes</a></li>
+  		</ul>
+    </nav>
+    
+    <div id="article">
+    <div class="pageNavigationLinks">
+      <a class="homeLink" href="appendixes-nav.html">Up</a>
+    </div>
+    
+    <h1 class="article">Appendix 1. The default tagging scheme</h1>
+<p>The table contains all fields that Qoobar reads and writes in 5 different tag types:
+              ID3v2.4, APE, Xiph, Asf, MP4.</p>
+              <p><span class="internal">Internal</span> means that this field is stored in the file without any field key.</p>
+              <table>
+                <tr>
+                  <th><br /></th>
+                  <th>ID3v2.4 fields</th>
+                  <th>Vorbis comments</th>
+                  <th>APE fields</th>
+                  <th>Asf fields</th>
+                  <th>MP4 fields</th>
+                </tr>
+                <tr>
+                  <td><b>Composer</b></td>
+                  <td>TCOM</td>
+                  <td>COMPOSER</td>
+                  <td>COMPOSER</td>
+                  <td>WM/Composer</td>
+                  <td>©wrt</td>
+                </tr>
+                <tr>
+                  <td><b>Album</b></td>
+                  <td>TALB</td>
+                  <td>ALBUM</td>
+                  <td>ALBUM</td>
+                  <td>WM/AlbumTitle</td>
+                  <td>©alb</td>
+                </tr>
+                <tr>
+                  <td><b>Original Album</b></td>
+                  <td>TOAL</td>
+                  <td>ORIGINALALBUM</td>
+                  <td>ORIGINALALBUM</td>
+                  <td>WM/OriginalAlbumTitle</td>
+                  <td>----:com.apple.iTunes:ORIGINALALBUM</td>
+                </tr>
+                <tr>
+                  <td><b>Title</b></td>
+                  <td>TIT2</td>
+                  <td>TITLE</td>
+                  <td>TITLE</td>
+                  <td><span class="internal">Internal</span></td>
+                  <td>©nam</td>
+                </tr>
+                <tr>
+                  <td><b>Subtitle</b> <SUP><a href="#subtitle">1</a>
+                  </SUP></td>
+                  <td>TIT3</td>
+                  <td>SUBTITLE</td>
+                  <td>SUBTITLE</td>
+                  <td>WM/SubTitle</td>
+                  <td>subt</td>
+                </tr>
+                <tr>
+                  <td><b>Music Category</b> <SUP><a href="#category">2</a>
+                  </SUP></td>
+                  <td>TIT1</td>
+                  <td>GROUPING</td>
+                  <td>GROUPING</td>
+                  <td>WM/ContentGroupDescription</td>
+                  <td>©grp</td>
+                </tr>
+                <tr>
+                  <td><b>Artist</b></td>
+                  <td>TPE1</td>
+                  <td>ARTIST</td>
+                  <td>ARTIST</td>
+                  <td><span class="internal">Internal</span></td>
+                  <td>©ART</td>
+                </tr>
+                <tr>
+                  <td><b>Original Artist</b></td>
+                  <td>TOPE</td>
+                  <td>ORIGINALARTIST</td>
+                  <td>ORIGINALARTIST</td>
+                  <td>WM/OriginalArtist</td>
+                  <td>©ope</td>
+                </tr>
+                <tr>
+                  <td><b>Performer</b></td>
+                  <td>TXXX:PERFORMER</td>
+                  <td>PERFORMER</td>
+                  <td>PERFORMER</td>
+                  <td>foobar2000/PERFORMER</td>
+                  <td>----:com.apple.iTunes:PERFORMER</td>
+                </tr>
+                <tr>
+                  <td><b>Comment</b></td>
+                  <td>COMM:</td>
+                  <td>DESCRIPTION;<br />COMMENT</td>
+                  <td>COMMENT</td>
+                  <td><span class="internal">Internal</span></td>
+                  <td>©cmt</td>
+                </tr>
+                <tr>
+                  <td><b>Genre</b></td>
+                  <td>TCON</td>
+                  <td>GENRE</td>
+                  <td>GENRE</td>
+                  <td>WM/Genre</td>
+                  <td>©gen</td>
+                </tr>
+                <tr>
+                  <td><b>Year</b></td>
+                  <td>TDRC</td>
+                  <td>DATE</td>
+                  <td>DATE</td>
+                  <td>WM/Year</td>
+                  <td>©day</td>
+                </tr>
+                <tr>
+                  <td><b>Track Number</b></td>
+                  <td>TRCK</td>
+                  <td>TRACK;<br />TRACKNUMBER;<br />TRACKNUM</td>
+                  <td>TRACKNUMBER</td>
+                  <td>WM/TrackNumber</td>
+                  <td>trkn</td>
+                </tr>
+                <tr>
+                  <td><b>Total Tracks</b></td>
+                  <td>TRCK</td>
+                  <td>TOTALTRACKS;<br />TRACKNUMBER;<br />TRACKTOTAL</td>
+                  <td>TOTALTRACKS;<br />TRACKNUMBER</td>
+                  <td>WM/TrackNumber;<br />TotalTracks</td>
+                  <td>trkn</td>
+                </tr>
+                <tr>
+                  <td><b>Conductor</b></td>
+                  <td>TPE3</td>
+                  <td>CONDUCTOR</td>
+                  <td>CONDUCTOR</td>
+                  <td>WM/Conductor</td>
+                  <td>cond</td>
+                </tr>
+                <tr>
+                  <td><b>Orchestra</b></td>
+                  <td>TXXX:ORCHESTRA<sup><a href="#aart">3</a></sup></td>
+                  <td>ORCHESTRA</td>
+                  <td>ORCHESTRA</td>
+                  <td>Orchestra<sup><a href="#aart">3</a></sup></td>
+                  <td>----:com.apple.iTunes:ORCHESTRA</td>
+                </tr>
+                <tr>
+                  <td><b>Publisher</b></td>
+                  <td>TPUB</td>
+                  <td>LABEL</td>
+                  <td>LABEL</td>
+                  <td>WM/Publisher</td>
+                  <td>labl</td>
+                </tr>
+                <tr>
+                  <td><b>Copyright</b></td>
+                  <td>TCOP</td>
+                  <td>COPYRIGHT</td>
+                  <td>COPYRIGHT</td>
+                  <td><span class="internal">Internal</span></td>
+                  <td>©cpy;cprt</td>
+                </tr>
+                <tr>
+                  <td><b>Mood</b></td>
+                  <td>COMM:MusicMatch_Mood;<br />PRIV:WM/Mood</td>
+                  <td>MOOD</td>
+                  <td>MOOD</td>
+                  <td>WM/Mood</td>
+                  <td>mood</td>
+                </tr>
+                <tr>
+                  <td><b>Beats Per Minute</b></td>
+                  <td>TBPM</td>
+                  <td>BPM</td>
+                  <td>BPM</td>
+                  <td>WM/BeatsPerMinute</td>
+                  <td>tmpo</td>
+                </tr>
+                <tr>
+                  <td><b>Lyricist</b> <SUP><a href="#lyricist">4</a>
+                  </SUP></td>
+                  <td>TEXT</td>
+                  <td>LYRICIST</td>
+                  <td>LYRICIST</td>
+                  <td>WM/Writer</td>
+                  <td>lyrt</td>
+                </tr>
+                <tr>
+                  <td><b>Original Lyricist</b></td>
+                  <td>TOLY</td>
+                  <td>ORIGINALLYRICIST</td>
+                  <td>ORIGINALLYRICIST</td>
+                  <td>WM/OriginalLyricist</td>
+                  <td>olyr</td>
+                </tr>
+                <tr>
+                  <td><b>Lyrics</b></td>
+                  <td>USLT</td>
+                  <td>LYRICS</td>
+                  <td>LYRICS</td>
+                  <td>WM/Lyrics</td>
+                  <td>©lyr</td>
+                </tr>
+                  <tr>
+                  <td><b>Key</b> <SUP><a href="#key">5</a></SUP></td>
+                  <td>TKEY</td>
+                  <td>KEY</td>
+                  <td>KEY</td>
+                  <td>WM/InitialKey</td>
+                  <td>----:com.apple.iTunes:KEY</td>
+                </tr>
+                <tr>
+                  <td><b>Cover art</b></td>
+                  <td>APIC</td>
+                  <td>COVERART /<br /> METADATA_BLOCK_PICTURE<SUP><a href="#picogg">6</a></SUP></td>
+                  <td>Cover Art (front)</td>
+                  <td>WM/Picture</td>
+                  <td>covr</td>
+                </tr>
+                <tr>
+                  <td><b>Disc number</b></td>
+                  <td>TPOS</td>
+                  <td>DISCNUMBER</td>
+                  <td>DISCNUMBER</td>
+                  <td>WM/PartOfSet</td>
+                  <td>disk</td>
+                </tr>
+                <tr>
+                  <td><b>Total discs</b></td>
+                  <td>TXXX:TOTALDISCS;<br />TPOS</td>
+                  <td>TOTALDISCS;<br />DISCNUMBER</td>
+                  <td>TOTALDISCS;<br />DISCNUMBER</td>
+                  <td>foobar2000/TOTALDISCS;<br />WM/PartOfSet</td>
+                  <td>disk</td>
+                </tr>
+                <tr>
+                  <td><b>Encoded by</b></td>
+                  <td>TENC</td>
+                  <td>ENCODEDBY</td>
+                  <td>ENCODEDBY</td>
+                  <td>WM/EncodedBy;<br />WM/CodedBy</td>
+                  <td>©enc</td>
+                </tr>
+                <tr>
+                  <td><b>Remixed by</b></td>
+                  <td>TPE4</td>
+                  <td>VERSION</td>
+                  <td>VERSION</td>
+                  <td>WM/ModifiedBy</td>
+                  <td>rmix</td>
+                </tr>
+                <tr>
+                  <td><b>Rating</b> <sup><a href="#rating">7</a></sup></td>
+                  <td>POPM;<br />COMM:MusicMatch_Preference</td>
+                  <td>RATING</td>
+                  <td>RATING</td>
+                  <td>WM/SharedUserRating</td>
+                  <td>--</td>
+                </tr>
+                <tr>
+                  <td><b>ISRC</b></td>
+                  <td>TSRC</td>
+                  <td>ISRC</td>
+                  <td>ISRC</td>
+                  <td>WM/ISRC</td>
+                  <td>ISRC</td>
+                </tr>
+                <tr>
+                  <td><b>URL</b></td>
+                  <td>WXXX:</td>
+                  <td>URL</td>
+                  <td>URL</td>
+                  <td>WM/URL</td>
+                  <td>©url</td>
+                </tr>
+                <tr>
+                  <td><b>Album artist</b></td>
+                  <td>TXXX:ALBUMARTIST;<br />TPE2<sup><a href="#aart">3</a></sup></td>
+                  <td>ALBUM ARTIST</td>
+                  <td>ALBUM ARTIST</td>
+                  <td>WM/AlbumArtist;<br />AlbumArtist<sup><a href="#aart">3</a></sup></td>
+                  <td>aART</td>
+                </tr>
+              </table>
+              <p><a id="subtitle"></a><SUP>1</SUP> The opus number of the composition
+                (Beethoven's 8th Symphony has opus number 93) or years of writing or something else.
+              </p>
+              <p><a id="category"></a><SUP>2</SUP> The music form of your music, for example for
+                the Mozart's opera "Die Zauberflote" Music category will be "Opera", for Rachmaninov's 2nd
+                concerto the music form is "Piano Concerto" or "Concerto for piano and symphony orchestra" and so on.</p>
+              <p><a id="aart"></a><sup>3</sup> These fields do not follow the id3v2 specification,
+                which provides "TPE2" for orchestra/band/ensemble etc. But due to consistency with Tag&amp;Rename
+                the tag "Orchestra" is now written in TXXX:ORCHESTRA, and the tag "Album artist" goes to TPE2.
+                Wma files have the same difficulty.
+              </p>
+              <p><a id="lyricist"></a><SUP>4</SUP> The author of opera libretto, of song words etc.</p>
+              <p><a id="key"></a><SUP>5</SUP> The tonality of a composition, for example Beethoven's
+              Fifth Symphony has the key (tonality) C Minor (c-moll, ut mineur etc.).</p>
+              <p><a id="picogg"></a><SUP>6</SUP> It depends on the option you set in the Qoobar settings.</p>
+              <p><a id="rating"></a><sup>7</sup> A number from 1 to 5.</p>
+    <hr/>
+      <p class="copyright">© 2009-2015 Alex Novichkov</p>
+    </div>
+</body>
+</html>

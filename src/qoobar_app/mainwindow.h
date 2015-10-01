@@ -86,6 +86,8 @@ protected Q_SLOTS:
     void dragEnterEvent(QDragEnterEvent *);
     void dropEvent(QDropEvent *);
     void closeEvent(QCloseEvent *);
+public Q_SLOTS:
+    void showSettingsDialog();
 private Q_SLOTS:
     void initRest();
     void addDir();
@@ -94,9 +96,7 @@ private Q_SLOTS:
     void addFromDirView();
     void showHelp();
     void checkUpdates();
-    void showSettingsDialog();
     void saveSplitterState();
-
     void closeTab(int);
     void closeCurrentTab();
     void closeOtherTabs(int);

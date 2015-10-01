@@ -38,6 +38,7 @@
 #include "replaygainer.h"
 #include "qbutton.h"
 #include "qoobarglobals.h"
+#include "qoobarhelp.h"
 
 enum {
     RG_NUMBER=0,

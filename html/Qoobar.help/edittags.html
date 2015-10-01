@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="The description of most editing operations"/>
+    <meta name="KEYWORDS" content="edit, change, type"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Edit Tags</title>
+  </head>
+  <body><a name="edittags"></a>
+    <nav>
+      <ul>
+  			<li><a href="index.htm">Overview</a></li>
+  			<li><a href="interface-nav.html">Interface</a></li>
+  			<li><a href="howto-nav.html">How to...</a></li>
+  			<li><a href="more-nav.html">Advanced</a></li>
+  			<li><a href="preferences-nav.html">Preferences</a></li>
+  			<li><a href="appendixes-nav.html">Appendixes</a></li>
+  		</ul>
+    </nav>
+    
+    <div id="article">
+    <div class="pageNavigationLinks">
+      <a class="homeLink" href="howto-nav.html">Up</a>
+    </div>
+    
+    <h1 class="article">Edit tags</h1>
+      <p>After you add some files to the Files Table, you can start editing tags. Qoobar supports two ways of editing: edit in the Files Table and edit in the Tags Table.</p>
+      <h2>Edit in the Files Table</h2>
+      <p>This feature allows you to change one tag of one file at a time. You can only change standard tags that are visible in the Files Table. 
+      To change a tag, double-click on it, type the new value, then press Enter.</p>
+      <p><img src="images/fileediting.png"/></p>
+      <p>You can use any <a href="placeholders.html#placeholders">placeholder</a> and <a href="placeholders.html#functions">functions</a>, combining them to achieve the desirable result.</p>
+      <h2>Edit in the Tags Table</h2>
+      <p>The Tags Table allows you to change tags in a group of files.</p>
+      <ol>
+        <li>Select several files in the Files Table.</li>
+        <li>To set <b>one tag for all selected files</b>, click on this tag (f.e. on the "Artist" tag) and type a text.<br/>
+          <img src="images/onetag.png"/></li>
+        <li>To edit <b>one tag file by file</b>, double-click the tag. See also <a href="editdialog.html">The Edit Dialog</a>.</li>
+      <li><p>To number tracks starting from 1 to <i>N</i> (where <i>N</i> is the number of selected files),
+           click on the "Track number" tag, type <code>1</code> and press <span class="hotkey">Enter</span>.</p>
+  <div class="notebox"><strong>Note:</strong> If you type <code>01</code>, track numbers will be two-digit formatted: 01, 02 etc.</div></li>
+    <li>To remove some tags, select these tags in the Tags Table and press <span class="hotkey">Delete</span>.</li>
+    <li>To delete all tags from selected files click <img src="images/Delete.png"/>. It removes all tags which Qoobar can read. You can undo the deletion.</li>
+      </ol>
+<hr/>
+  <h2>Copying and pasting tags</h2>
+  <p>If you copy only one tag (only one line in the Tags Table), you can paste
+  it where you want, even if you select other files.</p>
+  <p>If you copy several tags (Composer and Album, for example),
+  you can only paste them into the same tags (though you can select other files).</p>
+  <div class="notebox"><p><strong>Note:</strong> If the option "Automatically fill a tag when pasting a single line" 
+    is enabled in the Settings Dialog, then you can fill tags in more than one file using just one file as a source.
+    To achieve this, copy the desired tags of this file, then select several other files and paste the selected tags into them.
+    All files will be filled, not just the first one.</p></div>
+  <p>You can paste some text from the clipboard into one selected tag.</p>
+  <p>Copying selected tags into the clipboard is also possible.</p>
+<hr/>
+  <h2>Operations with tags</h2>
+  <p>There is a number of operations that you can use to edit tags.
+  You can find them in the context menu:</p>
+  <p><img src="images/operations.png"/></p>
+  <ul>
+    <li><b>Change case</b> - changes case to lower, upper, sentence-like etc. The equivalent functions:
+    <code>$lower</code>, <code>$upper</code>, <code>$caps</code>, <code>$caps2</code>.</li>
+      <li><b>Simplify whitespaces</b> - removes leading, trailing and inner extra whitespaces. The equivalent function:
+      <code>$simplify</code></li>
+        <li><b>Remove diacritics</b> - replaces latin characters with diacritical marks by plain ones. The equivalent functions:
+        <code>$ansi</code> or <code>$ascii</code></li>
+          <li><b>Transliterate</b> - replaces cyrillic (Russian) characters with latin ones according to
+            <a href="transliterationscheme.html">this scheme</a>. The equivalent function: <code>$transliterate</code>.
+          </li>
+          <li><b>Fix encoding</b> - recodes tags written in local encodings (f.e. Russian Windows 1251, KOI8-R, and CP866) into UTF8.
+            Qoobar uses enca for guessing the tag encoding, so if you want a better guess, please set a preferable language in the Settings dialog.
+            The default enca guess language is Russian. The equivalent function: <code>$recode</code>.
+          </li>
+        </ul>
+        <hr/>
+   	  <p class="copyright">© 2009-2015 Alex Novichkov</p>
+   	</div>
+</body>
+</html>

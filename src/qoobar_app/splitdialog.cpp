@@ -36,11 +36,12 @@
 #include "cuesplitter.h"
 #include "qoobarglobals.h"
 #include "qbutton.h"
+#include "qoobarhelp.h"
 
 SplitDialog::SplitDialog(QWidget *parent) :
     QDialog(parent)
 {DD;
-    setWindowTitle(tr("Split an image file by cue"));
+    setWindowTitle(tr("Split CD image file by cue"));
     setWindowModality(Qt::WindowModal);
 
     splitter = new CueSplitter(this);

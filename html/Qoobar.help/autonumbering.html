@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Using the autonumbering function in edit operations"/>
+    <meta name="KEYWORDS" content="autonumber"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Autonumbering function</title>
+  </head>
+  
+  <body><a name="autonumbering"></a>
+    <nav>
+      <ul>
+  			<li><a href="index.htm">Overview</a></li>
+  			<li><a href="interface-nav.html">Interface</a></li>
+  			<li><a href="howto-nav.html">How to...</a></li>
+  			<li><a href="more-nav.html">Advanced</a></li>
+  			<li><a href="preferences-nav.html">Preferences</a></li>
+  			<li><a href="appendixes-nav.html">Appendixes</a></li>
+  		</ul>
+    </nav>
+    
+    <div id="article">
+    <div class="pageNavigationLinks">
+      <a class="homeLink" href="more-nav.html">Up</a>
+    </div>
+    
+    <h1 class="article">Autonumbering</h1>
+      <p>In rare cases there may be a necessity to add some highly structured text to a tag.
+        For example, when you are editing some opera and want to add text like "Act 1. Scene 1." etc. to every track title.
+        It can be quite tedious to type all these acts and scenes manually. Instead use the autonumbering function:</p>
+      <pre>{startNumber-endNumber, someNumber:repeatNTimes, someOtherNumber:repeatMTimes; otherStartNumber, m1:k1, m2:k2}</pre>
+      <p>Let's see an example. Suppose we have 'raw' track titles of Debussy's opera "Pelleas and Melisande".
+        We want to structure them by giving each track title a description: "Act 1. Scene 2. Title" and so on.
+        So we have:
+      </p>
+      <table>
+        <tr>
+          <th>Original titles</th>
+          <th>What we want to get</th>
+        </tr>
+        <tr>
+          <td>Je ne pourrai plus sortir de cette forêt<br />
+            Qu'est-ce qui brille ainsi, au fond de l'eau?<br />
+            Interlude (Orchestre)<br />
+            Voici ce qu'il écrit à son frère Pelléas: ''Un soir, je l'ai trouvée''<br />
+            Je n'en dis rien<br />
+            Grand-père, j'ai reçu en même temps que la lettre de mon frère<br />
+            Interlude (Orchestre)<br />
+            Il fait sombre dans les jardins<br />
+            Hoé! Hisse hoé! Hoé! Hoé!<br />
+            Vous ne savez pas où je vous ai menée?<br />
+            C'est au bord d'une fontaine aussi qu'il vous a trouvée?<br />
+            Interlude (Orchestre)<br />
+            Ah! Ah! Tout va bien, cela ne sera rien<br />
+            Je suis... je suis malade ici<br />
+            Il est vrai que ce château est très vieux et très sombre
+          </td>
+          <td>Act 1. Scene 1. Je ne pourrai plus sortir de cette forêt<br />
+            Act 1. Scene 1. Qu'est-ce qui brille ainsi, au fond de l'eau?<br />
+              Act 1. Scene 1. Interlude (Orchestre)<br />
+              Act 1. Scene 2. Voici ce qu'il écrit à son frère Pelléas: ''Un soir, je l'ai trouvée''<br />
+              Act 1. Scene 2. Je n'en dis rien<br />
+              Act 1. Scene 2. Grand-père, j'ai reçu en même temps que la lettre de mon frère<br />
+              Act 1. Scene 2. Interlude (Orchestre)<br />
+              Act 1. Scene 3. Il fait sombre dans les jardins<br />
+              Act 1. Scene 3. Hoé! Hisse hoé! Hoé! Hoé!<br />
+              Act 2. Scene 1. Vous ne savez pas où je vous ai menée?<br />
+              Act 2. Scene 1. C'est au bord d'une fontaine aussi qu'il vous a trouvée?<br />
+              Act 2. Scene 1. Interlude (Orchestre)<br />
+              Act 2. Ah! Ah! Tout va bien, cela ne sera rien<br />
+              Act 2. Je suis... je suis malade ici<br />
+              Act 2. Il est vrai que ce château est très vieux et très sombre
+            </td>
+          </tr>
+       </table>
+
+       <p>Let's compose our functions according to what we want to achieve:</p>
+       <p>Acts number from 1, Act 1 lasts 9 tracks, Act 2 lasts 6 tracks, so for the acts we have:</p>
+       <pre>{1, 1:9, 2:6}</pre>
+       <p>Act 1 consists of 3 scenes, where Scene 1 contains 3 tracks, Scene 2 contains 4 tracks, and Scene 3 is 2 tracks.
+       Then Act 2 begins, so we need to start numeration from the beginning (thus adding ';').
+       Scene 1 of Act 1 contains 3 tracks, so for the scenes we get </p>
+       <pre>{1-3, 1:3, 2:4, 3:2; 1-1, 1:3}</pre>
+       <p>We do not need Scene 2 in Act 2, so we should use square brackets to exclude this text:</p>
+       <pre>Act {1, 1:9, 2:6}. [Scene {1-3, 1:3, 2:4, 3:2; 1-1, 1:3}. ]%t</pre>
+       <p>Type this text into the title tag to achieve our goal!</p>
+       <div class="notebox"><p><b>Tip:</b> You can omit commas: <code>{1-3 1:3 2:4 3:2; 1-1 1:3}</code>.</p></div>
+       <p><strong>More examples: we have selected 7 files</strong></p>
+       <table>
+         <tr><th>Function</th><th>What we get file by file</th></tr>
+         <tr><td><code>{}</code></td><td>1, 2, 3, 4, 5, 6, 7</td></tr>
+         <tr><td><code>{1}</code></td><td>1, 2, 3, 4, 5, 6, 7</td></tr>
+         <tr><td><code>{2}</code></td><td>2, 3, 4, 5, 6, 7, 8</td></tr>
+         <tr><td><code>{1-5}</code></td><td>1, 2, 3, 4, 5, _, _</td></tr>
+         <tr><td><code>{2-5}</code></td><td>2, 3, 4, 5, _, _, _</td></tr>
+         <tr><td><code>{1, 1:2}</code></td><td>1, 1, 2, 3, 4, 5, 6</td></tr>
+         <tr><td><code>{1, 1:2, 2:3}</code></td><td>1, 1, 2, 2, 2, 3, 4</td></tr>
+         <tr><td><code>{1-3, 1:2, 2:3; 1, 1:2}</code></td><td>1, 1, 2, 2, 2, 1, 1</td></tr>
+       </table>
+       <p>Here _ means "nothing" and not underscore.</p>
+      <hr/>
+      <p class="copyright">© 2009-2015 Alex Novichkov</p>
+      
+   </div>
+</body>
+</html>

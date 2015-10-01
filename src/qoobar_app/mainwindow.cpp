@@ -48,6 +48,7 @@
 #include "windows.h"
 #endif
 
+#include "qoobarhelp.h"
 #include "sparkleupdater.h"
 #include "model.h"
 #include "mactoolbar.h"
@@ -180,6 +181,7 @@ MainWindow::MainWindow()
 
 MainWindow::~MainWindow()
 {DD;
+    filesToolBar->detachFromWindow();
 }
 
 void MainWindow::init()
@@ -196,7 +198,9 @@ void MainWindow::init()
     //menu
     createMenus();
     menuSeparator = menus[QSL("edit")]->actions().first();
-
+#ifdef Q_OS_MAC
+    menus[QSL("edit")]->addAction(actions["specialCharacters"]);
+#endif
     const QStringList toolBarActs =
             QString("addDir,addFiles,split,,save,rereadTags,,*,rename,fill,"
                     "removeTags,delAllFiles,,play,,cut,copy,paste,newTag").split(QSL(","));
@@ -405,6 +409,10 @@ void MainWindow::createActions()
         actions.insert(actionsDescr[i].key,a);
         i++;
     }
+    QAction *ac = new QAction(tr("Special Characters..."),this);
+    ac->setShortcut(Qt::CTRL+Qt::META+Qt::Key_Space);
+    ac->setMenuRole(QAction::TextHeuristicRole);
+    actions["specialCharacters"]=ac;
 
     actions[QSL("help")]->setShortcutContext(Qt::ApplicationShortcut);
     actions[QSL("delFiles")]->setShortcutContext(Qt::WidgetShortcut);
@@ -445,6 +453,7 @@ void MainWindow::retranslateActions()
         redoAct->setText(tr("&Redo"));
         redoAct->setProperty("shortDescr",tr("Redo"));
     }
+    actions["specialCharacters"]->setText(tr("Special Characters..."));
 
     filesToolBar->retranslateUI();
 

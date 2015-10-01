@@ -18,6 +18,7 @@ public:
     void retranslateUI();
     void addSeparator();
     void attachToWindow(QMainWindow *window);
+    void detachFromWindow();
     void writeState();
 public Q_SLOTS:
     void updateEnabled(QAction *act);

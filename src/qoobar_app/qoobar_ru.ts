@@ -845,37 +845,37 @@ after you restart Qoobar</source>
 <context>
     <name>MAC_APPLICATION_MENU</name>
     <message>
-        <location filename="mainwindow.cpp" line="57"/>
+        <location filename="mainwindow.cpp" line="58"/>
         <source>Services</source>
         <translation>Службы</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="58"/>
+        <location filename="mainwindow.cpp" line="59"/>
         <source>Hide %1</source>
         <translation>Скрыть %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="59"/>
+        <location filename="mainwindow.cpp" line="60"/>
         <source>Hide Others</source>
         <translation>Скрыть другие</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="60"/>
+        <location filename="mainwindow.cpp" line="61"/>
         <source>Show All</source>
         <translation>Показать всё</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="61"/>
+        <location filename="mainwindow.cpp" line="62"/>
         <source>Preferences...</source>
         <translation>Настройки...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="62"/>
+        <location filename="mainwindow.cpp" line="63"/>
         <source>Quit %1</source>
         <translation>Завершить %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="63"/>
+        <location filename="mainwindow.cpp" line="64"/>
         <source>About %1</source>
         <translation>О программе %1</translation>
     </message>
@@ -900,414 +900,414 @@ after you restart Qoobar</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.cpp" line="187"/>
-        <location filename="mainwindow.cpp" line="361"/>
+        <location filename="mainwindow.cpp" line="189"/>
+        <location filename="mainwindow.cpp" line="365"/>
         <source>Qoobar - Tag editor for classical music</source>
         <oldsource>Tag editor just like foobar</oldsource>
         <translation>Qoobar - редактор тегов для классической музыки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="845"/>
+        <location filename="mainwindow.cpp" line="854"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - переименование вкладки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="131"/>
+        <location filename="mainwindow.cpp" line="132"/>
         <source>&amp;New tab</source>
         <oldsource>New Tab</oldsource>
         <translation>&amp;Новая вкладка</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="68"/>
+        <location filename="mainwindow.cpp" line="69"/>
         <source>Add folder...</source>
         <translation>Добавить папку...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="101"/>
+        <location filename="mainwindow.cpp" line="102"/>
         <source>About Qt</source>
         <translation>О Qt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="127"/>
+        <location filename="mainwindow.cpp" line="128"/>
         <source>Split disc...</source>
         <translation>Разрезать диск...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="99"/>
-        <location filename="mainwindow.cpp" line="593"/>
+        <location filename="mainwindow.cpp" line="100"/>
+        <location filename="mainwindow.cpp" line="602"/>
         <source>About Qoobar</source>
         <translation>О Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="67"/>
+        <location filename="mainwindow.cpp" line="68"/>
         <source>&amp;Add folder...</source>
         <translation>&amp;Добавить папку...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="69"/>
+        <location filename="mainwindow.cpp" line="70"/>
         <source>Add folder</source>
         <translation>Папка</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="71"/>
+        <location filename="mainwindow.cpp" line="72"/>
         <source>Add &amp;files...</source>
         <translation>Добавить &amp;файлы...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="73"/>
+        <location filename="mainwindow.cpp" line="74"/>
         <source>Add files</source>
         <translation>Файлы</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="74"/>
+        <location filename="mainwindow.cpp" line="75"/>
         <source>Shift+Ctrl+O</source>
         <translation>Shift+Ctrl+O</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="75"/>
+        <location filename="mainwindow.cpp" line="76"/>
         <source>&amp;Save current tab</source>
         <translation>&amp;Сохранить эту вкладку</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="76"/>
+        <location filename="mainwindow.cpp" line="77"/>
         <source>Save current tab</source>
         <translation>Сохранить эту вкладку</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="77"/>
+        <location filename="mainwindow.cpp" line="78"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="79"/>
+        <location filename="mainwindow.cpp" line="80"/>
         <source>Save all &amp;tabs</source>
         <translation>Сохранить &amp;все вкладки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="80"/>
+        <location filename="mainwindow.cpp" line="81"/>
         <source>Save all tabs</source>
         <translation>Сохранить все вкладки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="81"/>
+        <location filename="mainwindow.cpp" line="82"/>
         <source>Save all</source>
         <translation>Сохранить все</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="83"/>
+        <location filename="mainwindow.cpp" line="84"/>
         <source>&amp;Rename files...</source>
         <translation>&amp;Переименовать файлы...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="85"/>
+        <location filename="mainwindow.cpp" line="86"/>
         <source>Rename</source>
         <translation>Переименовать</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="86"/>
+        <location filename="mainwindow.cpp" line="87"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="87"/>
+        <location filename="mainwindow.cpp" line="88"/>
         <source>&amp;Fill tags...</source>
         <translation>&amp;Заполнить теги...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="89"/>
+        <location filename="mainwindow.cpp" line="90"/>
         <source>Fill</source>
         <translation>Заполнить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="90"/>
+        <location filename="mainwindow.cpp" line="91"/>
         <source>Ctrl+F</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="91"/>
+        <location filename="mainwindow.cpp" line="92"/>
         <source>&amp;Reread tags</source>
         <translation>&amp;Перечитать теги</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="93"/>
+        <location filename="mainwindow.cpp" line="94"/>
         <source>Reread</source>
         <translation>Перечитать</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="96"/>
+        <location filename="mainwindow.cpp" line="97"/>
         <source>Help on Qoobar</source>
         <translation>Справка по Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="97"/>
+        <location filename="mainwindow.cpp" line="98"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="99"/>
+        <location filename="mainwindow.cpp" line="100"/>
         <source>About</source>
         <translation>О</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="101"/>
+        <location filename="mainwindow.cpp" line="102"/>
         <source>About &amp;Qt</source>
         <translation>О &amp;Qt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="103"/>
+        <location filename="mainwindow.cpp" line="104"/>
         <source>Settings...</source>
         <translation>Настройки...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="103"/>
+        <location filename="mainwindow.cpp" line="104"/>
         <source>&amp;Settings...</source>
         <translation>&amp;Настройки...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="103"/>
+        <location filename="mainwindow.cpp" line="104"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="105"/>
+        <location filename="mainwindow.cpp" line="106"/>
         <source>Re&amp;move from the list</source>
         <translation>&amp;Удалить из списка</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="105"/>
-        <location filename="mainwindow.cpp" line="107"/>
+        <location filename="mainwindow.cpp" line="106"/>
+        <location filename="mainwindow.cpp" line="108"/>
         <source>Remove</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="106"/>
+        <location filename="mainwindow.cpp" line="107"/>
         <source>Delete</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="107"/>
+        <location filename="mainwindow.cpp" line="108"/>
         <source>C&amp;lear the list</source>
         <translation>&amp;Очистить список</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="108"/>
+        <location filename="mainwindow.cpp" line="109"/>
         <source>Ctrl+Delete</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="109"/>
+        <location filename="mainwindow.cpp" line="110"/>
         <source>&amp;Play selected</source>
         <translation>&amp;Играть выделенное</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="109"/>
+        <location filename="mainwindow.cpp" line="110"/>
         <source>Play</source>
         <translation>Играть</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="110"/>
+        <location filename="mainwindow.cpp" line="111"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="111"/>
+        <location filename="mainwindow.cpp" line="112"/>
         <source>Clear all tags</source>
         <translation>Удалить все теги</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="111"/>
+        <location filename="mainwindow.cpp" line="112"/>
         <source>Clear</source>
         <translation>Очистить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="113"/>
+        <location filename="mainwindow.cpp" line="114"/>
         <source>Cu&amp;t</source>
         <translation>В&amp;ырезать</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="115"/>
+        <location filename="mainwindow.cpp" line="116"/>
         <source>&amp;Copy</source>
         <translation>&amp;Копировать</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="117"/>
+        <location filename="mainwindow.cpp" line="118"/>
         <source>&amp;Paste</source>
         <translation>&amp;Вставить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="119"/>
+        <location filename="mainwindow.cpp" line="120"/>
         <source>Copy to clipboard</source>
         <translation>Копировать в буфер обмена</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="120"/>
+        <location filename="mainwindow.cpp" line="121"/>
         <source>Shift+Ctrl+C</source>
         <translation>Shift+Ctrl+C</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="121"/>
+        <location filename="mainwindow.cpp" line="122"/>
         <source>Paste from clipboard</source>
         <translation>Вставить из буфера обмена</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="122"/>
+        <location filename="mainwindow.cpp" line="123"/>
         <source>Shift+Ctrl+V</source>
         <translation>Shift+Ctrl+V</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="124"/>
+        <location filename="mainwindow.cpp" line="125"/>
         <source>Add new tag...</source>
         <translation>Добавить новый тег...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="123"/>
+        <location filename="mainwindow.cpp" line="124"/>
         <source>&amp;Add new tag...</source>
         <translation>&amp;Добавить новый тег...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="125"/>
+        <location filename="mainwindow.cpp" line="126"/>
         <source>New tag</source>
         <translation>Новый тег</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="127"/>
+        <location filename="mainwindow.cpp" line="128"/>
         <source>Split &amp;disc...</source>
         <translation>&amp;Разрезать диск...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="127"/>
+        <location filename="mainwindow.cpp" line="128"/>
         <source>Split</source>
         <translation>Разрезать</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="129"/>
+        <location filename="mainwindow.cpp" line="130"/>
         <source>E&amp;xit</source>
         <translation>&amp;Выход</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="129"/>
+        <location filename="mainwindow.cpp" line="130"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="130"/>
+        <location filename="mainwindow.cpp" line="131"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="131"/>
+        <location filename="mainwindow.cpp" line="132"/>
         <source>New tab</source>
         <translation>Новая вкладка</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="133"/>
+        <location filename="mainwindow.cpp" line="134"/>
         <source>&amp;Close the tab</source>
         <translation>&amp;Закрыть вкладку</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="133"/>
+        <location filename="mainwindow.cpp" line="134"/>
         <source>Close the tab</source>
         <translation>Закрыть вкладку</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="133"/>
+        <location filename="mainwindow.cpp" line="134"/>
         <source>Close tab</source>
         <translation>Закрыть вкладку</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="135"/>
+        <location filename="mainwindow.cpp" line="136"/>
         <source>Close &amp;other tabs</source>
         <translation>&amp;Закрыть другие вкладки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="135"/>
+        <location filename="mainwindow.cpp" line="136"/>
         <source>Close other tabs</source>
         <translation>Закрыть другие вкладки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="137"/>
+        <location filename="mainwindow.cpp" line="138"/>
         <source>&amp;Rename the tab...</source>
         <translation>&amp;Переименовать вкладку...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="137"/>
+        <location filename="mainwindow.cpp" line="138"/>
         <source>Rename the tab...</source>
         <translation>Переименовать вкладку...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="137"/>
+        <location filename="mainwindow.cpp" line="138"/>
         <source>Rename tab</source>
         <translation>Переименовать вкладку</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="139"/>
+        <location filename="mainwindow.cpp" line="140"/>
         <source>ReplayGain info...</source>
         <translation>ReplayGain данные...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="139"/>
+        <location filename="mainwindow.cpp" line="140"/>
         <source>Edit ReplayGain Info...</source>
         <translation>Изменить ReplayGain данные...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="139"/>
+        <location filename="mainwindow.cpp" line="140"/>
         <source>ReplayGain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="142"/>
+        <location filename="mainwindow.cpp" line="143"/>
         <source>List this folder</source>
         <translation>Добавить эту папку</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="142"/>
+        <location filename="mainwindow.cpp" line="143"/>
         <source>List folder</source>
         <translation>Добавить папку</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="144"/>
         <location filename="mainwindow.cpp" line="145"/>
+        <location filename="mainwindow.cpp" line="146"/>
         <source>List this folder with all subfolders</source>
         <translation>Добавить со всеми подпапками</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="147"/>
         <location filename="mainwindow.cpp" line="148"/>
+        <location filename="mainwindow.cpp" line="149"/>
         <source>Set as folder tree root</source>
         <translation>Установить в качестве корня дерева</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="150"/>
+        <location filename="mainwindow.cpp" line="151"/>
         <source>&amp;Check for updates...</source>
         <translation>Проверить об&amp;новления...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="150"/>
+        <location filename="mainwindow.cpp" line="151"/>
         <source>Check for updates...</source>
         <translation>Проверить обновления...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="150"/>
+        <location filename="mainwindow.cpp" line="151"/>
         <source>Check updates</source>
         <translation>Проверить обновления</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="152"/>
+        <location filename="mainwindow.cpp" line="153"/>
         <source>S&amp;earch files...</source>
         <translation>&amp;Искать файлы...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="152"/>
+        <location filename="mainwindow.cpp" line="153"/>
         <source>Search files...</source>
         <translation>Искать файлы...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="152"/>
+        <location filename="mainwindow.cpp" line="153"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="153"/>
+        <location filename="mainwindow.cpp" line="154"/>
         <source>Shift+Ctrl+F</source>
         <translation></translation>
     </message>
@@ -1316,121 +1316,127 @@ after you restart Qoobar</source>
         <translation type="obsolete">Панель инструментов</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="158"/>
+        <location filename="mainwindow.cpp" line="159"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="161"/>
+        <location filename="mainwindow.cpp" line="162"/>
         <source>&amp;Edit</source>
         <translation>&amp;Правка</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="165"/>
+        <location filename="mainwindow.cpp" line="166"/>
         <source>&amp;Tools</source>
         <translation>&amp;Инструменты</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="166"/>
+        <location filename="mainwindow.cpp" line="167"/>
         <source>Tab&amp;s</source>
         <translation>&amp;Вкладки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="95"/>
-        <location filename="mainwindow.cpp" line="167"/>
+        <location filename="mainwindow.cpp" line="96"/>
+        <location filename="mainwindow.cpp" line="168"/>
         <source>&amp;Help</source>
         <translation>&amp;Справка</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="441"/>
+        <location filename="mainwindow.cpp" line="449"/>
         <source>&amp;Undo</source>
         <translation>&amp;Отменить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="445"/>
+        <location filename="mainwindow.cpp" line="453"/>
         <source>&amp;Redo</source>
         <translation>&amp;Повторить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="571"/>
+        <location filename="mainwindow.cpp" line="580"/>
         <source>not installed</source>
         <translation>не установлена</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="583"/>
+        <location filename="mainwindow.cpp" line="592"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</oldsource>
         <translation>&lt;b&gt;Qoobar использует:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="99"/>
+        <location filename="mainwindow.cpp" line="100"/>
         <source>&amp;About Qoobar</source>
         <translation>&amp;О Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="600"/>
+        <location filename="mainwindow.cpp" line="609"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - добавление файлов</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="601"/>
+        <location filename="mainwindow.cpp" line="610"/>
         <source>audio files (%1)</source>
         <translation>Файлы аудио (%1)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="608"/>
+        <location filename="mainwindow.cpp" line="617"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - добавление папки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="72"/>
+        <location filename="mainwindow.cpp" line="73"/>
         <source>Add files...</source>
         <translation>Добавить файлы...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="84"/>
+        <location filename="mainwindow.cpp" line="85"/>
         <source>Rename files...</source>
         <translation>Переименовать файлы...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="92"/>
+        <location filename="mainwindow.cpp" line="93"/>
         <source>Reread tags</source>
         <translation>Перечитать теги</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="109"/>
+        <location filename="mainwindow.cpp" line="110"/>
         <source>Play selected</source>
         <translation>Играть выделенное</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="113"/>
+        <location filename="mainwindow.cpp" line="114"/>
         <source>Cut</source>
         <translation>Вырезать</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="115"/>
+        <location filename="mainwindow.cpp" line="116"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="117"/>
+        <location filename="mainwindow.cpp" line="118"/>
         <source>Paste</source>
         <translation>Вставить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="344"/>
-        <location filename="mainwindow.cpp" line="442"/>
+        <location filename="mainwindow.cpp" line="348"/>
+        <location filename="mainwindow.cpp" line="450"/>
         <source>Undo</source>
         <translation>Отменить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="352"/>
-        <location filename="mainwindow.cpp" line="446"/>
+        <location filename="mainwindow.cpp" line="356"/>
+        <location filename="mainwindow.cpp" line="454"/>
         <source>Redo</source>
         <translation>Повторить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="563"/>
+        <location filename="mainwindow.cpp" line="412"/>
+        <location filename="mainwindow.cpp" line="456"/>
+        <source>Special Characters...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="572"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2013 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
@@ -1439,33 +1445,33 @@ after you restart Qoobar</source>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="590"/>
+        <location filename="mainwindow.cpp" line="599"/>
         <source>&lt;p&gt;This version is compiled as portable</source>
         <translation>&lt;p&gt;Эта версия скомпилирована как переносимая (portable)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="846"/>
+        <location filename="mainwindow.cpp" line="855"/>
         <source>Set a tab name</source>
         <translation>Введите новое название</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="376"/>
-        <location filename="mainwindow.cpp" line="506"/>
+        <location filename="mainwindow.cpp" line="380"/>
+        <location filename="mainwindow.cpp" line="515"/>
         <source>Tab %1</source>
         <translation>Вкладка %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="88"/>
+        <location filename="mainwindow.cpp" line="89"/>
         <source>Fill tags...</source>
         <translation>Заполнить теги...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="105"/>
+        <location filename="mainwindow.cpp" line="106"/>
         <source>Remove from the list</source>
         <translation>Удалить из списка</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="107"/>
+        <location filename="mainwindow.cpp" line="108"/>
         <source>Clear the list</source>
         <translation>Очистить список</translation>
     </message>
@@ -1567,37 +1573,37 @@ all changes in them will not be saved!</source>
 <context>
     <name>NetworkPage</name>
     <message>
-        <location filename="configpages.cpp" line="942"/>
-        <location filename="configpages.cpp" line="989"/>
+        <location filename="configpages.cpp" line="945"/>
+        <location filename="configpages.cpp" line="992"/>
         <source>Use proxy server</source>
         <translation>Использовать прокси</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="950"/>
-        <location filename="configpages.cpp" line="991"/>
+        <location filename="configpages.cpp" line="953"/>
+        <location filename="configpages.cpp" line="994"/>
         <source>Proxy server</source>
         <translation>Прокси-сервер</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="951"/>
-        <location filename="configpages.cpp" line="992"/>
+        <location filename="configpages.cpp" line="954"/>
+        <location filename="configpages.cpp" line="995"/>
         <source>Port</source>
         <translation>Порт</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="952"/>
-        <location filename="configpages.cpp" line="993"/>
+        <location filename="configpages.cpp" line="955"/>
+        <location filename="configpages.cpp" line="996"/>
         <source>Login</source>
         <translation>Логин</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="953"/>
-        <location filename="configpages.cpp" line="994"/>
+        <location filename="configpages.cpp" line="956"/>
+        <location filename="configpages.cpp" line="997"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="980"/>
+        <location filename="configpages.cpp" line="983"/>
         <source>Network</source>
         <translation>Сеть</translation>
     </message>
@@ -1619,72 +1625,72 @@ all changes in them will not be saved!</source>
     <name>PatternsPage</name>
     <message>
         <location filename="configpages.cpp" line="566"/>
-        <location filename="configpages.cpp" line="670"/>
+        <location filename="configpages.cpp" line="673"/>
         <source>Renaming patterns</source>
         <translation>Шаблоны переименования</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="574"/>
-        <location filename="configpages.cpp" line="671"/>
+        <location filename="configpages.cpp" line="577"/>
+        <location filename="configpages.cpp" line="674"/>
         <source>Add pattern</source>
         <translation>Добавить шаблон</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="576"/>
-        <location filename="configpages.cpp" line="672"/>
+        <location filename="configpages.cpp" line="579"/>
+        <location filename="configpages.cpp" line="675"/>
         <source>Remove pattern</source>
         <translation>Удалить шаблон</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="594"/>
-        <location filename="configpages.cpp" line="675"/>
+        <location filename="configpages.cpp" line="597"/>
+        <location filename="configpages.cpp" line="678"/>
         <source>Tagging schemes</source>
         <translation>Схема записи тегов</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="595"/>
-        <location filename="configpages.cpp" line="676"/>
+        <location filename="configpages.cpp" line="598"/>
+        <location filename="configpages.cpp" line="679"/>
         <source>Current scheme</source>
         <translation>Текущая схема</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="619"/>
-        <location filename="configpages.cpp" line="678"/>
+        <location filename="configpages.cpp" line="622"/>
+        <location filename="configpages.cpp" line="681"/>
         <source>Add</source>
         <translation>Добавить</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="621"/>
-        <location filename="configpages.cpp" line="681"/>
+        <location filename="configpages.cpp" line="624"/>
+        <location filename="configpages.cpp" line="684"/>
         <source>Clone this</source>
         <translation>Копировать текущую</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="623"/>
-        <location filename="configpages.cpp" line="682"/>
+        <location filename="configpages.cpp" line="626"/>
+        <location filename="configpages.cpp" line="685"/>
         <source>Using Default</source>
         <translation>Копировать Default</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="627"/>
-        <location filename="configpages.cpp" line="684"/>
+        <location filename="configpages.cpp" line="630"/>
+        <location filename="configpages.cpp" line="687"/>
         <source>Remove</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="616"/>
-        <location filename="configpages.cpp" line="679"/>
+        <location filename="configpages.cpp" line="619"/>
+        <location filename="configpages.cpp" line="682"/>
         <source>Edit</source>
         <translation>Редактировать</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="661"/>
+        <location filename="configpages.cpp" line="664"/>
         <source>Patterns</source>
         <translation>Шаблоны</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="605"/>
-        <location filename="configpages.cpp" line="677"/>
+        <location filename="configpages.cpp" line="608"/>
+        <location filename="configpages.cpp" line="680"/>
         <source>Default</source>
         <translation>Схема по умолчанию</translation>
     </message>
@@ -1693,7 +1699,7 @@ all changes in them will not be saved!</source>
         <translation type="obsolete">Qoobar</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="713"/>
+        <location filename="configpages.cpp" line="716"/>
         <source>Cannot delete the file
 %1.</source>
         <translation>Не могу удалить файл
@@ -1922,52 +1928,52 @@ all changes in them will not be saved!</source>
 <context>
     <name>PluginsPage</name>
     <message>
-        <location filename="configpages.cpp" line="1008"/>
-        <location filename="configpages.cpp" line="1052"/>
+        <location filename="configpages.cpp" line="1011"/>
+        <location filename="configpages.cpp" line="1055"/>
         <source>Download plugins:</source>
         <translation>Интернет-плагины:</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1009"/>
-        <location filename="configpages.cpp" line="1053"/>
+        <location filename="configpages.cpp" line="1012"/>
+        <location filename="configpages.cpp" line="1056"/>
         <source>Tags editing plugins:</source>
         <translation>Плагины изменения тегов:</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1041"/>
+        <location filename="configpages.cpp" line="1044"/>
         <source>Plugins</source>
         <translation>Плагины</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1054"/>
-        <location filename="configpages.cpp" line="1059"/>
+        <location filename="configpages.cpp" line="1057"/>
+        <location filename="configpages.cpp" line="1062"/>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1054"/>
-        <location filename="configpages.cpp" line="1059"/>
+        <location filename="configpages.cpp" line="1057"/>
+        <location filename="configpages.cpp" line="1062"/>
         <source>Version</source>
         <translation>Версия</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1054"/>
-        <location filename="configpages.cpp" line="1059"/>
+        <location filename="configpages.cpp" line="1057"/>
+        <location filename="configpages.cpp" line="1062"/>
         <source>Description</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1055"/>
+        <location filename="configpages.cpp" line="1058"/>
         <source>Manual</source>
         <translation>Вручную</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1056"/>
+        <location filename="configpages.cpp" line="1059"/>
         <source>By CD</source>
         <translation>По CD</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1057"/>
+        <location filename="configpages.cpp" line="1060"/>
         <source>By files</source>
         <translation>По файлам</translation>
     </message>
@@ -2343,73 +2349,73 @@ all changes in them will not be saved!</source>
 <context>
     <name>ReplayGainDialog</name>
     <message>
-        <location filename="replaygaindialog.cpp" line="54"/>
+        <location filename="replaygaindialog.cpp" line="55"/>
         <source>Qoobar - Changing ReplayGain Info</source>
         <translation>Qoobar - Изменение данных ReplayGain</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="65"/>
+        <location filename="replaygaindialog.cpp" line="66"/>
         <source>Update file tags</source>
         <translation>Обновить теги</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="77"/>
+        <location filename="replaygaindialog.cpp" line="78"/>
         <source>Scan per file track gain</source>
         <translation>Сканировать по файлам</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="79"/>
+        <location filename="replaygaindialog.cpp" line="80"/>
         <source>Remove replaygain tags from files</source>
         <translation>Удалить ReplayGain данные</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="78"/>
+        <location filename="replaygaindialog.cpp" line="79"/>
         <source>Scan as a single album</source>
         <translation>Сканировать как единый альбом</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="80"/>
+        <location filename="replaygaindialog.cpp" line="81"/>
         <source>Scan as albums (by tags)</source>
         <translation>Сканировать как альбомы (по тегам)</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="81"/>
+        <location filename="replaygaindialog.cpp" line="82"/>
         <source>Scan as albums (by folder)</source>
         <translation>Сканировать как альбомы (по папкам)</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="98"/>
+        <location filename="replaygaindialog.cpp" line="99"/>
         <source>Skip already scanned files</source>
         <oldsource>Skip already tagged files</oldsource>
         <translation>Пропускать ранее сканированные файлы</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="112"/>
+        <location filename="replaygaindialog.cpp" line="113"/>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="112"/>
+        <location filename="replaygaindialog.cpp" line="113"/>
         <source>Album gain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="112"/>
+        <location filename="replaygaindialog.cpp" line="113"/>
         <source>Track gain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="112"/>
+        <location filename="replaygaindialog.cpp" line="113"/>
         <source>Album peak</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="112"/>
+        <location filename="replaygaindialog.cpp" line="113"/>
         <source>Track peak</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="112"/>
+        <location filename="replaygaindialog.cpp" line="113"/>
         <source>No.</source>
         <translation>№</translation>
     </message>
@@ -2700,75 +2706,89 @@ Please install it.</source>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="settingsdialog.cpp" line="49"/>
-        <location filename="settingsdialog.cpp" line="143"/>
+        <location filename="settingsdialog.cpp" line="52"/>
+        <location filename="settingsdialog.cpp" line="148"/>
         <source>Qoobar settings</source>
         <translation>Настройки Qoobar</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="103"/>
-        <location filename="settingsdialog.cpp" line="151"/>
+        <location filename="settingsdialog.cpp" line="106"/>
+        <location filename="settingsdialog.cpp" line="156"/>
         <source>Reset Settings</source>
         <translation>Сбросить настройки</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.cpp" line="174"/>
+        <source>Qoobar</source>
+        <translation type="unfinished">Qoobar</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.cpp" line="174"/>
+        <source>Reset settings to defaults?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SplitDialog</name>
     <message>
-        <location filename="splitdialog.cpp" line="43"/>
         <source>Split an image file by cue</source>
-        <translation>Разрезать образ диска по cue файлу</translation>
+        <translation type="obsolete">Разрезать образ диска по cue файлу</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="60"/>
+        <location filename="splitdialog.cpp" line="61"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="65"/>
+        <location filename="splitdialog.cpp" line="66"/>
         <source>Change</source>
         <translation>Изменить</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="89"/>
+        <location filename="splitdialog.cpp" line="90"/>
         <source>Warning! Cue file contains non-Latin characters!
 Please choose the encoding:</source>
         <translation>Внимание! Файл cue содержит не латинские символы!
 Выберите нужную кодировку:</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="100"/>
+        <location filename="splitdialog.cpp" line="101"/>
         <source>Start</source>
         <translation>Начать</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="126"/>
+        <location filename="splitdialog.cpp" line="127"/>
         <source>Output folder:</source>
         <translation>Конечная папка:</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="133"/>
+        <location filename="splitdialog.cpp" line="134"/>
         <source>If you want to change the default output format, please install ffmpeg or avconv</source>
         <translation>Если вы хотите изменить формат файлов по умолчанию, установите ffmpeg или avconv</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="135"/>
+        <location filename="splitdialog.cpp" line="136"/>
         <source>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</source>
         <oldsource>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;</oldsource>
         <translation>Если вы хотите изменить формат файлов по умолчанию, скопируйте ffmpeg.exe в папку с qoobar.exe. &lt;br&gt;FFmpeg можно взять здесь: &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;Пользователи OS/2 могут взять ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;здесь&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="123"/>
+        <location filename="splitdialog.cpp" line="124"/>
         <source>Cue file:</source>
         <translation>Файл cue:</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="191"/>
+        <location filename="splitdialog.cpp" line="44"/>
+        <source>Split CD image file by cue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="splitdialog.cpp" line="192"/>
         <source>Choose a folder to save files</source>
         <translation>Выберите папку для сохранения файлов</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="216"/>
+        <location filename="splitdialog.cpp" line="217"/>
         <source>Choose a cue file</source>
         <translation>Выберите файл cue</translation>
     </message>
@@ -2811,7 +2831,7 @@ Please choose the encoding:</source>
         <translation type="obsolete">Картинка</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1068"/>
+        <location filename="tab.cpp" line="1139"/>
         <source>Files in %1 have been modified.</source>
         <translation>Некоторые файлы в %1 были изменены.</translation>
     </message>
@@ -2834,48 +2854,47 @@ Please choose the encoding:</source>
         <translation>Действия</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="858"/>
         <source>Please set a player in the Settings dialog</source>
-        <translation>Сначала задайте плеер в настройках программы</translation>
+        <translation type="obsolete">Сначала задайте плеер в настройках программы</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="925"/>
+        <location filename="tab.cpp" line="996"/>
         <source>Some files have been modified</source>
         <translation>Некоторые файлы были изменены</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="927"/>
+        <location filename="tab.cpp" line="998"/>
         <source>Remove them anyway?</source>
         <translation>Всё равно удалить?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="928"/>
+        <location filename="tab.cpp" line="999"/>
         <source>Yes, remove without saving</source>
         <translation>Да, удалить без сохранения</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="930"/>
+        <location filename="tab.cpp" line="1001"/>
         <source>No, save them and then remove</source>
         <translation>Нет, сначала сохранить, а затем удалить</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="221"/>
-        <location filename="tab.cpp" line="924"/>
+        <location filename="tab.cpp" line="995"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1067"/>
+        <location filename="tab.cpp" line="1138"/>
         <source>Closing Qoobar</source>
         <translation>Закрыть Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1220"/>
+        <location filename="tab.cpp" line="1291"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation>Qoobar - Изменение данных ReplayGain</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1221"/>
+        <location filename="tab.cpp" line="1292"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation>Qoobar умеет сканирвоать только сохраненные файлы.
@@ -2884,8 +2903,8 @@ Do you want to save changes?</source>
     <message>
         <location filename="tab.cpp" line="316"/>
         <location filename="tab.cpp" line="340"/>
-        <location filename="tab.cpp" line="566"/>
-        <location filename="tab.cpp" line="570"/>
+        <location filename="tab.cpp" line="623"/>
+        <location filename="tab.cpp" line="627"/>
         <source>changing tags</source>
         <oldsource>Change tags</oldsource>
         <translation>изменение тегов</translation>
@@ -2920,29 +2939,35 @@ Do you want to save changes?</source>
         <translation>&amp;Запомнить на будущее</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="980"/>
+        <location filename="tab.cpp" line="916"/>
+        <source>Player is not set in the Settings dialog.
+Open the Settings dialog?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tab.cpp" line="1051"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation>Пожалуйста, подождите, пока Qoobar добавляет файлы</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1052"/>
+        <location filename="tab.cpp" line="1123"/>
         <source>Cannot write tags to file:
 %1</source>
         <translation>Не смог записать теги в файл:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1071"/>
+        <location filename="tab.cpp" line="1142"/>
         <source>Do you want to save your changes?</source>
         <translation>Вы хотите сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1072"/>
+        <location filename="tab.cpp" line="1143"/>
         <source>Yes, save</source>
         <translation>Да, сохранить</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1074"/>
+        <location filename="tab.cpp" line="1145"/>
         <source>No, don&apos;t save</source>
         <translation>Нет, не сохранять</translation>
     </message>
@@ -2959,25 +2984,25 @@ Do you want to save changes?</source>
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="831"/>
+        <location filename="tab.cpp" line="888"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;разные&gt;&gt;</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="552"/>
+        <location filename="tab.cpp" line="609"/>
         <source>filling tags</source>
         <oldsource>Fill tags</oldsource>
         <translation>заполнение тегов</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="606"/>
+        <location filename="tab.cpp" line="663"/>
         <source>rereading tags</source>
         <oldsource>Reread tags</oldsource>
         <translation>Перечитать теги</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="652"/>
-        <location filename="tab.cpp" line="713"/>
+        <location filename="tab.cpp" line="709"/>
+        <location filename="tab.cpp" line="770"/>
         <source>pasting tags</source>
         <oldsource>Paste tags</oldsource>
         <translation>вставку тегов</translation>
@@ -3043,89 +3068,89 @@ Do you want to save changes?</source>
 <context>
     <name>TagsEditDialog</name>
     <message>
-        <location filename="tagseditor.cpp" line="78"/>
+        <location filename="tagseditor.cpp" line="79"/>
         <source>Multiple values:</source>
         <translation>Разные значения:</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="121"/>
+        <location filename="tagseditor.cpp" line="122"/>
         <source>%1 (%2 with Shift key)</source>
         <translation>%1 (%2, удерживая Shift)</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="139"/>
+        <location filename="tagseditor.cpp" line="140"/>
         <source>Ctrl+Meta+Space</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="148"/>
-        <location filename="tagseditor.cpp" line="564"/>
+        <location filename="tagseditor.cpp" line="149"/>
+        <location filename="tagseditor.cpp" line="567"/>
         <source>Hide characters</source>
         <translation>Спрятать символы</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="153"/>
-        <location filename="tagseditor.cpp" line="558"/>
+        <location filename="tagseditor.cpp" line="154"/>
+        <location filename="tagseditor.cpp" line="561"/>
         <source>Show characters</source>
         <translation>Показать символы</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="231"/>
+        <location filename="tagseditor.cpp" line="234"/>
         <source>lower</source>
         <translation>нижний</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="232"/>
+        <location filename="tagseditor.cpp" line="235"/>
         <source>UPPER</source>
         <translation>ВЕРХНИЙ</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="233"/>
+        <location filename="tagseditor.cpp" line="236"/>
         <source>Only first up</source>
         <translation>Первое слово</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="234"/>
+        <location filename="tagseditor.cpp" line="237"/>
         <source>Every First Up</source>
         <translation>Каждое Слово</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="235"/>
+        <location filename="tagseditor.cpp" line="238"/>
         <source>Simplify whitespaces</source>
         <translation>Упростить пробелы</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="236"/>
+        <location filename="tagseditor.cpp" line="239"/>
         <source>Remove diacritics</source>
         <translation>Удалить диакритические знаки</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="237"/>
+        <location filename="tagseditor.cpp" line="240"/>
         <source>Transliterate</source>
         <translation>Транслитерировать</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="238"/>
+        <location filename="tagseditor.cpp" line="241"/>
         <source>Fix encoding</source>
         <translation>Исправить русскую кодировку</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="197"/>
+        <location filename="tagseditor.cpp" line="198"/>
         <source>Collect for future use</source>
         <translation>Запомнить на будущее</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="207"/>
+        <location filename="tagseditor.cpp" line="208"/>
         <source>Find/Replace</source>
         <translation>Найти/Заменить</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="411"/>
+        <location filename="tagseditor.cpp" line="414"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="411"/>
+        <location filename="tagseditor.cpp" line="414"/>
         <source>Nothing found</source>
         <translation>Ничего не найдено</translation>
     </message>
@@ -3330,31 +3355,31 @@ all changes in them will not be saved!</source>
 <context>
     <name>UtilitiesPage</name>
     <message>
-        <location filename="configpages.cpp" line="790"/>
-        <location filename="configpages.cpp" line="889"/>
+        <location filename="configpages.cpp" line="793"/>
+        <location filename="configpages.cpp" line="892"/>
         <source>Choose...</source>
         <translation>Выбрать...</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="793"/>
+        <location filename="configpages.cpp" line="796"/>
         <source>Path/to/player</source>
         <translation>Путь/к/плееру</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="800"/>
-        <location filename="configpages.cpp" line="896"/>
+        <location filename="configpages.cpp" line="803"/>
+        <location filename="configpages.cpp" line="899"/>
         <source>default device</source>
         <translation>устройство по умолчанию</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="803"/>
-        <location filename="configpages.cpp" line="890"/>
+        <location filename="configpages.cpp" line="806"/>
+        <location filename="configpages.cpp" line="893"/>
         <source>Player command</source>
         <translation>Команда для запуска плеера</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="804"/>
-        <location filename="configpages.cpp" line="891"/>
+        <location filename="configpages.cpp" line="807"/>
+        <location filename="configpages.cpp" line="894"/>
         <source>CD-ROM device</source>
         <translation>CD-ROM устройство</translation>
     </message>
@@ -3363,41 +3388,41 @@ all changes in them will not be saved!</source>
         <translation type="obsolete">Язык окружения для enca</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="806"/>
-        <location filename="configpages.cpp" line="892"/>
+        <location filename="configpages.cpp" line="809"/>
+        <location filename="configpages.cpp" line="895"/>
         <source>Default language to use with
 the enca utility</source>
         <translation>Язык по умолчанию
 для использования с утилитой enca</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="812"/>
-        <location filename="configpages.cpp" line="894"/>
+        <location filename="configpages.cpp" line="815"/>
+        <location filename="configpages.cpp" line="897"/>
         <source>External programs</source>
         <translation>Внешние программы</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="822"/>
-        <location filename="configpages.cpp" line="893"/>
+        <location filename="configpages.cpp" line="825"/>
+        <location filename="configpages.cpp" line="896"/>
         <source>Cue files encoding</source>
         <translation>Кодировка файлов cue</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="824"/>
-        <location filename="configpages.cpp" line="898"/>
+        <location filename="configpages.cpp" line="827"/>
+        <location filename="configpages.cpp" line="901"/>
         <source>Copy files into temp folder before replaygaining them</source>
         <translation>Копировать файлы во временную папку перед сканированием ReplayGain</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="825"/>
-        <location filename="configpages.cpp" line="899"/>
+        <location filename="configpages.cpp" line="828"/>
+        <location filename="configpages.cpp" line="902"/>
         <source>Enable this if you are encountering &quot;File not found&quot; messages
 in the ReplayGain dialog</source>
         <translation>Отметьте, если при сканировании ReplayGain появляются
  сообщения вида &quot;File not found&quot;</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="911"/>
+        <location filename="configpages.cpp" line="914"/>
         <source>Cannot find in </source>
         <translation>Не могу найти в </translation>
     </message>
@@ -3406,18 +3431,18 @@ in the ReplayGain dialog</source>
         <translation type="obsolete">Не установлена</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="878"/>
+        <location filename="configpages.cpp" line="881"/>
         <source>Utilities</source>
         <translation>Утилиты</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="930"/>
         <location filename="configpages.cpp" line="933"/>
+        <location filename="configpages.cpp" line="936"/>
         <source>Executable files (*.exe)</source>
         <translation>Исполняемые файлы (*.exe)</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="935"/>
+        <location filename="configpages.cpp" line="938"/>
         <source>Choose a player file</source>
         <translation>Выберите плеер</translation>
     </message>

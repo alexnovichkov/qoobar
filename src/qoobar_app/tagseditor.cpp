@@ -48,6 +48,7 @@
 #include "qbutton.h"
 #include "imagedialog.h"
 #include "styledbar.h"
+#include "qoobarhelp.h"
 
 #define USE_CONCURRENT
 #ifdef USE_CONCURRENT
@@ -205,7 +206,9 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     connect(searchPanel,SIGNAL(replaceAndFind()),SLOT(replaceAndFind()));
 
     QAction *startSearchAct = new QAction(QIcon(App->iconThemeIcon("edit-find.png")),tr("Find/Replace"),this);
+#ifndef Q_OS_MAC
     startSearchAct->setShortcut(QKeySequence::Find);
+#endif
     connect(startSearchAct,SIGNAL(triggered()),SLOT(startSearch()));
     addAction(startSearchAct);
 

@@ -399,7 +399,7 @@
                 <code>[Section from 2nd to 20th character of album is $section(%a,2,20)]</code> will be removed if the album tag is shorter
               than 2 characters.</p>
               <p>The full list of functions can be found in <a href="#placeholders">Appendix 3</a>.</p>
-              <div class="notebox"><p><strong>Note:</strong> Not all functions works identical to their Foobar equivalents, please test it before using.</p></div>
+              <div class="notebox"><p><strong>Note:</strong> Not all functions works identical to their Foobar equivalents, please test them before saving changes.</p></div>
 
 
               <h3>Using autonumbering function</h3>
@@ -549,7 +549,7 @@
                   http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb</a>.
                   For other systems please visit <a href="http://etree.org/shnutils/shntool/">http://etree.org/shnutils/shntool/</a>.
                 </li>
-                <li>Qoobar installer for Windows and Mac is distributed with all necessary executables.
+                <li>Qoobar installer for Windows and OS X is distributed with all necessary executables.
                 </li>
               </ul>
               <p>If you have ffmpeg installed on your computer, you can choose the output files format. By default
@@ -564,8 +564,8 @@
                 Download the archive, unpack it and put ffmpeg.exe into the Qoobar installation folder.</p>
                 <p>On Mac OS X you can install it:</p>
                 <ol>
-                  <li>using HomeBrew: brew install ffmpeg</li>
-                  <li>using MacPorts: sudo port install ffmpeg</li>
+                  <li>using HomeBrew: <pre>brew install ffmpeg</pre></li>
+                  <li>using MacPorts: <pre>sudo port install ffmpeg</pre></li>
                   <li>download it from <a href="http://ffmpegmac.net">ffmpegmac.net</a> and place the executable into
                     qoobar.app/Contents/Resources/ folder.</li>
                 </ol>
@@ -579,17 +579,18 @@
                 or press <span class=hotkey>Ctrl+F</span>. A dialog will appear:
               </p>
               <img src="images/qoobar-fill.png" alt="Filling">
-              <p>1. Choose a source - file names, clipboard or one of tags.</p>
-              <p>2. Set a filename pattern (use / and \ to set folders). You can use all the non-read-only placeholders listed in
-                <a href="#placeholders">Appendix 3</a>. They can also be found under the "Legend" button.
-              </p>
+              <ol>
+              <li><p>Choose a source - file names, clipboard or one of tags.</p></li>
+              <li><p>Set a filename pattern (use / and \ to match folders). You can use all the non-read-only placeholders listed in
+              <a href="#placeholders">Appendix 3</a>. They can also be found under the <span class=button>Legend</span> button.</p>
               <p>All other characters will be treated as delimiters. And don't use patterns with no delimiter between two placeholders.</p>
-              <p>Use the <code>%%</code> combination if you want to skip some part of a file name. For example,
+              <p>Use the <code>%%</code> placeholder if you want to skip some part of a file name. For example,
                 if you have, say, 50 files "Unknown Artist - 1 - some_meaningful_title_1", "Unknown Artist - 2 - some_meaningful_title_2" etc.
-                and you only want to extract Titles, use this pattern: <code>%% - %% - %t</code>.
-              </p>
-              <p>3. Unselect files you don't want to change. Note that old tags are shown grayed.</p>
-              <p>4. Press OK.</p>
+                and you only want to extract titles, use this pattern: <code>%% - %% - %t</code>.
+              </p></li>
+              <li><p>Unselect files you don't want to change. Note that old tags are shown grayed.</p></li>
+            <li><p>Click <span class=button>OK</span>.</p></li>
+          </ol>
             </div>
 
 
@@ -607,12 +608,12 @@
               GD3 or Musicbrainz.</p>
               <p>2. Choose the search mode - by the lengths of selected files,
               by CD in CD-ROM, or manually - by artist name and album title.</p>
-              <p>3. Click "Start" and wait a little. The list of found albums will
+              <p>3. Click <span class=button>Search</span> and wait a little. The list of found albums will
               appear in the left panel.</p>
               <p>4. Choose an album (just click on it) and wait while its details are being downloaded.
               Be patient here: if you are searching in Discogs and Musicbrainz,
               cover art pictures can require some time to be downloaded. </p>
-              <p>5. Uncheck tags which you do not want to import and click OK.</p>
+              <p>5. Uncheck tags which you do not want to import and click <span class=button>OK</span>.</p>
             </div>
 
             <div>
@@ -635,7 +636,7 @@
                 <li>Choose the output folder. If you don't select one, files will be written in their original locations. In "folder rename" mode
                   the output folder is always the folder one level up, so this option is disabled.</li>
                 <li>Set a file renaming pattern (use slash / or backslash \ to create subfolders). You can use all placeholders and functions listed in
-                  <a href="#placeholders">Appendix 3</a>. They can also be found under the "Legend" button.
+                  <a href="#placeholders">Appendix 3</a>. The placeholders can also be found under the <span class=button>Legend</span> button.
                   <br />There are three predefined patterns. You can edit these patterns in the Settings dialog.
                   Any pattern you use will be added to the patterns list for later use.
                   <br />If some tag is empty, the special character will be inserted instead. But you can enclose
@@ -643,7 +644,7 @@
                   <br />In "folder rename" mode subfolders creation is not allowed, and all slashes and backslashes will be replaced by "_".
                 </li>
                 <li><p>Adjust the additional processing of file names.</p>
-                <p>The special Windows symbols in tags are replaced by default as follows:
+                <div class=notebox><b>Note:</b> The special Windows symbols in tags are replaced by default as follows:
                   <ul>
                     <li>Question ? will be removed</li>
                     <li>Double quotes " will be replaced with two single ones ''</li>
@@ -652,36 +653,36 @@
                     with the special character (underscore _ by default)</li>
                     <li>Characters | : * will be replaced by underscore </li>
                   </ul>
-                  </p>
+                  </div>
                   <p>You can specify the maximum file name length. But whatever the value all file names in Windows
                     are truncated to 255 characters.</p>
                 </li>
 
               </ol>
-              <p><b>Example</b>:</p>
+              <p><b>Example</b>: The pattern</p>
               <pre>%c (1905-1975)/%a/[%N. ]%t</pre>
-              <p>for ogg file containing tags</p>
+              <p>for an ogg file containing tags</p>
               <ul>
                 <li>Composer="Bela Bartok",</li>
                 <li>Album="Microkosmos",</li>
                 <li>Track number=2,</li>
                 <li>Title = "Ostinato"</li>
               </ul>
-              <p>the new file name will be </p><pre>"Bela Bartok (1905-1975)/Microcosmos/02. Ostinato.ogg" </pre>
+              <p>yields the new file name </p><pre>Bela Bartok (1905-1975)/Microcosmos/02. Ostinato.ogg </pre>
               <p>If you remove the track number, the new file name will be</p>
-              <pre>"Bela Bartok (1905-1975)/Microcosmos/Ostinato.ogg" </pre>
+              <pre>Bela Bartok (1905-1975)/Microcosmos/Ostinato.ogg</pre>
             </div>
 
             <div>
               <h2><a id=replaygain>Adding ReplayGain info to files</a></h2>
-              <p>Qoobar can help you replaygain your musical files. This feature is not yet completely implemented,
-                so only the following file type are supported: mp3, mp4/m4a, musepack, flac, ogg, wavpack.
+              <p>Qoobar can help you replaygain your music files. This feature is not yet completely implemented,
+                so only the following file types are supported: mp3, mp4/m4a, musepack, flac, ogg, wavpack.
               </p>
               <p>Qoobar so far uses external utilities to do ReplayGain scanning, so if you are using one of Unixes,
                 you need to install these utilities from your repository: mp3gain for mp3 files, aacgain for mp4/m4a files,
                 vorbisgain for ogg files, metaflac for flac files, mpcgain and replaygain for mpc files, and wvgain for wavpack files.
                 You can check whether all utilities can be found by Qoobar in the <a href=#utilities>Utilities page</a> of the Settings dialog.
-                The Windows installation of Qoobar already has all necessary utilities.
+                The Windows and OS X installations of Qoobar already have all necessary utilities.
               </p>
               <p>Qoobar so far cannot replaygain the following file types: ape, wma, wav, speex, tta, oga, aiff.</p>
               <p><b>Scanning for ReplayGain info</b>:</p>
@@ -697,14 +698,14 @@
                 </li>
                 <li>Now you can use one of the buttons to start scanning:
                   <ul><li><b>Scan per file track gain</b> - All files you have selected will be scanned independently.</li>
-                    <li><b>Scan as a single album</b> - All files you have selected will be scanned as one album regardless of their position or the "Album" tag.</li>
+                    <li><b>Scan as a single album</b> - All files you have selected will be scanned as one album regardless of their path/folder or the "Album" tag.</li>
                     <li><b>Scan as albums (by tags)</b> - All files you have selected will be sorted according to their "Album" tag and scanned by groups.</li>
-                    <li><b>Scan as albums (by folders)</b> - All files you have selected will be sorted according to their position and scanned by groups.</li>
+                    <li><b>Scan as albums (by folders)</b> - All files you have selected will be sorted by their path/folder and scanned by groups.</li>
                     <li><b>Remove replaygain tags from files</b> - The replaygain info will be removed from files.</li>
                   </ul>
                 </li>
               </ol>
-              <div class="notebox"><p><strong>Note:</strong> Qoobar can skip already scanned files. Just click on the "Skip already scanned files" checkbox.</p></div>
+              <div class="notebox"><p><strong>Note:</strong> Qoobar can skip already scanned files. Just check on the "Skip already scanned files" box.</p></div>
               <div class="notebox"><p><strong>Note:</strong> If you are encountering messages like "Couldn't find file" or
                 "The FLAC file could not be opened", open the Qoobar settings dialog
                 and on the Utilities page set the "Copy files into temp folder before replaygaining them" option.
@@ -717,12 +718,12 @@
 
             <div>
               <h2><a id=settings>Qoobar Settings</a></h2>
-              <p>You can reset all settings to their defaults by clicking the "Reset Settings" button in the bottom left corner.</p>
+              <p>You can reset all settings to their defaults by clicking the <span class=button>Reset Settings</span> button in the bottom left corner.</p>
 
               <h3>Interface</h3>
               <p><img src="images/qoobar-settings1.png" alt="Interface settings"></p>
               <ul>
-                <li><b>Use undo / redo</b>: this option lets you switch on/off the undo system. If the undo / redo operations are switched off, 
+                <li><b>Use undo / redo</b>: this option lets you to switch on/off the undo system. If the undo / redo operations are switched off, 
                   Qoobar runs faster and consumes less memory.</li>
                 <li><b>Automatically fill a tag in all selected files when pasting a single line</b>: if this feature is on,
                   you can select one file, copy its tags, then select <i>several</i> files and paste the copied tags
@@ -748,7 +749,7 @@
               <h3>Tags Writing</h3>
               <p><img src="images/qoobar-settings3.png" alt="Tags writing settings"></p>
               <ul>
-                <li><b>Save changes when closing Qoobar</b> - check this item to automatically save all
+                <li><b>Save changes when closing Qoobar</b> - check this box to automatically save all
                   unsaved files, both selected and not selected.</li>
                 <li><b>Simplify whitespaces when saving files</b> - if you find it tedious to manually
                     remove extra spaces, tabs etc., check this item, and Qoobar will do it automatically.
@@ -759,11 +760,12 @@
                       "ARTIST=some text", "ARTIST=another text", "ARTIST=some other text".</li>
                 <li><b>Mp3 files</b> - there you can choose which tags to read and write. </li>
                 <li><b>ID3v2 tags version</b> - the default version of ID3v2 tags when saving.</li>
-                <li><b>Ogg / Speex files</b> - you can choose into which tag to write your cover - the old one (COVERART) or
+                <li><b>Ogg / Speex files</b> - This setting allows you to choose the desirable format for the cover art tag - the old one (COVERART) or
                   the new preferred one (METADATA_BLOCK_PICTURE).</li>
-                <li><b>ID3v1 tags</b> - there you can choose how to duplicate ID3v2 tags into ID3v1.</li>
+                <li><b>ID3v1 tags</b> - there you can choose how to duplicate ID3v2 tags into ID3v1 - either delete ID3v1 tags completely,
+                  only update existing ID3v1 tags or always create ID3v1 tags.</li>
                 <li><b>Transliterate Russian words</b> - if you set this option, all
-                  Cyrillic letters in id3v1 tags will be replaced according to this scheme:
+                  Cyrillic letters in ID3v1 tags will be replaced according to this scheme:
                   <a id="transliteration"></a>
                     <table><tr><td>а<td>a<td>&nbsp;<td>р<td>r</tr>
                     <tr><td>б<td>b<td>&nbsp;<td>с<td>s</tr>
@@ -789,16 +791,16 @@
               <p><img src="images/qoobar-settings4.png" alt="Patterns settings"></p>
               <ul>
                 <li><b>Renaming patterns</b> - here you can edit the list of patterns
-                which will be available when you rename files. </li>
+                used when you rename files. </li>
                 <li><p><b><a id=schemes>Tagging schemes</a></b> - here you can choose which scheme to use for tags reading and writing.
                   There are one default scheme (you cannot edit or delete this scheme, but only clone it) and 4 more schemes,
                   which you can change: Tag&amp;Rename, Mp3tag, Iain Lamb's scheme, Musicbrainz Picard.</p>
-                  <p>You can edit scheme, clone or remove it (except the default one).
-                  If you click on the "Edit" button, a dialog will appear:</p>
+                  <p>You can edit scheme, clone or remove it (except for the default one).
+                  If you click on the <span class=button>Edit</span> button, a dialog will appear:</p>
                   <img src="images/qoobar-scheme.png" alt="Taggings scheme dialog">
                   <p>You can change the scheme name in the first line.
                     The table sets the correspondence between Qoobar tags and various fields for 5 tag formats.
-                    If you want to set several fields for one tag, then separate them by semicolon, f.e. in the
+                    If you want to set several fields for one tag, simply separate them by semicolon, f.e. in the
                     default scheme the tag "Total tracks" are written into APE files into 3 different fields:
                     <code>TOTALTRACKS;TRACKNUMBER;TRACKTOTAL</code>.
                   </p>
@@ -807,17 +809,21 @@
                     and vice versa, when reading the field <code>TRACKNUMBER</code> with the value "02/10" it will be parsed
                     as "Track number=02", "Total tracks=10".
                   </p>
-                  <p>You can add your own tags by using the "+" button below.
-                    <ul>
-                      <li>This tag will constantly be visible in the Tags Table, although the Files Table will not show these custom tags.</li>
-                      <li>Double clicking on the row name allows to change the tags name,
-                    this name will be used in the Tags Table. This name will not be localized, but you can enter any name you want.</li>
-                    <li> The next step is to set fields for all five tag formats. Please note the peculiarities in the paragraph below.</li>
-                    </ul></p>
-                    <p><b>Example:</b> Let's add the "File Owner" tag. First click on "+". Then double-click on the row name and input "File Owner" (without the quotes).
-                    Next fill in the fields: "TOWN" in the ID3v2 cell (this is the standard field listed in the ID3v2 specification, so no "TXXX:" prefix needed),
-                  "----:com.apple.iTunes:FILEOWNER" in the MP4 cell, and "FILEOWNER" in the other cells. Click "Save".</p>
-                  <p>If you want to remove some tag from the scheme, click on any field on the tag row and then click "-". Removing of standard tags
+                  <p>You can add your own tag(s) to the scheme. This tag will constantly be visible in the Tags Table, 
+                  although the Files Table don't show custom tags.</p>
+                    <ol>
+                      <li>Click the <span class=button>+</span> button.</li>
+                      <li>Change the tag name by double-clicking on the row name. This name will be used in the Tags Table.
+                        <div class=notebox><b>Note:</b> This name will not be localized, but you can type your own localized name.</div>
+                      </li>
+                      <li>Set fields for all five tag formats. Please note the peculiarities in the paragraph below.</li>
+                    </ol>
+                    <p></p>
+                    <p><b>Example:</b> Let's add the "File Owner" tag. First click on <span class=button>+</span>. 
+                      Then double-click on the row name and input <code>File Owner</code>.
+                    Next fill in the fields: <code>TOWN</code> in the ID3v2 cell (this is the standard field listed in the ID3v2 specification, so no "TXXX:" prefix needed),
+                  <code>----:com.apple.iTunes:FILEOWNER</code> in the MP4 cell, and <code>FILEOWNER</code> in the other cells. Click <span class=button>Save</span>.</p>
+                  <p>If you want to remove some tag from the scheme, click on any field on the tag row and then click <span class=button>–</span>. Removing of standard tags
                     (that is Composer through ISRC) is not supported. If you want to remove them, simply hide them by choosing the "Show/hide tags..."
                   option in the Tags Table context menu.</p>
                   <div class="notebox"><p><b>Note:</b> Please if possible restart Qoobar so the scheme changes can fully be applied.</p></div>
@@ -835,8 +841,9 @@
                 </li>
               </ul>
 
-              <h3><a id=utilities>Utilities</a></h3>
+              <h3><a name=utilities></a>Utilities</h3>
               <p><img src="images/qoobar-settings5.png" alt="Utilities settings"></p>
+              <p>This tab contains the settings of the external utilities.</p>
               <ul>
                 <li><b>Player command</b> - the external player name (with the full path optionally).</li>
                 <li><b>CD-ROM device</b> - type here the path to the CD-ROM Qoobar can read
@@ -844,7 +851,8 @@
                 <li><b>Cue files encoding</b> - the default encoding to use for reading cue files.</li>
                 <li><b>External programs</b> - here you can find out if all external programs are
                   properly found by Qoobar.</li>
-                <li><b>Default language to use with the enca utility</b> - the language that enca uses to guess the encoding of the wrong written tags (f.e. when reading id3v2 tags of mp3 file that was previously saved with Windows-1251 encoding).</li>
+                <li><b>Default language to use with the enca utility</b> - the language that enca uses to guess the encoding of the 
+                  wrong written tags (f.e. when reading id3v2 tags of mp3 file that were previously saved with Windows-1251 encoding).</li>
 
                 <li><b>Copy files into temp folder before replaygaining them</b> - if this option is set,
                     the files you are scanning for replaygain info will be copied to the temp directory first,
@@ -857,9 +865,13 @@
 
               <h3>Plugins</h3>
               <p><img src="images/qoobar-settings7.png" alt="Plugins"></p>
-              <p>Here you can view installed plugins. They are divided into two groups:</p>
+              <p>Here you can view the installed plugins. They are divided into two groups:</p>
               <ul>
-                <li><b>Download plugins</b> - list of sources used in the Fill dialog.</li>
+                <li><p><b>Download plugins</b> - list of sources used in the Fill dialog.</p>
+                  <p>The last three columns describe available modes the plugin can work in. <strong>Manual</strong> means that the plugin can perform search by 
+                    the artist name and the album title manually entered by a user. <strong>By CD</strong> means that the plugin can 
+                    read the table-of-contents (TOC) of a CD in the CD-ROM and search for this particular CD. <strong>By files</strong> means that the plugin can use 
+                    the list of selected files to imitate the CD TOC and search for an abstract album according to the lengths of these selected files.</p></li>
                 <li><b>Tags editing plugins</b> - list of plugins under the Tools menu.</li>
               </ul>
             </div>

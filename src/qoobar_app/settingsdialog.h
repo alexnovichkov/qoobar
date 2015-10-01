@@ -33,6 +33,7 @@
 class QStackedWidget;
 class ConfigPage;
 class QPushButton;
+class QToolBar;
 
 
 class SettingsDialog : public
@@ -55,12 +56,14 @@ private Q_SLOTS:
     void retranslateUI();
     void resetSettings();
     void switchPage(int page);
+    void showHelp();
 private:
     QStackedWidget *pagesWidget;
     QList<ConfigPage *> configPages;
     QPushButton *resetSettingsButton;
 
     QToolBar * toolBar;
+    int currentPage;
 };
 
 #endif

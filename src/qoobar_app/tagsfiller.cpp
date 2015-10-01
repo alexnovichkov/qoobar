@@ -42,6 +42,7 @@
 #include "enums.h"
 #include "qoobarglobals.h"
 #include "logging.h"
+#include "qoobarhelp.h"
 #include "tagparser.h"
 
 #include "idownloadplugin.h"

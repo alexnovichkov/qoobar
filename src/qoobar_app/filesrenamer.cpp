@@ -40,6 +40,7 @@
 #include "model.h"
 #include "qoobarglobals.h"
 #include "logging.h"
+#include "qoobarhelp.h"
 
 #include "qbutton.h"
 

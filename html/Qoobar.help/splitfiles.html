@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Splitting the CD image file"/>
+    <meta name="KEYWORDS" content="split, image, cue, CD"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Split Files</title>
+  </head>
+  <body><a name="split"></a>
+    <nav>
+      <ul>
+  			<li><a href="index.htm">Overview</a></li>
+  			<li><a href="interface-nav.html">Interface</a></li>
+  			<li><a href="howto-nav.html">How to...</a></li>
+  			<li><a href="more-nav.html">Advanced</a></li>
+  			<li><a href="preferences-nav.html">Preferences</a></li>
+  			<li><a href="appendixes-nav.html">Appendixes</a></li>
+  		</ul>
+    </nav>
+    
+    <div id="article">
+    <div class="pageNavigationLinks">
+      <a class="homeLink" href="howto-nav.html">Up</a>
+    </div>
+    
+    <h1 class="article">Split Files</h1>
+      <p>If you have a CD image (ape or flac or wav) and a cue file with it, Qoobar
+        can split it to separate tracks, just click <img src="images/media-import-audio-cd.png" alt="Split button"/>.</p>
+        <p><img src="images/splitfile.png"/></p>
+        <p>Qoobar uses some external command-line programs. You can check if they are available in the Preferences Dialog.</p>
+
+      <p>If you have ffmpeg installed on your computer, you can choose the output files format. By default
+        the format is flac, but you can set it to be m4a (ALAC codec), m4a (AAC codec), ogg, wma, wavpack, tta, speex,
+        opus or mp3. I recommend to set 'alac' in Mac OS X and 'flac' in other systems, as they are lossless formats.</p>
+        <div class="notebox"><p><strong>Note:</strong> By default all lossy formats are encoded with bitrate 320kb/s. If you want to
+         change the bitrate, edit splitandconvert.sh or splitandconvert.bat script file and change
+        the line "bitrate=320K" (or "set bitrate=320K").</p></div>
+        <p>Since ffmpeg is rather heavy, it is not shipped with the Qoobar installation. On Mac OS X you can install it by:</p>
+        <ol>
+          <li>using HomeBrew: <pre>brew install ffmpeg</pre></li>
+          <li>using MacPorts: <pre>sudo port install ffmpeg</pre></li>
+          <li>downloading it from <a href="http://ffmpegmac.net">ffmpegmac.net</a> and placing the executable into
+            qoobar.app/Contents/Resources/ folder.</li>
+        </ol>
+      <p><br/>The ordinary workflow is as follows:</p>
+      <ol>
+        <li>Choose the .cue file.</li>
+        <li>Change (if needed) the output folder where the splitted files will be placed.</li>
+        <li>Change the output files format (if available).</li>
+        <li>Press <span class="button">Start</span>.</li>
+      </ol>
+      <p>All splitted files will be added to the end of the current tab.</p>
+    <div class="notebox"><p><b>Note:</b> You can also drag-and-drop a .cue file into the Qoobar main window to split the CD image file.</p></div>
+    
+        <hr/>
+   	  <p class="copyright">© 2009-2015 Alex Novichkov</p>
+   	</div>
+</body>
+</html>

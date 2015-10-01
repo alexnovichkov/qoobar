@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Qoobar tags writing settings"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Tags writing preferences</title>
+  </head>
+  <body><a name="tagswriting"></a>
+    <nav>
+      <ul>
+  			<li><a href="index.htm">Overview</a></li>
+  			<li><a href="interface-nav.html">Interface</a></li>
+  			<li><a href="howto-nav.html">How to...</a></li>
+  			<li><a href="more-nav.html">Advanced</a></li>
+  			<li><a href="preferences-nav.html">Preferences</a></li>
+  			<li><a href="appendixes-nav.html">Appendixes</a></li>
+  		</ul>
+    </nav>
+    
+    <div id="article">
+    <div class="pageNavigationLinks">
+      <a class="homeLink" href="preferences-nav.html">Up</a>
+    </div>
+    
+    <h1 class="article">Tags writing</h1>
+      <p><img src="images/qoobar-settings3.png" alt="Tags writing settings"/></p>
+              <ul>
+                <li><b>Save changes when closing Qoobar</b> - check this box to automatically save all
+                  unsaved files, both selected and not selected.</li>
+                <li><b>Simplify whitespaces when saving files</b> - if you find it tedious to manually
+                    remove extra spaces, tabs etc., check this item, and Qoobar will do it automatically.
+                    Qoobar also always skips Comments and Lyrics tags.</li>
+                <li><b>Write tags separated by ; in different fields</b> - This option works only for flac, ape, ogg, oga, spx files.
+                      If you check on this option, the string "some text;another text;some other text" will be written
+                      not as one field "ARTIST=some text;another text;some other text" but as three different fields
+                      "ARTIST=some text", "ARTIST=another text", "ARTIST=some other text".</li>
+                <li><b>Mp3 files</b> - there you can choose which tags to read and write. </li>
+                <li><b>ID3v2 tags version</b> - the default version of ID3v2 tags when saving.</li>
+                <li><b>Ogg / Speex files</b> - This setting allows you to choose the desirable format for the cover art tag - the old one (COVERART) or
+                  the new preferred one (METADATA_BLOCK_PICTURE).</li>
+                <li><b>ID3v1 tags</b> - there you can choose how to duplicate ID3v2 tags into ID3v1 - either delete ID3v1 tags completely,
+                  only update existing ID3v1 tags or always create ID3v1 tags.</li>
+                <li><b>Transliterate Russian words</b> - if you set this option, all
+                  Cyrillic letters in ID3v1 tags will be replaced according to this scheme:
+                  <a id="transliteration"></a>
+                    <table><tr><td>а ⇒ a</td><td> </td><td>р ⇨ r</td></tr>
+                    <tr><td>б ⇒ b</td><td> </td><td>с ⇒ s</td></tr>
+                    <tr><td>в ⇒ v</td><td> </td><td>т ⇒ t</td></tr>
+                    <tr><td>г ⇒ g</td><td> </td><td>у ⇒ u</td></tr>
+                    <tr><td>д ⇒ d</td><td> </td><td>ф ⇒ f</td></tr>
+                    <tr><td>е, ё ⇒ e</td><td> </td><td>х ⇒ kh</td></tr>
+                    <tr><td>ж ⇒ zh</td><td> </td><td>ц ⇒ c</td></tr>
+                    <tr><td>з ⇒ z</td><td> </td><td>ч ⇒ ch</td></tr>
+                    <tr><td>и ⇒ i</td><td> </td><td>ш ⇒ sh</td></tr>
+                    <tr><td>й ⇒ j</td><td> </td><td>щ ⇒ x</td></tr>
+                    <tr><td>к ⇒ k</td><td> </td><td>ъ ⇒ w</td></tr>
+                    <tr><td>л ⇒ l</td><td> </td><td>ы ⇒ y</td></tr>
+                    <tr><td>м ⇒ m</td><td> </td><td>ь ⇒ j</td></tr>
+                    <tr><td>н ⇒ n</td><td> </td><td>э ⇒ eh</td></tr>
+                    <tr><td>о ⇒ o</td><td> </td><td>ю ⇒ yu</td></tr>
+                    <tr><td>п ⇒ p</td><td> </td><td>я ⇒ ya</td></tr></table>
+                </li>
+              </ul>
+
+        <hr/>
+   	  <p class="copyright">© 2009-2015 Alex Novichkov</p>
+   	</div>
+</body>
+</html>

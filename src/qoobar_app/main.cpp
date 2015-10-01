@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
 
     Application app(argc, argv);
     app.setApplicationName(QSL("qoobar"));
+    app.setOrganizationName(QSL("qoobar"));
     app.setApplicationVersion(QString(QOOBAR_VERSION));
     app.readGlobalSettings();
 

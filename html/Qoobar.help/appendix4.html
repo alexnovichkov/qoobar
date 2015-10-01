@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="The Qoobar regular expressions syntax"/>
+    <meta name="KEYWORDS" content="regular, regexp, expression"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Appendix 4. Regular expressions</title>
+  </head>
+  <body><a name="appendix4"></a><a name="regexp"></a>
+    <nav>
+      <ul>
+  			<li><a href="index.htm">Overview</a></li>
+  			<li><a href="interface-nav.html">Interface</a></li>
+  			<li><a href="howto-nav.html">How to...</a></li>
+  			<li><a href="more-nav.html">Advanced</a></li>
+  			<li><a href="preferences-nav.html">Preferences</a></li>
+  			<li><a href="appendixes-nav.html">Appendixes</a></li>
+  		</ul>
+    </nav>
+    
+    <div id="article">
+    <div class="pageNavigationLinks">
+      <a class="homeLink" href="appendixes-nav.html">Up</a>
+    </div>
+    
+    <h1 class="article">Appendix 4. Regular expressions</h1>
+   <p>A regular expression is a pattern for matching sub-strings in a text.
+              Qoobar supports regular expressions provided by the Qt QRegExp class, which is modelled on Perl's regexp language.
+              Here is only a brief description of expressions, quantifiers, and assertions that can be useful in your search.</p>
+
+             <table>
+                <tr><th colspan="2">Characters and Abbreviations for Sets of Characters</th></tr>
+                 <tr><td><code>\a</code></td><td>matches the ASCII bell (BEL, 0x07).</td></tr>
+                <tr><td><code>\f</code></td><td>matches the ASCII form feed (FF, 0x0C).</td></tr>
+                <tr><td><code>\n</code></td><td>matches the ASCII line feed (LF, 0x0A, Unix newline).</td></tr>
+                <tr><td><code>\r</code></td><td>matches the ASCII carriage return (CR, 0x0D).</td></tr>
+                <tr><td><code>\t</code></td><td>matches the ASCII horizontal tab (HT, 0x09).</td></tr>
+                <tr><td><code>\v</code></td><td>matches the ASCII vertical tab (VT, 0x0B).</td></tr>
+                <tr><td><code>\xhhhh</code></td><td>matches the Unicode character corresponding
+                to the hexadecimal number hhhh (between 0x0000 and 0xFFFF).</td></tr>
+                <tr><td><code>\0ooo</code></td><td>(i.e., \zero ooo)  matches the ASCII/Latin1
+                character for the octal number ooo (between 0 and 0377).</td></tr>
+                <tr><td><code>.</code></td><td>(dot)  matches any character (including newline).</td></tr>
+                <tr><td><code>\d</code></td><td>matches a digit.</td></tr>
+                <tr><td><code>\D</code></td><td>matches a non-digit.</td></tr>
+                <tr><td><code>\s</code></td><td>matches a whitespace character.</td></tr>
+                <tr><td><code>\S</code></td><td>Matches a non-whitespace character.</td></tr>
+                <tr><td><code>\w</code></td><td>Matches a word character (letter, number, marks, or '_').</td></tr>
+                <tr><td><code>\W</code></td><td>Matches a non-word character.</td></tr>
+                <tr><td><code>\n</code></td><td>The n-th backreference, e.g. \1, \2, etc.</td></tr>
+                <tr><th colspan="2">Sets of Characters, grouping</th></tr>
+                <tr><td><code>[abc]</code></td><td>matches 'a' or 'b' or 'c'.</td></tr>
+                <tr><td><code>[^abc]</code></td><td>matches anything <i>but</i> 'a' or 'b' or 'c'.</td></tr>
+                <tr><td><code>[a-e]</code></td><td>matches a range of characters from 'a' to 'e'.</td></tr>
+                <tr><td><code>(E|N)</code></td><td>matches expression E or expression N, where E and N can be complex.</td></tr>
+                <tr><th colspan="2">Quantifiers</th></tr>
+                <tr><td><code>E?</code></td><td>matches zero or one occurrences of E.</td></tr>
+                <tr><td><code>E+</code></td><td>matches one or more occurrences of E.</td></tr>
+                <tr><td><code>E*</code></td><td>matches zero or more occurrences of E.</td></tr>
+                <tr><td><code>E{n}</code></td><td>matches exactly n occurrences of E.</td></tr>
+                <tr><td><code>E{n,}</code></td><td>matches at least n occurrences of E.</td></tr>
+                <tr><td><code>E{,m}</code></td><td>matches at most m occurrences of E.</td></tr>
+                <tr><td><code>E{n,m}</code></td><td>matches at least n and at most m occurrences of E.</td></tr>
+                <tr><td colspan="2">To apply a quantifier to more than just the preceding character,
+                  use parentheses to group characters together in an expression.<br />
+                  For example, tag+ matches a 't' followed by an 'a' followed by at least
+                  one 'g', whereas (tag)+ matches at least one occurrence of 'tag'</td></tr>
+                <tr><th colspan="2">Assertions</th></tr>
+                <tr><td><code>^</code></td><td>The caret signifies the beginning of the string.
+                If you wish to match a literal <code>^</code> you must escape it by writing <code>\\^</code>.</td></tr>
+                <tr><td><code>$</code></td><td>The dollar signifies the end of the string.
+                If you wish to match a literal $ you must escape it by writing \$.</td></tr>
+                <tr><td><code>\b</code></td><td>A word boundary.</td></tr>
+                <tr><td><code>\B</code></td><td>A non-word boundary. This assertion is true wherever <code>\b</code> is false.</td></tr>
+                <tr><td><code>(?=E)</code></td><td>Positive lookahead. This assertion is true if the expression
+                  matches at this point in the regexp. <br />
+                  For example, <code>const(?=\s+char)</code>
+                  matches 'const' whenever it is followed by 'char',
+                  as in 'static const char *'. <br />(Compare with <code>const\s+char</code>, which
+                  matches 'static const char *'.)</td></tr>
+                <tr><td><code>(?!E)</code></td><td>Negative lookahead. This assertion is true
+                  if the expression does not match at this point in the regexp.<br />
+                  For example, <code>const(?!\s+char)</code> matches 'const' except when it
+                      is followed by 'char'..</td>
+                </tr>
+
+              </table>
+    <hr/>
+   	  <p class="copyright">© 2009-2015 Alex Novichkov</p>
+    </div>
+</body>
+</html>

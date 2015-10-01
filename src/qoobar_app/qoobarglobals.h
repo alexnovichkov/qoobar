@@ -41,7 +41,7 @@ QStringList musicalFilters();
 void processDir(const QString &file, QStringList &files, bool includeSubfolders);
 QStringList expandFilesNames(const QStringList &filesNames, bool includeSubfolders);
 
-void showHelp(const QString &section = QString());
+//void showHelp(const QString &section = QString());
 
 /**
  * @brief moveFolderInto - recursively moves all files and folders from

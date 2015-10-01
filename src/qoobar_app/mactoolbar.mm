@@ -144,6 +144,13 @@ void Toolbar::attachToWindow(QMainWindow *window)
     delete se;
 }
 
+void Toolbar::detachFromWindow()
+{
+    d->toolbar->detachFromWindow();
+    delete d->toolbar;
+}
+
+
 void Toolbar::writeState()
 {
     QSettings *se = App->guiSettings();

@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Adding files and folders, removing files from the tab"/>
+    <meta name="KEYWORDS" content="add, file, folder, drag, drag-and-drop, remove, delete, clear"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Add and Remove Files</title>
+  </head>
+  
+  <body><a name="addfiles"></a>
+    <nav>
+      <ul>
+        <li><a href="index.htm">Overview</a></li>
+        <li><a href="interface-nav.html">Interface</a></li>
+        <li><a href="howto-nav.html">How to...</a></li>
+        <li><a href="more-nav.html">Advanced</a></li>
+        <li><a href="preferences-nav.html">Preferences</a></li>
+        <li><a href="appendixes-nav.html">Appendixes</a></li>
+      </ul>
+    </nav>
+    <div id="article">
+    <div class="pageNavigationLinks">
+      <a class="homeLink" href="howto-nav.html">Up</a>
+    </div>
+    <h1 class="article">Add and Remove Files</h1>
+      <h2>Add</h2>
+      <p>You can add a folder with all its subfolders and musical files using the button
+        <img src="images/folder-new.png" alt="Add folder button"/> or shortcut <span class="hotkey">&#x2318;O</span>.</p>
+      <p>To add some files use the button
+        <img src="images/document-new.png" alt="Add files button"/>
+        or shortcut <span class="hotkey">&#x21e7;&#x2318;O</span>.</p>
+      <p>You can also drag&amp;drop any folders and any files into the Qoobar window;
+      or use command line like this:</p>
+      <pre>qoobar "/home/I/music/first dir" /home/I/music/just_file.mp3</pre>
+      <p>The <a href="foldertree.html">Folder Tree</a> allows you to easily browse your music library. The folder you click will be placed into the Files Table.
+        All files currently present in the tab will be removed.
+        To add a folder with all its subfolders and musical files right-click on this folder and choose "List this folder with all subfolders"
+      </p>
+      <p>Files are always appended to the end of the current tab.</p>
+      <p>If the number of added files is less than 100, they will be automatically selected.</p>
+      <p>If some files you are adding are read-only, a warning message will appear, and these files will be grayed-out in the Files table.</p>
+      <h2>Remove</h2>
+      <p>To remove all files in the current tab click <img src="images/edit-clear.png" alt="Clear button"/>.</p>
+      <p>Or click anywhere in the Files Table, press <span class="hotkey">&#x2318;A</span>, then <span class="hotkey">&#x2326;</span>.</p>
+      <p>Or just press <span class="hotkey">&#x2318;&#x2326;</span>.</p>
+      <p>To remove some of the added files select them and press <span class="hotkey">&#x2326;</span>.</p>
+      <p>When you are removing some not saved files, a simple dialog appears where you can choose whether to save changes or discard them:</p>
+      <p><img src="images/qoobar-save-before-delete.png" alt="Save-files-before-delete dialog"/>.</p>
+      <div class="notebox"><p><b>Note:</b> Files removing clears the undo stack.</p></div>
+      <hr/>
+      <p class="copyright">© 2009-2015 Alex Novichkov</p>
+  </div>
+</body>
+</html>

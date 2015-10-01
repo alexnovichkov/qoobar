@@ -13,3 +13,7 @@ do
 	cp -f mac_os/${util} release/qoobar.app/Contents/Resources
 done
 cp -f mac_os/*.dylib release/qoobar.app/Contents/Resources
+
+# installing help
+cp -f html/Qoobar.help release/qoobar.app/Contents/Resources
+hiutil -C ...

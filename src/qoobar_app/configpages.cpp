@@ -570,6 +570,9 @@ PatternsPage::PatternsPage(QWidget *parent) : ConfigPage(parent)
     patterns->setDropIndicatorShown(true);
     patterns->setDragDropMode(QAbstractItemView::InternalMove);
     patterns->setMinimumHeight(200);
+#ifdef Q_OS_MAC
+    patterns->setAlternatingRowColors(true);
+#endif
 
     addPatternButton = new QPushButton(tr("Add pattern"),this);
     connect(addPatternButton,SIGNAL(clicked()),this,SLOT(addPattern()));

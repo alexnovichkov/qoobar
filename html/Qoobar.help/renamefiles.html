@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Renaming and copying files"/>
+    <meta name="KEYWORDS" content="rename, move, copy"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Rename Files</title>
+  </head>
+  <body><a name="renaming"></a>
+    <nav>
+      <ul>
+  			<li><a href="index.htm">Overview</a></li>
+  			<li><a href="interface-nav.html">Interface</a></li>
+  			<li><a href="howto-nav.html">How to...</a></li>
+  			<li><a href="more-nav.html">Advanced</a></li>
+  			<li><a href="preferences-nav.html">Preferences</a></li>
+  			<li><a href="appendixes-nav.html">Appendixes</a></li>
+  		</ul>
+    </nav>
+    
+    <div id="article">
+    <div class="pageNavigationLinks">
+      <a class="homeLink" href="howto-nav.html">Up</a>
+    </div>
+    
+    <h1 class="article">Rename files</h1>
+      <p>To open the Rename files dialog, click the button
+                <img src="images/document-save-as.png"/>
+                or press <span class="hotkey">⌘R</span>.</p>
+              <p><img src="images/qoobar-rename.png" alt="Renaming"/></p>
+              <p>Qoobar supports three rename operations:</p>
+
+               <ol>
+                <li>File rename / move</li>
+                <li>File copy</li>
+                <li>Folder rename</li>
+              </ol>
+              <p>The first two operations allow you to change file names, create nested folders etc. The latter one is
+              intended for folder renaming without any touching of file names. In this mode some rename options are disabled by default.</p>
+              <p>The ordinary workflow is as follows:</p>
+
+               <ol>
+                <li>Choose the desired operation.</li>
+                <li>Choose the output folder. If you don't select one, files will be written in their original locations. In the "folder rename" mode
+                  the output folder is always the folder one level up, so this option is disabled.</li>
+                <li>Set a file renaming pattern (use slash / or backslash \ to create subfolders). You can use all placeholders and functions listed in
+                  <a href="appendix3.html">Appendix 3</a>. The placeholders can also be found under the <span class="button">Legend</span> button.
+                  <div class="notebox"><b>Note:</b> There are three predefined patterns. You can edit these patterns in the Settings dialog.
+                Any pattern you use will be added to the patterns list for later use.</div>
+                  <div class="notebox"><b>Note:</b> If some tag is empty, the special character will be inserted instead. But you can enclose
+                empty tags in brackets [], and this section will be removed from the file name.</div>
+                  <div class="notebox"><b>Note:</b> In the "folder rename" mode subfolders creation is not allowed, and all slashes and backslashes will be replaced by "_".</div>
+                </li>
+                <li>Adjust the additional processing of file names.
+                <div class="notebox"><b>Note:</b> The special Windows symbols in tags are replaced by default as follows:
+                  <ul>
+                    <li>Question ? will be removed</li>
+                    <li>Double quotes " will be replaced with two single ones ''</li>
+                    <li>Greater/lesser characters &lt; &gt; will be replaced with parentheses ( )</li>
+                    <li>Slash / and backslash \ are used to create subfolders, but in tags they will be replaced
+                    with the special character (underscore _ by default)</li>
+                    <li>Characters | : * will be replaced by underscore </li>
+                  </ul>
+                  </div>
+                  <p>You can specify the maximum file name length. But whatever the value all file names in Windows
+                    are truncated to 255 characters.</p>
+                </li>
+              </ol>
+              
+              <p><b>Example</b>: The pattern</p>
+              <pre>%c (1905-1975)/%a/[%N. ]%t</pre>
+              <p>for an ogg file containing tags</p>
+              <ul>
+                <li>Composer="Bela Bartok",</li>
+                <li>Album="Microkosmos",</li>
+                <li>Track number=2,</li>
+                <li>Title = "Ostinato"</li>
+              </ul>
+              <p>yields the new file name </p><pre>Bela Bartok (1905-1975)/Microcosmos/02. Ostinato.ogg </pre>
+              <p>If you remove the track number, the new file name will be</p>
+              <pre>Bela Bartok (1905-1975)/Microcosmos/Ostinato.ogg</pre>
+
+        <hr/>
+   	  <p class="copyright">© 2009-2015 Alex Novichkov</p>
+   	</div>
+</body>
+</html>

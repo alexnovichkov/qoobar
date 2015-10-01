@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Qoobar patterns and schemes settings"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Patterns preferences</title>
+  </head>
+  <body><a name="patterns-settings"></a>
+    <nav>
+      <ul>
+  			<li><a href="index.htm">Overview</a></li>
+  			<li><a href="interface-nav.html">Interface</a></li>
+  			<li><a href="howto-nav.html">How to...</a></li>
+  			<li><a href="more-nav.html">Advanced</a></li>
+  			<li><a href="preferences-nav.html">Preferences</a></li>
+  			<li><a href="appendixes-nav.html">Appendixes</a></li>
+  		</ul>
+    </nav>
+    
+    <div id="article">
+    <div class="pageNavigationLinks">
+      <a class="homeLink" href="preferences-nav.html">Up</a>
+    </div>
+    
+    <h1 class="article">Patterns</h1>
+      <p><img src="images/qoobar-settings4.png" alt="Patterns settings"/></p>
+              <ul>
+                <li><b>Renaming patterns</b> - here you can edit the list of patterns
+                used when you rename files. </li>
+                
+                <li><p><b><a name="schemes"></a>Tagging schemes</b> - here you can choose which scheme to use for tags reading and writing.
+                  There are one default scheme (you cannot edit or delete this scheme, but only clone it) and 4 more schemes,
+                  which you can change: Tag&amp;Rename, Mp3tag, Iain Lamb's scheme, Musicbrainz Picard.</p>
+                  <p>You can edit scheme, clone or remove it (except for the default one).
+                  If you click on the <span class="button">Edit</span> button, a dialog will appear:</p>
+                  <img src="images/qoobar-scheme.png" alt="Taggings scheme dialog"/>
+                  <p>You can change the scheme name in the first line.
+                    The table sets the correspondence between Qoobar tags and various fields for 5 tag formats.
+                    If you want to set several fields for one tag, simply separate them by semicolon, f.e. in the
+                    default scheme the tag "Total tracks" are written into APE files into 3 different fields:
+                    <code>TOTALTRACKS;TRACKNUMBER;TRACKTOTAL</code>.
+                  </p>
+                  <p>If you set the same field for "Track number" and "Total tracks" tags, f.e.
+                    <code>TRACKNUMBER</code>, the resulting field value will be written as "track_number/total_tracks",
+                    and vice versa, when reading the field <code>TRACKNUMBER</code> with the value "02/10" it will be parsed
+                    as "Track number=02", "Total tracks=10".
+                  </p>
+                  <p>You can add your own tag(s) to the scheme. This tag will constantly be visible in the Tags Table, 
+                  although the Files Table don't show custom tags.</p>
+                    <ol>
+                      <li>Click the <span class="button">+</span> button.</li>
+                      <li>Change the tag name by double-clicking on the row name. This name will be used in the Tags Table.
+                        <div class="notebox"><b>Note:</b> This name will not be localized, but you can type your own localized name.</div>
+                      </li>
+                      <li>Set fields for all five tag formats. Please note the peculiarities in the paragraph below.</li>
+                    </ol>
+                    <p></p>
+                    <p><b>Example:</b> Let's add the "File Owner" tag. First click on <span class="button">+</span>. 
+                      Then double-click on the row name and input <code>File Owner</code>.
+                    Next fill in the fields: <code>TOWN</code> in the ID3v2 cell (this is the standard field listed in the ID3v2 specification, so no "TXXX:" prefix needed),
+                  <code>----:com.apple.iTunes:FILEOWNER</code> in the MP4 cell, and <code>FILEOWNER</code> in the other cells. Click <span class="button">Save</span>.</p>
+                  <p>If you want to remove some tag from the scheme, click on any field on the tag row and then click <span class="button">–</span>. Removing of standard tags
+                    (that is Composer through ISRC) is not supported. If you want to remove them, simply hide them by choosing the "Show/hide tags..."
+                  option in the Tags Table context menu.</p>
+                  <div class="notebox"><p><b>Note:</b> Please if possible restart Qoobar so the scheme changes can fully be applied.</p></div>
+                  <p>There are some peculiarities for ID3v2, Asf and Mp4 formats:</p>
+                  <ul>
+                    <li><b>ID3v2:</b> Use prefix <code>TXXX:</code> for non-standard text fields,
+                      <code>WXXX:</code> for non-standard web URLs, and <code>COMM:</code> for custom comments.
+                      You can also use all text fields listed in the ID3v2.3/4 specification.</li>
+                    <li><b>Mp4</b>: Use prefix <code>----:com.apple.iTunes:</code> for your non-standard fields.
+                        The grayed <span style="color: gray">internal</span> fields are handled internally by Qoobar
+                      and cannot be changed.</li>
+                    <li><b>Asf</b>: The grayed <span style="color: gray">internal</span> fields are handled internally by Qoobar
+                      and cannot be changed.</li>
+                  </ul>
+                </li>
+              </ul>
+
+        <hr/>
+   	  <p class="copyright">© 2009-2015 Alex Novichkov</p>
+   	</div>
+</body>
+</html>

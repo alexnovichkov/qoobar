@@ -35,8 +35,11 @@
 #include "qoobarglobals.h"
 
 #ifdef Q_OS_MAC
+#include "mactoolbar.h"
+#include "qocoa/qbutton.h"
 #define DYNAMICPAGES
 #endif
+#include "qoobarhelp.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
 #ifdef Q_OS_MAC
@@ -70,12 +73,12 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     pagesWidget = new QStackedWidget;
 #ifdef DYNAMICPAGES
     pagesWidget->addWidget(page);
-    connect(mapper,SIGNAL(mapped(int)),this,SLOT(switchPage(int)));
 #else
     Q_FOREACH (ConfigPage *page, configPages)
         pagesWidget->addWidget(page);
-    connect(mapper,SIGNAL(mapped(int)),pagesWidget,SLOT(setCurrentIndex(int)));
 #endif
+    connect(mapper,SIGNAL(mapped(int)),this,SLOT(switchPage(int)));
+    currentPage = 0;
 
 #ifdef Q_OS_MAC
     setUnifiedTitleAndToolBarOnMac(true);
@@ -112,6 +115,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 #endif
 
+    QPushButton *helpButton = buttonBox->addButton(QDialogButtonBox::Help);
+    connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
     //laying out
     QHBoxLayout *horizontalLayout = new QHBoxLayout;
@@ -166,6 +171,7 @@ void SettingsDialog::accept()
 
 void SettingsDialog::resetSettings()
 {DD;
+    if (QMessageBox::question(this,tr("Qoobar"),tr("Reset settings to defaults?"))!=QMessageBox::Yes) return;
     App->resetSettings();
     for (int i=0; i<configPages.count(); ++i) {
         configPages[i]->setSettings();
@@ -174,8 +180,28 @@ void SettingsDialog::resetSettings()
 
 void SettingsDialog::switchPage(int page)
 {DD;
+#ifdef DYNAMICPAGES
     pagesWidget->removeWidget(pagesWidget->widget(0));
     pagesWidget->addWidget(configPages[page]);
-
-    adjustSize();
+    this->adjustSize();
+#else
+    pagesWidget->setCurrentIndex(page);
+#endif
+    currentPage = page;
 }
+
+void SettingsDialog::showHelp()
+{
+    QString anchor;
+    switch (currentPage) {
+    case 0: anchor="interface"; break;
+    case 1: anchor="autocompletion-settings"; break;
+    case 2: anchor="tagswriting"; break;
+    case 3: anchor="patterns-settings"; break;
+    case 4: anchor="utilities"; break;
+    case 5: anchor="network"; break;
+    case 6: anchor="plugins"; break;
+    }
+    Qoobar::showHelp(anchor);
+}
+

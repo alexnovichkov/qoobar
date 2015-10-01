@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Using placeholders and functions in the edit operations"/>
+    <meta name="KEYWORDS" content="placeholder, function"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Placeholders and functions</title>
+  </head>
+  
+  <body>
+    <nav>
+      <ul>
+  			<li><a href="index.htm">Overview</a></li>
+  			<li><a href="interface-nav.html">Interface</a></li>
+  			<li><a href="howto-nav.html">How to...</a></li>
+  			<li><a href="more-nav.html">Advanced</a></li>
+  			<li><a href="preferences-nav.html">Preferences</a></li>
+  			<li><a href="appendixes-nav.html">Appendixes</a></li>
+  		</ul>
+    </nav>
+    
+    <div id="article">
+    <div class="pageNavigationLinks">
+      <a class="homeLink" href="more-nav.html">Up</a>
+    </div>
+    <a name="placeholders"></a>
+    <h1 class="article">Placeholders and functions</h1>
+      <p>If you want to join different tags together or add some text to a tag just in one operation,
+      you can make use of placeholders. A <i>placeholder</i> is a variable that contains a tag or other info of one file.</p>
+      <p>There are two types of placeholders: short and long ones.</p>
+      <p><strong>Short placeholders</strong> begin with '%', followed by one latin letter, for example <code>%t</code> for title, <code>%a</code>
+        for album, <code>%n</code> for track number, and so on. There are only 44 predefined short placeholders that cover
+        all standard tags and file properties supported by Qoobar.</p>
+
+        <p><strong>Long placeholder</strong> is a tag name enclosed in &lt; and &gt;, for example <code>&lt;title&gt;</code> or <code>&lt;performer&gt;</code>.
+        Note that long placeholders are case and spaces irrelevant, so <code>&lt;tracknumber&gt;</code> and <code>&lt;Track Number&gt;</code> are equivalent.
+        You can also use localized tag name instead of the English name, that is if the German language is chosen as the user interface language,
+      you can use either <code>%c</code>, <code>&lt;composer&gt;</code> or <code>&lt;komponist&gt;</code> for the composer tag.</p>
+      <p>Unlike short placeholders, long placeholders are not limited by 44 predefinite tags: <strong>any</strong> tag name shown in the Tags Table
+        can be used as a long placeholder. In other words, every user tag added to the tagging scheme, any new tag added to the Tags Table, and even any
+      non-standard tag added by other tagging program can be addressed by its name.</p>
+      <p>Examples: <code>&lt;TSSE&gt;</code> in some mp3 files (Software/Hardware and settings used for encoding) or 
+        <code>&lt;----:com.apple.iTunes:TAGGINGTIME&gt;</code> in mp4 files.</p>
+      <p>The full list of available placeholders can be found in <a href="appendix3.html">Appendix 3</a>.</p>
+      <p>The table below shows some <b>examples</b> of using placeholders in Qoobar.</p>
+
+      <table>
+        <tr><th>Pattern</th><th>Source</th><th>Result</th></tr>
+        <tr>
+          <td><code>%n. %t</code></td>
+          <td>
+            <table class="inner">
+              <tr class="inner">
+          <td class="inner"><b>track numbers:</b><br />1<br />2<br />3</td>
+          <td class="inner"><b>track titles:</b><br />title<br />another title<br />the third title</td>
+              </tr>
+            </table>
+          </td>
+          <td> <br/>1. title<br />2. another title<br />3. the third title</td>
+        </tr>
+        <tr>
+          <td><code>%N. %t</code></td>
+          <td>
+            <table class="inner">
+              <tr class="inner">
+          <td class="inner" ><b>track numbers:</b><br />1<br />2<br />3</td>
+          <td class="inner"><b>track titles:</b><br />title<br />another title<br />the third title</td>
+              </tr>
+            </table>
+          </td>
+          <td> <br />01. title<br />02. another title<br />03. the third title</td>
+        </tr>
+        <tr>
+          <td><code>[%n. ]%t</code></td>
+          <td>
+            <table class="inner">
+              <tr class="inner">
+          <td class="inner"><b>track numbers:</b><br />1<br />2<br /> </td>
+          <td class="inner"><b>track titles:</b><br />title<br />another title<br />the third title</td>
+              </tr>
+            </table>
+          </td>
+          <td> <br />1. title<br />2. another title<br />the third title</td>
+        </tr>
+        <tr>
+          <td><code>appended text - %t</code></td>
+          <td><b>track titles:</b><br />title<br />another title<br />the third title</td>
+          <td> <br />appended text - title<br />appended text - another title<br />appended text - the third title</td>
+        </tr>
+      </table>
+
+      <p> </p>
+      <p><a name="functions"></a><strong>Functions</strong> are similar to that of Foobar. They help to automate and simplify work with tags. For example, to simplify files renaming
+        you can make use of <code>$last_word</code> function, which returns the last word of its argument. So if you have the conductor tag set to
+        "Sergiu Celibidache", the rename pattern may look like <code>%a ($last_word(%d))/%N. %t</code>,
+        which gives us f.e. "Symphony No.6 A-Dur (Celibidache)/01. Maestoso.flac" (guess what composer it is).</p>
+      <p>You can use nested functions: <code>$upper($replace(%A, an, the))</code> replaces all occurrences of "an" by "the" in the artist tag
+        and returns uppercased result. <code>$upper($lw(%c))</code> returns an uppercase of the last word in the composer tag.</p>
+      <p>You can use brackets [ ] to remove sections if the function result is empty, f.e.
+        <code>[Section from 2nd to 20th character of album is $section(%a,2,20)]</code> will be removed if the album tag is shorter
+      than 2 characters.</p>
+      <p>The full list of functions can be found in <a href="appendix3.html">Appendix 3</a>.</p>
+      <div class="notebox"><p><strong>Note:</strong> Not all functions work identical to their Foobar equivalents, please test them before saving changes.</p></div>
+      
+      <hr/>
+   	  <p class="copyright">© 2009-2015 Alex Novichkov</p>
+   </div>
+</body>
+</html>

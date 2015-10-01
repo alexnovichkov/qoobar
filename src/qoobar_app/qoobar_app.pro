@@ -161,7 +161,8 @@ HEADERS = mainwindow.h \
     clparser.h \
     mactoolbar.h \
     styledbar.h \
-    logging.h
+    logging.h \
+    qoobarhelp.h
 
 lessThan(QT_MAJOR_VERSION, 5) {
     SOURCES *= ereilin/json.cpp
@@ -245,11 +246,13 @@ HEADERS += qocoa/qocoa_mac.h \
 mac {
     OBJECTIVE_SOURCES += qocoa/qbutton_mac.mm
     OBJECTIVE_SOURCES += qocoa/qprogressindicatorspinning_mac.mm
-    OBJECTIVE_SOURCES += mactoolbar.mm
+    OBJECTIVE_SOURCES += mactoolbar.mm \
+                         qoobarhelp.mm
 } else {
     SOURCES += qocoa/qbutton_nonmac.cpp
     SOURCES += qocoa/qprogressindicatorspinning_nonmac.cpp
-    SOURCES += mactoolbar.cpp
+    SOURCES += mactoolbar.cpp  \
+               qoobarhelp.cpp
 }
 
 DEFINES += QOOBAR_NO_PROPERTY_MAPS
@@ -497,15 +500,6 @@ mac|macx {
     coloredicons.path = $$INSTALL_PATH/Resources/icons/coloured
 
     INSTALLS += icon resources schemes completions icons coloredicons
-
-    # documentation
-    htmldocfiles.path = $$INSTALL_PATH/Resources/html
-    htmldocfiles.files = ../../html/*
-    htmldocfiles_html_en.path = $$INSTALL_PATH/Resources/html/en
-    htmldocfiles_html_en.files = ../../html/en/*.htm
-    htmldocfiles_imgs_en.path = $$INSTALL_PATH/Resources/html/en/images
-    htmldocfiles_imgs_en.files = ../../html/en/images/*.png
-    INSTALLS += htmldocfiles htmldocfiles_html_en htmldocfiles_imgs_en
 
     public_key.path = $$INSTALL_PATH/Resources
     public_key.files = ../../mac_os/dsa_pub.pem

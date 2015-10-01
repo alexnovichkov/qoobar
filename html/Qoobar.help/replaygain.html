@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Editing the ReplayGain info in files"/>
+    <meta name="KEYWORDS" content="rg, replaygain"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>ReplayGain info</title>
+  </head>
+  
+  <body><a name="replaygain"></a>
+    <nav>
+      <ul>
+  			<li><a href="index.htm">Overview</a></li>
+  			<li><a href="interface-nav.html">Interface</a></li>
+  			<li><a href="howto-nav.html">How to...</a></li>
+  			<li><a href="more-nav.html">Advanced</a></li>
+  			<li><a href="preferences-nav.html">Preferences</a></li>
+  			<li><a href="appendixes-nav.html">Appendixes</a></li>
+  		</ul>
+    </nav>
+    
+    <div id="article">
+    <div class="pageNavigationLinks">
+      <a class="homeLink" href="more-nav.html">Up</a>
+    </div>
+    
+    <h1 class="article">ReplayGain info</h1>
+      <p>Qoobar can help you replaygain your music files. This feature is not yet completely implemented,
+        so only the following file types are supported: mp3, mp4/m4a, musepack, flac, ogg, wavpack.
+      </p>
+      <p>Qoobar so far uses external utilities to do ReplayGain scanning.
+        You can check whether all utilities can be found by Qoobar in the <a href="preferences-utilities.html">Utilities page</a> of the Preferences dialog.
+      </p>
+      <p>Qoobar so far cannot replaygain the following file types: ape, wma, wav, speex, tta, oga, aiff.</p>
+      <p><b>Scanning for ReplayGain info</b>:</p>
+      <ol>
+        <li>Select files, as many as you want. Qoobar will sort these files according to their type,
+          so you cannot scan a folder that contains both mp3 and flac files as a single album.
+        </li>
+        <li>In the context menu or the <i>Tools</i> menu click <i>ReplayGain info...</i>. If some files you have selected
+          have not saved changes, a dialog will appear with the suggestion to save them.
+          Please save these files if you want to proceed. Then a dialog appears:
+          <p><img src="images/qoobar-replaygain.png" alt="Replaygain dialog"/></p>
+        </li>
+        <li>Now you can use one of the buttons to start scanning:
+          <ul><li><span class="button">Scan per file track gain</span> - All files you have selected will be scanned independently.</li>
+            <li><span class="button">Scan as a single album</span> - All files you have selected will be scanned as one album regardless of their path/folder or the "Album" tag.</li>
+            <li><span class="button">Scan as albums (by tags)</span> - All files you have selected will be sorted according to their "Album" tag and scanned by groups.</li>
+            <li><span class="button">Scan as albums (by folders)</span> - All files you have selected will be sorted by their path/folder and scanned by groups.</li>
+            <li><span class="button">Remove replaygain tags from files</span> - The replaygain info will be removed from files.</li>
+          </ul>
+        </li>
+      </ol>
+      <div class="notebox"><p><strong>Note:</strong> Qoobar can skip already scanned files. Just check on the "Skip already scanned files" box.</p></div>
+      <div class="notebox"><p><strong>Note:</strong> If you are encountering messages like "Couldn't find file" or
+        "The FLAC file could not be opened", open the Preferences dialog
+        and on the Utilities page set the "Copy files into temp folder before replaygaining them" option.
+      </p></div>
+     
+      <hr/>
+   	  <p class="copyright">© 2009-2015 Alex Novichkov</p>
+   </div>
+</body>
+</html>
