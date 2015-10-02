@@ -83,8 +83,6 @@ void Toolbar::addAction(QAction *act, const QString &key, bool showText)
 
     QAction *a = new QAction(act->icon(),act->text(),this);
     a->setText(act->text());
-    a->setShortcut(act->shortcut());
-    a->setShortcutContext(act->shortcutContext());
     a->setToolTip(act->toolTip());
     a->setEnabled(act->isEnabled());
 
@@ -102,8 +100,6 @@ void Toolbar::retranslateUI()
         QAction *act = d->hash.key(a);
         if (act) {
             a->setText(act->text());
-            a->setShortcut(act->shortcut());
-            a->setShortcutContext(act->shortcutContext());
             a->setToolTip(act->toolTip());
             a->setEnabled(act->isEnabled());
         }

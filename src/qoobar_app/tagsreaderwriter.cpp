@@ -10,6 +10,7 @@
 #include "taglib/mpeg/id3v2/frames/attachedpictureframe.h"
 #include "taglib/mpeg/id3v2/frames/popularimeterframe.h"
 #include "taglib/mpeg/id3v2/frames/ownershipframe.h"
+#include "taglib/mpeg/id3v2/frames/synchronizedlyricsframe.h"
 #include "taglib/mpc/mpcfile.h"
 #include "taglib/ogg/flac/oggflacfile.h"
 #include "taglib/trueaudio/trueaudiofile.h"
@@ -364,13 +365,27 @@ void TagsReaderWriter::readID3v2(TagLib::ID3v2::Tag *id3v2tag)
             QStringList values=handleFrameList((*it).second);
             parseTag(id,TaggingScheme::ID3,values.join(QSL(";")));
         }
-        else if (id=="USLT") {
+        else if (id=="USLT") {//unsynchronized lyrics frame
             QStringList values;
             for (unsigned int i=0; i<(*it).second.size(); ++i) {
                 TagLib::ID3v2::UnsynchronizedLyricsFrame *frame=
                         dynamic_cast<TagLib::ID3v2::UnsynchronizedLyricsFrame *>((*it).second[i]);
                 if (!frame) continue;
                 values << QS(frame->text());
+            }
+            parseTag(id,TaggingScheme::ID3,values.join(QSL("\n")));
+        }
+        else if (id=="SYLT") {//synchronized lyrics frame
+            QStringList values;
+            for (unsigned int i=0; i<(*it).second.size(); ++i) {
+                TagLib::ID3v2::SynchronizedLyricsFrame *frame=
+                        dynamic_cast<TagLib::ID3v2::SynchronizedLyricsFrame *>((*it).second[i]);
+                if (!frame) continue;
+
+                TagLib::ID3v2::SynchronizedLyricsFrame::SynchedTextList synchedText = frame->synchedText();
+                for (uint j=0; j<synchedText.size(); ++j) {
+                    values.append(QString("%1: %2").arg(synchedText[j].time).arg(QS(synchedText[j].text)));
+                }
             }
             parseTag(id,TaggingScheme::ID3,values.join(QSL("\n")));
         }
@@ -532,6 +547,25 @@ void writeID3v2Frame(TagLib::ID3v2::Tag *id3v2tag,const QString &s,const QString
             frame->setText(TS(s));
             frame->setLanguage("eng");
             frame->setDescription("");
+            id3v2tag->addFrame(frame);
+        }
+    }
+    else if (id=="SYLT") {
+        id3v2tag->removeFrames(id);
+        if (!s.isEmpty()) {
+            TagLib::ID3v2::SynchronizedLyricsFrame *frame =
+                    new TagLib::ID3v2::SynchronizedLyricsFrame(TagLib::String::UTF8);
+            frame->setType(TagLib::ID3v2::SynchronizedLyricsFrame::Other);
+            frame->setTimestampFormat(TagLib::ID3v2::SynchronizedLyricsFrame::AbsoluteMilliseconds);
+            frame->setLanguage("eng");
+            frame->setDescription("");
+            TagLib::ID3v2::SynchronizedLyricsFrame::SynchedTextList list;
+            QStringList l = s.split("\n");
+            Q_FOREACH(const QString &line, l) {
+                list.append(TagLib::ID3v2::SynchronizedLyricsFrame::SynchedText(line.section(": ",0,0).toUInt(),
+                                                                                TS(line.section(": ",1))));
+            }
+            frame->setSynchedText(list);
             id3v2tag->addFrame(frame);
         }
     }
