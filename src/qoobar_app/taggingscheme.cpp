@@ -200,6 +200,12 @@ QString TaggingScheme::fieldName(int tagID) const
     return m_fields.value(tagID).name;
 }
 
+bool TaggingScheme::canBeSimplified(int tagID) const
+{
+    if (tagID == LYRICS || tagID == COMMENT || fieldName(tagID)=="Synchronized lyrics") return false;
+    return true;
+}
+
 //QString TaggingScheme::localizedFieldName(int tagID) const
 //{DD;
 //    return (tagID < TAGSCOUNT ? Qoobar::tagByID(tagID) : fieldName(tagID));

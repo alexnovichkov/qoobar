@@ -82,6 +82,7 @@ public:
     void setName(const QString &);
 
     QString fieldName(int tagID) const;
+    bool canBeSimplified(int tagID) const;
 //    QString localizedFieldName(int tagID) const;
 
     int tagIDByName(const QString &name) const;

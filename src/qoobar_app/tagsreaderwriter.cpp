@@ -1374,15 +1374,16 @@ bool TagsReaderWriter::writeTags()
     if (App->trim) {
         const int tagsCount = App->currentScheme->tagsCount();
         for (int i=0; i<tagsCount; ++i) {
-            if (i!=COMMENT && i!=LYRICS) tag->d->tags[i] = tag->tag(i).simplified();
+            if (App->currentScheme->canBeSimplified(i))
+                tag->d->tags[i] = tag->tag(i).simplified();
         }
-        QMap<QString, QString> other = tag->userTags();
+        /*QMap<QString, QString> other = tag->userTags();
         QMutableMapIterator<QString, QString> i(other);
         while (i.hasNext()) {
             i.next();
             i.setValue(i.value().simplified());
         }
-        tag->d->otherTags = other;
+        tag->d->otherTags = other;*/
     }
 
     QString lyrics = tag->tag(LYRICS);
