@@ -112,7 +112,7 @@ namespace TagLib
       /*!
        * Copies the contents of \a other into this item.
        */
-      Attribute &operator=(const Attribute &other);
+      ASF::Attribute &operator=(const Attribute &other);
 
       /*!
        * Destroys the attribute.

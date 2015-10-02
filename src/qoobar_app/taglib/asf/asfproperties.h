@@ -37,6 +37,36 @@ namespace TagLib {
     class Properties : public AudioProperties
     {
     public:
+      /*!
+       * Audio codec types can be used in ASF file.
+       */
+      enum Codec
+      {
+        /*!
+         * Couldn't detect the codec.
+         */
+        Unknown = 0,
+
+        /*!
+         * Windows Media Audio 1
+         */
+        WMA1,
+
+        /*!
+         * Windows Media Audio 2 or above
+         */
+        WMA2,
+
+        /*!
+         * Windows Media Audio 9 Professional
+         */
+        WMA9Pro,
+
+        /*!
+         * Windows Media Audio 9 Lossless
+         */
+        WMA9Lossless,
+      };
 
       /*!
        * Create an instance of ASF::Properties.
@@ -53,13 +83,22 @@ namespace TagLib {
       virtual int bitrate() const;
       virtual int sampleRate() const;
       virtual int channels() const;
+      int bitsPerSample() const;
+      Codec codec() const;
+      String codecName() const;
+      String codecDescription() const;
       bool isEncrypted() const;
 
 #ifndef DO_NOT_DOCUMENT
       void setLength(int value);
+      void setLengthInMilliseconds(int value);
       void setBitrate(int value);
       void setSampleRate(int value);
       void setChannels(int value);
+      void setBitsPerSample(int value);
+      void setCodec(int value);
+      void setCodecName(const String &value);
+      void setCodecDescription(const String &value);
       void setEncrypted(bool value);
 #endif
 

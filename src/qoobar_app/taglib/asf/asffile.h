@@ -103,7 +103,7 @@ namespace TagLib {
 
     private:
 
-      int readBYTE(bool *ok = 0);
+      /*int readBYTE(bool *ok = 0);
       int readWORD(bool *ok = 0);
       unsigned int readDWORD(bool *ok = 0);
       long long readQWORD(bool *ok = 0);
@@ -122,8 +122,9 @@ namespace TagLib {
       class ExtendedContentDescriptionObject;
       class HeaderExtensionObject;
       class MetadataObject;
-      class MetadataLibraryObject;
+      class MetadataLibraryObject;*/
 
+      void read();
       class FilePrivate;
       FilePrivate *d;
     };
