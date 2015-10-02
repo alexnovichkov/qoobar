@@ -45,6 +45,10 @@
 #include "frames/popularimeterframe.h"
 #include "frames/privateframe.h"
 #include "frames/ownershipframe.h"
+#include "frames/synchronizedlyricsframe.h"
+#include "frames/eventtimingcodesframe.h"
+#include "frames/chapterframe.h"
+#include "frames/tableofcontentsframe.h"
 
 using namespace TagLib;
 using namespace ID3v2;
@@ -99,7 +103,7 @@ Frame *FrameFactory::createFrame(const ByteVector &origData, Header *tagHeader) 
   // A quick sanity check -- make sure that the frameID is 4 uppercase Latin1
   // characters.  Also make sure that there is data in the frame.
 
-  if(!frameID.size() == (version < 3 ? 3 : 4) ||
+  if(frameID.size() != (version < 3 ? 3 : 4) ||
      header->frameSize() <= uint(header->dataLengthIndicator() ? 4 : 0) ||
      header->frameSize() > data.size())
   {
@@ -125,7 +129,7 @@ Frame *FrameFactory::createFrame(const ByteVector &origData, Header *tagHeader) 
   // TagLib doesn't mess with encrypted frames, so just treat them
   // as unknown frames.
 
-#if HAVE_ZLIB == 0
+#if !defined(HAVE_ZLIB) || HAVE_ZLIB == 0
   if(header->compression()) {
     //debug("Compressed frames are currently not supported.");
     return new UnknownFrame(data, header);
@@ -230,6 +234,20 @@ Frame *FrameFactory::createFrame(const ByteVector &origData, Header *tagHeader) 
     return f;
   }
 
+  // Synchronised lyrics/text (frames 4.9)
+
+  if(frameID == "SYLT") {
+    SynchronizedLyricsFrame *f = new SynchronizedLyricsFrame(data, header);
+    if(d->useDefaultEncoding)
+      f->setTextEncoding(d->defaultEncoding);
+    return f;
+  }
+
+  // Event timing codes (frames 4.5)
+
+  if(frameID == "ETCO")
+    return new EventTimingCodesFrame(data, header);
+
   // Popularimeter (frames 4.17)
 
   if(frameID == "POPM")
@@ -248,7 +266,39 @@ Frame *FrameFactory::createFrame(const ByteVector &origData, Header *tagHeader) 
     return f;
   }
 
+  // Chapter (ID3v2 chapters 1.0)
+
+  if(frameID == "CHAP")
+    return new ChapterFrame(tagHeader, data, header);
+
+  // Table of contents (ID3v2 chapters 1.0)
+
+  if(frameID == "CTOC")
+    return new TableOfContentsFrame(tagHeader, data, header);
+
   return new UnknownFrame(data, header);
+}
+
+void FrameFactory::rebuildAggregateFrames(ID3v2::Tag *tag) const
+{
+  if(tag->header()->majorVersion() < 4 &&
+     tag->frameList("TDRC").size() == 1 &&
+     tag->frameList("TDAT").size() == 1)
+  {
+    TextIdentificationFrame *trdc =
+      static_cast<TextIdentificationFrame *>(tag->frameList("TDRC").front());
+    UnknownFrame *tdat =
+      static_cast<UnknownFrame *>(tag->frameList("TDAT").front());
+
+    if(trdc->fieldList().size() == 1 &&
+       trdc->fieldList().front().size() == 4 &&
+       tdat->data().size() >= 5)
+    {
+      String date(tdat->data().mid(1), String::Type(tdat->data()[0]));
+      if(date.length() == 4)
+        trdc->setText(trdc->toString() + '-' + date.substr(2, 2) + '-' + date.substr(0, 2));
+    }
+  }
 }
 
 String::Type FrameFactory::defaultTextEncoding() const
@@ -374,8 +424,8 @@ bool FrameFactory::updateFrame(Frame::Header *header) const
        frameID == "TSIZ" ||
        frameID == "TDAT")
     {
-      //debug("ID3v2.4 no longer supports the frame type " + String(frameID) +
-      //      ".  It will be discarded from the tag.");
+      debug("ID3v2.4 no longer supports the frame type " + String(frameID) +
+            ".  It will be discarded from the tag.");
       return false;
     }
 
@@ -419,7 +469,7 @@ void FrameFactory::updateGenre(TextIdentificationFrame *frame) const
   StringList fields = frame->fieldList();
   StringList newfields;
 
-  for(StringList::Iterator it = fields.begin(); it != fields.end(); ++it) {
+  for(StringList::ConstIterator it = fields.begin(); it != fields.end(); ++it) {
     String s = *it;
     int end = s.find(")");
 

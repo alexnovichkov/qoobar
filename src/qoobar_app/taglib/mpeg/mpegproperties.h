@@ -106,7 +106,7 @@ namespace TagLib {
       Properties(const Properties &);
       Properties &operator=(const Properties &);
 
-      void read();
+      void read(File *file);
 
       class PropertiesPrivate;
       PropertiesPrivate *d;

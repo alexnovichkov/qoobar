@@ -261,83 +261,83 @@ Please check the file</source>
 <context>
     <name>FileRenameDialog</name>
     <message>
-        <location filename="filesrenamer.cpp" line="66"/>
+        <location filename="filesrenamer.cpp" line="67"/>
         <source>Move/Copy/Rename files</source>
         <translation>Копировать/переместить файлы</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="80"/>
+        <location filename="filesrenamer.cpp" line="81"/>
         <source>rename/move files</source>
         <translation>переименовать/переместить файлы</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="81"/>
+        <location filename="filesrenamer.cpp" line="82"/>
         <source>copy files</source>
         <translation>копировать файлы</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="82"/>
+        <location filename="filesrenamer.cpp" line="83"/>
         <source>rename folder</source>
         <translation>переименовать папку</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="100"/>
+        <location filename="filesrenamer.cpp" line="101"/>
         <source>Open existing folder</source>
         <translation>Открыть существующую папку</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="117"/>
+        <location filename="filesrenamer.cpp" line="118"/>
         <source>Remove this pattern</source>
         <translation>Удалить этот шаблон</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="187"/>
+        <location filename="filesrenamer.cpp" line="188"/>
         <source>Apply these options to created folders as well</source>
         <translation>Применять к создаваемым папкам</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="191"/>
+        <location filename="filesrenamer.cpp" line="192"/>
         <source>Options</source>
         <translation>Опции</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="236"/>
+        <location filename="filesrenamer.cpp" line="237"/>
         <source>Run</source>
         <translation>Начать</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="214"/>
+        <location filename="filesrenamer.cpp" line="215"/>
         <source>Old names</source>
         <translation>Старые имена</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="214"/>
+        <location filename="filesrenamer.cpp" line="215"/>
         <source>New names</source>
         <translation>Новые имена</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="142"/>
+        <location filename="filesrenamer.cpp" line="143"/>
         <source>Delete empty folder after renaming</source>
         <translation>Удалить пустую папку после переименования</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="251"/>
-        <location filename="filesrenamer.cpp" line="267"/>
+        <location filename="filesrenamer.cpp" line="252"/>
+        <location filename="filesrenamer.cpp" line="268"/>
         <source>Do what:</source>
         <translation>Операция:</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="88"/>
+        <location filename="filesrenamer.cpp" line="89"/>
         <source>Output folder</source>
         <translation>Конечная папка</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="146"/>
+        <location filename="filesrenamer.cpp" line="147"/>
         <source>Replace special Windows characters \/:*?&quot;&lt;&gt;| with</source>
         <translation>Заменять символы Windows \/:*?&quot;&lt;&gt;| на</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="147"/>
+        <location filename="filesrenamer.cpp" line="148"/>
         <source>Characters \/:*| will be replaced by this text
 character ? will be removed
 characters &lt;&gt; will be replaced by (),
@@ -348,58 +348,58 @@ and &quot; by two single quotes &apos;&apos;</source>
 двойная кавычка &quot; будет заменена на две одинарные &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="157"/>
+        <location filename="filesrenamer.cpp" line="158"/>
         <source>Replace spaces with</source>
         <translation>Заменять пробелы на</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="184"/>
+        <location filename="filesrenamer.cpp" line="185"/>
         <source>Remove diacritics</source>
         <translation>Удалить диакритические знаки</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="172"/>
+        <location filename="filesrenamer.cpp" line="173"/>
         <source>Case</source>
         <translation>Регистр</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="177"/>
+        <location filename="filesrenamer.cpp" line="178"/>
         <source>lower</source>
         <translation>нижний</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="178"/>
+        <location filename="filesrenamer.cpp" line="179"/>
         <source>UPPER</source>
         <translation>ВЕРХНИЙ</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="179"/>
+        <location filename="filesrenamer.cpp" line="180"/>
         <source>Only first up</source>
         <translation>Первое слово</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="180"/>
+        <location filename="filesrenamer.cpp" line="181"/>
         <source>Every First Up</source>
         <translation>Каждое Слово</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="169"/>
+        <location filename="filesrenamer.cpp" line="170"/>
         <source>Maximum file name length</source>
         <translation>Максимальная длина имени файла</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="255"/>
-        <location filename="filesrenamer.cpp" line="272"/>
+        <location filename="filesrenamer.cpp" line="256"/>
+        <location filename="filesrenamer.cpp" line="273"/>
         <source>Output file name pattern</source>
         <translation>Формат имени файла</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="441"/>
+        <location filename="filesrenamer.cpp" line="442"/>
         <source>Nothing to rename, file names not changed.</source>
         <translation>Нечего переименовывать, названия файлов не изменились.</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="423"/>
+        <location filename="filesrenamer.cpp" line="424"/>
         <source>Folder to move/copy files</source>
         <translation>Папка, куда будут перемещены/скопированы файлы</translation>
     </message>
@@ -3158,103 +3158,103 @@ Open the Settings dialog?</source>
 <context>
     <name>TagsFillDialog</name>
     <message>
-        <location filename="tagsfiller.cpp" line="139"/>
+        <location filename="tagsfiller.cpp" line="140"/>
         <source>Fill tags</source>
         <translation>Заполнить теги</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="144"/>
+        <location filename="tagsfiller.cpp" line="145"/>
         <source>Pattern:</source>
         <translation>Шаблон:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="148"/>
+        <location filename="tagsfiller.cpp" line="149"/>
         <source>File name</source>
         <translation>Имя файла</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="149"/>
+        <location filename="tagsfiller.cpp" line="150"/>
         <source>Clipboard</source>
         <translation>Буфер обмена</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="176"/>
-        <location filename="tagsfiller.cpp" line="770"/>
+        <location filename="tagsfiller.cpp" line="177"/>
+        <location filename="tagsfiller.cpp" line="771"/>
         <source>Source</source>
         <translation>Источник</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="208"/>
+        <location filename="tagsfiller.cpp" line="209"/>
         <source>Source:</source>
         <translation>Источник:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="219"/>
+        <location filename="tagsfiller.cpp" line="220"/>
         <source>from other tags</source>
         <translation>из других тегов</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="260"/>
+        <location filename="tagsfiller.cpp" line="261"/>
         <source>manually</source>
         <translation>вручную</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="263"/>
+        <location filename="tagsfiller.cpp" line="264"/>
         <source>by CD in CD-ROM</source>
         <translation>по диску в CD-ROM</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="265"/>
+        <location filename="tagsfiller.cpp" line="266"/>
         <source>by selected files</source>
         <translation>по выделенным файлам</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="274"/>
+        <location filename="tagsfiller.cpp" line="275"/>
         <source>Search</source>
         <translation>Начать поиск</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="282"/>
+        <location filename="tagsfiller.cpp" line="283"/>
         <source>Search results</source>
         <translation>Результаты поиска</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="309"/>
+        <location filename="tagsfiller.cpp" line="310"/>
         <source>artist:</source>
         <translation>артист:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="312"/>
+        <location filename="tagsfiller.cpp" line="313"/>
         <source>album:</source>
         <translation>альбом:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="316"/>
+        <location filename="tagsfiller.cpp" line="317"/>
         <source>Search in</source>
         <translation>Искать в</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="345"/>
+        <location filename="tagsfiller.cpp" line="346"/>
         <source>from network</source>
         <translation>из сети</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="356"/>
+        <location filename="tagsfiller.cpp" line="357"/>
         <source>No download plugins found. Internet search is inaccessible</source>
         <translation>Не найдено ни одного плагина для скачивания. Поиск в интернете недоступен</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="435"/>
+        <location filename="tagsfiller.cpp" line="436"/>
         <source>Searching %1...</source>
         <translation>Поиск в %1...</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="465"/>
+        <location filename="tagsfiller.cpp" line="466"/>
         <source>Nothing found</source>
         <translation>Ничего не найдено</translation>
     </message>
     <message numerus="yes">
-        <location filename="tagsfiller.cpp" line="470"/>
+        <location filename="tagsfiller.cpp" line="471"/>
         <source>Found %n album(s)</source>
         <translation>
             <numerusform>Найден %n альбом</numerusform>
@@ -3263,17 +3263,17 @@ Open the Settings dialog?</source>
         </translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="507"/>
+        <location filename="tagsfiller.cpp" line="508"/>
         <source>Retrieving release info...</source>
         <translation>Получаю данные релиза...</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="520"/>
+        <location filename="tagsfiller.cpp" line="521"/>
         <source>Done</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="430"/>
+        <location filename="tagsfiller.cpp" line="431"/>
         <source>Please specify an artist and an album for the manual search</source>
         <translation>Пожалуйста, задайте артиста и альбом для поиска вручную</translation>
     </message>

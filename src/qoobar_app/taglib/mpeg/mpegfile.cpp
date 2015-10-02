@@ -43,6 +43,25 @@ using namespace TagLib;
 
 namespace
 {
+  /*!
+   * MPEG frames can be recognized by the bit pattern 11111111 111, so the
+   * first byte is easy to check for, however checking to see if the second byte
+   * starts with \e 111 is a bit more tricky, hence these functions.
+   */
+
+  inline bool firstSyncByte(uchar byte)
+  {
+    return (byte == 0xFF);
+  }
+
+  inline bool secondSynchByte(uchar byte)
+  {
+    return ((byte & 0xE0) == 0xE0);
+  }
+}
+
+namespace
+{
   enum { ID3v2Index = 0, APEIndex = 1, ID3v1Index = 2 };
 }
 
@@ -399,11 +418,11 @@ long MPEG::File::nextFrameOffset(long position)
       return position - 1;
 
     for(uint i = 0; i < buffer.size() - 1; i++) {
-      if(uchar(buffer[i]) == 0xff && secondSynchByte(buffer[i + 1]))
+      if(firstSyncByte(buffer[i]) && secondSynchByte(buffer[i + 1]))
         return position + i;
     }
 
-    foundLastSyncPattern = uchar(buffer[buffer.size() - 1]) == 0xff;
+    foundLastSyncPattern = firstSyncByte(buffer[buffer.size() - 1]);
     position += buffer.size();
   }
 }
@@ -423,11 +442,11 @@ long MPEG::File::previousFrameOffset(long position)
     if(buffer.size() <= 0)
       break;
 
-    if(foundFirstSyncPattern && uchar(buffer[buffer.size() - 1]) == 0xff)
+    if(foundFirstSyncPattern && firstSyncByte(buffer[buffer.size() - 1]))
       return position + buffer.size() - 1;
 
     for(int i = buffer.size() - 2; i >= 0; i--) {
-      if(uchar(buffer[i]) == 0xff && secondSynchByte(buffer[i + 1]))
+      if(firstSyncByte(buffer[i]) && secondSynchByte(buffer[i + 1]))
         return position + i;
     }
 
@@ -440,15 +459,45 @@ long MPEG::File::firstFrameOffset()
 {
   long position = 0;
 
-  if(ID3v2Tag())
+  if(hasID3v2Tag())  {
     position = d->ID3v2Location + ID3v2Tag()->header()->completeTagSize();
+
+    // Skip duplicate ID3v2 tags.
+
+    // Workaround for some faulty files that have duplicate ID3v2 tags.
+    // Combination of EAC and LAME creates such files when configured incorrectly.
+
+    long location;
+    while((location = findID3v2(position)) >= 0) {
+      seek(location);
+      const ID3v2::Header header(readBlock(ID3v2::Header::size()));
+      position = location + header.completeTagSize();
+
+      debug("MPEG::File::firstFrameOffset() - Duplicate ID3v2 tag found.");
+    }
+  }
 
   return nextFrameOffset(position);
 }
 
 long MPEG::File::lastFrameOffset()
 {
-  return previousFrameOffset(ID3v1Tag() ? d->ID3v1Location - 1 : length());
+  return previousFrameOffset(hasID3v1Tag() ? d->ID3v1Location - 1 : length());
+}
+
+bool MPEG::File::hasID3v1Tag() const
+{
+  return d->hasID3v1;
+}
+
+bool MPEG::File::hasID3v2Tag() const
+{
+  return d->hasID3v2;
+}
+
+bool MPEG::File::hasAPETag() const
+{
+  return d->hasAPE;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -459,7 +508,7 @@ void MPEG::File::read(bool readProperties, Properties::ReadStyle propertiesStyle
 {
   // Look for an ID3v2 tag
 
-  d->ID3v2Location = findID3v2();
+  d->ID3v2Location = findID3v2(0);
 
   if(d->ID3v2Location >= 0) {
 
@@ -502,7 +551,7 @@ void MPEG::File::read(bool readProperties, Properties::ReadStyle propertiesStyle
   ID3v1Tag(true);
 }
 
-long MPEG::File::findID3v2()
+long MPEG::File::findID3v2(long offset)
 {
   // This method is based on the contents of TagLib::File::find(), but because
   // of some subtlteies -- specifically the need to look for the bit pattern of
@@ -528,7 +577,7 @@ long MPEG::File::findID3v2()
 
     // Start the search at the beginning of the file.
 
-    seek(0);
+    seek(offset);
 
     // This loop is the crux of the find method.  There are three cases that we
     // want to account for:
@@ -553,7 +602,7 @@ long MPEG::File::findID3v2()
         const int patternOffset = (bufferSize() - previousPartialMatch);
         if(buffer.containsAt(ID3v2::Header::fileIdentifier(), 0, patternOffset)) {
           seek(originalPosition);
-          return bufferOffset - bufferSize() + previousPartialMatch;
+          return offset + bufferOffset - bufferSize() + previousPartialMatch;
         }
       }
 
@@ -562,7 +611,7 @@ long MPEG::File::findID3v2()
       long location = buffer.find(ID3v2::Header::fileIdentifier());
       if(location >= 0) {
         seek(originalPosition);
-        return bufferOffset + location;
+        return offset + bufferOffset + location;
       }
 
       int firstSynchByte = buffer.find(char(uchar(255)));
@@ -613,6 +662,18 @@ long MPEG::File::findID3v2()
   return -1;
 }
 
+long MPEG::File::findID3v1()
+{
+  if(isValid()) {
+    seek(-128, End);
+    long p = tell();
+
+    if(readBlock(3) == ID3v1::Tag::fileIdentifier())
+      return p;
+  }
+  return -1;
+}
+
 void MPEG::File::findAPE()
 {
   if(isValid()) {
@@ -633,11 +694,4 @@ void MPEG::File::findAPE()
   d->APELocation = -1;
   d->APEFooterLocation = -1;
 }
-
-bool MPEG::File::secondSynchByte(char byte)
-{
-  std::bitset<8> b(byte);
-
-  // check to see if the byte matches 111xxxxx
-  return b.test(7) && b.test(6) && b.test(5);
-}
+    

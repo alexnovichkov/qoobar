@@ -319,20 +319,35 @@ namespace TagLib {
        */
       long lastFrameOffset();
 
+      /*!
+       * Returns whether or not the file on disk actually has an ID3v1 tag.
+       *
+       * \see ID3v1Tag()
+       */
+      bool hasID3v1Tag() const;
+
+      /*!
+       * Returns whether or not the file on disk actually has an ID3v2 tag.
+       *
+       * \see ID3v2Tag()
+       */
+      bool hasID3v2Tag() const;
+
+      /*!
+       * Returns whether or not the file on disk actually has an APE tag.
+       *
+       * \see APETag()
+       */
+      bool hasAPETag() const;
+
     private:
       File(const File &);
       File &operator=(const File &);
 
       void read(bool readProperties, Properties::ReadStyle propertiesStyle);
-      long findID3v2();
+      long findID3v2(long offset);
+      long findID3v1();
       void findAPE();
-
-      /*!
-       * MPEG frames can be recognized by the bit pattern 11111111 111, so the
-       * first byte is easy to check for, however checking to see if the second byte
-       * starts with \e 111 is a bit more tricky, hence this member function.
-       */
-      static bool secondSynchByte(char byte);
 
       class FilePrivate;
       FilePrivate *d;
