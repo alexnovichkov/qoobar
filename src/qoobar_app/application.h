@@ -235,6 +235,7 @@ public:
     QStringList searchPaths;
     bool hideTabBar;
     QString defaultSplitFormat;
+    int statusBarTrack;
 Q_SIGNALS:
     void settingsCleared();
 private:

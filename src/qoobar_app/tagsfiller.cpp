@@ -779,8 +779,10 @@ void TagsFillDialog::updateTags(bool alsoUpdateTable)
                     QTableWidgetItem *item = new QTableWidgetItem(newTags[i].tag(key));
                     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
                     item->setData(Qt::UserRole+1, key);
-                    if (table->item(i,0)->checkState()==Qt::Unchecked)
+                    if (table->item(i,0)->checkState()==Qt::Unchecked) {
                         item->setForeground(Qt::gray);
+                        item->setText(oldTags[i].tag(key));
+                    }
                     table->setItem(i,column,item);
                 }
                 table->resizeColumnToContents(column);

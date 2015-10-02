@@ -83,9 +83,10 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     tree = new TreeView(this);
     tree->setModel(model);
     tree->resetHeader();
-    connect(tree->selectionModel(),SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),SLOT(filesSelectionChanged()));
-    connect(tree,SIGNAL(entered(const QModelIndex&)),SLOT(updateStatusBar(const QModelIndex&)));
-    connect(tree,SIGNAL(clicked(const QModelIndex&)),SLOT(onItemClicked(const QModelIndex&)));
+    connect(tree->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),SLOT(filesSelectionChanged()));
+    connect(tree,SIGNAL(entered(QModelIndex)),SLOT(updateStatusBar(QModelIndex)));
+    connect(tree->selectionModel(),SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),SLOT(updateStatusBar(QModelIndex)));
+    connect(tree,SIGNAL(clicked(QModelIndex)),SLOT(onItemClicked(QModelIndex)));
     connect(tree,SIGNAL(moveToTab(int)),this,SLOT(moveToTab(int)));
     connect(tree,SIGNAL(showMP3TagsDialog()),SLOT(showMP3TagsDialog()));
     connect(tree,SIGNAL(sortRequested(int,Qt::SortOrder,int)),SLOT(sortColumn(int,Qt::SortOrder,int)));
@@ -1232,6 +1233,8 @@ void Tab::filesSelectionChanged() /*SLOT*/
 
     updateTagsTable(QVector<int>());
     handleCutCopy();
+    if (indexes.isEmpty())
+        tree->selectionModel()->setCurrentIndex(QModelIndex(),QItemSelectionModel::NoUpdate);
 }
 
 QStringList Tab::getTags(int n)
@@ -1318,11 +1321,20 @@ void Tab::startSearch()
 
 void Tab::updateStatusBar(const QModelIndex &index) /*SLOT*/
 {DD;
-    int row = index.row();
-    if (row<0)
-        Q_EMIT updateStatusBar(Tag());
-    else
-        Q_EMIT updateStatusBar(model->fileAt(row));
+    if (App->statusBarTrack == 0 && dynamic_cast<QTreeView*>(sender())) {
+        int row = index.row();
+        if (row<0)
+            Q_EMIT updateStatusBar(Tag());
+        else
+            Q_EMIT updateStatusBar(model->fileAt(row));
+    }
+    if (App->statusBarTrack == 1 && dynamic_cast<QItemSelectionModel*>(sender())) {
+        int row = index.row();
+        if (row<0)
+            Q_EMIT updateStatusBar(Tag());
+        else
+            Q_EMIT updateStatusBar(model->fileAt(row));
+    }
 }
 
 void Tab::collectTags() /*SLOT*/

@@ -121,6 +121,7 @@ Application::Application(int &argc, char **argv, bool useGui)
     consoleMode = false;
     mpcWriteRg = true;
     iconTheme = "default";
+    statusBarTrack = 0; // tracks hovered file
 
     /*Testing for loadable libraries*/
     /*that is discid*/
@@ -281,6 +282,7 @@ void Application::readGuiSettings()
     }
 
     hideTabBar = se->value(QSL("hideTabBar"), false).toBool();
+    statusBarTrack = se->value(QSL("statusBarTrack"), 0).toInt();
 
 //    showFullFilesProperties = se->value(QSL("showFullFilesProperties"),false).toBool();
     delete se;
@@ -432,6 +434,7 @@ void Application::writeGuiSettings()
     se->setValue("fill_Patterns",fillPatterns);
     se->setValue(QSL("searchPaths"), searchPaths);
     se->setValue(QSL("hideTabBar"), hideTabBar);
+    se->setValue(QSL("statusBarTrack"), statusBarTrack);
 
 //    se->setValue(QSL("showFullFilesProperties"), showFullFilesProperties);
 

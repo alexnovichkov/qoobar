@@ -136,6 +136,11 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
         iconTheme->addItem(dir);
     }
 
+    statusBarTrackLabel = new QLabel(tr("Status bar tracks"), this);
+    statusBarTrack = new QComboBox(this);
+    statusBarTrack->addItem(tr("Current hovered file"));
+    statusBarTrack->addItem(tr("Current selected file"));
+
     QFormLayout *UIlayout = new QFormLayout;
 #ifdef Q_OS_MAC
     UIlayout->addRow("",useUndo);
@@ -152,6 +157,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 #ifndef Q_OS_MAC
     UIlayout->addRow(charsBox, chars);
 #endif
+    UIlayout->addRow(statusBarTrackLabel, statusBarTrack);
     UIlayout->addRow(langLabel, lang);
     UIlayout->addRow(iconThemeLabel, iconTheme);
     UIlayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
@@ -183,6 +189,8 @@ void InterfacePage::setSettings()
     if (iconThemeIndex>=0) iconTheme->setCurrentIndex(iconThemeIndex);
 
     hideTabBar->setChecked(App->hideTabBar);
+
+    statusBarTrack->setCurrentIndex(App->statusBarTrack);
 }
 
 QString InterfacePage::description()
@@ -196,6 +204,11 @@ QString InterfacePage::iconFilename()
 void InterfacePage::retranslateUI()
 {DD;
     ConfigPage::retranslateUI();
+
+    statusBarTrackLabel->setText(tr("Status bar tracks"));
+    statusBarTrack->setItemText(0, tr("Current hovered file"));
+    statusBarTrack->setItemText(1, tr("Current selected file"));
+
     autoexpand->setText(tr("Automatically fill a tag "
                            "when pasting a single line"));
 #ifndef Q_OS_MAC
@@ -233,6 +246,7 @@ void InterfacePage::saveSettings()
         QMessageBox::information(this,tr("Qoobar"),tr("The toolbar icons theme will be changed\n"
                                                       "after you restart Qoobar"));
     App->iconTheme = iconTheme->currentText();
+    App->statusBarTrack = statusBarTrack->currentIndex();
 }
 
 void InterfacePage::changeCharsFont()
@@ -393,10 +407,17 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
     saveChanges = new QCheckBox(tr("Save changes when closing Qoobar"),this);
     trim = new QCheckBox(tr("Simplify whitespaces when saving files"),this);
     writeFieldsSeparately = new QCheckBox(tr("Write tags separated by ; in different fields"),this);
-    readID3 = new QCheckBox(tr("Read ID3v2 tags"),this);
-    writeID3 = new QCheckBox(tr("Write ID3v2 tags"),this);
-    readAPE = new QCheckBox(tr("Read APE tags"),this);
-    writeAPE = new QCheckBox(tr("Write APE tags"),this);
+//    readID3 = new QCheckBox(tr("Read ID3v2 tags"), this);
+//    writeID3 = new QCheckBox(tr("Write ID3v2 tags"), this);
+//    readAPE = new QCheckBox(tr("Read APE tags"), this);
+//    writeAPE = new QCheckBox(tr("Write APE tags"), this);
+
+    readMp3 = new QLabel(tr("Read:"), this);
+    writeMp3 = new QLabel(tr("Write:"), this);
+    readID3 = new QToolButton(this); readID3->setText(tr("ID3v2")); readID3->setCheckable(true);
+    writeID3 = new QToolButton(this); writeID3->setText(tr("ID3v2")); writeID3->setCheckable(true);
+    readAPE = new QToolButton(this); readAPE->setText(tr("APE")); readAPE->setCheckable(true);
+    writeAPE = new QToolButton(this); writeAPE->setText(tr("APE")); writeAPE->setCheckable(true);
 
     id3v2version = new QComboBox(this);
     id3v2version->setEditable(false);
@@ -409,11 +430,28 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
     id3v2versionLayout->addWidget(id3v2version);
 
     box=new QGroupBox(tr("Mp3 files"));
-    QFormLayout *mp3Layout=new QFormLayout;
-    mp3Layout->addRow(readID3,writeID3);
-    mp3Layout->addRow(readAPE,writeAPE);
-    mp3Layout->addRow(id3v2versionLabel,id3v2version);
-    mp3Layout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
+    QVBoxLayout *mp3Layout=new QVBoxLayout;
+    QHBoxLayout *mp3l1 = new QHBoxLayout;
+    mp3l1->addWidget(readMp3);
+    mp3l1->addWidget(readID3);
+    mp3l1->addWidget(readAPE);
+    mp3l1->addWidget(writeMp3);
+    mp3l1->addWidget(writeID3);
+    mp3l1->addWidget(writeAPE);
+    mp3l1->addStretch();
+    QHBoxLayout *mp3l2 = new QHBoxLayout;
+    mp3l2->addWidget(id3v2versionLabel);
+    mp3l2->addWidget(id3v2version);
+    mp3l2->addStretch();
+    mp3Layout->addLayout(mp3l1);
+    mp3Layout->addLayout(mp3l2);
+
+
+//    QFormLayout *mp3Layout=new QFormLayout;
+//    mp3Layout->addRow(readID3,writeID3);
+//    mp3Layout->addRow(readAPE,writeAPE);
+//    mp3Layout->addRow(id3v2versionLabel,id3v2version);
+//    mp3Layout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
     box->setLayout(mp3Layout);
 
     oggbox = new QGroupBox(tr("Ogg / Speex files"));
@@ -513,10 +551,12 @@ void WritingPage::retranslateUI()
     ConfigPage::retranslateUI();
     saveChanges->setText(tr("Save changes when closing Qoobar"));
     trim->setText(tr("Simplify whitespaces when saving files"));
-    readID3->setText(tr("Read ID3v2 tags"));
-    writeID3->setText(tr("Write ID3v2 tags"));
-    readAPE->setText(tr("Read APE tags"));
-    writeAPE->setText(tr("Write APE tags"));
+    readMp3->setText(tr("Read:"));
+    writeMp3->setText(tr("Write:"));
+    readID3->setText(tr("ID3v2"));
+    writeID3->setText(tr("ID3v2"));
+    readAPE->setText(tr("APE"));
+    writeAPE->setText(tr("APE"));
     id3v1writeLabel->setText(tr("When writing tags"));
 
     box->setTitle(tr("Mp3 files"));
@@ -583,7 +623,6 @@ PatternsPage::PatternsPage(QWidget *parent) : ConfigPage(parent)
     legendButton->setCategories(LegendButton::WritablePlaceholders | LegendButton::ReadOnlyPlaceholders);
     connect(legendButton,SIGNAL(placeholderChosen(QString)),SLOT(insertLegend(QString)));
     legendButton->setFocusPolicy(Qt::NoFocus);
-    legendButton->retranslateUi();
 
     QGridLayout *renamingLayout = new QGridLayout;
     renamingLayout->addWidget(patterns,0,0,4,2);
@@ -673,7 +712,6 @@ void PatternsPage::retranslateUI()
     renamingPatternsBox->setTitle(tr("Renaming patterns"));
     addPatternButton->setText(tr("Add pattern"));
     removePatternButton->setText(tr("Remove pattern"));
-    legendButton->retranslateUi();
 
     schemesBox->setTitle(tr("Tagging schemes"));
     schemesLabel->setText(tr("Current scheme"));

@@ -88,6 +88,8 @@ private:
     QLabel *dirRootLabel;
     QLabel *iconThemeLabel;
     QComboBox *iconTheme;
+    QLabel *statusBarTrackLabel;
+    QComboBox *statusBarTrack;
 };
 
 class QFormLayout;
@@ -114,6 +116,7 @@ private:
     QComboBox *collectText;
 };
 
+class QToolButton;
 class WritingPage : public ConfigPage
 {
     Q_OBJECT
@@ -127,10 +130,16 @@ public:
 private:
     QCheckBox *saveChanges;
     QCheckBox *trim;
-    QCheckBox *readID3;
-    QCheckBox *writeID3;
-    QCheckBox *readAPE;
-    QCheckBox *writeAPE;
+//    QCheckBox *readID3;
+//    QCheckBox *writeID3;
+//    QCheckBox *readAPE;
+//    QCheckBox *writeAPE;
+    QLabel *readMp3;
+    QLabel *writeMp3;
+    QToolButton *readID3;
+    QToolButton *writeID3;
+    QToolButton *readAPE;
+    QToolButton *writeAPE;
 
     QGroupBox *box;
     QGroupBox *oggbox;

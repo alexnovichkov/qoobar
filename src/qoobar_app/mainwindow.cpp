@@ -508,7 +508,7 @@ void MainWindow::createNewTab(bool quick)
     connect(tab,SIGNAL(tagsSelectionChanged(bool)),SLOT(onTagsSelectionChanged(bool)));
     connect(tab,SIGNAL(filesCountChanged(int)),SLOT(onFilesCountChanged(int)));
     connect(tab,SIGNAL(moveFilesToTab(int,QList<Tag>)),SLOT(moveFilesToTab(int,QList<Tag>)));
-    connect(tab,SIGNAL(updateStatusBar(const Tag&)),statusBar_,SLOT(update(const Tag&)));
+    connect(tab,SIGNAL(updateStatusBar(Tag)),statusBar_,SLOT(update(Tag)));
     connect(tab,SIGNAL(totalLengthChanged(int,int)),statusBar_,SLOT(updateTotalLength(int,int)));
     connect(tab,SIGNAL(selectedLengthChanged(int,int)),statusBar_,SLOT(updateSelectedLength(int,int)));
 
