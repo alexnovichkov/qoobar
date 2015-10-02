@@ -76,7 +76,7 @@ namespace TagLib {
         int inputSampleRate() const;
 
         /*!
-         * Returns the Opus version, currently "0" (as specified by the spec).
+         * Returns the Opus version, in the range 0...255.
          */
         int opusVersion() const;
 
@@ -84,7 +84,7 @@ namespace TagLib {
         Properties(const Properties &);
         Properties &operator=(const Properties &);
 
-        void read();
+        void read(File *file);
 
         class PropertiesPrivate;
         PropertiesPrivate *d;
