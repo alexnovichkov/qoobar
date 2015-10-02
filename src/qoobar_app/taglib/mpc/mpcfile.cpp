@@ -276,7 +276,7 @@ void MPC::File::read(bool readProperties, Properties::ReadStyle /* propertiesSty
 
   // Look for an APE tag
 
-  d->APELocation = findAPE(d->hasID3v1);
+  d->APELocation = findAPE();
 
   if(d->APELocation >= 0) {
     d->tag.set(MPCAPEIndex, new APE::Tag(this, d->APELocation));
@@ -300,14 +300,73 @@ void MPC::File::read(bool readProperties, Properties::ReadStyle /* propertiesSty
     d->hasID3v2 = true;
   }
 
-  if(d->hasID3v2)
-    seek(d->ID3v2Location + d->ID3v2Size);
-  else
-    seek(0);
-
   // Look for MPC metadata
 
   if(readProperties) {
-    d->properties = new Properties(this, length() - d->ID3v2Size - d->APESize);
+
+    long streamLength;
+
+    if(d->hasAPE)
+      streamLength = d->APELocation;
+    else if(d->hasID3v1)
+      streamLength = d->ID3v1Location;
+    else
+      streamLength = length();
+
+    if(d->hasID3v2) {
+      seek(d->ID3v2Location + d->ID3v2Size);
+      streamLength -= (d->ID3v2Location + d->ID3v2Size);
+    }
+    else {
+      seek(0);
+    }
+
+    d->properties = new Properties(this, streamLength);
   }
 }
+
+long MPC::File::findAPE()
+{
+  if(!isValid())
+    return -1;
+
+  if(d->hasID3v1)
+    seek(-160, End);
+  else
+    seek(-32, End);
+
+  long p = tell();
+
+  if(readBlock(8) == APE::Tag::fileIdentifier())
+    return p;
+
+  return -1;
+}
+
+long MPC::File::findID3v1()
+{
+  if(!isValid())
+    return -1;
+
+  seek(-128, End);
+  long p = tell();
+
+  if(readBlock(3) == ID3v1::Tag::fileIdentifier())
+    return p;
+
+  return -1;
+}
+
+long MPC::File::findID3v2()
+{
+  if(!isValid())
+    return -1;
+
+  seek(0);
+
+  if(readBlock(3) == ID3v2::Header::fileIdentifier())
+    return 0;
+
+  return -1;
+}
+

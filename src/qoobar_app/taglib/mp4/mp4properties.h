@@ -59,6 +59,7 @@ public:
     Codec codec() const;
 
 private:
+      void read(File *file, Atoms *atoms);
     class PropertiesPrivate;
     PropertiesPrivate *d;
 };

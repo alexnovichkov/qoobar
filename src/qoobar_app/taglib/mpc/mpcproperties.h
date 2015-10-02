@@ -109,8 +109,8 @@ namespace TagLib {
       Properties(const Properties &);
       Properties &operator=(const Properties &);
 
-      void readSV7(const ByteVector &data);
-      void readSV8(File *file);
+      void readSV7(const ByteVector &data, long streamLength);
+      void readSV8(File *file, long streamLength);
 
       class PropertiesPrivate;
       PropertiesPrivate *d;
