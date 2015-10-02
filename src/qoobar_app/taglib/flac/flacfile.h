@@ -201,22 +201,6 @@ namespace TagLib {
       void setID3v2FrameFactory(const ID3v2::FrameFactory *factory);
 
       /*!
-       * Returns the block of data used by FLAC::Properties for parsing the
-       * stream properties.
-       *
-       * \deprecated This method will not be public in a future release.
-       */
-      ByteVector streamInfoData(); // BIC: remove
-
-      /*!
-       * Returns the length of the audio-stream, used by FLAC::Properties for
-       * calculating the bitrate.
-       *
-       * \deprecated This method will not be public in a future release.
-       */
-      long streamLength();  // BIC: remove
-
-      /*!
        * Returns a list of pictures attached to the FLAC file.
        */
       List<Picture *> pictureList();
@@ -240,14 +224,35 @@ namespace TagLib {
        */
       void addPicture(Picture *picture);
 
+      /*!
+       * Returns whether or not the file on disk actually has a XiphComment.
+       *
+       * \see xiphComment()
+       */
+      bool hasXiphComment() const;
+
+      /*!
+       * Returns whether or not the file on disk actually has an ID3v1 tag.
+       *
+       * \see ID3v1Tag()
+       */
+      bool hasID3v1Tag() const;
+
+      /*!
+       * Returns whether or not the file on disk actually has an ID3v2 tag.
+       *
+       * \see ID3v2Tag()
+       */
+      bool hasID3v2Tag() const;
+
     private:
       File(const File &);
       File &operator=(const File &);
 
       void read(bool readProperties, Properties::ReadStyle propertiesStyle);
       void scan();
-      ByteVector xiphCommentData() const;
-      long findPaddingBreak(long nextPageOffset, long targetOffset, bool *isLast);
+      long findID3v2();
+      long findID3v1();
 
       class FilePrivate;
       FilePrivate *d;

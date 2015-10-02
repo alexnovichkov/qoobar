@@ -91,7 +91,7 @@ namespace TagLib {
       Properties(const Properties &);
       Properties &operator=(const Properties &);
 
-      void read();
+      void read(const ByteVector &data, long streamLength);
 
       class PropertiesPrivate;
       PropertiesPrivate *d;
