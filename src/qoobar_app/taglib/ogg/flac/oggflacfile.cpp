@@ -126,6 +126,11 @@ bool Ogg::FLAC::File::save()
   return Ogg::File::save();
 }
 
+bool Ogg::FLAC::File::hasXiphComment() const
+{
+  return d->hasXiphComment;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // private members
 ////////////////////////////////////////////////////////////////////////////////
@@ -198,7 +203,6 @@ void Ogg::FLAC::File::scan()
   if(metadataHeader.isEmpty())
     return;
 
-  ByteVector header;
 
   if (!metadataHeader.startsWith("fLaC"))  {
     // FLAC 1.1.2+
@@ -211,13 +215,9 @@ void Ogg::FLAC::File::scan()
   else {
     // FLAC 1.1.0 & 1.1.1
     metadataHeader = packet(++ipacket);
-
-    if(metadataHeader.isNull())
-      return;
-
   }
 
-  header = metadataHeader.mid(0,4);
+  ByteVector header = metadataHeader.mid(0,4);
   if(header.size() != 4) {
     debug("Ogg::FLAC::File::scan() -- Invalid Ogg/FLAC metadata header");
     return;
@@ -240,7 +240,7 @@ void Ogg::FLAC::File::scan()
   // Sanity: First block should be the stream_info metadata
 
   if(blockType != 0) {
-    //debug("Ogg::FLAC::File::scan() -- Invalid Ogg/FLAC stream");
+    debug("Ogg::FLAC::File::scan() -- Invalid Ogg/FLAC stream");
     return;
   }
 

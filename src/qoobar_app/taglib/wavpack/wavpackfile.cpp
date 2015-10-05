@@ -226,6 +226,16 @@ void WavPack::File::strip(int tags)
   }
 }
 
+bool WavPack::File::hasID3v1Tag() const
+{
+  return d->hasID3v1;
+}
+
+bool WavPack::File::hasAPETag() const
+{
+  return d->hasAPE;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // private members
 ////////////////////////////////////////////////////////////////////////////////
@@ -243,7 +253,7 @@ void WavPack::File::read(bool readProperties, Properties::ReadStyle /* propertie
 
   // Look for an APE tag
 
-  d->APELocation = findAPE(d->hasID3v1);
+  d->APELocation = findAPE();
 
   if(d->APELocation >= 0) {
     d->tag.set(WavAPEIndex, new APE::Tag(this, d->APELocation));
@@ -258,8 +268,48 @@ void WavPack::File::read(bool readProperties, Properties::ReadStyle /* propertie
   // Look for WavPack audio properties
 
   if(readProperties) {
-    seek(0);
-    d->properties = new Properties(this, length() - d->APESize);
+    long streamLength;
+
+    if(d->hasAPE)
+      streamLength = d->APELocation;
+    else if(d->hasID3v1)
+      streamLength = d->ID3v1Location;
+    else
+      streamLength = length();
+
+    d->properties = new Properties(this, streamLength);
   }
+}
+
+long WavPack::File::findAPE()
+{
+  if(!isValid())
+    return -1;
+
+  if(d->hasID3v1)
+    seek(-160, End);
+  else
+    seek(-32, End);
+
+  long p = tell();
+
+  if(readBlock(8) == APE::Tag::fileIdentifier())
+    return p;
+
+  return -1;
+}
+
+long WavPack::File::findID3v1()
+{
+  if(!isValid())
+    return -1;
+
+  seek(-128, End);
+  long p = tell();
+
+  if(readBlock(3) == ID3v1::Tag::fileIdentifier())
+    return p;
+
+  return -1;
 }
 

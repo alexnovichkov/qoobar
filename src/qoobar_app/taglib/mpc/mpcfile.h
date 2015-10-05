@@ -183,6 +183,19 @@ namespace TagLib {
        * \see strip
        */
       void remove(int tags = AllTags);
+      /*!
+       * Returns whether or not the file on disk actually has an ID3v1 tag.
+       *
+       * \see ID3v1Tag()
+       */
+      bool hasID3v1Tag() const;
+
+      /*!
+       * Returns whether or not the file on disk actually has an APE tag.
+       *
+       * \see APETag()
+       */
+      bool hasAPETag() const;
 
     private:
       File(const File &);

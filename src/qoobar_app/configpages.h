@@ -141,6 +141,14 @@ private:
     QToolButton *readAPE;
     QToolButton *writeAPE;
 
+    QGroupBox *flacBox;
+    QLabel *readFlac;
+    QLabel *writeFlac;
+    QToolButton *flacreadID3;
+    QToolButton *flacwriteID3;
+    QToolButton *flacreadOgg;
+    QToolButton *flacwriteOgg;
+
     QGroupBox *box;
     QGroupBox *oggbox;
     QLabel *id3v1writeLabel;

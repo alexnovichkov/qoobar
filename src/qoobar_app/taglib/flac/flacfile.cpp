@@ -180,16 +180,20 @@ FLAC::Properties *FLAC::File::audioProperties() const
   return d->properties;
 }
 
-
 bool FLAC::File::save()
 {
+    save(AllTags, false);
+}
+
+bool FLAC::File::save(int tags, bool stripOthers)
+{
   if(readOnly()) {
-    //debug("FLAC::File::save() - Cannot save to a read only file.");
+    debug("FLAC::File::save() - Cannot save to a read only file.");
     return false;
   }
 
   if(!isValid()) {
-    //debug("FLAC::File::save() -- Trying to save invalid file.");
+    debug("FLAC::File::save() -- Trying to save invalid file.");
     return false;
   }
 

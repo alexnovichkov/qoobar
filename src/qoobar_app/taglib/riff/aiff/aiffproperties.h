@@ -52,6 +52,7 @@ namespace TagLib {
          */
         Properties(const ByteVector &data, ReadStyle style);
 
+        Properties(File *file, ReadStyle style);
         /*!
          * Destroys this AIFF::Properties instance.
          */
@@ -67,11 +68,35 @@ namespace TagLib {
         int sampleWidth() const;
         uint sampleFrames() const;
 
+        /*!
+         * Returns true if the file is in AIFF-C format, false if AIFF format.
+         */
+        bool isAiffC() const;
+
+        /*!
+         * Returns the compression type of the AIFF-C file.  For example, "NONE" for
+         * not compressed, "ACE2" for ACE 2-to-1.
+         *
+         * If the file is in AIFF format, always returns an empty vector.
+         *
+         * \see isAiffC()
+         */
+        ByteVector compressionType() const;
+
+        /*!
+         * Returns the concrete compression name of the AIFF-C file.
+         *
+         * If the file is in AIFF format, always returns an empty string.
+         *
+         * \see isAiffC()
+         */
+        String compressionName() const;
+
       private:
         Properties(const Properties &);
         Properties &operator=(const Properties &);
 
-        void read(const ByteVector &data);
+        void read(File *file);
 
         class PropertiesPrivate;
         PropertiesPrivate *d;

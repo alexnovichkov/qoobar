@@ -151,7 +151,6 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     readOnlyLabel->setAttribute(Qt::WA_MacSmallSize);
 
     typeLabel = new QLabel(this);
-    typeLabel->setFixedWidth(typeLabel->fontMetrics().width(QSL("0000 kbps, 44100 Hz, 2 ch.")));
     typeLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     typeLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     typeLabel->setAttribute(Qt::WA_MacSmallSize);
@@ -236,11 +235,24 @@ void PropertiesPanel::updateFileName()
 {DD;
     if (!currentHover.fileName().isEmpty()) {
         fileNameLabel->setText(currentHover.fullFileName());
-        if (currentHover.bitrate().isEmpty() && currentHover.sampleRate()==0 && currentHover.channels()==0)
-            typeLabel->clear();
-        else
-            typeLabel->setText(tr("%1 kbps, %2 Hz, %3 ch.").arg(currentHover.bitrate())
-                               .arg(currentHover.sampleRate()).arg(currentHover.channels()));
+        QString properties;
+
+        if (!currentHover.bitrate().isEmpty() || currentHover.sampleRate()!=0 || currentHover.channels()!=0)
+            properties = tr("%1 kbps, %2 Hz, %3 ch.").arg(currentHover.bitrate())
+                         .arg(currentHover.sampleRate()).arg(currentHover.channels());
+        if (currentHover.tagTypes()==0) properties.append(QString(", ")+tr("no tags"));
+        else {
+            int tagTypes = currentHover.tagTypes();
+            QStringList tags;
+            if (tagTypes & TAG_ID3V1) tags<<"ID3v1";
+            if (tagTypes & TAG_ID3V2) tags<<"ID3v2";
+            if (tagTypes & TAG_APE) tags<<"APE";
+            if (tagTypes & TAG_ASF) tags<<"ASF";
+            if (tagTypes & TAG_MP4) tags<<"MP4";
+            if (tagTypes & TAG_VORBIS) tags<<"Vorbis";
+            properties.append(QString(", ")+tags.join(", "));
+        }
+        typeLabel->setText(properties);
         readOnlyLabel->setVisible(currentHover.readOnly());
         fileIconLabel->setPixmap(QPixmap(App->iconThemeIcon(currentHover.icon())));
     }

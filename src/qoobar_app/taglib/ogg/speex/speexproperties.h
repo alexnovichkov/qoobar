@@ -65,6 +65,10 @@ namespace TagLib {
 
         virtual int length() const;
         virtual int bitrate() const;
+        /*!
+         * Returns the nominal bit rate as read from the Speex header in kb/s.
+         */
+        int bitrateNominal() const;
         virtual int sampleRate() const;
         virtual int channels() const;
 
@@ -77,7 +81,7 @@ namespace TagLib {
         Properties(const Properties &);
         Properties &operator=(const Properties &);
 
-        void read();
+        void read(File *file);
 
         class PropertiesPrivate;
         PropertiesPrivate *d;

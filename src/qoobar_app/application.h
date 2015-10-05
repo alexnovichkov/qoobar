@@ -161,6 +161,12 @@ public:
     bool mp3writeape;
     bool mp3readid3;
     bool mp3writeid3;
+
+    bool flacreadogg;
+    bool flacwriteogg;
+    bool flacreadid3;
+    bool flacwriteid3;
+
     QString player;
     QByteArray columns160; //horizontal header state
     QByteArray columns167; //horizontal header state since version 1.6.7

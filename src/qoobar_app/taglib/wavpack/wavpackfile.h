@@ -169,13 +169,27 @@ namespace TagLib {
        * \note In order to make the removal permanent save() still needs to be called
        */
       void strip(int tags = AllTags);
+      /*!
+       * Returns whether or not the file on disk actually has an ID3v1 tag.
+       *
+       * \see ID3v1Tag()
+       */
+      bool hasID3v1Tag() const;
+
+      /*!
+       * Returns whether or not the file on disk actually has an APE tag.
+       *
+       * \see APETag()
+       */
+      bool hasAPETag() const;
 
     private:
       File(const File &);
       File &operator=(const File &);
 
       void read(bool readProperties, Properties::ReadStyle propertiesStyle);
-      void scan();
+      long findID3v1();
+      long findAPE();
 
       class FilePrivate;
       FilePrivate *d;

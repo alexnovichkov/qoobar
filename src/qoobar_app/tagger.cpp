@@ -80,7 +80,9 @@ TagData::TagData(int tagsCount) :
     wasChanged(false),
     filetype(-1),
     readOnly(false),
-    tagsCount(tagsCount), size(0)
+    tagsCount(tagsCount),
+    tagTypes(0),
+    size(0)
 {
     tags.resize(tagsCount);
 }
@@ -102,6 +104,7 @@ TagData::TagData(const TagData &other) :
     readOnly(other.readOnly),
     size(other.size),
     tags(other.tags),
+    tagTypes(other.tagTypes),
     replayGainInfo(other.replayGainInfo),
     image(other.image),
     otherTags(other.otherTags)
@@ -223,8 +226,8 @@ void Tag::removeImage(bool updateStatus)
 /* =========================================*/
 bool Tag::operator==(const Tag &t) const
 {
-    if (d->icon != t.d->icon) return false;
     if (d->fullFileName != t.d->fullFileName) return false; //full path to file
+    if (d->icon != t.d->icon) return false;
     if (d->bitrate != t.d->bitrate) return false;
     if (d->length != t.d->length) return false; //length in seconds
     if (d->sampleRate != t.d->sampleRate) return false;
@@ -236,6 +239,7 @@ bool Tag::operator==(const Tag &t) const
     if (d->replayGainInfo != t.d->replayGainInfo) return false;
     if (d->image != t.d->image) return false;
     if (d->otherTags != t.d->otherTags) return false;
+    if (d->tagTypes != t.d->tagTypes) return false;
     return true;
 }
 
@@ -253,7 +257,8 @@ bool Tag::operator!=(const Tag &t) const
             (d->tags != t.d->tags) ||
             (d->replayGainInfo != t.d->replayGainInfo) ||
             (d->image != t.d->image) ||
-            (d->otherTags != t.d->otherTags));
+            (d->otherTags != t.d->otherTags) ||
+            (d->tagTypes != t.d->tagTypes));
 }
 
 void Tag::clear()
@@ -362,6 +367,7 @@ void Tag::removeAllTags(bool updateStatus)
     removeStandardTags(updateStatus);
     removeImage(updateStatus);
     removeReplayGainInfo(updateStatus);
+    d->tagTypes = 0;
 }
 
 

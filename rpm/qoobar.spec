@@ -14,7 +14,7 @@
 %endif
 
 Name: qoobar
-Version: 1.6.8
+Version: 1.6.9
 Release: 1
 Summary: A simple tagger for tagging classical music
 Group: %{GROUP}

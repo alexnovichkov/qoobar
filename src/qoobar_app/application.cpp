@@ -84,6 +84,10 @@ Application::Application(int &argc, char **argv, bool useGui)
     mp3writeape = false;
     mp3readid3 = true;
     mp3writeid3 = true;
+    flacreadogg = true;
+    flacwriteogg = true;
+    flacreadid3 = false;
+    flacwriteid3 = false;
     saveChanges = false;
     trim = true;
     autoexpand = true;
@@ -321,6 +325,11 @@ void Application::readGlobalSettings()
     mp3readid3=se->value(QSL("read-id3v2"), QSL("on")).toString()=="on";
     mp3writeid3=se->value(QSL("write-id3v2"), QSL("on")).toString()=="on";
 
+    flacreadogg=se->value(QSL("flac-read-ogg"), QSL("on")).toString()=="on";
+    flacwriteogg=se->value(QSL("flac-write-ogg"), QSL("on")).toString()=="on";
+    flacreadid3=se->value(QSL("flac-read-id3v2"), QSL("off")).toString()=="on";
+    flacwriteid3=se->value(QSL("flac-read-id3v2"), QSL("off")).toString()=="on";
+
     QString id3v1 = se->value(QSL("id3v1-behavior"), QSL("delete")).toString();
     if (id3v1=="update-always") id3v1Synchro = ID3V1_UPDATE_ALWAYS;
     else if (id3v1=="update-existing") id3v1Synchro = ID3V1_UPDATE_ONLY_EXISTING;
@@ -457,6 +466,10 @@ void Application::writeGlobalSettings()
     se->setValue("write-ape", mp3writeape?"on":"off");
     se->setValue("read-id3v2",mp3readid3?"on":"off");
     se->setValue("write-id3v2", mp3writeid3?"on":"off");
+    se->setValue(QSL("flac-read-ogg"), flacreadogg?"on":"off");
+    se->setValue(QSL("flac-write-ogg"), flacwriteogg?"on":"off");
+    se->setValue(QSL("flac-read-id3v2"), flacreadid3?"on":"off");
+    se->setValue(QSL("flac-read-id3v2"), flacwriteid3?"on":"off");
 
     if (id3v1Synchro == ID3V1_DELETE) se->setValue("id3v1-behavior", "delete");
     else if (id3v1Synchro == ID3V1_UPDATE_ALWAYS) se->setValue("id3v1-behavior", "update-always");

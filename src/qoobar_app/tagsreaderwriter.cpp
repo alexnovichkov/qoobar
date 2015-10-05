@@ -149,6 +149,10 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
         case Tag::MP3_FILE: {
             TagLib::MPEG::File *f=new TagLib::MPEG::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
+                if (f->hasID3v1Tag()) tag->d->tagTypes |= TAG_ID3V1;
+                if (f->hasID3v2Tag()) tag->d->tagTypes |= TAG_ID3V2;
+                if (f->hasAPETag()) tag->d->tagTypes |= TAG_APE;
+
                 if (tagTypes<TAG_ALL) {//some of tags to read, not affected by app settings
                     if (tagTypes & TAG_APE)   readAPE(f->APETag());
                     if (tagTypes & TAG_ID3V2) readID3v2(f->ID3v2Tag());
@@ -164,6 +168,7 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
         case Tag::DSF_FILE: {
             TagLib::DSF::File *f=new TagLib::DSF::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
+                if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_ID3V2;
                 if (tagTypes & TAG_ID3V2) readID3v2(f->tag());
             }
             return f;
@@ -171,6 +176,8 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
         case Tag::TTA_FILE: {
             TagLib::TrueAudio::File *f=new TagLib::TrueAudio::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
+                if (f->hasID3v1Tag()) tag->d->tagTypes |= TAG_ID3V1;
+                if (f->hasID3v2Tag()) tag->d->tagTypes |= TAG_ID3V2;
                 if (tagTypes & TAG_ID3V2) readID3v2(f->ID3v2Tag(false));
                 if (tagTypes & TAG_ID3V1) readID3v1(f->ID3v1Tag());
             }
@@ -179,43 +186,61 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
         case Tag::OGG_FILE: {
             TagLib::Ogg::Vorbis::File *f=new TagLib::Ogg::Vorbis::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
+                if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_VORBIS;
                 if (tagTypes & TAG_VORBIS) readXiph(f->tag());
             }
             return f;
         }
         case Tag::FLAC_FILE: {
             TagLib::FLAC::File *f=new TagLib::FLAC::File(FILE_NAME(tag->fullFileName()));
-            if (f->isValid() && (tagTypes & TAG_VORBIS) ) {
-                readXiph(f->xiphComment());
-                readFlacPicture(f);
+            if (f->isValid()) {
+                if (f->hasID3v1Tag()) tag->d->tagTypes |= TAG_ID3V1;
+                if (f->hasID3v2Tag()) tag->d->tagTypes |= TAG_ID3V2;
+                if (f->hasXiphComment()) tag->d->tagTypes |= TAG_VORBIS;
+                if (App->flacreadid3) readID3v2(f->ID3v2Tag(false));
+                if (App->flacreadogg) {
+                    readXiph(f->xiphComment(false));
+                    readFlacPicture(f);
+                }
+                readID3v1(f->ID3v1Tag());
             }
             return f;
         }
         case Tag::OGA_FILE: {
             TagLib::Ogg::FLAC::File *f=new TagLib::Ogg::FLAC::File(FILE_NAME(tag->fullFileName()));
-            if (f->isValid() && (tagTypes & TAG_VORBIS) ) {
-                readXiph(f->tag());
+            if (f->isValid()) {
+                if (f->hasXiphComment()) tag->d->tagTypes |= TAG_VORBIS;
+                if (tagTypes & TAG_VORBIS)
+                    readXiph(f->tag());
                 return f;
             }
             delete f;
 
             TagLib::Ogg::Vorbis::File *ff=new TagLib::Ogg::Vorbis::File(FILE_NAME(tag->fullFileName()));
-            if (ff->isValid() && (tagTypes & TAG_VORBIS)) readXiph(ff->tag());
+            if (ff->isValid()) {
+                if (!ff->tag()->isEmpty()) tag->d->tagTypes |= TAG_VORBIS;
+                if (tagTypes & TAG_VORBIS)
+                    readXiph(ff->tag());
+            }
             return ff;
         }
         case Tag::SPX_FILE: {
             TagLib::Ogg::Speex::File *f=new TagLib::Ogg::Speex::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid() && (tagTypes & TAG_VORBIS)) readXiph(f->tag());
+            if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_VORBIS;
             return f;
         }
         case Tag::OPUS_FILE: {
             TagLib::Ogg::Opus::File *f=new TagLib::Ogg::Opus::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid() && (tagTypes & TAG_VORBIS)) readXiph(f->tag());
+            if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_VORBIS;
             return f;
         }
         case Tag::MPC_FILE: {
             TagLib::MPC::File *f=new TagLib::MPC::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
+                if (f->hasID3v1Tag()) tag->d->tagTypes |= TAG_ID3V1;
+                if (f->hasAPETag()) tag->d->tagTypes |= TAG_APE;
                 if (tagTypes & TAG_APE) readAPE(f->APETag(false));
                 if (tagTypes & TAG_ID3V1) readID3v1(f->ID3v1Tag());
             }
@@ -224,6 +249,8 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
         case Tag::WV_FILE: {
             TagLib::WavPack::File *f=new TagLib::WavPack::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
+                if (f->hasID3v1Tag()) tag->d->tagTypes |= TAG_ID3V1;
+                if (f->hasAPETag()) tag->d->tagTypes |= TAG_APE;
                 if (tagTypes & TAG_APE) readAPE(f->APETag(false));
                 if (tagTypes & TAG_ID3V1) readID3v1(f->ID3v1Tag());
             }
@@ -232,6 +259,8 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
         case Tag::APE_FILE: {
             APEFILE *f = new APEFILE(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
+                if (f->hasID3v1Tag()) tag->d->tagTypes |= TAG_ID3V1;
+                if (f->hasAPETag()) tag->d->tagTypes |= TAG_APE;
                 if (tagTypes & TAG_APE) readAPE(f->APETag(false));
                 if (tagTypes & TAG_ID3V1) readID3v1(f->ID3v1Tag());
             }
@@ -240,27 +269,33 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
 
         case Tag::WAV_FILE: {
             TagLib::RIFF::WAV::File *f = new TagLib::RIFF::WAV::File(FILE_NAME(tag->fullFileName()));
-            if (f->isValid() && (tagTypes & TAG_ID3V2) )
-                readID3v2(f->tag());
+            if (f->isValid()) {
+                if (f->hasID3v2Tag()) tag->d->tagTypes |= TAG_ID3V2;
+//                if (f->hasInfoTag())
+                if (tagTypes & TAG_ID3V2)
+                    readID3v2(f->tag());
+            }
             return f;
         }
         case Tag::AIFF_FILE: {
             TagLib::RIFF::AIFF::File *f = new TagLib::RIFF::AIFF::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid() && (tagTypes & TAG_ID3V2) )
                 readID3v2(f->tag());
+            if (f->hasID3v2Tag()) tag->d->tagTypes |= TAG_ID3V2;
             return f;
         }
 
         case Tag::WMA_FILE: {
             TagLib::ASF::File *f=new TagLib::ASF::File(FILE_NAME(tag->fullFileName()));
-            if (!f) return 0;
             if (f->isValid() && (tagTypes & TAG_ASF) )
                 readAsf(f->tag());
+            if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_ASF;
             return f;
         }
 
         case Tag::M4A_FILE: {
             TagLib::MP4::File *f=new TagLib::MP4::File(FILE_NAME(tag->fullFileName()));
+            if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_MP4;
             if (f->isValid() && (tagTypes & TAG_MP4) )
                 readMP4(f->tag());
             return f;
@@ -376,17 +411,23 @@ void TagsReaderWriter::readID3v2(TagLib::ID3v2::Tag *id3v2tag)
             parseTag(id,TaggingScheme::ID3,values.join(QSL("\n")));
         }
         else if (id=="SYLT") {//synchronized lyrics frame
-            QStringList values;
+            QStringList values; //qDebug()<<"frames SYLT count"<<(*it).second.size();
             for (unsigned int i=0; i<(*it).second.size(); ++i) {
                 TagLib::ID3v2::SynchronizedLyricsFrame *frame=
                         dynamic_cast<TagLib::ID3v2::SynchronizedLyricsFrame *>((*it).second[i]);
                 if (!frame) continue;
 
                 TagLib::ID3v2::SynchronizedLyricsFrame::SynchedTextList synchedText = frame->synchedText();
+                //qDebug()<<"lines count"<<synchedText.size();
                 for (uint j=0; j<synchedText.size(); ++j) {
-                    values.append(QString("%1: %2").arg(synchedText[j].time).arg(QS(synchedText[j].text)));
+                    //qDebug()<<"line"<<j+1<<":"<<synchedText[j].time<<QS(synchedText[j].text);
+                    QString s=QS(synchedText[j].text);
+                    if (!s.isEmpty() && s[0]=='\n')
+                        s.remove(0,1);
+                    values.append(QString("%1: %2").arg(synchedText[j].time).arg(s));
                 }
             }
+            //qDebug()<<values;
             parseTag(id,TaggingScheme::ID3,values.join(QSL("\n")));
         }
     }
@@ -562,8 +603,9 @@ void writeID3v2Frame(TagLib::ID3v2::Tag *id3v2tag,const QString &s,const QString
             TagLib::ID3v2::SynchronizedLyricsFrame::SynchedTextList list;
             QStringList l = s.split("\n");
             Q_FOREACH(const QString &line, l) {
+                QString ss=line.section(": ",1); if(!ss.startsWith('\n')) ss.prepend('\n');
                 list.append(TagLib::ID3v2::SynchronizedLyricsFrame::SynchedText(line.section(": ",0,0).toUInt(),
-                                                                                TS(line.section(": ",1))));
+                                                                                TS(ss)));
             }
             frame->setSynchedText(list);
             id3v2tag->addFrame(frame);
@@ -1478,9 +1520,35 @@ bool TagsReaderWriter::writeTags()
         case Tag::FLAC_FILE: {
             TagLib::FLAC::File *f = new TagLib::FLAC::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
-                TagLib::Ogg::XiphComment *tag=f->xiphComment(true);
-                writeXiph(tag);
-                writeFlacPicture(f);
+                if (App->flacwriteogg) {
+                    TagLib::Ogg::XiphComment *tag=f->xiphComment(true);
+                    writeXiph(tag);
+                    writeFlacPicture(f);
+                }
+                else if (!App->flacwriteogg) {
+
+                    TagLib::Ogg::XiphComment *tag=f->xiphComment(false);
+
+                    delete tag;
+                }
+                if (App->flacwriteid3) {
+                    TagLib::ID3v2::Tag *tag = f->ID3v2Tag(true);
+                    writeID3v2(tag);
+                }
+                else if (!App->flacwriteid3) {
+                    TagLib::ID3v2::Tag *tag = f->ID3v2Tag(false);
+                    delete tag;
+                }
+                if (App->id3v1Synchro<2) {
+                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
+                    if (tag) {
+                        writeID3v1(tag);
+                    }
+                }
+                else if (App->id3v1Synchro==2) {
+                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(false);
+                    delete tag;
+                }
                 b=f->save();
             }
             delete f;

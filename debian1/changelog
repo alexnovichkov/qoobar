@@ -1,4 +1,4 @@
-qoobar (1.6.8) unstable; urgency=low
+qoobar (1.6.9) unstable; urgency=low
 
   * Fixed: Undoing of the Files table editing
   * Fixed: Small-size icons in menus

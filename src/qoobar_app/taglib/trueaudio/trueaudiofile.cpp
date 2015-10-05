@@ -233,6 +233,15 @@ void TrueAudio::File::strip(int tags)
   }
 }
 
+bool TrueAudio::File::hasID3v1Tag() const
+{
+  return d->hasID3v1;
+}
+
+bool TrueAudio::File::hasID3v2Tag() const
+{
+  return d->hasID3v2;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // private members
@@ -271,16 +280,50 @@ void TrueAudio::File::read(bool readProperties, Properties::ReadStyle /* propert
   // Look for TrueAudio metadata
 
   if(readProperties) {
-    if(d->ID3v2Location >= 0) {
+
+    long streamLength;
+
+    if(d->hasID3v1)
+      streamLength = d->ID3v1Location;
+    else
+      streamLength = length();
+
+    if(d->hasID3v2) {
       seek(d->ID3v2Location + d->ID3v2OriginalSize);
-      d->properties = new Properties(readBlock(TrueAudio::HeaderSize),
-                                     length() - d->ID3v2OriginalSize);
+      streamLength -= (d->ID3v2Location + d->ID3v2OriginalSize);
     }
     else {
       seek(0);
-      d->properties = new Properties(readBlock(TrueAudio::HeaderSize),
-                                     length());
     }
+
+    d->properties = new Properties(readBlock(TrueAudio::HeaderSize), streamLength);
   }
+}
+
+long TrueAudio::File::findID3v1()
+{
+  if(!isValid())
+    return -1;
+
+  seek(-128, End);
+  long p = tell();
+
+  if(readBlock(3) == ID3v1::Tag::fileIdentifier())
+    return p;
+
+  return -1;
+}
+
+long TrueAudio::File::findID3v2()
+{
+  if(!isValid())
+    return -1;
+
+  seek(0);
+
+  if(readBlock(3) == ID3v2::Header::fileIdentifier())
+    return 0;
+
+  return -1;
 }
 

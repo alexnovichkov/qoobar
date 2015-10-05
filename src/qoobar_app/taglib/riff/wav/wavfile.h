@@ -172,6 +172,7 @@ namespace TagLib {
          * Returns the index of the chunk that its name is "LIST" and list type is "INFO".
          */
         uint findInfoTagChunk();
+        friend class Properties;
         class FilePrivate;
         FilePrivate *d;
       };

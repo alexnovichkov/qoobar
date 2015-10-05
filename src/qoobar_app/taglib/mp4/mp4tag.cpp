@@ -789,6 +789,11 @@ MP4::Tag::itemListMap()
     return d->items;
 }
 
+bool MP4::Tag::isEmpty() const
+{
+    return d->items.isEmpty();
+}
+
 void MP4::Tag::addItem(const String &name, const Item &value)
 {
   if(!d->items.contains(name)) {

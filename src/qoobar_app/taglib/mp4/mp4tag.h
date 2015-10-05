@@ -65,6 +65,7 @@ namespace TagLib {
         void setTrack(uint value);
 
         ItemListMap &itemListMap();
+        virtual bool isEmpty() const;
 
     private:
         AtomDataList parseData2(Atom *atom, TagLib::File *file, int expectedFlags = -1, bool freeForm = false);

@@ -108,13 +108,19 @@ namespace TagLib {
          * Saves the file.
          */
         virtual bool save();
+        /*!
+         * Returns whether or not the file on disk actually has an ID3v2 tag.
+         *
+         * \see ID3v2Tag()
+         */
+        bool hasID3v2Tag() const;
 
       private:
         File(const File &);
         File &operator=(const File &);
 
         void read(bool readProperties, Properties::ReadStyle propertiesStyle);
-
+        friend class Properties;
         class FilePrivate;
         FilePrivate *d;
       };

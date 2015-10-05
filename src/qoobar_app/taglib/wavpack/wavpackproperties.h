@@ -81,6 +81,7 @@ namespace TagLib {
        * Returns number of bits per sample.
        */
       int bitsPerSample() const;
+      bool isLossless() const;
       uint sampleFrames() const;
 
       /*!
@@ -92,8 +93,8 @@ namespace TagLib {
       Properties(const Properties &);
       Properties &operator=(const Properties &);
 
-      void read();
-      unsigned int seekFinalIndex();
+      void read(File *file, long streamLength);
+      unsigned int seekFinalIndex(File *file, long streamLength);
 
       class PropertiesPrivate;
       PropertiesPrivate *d;

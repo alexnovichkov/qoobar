@@ -109,6 +109,7 @@ namespace TagLib {
        */
       long streamLength();
 
+      bool hasXiphComment() const;
     private:
       File(const File &);
       File &operator=(const File &);

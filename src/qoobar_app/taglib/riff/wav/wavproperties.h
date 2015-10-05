@@ -61,6 +61,7 @@ namespace TagLib {
          */
         Properties(const ByteVector &data, uint streamLength, ReadStyle style);
 
+        Properties(File *file, ReadStyle style);
         /*!
          * Destroys this WAV::Properties instance.
          */
@@ -76,11 +77,20 @@ namespace TagLib {
         int sampleWidth() const;
         uint sampleFrames() const;
 
+        /*!
+         * Returns the format ID of the file.
+         * 0 for unknown, 1 for PCM, 2 for ADPCM, 3 for 32/64-bit IEEE754, and
+         * so forth.
+         *
+         * \note For further information, refer to the WAVE Form Registration
+         * Numbers in RFC 2361.
+         */
+        int format() const;
       private:
         Properties(const Properties &);
         Properties &operator=(const Properties &);
 
-        void read(const ByteVector &data);
+        void read(File *file);
 
         class PropertiesPrivate;
         PropertiesPrivate *d;

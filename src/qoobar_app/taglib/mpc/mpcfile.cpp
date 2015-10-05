@@ -54,7 +54,6 @@ public:
     ID3v2Location(-1),
     ID3v2Size(0),
     properties(0),
-    scanned(false),
     hasAPE(false),
     hasID3v1(false),
     hasID3v2(false) {}
@@ -77,7 +76,6 @@ public:
   TagUnion tag;
 
   Properties *properties;
-  bool scanned;
 
   // These indicate whether the file *on disk* has these tags, not if
   // this data structure does.  This is used in computing offsets.
@@ -258,6 +256,15 @@ void MPC::File::remove(int tags)
   strip(tags);
 }
 
+bool MPC::File::hasID3v1Tag() const
+{
+  return d->hasID3v1;
+}
+
+bool MPC::File::hasAPETag() const
+{
+  return d->hasAPE;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // private members

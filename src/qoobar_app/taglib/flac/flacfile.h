@@ -65,6 +65,19 @@ namespace TagLib {
     class File : public TagLib::File
     {
     public:
+        enum TagTypes {
+          //! Empty set.  Matches no tag types.
+          NoTags  = 0x0000,
+          //! Matches ID3v1 tags.
+          ID3v1   = 0x0001,
+          //! Matches ID3v2 tags.
+          ID3v2   = 0x0002,
+          //! Matches Xiph comments.
+          XIPH     = 0x0004,
+          //! Matches all tag types.
+          AllTags = 0xffff
+        };
+
       /*!
        * Contructs a FLAC file from \a file.  If \a readProperties is true the
        * file's audio properties will also be read using \a propertiesStyle.  If
@@ -151,6 +164,7 @@ namespace TagLib {
        * This returns true if the save was successful.
        */
       virtual bool save();
+      bool save(int tags, bool stripOthers);
 
       /*!
        * Returns a pointer to the ID3v2 tag of the file.

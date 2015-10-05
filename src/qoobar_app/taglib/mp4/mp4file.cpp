@@ -87,7 +87,7 @@ MP4::File::~File()
 MP4::Tag *
 MP4::File::tag() const
 {
-  return d->tag;
+    return d->tag;
 }
 
 MP4::Properties *
