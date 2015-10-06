@@ -45,10 +45,11 @@ public:
         ALAC
     };
 
-    Properties(File *file, Atoms *atoms, ReadStyle style = Average);
+    Properties(File *file, Atoms *atoms);
     virtual ~Properties();
 
     virtual int length() const;
+    virtual int lengthInMilliseconds() const;
     virtual int bitrate() const;
     virtual int sampleRate() const;
     virtual int channels() const;

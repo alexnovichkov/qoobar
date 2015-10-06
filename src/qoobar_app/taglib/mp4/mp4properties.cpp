@@ -52,8 +52,8 @@ public:
     Codec codec;
 };
 
-MP4::Properties::Properties(File *file, MP4::Atoms *atoms, ReadStyle style)
-    : AudioProperties(style)
+MP4::Properties::Properties(File *file, MP4::Atoms *atoms)
+    : AudioProperties()
 {
     d = new PropertiesPrivate;
 
@@ -81,6 +81,11 @@ int
 MP4::Properties::length() const
 {
     return d->length / 1000;
+}
+
+int MP4::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int

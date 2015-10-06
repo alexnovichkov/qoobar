@@ -46,13 +46,7 @@ namespace TagLib {
       class Properties : public AudioProperties
       {
       public:
-        /*!
-         * Create an instance of AIFF::Properties with the data read from the
-         * ByteVector \a data.
-         */
-        Properties(const ByteVector &data, ReadStyle style);
-
-        Properties(File *file, ReadStyle style);
+        Properties(File *file);
         /*!
          * Destroys this AIFF::Properties instance.
          */
@@ -61,6 +55,7 @@ namespace TagLib {
         // Reimplementations.
 
         virtual int length() const;
+        virtual int lengthInMilliseconds() const;
         virtual int bitrate() const;
         virtual int sampleRate() const;
         virtual int channels() const;

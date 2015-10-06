@@ -89,20 +89,11 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-MPC::File::File(FileName file, bool readProperties,
-                Properties::ReadStyle propertiesStyle) : TagLib::File(file)
+MPC::File::File(FileName file, bool readProperties) : TagLib::File(file)
 {
   d = new FilePrivate;
   if(isOpen())
-  read(readProperties, propertiesStyle);
-}
-
-MPC::File::File(IOStream *stream, bool readProperties,
-                Properties::ReadStyle propertiesStyle) : TagLib::File(stream)
-{
-  d = new FilePrivate;
-  if(isOpen())
-  read(readProperties, propertiesStyle);
+  read(readProperties);
 }
 
 MPC::File::~File()
@@ -270,7 +261,7 @@ bool MPC::File::hasAPETag() const
 // private members
 ////////////////////////////////////////////////////////////////////////////////
 
-void MPC::File::read(bool readProperties, Properties::ReadStyle /* propertiesStyle */)
+void MPC::File::read(bool readProperties)
 {
   // Look for an ID3v1 tag
 

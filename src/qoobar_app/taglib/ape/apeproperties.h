@@ -52,7 +52,7 @@ namespace TagLib {
        * Create an instance of APE::Properties with the data read from the
        * APE::File \a file.
        */
-      Properties(File *file, long streamLength, ReadStyle style = Average);
+      Properties(File *file, long streamLength);
 
       /*!
        * Destroys this APE::Properties instance.
@@ -62,6 +62,7 @@ namespace TagLib {
       // Reimplementations.
 
       virtual int length() const;
+      virtual int lengthInMilliseconds() const;
       virtual int bitrate() const;
       virtual int sampleRate() const;
       virtual int channels() const;

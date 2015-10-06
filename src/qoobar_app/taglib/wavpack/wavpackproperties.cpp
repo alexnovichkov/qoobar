@@ -62,13 +62,7 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-WavPack::Properties::Properties(const ByteVector &data, long streamLength, ReadStyle style) : AudioProperties(style)
-{
-  d = new PropertiesPrivate();
-  //read();
-}
-
-WavPack::Properties::Properties(File *file, long streamLength, ReadStyle style) : AudioProperties(style)
+WavPack::Properties::Properties(File *file, long streamLength) : AudioProperties()
 {
   d = new PropertiesPrivate();
   read(file, streamLength);
@@ -81,7 +75,12 @@ WavPack::Properties::~Properties()
 
 int WavPack::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int WavPack::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int WavPack::Properties::bitrate() const

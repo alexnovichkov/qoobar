@@ -68,7 +68,7 @@ namespace TagLib {
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-Vorbis::Properties::Properties(File *file, ReadStyle style) : AudioProperties(style)
+Vorbis::Properties::Properties(File *file) : AudioProperties()
 {
   d = new PropertiesPrivate();
   read(file);
@@ -81,7 +81,12 @@ Vorbis::Properties::~Properties()
 
 int Vorbis::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int Vorbis::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int Vorbis::Properties::bitrate() const

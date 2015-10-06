@@ -77,35 +77,7 @@ namespace TagLib {
        * \deprecated This constructor will be dropped in favor of the one below
        * in a future version.
        */
-      File(FileName file, bool readProperties = true,
-           Properties::ReadStyle propertiesStyle = Properties::Average);
-
-      /*!
-       * Contructs an MPEG file from \a file.  If \a readProperties is true the
-       * file's audio properties will also be read using \a propertiesStyle.  If
-       * false, \a propertiesStyle is ignored.  The frames will be created using
-       * \a frameFactory.
-       *
-       * \deprecated This constructor will be dropped in favor of the one below
-       * in a future version.
-       */
-      File(FileName file, ID3v2::FrameFactory *frameFactory,
-           bool readProperties = true,
-           Properties::ReadStyle propertiesStyle = Properties::Average);
-
-      /*!
-       * Contructs an MPEG file from \a stream.  If \a readProperties is true the
-       * file's audio properties will also be read using \a propertiesStyle.  If
-       * false, \a propertiesStyle is ignored.  The frames will be created using
-       * \a frameFactory.
-       *
-       * \note TagLib will *not* take ownership of the stream, the caller is
-       * responsible for deleting it after the File object.
-       */
-      // BIC: merge with the above constructor
-      File(IOStream *stream, ID3v2::FrameFactory *frameFactory,
-           bool readProperties = true,
-           Properties::ReadStyle propertiesStyle = Properties::Average);
+      File(FileName file, bool readProperties = true);
 
       /*!
        * Destroys this instance of the File.
@@ -344,7 +316,7 @@ namespace TagLib {
       File(const File &);
       File &operator=(const File &);
 
-      void read(bool readProperties, Properties::ReadStyle propertiesStyle);
+      void read(bool readProperties);
       long findID3v2(long offset);
       long findID3v1();
       void findAPE();

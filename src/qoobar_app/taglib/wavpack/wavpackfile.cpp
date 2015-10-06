@@ -82,20 +82,11 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-WavPack::File::File(FileName file, bool readProperties,
-                Properties::ReadStyle propertiesStyle) : TagLib::File(file)
+WavPack::File::File(FileName file, bool readProperties) : TagLib::File(file)
 {
   d = new FilePrivate;
   if(isOpen())
-  read(readProperties, propertiesStyle);
-}
-
-WavPack::File::File(IOStream *stream, bool readProperties,
-                Properties::ReadStyle propertiesStyle) : TagLib::File(stream)
-{
-  d = new FilePrivate;
-  if(isOpen())
-  read(readProperties, propertiesStyle);
+  read(readProperties);
 }
 
 WavPack::File::~File()
@@ -240,7 +231,7 @@ bool WavPack::File::hasAPETag() const
 // private members
 ////////////////////////////////////////////////////////////////////////////////
 
-void WavPack::File::read(bool readProperties, Properties::ReadStyle /* propertiesStyle */)
+void WavPack::File::read(bool readProperties)
 {
   // Look for an ID3v1 tag
 

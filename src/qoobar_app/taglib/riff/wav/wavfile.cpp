@@ -71,20 +71,11 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-RIFF::WAV::File::File(FileName file, bool readProperties,
-                       Properties::ReadStyle propertiesStyle) : RIFF::File(file, LittleEndian)
+RIFF::WAV::File::File(FileName file, bool readProperties) : RIFF::File(file, LittleEndian)
 {
   d = new FilePrivate;
   if(isOpen())
-    read(readProperties, propertiesStyle);
-}
-
-RIFF::WAV::File::File(IOStream *stream, bool readProperties,
-                       Properties::ReadStyle propertiesStyle) : RIFF::File(stream, LittleEndian)
-{
-  d = new FilePrivate;
-  if(isOpen())
-    read(readProperties, propertiesStyle);
+    read(readProperties);
 }
 
 RIFF::WAV::File::~File()
@@ -187,7 +178,7 @@ bool RIFF::WAV::File::hasInfoTag() const
 // private members
 ////////////////////////////////////////////////////////////////////////////////
 
-void RIFF::WAV::File::read(bool readProperties, Properties::ReadStyle propertiesStyle)
+void RIFF::WAV::File::read(bool readProperties)
 {
   for(uint i = 0; i < chunkCount(); ++i) {
     const ByteVector name = chunkName(i);
@@ -222,7 +213,7 @@ void RIFF::WAV::File::read(bool readProperties, Properties::ReadStyle properties
     d->tag.set(InfoIndex, new RIFF::Info::Tag());
 
   if(readProperties)
-    d->properties = new Properties(this, Properties::Average);
+    d->properties = new Properties(this);
 }
 
 void RIFF::WAV::File::strip(TagTypes tags)

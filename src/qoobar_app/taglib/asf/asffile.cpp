@@ -477,16 +477,8 @@ void ASF::File::FilePrivate::CodecListObject::parse(ASF::File *file, uint size)
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-ASF::File::File(FileName file, bool, Properties::ReadStyle) :
+ASF::File::File(FileName file, bool) :
   TagLib::File(file),
-  d(new FilePrivate())
-{
-  if(isOpen())
-    read();
-}
-
-ASF::File::File(IOStream *stream, bool, Properties::ReadStyle) :
-  TagLib::File(stream),
   d(new FilePrivate())
 {
   if(isOpen())

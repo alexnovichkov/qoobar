@@ -67,19 +67,7 @@ namespace TagLib {
        * the file's audio properties will also be read using \a propertiesStyle.
        * If false, \a propertiesStyle is ignored.
        */
-      File(FileName file, bool readProperties = true,
-           Properties::ReadStyle propertiesStyle = Properties::Average);
-
-      /*!
-       * Contructs an Ogg/FLAC file from \a file.  If \a readProperties is true
-       * the file's audio properties will also be read using \a propertiesStyle.
-       * If false, \a propertiesStyle is ignored.
-       *
-       * \note TagLib will *not* take ownership of the stream, the caller is
-       * responsible for deleting it after the File object.
-       */
-      File(IOStream *stream, bool readProperties = true,
-           Properties::ReadStyle propertiesStyle = Properties::Average);
+      File(FileName file, bool readProperties = true);
 
       /*!
        * Destroys this instance of the File.
@@ -114,7 +102,7 @@ namespace TagLib {
       File(const File &);
       File &operator=(const File &);
 
-      void read(bool readProperties, Properties::ReadStyle propertiesStyle);
+      void read(bool readProperties);
       void scan();
       ByteVector streamInfoData();
       ByteVector xiphCommentData();

@@ -61,20 +61,11 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-DSF::File::File(FileName file, bool readProperties,
-                       AudioProperties::ReadStyle propertiesStyle) : TagLib::File(file)
+DSF::File::File(FileName file, bool readProperties) : TagLib::File(file)
 {
   d = new FilePrivate;
   if(isOpen())
-    read(readProperties, propertiesStyle);
-}
-
-DSF::File::File(IOStream *stream, bool readProperties,
-                       AudioProperties::ReadStyle propertiesStyle) : TagLib::File(stream)
-{
-  d = new FilePrivate;
-  if(isOpen())
-    read(readProperties, propertiesStyle);
+    read(readProperties);
 }
 
 DSF::File::~File()
@@ -145,7 +136,7 @@ bool DSF::File::save()
 // private members
 ////////////////////////////////////////////////////////////////////////////////
 
-void DSF::File::read(bool readProperties, AudioProperties::ReadStyle propertiesStyle)
+void DSF::File::read(bool readProperties)
 {
     (void)readProperties;
   // A DSF file consists of four chunks: DSD chunk, format chunk, data chunk, and metadata chunk
@@ -184,7 +175,7 @@ void DSF::File::read(bool readProperties, AudioProperties::ReadStyle propertiesS
 
   chunkSize = readBlock(8).toLongLong(0, false);
   
-  d->properties = new Properties(readBlock(chunkSize), propertiesStyle);
+  d->properties = new Properties(readBlock(chunkSize));
   
   // Skip the data chunk
 

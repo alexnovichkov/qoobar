@@ -48,7 +48,7 @@ namespace TagLib {
        * Create an instance of DSF::AudioProperties with the data read from the
        * ByteVector \a data.
        */
-      Properties(const ByteVector &data, ReadStyle style = Average);
+      Properties(const ByteVector &data);
 
       /*!
        * Destroys this DSF::AudioProperties instance.
@@ -58,6 +58,7 @@ namespace TagLib {
       // Reimplementations.
 
       virtual int length() const;
+      virtual int lengthInMilliseconds() const;
       virtual int bitrate() const;
       virtual int sampleRate() const;
       virtual int channels() const;

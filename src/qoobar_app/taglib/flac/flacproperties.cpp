@@ -55,15 +55,10 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-FLAC::Properties::Properties(ByteVector data, long streamLength, ReadStyle style) : AudioProperties(style)
+FLAC::Properties::Properties(ByteVector data, long streamLength) : AudioProperties()
 {
   d = new PropertiesPrivate();
   read(data, streamLength);
-}
-
-FLAC::Properties::Properties(File *, ReadStyle style) : AudioProperties(style)
-{
-  d = new PropertiesPrivate();
 }
 
 FLAC::Properties::~Properties()
@@ -73,7 +68,12 @@ FLAC::Properties::~Properties()
 
 int FLAC::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int FLAC::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int FLAC::Properties::bitrate() const

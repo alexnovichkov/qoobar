@@ -63,15 +63,8 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-RIFF::AIFF::Properties::Properties(const ByteVector &data, ReadStyle style) : AudioProperties(style)
-{
-  d = new PropertiesPrivate;
-  //read(data);
-  debug("RIFF::AIFF::Properties::Properties() - This constructor is no longer used.");
-}
-
-RIFF::AIFF::Properties::Properties(File *file, ReadStyle style) :
-  AudioProperties(style),
+RIFF::AIFF::Properties::Properties(File *file) :
+  AudioProperties(),
   d(new PropertiesPrivate())
 {
   read(file);
@@ -84,7 +77,12 @@ RIFF::AIFF::Properties::~Properties()
 
 int RIFF::AIFF::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int RIFF::AIFF::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int RIFF::AIFF::Properties::bitrate() const

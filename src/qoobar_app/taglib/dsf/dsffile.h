@@ -59,16 +59,7 @@ namespace TagLib {
        * file's audio properties will also be read using \a propertiesStyle.  If
        * false, \a propertiesStyle is ignored.
        */
-      File(FileName file, bool readProperties = true,
-           AudioProperties::ReadStyle propertiesStyle = AudioProperties::Average);
-
-      /*!
-       * Contructs an DSF file from \a file.  If \a readProperties is true the
-       * file's audio properties will also be read using \a propertiesStyle.  If
-       * false, \a propertiesStyle is ignored.
-       */
-      File(IOStream *stream, bool readProperties = true,
-           AudioProperties::ReadStyle propertiesStyle = AudioProperties::Average);
+      File(FileName file, bool readProperties = true);
 
       /*!
        * Destroys this instance of the File.
@@ -107,7 +98,7 @@ namespace TagLib {
       File(const File &);
       File &operator=(const File &);
 
-      void read(bool readProperties, AudioProperties::ReadStyle propertiesStyle);
+      void read(bool readProperties);
 
       class FilePrivate;
       FilePrivate *d;

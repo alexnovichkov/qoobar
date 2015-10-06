@@ -59,7 +59,7 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-Opus::Properties::Properties(File *file, ReadStyle style) : AudioProperties(style)
+Opus::Properties::Properties(File *file) : AudioProperties()
 {
   d = new PropertiesPrivate();
   read(file);
@@ -72,7 +72,12 @@ Opus::Properties::~Properties()
 
 int Opus::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int Opus::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int Opus::Properties::bitrate() const

@@ -55,7 +55,7 @@ namespace TagLib {
        * Create an instance of Vorbis::Properties with the data read from the
        * Vorbis::File \a file.
        */
-      Properties(File *file, ReadStyle style = Average);
+      Properties(File *file);
 
       /*!
        * Destroys this VorbisProperties instance.
@@ -65,6 +65,7 @@ namespace TagLib {
       // Reimplementations.
 
       virtual int length() const;
+      virtual int lengthInMilliseconds() const;
       virtual int bitrate() const;
       virtual int sampleRate() const;
       virtual int channels() const;

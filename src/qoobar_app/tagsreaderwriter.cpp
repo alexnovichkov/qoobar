@@ -197,8 +197,9 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
                 if (f->hasID3v1Tag()) tag->d->tagTypes |= TAG_ID3V1;
                 if (f->hasID3v2Tag()) tag->d->tagTypes |= TAG_ID3V2;
                 if (f->hasXiphComment()) tag->d->tagTypes |= TAG_VORBIS;
-                if (App->flacreadid3) readID3v2(f->ID3v2Tag(false));
-                if (App->flacreadogg) {
+//                if (App->flacreadid3) readID3v2(f->ID3v2Tag(false));
+//                if (App->flacreadogg)
+                {
                     readXiph(f->xiphComment(false));
                     readFlacPicture(f);
                 }
@@ -1520,35 +1521,34 @@ bool TagsReaderWriter::writeTags()
         case Tag::FLAC_FILE: {
             TagLib::FLAC::File *f = new TagLib::FLAC::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
-                if (App->flacwriteogg) {
+//                if (App->flacwriteogg)
+                {
                     TagLib::Ogg::XiphComment *tag=f->xiphComment(true);
                     writeXiph(tag);
                     writeFlacPicture(f);
                 }
-                else if (!App->flacwriteogg) {
-
-                    TagLib::Ogg::XiphComment *tag=f->xiphComment(false);
-
-                    delete tag;
-                }
-                if (App->flacwriteid3) {
-                    TagLib::ID3v2::Tag *tag = f->ID3v2Tag(true);
-                    writeID3v2(tag);
-                }
-                else if (!App->flacwriteid3) {
-                    TagLib::ID3v2::Tag *tag = f->ID3v2Tag(false);
-                    delete tag;
-                }
-                if (App->id3v1Synchro<2) {
-                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
-                    if (tag) {
-                        writeID3v1(tag);
-                    }
-                }
-                else if (App->id3v1Synchro==2) {
-                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(false);
-                    delete tag;
-                }
+//                else if (!App->flacwriteogg) {
+//                    TagLib::Ogg::XiphComment *tag=f->xiphComment(false);
+//                    delete tag;
+//                }
+//                if (App->flacwriteid3) {
+//                    TagLib::ID3v2::Tag *tag = f->ID3v2Tag(true);
+//                    writeID3v2(tag);
+//                }
+//                else if (!App->flacwriteid3) {
+//                    TagLib::ID3v2::Tag *tag = f->ID3v2Tag(false);
+//                    delete tag;
+//                }
+//                if (App->id3v1Synchro<2) {
+//                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
+//                    if (tag) {
+//                        writeID3v1(tag);
+//                    }
+//                }
+//                else if (App->id3v1Synchro==2) {
+//                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(false);
+//                    delete tag;
+//                }
                 b=f->save();
             }
             delete f;
@@ -1657,14 +1657,17 @@ bool TagsReaderWriter::writeTags()
         }
         case Tag::APE_FILE: {
             APEFILE *f=new APEFILE(FILE_NAME(tag->fullFileName()));
-            if (f->isValid()) {
+            if (f->isValid()) {qDebug()<<tag->fullFileName();
                 TagLib::APE::Tag *tag=f->APETag(true);
                 writeAPE(tag);
                 if (App->id3v1Synchro<2) {//do write id3v1
+                    qDebug()<<"attempting to write id3v1";
                     TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
                     writeID3v1(tag);
                 }
-                else f->strip(1);
+                else {qDebug()<<"attempting to remove id3v1";
+                    f->strip(TagLib::APE::File::ID3v1);
+                }
                 b=f->save();
             }
             delete f;

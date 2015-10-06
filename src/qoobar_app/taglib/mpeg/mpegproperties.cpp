@@ -72,7 +72,7 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-MPEG::Properties::Properties(File *file, ReadStyle style) : AudioProperties(style)
+MPEG::Properties::Properties(File *file) : AudioProperties()
 {
   d = new PropertiesPrivate();
   read(file);
@@ -85,7 +85,12 @@ MPEG::Properties::~Properties()
 
 int MPEG::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int MPEG::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int MPEG::Properties::bitrate() const

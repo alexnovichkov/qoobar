@@ -38,11 +38,8 @@
 #include <mpeg/id3v1/id3v1tag.h>
 #include <mpeg/id3v2/id3v2header.h>
 
-#ifndef QOOBAR_NO_PROPERTY_MAPS
-#include <toolkit/tpropertymap.h>
-#endif
 #include "apefile.h"
-
+#include <QtDebug>
 #include "ape/apetag.h"
 #include "ape/apefooter.h"
 
@@ -99,20 +96,11 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-APE::File::File(FileName file, bool readProperties,
-                Properties::ReadStyle propertiesStyle) : TagLib::File(file)
+APE::File::File(FileName file, bool readProperties) : TagLib::File(file)
 {
   d = new FilePrivate;
   if(isOpen())
-  read(readProperties, propertiesStyle);
-}
-
-APE::File::File(IOStream *stream, bool readProperties,
-                Properties::ReadStyle propertiesStyle) : TagLib::File(stream)
-{
-  d = new FilePrivate;
-  if(isOpen())
-  read(readProperties, propertiesStyle);
+  read(readProperties);
 }
 
 APE::File::~File()
@@ -124,38 +112,14 @@ TagLib::Tag *APE::File::tag() const
 {
   return &d->tag;
 }
-#ifndef QOOBAR_NO_PROPERTY_MAPS
-PropertyMap APE::File::properties() const
-{
-  if(d->hasAPE)
-    return d->tag.access<APE::Tag>(ApeAPEIndex, false)->properties();
-  if(d->hasID3v1)
-    return d->tag.access<ID3v1::Tag>(ApeID3v1Index, false)->properties();
-  return PropertyMap();
-}
 
-void APE::File::removeUnsupportedProperties(const StringList &properties)
-{
-  if(d->hasAPE)
-    d->tag.access<APE::Tag>(ApeAPEIndex, false)->removeUnsupportedProperties(properties);
-  if(d->hasID3v1)
-    d->tag.access<ID3v1::Tag>(ApeID3v1Index, false)->removeUnsupportedProperties(properties);
-}
-
-PropertyMap APE::File::setProperties(const PropertyMap &properties)
-{
-  if(d->hasID3v1)
-    d->tag.access<ID3v1::Tag>(ApeID3v1Index, false)->setProperties(properties);
-  return d->tag.access<APE::Tag>(ApeAPEIndex, true)->setProperties(properties);
-}
-#endif
 APE::Properties *APE::File::audioProperties() const
 {
   return d->properties;
 }
 
 bool APE::File::save()
-{
+{//qDebug()<<"saving file";
   if(readOnly()) {
     //debug("APE::File::save() -- File is read only.");
     return false;
@@ -163,20 +127,20 @@ bool APE::File::save()
 
   // Update ID3v1 tag
 
-  if(ID3v1Tag()) {
-    if(d->hasID3v1) {
+  if(ID3v1Tag()) {//qDebug()<<"id3v1 tag not null";
+    if(d->hasID3v1) {//qDebug()<<"hasID3v1";
       seek(d->ID3v1Location);
       writeBlock(ID3v1Tag()->render());
     }
-    else {
+    else {//qDebug()<<"not hasID3v1";
       seek(0, End);
       d->ID3v1Location = tell();
       writeBlock(ID3v1Tag()->render());
       d->hasID3v1 = true;
     }
   }
-  else {
-    if(d->hasID3v1) {
+  else {//qDebug()<<"id3v1 tag is null";
+    if(d->hasID3v1) {//qDebug()<<"hasID3v1";
       removeBlock(d->ID3v1Location, 128);
       d->hasID3v1 = false;
       if(d->hasAPE) {
@@ -188,10 +152,11 @@ bool APE::File::save()
 
   // Update APE tag
 
-  if(APETag()) {
-    if(d->hasAPE)
+  if(APETag()) {//qDebug()<<"ape tag not null";
+    if(d->hasAPE) {//qDebug()<<"hasApe";
       insert(APETag()->render(), d->APELocation, d->APESize);
-    else {
+    }
+    else {//qDebug()<<"not hasApe";
       if(d->hasID3v1)  {
         insert(APETag()->render(), d->ID3v1Location, 0);
         d->APESize = APETag()->footer()->completeTagSize();
@@ -208,7 +173,7 @@ bool APE::File::save()
       }
     }
   }
-  else {
+  else {//qDebug()<<"ape tag is null";
     if(d->hasAPE) {
       removeBlock(d->APELocation, d->APESize);
       d->hasAPE = false;
@@ -233,14 +198,16 @@ APE::Tag *APE::File::APETag(bool create)
   return d->tag.access<APE::Tag>(ApeAPEIndex, create);
 }
 
+
+
 void APE::File::strip(int tags)
-{
-  if(tags & ID3v1) {
+{//qDebug()<<"stripping"<<tags;
+  if(tags & ID3v1) {//qDebug()<<"stripping id3v1";
     d->tag.set(ApeID3v1Index, 0);
     APETag(true);
   }
 
-  if(tags & APE) {
+  if(tags & APE) {//qDebug()<<"stripping ape";
     d->tag.set(ApeAPEIndex, 0);
 
     if(!ID3v1Tag())
@@ -262,7 +229,7 @@ bool APE::File::hasID3v1Tag() const
 // private members
 ////////////////////////////////////////////////////////////////////////////////
 
-void APE::File::read(bool readProperties, Properties::ReadStyle /* propertiesStyle */)
+void APE::File::read(bool readProperties)
 {
   // Look for an ID3v2 tag
 

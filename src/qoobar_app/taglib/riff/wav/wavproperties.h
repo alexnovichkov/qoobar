@@ -49,19 +49,7 @@ namespace TagLib {
       class Properties : public AudioProperties
       {
       public:
-        /*!
-         * Create an instance of WAV::Properties with the data read from the
-         * ByteVector \a data.
-         */
-        Properties(const ByteVector &data, ReadStyle style);
-
-        /*!
-         * Create an instance of WAV::Properties with the data read from the
-         * ByteVector \a data and the length calculated using \a streamLength.
-         */
-        Properties(const ByteVector &data, uint streamLength, ReadStyle style);
-
-        Properties(File *file, ReadStyle style);
+        Properties(File *file);
         /*!
          * Destroys this WAV::Properties instance.
          */
@@ -70,6 +58,7 @@ namespace TagLib {
         // Reimplementations.
 
         virtual int length() const;
+        virtual int lengthInMilliseconds() const;
         virtual int bitrate() const;
         virtual int sampleRate() const;
         virtual int channels() const;

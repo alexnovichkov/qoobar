@@ -51,7 +51,7 @@ namespace TagLib {
        * Create an instance of MPEG::Properties with the data read from the
        * MPEG::File \a file.
        */
-      Properties(File *file, ReadStyle style = Average);
+      Properties(File *file);
 
       /*!
        * Destroys this MPEG Properties instance.
@@ -61,6 +61,7 @@ namespace TagLib {
       // Reimplementations.
 
       virtual int length() const;
+      virtual int lengthInMilliseconds() const;
       virtual int bitrate() const;
       virtual int sampleRate() const;
       virtual int channels() const;

@@ -41,10 +41,7 @@ namespace TagLib {
       class File : public Ogg::File
       {
       public:
-        File(FileName file, bool readProperties = true,
-             Properties::ReadStyle propertiesStyle = Properties::Average);
-        File(IOStream *stream, bool readProperties = true,
-             Properties::ReadStyle propertiesStyle = Properties::Average);
+        File(FileName file, bool readProperties = true);
         virtual ~File();
         virtual Ogg::XiphComment *tag() const;
         virtual Properties *audioProperties() const;
@@ -52,7 +49,7 @@ namespace TagLib {
       private:
         File(const File &);
         File &operator=(const File &);
-        void read(bool readProperties, Properties::ReadStyle propertiesStyle);
+        void read(bool readProperties);
         class FilePrivate;
         FilePrivate *d;
       };

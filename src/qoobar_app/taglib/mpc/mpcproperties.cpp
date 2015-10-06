@@ -67,13 +67,7 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-MPC::Properties::Properties(const ByteVector &data, long streamLength, ReadStyle style) : AudioProperties(style)
-{
-  d = new PropertiesPrivate();
-  readSV7(data, streamLength);
-}
-
-MPC::Properties::Properties(File *file, long streamLength, ReadStyle style) : AudioProperties(style)
+MPC::Properties::Properties(File *file, long streamLength) : AudioProperties()
 {
   d = new PropertiesPrivate();
   ByteVector magic = file->readBlock(4);
@@ -94,7 +88,12 @@ MPC::Properties::~Properties()
 
 int MPC::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int MPC::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int MPC::Properties::bitrate() const

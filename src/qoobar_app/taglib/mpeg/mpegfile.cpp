@@ -116,33 +116,12 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-MPEG::File::File(FileName file, bool readProperties,
-                 Properties::ReadStyle propertiesStyle) : TagLib::File(file)
+MPEG::File::File(FileName file, bool readProperties) : TagLib::File(file)
 {
   d = new FilePrivate;
 
   if(isOpen())
-    read(readProperties, propertiesStyle);
-}
-
-MPEG::File::File(FileName file, ID3v2::FrameFactory *frameFactory,
-                 bool readProperties, Properties::ReadStyle propertiesStyle) :
-  TagLib::File(file)
-{
-  d = new FilePrivate(frameFactory);
-
-  if(isOpen())
-    read(readProperties, propertiesStyle);
-}
-
-MPEG::File::File(IOStream *stream, ID3v2::FrameFactory *frameFactory,
-                 bool readProperties, Properties::ReadStyle propertiesStyle) :
-  TagLib::File(stream)
-{
-  d = new FilePrivate(frameFactory);
-
-  if(isOpen())
-    read(readProperties, propertiesStyle);
+    read(readProperties);
 }
 
 MPEG::File::~File()
@@ -504,7 +483,7 @@ bool MPEG::File::hasAPETag() const
 // private members
 ////////////////////////////////////////////////////////////////////////////////
 
-void MPEG::File::read(bool readProperties, Properties::ReadStyle propertiesStyle)
+void MPEG::File::read(bool readProperties)
 {
   // Look for an ID3v2 tag
 
@@ -543,7 +522,7 @@ void MPEG::File::read(bool readProperties, Properties::ReadStyle propertiesStyle
   }
 
   if(readProperties)
-    d->properties = new Properties(this, propertiesStyle);
+    d->properties = new Properties(this);
 
   // Make sure that we have our default tag types available.
 
@@ -694,4 +673,3 @@ void MPEG::File::findAPE()
   d->APELocation = -1;
   d->APEFooterLocation = -1;
 }
-    

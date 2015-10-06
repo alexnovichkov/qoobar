@@ -61,7 +61,7 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-TrueAudio::Properties::Properties(const ByteVector &data, long streamLength, ReadStyle style) : AudioProperties(style)
+TrueAudio::Properties::Properties(const ByteVector &data, long streamLength) : AudioProperties()
 {
   d = new PropertiesPrivate();
   read(data, streamLength);
@@ -74,7 +74,12 @@ TrueAudio::Properties::~Properties()
 
 int TrueAudio::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int TrueAudio::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int TrueAudio::Properties::bitrate() const

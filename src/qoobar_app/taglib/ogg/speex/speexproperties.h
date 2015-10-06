@@ -54,7 +54,7 @@ namespace TagLib {
          * Create an instance of Speex::Properties with the data read from the
          * Speex::File \a file.
          */
-        Properties(File *file, ReadStyle style = Average);
+        Properties(File *file);
 
         /*!
          * Destroys this Speex::Properties instance.
@@ -64,6 +64,7 @@ namespace TagLib {
         // Reimplementations.
 
         virtual int length() const;
+        virtual int lengthInMilliseconds() const;
         virtual int bitrate() const;
         /*!
          * Returns the nominal bit rate as read from the Speex header in kb/s.

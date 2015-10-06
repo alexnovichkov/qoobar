@@ -419,22 +419,22 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
     readAPE = new QToolButton(this); readAPE->setText(tr("APE")); readAPE->setCheckable(true);
     writeAPE = new QToolButton(this); writeAPE->setText(tr("APE")); writeAPE->setCheckable(true);
 
-    flacBox = new QGroupBox(tr("Flac files"),this);
-    readFlac = new QLabel(tr("Read:"),this);
-    writeFlac = new QLabel(tr("Write:"), this);
-    flacreadID3 = new QToolButton(this); flacreadID3->setText(tr("ID3v2")); flacreadID3->setCheckable(true);
-    flacwriteID3 = new QToolButton(this); flacwriteID3->setText(tr("ID3v2")); flacwriteID3->setCheckable(true);
-    flacreadOgg = new QToolButton(this); flacreadOgg->setText(tr("Ogg")); flacreadOgg->setCheckable(true);
-    flacwriteOgg = new QToolButton(this); flacwriteOgg->setText(tr("Ogg")); flacwriteOgg->setCheckable(true);
-    QHBoxLayout *flac1 = new QHBoxLayout;
-    flac1->addWidget(readFlac);
-    flac1->addWidget(flacreadOgg);
-    flac1->addWidget(flacreadID3);
-    flac1->addWidget(writeFlac);
-    flac1->addWidget(flacwriteOgg);
-    flac1->addWidget(flacwriteID3);
-    flac1->addStretch();
-    flacBox->setLayout(flac1);
+//    flacBox = new QGroupBox(tr("Flac files"),this);
+//    readFlac = new QLabel(tr("Read:"),this);
+//    writeFlac = new QLabel(tr("Write:"), this);
+//    flacreadID3 = new QToolButton(this); flacreadID3->setText(tr("ID3v2")); flacreadID3->setCheckable(true);
+//    flacwriteID3 = new QToolButton(this); flacwriteID3->setText(tr("ID3v2")); flacwriteID3->setCheckable(true);
+//    flacreadOgg = new QToolButton(this); flacreadOgg->setText(tr("Ogg")); flacreadOgg->setCheckable(true);
+//    flacwriteOgg = new QToolButton(this); flacwriteOgg->setText(tr("Ogg")); flacwriteOgg->setCheckable(true);
+//    QHBoxLayout *flac1 = new QHBoxLayout;
+//    flac1->addWidget(readFlac);
+//    flac1->addWidget(flacreadOgg);
+//    flac1->addWidget(flacreadID3);
+//    flac1->addWidget(writeFlac);
+//    flac1->addWidget(flacwriteOgg);
+//    flac1->addWidget(flacwriteID3);
+//    flac1->addStretch();
+//    flacBox->setLayout(flac1);
 
     id3v2version = new QComboBox(this);
     id3v2version->setEditable(false);
@@ -524,7 +524,7 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
     rwLayout->addWidget(trim);
     rwLayout->addWidget(writeFieldsSeparately);
     rwLayout->addWidget(box);
-    rwLayout->addWidget(flacBox);
+//    rwLayout->addWidget(flacBox);
     rwLayout->addWidget(oggbox);
 #ifdef Q_OS_LINUX
     rwLayout->addWidget(mpcbox);
@@ -548,10 +548,10 @@ void WritingPage::setSettings()
     id3v1transliterate->setChecked(App->id3v1Transliterate);
     id3v1encoding->setCurrentIndex(id3v1encoding->findText(App->id3v1Encoding));
     id3v2version->setCurrentIndex(App->id3v2version==4?1:0);
-    flacreadID3->setChecked(App->flacreadid3);
-    flacreadOgg->setChecked(App->flacreadogg);
-    flacwriteID3->setChecked(App->flacwriteid3);
-    flacwriteOgg->setChecked(App->flacwriteogg);
+//    flacreadID3->setChecked(App->flacreadid3);
+//    flacreadOgg->setChecked(App->flacreadogg);
+//    flacwriteID3->setChecked(App->flacwriteid3);
+//    flacwriteOgg->setChecked(App->flacwriteogg);
 #ifdef Q_OS_LINUX
     mpcReplayGain->setCurrentIndex(App->mpcWriteRg?0:1);
 #endif
@@ -577,13 +577,13 @@ void WritingPage::retranslateUI()
     writeID3->setText(tr("ID3v2"));
     readAPE->setText(tr("APE"));
     writeAPE->setText(tr("APE"));
-    flacBox->setTitle(tr("Flac files"));
-    readFlac->setText(tr("Read:"));
-    writeFlac->setText(tr("Write:"));
-    flacreadID3->setText(tr("ID3v2"));
-    flacwriteID3->setText(tr("ID3v2"));
-    flacreadOgg->setText(tr("Ogg"));
-    flacwriteOgg->setText(tr("Ogg"));
+//    flacBox->setTitle(tr("Flac files"));
+//    readFlac->setText(tr("Read:"));
+//    writeFlac->setText(tr("Write:"));
+//    flacreadID3->setText(tr("ID3v2"));
+//    flacwriteID3->setText(tr("ID3v2"));
+//    flacreadOgg->setText(tr("Ogg"));
+//    flacwriteOgg->setText(tr("Ogg"));
     id3v1writeLabel->setText(tr("When writing tags"));
 
     box->setTitle(tr("Mp3 files"));
@@ -625,10 +625,10 @@ void WritingPage::saveSettings()
 #ifdef Q_OS_LINUX
     App->mpcWriteRg = mpcReplayGain->currentIndex()==0;
 #endif
-    App->flacreadid3=flacreadID3->isChecked();
-    App->flacreadogg=flacreadOgg->isChecked();
-    App->flacwriteid3=flacwriteID3->isChecked();
-    App->flacwriteogg=flacwriteOgg->isChecked();
+//    App->flacreadid3=flacreadID3->isChecked();
+//    App->flacreadogg=flacreadOgg->isChecked();
+//    App->flacwriteid3=flacwriteID3->isChecked();
+//    App->flacwriteogg=flacwriteOgg->isChecked();
 }
 
 

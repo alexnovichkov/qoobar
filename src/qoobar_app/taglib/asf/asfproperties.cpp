@@ -60,7 +60,7 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-ASF::Properties::Properties() : AudioProperties(AudioProperties::Average)
+ASF::Properties::Properties() : AudioProperties()
 {
   d = new PropertiesPrivate;
 }
@@ -72,7 +72,12 @@ ASF::Properties::~Properties()
 
 int ASF::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int ASF::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int ASF::Properties::bitrate() const

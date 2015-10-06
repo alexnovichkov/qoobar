@@ -67,21 +67,8 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-RIFF::WAV::Properties::Properties(const ByteVector &data, ReadStyle style) : AudioProperties(style)
-{
-  d = new PropertiesPrivate();
-  //read(data);
-}
-
-RIFF::WAV::Properties::Properties(const ByteVector &data, uint streamLength, ReadStyle style) : AudioProperties(style)
-{
-  d = new PropertiesPrivate();
-  //read(data);
-debug("RIFF::WAV::Properties::Properties() -- This constructor is no longer used.");
-}
-
-TagLib::RIFF::WAV::Properties::Properties(File *file, ReadStyle style) :
-  AudioProperties(style),
+TagLib::RIFF::WAV::Properties::Properties(File *file) :
+  AudioProperties(),
   d(new PropertiesPrivate())
 {
   read(file);
@@ -94,7 +81,12 @@ RIFF::WAV::Properties::~Properties()
 
 int RIFF::WAV::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int RIFF::WAV::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int RIFF::WAV::Properties::bitrate() const

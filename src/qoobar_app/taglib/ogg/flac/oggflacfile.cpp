@@ -68,20 +68,11 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-Ogg::FLAC::File::File(FileName file, bool readProperties,
-                      Properties::ReadStyle propertiesStyle) : Ogg::File(file)
+Ogg::FLAC::File::File(FileName file, bool readProperties) : Ogg::File(file)
 {
   d = new FilePrivate;
   if(isOpen())
-  read(readProperties, propertiesStyle);
-}
-
-Ogg::FLAC::File::File(IOStream *stream, bool readProperties,
-                      Properties::ReadStyle propertiesStyle) : Ogg::File(stream)
-{
-  d = new FilePrivate;
-  if(isOpen())
-  read(readProperties, propertiesStyle);
+  read(readProperties);
 }
 
 Ogg::FLAC::File::~File()
@@ -135,7 +126,7 @@ bool Ogg::FLAC::File::hasXiphComment() const
 // private members
 ////////////////////////////////////////////////////////////////////////////////
 
-void Ogg::FLAC::File::read(bool readProperties, Properties::ReadStyle propertiesStyle)
+void Ogg::FLAC::File::read(bool readProperties)
 {
   // Sanity: Check if we really have an Ogg/FLAC file
 
@@ -165,7 +156,7 @@ void Ogg::FLAC::File::read(bool readProperties, Properties::ReadStyle properties
 
 
   if(readProperties)
-    d->properties = new Properties(streamInfoData(), streamLength(), propertiesStyle);
+    d->properties = new Properties(streamInfoData(), streamLength());
 }
 
 ByteVector Ogg::FLAC::File::streamInfoData()

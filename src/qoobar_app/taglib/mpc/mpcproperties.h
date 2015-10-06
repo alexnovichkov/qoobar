@@ -47,18 +47,10 @@ namespace TagLib {
     {
     public:
       /*!
-       * Create an instance of MPC::Properties with the data read from the
-       * ByteVector \a data.
-       *
-       * This constructor is deprecated. It only works for MPC version up to 7.
-       */
-      Properties(const ByteVector &data, long streamLength, ReadStyle style = Average);
-
-      /*!
        * Create an instance of MPC::Properties with the data read directly
        * from a MPC::File.
        */
-      Properties(File *file, long streamLength, ReadStyle style = Average);
+      Properties(File *file, long streamLength);
 
       /*!
        * Destroys this MPC::Properties instance.
@@ -68,6 +60,7 @@ namespace TagLib {
       // Reimplementations.
 
       virtual int length() const;
+      virtual int lengthInMilliseconds() const;
       virtual int bitrate() const;
       virtual int sampleRate() const;
       virtual int channels() const;

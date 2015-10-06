@@ -86,37 +86,7 @@ namespace TagLib {
        * \deprecated This constructor will be dropped in favor of the one below
        * in a future version.
        */
-      File(FileName file, bool readProperties = true,
-           Properties::ReadStyle propertiesStyle = Properties::Average);
-
-      /*!
-       * Contructs a FLAC file from \a file.  If \a readProperties is true the
-       * file's audio properties will also be read using \a propertiesStyle.  If
-       * false, \a propertiesStyle is ignored.
-       *
-       * If this file contains and ID3v2 tag the frames will be created using
-       * \a frameFactory.
-       */
-      // BIC: merge with the above constructor
-      File(FileName file, ID3v2::FrameFactory *frameFactory,
-           bool readProperties = true,
-           Properties::ReadStyle propertiesStyle = Properties::Average);
-
-      /*!
-       * Contructs a FLAC file from \a file.  If \a readProperties is true the
-       * file's audio properties will also be read using \a propertiesStyle.  If
-       * false, \a propertiesStyle is ignored.
-       *
-       * If this file contains and ID3v2 tag the frames will be created using
-       * \a frameFactory.
-       *
-       * \note TagLib will *not* take ownership of the stream, the caller is
-       * responsible for deleting it after the File object.
-       */
-      // BIC: merge with the above constructor
-      File(IOStream *stream, ID3v2::FrameFactory *frameFactory,
-           bool readProperties = true,
-           Properties::ReadStyle propertiesStyle = Properties::Average);
+      File(FileName file, bool readProperties = true);
 
       /*!
        * Destroys this instance of the File.
@@ -132,24 +102,7 @@ namespace TagLib {
        * \see XiphComment()
        */
       virtual TagLib::Tag *tag() const;
-#ifndef QOOBAR_NO_PROPERTY_MAPS
-      /*!
-       * Implements the unified property interface -- export function.
-       * If the file contains more than one tag (e.g. XiphComment and ID3v1),
-       * only the first one (in the order XiphComment, ID3v2, ID3v1) will be
-       * converted to the PropertyMap.
-       */
-      PropertyMap properties() const;
 
-      void removeUnsupportedProperties(const StringList &);
-
-      /*!
-       * Implements the unified property interface -- import function.
-       * As with the export, only one tag is taken into account. If the file
-       * has no tag at all, a XiphComment will be created.
-       */
-      PropertyMap setProperties(const PropertyMap &);
-#endif
       /*!
        * Returns the FLAC::Properties for this file.  If no audio properties
        * were read then this will return a null pointer.
@@ -263,7 +216,7 @@ namespace TagLib {
       File(const File &);
       File &operator=(const File &);
 
-      void read(bool readProperties, Properties::ReadStyle propertiesStyle);
+      void read(bool readProperties);
       void scan();
       long findID3v2();
       long findID3v1();

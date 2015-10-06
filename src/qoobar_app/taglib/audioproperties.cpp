@@ -45,7 +45,7 @@ AudioProperties::~AudioProperties()
 // protected methods
 ////////////////////////////////////////////////////////////////////////////////
 
-AudioProperties::AudioProperties(ReadStyle)
+AudioProperties::AudioProperties()
 {
 
 }

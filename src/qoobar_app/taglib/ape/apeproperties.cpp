@@ -63,7 +63,7 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-APE::Properties::Properties(File *file, long streamLength, ReadStyle style) : AudioProperties(style)
+APE::Properties::Properties(File *file, long streamLength) : AudioProperties()
 {
   d = new PropertiesPrivate();
   read(file, streamLength);
@@ -76,7 +76,12 @@ APE::Properties::~Properties()
 
 int APE::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int APE::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int APE::Properties::bitrate() const

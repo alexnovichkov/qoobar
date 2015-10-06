@@ -70,7 +70,7 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-DSF::Properties::Properties(const ByteVector &data, ReadStyle style) : AudioProperties(style)
+DSF::Properties::Properties(const ByteVector &data) : AudioProperties()
 {
   d = new PropertiesPrivate;
   read(data);
@@ -83,7 +83,12 @@ DSF::Properties::~Properties()
 
 int DSF::Properties::length() const
 {
-  return d->length;
+    return d->length;
+}
+
+int DSF::Properties::lengthInMilliseconds() const
+{
+    return d->length * 1000;
 }
 
 int DSF::Properties::bitrate() const

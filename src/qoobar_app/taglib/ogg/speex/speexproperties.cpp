@@ -65,7 +65,7 @@ public:
 // public members
 ////////////////////////////////////////////////////////////////////////////////
 
-Speex::Properties::Properties(File *file, ReadStyle style) : AudioProperties(style)
+Speex::Properties::Properties(File *file) : AudioProperties()
 {
   d = new PropertiesPrivate();
   read(file);
@@ -78,7 +78,12 @@ Speex::Properties::~Properties()
 
 int Speex::Properties::length() const
 {
-  return d->length / 1000;
+    return d->length / 1000;
+}
+
+int Speex::Properties::lengthInMilliseconds() const
+{
+    return d->length;
 }
 
 int Speex::Properties::bitrate() const

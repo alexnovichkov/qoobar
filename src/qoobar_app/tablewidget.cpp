@@ -63,8 +63,8 @@ TableWidget::TableWidget(QWidget* parent) : QTableWidget(App->currentScheme->tag
     horizontalHeader()->setStretchLastSection(true);
     horizontalHeader()->setVisible(false);
     setVerticalHeaderLabels(QVector<QString>(tagsCount,QString()).toList());
-//    if (!App->rows.isEmpty())
-//        verticalHeader()->restoreState(App->rows);
+    if (!App->rows.isEmpty())
+        verticalHeader()->restoreState(App->rows);
     verticalHeader()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
     int height=verticalHeader()->sectionSize(0);
     verticalHeader()->SETSECTIONRESIZEMODE(QHeaderView::Fixed);
