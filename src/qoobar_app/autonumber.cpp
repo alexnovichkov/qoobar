@@ -1,71 +1,33 @@
-#include "autonumberplugin.h"
+#include "autonumber.h"
 
 #ifdef HAVE_QT5
 #include <QtWidgets>
 #else
 #include <QtGui>
 #endif
-
+#include "application.h"
 #include "enums.h"
+#include "tagger.h"
 
-#ifndef HAVE_QT5
-QString AutonumberPlugin::text()
-{
-    return tr("Autonumber selected files");
-}
-
-/*returns an icon for menus, tollbars etc.*/
-QIcon AutonumberPlugin::icon()
-{
-    return QIcon();
-}
-
-/*returns a full localized description of a plugin*/
-QString AutonumberPlugin::description()
-{
-    return tr("Automatically number selected files");
-}
-
-/*returns a short unique key that identifies a plugin*/
-QString AutonumberPlugin::key()
-{
-    return "Autonumber";
-}
-
-QString AutonumberPlugin::version()
-{
-    return QString(PLUGIN_VERSION);
-}
-
-Q_EXPORT_PLUGIN2(Autonumber,AutonumberPlugin)
-#endif
-
-QList<Tag> AutonumberPlugin::getNewTags(const QList<Tag> &oldTags)
-{
-    Dialog dialog(oldTags);
-    if (dialog.exec()) {
-        return dialog.getNewTags();
-    }
-    return oldTags;
-}
-
-Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
+AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
     : QDialog(parent), oldTags(oldTags)
 {
-    setWindowTitle(tr("Autonumbering dialog"));
-#ifdef QOOBAR_PORTABLE
-    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
-#else
-    QSettings se("qoobar","qoobar");
+    setWindowTitle(tr("Qoobar - Autonumber files"));
+
+#ifdef Q_OS_MAC
+    setWindowModality(Qt::WindowModal);
 #endif
-    se.beginGroup("autonumberPlugin");
-    int startNumber = se.value("startNumber",1).toInt();
-    int formatNumber = se.value("formatNumber",0).toInt();
-    bool addTotalTracks = se.value("addTotalTracks", false).toBool();
-    bool resetFolder = se.value("resetFolder", false).toBool();
-    bool resetAlbum = se.value("resetAlbum", false).toBool();
-    int albumBehavior = se.value("albumBehavior",0).toInt();
-    se.endGroup();
+
+    QSettings *se = App->guiSettings();
+    se->beginGroup("autonumberPlugin");
+    int startNumber = se->value("startNumber",1).toInt();
+    int formatNumber = se->value("formatNumber",0).toInt();
+    bool addTotalTracks = se->value("addTotalTracks", false).toBool();
+    bool resetFolder = se->value("resetFolder", false).toBool();
+    bool resetAlbum = se->value("resetAlbum", false).toBool();
+    int albumBehavior = se->value("albumBehavior",0).toInt();
+    se->endGroup();
+    delete se;
 
     tree = new QTreeWidget(this);
     tree->setRootIsDecorated(false);
@@ -124,7 +86,7 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
     connect(resetFolderCheckBox,SIGNAL(clicked()),SLOT(updateTrackNumbers()));
     connect(resetAlbumCheckBox,SIGNAL(clicked()),SLOT(updateTrackNumbers()));
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
@@ -133,15 +95,15 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
     l->addWidget(startNumberEdit,0,1);
     l->addWidget(new QLabel(tr("Number format")),0,2,1,1,Qt::AlignRight);
     l->addWidget(formatComboBox,0,3);
-    l->addWidget(addTotalTracksCheckBox,0,4,1,1,Qt::AlignRight);
+    l->addWidget(addTotalTracksCheckBox,1,0,1,2);
 
-    l->addWidget(resetFolderCheckBox,1,0,1,5);
-    l->addWidget(resetAlbumCheckBox,2,0,1,1);
+    l->addWidget(resetFolderCheckBox,2,0,1,2);
+    l->addWidget(resetAlbumCheckBox,3,0,1,2);
     l->addWidget(new QLabel(tr("If a file has no album"
-                               "\nor album includes only one track")),2,1,1,1);
-    l->addWidget(actionComboBox,2,2,1,3);
-    l->addWidget(tree,3,0,1,5);
-    l->addWidget(buttonBox,4,0,1,5);
+                               "\nor album includes only one track")),1,2,3,1);
+    l->addWidget(actionComboBox,1,3,3,1);
+    l->addWidget(tree,5,0,1,5);
+    l->addWidget(buttonBox,6,0,1,5);
 
     this->setLayout(l);
     resize(800,480);
@@ -149,7 +111,7 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
     updateTrackNumbers();
 }
 
-Dialog::~Dialog()
+AutonumberDialog::~AutonumberDialog()
 {
     int  firstNumber    = startNumberEdit->value();
     int  numberFormat   = formatComboBox->currentIndex();
@@ -158,22 +120,19 @@ Dialog::~Dialog()
     bool addTotalTracks = addTotalTracksCheckBox->isChecked();
     int  actionIndex    = actionComboBox->currentIndex();
 
-#ifdef QOOBAR_PORTABLE
-    QSettings se(QSL("qoobar.ini"),QSettings::IniFormat);
-#else
-    QSettings se("qoobar","qoobar");
-#endif
-    se.beginGroup("autonumberPlugin");
-    se.setValue("startNumber", firstNumber);
-    se.setValue("formatNumber", numberFormat);
-    se.setValue("addTotalTracks", addTotalTracks);
-    se.setValue("resetFolder", resetFolder);
-    se.setValue("resetAlbum", resetAlbum);
-    se.setValue("albumBehavior", actionIndex);
-    se.endGroup();
+    QSettings *se = App->guiSettings();
+    se->beginGroup("autonumberPlugin");
+    se->setValue("startNumber", firstNumber);
+    se->setValue("formatNumber", numberFormat);
+    se->setValue("addTotalTracks", addTotalTracks);
+    se->setValue("resetFolder", resetFolder);
+    se->setValue("resetAlbum", resetAlbum);
+    se->setValue("albumBehavior", actionIndex);
+    se->endGroup();
+    delete se;
 }
 
-QList<Tag> Dialog::getNewTags()
+QList<Tag> AutonumberDialog::getNewTags()
 {
     return newTags;
 }
@@ -184,7 +143,7 @@ QString formatNumber(int number, int format)
     return s;
 }
 
-void Dialog::updateTrackNumbers()
+void AutonumberDialog::updateTrackNumbers()
 {
     int totalCount = oldTags.size();
     tree->blockSignals(true);
@@ -206,12 +165,12 @@ void Dialog::updateTrackNumbers()
         items << item;
     }
 
-    int  firstNumber    = startNumberEdit->value();
-    int  numberFormat   = formatComboBox->currentIndex();
-    bool resetFolder    = resetFolderCheckBox->isChecked();
-    bool resetAlbum     = resetAlbumCheckBox->isChecked();
-    bool addTotalTracks = addTotalTracksCheckBox->isChecked();
-    int  actionIndex    = actionComboBox->currentIndex();
+    const int  firstNumber    = startNumberEdit->value();
+    const int  numberFormat   = formatComboBox->currentIndex();
+    const bool resetFolder    = resetFolderCheckBox->isChecked();
+    const bool resetAlbum     = resetAlbumCheckBox->isChecked();
+    const bool addTotalTracks = addTotalTracksCheckBox->isChecked();
+    const int  actionIndex    = actionComboBox->currentIndex();
 
     QMap<QString, QVector<int> > byFolder;
     if (resetFolder) {
@@ -303,9 +262,19 @@ void Dialog::updateTrackNumbers()
     }
     tree->addTopLevelItems(items);
     tree->blockSignals(false);
+
+    bool tagsAreChanged = false;
+    for (int i=0; i<tree->topLevelItemCount(); ++i) {
+        QTreeWidgetItem *item = tree->topLevelItem(i);
+        if (item->text(0) != item->text(1) || item->text(2) != item->text(3)) {
+            tagsAreChanged = true;
+            break;
+        }
+    }
+    buttonBox->button(QDialogButtonBox::Ok)->setEnabled(tagsAreChanged);
 }
 
-void Dialog::accept()
+void AutonumberDialog::accept()
 {
     newTags = oldTags;
     for (int i=0; i<newTags.count(); ++i) {

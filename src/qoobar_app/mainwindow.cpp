@@ -129,6 +129,10 @@ const Act MainWindow::actionsDescr[] = {
      QT_TR_NOOP("Add new tag..."),
      QT_TR_NOOP("New tag"),
      0, 0, QKeySequence::New, "list-add",SLOT(newTag())},
+    {"autonumber", QT_TR_NOOP("Autonumber selected files..."),
+     QT_TR_NOOP("Autonumber selected files..."),
+     QT_TR_NOOP("Autonumber"),
+     0, 0, QKeySequence::UnknownKey, 0,SLOT(autonumber())},
     {"split", QT_TR_NOOP("Split &disc..."), QT_TR_NOOP("Split disc..."), QT_TR_NOOP("Split"),
      SLOT(showSplitDialog()), 0, QKeySequence::UnknownKey, "media-import-audio-cd",0},
     {"exit", QT_TR_NOOP("E&xit"), QT_TR_NOOP("Exit"), QT_TR_NOOP("Exit"),
@@ -167,7 +171,7 @@ const Menu MainWindow::menusDescr[] = {
                                    "pasteFromClipboard,,removeTags,"
                                    "newTag,,settings"
     },
-    {"tools", QT_TR_NOOP("&Tools"), "rename,fill,play,replaygain,"},
+    {"tools", QT_TR_NOOP("&Tools"), "rename,fill,play,replaygain,autonumber,"},
     {"tabs", QT_TR_NOOP("Tab&s"), "newTab,closeTab,closeOtherTabs,renameTab"},
     {"help", QT_TR_NOOP("&Help"),"help,about,aboutQt,onlinehelp,,checkUpdates"},
     {0,0,0}
@@ -1011,3 +1015,5 @@ void MainWindow::setAsTreeRoot()
     dirView->expand(dirModel->index(App->lastTreeDirectory,0));
     dirView->scrollTo(dirModel->index(App->lastTreeDirectory,0),QAbstractItemView::PositionAtCenter);
 }
+
+

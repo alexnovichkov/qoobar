@@ -42,6 +42,7 @@
 #include "mp3tagsdialog.h"
 #include "iqoobarplugin.h"
 #include "taskbarprogress.h"
+#include "autonumber.h"
 
 #ifdef HAVE_QT5
 #include <QtWidgets>
@@ -1422,4 +1423,15 @@ void Tab::showMessage(int type, const QString &text)
     }
 }
 
+void Tab::autonumber()
+{
+    if (!model->hasSelection())
+        return;
 
+    QList<Tag> oldTags=model->selectedFiles();
+    AutonumberDialog dialog(oldTags);
+    if (dialog.exec()) {
+        QList<Tag> newTags = dialog.getNewTags();
+        updateTags(oldTags, newTags, tr("changing tags"));
+    }
+}

@@ -123,6 +123,7 @@ public Q_SLOTS:
     void replaygain();
 
     void startSearch();
+    void autonumber();
 private Q_SLOTS:
     void filesSelectionChanged();
     void cellChanged(QTableWidgetItem *);

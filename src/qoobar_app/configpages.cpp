@@ -136,10 +136,10 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
         iconTheme->addItem(dir);
     }
 
-    statusBarTrackLabel = new QLabel(tr("Status bar tracks"), this);
+    statusBarTrackLabel = new QLabel(tr("Status bar is tracking"), this);
     statusBarTrack = new QComboBox(this);
-    statusBarTrack->addItem(tr("Current hovered file"));
-    statusBarTrack->addItem(tr("Current selected file"));
+    statusBarTrack->addItem(tr("current hovered file"));
+    statusBarTrack->addItem(tr("current selected file"));
 
     QFormLayout *UIlayout = new QFormLayout;
 #ifdef Q_OS_MAC
@@ -205,9 +205,9 @@ void InterfacePage::retranslateUI()
 {DD;
     ConfigPage::retranslateUI();
 
-    statusBarTrackLabel->setText(tr("Status bar tracks"));
-    statusBarTrack->setItemText(0, tr("Current hovered file"));
-    statusBarTrack->setItemText(1, tr("Current selected file"));
+    statusBarTrackLabel->setText(tr("Status bar is tracking"));
+    statusBarTrack->setItemText(0, tr("current hovered file"));
+    statusBarTrack->setItemText(1, tr("current selected file"));
 
     autoexpand->setText(tr("Automatically fill a tag "
                            "when pasting a single line"));
