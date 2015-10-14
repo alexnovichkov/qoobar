@@ -20,6 +20,7 @@ public:
 private Q_SLOTS:
     void updateTrackNumbers();
     void accept();
+    void showHelp();
 private:
     QList<Tag> oldTags;
     QList<Tag> newTags;

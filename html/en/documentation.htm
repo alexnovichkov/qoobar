@@ -127,6 +127,7 @@
                 <li><b>Fill tags...</b> - fills tags from file name, tags or Internet <span class=hotkey>Ctrl+F</span></li>
                 <li><b>Play selected</b> - plays selected files in an external player <span class=hotkey>Ctrl+P</span></li>
                 <li><b>ReplayGain info...</b> - adds or removes ReplayGain info from files</li>
+                <li><b>Autonumber selected files...</b> - adds or removes track numbers via the Autonumber dialog</li>
                 <li><b>Tags editing plugins</b> installed with Qoobar</li>
               </ul>
               <h4>Tabs</h4>
@@ -263,8 +264,7 @@
               <p>First select one or several files in the Files table.</p>
               <p>To set <b>one tag for all selected files</b> - click on this tag (f.e. on the "Artist" tag) and type a text.</p>
               <p>To edit <b>one tag file by file</b> - double-click the tag.</p>
-              <p>To number tracks starting from 1 to N (N is the number of selected files)
-              - click on the "Track number" tag, type <code>1</code> and press Enter.</p>
+              <p>To number tracks consecutively starting from 1, click on the "Track number" tag, type <code>1</code> and press <span class="button">Enter</span>.</p>
               <div class="notebox"><p><strong>Note:</strong> If you type <code>01</code>, track numbers will be two-digit formatted: 01, 02 etc.</p></div>
               <p>To remove some tags select these tags in the Tags Table and press <span class=hotkey>Del</span>.</p>
               <div class="notebox"><p><strong>Note:</strong> You can change a tag in the Files table by double clicking on it.</p></div>
@@ -402,9 +402,19 @@
               <div class="notebox"><p><strong>Note:</strong> Not all functions works identical to their Foobar equivalents, please test them before saving changes.</p></div>
 
 
-              <h3>Using autonumbering function</h3>
-              <p>In rare cases there may be a necessity to add some highly structured text to a tag.
-                For example, when you are editing some opera and want to add text like "Act 1. Scene 1." etc.
+              <h3><a name="autonumbering"></a>Autonumbering</h3>
+              <p>Adding track numbers has never been easier with Qoobar. There are three ways to add a track number or total tracks tag to a file:</p>
+      <ul>
+        <li>By directly typing the starting track number in the "Track number" field.</li>
+        <li>By using the autonumbering function.</li>
+        <li>By using the Autonumber dialog.</li>
+      </ul>
+      <h4>"Track number" field</h4>
+      <p>The easiest way to add track numbers is to directly use the "Track number" field. Whether in the Tags Table on in the Edit dialog, 
+      type the starting number (f.e. <code>1</code> or <code>01</code>), and every selected file will get the right consecutive track number.</p>
+      <h4>Autonumbering function</h4>
+              <p>This function is extremely useful when you need to add a consecutive track number to other tags (or embed it into some highly structured text).</p>
+                <p>For example, when you are editing some opera and want to add text like "Act 1. Scene 1." etc.
                 It can be quite tedious to type all these acts and scenes manually. Instead use the autonumbering function:</p>
               <pre>{startNumber-endNumber, someNumber:repeatNTimes, someOtherNumber:repeatMTimes; otherStartNumber, m1:k1, m2:k2}</pre>
               <p>Let's see an example. Suppose we have 'raw' track titles of Debussy's opera "Pelleas and Melisande".
@@ -476,6 +486,23 @@
                 <tr><td><code>{1-3, 1:2, 2:3; 1, 1:2}</code></td><td>1, 1, 2, 2, 2, 1, 1</td></tr>
               </table>
               <p>Here _ means "nothing" and not underscore.</p>
+              <h4>Autonumber Dialog</h4>
+       <p>The Autonumber Dialog simplifies adding track numbers and total tracks to files in case you have selected files from different folders and albums.</p>
+       <p>To open it, choose the <i>Tools → Autonumber selected files...</i> menu item.</p> 
+       <p>The dialog options:</p>
+       <ul>
+        <li><b>Begin at number</b>: lets you to change the starting track number.</li>
+        <li><b>Number format</b>: choose between one-digit, two-digits and three-digits track numbers.</li>
+        <li><b>Add total tracks</b>: if this option is set, the dialog will also update/change the total tracks tag.</li>
+        <li><b>Reset counter for each folder</b>: if this option is set, then Qoobar will reset the track number 
+        to the starting one if it encounters a file from the different folder.</li>
+        <li><b>Reset counter for each album</b>: if this option is set, then Qoobar will reset the track number 
+        to the starting one if it encounters a file from the different album.</li>
+        <li><b>If a file has no album...</b>: this option manages the "single" or "orphaned" files, that is files with no album tag set 
+        or albums that contain only one track.</li>
+      </ul>
+      <p>The old and new track numbers are shown in the table below. You can edit them manually by double-clicking on the field, 
+      though only "New #" and "New ##" will be used.</p>
 
 
               <h3>The Edit Dialog</h3>

@@ -8,6 +8,8 @@
 #include "application.h"
 #include "enums.h"
 #include "tagger.h"
+#include "qbutton.h"
+#include "qoobarhelp.h"
 
 AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
     : QDialog(parent), oldTags(oldTags)
@@ -39,6 +41,7 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
     //tree->setFrameStyle(/*QFrame::NoFrame |*/ QFrame::Plain);
     tree->setAttribute(Qt::WA_MacShowFocusRect, false);
     tree->setAutoFillBackground(true);
+    tree->setAttribute(Qt::WA_MacSmallSize, true);
 #endif
     tree->setHeaderLabels(QStringList()<<tr("Old #")
                                        <<tr("New #")
@@ -89,6 +92,12 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
     buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+#ifdef Q_OS_MAC
+    QButton *helpButton = new QButton(this,QButton::HelpButton);
+#else
+    QPushButton *helpButton = buttonBox->addButton(QDialogButtonBox::Help);
+#endif
+    connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
     QGridLayout *l = new QGridLayout;
     l->addWidget(new QLabel(tr("Begin at number")),0,0);
@@ -103,7 +112,13 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
                                "\nor album includes only one track")),1,2,3,1);
     l->addWidget(actionComboBox,1,3,3,1);
     l->addWidget(tree,5,0,1,5);
+#ifdef Q_OS_MAC
+    l->addWidget(helpButton,6,0);
+    l->addWidget(buttonBox,6,1,1,4);
+#else
     l->addWidget(buttonBox,6,0,1,5);
+#endif
+
 
     this->setLayout(l);
     resize(800,480);
@@ -282,4 +297,9 @@ void AutonumberDialog::accept()
         newTags[i].setTag(TOTALTRACKS, tree->topLevelItem(i)->text(3));
     }
     QDialog::accept();
+}
+
+void AutonumberDialog::showHelp()
+{
+    Qoobar::showHelp("autonumbering");
 }
