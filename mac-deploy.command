@@ -15,5 +15,6 @@ done
 cp -f mac_os/*.dylib release/qoobar.app/Contents/Resources
 
 # installing help
-cp -f html/Qoobar.help release/qoobar.app/Contents/Resources
-hiutil -C ...
+cp -Rf html/Qoobar.help release/qoobar.app/Contents/Resources
+cd release/qoobar.app/Contents/Resources
+hiutil -C -s en -a -vvv -f Qoobar.help/search.helpindex Qoobar.help/

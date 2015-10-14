@@ -170,7 +170,8 @@ lessThan(QT_MAJOR_VERSION, 5) {
 }
 
 OTHER_FILES *= splitandconvert.bat \
-               splitandconvert.sh
+               splitandconvert.sh \
+               ../../mac-deploy.command
 
 
 TRANSLATIONS = qoobar_ru.ts \
@@ -253,6 +254,7 @@ mac {
     SOURCES += qocoa/qprogressindicatorspinning_nonmac.cpp
     SOURCES += mactoolbar.cpp  \
                qoobarhelp.cpp
+    HEADERS += impl.h
 }
 
 DEFINES += QOOBAR_NO_PROPERTY_MAPS

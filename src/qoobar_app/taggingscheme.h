@@ -58,16 +58,6 @@ public:
         ASF=4
     };
 
-    struct Field
-    {
-        Field() : type(UNKNOWN) {}
-        QString field;
-        int id;
-        QString name;
-        QChar placeholder;
-        TagType type;
-    };
-
     TaggingScheme(const QString &filePath);
     void setFilePath(const QString &filePath);
     inline QString filePath() const {return m_filePath;}

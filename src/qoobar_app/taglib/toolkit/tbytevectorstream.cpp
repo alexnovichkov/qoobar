@@ -22,7 +22,7 @@
  *   License Version 1.1.  You may obtain a copy of the License at         *
  *   http://www.mozilla.org/MPL/                                           *
  ***************************************************************************/
-
+#if 0
 #include "tbytevectorstream.h"
 #include "tstring.h"
 #include "toolkit/tdebug.h"
@@ -165,3 +165,4 @@ ByteVector *ByteVectorStream::data()
 {
   return &d->data;
 }
+#endif

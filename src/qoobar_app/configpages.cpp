@@ -313,6 +313,10 @@ CompletionPage::CompletionPage(QWidget *parent) : ConfigPage(parent)
     completionTree->setWhatsThis(tr("Check the tags for which you wish to use the autocompletion.<br>"
                                     "<br>The <i>Edit...</i> buttons allows you to manually change the remembered text lines"));
     completionTree->setMinimumHeight(300);
+    completionTree->setAlternatingRowColors(true);
+#ifdef Q_OS_MAC
+    completionTree->setAttribute(Qt::WA_MacSmallSize, true);
+#endif
     const int tagsCount = App->currentScheme->tagsCount();
     for (int i=0; i<tagsCount; ++i) {
         QTreeWidgetItem *item = new QTreeWidgetItem(completionTree);
@@ -1085,14 +1089,18 @@ PluginsPage::PluginsPage(QWidget *parent) : ConfigPage(parent)
     downloadTree->setHeaderLabels(QVector<QString>(6).toList());
     downloadTree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
     downloadTree->header()->setStretchLastSection(false);
-    downloadTree->setMinimumHeight(150);
+#ifdef Q_OS_MAC
+    downloadTree->setFixedHeight(120);
+#endif
 
     editingTree = new QTreeWidget(this);
     editingTree->setRootIsDecorated(false);
     editingTree->setHeaderLabels(QVector<QString>(3).toList());
     editingTree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
     editingTree->header()->setStretchLastSection(false);
-    editingTree->setMinimumHeight(150);
+#ifdef Q_OS_MAC
+    editingTree->setFixedHeight(120);
+#endif
 
     QVBoxLayout *l = new QVBoxLayout;
 #ifndef Q_OS_WIN

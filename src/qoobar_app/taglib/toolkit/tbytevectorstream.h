@@ -25,7 +25,7 @@
 
 #ifndef TAGLIB_BYTEVECTORSTREAM_H
 #define TAGLIB_BYTEVECTORSTREAM_H
-
+#if 0
 #include "taglib.h"
 #include "tbytevector.h"
 #include "tiostream.h"
@@ -141,4 +141,5 @@ namespace TagLib {
 
 }
 
+#endif
 #endif

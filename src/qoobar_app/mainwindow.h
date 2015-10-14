@@ -95,6 +95,7 @@ private Q_SLOTS:
     void addFromDirViewWithSubfolders();
     void addFromDirView();
     void showHelp();
+    void showOnlineHelp();
     void checkUpdates();
     void saveSplitterState();
     void closeTab(int);

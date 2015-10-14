@@ -13,14 +13,7 @@
 #include "application.h"
 #include "mainwindow.h"
 #include "qoobarglobals.h"
-
-class Impl
-{
-public:
-    QToolBar *toolbar;
-    QList<QAction*> addedItems;
-    QHash<QAction*, QAction*> hash; //program action <-> toolbar action
-};
+#include "impl.h"
 
 QAction *findAction(QList<QAction*> &list, const QString &s)
 {
@@ -31,16 +24,16 @@ QAction *findAction(QList<QAction*> &list, const QString &s)
 }
 
 
-CustomToolBar::CustomToolBar(Impl *impl, QWidget * parent) : QToolBar(parent)
+Impl::Impl(QWidget * parent) : QToolBar(parent)
 {
-    this->impl = impl;
+    
 }
 
-void CustomToolBar::contextMenuEvent(QContextMenuEvent * event)
+void Impl::contextMenuEvent(QContextMenuEvent * event)
 {
     QMenu m;
 
-    Q_FOREACH(QAction *a, impl->addedItems) {
+    Q_FOREACH(QAction *a, addedItems) {
         QAction *act = new QAction(a->icon(), a->text(), this);
         act->setCheckable(true);
         act->setChecked(a->property("visible").toBool());
@@ -52,11 +45,11 @@ void CustomToolBar::contextMenuEvent(QContextMenuEvent * event)
     m.exec(event->globalPos());
 }
 
-void CustomToolBar::toggle(bool on)
+void Impl::toggle(bool on)
 {
     QAction *a = static_cast<QAction*>(sender());
     if (a) {
-        QAction *act = findAction(impl->addedItems, a->property("itemIdentifier").toString());
+        QAction *act = findAction(addedItems, a->property("itemIdentifier").toString());
         if (act) act->setProperty("visible", on);
     }
 }
@@ -64,16 +57,15 @@ void CustomToolBar::toggle(bool on)
 
 Toolbar::Toolbar(QMainWindow *parent) : QObject(parent)
 {DD;
-    d = new Impl;
-    d->toolbar = new CustomToolBar(d);
-    parent->addToolBar(d->toolbar);
-    d->toolbar->setIconSize(QSize(24,24));
-    d->toolbar->setMovable(false);
+    d = new Impl(parent);
+    parent->addToolBar(d);
+    d->setIconSize(QSize(24,24));
+    d->setMovable(false);
 }
 
 Toolbar::~Toolbar()
 {DD;
-    delete d;
+   
 }
 
 void Toolbar::addAction(QAction *act, const QString &key, bool showText)
@@ -141,7 +133,7 @@ void Toolbar::attachToWindow(QMainWindow *window)
     }
 
     Q_FOREACH(QAction *a, d->addedItems) {
-        d->toolbar->addAction(a);
+        d->addAction(a);
         if (items.contains(a->property("itemIdentifier").toString())) a->setVisible(true);
         else a->setVisible(false);
     }

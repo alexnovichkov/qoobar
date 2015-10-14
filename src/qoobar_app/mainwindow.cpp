@@ -97,6 +97,10 @@ const Act MainWindow::actionsDescr[] = {
      QT_TR_NOOP("Help on Qoobar"),
      QT_TR_NOOP("Help"),
      SLOT(showHelp()), 0, QKeySequence::HelpContents, "help-contents",0},
+    {"onlinehelp", QT_TR_NOOP("Qoobar Online"),
+     QT_TR_NOOP("Qoobar Online"),
+     QT_TR_NOOP("Qoobar Online"),
+     SLOT(showOnlineHelp()), 0, QKeySequence::UnknownKey, "help-online",0},
     {"about", QT_TR_NOOP("&About Qoobar"), QT_TR_NOOP("About Qoobar"), QT_TR_NOOP("About"),
      SLOT(showAboutDialog()), 0, QKeySequence::UnknownKey, "help-about",0},
     {"aboutQt", QT_TR_NOOP("About &Qt"), QT_TR_NOOP("About Qt"), QT_TR_NOOP("About Qt"),
@@ -165,7 +169,7 @@ const Menu MainWindow::menusDescr[] = {
     },
     {"tools", QT_TR_NOOP("&Tools"), "rename,fill,play,replaygain,"},
     {"tabs", QT_TR_NOOP("Tab&s"), "newTab,closeTab,closeOtherTabs,renameTab"},
-    {"help", QT_TR_NOOP("&Help"),"help,about,aboutQt,,checkUpdates"},
+    {"help", QT_TR_NOOP("&Help"),"help,about,aboutQt,onlinehelp,,checkUpdates"},
     {0,0,0}
 };
 
@@ -866,6 +870,12 @@ void MainWindow::renameTab(int i)
 void MainWindow::showHelp()
 {DD;
     Qoobar::showHelp();
+}
+
+void MainWindow::showOnlineHelp()
+{
+    QString path = QSL("http://qoobar.sourceforge.net/en/index.htm");
+    QDesktopServices::openUrl(QUrl(path));
 }
 
 void MainWindow::checkUpdates()

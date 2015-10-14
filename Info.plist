@@ -25,9 +25,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleHelpBookFolder</key>
-	<string>Qoobar.Help</string>
+        <string>Qoobar.help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>qoobar.qoobar.help</string>
+        <string>com.qoobar.qoobar.help</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6</string>
 	<key>LSApplicationCategoryType</key>
