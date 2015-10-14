@@ -115,7 +115,7 @@ void TreeView::scrollToRow(int row)
 {DD;
     if (row<=0) scrollToTop();
     else if (row>=model()->rowCount()) scrollToBottom();
-    else scrollTo(model()->index(row,0));
+    else scrollTo(model()->index(row,0),QAbstractItemView::PositionAtCenter);
 }
 
 void TreeView::adjustDisplayedTags()

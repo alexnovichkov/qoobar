@@ -584,7 +584,7 @@ void TagsEditDialog::cellClicked(int row, int col)
 void TagsEditDialog::currentCellChanged(int curRow)
 {DD;
     model->setCurrentIndex(model->indexAtIndexInSelection(curRow));
-    Q_EMIT rowSelected(curRow);
+    Q_EMIT rowSelected(model->indexAtIndexInSelection(curRow));
 }
 
 void TagsEditDialog::insertFromCharsList()
