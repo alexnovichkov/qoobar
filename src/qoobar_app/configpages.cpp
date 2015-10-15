@@ -101,7 +101,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
                                   "when pasting a single line"),this);
 #ifndef Q_OS_MAC
     chars=new FancyLineEdit(this);
-    chars->setButtonPixmap(FancyLineEdit::Right, QPixmap(App->iconThemeIcon("font.png")));
+    chars->setButtonPixmap(FancyLineEdit::Right, App->iconThemeIcon("font.png").pixmap(16,16));
     chars->setButtonVisible(FancyLineEdit::Right, true);
     chars->setButtonToolTip(FancyLineEdit::Right, tr("Font..."));
     chars->setAutoHideButton(FancyLineEdit::Right, false);
@@ -199,7 +199,7 @@ QString InterfacePage::description()
 }
 QString InterfacePage::iconFilename()
 {DD;
-    return App->iconThemeIcon("interface.png");
+    return App->themeIcon("interface.png");
 }
 void InterfacePage::retranslateUI()
 {DD;
@@ -366,7 +366,7 @@ QString CompletionPage::description()
 }
 QString CompletionPage::iconFilename()
 {DD;
-    return App->iconThemeIcon("completion.png");
+    return App->themeIcon("completion.png");
 }
 void CompletionPage::retranslateUI()
 {DD;
@@ -568,7 +568,7 @@ QString WritingPage::description()
 }
 QString WritingPage::iconFilename()
 {DD;
-    return App->iconThemeIcon("writing.png");
+    return App->themeIcon("writing.png");
 }
 void WritingPage::retranslateUI()
 {DD;
@@ -739,7 +739,7 @@ QString PatternsPage::description()
 }
 QString PatternsPage::iconFilename()
 {DD;
-    return App->iconThemeIcon("patterns.png");
+    return App->themeIcon("patterns.png");
 }
 void PatternsPage::retranslateUI()
 {DD;
@@ -956,7 +956,7 @@ QString UtilitiesPage::description()
 
 QString UtilitiesPage::iconFilename()
 {DD;
-    return App->iconThemeIcon("utilities.png");
+    return App->themeIcon("utilities.png");
 }
 
 void UtilitiesPage::retranslateUI()
@@ -979,11 +979,11 @@ void UtilitiesPage::retranslateUI()
         QString programPath;
         bool installed = Qoobar::programInstalled(tree->topLevelItem(i)->text(1),&programPath);
         if (installed) {
-            tree->topLevelItem(i)->setIcon(0,QIcon(App->iconThemeIcon("tick.png")));
+            tree->topLevelItem(i)->setIcon(0,App->iconThemeIcon("tick.png"));
             tree->topLevelItem(i)->setText(2,programPath);
         }
         else {
-            tree->topLevelItem(i)->setIcon(0,QIcon(App->iconThemeIcon("exclamation.png")));
+            tree->topLevelItem(i)->setIcon(0,App->iconThemeIcon("exclamation.png"));
             tree->topLevelItem(i)->setText(2,tr("Cannot find in ")+programPath);
         }
         tree->topLevelItem(i)->setToolTip(2, tree->topLevelItem(i)->text(2));
@@ -1057,7 +1057,7 @@ QString NetworkPage::description()
 }
 QString NetworkPage::iconFilename()
 {DD;
-    return App->iconThemeIcon("network.png");
+    return App->themeIcon("network.png");
 }
 void NetworkPage::retranslateUI()
 {DD;
@@ -1123,7 +1123,7 @@ QString PluginsPage::description()
 
 QString PluginsPage::iconFilename()
 {DD;
-    return App->iconThemeIcon("plugin.png");
+    return App->themeIcon("plugin.png");
 }
 
 void PluginsPage::retranslateUI()
@@ -1179,9 +1179,9 @@ void PluginsPage::setSettings()
                                                     <<version <<description
                                                     <<QString()<<QString()<<QString());
         item->setData(0, Qt::UserRole, metaData);
-        if (metaData.value(QSL("canSearchManually")).toBool()) item->setIcon(3,QIcon(App->iconThemeIcon("tick.png")));
-        if (metaData.value(QSL("canSearchByCD")).toBool()) item->setIcon(4,QIcon(App->iconThemeIcon("tick.png")));
-        if (metaData.value(QSL("canSearchByFiles")).toBool()) item->setIcon(5,QIcon(App->iconThemeIcon("tick.png")));
+        if (metaData.value(QSL("canSearchManually")).toBool()) item->setIcon(3,App->iconThemeIcon("tick.png"));
+        if (metaData.value(QSL("canSearchByCD")).toBool()) item->setIcon(4,App->iconThemeIcon("tick.png"));
+        if (metaData.value(QSL("canSearchByFiles")).toBool()) item->setIcon(5,App->iconThemeIcon("tick.png"));
     }
 #else
     for (QMap<QString, IDownloadPlugin *>::const_iterator it = App->downloadPlugins.begin();

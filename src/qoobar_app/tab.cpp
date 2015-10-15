@@ -225,6 +225,8 @@ QVector<int> Tab::saveWithProgress()
 
         QStringList errors;
 
+      //  connect(model,SIGNAL(savingProgressed(int)),progress,SLOT(setValue(int)));
+
         int index = model->firstChangedFileIndex();
         int i=0;
         while (index>-1) {
@@ -255,6 +257,7 @@ QVector<int> Tab::saveWithProgress()
         if (!errors.isEmpty())
             showMessage(MT_WARNING, tr("Cannot write tags to files:\n%1")
                         .arg(errors.join(QChar('\n'))));
+        Q_EMIT filesChanged(!allFilesSaved());
     }
     return saved;
 }
@@ -368,8 +371,10 @@ void Tab::setTags(const QVector<int> &inds, const QList<Tag> &ts, const QVector<
 
     model->setTags(inds, ts);
 
-    if (model->hasSelection())
+    if (model->hasSelection()) {
         updateTagsTable(rows);
+        //updateImageBox();
+    }
 }
 
 struct Reduce
@@ -879,7 +884,7 @@ void Tab::setStatus()
 
 
 void Tab::updateImageBox()
-{DD;
+{DD; qDebug()<<Q_FUNC_INFO;
     if (!imageBox->isVisible()) return; //do not paint image if it is not visible
     imageBox->clear();
     imageBox->update(model->hasSelection());
@@ -1309,7 +1314,7 @@ void Tab::replaygain() /*SLOT*/
     ReplayGainDialog dialog(model, win);
 
     dialog.exec();
-    model->saveSelected();
+    model->save(true);
     model->rereadTags(model->selectedFilesIndexes());
 
     Q_EMIT filesChanged(!allFilesSaved());

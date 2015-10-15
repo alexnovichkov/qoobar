@@ -17,20 +17,20 @@
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="680"/>
-        <location filename="application.cpp" line="701"/>
+        <location filename="application.cpp" line="694"/>
+        <location filename="application.cpp" line="715"/>
         <source>Qoobar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="application.cpp" line="680"/>
+        <location filename="application.cpp" line="694"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="application.cpp" line="701"/>
+        <location filename="application.cpp" line="715"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation></translation>
@@ -39,118 +39,118 @@ Please check the file</source>
 <context>
     <name>AutonumberDialog</name>
     <message>
-        <location filename="autonumber.cpp" line="15"/>
+        <location filename="autonumber.cpp" line="17"/>
         <source>Qoobar - Autonumber files</source>
         <oldsource>Autonumbering dialog</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="39"/>
+        <location filename="autonumber.cpp" line="46"/>
         <source>Old #</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="40"/>
+        <location filename="autonumber.cpp" line="47"/>
         <source>New #</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="41"/>
+        <location filename="autonumber.cpp" line="48"/>
         <source>Old ##</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="42"/>
+        <location filename="autonumber.cpp" line="49"/>
         <source>New ##</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="43"/>
+        <location filename="autonumber.cpp" line="50"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="44"/>
+        <location filename="autonumber.cpp" line="51"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="45"/>
+        <location filename="autonumber.cpp" line="52"/>
         <source>Composer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="46"/>
+        <location filename="autonumber.cpp" line="53"/>
         <source>Album</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="47"/>
+        <location filename="autonumber.cpp" line="54"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="60"/>
+        <location filename="autonumber.cpp" line="67"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="61"/>
+        <location filename="autonumber.cpp" line="68"/>
         <source>01</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="62"/>
+        <location filename="autonumber.cpp" line="69"/>
         <source>001</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="67"/>
+        <location filename="autonumber.cpp" line="74"/>
         <source>Remove track number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="68"/>
+        <location filename="autonumber.cpp" line="75"/>
         <source>Keep old track number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="69"/>
+        <location filename="autonumber.cpp" line="76"/>
         <source>Set &quot;1&quot; as track number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="70"/>
+        <location filename="autonumber.cpp" line="77"/>
         <source>Number tracks separately</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="75"/>
+        <location filename="autonumber.cpp" line="82"/>
         <source>Add total tracks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="77"/>
+        <location filename="autonumber.cpp" line="84"/>
         <source>Reset counter for each folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="79"/>
+        <location filename="autonumber.cpp" line="86"/>
         <source>Reset counter for each album</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="90"/>
+        <location filename="autonumber.cpp" line="103"/>
         <source>Begin at number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="92"/>
+        <location filename="autonumber.cpp" line="105"/>
         <source>Number format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="autonumber.cpp" line="98"/>
+        <location filename="autonumber.cpp" line="111"/>
         <source>If a file has no album
 or album includes only one track</source>
         <translation type="unfinished"></translation>
@@ -855,27 +855,6 @@ and &quot; by two single quotes &apos;&apos;</source>
         <location filename="configpages.cpp" line="142"/>
         <location filename="configpages.cpp" line="210"/>
         <source>current selected file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="139"/>
-        <location filename="configpages.cpp" line="208"/>
-        <source>Status bar is tracking</source>
-        <oldsource>Status bar tracks</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="141"/>
-        <location filename="configpages.cpp" line="209"/>
-        <source>current hovered file</source>
-        <oldsource>Current hovered file</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="142"/>
-        <location filename="configpages.cpp" line="210"/>
-        <source>current selected file</source>
-        <oldsource>Current selected file</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1604,88 +1583,87 @@ after you restart Qoobar</source>
 <context>
     <name>Model</name>
     <message>
-        <location filename="model.cpp" line="344"/>
+        <location filename="model.cpp" line="329"/>
         <source>%1 does not exist</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="345"/>
+        <location filename="model.cpp" line="330"/>
         <source>%1 is not a file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="346"/>
+        <location filename="model.cpp" line="331"/>
         <source>%1 is read-only</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="503"/>
+        <location filename="model.cpp" line="477"/>
         <source>Cannot rename following files:
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="505"/>
+        <location filename="model.cpp" line="479"/>
         <source>Cannot copy following files:
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="507"/>
+        <location filename="model.cpp" line="481"/>
         <source>Cannot rename following folders:
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="516"/>
+        <location filename="model.cpp" line="490"/>
         <source>All folders were successfully renamed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1075"/>
+        <location filename="model.cpp" line="1049"/>
         <source>No.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1076"/>
+        <location filename="model.cpp" line="1050"/>
         <source>File</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1109"/>
+        <location filename="model.cpp" line="1083"/>
         <source>Length</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1110"/>
+        <location filename="model.cpp" line="1084"/>
         <source>RG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="1111"/>
+        <location filename="model.cpp" line="1085"/>
         <source>Img</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="298"/>
-        <location filename="model.cpp" line="314"/>
+        <location filename="model.cpp" line="305"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="256"/>
+        <location filename="model.cpp" line="254"/>
         <source>Some read-only files were added,
 all changes in them will not be saved!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="512"/>
+        <location filename="model.cpp" line="486"/>
         <source>All files were successfully renamed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="model.cpp" line="514"/>
+        <location filename="model.cpp" line="488"/>
         <source>All files were successfully copied</source>
         <translation></translation>
     </message>
@@ -2404,7 +2382,7 @@ all changes in them will not be saved!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="398"/>
+        <location filename="tab.cpp" line="401"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation></translation>
     </message>
@@ -2832,35 +2810,35 @@ Please choose the encoding:</source>
     <name>Tab</name>
     <message>
         <location filename="tab.cpp" line="151"/>
-        <location filename="tab.cpp" line="265"/>
+        <location filename="tab.cpp" line="268"/>
         <source>Ctrl+Up</source>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="156"/>
-        <location filename="tab.cpp" line="267"/>
+        <location filename="tab.cpp" line="270"/>
         <source>Ctrl+Down</source>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="149"/>
-        <location filename="tab.cpp" line="264"/>
+        <location filename="tab.cpp" line="267"/>
         <source>Move up</source>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="154"/>
-        <location filename="tab.cpp" line="266"/>
+        <location filename="tab.cpp" line="269"/>
         <source>Move down</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1141"/>
+        <location filename="tab.cpp" line="1144"/>
         <source>Files in %1 have been modified.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="466"/>
+        <location filename="tab.cpp" line="469"/>
         <source>clearing tags</source>
         <oldsource>Remove tags</oldsource>
         <translation></translation>
@@ -2876,151 +2854,151 @@ Please choose the encoding:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="256"/>
+        <location filename="tab.cpp" line="258"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="172"/>
-        <location filename="tab.cpp" line="273"/>
+        <location filename="tab.cpp" line="276"/>
         <source>Ctrl+H</source>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="199"/>
-        <location filename="tab.cpp" line="275"/>
+        <location filename="tab.cpp" line="278"/>
         <source>Operations</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="998"/>
+        <location filename="tab.cpp" line="1001"/>
         <source>Some files have been modified</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1000"/>
+        <location filename="tab.cpp" line="1003"/>
         <source>Remove them anyway?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1001"/>
+        <location filename="tab.cpp" line="1004"/>
         <source>Yes, remove without saving</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1003"/>
+        <location filename="tab.cpp" line="1006"/>
         <source>No, save them and then remove</source>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="223"/>
-        <location filename="tab.cpp" line="997"/>
+        <location filename="tab.cpp" line="1000"/>
         <source>Qoobar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1140"/>
+        <location filename="tab.cpp" line="1143"/>
         <source>Closing Qoobar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1295"/>
+        <location filename="tab.cpp" line="1298"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1296"/>
+        <location filename="tab.cpp" line="1299"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="318"/>
-        <location filename="tab.cpp" line="342"/>
-        <location filename="tab.cpp" line="625"/>
-        <location filename="tab.cpp" line="629"/>
-        <location filename="tab.cpp" line="1435"/>
+        <location filename="tab.cpp" line="321"/>
+        <location filename="tab.cpp" line="345"/>
+        <location filename="tab.cpp" line="628"/>
+        <location filename="tab.cpp" line="632"/>
+        <location filename="tab.cpp" line="1438"/>
         <source>changing tags</source>
         <oldsource>Change tags</oldsource>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="159"/>
-        <location filename="tab.cpp" line="268"/>
+        <location filename="tab.cpp" line="271"/>
         <source>&amp;Edit...</source>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="162"/>
-        <location filename="tab.cpp" line="269"/>
+        <location filename="tab.cpp" line="272"/>
         <source>Edit as &amp;multiline text...</source>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="166"/>
-        <location filename="tab.cpp" line="271"/>
+        <location filename="tab.cpp" line="274"/>
         <source>C&amp;lear tags</source>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="171"/>
-        <location filename="tab.cpp" line="272"/>
+        <location filename="tab.cpp" line="275"/>
         <source>Collect for &amp;future use</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="918"/>
+        <location filename="tab.cpp" line="921"/>
         <source>Player is not set in the Settings dialog.
 Open the Settings dialog?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1053"/>
+        <location filename="tab.cpp" line="1056"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1125"/>
+        <location filename="tab.cpp" line="1128"/>
         <source>Cannot write tags to file:
 %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1144"/>
+        <location filename="tab.cpp" line="1147"/>
         <source>Do you want to save your changes?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1145"/>
+        <location filename="tab.cpp" line="1148"/>
         <source>Yes, save</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1147"/>
+        <location filename="tab.cpp" line="1150"/>
         <source>No, don&apos;t save</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="890"/>
+        <location filename="tab.cpp" line="893"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="611"/>
+        <location filename="tab.cpp" line="614"/>
         <source>filling tags</source>
         <oldsource>Fill tags</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="665"/>
+        <location filename="tab.cpp" line="668"/>
         <source>rereading tags</source>
         <oldsource>Reread tags</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="711"/>
-        <location filename="tab.cpp" line="772"/>
+        <location filename="tab.cpp" line="714"/>
+        <location filename="tab.cpp" line="775"/>
         <source>pasting tags</source>
         <oldsource>Paste tags</oldsource>
         <translation></translation>

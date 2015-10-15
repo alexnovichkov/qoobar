@@ -142,7 +142,7 @@ void Model::setSelection(const QVector<int> &selection)
 int Model::totalLength() const
 {DD
     int totalLength=0;
-    const int t = size();
+    const int t = tags.size();
     for (int i=0; i<t; ++i) totalLength += tags.at(i).length();
     return totalLength;
 }
@@ -158,7 +158,7 @@ int Model::indexAtIndexInSelection(const int indexAtSelection) const
 {DD
     if (indexes.isEmpty())
         return -1;
-    if (indexAtSelection < 0 || indexAtSelection >= selectedFilesCount())
+    if (indexAtSelection < 0 || indexAtSelection >= indexes.size())
         return -1;
     return indexes.at(indexAtSelection);
 }
@@ -249,12 +249,12 @@ void Model::addFiles(const QList<Tag> &filesToAdd, bool updateSelected)
     Q_EMIT filesAdded(filesToAdd.size(), updateSelected);
     Q_EMIT filesCountChanged(size());
 
-    bool hasReadOnly = false;
-    Q_FOREACH (const Tag &tag, filesToAdd) hasReadOnly |= tag.readOnly();
-
-    if (hasReadOnly) {
-        Q_EMIT message(MT_WARNING,tr("Some read-only files were added,\n"
-                                              "all changes in them will not be saved!"));
+    Q_FOREACH (const Tag &tag, filesToAdd) {
+        if (tag.readOnly()) {
+            Q_EMIT message(MT_WARNING,tr("Some read-only files were added,\n"
+                                                  "all changes in them will not be saved!"));
+            break;
+        }
     }
 }
 
@@ -283,32 +283,23 @@ void Model::delFiles()
     Q_EMIT selectionCleared();
 }
 
-void Model::save()
+void Model::save(bool selectedOnly)
 {DD
     QStringList errors;
+    Q_EMIT savingStarted();
 
+    int savedCount=0;
     for (int i=0; i<size(); ++i) {
+        if (selectedOnly && !indexes.contains(i)) continue;
+        if (!tags.at(i).wasChanged()) continue;
         QString error;
         saveAt(i, &error);
+        savedCount++;
         if (!error.isEmpty())
             errors << error;
+        Q_EMIT savingProgressed(savedCount);
     }
-
-    if (!errors.isEmpty())
-        Q_EMIT message(MT_WARNING, tr("Cannot write tags to files:\n%1")
-                       .arg(errors.join(QChar('\n'))));
-}
-
-void Model::saveSelected()
-{DD;
-    QStringList errors;
-
-    for (int i=0; i<selectedFilesCount(); ++i) {
-        QString error;
-        saveAt(indexAtIndexInSelection(i), &error);
-        if (!error.isEmpty())
-            errors << error;
-    }
+    Q_EMIT savingFinished();
 
     if (!errors.isEmpty())
         Q_EMIT message(MT_WARNING, tr("Cannot write tags to files:\n%1")
@@ -329,12 +320,6 @@ bool Model::saveAt(int row, QString *errorMsg)
     // wrong index
     if (row < 0 || row >= tags.count()) return false;
 
-    // file was not changed
-    const bool oldWasChanged = tags.at(row).wasChanged();
-    if (!oldWasChanged) return false;
-
-    int count = changedFilesCount();
-
     TagsReaderWriter trw(&tags[row]);
     bool result = trw.writeTags();
     if (!result) {
@@ -348,22 +333,11 @@ bool Model::saveAt(int row, QString *errorMsg)
         }
     }
 
-    //if new status differs from old status, emit signal to update file icon
-    const bool newWasChanged = tags.at(row).wasChanged();
-    //if (oldWasChanged != newWasChanged) {
-
-        Q_EMIT dataChanged(index(row,0),index(row,TAGSCOUNT+5)
-#if QT_VERSION >= 0x050000
-                           ,QVector<int>()<<Qt::DecorationRole
-#endif
-                           );
-    //}
-
-    // emit signal to update mainwindow status
-    // only if no changed files left
-    if (count == 1 && !newWasChanged)
-        Q_EMIT modelChanged(false);
-
+    Q_EMIT dataChanged(index(row,0),index(row,TAGSCOUNT+5)
+                   #if QT_VERSION >= 0x050000
+                       ,QVector<int>()<<Qt::DecorationRole
+                   #endif
+                       );
     return result;
 }
 
@@ -1022,7 +996,7 @@ QVariant Model::data(const QModelIndex &index, int role) const
     else if (role == Qt::DecorationRole) {
         switch (column) {
             case COL_SAVEICON: return tag.wasChanged()?saveIcon:QIcon(); break; // save icon
-            case COL_FILENAME: return QIcon(App->iconThemeIcon(tag.icon())); break;
+            case COL_FILENAME: return App->iconThemeIcon(tag.icon()); break;
             case COL_REPLAYGAIN: return tag.replayGainInfoIsEmpty() ? QIcon():rgIcon; // replay gain
             case COL_IMAGE: return tag.imageIsEmpty() ? QIcon():imgIcon; // image
             default: return QVariant();

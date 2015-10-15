@@ -149,7 +149,8 @@ public:
     void resetSettings();
     void writeGuiSettings();
     void writeGlobalSettings();
-    QString iconThemeIcon(const QString &icon);
+    QString themeIcon(const QString &icon);
+    QIcon iconThemeIcon(const QString &icon);
 
     bool consoleMode;
     QString langID; //language id of the app language

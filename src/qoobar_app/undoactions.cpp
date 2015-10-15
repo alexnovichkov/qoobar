@@ -71,6 +71,7 @@ void ChangeFilesCommand::add(const int row, const QString &key, const QStringLis
         else
             newTags[i].setUserTag(key, newValues.at(i));
     }
+    if (!changedRows.contains(row)) changedRows << row;
 }
 
 void ChangeFilesCommand::undo()
@@ -80,6 +81,7 @@ void ChangeFilesCommand::undo()
 
 void ChangeFilesCommand::redo()
 {DD;
+    qSort(changedRows);
     tab->setTags(changedIndexes,newTags,changedRows);
 }
 

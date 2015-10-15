@@ -405,7 +405,7 @@ void SearchLineEdit::findFlagsChanged()
         QPixmap pixmap(17, 17);
         pixmap.fill(Qt::transparent);
         QPainter painter(&pixmap);
-        const QPixmap mag = QPixmap(App->iconThemeIcon("magnifier.png"));
+        const QPixmap mag = QPixmap(App->themeIcon("magnifier.png"));
         painter.drawPixmap(0, (pixmap.height() - mag.height()) / 2, mag);
         setButtonPixmap(FancyLineEdit::Left, pixmap);
     } else {
@@ -415,9 +415,9 @@ void SearchLineEdit::findFlagsChanged()
 
 QPixmap SearchLineEdit::pixmapForFindFlags()
 {DD;
-    static const QPixmap casesensitiveIcon = QPixmap(App->iconThemeIcon("casesensitively.png"));
-    static const QPixmap regexpIcon = QPixmap(App->iconThemeIcon("regexp.png"));
-    static const QPixmap wholewordsIcon = QPixmap(App->iconThemeIcon("wholewords.png"));
+    static const QPixmap casesensitiveIcon = QPixmap(App->themeIcon("casesensitively.png"));
+    static const QPixmap regexpIcon = QPixmap(App->themeIcon("regexp.png"));
+    static const QPixmap wholewordsIcon = QPixmap(App->themeIcon("wholewords.png"));
 
     int width = 0;
     if (m_caseSensitive) width += 6;

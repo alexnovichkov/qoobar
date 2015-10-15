@@ -196,18 +196,18 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
     imagePanel = new Panel(this);
 
 #ifdef IMAGEBOX_TOOLBAR
-    addImageAct = makeAction(SLOT(addImage()), App->iconThemeIcon("list-add1.png"));
-    removeImageAct = makeAction(SLOT(removeImage()), App->iconThemeIcon("list-remove.png"));
-    saveImageAct = makeAction(SLOT(saveImage()), App->iconThemeIcon("document-save.ico"));
+    addImageAct = makeAction(SLOT(addImage()), App->themeIcon("list-add1.png"));
+    removeImageAct = makeAction(SLOT(removeImage()), App->themeIcon("list-remove.png"));
+    saveImageAct = makeAction(SLOT(saveImage()), App->themeIcon("document-save.ico"));
 
     addImageAct->setEnabled(true);
 
-    typeButton = makeButton(SLOT(changeType()),App->iconThemeIcon("TextEdit.png"));
-    descriptionButton = makeButton(SLOT(changeDescription()),App->iconThemeIcon("TextEdit.png"));
-    copyAct = makeAction(SLOT(copyImage()), App->iconThemeIcon("edit-copy.ico"));
-    cutAct = makeAction(SLOT(cutImage()), App->iconThemeIcon("edit-cut.ico"));
-    pasteAct = makeAction(SLOT(pasteImage()), App->iconThemeIcon("edit-paste.ico"));
-    resizeAct = makeAction(SLOT(resizeImage()),App->iconThemeIcon("image_resize.png"));
+    typeButton = makeButton(SLOT(changeType()),App->themeIcon("TextEdit.png"));
+    descriptionButton = makeButton(SLOT(changeDescription()),App->themeIcon("TextEdit.png"));
+    copyAct = makeAction(SLOT(copyImage()), App->themeIcon("edit-copy.ico"));
+    cutAct = makeAction(SLOT(cutImage()), App->themeIcon("edit-cut.ico"));
+    pasteAct = makeAction(SLOT(pasteImage()), App->themeIcon("edit-paste.ico"));
+    resizeAct = makeAction(SLOT(resizeImage()),App->themeIcon("image_resize.png"));
     typePanel->addWidget(typeButton);
     descriptionPanel->addWidget(descriptionButton);
 
@@ -227,13 +227,13 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
     saveImageAct = new QAction(this);
     QToolButton *addImageButton = makeButton(addImageAct,
                                              SLOT(addImage()),
-                                             App->iconThemeIcon("list-add1.png"));
+                                             App->themeIcon("list-add1.png"));
     QToolButton *removeImageButton = makeButton(removeImageAct,
                                                 SLOT(removeImage()),
-                                                App->iconThemeIcon("list-remove.png"));
+                                                App->themeIcon("list-remove.png"));
     QToolButton *saveImageButton = makeButton(saveImageAct,
                                               SLOT(saveImage()),
-                                              App->iconThemeIcon("document-save.ico"));
+                                              App->themeIcon("document-save.ico"));
 
 
     addImageAct->setEnabled(false);
@@ -245,17 +245,17 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
     pasteAct = new QAction(this);
     resizeAct = new QAction(this);
 
-    typePanel->addWidget(makeButton(typeAct, SLOT(changeType()),App->iconThemeIcon("TextEdit.png")));
+    typePanel->addWidget(makeButton(typeAct, SLOT(changeType()),App->themeIcon("TextEdit.png")));
     descriptionPanel->addWidget(makeButton(descriptionAct, SLOT(changeDescription()),
-                                           App->iconThemeIcon("TextEdit.png")));
+                                           App->themeIcon("TextEdit.png")));
     imagePanel->addWidget(makeButton(cutAct, SLOT(cutImage()),
-                                     App->iconThemeIcon("edit-cut.ico")));
+                                     App->themeIcon("edit-cut.ico")));
     imagePanel->addWidget(makeButton(copyAct, SLOT(copyImage()),
-                                     App->iconThemeIcon("edit-copy.ico")));
+                                     App->themeIcon("edit-copy.ico")));
     imagePanel->addWidget(makeButton(pasteAct, SLOT(pasteImage()),
-                                     App->iconThemeIcon("edit-paste.ico")));
+                                     App->themeIcon("edit-paste.ico")));
     imagePanel->addWidget(makeButton(resizeAct, SLOT(resizeImage()),
-                                     App->iconThemeIcon("image_resize.png")));
+                                     App->themeIcon("image_resize.png")));
 #endif
 
     QGridLayout *imageLayout=new QGridLayout;

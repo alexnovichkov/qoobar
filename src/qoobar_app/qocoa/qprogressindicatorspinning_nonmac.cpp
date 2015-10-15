@@ -46,7 +46,7 @@ QProgressIndicatorSpinning::QProgressIndicatorSpinning(QWidget *parent,
 
     QSize size(thickness, thickness);
     QMovie *movie = new QMovie(this);
-    movie->setFileName(App->iconThemeIcon("progressindicator.gif"));
+    movie->setFileName(App->themeIcon("progressindicator.gif"));
     movie->setScaledSize(size);
     // Roughly match OSX speed.
     movie->setSpeed(200);

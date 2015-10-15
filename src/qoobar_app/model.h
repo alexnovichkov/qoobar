@@ -241,11 +241,7 @@ public Q_SLOTS:
     /**
      * @brief save - saves all changed files
      */
-    void save();
-    /**
-     * @brief saveSelected - saves only selected files if they are changed
-     */
-    void saveSelected();
+    void save(bool selectedOnly = false);
 
 private Q_SLOTS:
     /*!
@@ -289,6 +285,10 @@ Q_SIGNALS:
 
     void filesCountChanged(int); // emits when model size changed
     void selectionCleared();
+
+    void savingStarted();
+    void savingFinished();
+    void savingProgressed(int);
 private:
     void setTagValue(int index, int tagID, const QString &newValue);
     void setTagValue(int index, const QString &tagID, const QString &newValue);

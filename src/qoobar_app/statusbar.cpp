@@ -254,7 +254,7 @@ void PropertiesPanel::updateFileName()
         }
         typeLabel->setText(properties);
         readOnlyLabel->setVisible(currentHover.readOnly());
-        fileIconLabel->setPixmap(QPixmap(App->iconThemeIcon(currentHover.icon())));
+        fileIconLabel->setPixmap(QPixmap(App->themeIcon(currentHover.icon())));
     }
     else {
         fileNameLabel->clear();

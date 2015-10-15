@@ -515,7 +515,21 @@ void Application::writeGlobalSettings()
     delete se;
 }
 
-QString Application::iconThemeIcon(const QString &icon)
+QIcon Application::iconThemeIcon(const QString &icon)
+{
+    static QHash<QString, QIcon> icons;
+    if (icons.contains(icon)) return icons.value(icon);
+    else {
+        QIcon ico = QIcon(QString("%1/icons/%2/%3")
+                          .arg(ApplicationPaths::sharedPath())
+                          .arg(App->iconTheme)
+                          .arg(icon));
+        icons.insert(icon,ico);
+        return ico;
+    }
+}
+
+QString Application::themeIcon(const QString &icon)
 {DD;
     return QString("%1/icons/%2/%3")
             .arg(ApplicationPaths::sharedPath())

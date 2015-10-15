@@ -47,7 +47,7 @@ void ClickableLabel::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);
     if (pixmap()) {
-        if (cursor.isNull()) cursor = QPixmap(App->iconThemeIcon("zoom-in.png"));
+        if (cursor.isNull()) cursor = App->iconThemeIcon("zoom-in.png").pixmap(16,16);
         setCursor(cursor);
     }
 }
