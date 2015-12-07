@@ -238,6 +238,7 @@ public:
     bool recursive;
 
     bool mpcWriteRg;
+    QString delimiters;
 
     QStringList searchPaths;
     bool hideTabBar;

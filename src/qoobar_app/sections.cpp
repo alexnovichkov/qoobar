@@ -9,42 +9,46 @@ struct section {
         this->end = end;
         this->common = common;
     }
+    bool operator==(const section &other) const {
+        return (text==other.text);
+    }
 
     int start;
     int end;
     bool common;
+    QString text;
 };
 
-#ifndef QT_NO_DEBUG
 QDebug & operator<< (QDebug dbg, const section &t)
 {
     dbg.nospace() << "("<<t.start<<","<<t.end<<","<<t.common<<")";
     return dbg.space();
 }
-#endif
 
-int removeSingle(QVector<int> &seta, QVector<int> &setb)
-{
+int removeSingle(QVector<int> &seta, QVector<int> &setb, const QString &sa)
+{//qDebug()<<sa<<sb;
+    //qDebug()<<seta<<setb;
     int deleted = 0;
     if (seta.isEmpty() || setb.isEmpty()) return deleted;
 
     Q_ASSERT(seta.size()==setb.size());
     for (int i=seta.size()-1; i>=0; --i) {
         if (i==0) {
-            if (seta.size()>1 && (seta.at(i)+1 != seta.at(i+1))) {
+            if (seta.size()>1 && (seta.at(i)+1 != seta.at(i+1)) /*&& sa.at(i).isLetterOrNumber()*/) {
                 seta.remove(i);
                 setb.remove(i);
                 deleted++;
             }
         }
         else if (i==seta.size()-1) {
-            if (seta.size()>1 && (seta.at(i)-1 != seta.at(i-1))) {
+            if (seta.size()>1 && (seta.at(i)-1 != seta.at(i-1)) /*&& sa.at(i).isLetterOrNumber()*/) {
                 seta.remove(i);
                 setb.remove(i);
                 deleted++;
             }
         }
-        else if (seta.size()>2 && (seta.at(i)-1 != seta.at(i-1) && seta.at(i)+1 != seta.at(i+1))) {
+        else if (seta.size()>2 && (seta.at(i)-1 != seta.at(i-1) && seta.at(i)+1 != seta.at(i+1))
+                  /*&& sa.at(i).isLetterOrNumber()*/) {
             seta.remove(i);
             setb.remove(i);
             deleted++;
@@ -82,20 +86,18 @@ void createLongestCommonSubsequence(const QString & a, const QString & b,
             else j++;
         }
     }
-    /*these lists should have equal lengths*/
-    Q_ASSERT(seta.size()==setb.size());
 
+//qDebug()<<a<<b<<seta<<setb;
     int deleted = 0;
     do {
-        deleted = removeSingle(seta,setb);
-        deleted += removeSingle(setb,seta);
+        deleted  = removeSingle(seta, setb, a);
+        deleted += removeSingle(setb, seta, b);
     }
     while (deleted>0);
 }
 
 QList<section> createSectionsList(QVector<int> &set, int len)
 {
-
     QList<section> list;
     if (set.isEmpty()) {
         list.append(section(0,len-1,false));
@@ -118,28 +120,24 @@ QList<section> createSectionsList(QVector<int> &set, int len)
 void divideLongestCommonSection(const section &sec1, const section &sec2,
                                 QList<section> &list, int i)
 {
-
-    int len=sec1.end-sec1.start;
+    const int len=sec1.end-sec1.start;
     list[i].end = sec2.start + len;
     list.insert(i+1,section(sec2.start + len+1, sec2.end, true));
     list.insert(i+1,section(-1,-1,false));
 }
 
-void appendEmptySection(QList<section> &baseList)
+void appendEmptySection(QList<section> &list)
 {
-
-    baseList.append(section(-1,-1,false));
+    list.append(section(-1,-1,false));
 }
 
-void prependEmptySection(QList<section> &baseList)
+void prependEmptySection(QList<section> &list)
 {
-
-    baseList.prepend(section(-1,-1,false));
+    list.prepend(section(-1,-1,false));
 }
 
 void equalizeLists(QList<section> &baseList, QList<section> &listToCompare)
 {
-
     while (baseList.size() != listToCompare.size()) {
         if (baseList.first().common && !listToCompare.first().common)
             prependEmptySection(baseList);
@@ -182,7 +180,7 @@ GetSection::GetSection(const QString &baseString, int start, int end)
 
 QPoint GetSection::operator()(const QString &stringToCompare)
 {
-
+//qDebug()<<m_baseString << stringToCompare <<m_start<<m_end;
     if (stringToCompare==m_baseString)
         return QPoint(m_start,m_end-m_start+1);
 
@@ -194,12 +192,13 @@ QPoint GetSection::operator()(const QString &stringToCompare)
         QVector<int> blist;
         createLongestCommonSubsequence(m_baseString,stringToCompare,alist,blist);
         /*TODO: unite alist with baseList creation*/
+//        qDebug()<<alist<<blist;
 
         QList<section> baseList=createSectionsList(alist, m_baseString.length());
         QList<section> listToCompare=createSectionsList(blist, stringToCompare.length());
         equalizeLists(baseList, listToCompare);
         Q_ASSERT(baseList.size()==listToCompare.size());
-
+//qDebug()<<baseList<<listToCompare;
         for (int i=0; i<baseList.size(); ++i) {
             section sec1 = baseList.at(i);
             section sec2 = listToCompare.at(i);
@@ -245,7 +244,6 @@ QPoint GetSection::operator()(const QString &stringToCompare)
                 break;
             }
         }
-
     }
     return QPoint(targetStart,targetEnd-targetStart+1);
 }

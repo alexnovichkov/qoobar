@@ -48,6 +48,7 @@ public:
     explicit SearchBar(QWidget *parent = 0);
     ~SearchBar();
     void retranslateUI();
+    SearchLineEdit *textEdit;
 Q_SIGNALS:
     void addFile(const Tag &tag);
     void reset();
@@ -69,7 +70,7 @@ private:
     QPushButton *pathsButton;
     QAction *addPathAct;
     QMenu *pathsMenu;
-    SearchLineEdit *textEdit;
+
     QPushButton *startSearchButton;
     QAction *closeSearchPanel;
     QLineEdit *currentPathLabel;

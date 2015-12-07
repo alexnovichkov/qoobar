@@ -92,6 +92,7 @@ Application::Application(int &argc, char **argv, bool useGui)
     trim = true;
     autoexpand = true;
     oggPictureNew = true;
+    delimiters = QSL("_~`!1234567890@#$%^&*()-_=+[{]};:'\"\\|,<.>/?");
 
     useProxy = false;
     renameOptions.replaceWinChars = true;
@@ -330,6 +331,8 @@ void Application::readGlobalSettings()
     flacreadid3=se->value(QSL("flac-read-id3v2"), QSL("off")).toString()=="on";
     flacwriteid3=se->value(QSL("flac-read-id3v2"), QSL("off")).toString()=="on";
 
+    delimiters = se->value(QSL("delimiters"),delimiters).toString();
+
     QString id3v1 = se->value(QSL("id3v1-behavior"), QSL("delete")).toString();
     if (id3v1=="update-always") id3v1Synchro = ID3V1_UPDATE_ALWAYS;
     else if (id3v1=="update-existing") id3v1Synchro = ID3V1_UPDATE_ONLY_EXISTING;
@@ -460,6 +463,7 @@ void Application::writeGlobalSettings()
         return;
     }
     se->setValue("writeGlobalSettings",true);
+    se->setValue("delimiters", delimiters);
 
     se->setValue("simplify-whitespaces", trim?"on":"off");
     se->setValue("read-ape", mp3readape?"on":"off");
