@@ -90,6 +90,7 @@ private:
     QComboBox *iconTheme;
     QLabel *statusBarTrackLabel;
     QComboBox *statusBarTrack;
+    QCheckBox *closeOnLastWindowClosed;
 };
 
 class QFormLayout;

@@ -88,6 +88,7 @@ protected Q_SLOTS:
     void closeEvent(QCloseEvent *);
 public Q_SLOTS:
     void showSettingsDialog();
+    bool close();
 private Q_SLOTS:
     void initRest();
     void addDir();

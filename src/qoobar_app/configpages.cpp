@@ -141,17 +141,21 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     statusBarTrack->addItem(tr("current hovered file"));
     statusBarTrack->addItem(tr("current selected file"));
 
+    closeOnLastWindowClosed = new QCheckBox(tr("Quit Qoobar on its window closed"), this);
+
     QFormLayout *UIlayout = new QFormLayout;
 #ifdef Q_OS_MAC
     UIlayout->addRow("",useUndo);
     UIlayout->addRow("",autoexpand);
     UIlayout->addRow("",hideTabBar);
     UIlayout->addRow("",dirBox);
+    UIlayout->addRow("",closeOnLastWindowClosed);
 #else
     UIlayout->addRow(useUndo);
     UIlayout->addRow(autoexpand);
     UIlayout->addRow(hideTabBar);
     UIlayout->addRow(dirBox);
+    UIlayout->addRow(closeOnLastWindowClosed);
 #endif
     UIlayout->addRow(dirRootLabel,dirRoot);
 #ifndef Q_OS_MAC
@@ -175,6 +179,7 @@ void InterfacePage::setSettings()
     dirBox->setChecked(App->showDirView);
     dirRoot->setText(App->dirViewRoot);
     useUndo->setChecked(App->useUndo);
+    closeOnLastWindowClosed->setChecked(App->closeOnLastWindowClosed);
 
     autoexpand->setChecked(App->autoexpand);
 #ifndef Q_OS_MAC
@@ -226,11 +231,13 @@ void InterfacePage::retranslateUI()
 #endif
     dirRootLabel->setText(tr("Folder tree root"));
     iconThemeLabel->setText(tr("Toolbar icons theme"));
+    closeOnLastWindowClosed->setText(tr("Quit Qoobar on its window closed"));
 
     dirBox->setWhatsThis(tr("Check this box to show or hide the Folders navigation tree"));
     dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
     dirRootLabel->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
     useUndo->setWhatsThis(tr("This box allows you to turn off the Undo/Redo system in Qoobar"));
+
 }
 void InterfacePage::saveSettings()
 {DD;
@@ -247,6 +254,7 @@ void InterfacePage::saveSettings()
                                                       "after you restart Qoobar"));
     App->iconTheme = iconTheme->currentText();
     App->statusBarTrack = statusBarTrack->currentIndex();
+    App->closeOnLastWindowClosed = closeOnLastWindowClosed->isChecked();
 }
 
 void InterfacePage::changeCharsFont()

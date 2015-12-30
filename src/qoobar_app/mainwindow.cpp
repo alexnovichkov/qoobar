@@ -327,6 +327,7 @@ void MainWindow::initRest()
 
     handleArgs();
     retranslateUi();
+    qApp->setQuitOnLastWindowClosed(App->closeOnLastWindowClosed);
 }
 
 void MainWindow::createMenus()
@@ -691,24 +692,30 @@ void MainWindow::handleArgs()
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
-{DD
-    for (int i=0; i<tabWidget->count(); ++i) {
-        Tab *tab=qobject_cast<Tab *>(tabWidget->widget(i));
-        if (tab) {
-            if (tab->allFilesSaved()) continue;
-            tabWidget->setCurrentIndex(i);
-            QString tabText=tabWidget->tabText(i);
-            if (tabText.endsWith(QLS("*"))) tabText.chop(1);
-            if (!tab->maybeSave(tabText)) {
-                event->ignore();
-                return;
+{DD;
+    if (App->closeOnLastWindowClosed) {
+        for (int i=0; i<tabWidget->count(); ++i) {
+            Tab *tab=qobject_cast<Tab *>(tabWidget->widget(i));
+            if (tab) {
+                if (tab->allFilesSaved()) continue;
+                tabWidget->setCurrentIndex(i);
+                QString tabText=tabWidget->tabText(i);
+                if (tabText.endsWith(QLS("*"))) tabText.chop(1);
+                if (!tab->maybeSave(tabText)) {
+                    event->ignore();
+                    return;
+                }
             }
         }
-    }
 
-    App->geometry=saveGeometry();
-    filesToolBar->writeState();
-    event->accept();
+        App->geometry=saveGeometry();
+        filesToolBar->writeState();
+        event->accept();
+    }
+    else {
+        setWindowState(Qt::WindowMinimized);
+        event->ignore();
+    }
 }
 
 #ifdef Q_OS_WIN
@@ -913,6 +920,12 @@ void MainWindow::showSettingsDialog()
     dirView->setRootIndex(dirModel->index(App->dirViewRoot));
     dirView->expand(dirModel->index(App->lastTreeDirectory,0));
     dirView->scrollTo(dirModel->index(App->lastTreeDirectory,0),QAbstractItemView::PositionAtCenter);
+}
+
+bool MainWindow::close()
+{DD;
+    qDebug()<<"Close requested";
+    return QMainWindow::close();
 }
 
 QMap<int, QString> MainWindow::allTabsNames()
