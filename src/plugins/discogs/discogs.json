@@ -9,7 +9,8 @@
   "description": {
     "default": "Fill tags from Discogs database",
     "en": "Fill tags from Discogs database",
-    "ru": "Заполнить теги из базы Discogs"
+    "ru": "Заполнить теги из базы Discogs",
+    "it": "Recupera il tag dal database Discogs"
   },
   "canSearchByFiles": false,
   "canSearchByCD": false,

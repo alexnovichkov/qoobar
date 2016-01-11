@@ -143,14 +143,14 @@ QList<SearchResult> DiscogsPlugin::parseResponse(const QByteArray &response)
     QVariant parsed = QJsonDocument::fromJson(response).toVariant();
     QVariantMap result = parsed.toMap();
     if (result.isEmpty()) {
-        m_errorString = tr("Cannor parse response from Discogs server");
+        m_errorString = tr("Cannot parse response from Discogs server");
         return results;
     }
 #else
     bool ok=true;
     QVariantMap result = QtJson::Json::parse(QString::fromUtf8(response),ok).toMap();
     if (!ok) {
-        m_errorString = tr("Cannor parse response from Discogs server");
+        m_errorString = tr("Cannot parse response from Discogs server");
         return results;
     }
 #endif

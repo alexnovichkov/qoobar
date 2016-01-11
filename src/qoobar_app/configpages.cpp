@@ -39,6 +39,12 @@
 #endif
 #include "enums.h"
 
+#ifdef HAVE_QT5
+#include <QJsonDocument>
+#else
+#include "ereilin/json.h"
+#endif
+
 #include "clearlineedit.h"
 #include "fancylineedit.h"
 
@@ -133,7 +139,28 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     iconTheme = new QComboBox(this);
     QStringList iconThemes = QDir(ApplicationPaths::sharedPath()+"/icons").entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
     Q_FOREACH(const QString &dir, iconThemes) {
-        iconTheme->addItem(dir);
+        QFile jsonFile(ApplicationPaths::sharedPath()+"/icons/"+dir+"/properties.json");
+        QVariantMap result;
+        if (jsonFile.open(QFile::ReadOnly)) {
+#ifdef HAVE_QT5
+            QVariant parsed = QJsonDocument::fromJson(jsonFile.readAll()).toVariant();
+            result = parsed.toMap();
+#else
+            bool ok=true;
+            result = QtJson::Json::parse(QString::fromUtf8(jsonFile.readAll()),ok).toMap();
+#endif
+        }
+        if (result.isEmpty()) {
+            iconTheme->addItem(dir);
+            iconTheme->setItemData(iconTheme->count()-1, dir);
+        }
+        else {
+            QString themeName = result["name"].toMap()[App->langID].toString();
+            if (themeName.isEmpty()) themeName = result["name"].toMap()["default"].toString();
+            if (themeName.isEmpty()) themeName = dir;
+            iconTheme->addItem(themeName);
+            iconTheme->setItemData(iconTheme->count()-1, dir);
+        }
     }
 
     statusBarTrackLabel = new QLabel(tr("Status bar is tracking"), this);
@@ -189,8 +216,8 @@ void InterfacePage::setSettings()
     int langIndex = lang->findData(App->langID);
     if (langIndex>=0) lang->setCurrentIndex(langIndex);
 
-    int iconThemeIndex = iconTheme->findText(App->iconTheme);
-    if (iconThemeIndex<0) iconThemeIndex = iconTheme->findText(QSL("default"));
+    int iconThemeIndex = iconTheme->findData(App->iconTheme);
+    if (iconThemeIndex<0) iconThemeIndex = iconTheme->findData(QSL("default"));
     if (iconThemeIndex>=0) iconTheme->setCurrentIndex(iconThemeIndex);
 
     hideTabBar->setChecked(App->hideTabBar);
@@ -252,7 +279,7 @@ void InterfacePage::saveSettings()
     if (App->iconTheme != iconTheme->currentText())
         QMessageBox::information(this,tr("Qoobar"),tr("The toolbar icons theme will be changed\n"
                                                       "after you restart Qoobar"));
-    App->iconTheme = iconTheme->currentText();
+    App->iconTheme = iconTheme->itemData(iconTheme->currentIndex()).toString();
     App->statusBarTrack = statusBarTrack->currentIndex();
     App->closeOnLastWindowClosed = closeOnLastWindowClosed->isChecked();
 }

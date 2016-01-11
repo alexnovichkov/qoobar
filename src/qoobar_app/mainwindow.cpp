@@ -659,8 +659,9 @@ void MainWindow::addDir(const QString &dir, bool withSubfolders, bool clearBefor
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
-{DD
-    event->acceptProposedAction();
+{DD;
+    if (event->mimeData()->hasUrls())
+        event->acceptProposedAction();
 }
 
 void MainWindow::dropEvent(QDropEvent* event)
@@ -713,7 +714,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->accept();
     }
     else {
+#ifdef Q_OS_MAC
+        hide();
+#else
         setWindowState(Qt::WindowMinimized);
+#endif
         event->ignore();
     }
 }

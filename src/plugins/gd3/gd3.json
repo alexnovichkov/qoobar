@@ -9,7 +9,8 @@
   "description": {
     "default": "Fill tags from GD3 database",
     "en": "Fill tags from GD3 database",
-    "ru": "Заполнить теги из базы GD3"
+    "ru": "Заполнить теги из базы GD3",
+    "it": "Recupera il tag dal database GD3"
   },
   "canSearchByFiles": true,
   "canSearchByCD": true,

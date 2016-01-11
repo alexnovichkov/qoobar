@@ -9,7 +9,8 @@
   "description": {
     "default": "Fill tags from freedb database",
     "en": "Fill tags from freedb database",
-    "ru": "Заполнить теги из базы freedb"
+    "ru": "Заполнить теги из базы freedb",
+    "it": "Recupera il tag dal database freedb"
   },
   "canSearchByFiles": true,
   "canSearchByCD": true,

@@ -6,11 +6,13 @@
   "text": {
     "default": "Fill tags from Beatport",
     "en_EN": "Fill tags from Beatport",
-    "ru": "Импорт тегов из базы Beatport"
+    "ru": "Импорт тегов из базы Beatport",
+    "it": "Recupera il tag dal database Beatport"
   },
   "description": {
     "default": "Filling in tags from the Beatport database",
     "en_EN": "Filling in tags from the Beatport database",
-    "ru": "Импорт тегов из базы Beatport"
+    "ru": "Импорт тегов из базы Beatport",
+    "it": "Recupera il tag dal database Beatport"
   }
 }
