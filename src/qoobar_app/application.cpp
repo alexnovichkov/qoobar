@@ -171,6 +171,7 @@ void Application::loadTranslations()
         qtTranslator->load(QSL("qt_") + langID, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     if (appTranslator)
         appTranslator->load(ApplicationPaths::translationsPath()+QSL("/qoobar_") + langID);
+    if (currentScheme) currentScheme->retranslateUI();
 }
 
 void Application::setId3v1Encoding(const QString &s)

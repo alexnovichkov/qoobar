@@ -327,7 +327,6 @@ void MainWindow::initRest()
 
     handleArgs();
     retranslateUi();
-    qApp->setQuitOnLastWindowClosed(App->closeOnLastWindowClosed);
 }
 
 void MainWindow::createMenus()
@@ -373,7 +372,7 @@ void MainWindow::retranslateUi()
 {DD;
     setWindowTitle(tr("Qoobar - Tag editor for classical music")+QSL("[*]"));
 
-    App->currentScheme->retranslateUI();
+    //App->currentScheme->retranslateUI();
     retranslateActions();
 
     Q_FOREACH (QMenu *m, menus) {
@@ -692,35 +691,65 @@ void MainWindow::handleArgs()
     currentTab->addFileNames(App->filesNames);
 }
 
+bool MainWindow::close()
+{DD;
+    //qDebug()<<"Close requested";
+
+    return QMainWindow::close();
+}
+
 void MainWindow::closeEvent(QCloseEvent *event)
 {DD;
-    if (App->closeOnLastWindowClosed) {
-        for (int i=0; i<tabWidget->count(); ++i) {
-            Tab *tab=qobject_cast<Tab *>(tabWidget->widget(i));
-            if (tab) {
-                if (tab->allFilesSaved()) continue;
-                tabWidget->setCurrentIndex(i);
-                QString tabText=tabWidget->tabText(i);
-                if (tabText.endsWith(QLS("*"))) tabText.chop(1);
-                if (!tab->maybeSave(tabText)) {
-                    event->ignore();
-                    return;
-                }
-            }
-        }
-
-        App->geometry=saveGeometry();
-        filesToolBar->writeState();
+    //qDebug()<<"MainWindow::closeEvent"<<event->spontaneous();
+    if (closeRequested(event->spontaneous())) {
+        //qDebug()<<"close event accepted";
         event->accept();
     }
     else {
-#ifdef Q_OS_MAC
-        hide();
-#else
-        setWindowState(Qt::WindowMinimized);
-#endif
+        //qDebug()<<"close event ignored";
         event->ignore();
     }
+}
+
+bool MainWindow::closeRequested(bool checkClosing)
+{DD;
+    //qDebug()<<"MainWindow::closeRequested"<<checkClosing;
+    if (checkClosing) {
+        if (App->closeOnLastWindowClosed) {
+            return maybeClose();
+        }
+        else {
+    #ifdef Q_OS_MAC
+            hide();
+    #else
+            setWindowState(Qt::WindowMinimized);
+    #endif
+            return false;
+        }
+    }
+    else {//close application
+        return maybeClose();
+    }
+}
+
+bool MainWindow::maybeClose()
+{DD;
+    for (int i=0; i<tabWidget->count(); ++i) {
+        Tab *tab=qobject_cast<Tab *>(tabWidget->widget(i));
+        if (tab) {
+            if (tab->allFilesSaved()) continue;
+            tabWidget->setCurrentIndex(i);
+            QString tabText=tabWidget->tabText(i);
+            if (tabText.endsWith(QLS("*"))) tabText.chop(1);
+            if (!tab->maybeSave(tabText)) {
+                return false;
+            }
+        }
+    }
+
+    App->geometry=saveGeometry();
+    filesToolBar->writeState();
+    return true;
 }
 
 #ifdef Q_OS_WIN
@@ -925,12 +954,6 @@ void MainWindow::showSettingsDialog()
     dirView->setRootIndex(dirModel->index(App->dirViewRoot));
     dirView->expand(dirModel->index(App->lastTreeDirectory,0));
     dirView->scrollTo(dirModel->index(App->lastTreeDirectory,0),QAbstractItemView::PositionAtCenter);
-}
-
-bool MainWindow::close()
-{DD;
-    qDebug()<<"Close requested";
-    return QMainWindow::close();
 }
 
 QMap<int, QString> MainWindow::allTabsNames()

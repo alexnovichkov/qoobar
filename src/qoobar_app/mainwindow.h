@@ -140,6 +140,8 @@ private:
     void updateTabText(bool filesChanged, int index);
     void createUndoRedoActs();
     void createNewTab(bool quick);
+    bool closeRequested(bool checkClosing);
+    bool maybeClose();
 
     SparkleUpdater *updater;
 

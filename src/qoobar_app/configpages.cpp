@@ -168,7 +168,9 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     statusBarTrack->addItem(tr("current hovered file"));
     statusBarTrack->addItem(tr("current selected file"));
 
+#ifdef Q_OS_MAC
     closeOnLastWindowClosed = new QCheckBox(tr("Quit Qoobar on its window closed"), this);
+#endif
 
     QFormLayout *UIlayout = new QFormLayout;
 #ifdef Q_OS_MAC
@@ -182,7 +184,6 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     UIlayout->addRow(autoexpand);
     UIlayout->addRow(hideTabBar);
     UIlayout->addRow(dirBox);
-    UIlayout->addRow(closeOnLastWindowClosed);
 #endif
     UIlayout->addRow(dirRootLabel,dirRoot);
 #ifndef Q_OS_MAC
@@ -206,8 +207,9 @@ void InterfacePage::setSettings()
     dirBox->setChecked(App->showDirView);
     dirRoot->setText(App->dirViewRoot);
     useUndo->setChecked(App->useUndo);
+#ifdef Q_OS_MAC
     closeOnLastWindowClosed->setChecked(App->closeOnLastWindowClosed);
-
+#endif
     autoexpand->setChecked(App->autoexpand);
 #ifndef Q_OS_MAC
     chars->setText(App->chars);
@@ -258,8 +260,9 @@ void InterfacePage::retranslateUI()
 #endif
     dirRootLabel->setText(tr("Folder tree root"));
     iconThemeLabel->setText(tr("Toolbar icons theme"));
+#ifdef Q_OS_MAC
     closeOnLastWindowClosed->setText(tr("Quit Qoobar on its window closed"));
-
+#endif
     dirBox->setWhatsThis(tr("Check this box to show or hide the Folders navigation tree"));
     dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
     dirRootLabel->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
@@ -276,12 +279,14 @@ void InterfacePage::saveSettings()
     App->showDirView = dirBox->isChecked();
     App->hideTabBar = hideTabBar->isChecked();
     App->dirViewRoot = dirRoot->text();
-    if (App->iconTheme != iconTheme->currentText())
+    if (App->iconTheme != iconTheme->itemData(iconTheme->currentIndex()).toString())
         QMessageBox::information(this,tr("Qoobar"),tr("The toolbar icons theme will be changed\n"
                                                       "after you restart Qoobar"));
     App->iconTheme = iconTheme->itemData(iconTheme->currentIndex()).toString();
     App->statusBarTrack = statusBarTrack->currentIndex();
+#ifdef Q_OS_MAC
     App->closeOnLastWindowClosed = closeOnLastWindowClosed->isChecked();
+#endif
 }
 
 void InterfacePage::changeCharsFont()
@@ -298,7 +303,7 @@ void InterfacePage::updateLanguage(const int index)
     QString langID=lang->itemData(index).toString();
     App->langID=langID;
     App->loadTranslations();
-    App->currentScheme->retranslateUI();
+    //App->currentScheme->retranslateUI();
     Q_EMIT retranslate();
 }
 
