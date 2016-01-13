@@ -56,6 +56,8 @@ bool isValidLibrary(const QFileInfo &path)
 Application::Application(int &argc, char **argv, bool useGui)
     :  QApplication(argc,argv,useGui), autocompletions(0)
 {DD;
+
+    connect(this,SIGNAL(applicationStateChanged(Qt::ApplicationState)),SLOT(onApplicationStateChanged(Qt::ApplicationState)));
     if (useGui) setWindowIcon(QIcon(QSL(":/src/icons/app/qoobar.ico")));
     appTranslator = new QTranslator(this);
     qtTranslator = new QTranslator(this);
@@ -617,6 +619,12 @@ void Application::loadPlugins()
     }
 }
 
+void Application::onApplicationStateChanged(Qt::ApplicationState state)
+{
+    if (state==Qt::ApplicationActive) {
+        Q_EMIT dockClicked();
+    }
+}
 
 void criticalMessage(QWidget *parent, const QString &caption, const QString &text)
 {DD;

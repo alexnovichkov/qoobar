@@ -2,7 +2,9 @@
   "name": {
     "default": "coloured",
     "en_EN": "coloured",
+    "en": "coloured",
     "ru": "цветные",
+    "ru_RU": "цветные",
     "it": "colorato"
   }
 }

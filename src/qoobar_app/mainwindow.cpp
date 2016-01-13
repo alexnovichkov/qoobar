@@ -196,6 +196,7 @@ void MainWindow::init()
 {DD
     setWindowTitle(tr("Qoobar - Tag editor for classical music")+QSL("[*]"));
     setAcceptDrops(true);
+    connect(App,SIGNAL(dockClicked()),this,SLOT(show()));
 
     undoGroup = new QUndoGroup(this);
     undoAct=0;

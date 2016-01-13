@@ -152,6 +152,7 @@ public:
     QString themeIcon(const QString &icon);
     QIcon iconThemeIcon(const QString &icon);
 
+    void onDockIconClick();
     bool consoleMode;
     QString langID; //language id of the app language
     QString chars; //characters with diacritics
@@ -247,7 +248,12 @@ public:
     bool closeOnLastWindowClosed;
 Q_SIGNALS:
     void settingsCleared();
+    void dockClicked();
+private Q_SLOTS:
+    void onApplicationStateChanged(Qt::ApplicationState);
 private:
+    class Private;
+    Private *p;
     QTranslator *appTranslator;
     QTranslator *qtTranslator;
 };

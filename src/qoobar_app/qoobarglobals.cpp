@@ -51,6 +51,7 @@
 bool Qoobar::programInstalled(const QString &program, QString *path)
 {DD;
 #ifdef Q_OS_WIN
+    if (path) *path = qApp->applicationDirPath();
     bool exists = QFile::exists(QString("%1/%2.exe").arg(qApp->applicationDirPath()).arg(program));
     if (exists) {
         if (path) *path = QString("%1/%2.exe").arg(qApp->applicationDirPath()).arg(program);
@@ -67,9 +68,20 @@ bool Qoobar::programInstalled(const QString &program, QString *path)
     return exists;
 #endif
 #ifdef Q_OS_OS2
-    QString s = QString("%1/%2.exe").arg(qApp->applicationDirPath()).arg(program);
-    bool exists = QFile::exists(s);
-    if (path) *path = s;
+    bool exists = QFile::exists(QString("%1/%2.exe").arg(qApp->applicationDirPath()).arg(program));
+    if (exists) {
+        if (path) *path = QString("%1/%2.exe").arg(qApp->applicationDirPath()).arg(program);
+    }
+#ifdef HAVE_QT5
+    else {
+        QString s = QStandardPaths::findExecutable(program);
+        if (!s.isEmpty()) {
+            if (path) *path = s;
+            exists = true;
+        }
+        else if (path) *path = qApp->applicationDirPath();
+    }
+#endif
     return exists;
 #endif
 #ifdef Q_OS_LINUX
