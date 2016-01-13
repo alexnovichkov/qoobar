@@ -129,7 +129,6 @@ Application::Application(int &argc, char **argv, bool useGui)
     mpcWriteRg = true;
     iconTheme = "default";
     statusBarTrack = 0; // tracks hovered file
-    closeOnLastWindowClosed = true;
 
     /*Testing for loadable libraries*/
     /*that is discid*/
@@ -292,7 +291,6 @@ void Application::readGuiSettings()
 
     hideTabBar = se->value(QSL("hideTabBar"), false).toBool();
     statusBarTrack = se->value(QSL("statusBarTrack"), 0).toInt();
-    closeOnLastWindowClosed = se->value(QSL("closeOnLastWindowClosed"), true).toBool();
 
 //    showFullFilesProperties = se->value(QSL("showFullFilesProperties"),false).toBool();
     delete se;
@@ -452,7 +450,6 @@ void Application::writeGuiSettings()
     se->setValue(QSL("searchPaths"), searchPaths);
     se->setValue(QSL("hideTabBar"), hideTabBar);
     se->setValue(QSL("statusBarTrack"), statusBarTrack);
-    se->setValue(QSL("closeOnLastWindowClosed"), closeOnLastWindowClosed);
 
 //    se->setValue(QSL("showFullFilesProperties"), showFullFilesProperties);
 
@@ -621,9 +618,12 @@ void Application::loadPlugins()
 
 void Application::onApplicationStateChanged(Qt::ApplicationState state)
 {
+    Q_UNUSED(state);
+#ifdef Q_OS_MAC
     if (state==Qt::ApplicationActive) {
         Q_EMIT dockClicked();
     }
+#endif
 }
 
 void criticalMessage(QWidget *parent, const QString &caption, const QString &text)

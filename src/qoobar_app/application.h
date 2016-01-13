@@ -245,7 +245,6 @@ public:
     bool hideTabBar;
     QString defaultSplitFormat;
     int statusBarTrack;
-    bool closeOnLastWindowClosed;
 Q_SIGNALS:
     void settingsCleared();
     void dockClicked();

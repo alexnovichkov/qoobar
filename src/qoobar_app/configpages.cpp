@@ -168,17 +168,12 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     statusBarTrack->addItem(tr("current hovered file"));
     statusBarTrack->addItem(tr("current selected file"));
 
-#ifdef Q_OS_MAC
-    closeOnLastWindowClosed = new QCheckBox(tr("Quit Qoobar on its window closed"), this);
-#endif
-
     QFormLayout *UIlayout = new QFormLayout;
 #ifdef Q_OS_MAC
     UIlayout->addRow("",useUndo);
     UIlayout->addRow("",autoexpand);
     UIlayout->addRow("",hideTabBar);
     UIlayout->addRow("",dirBox);
-    UIlayout->addRow("",closeOnLastWindowClosed);
 #else
     UIlayout->addRow(useUndo);
     UIlayout->addRow(autoexpand);
@@ -207,9 +202,6 @@ void InterfacePage::setSettings()
     dirBox->setChecked(App->showDirView);
     dirRoot->setText(App->dirViewRoot);
     useUndo->setChecked(App->useUndo);
-#ifdef Q_OS_MAC
-    closeOnLastWindowClosed->setChecked(App->closeOnLastWindowClosed);
-#endif
     autoexpand->setChecked(App->autoexpand);
 #ifndef Q_OS_MAC
     chars->setText(App->chars);
@@ -260,9 +252,6 @@ void InterfacePage::retranslateUI()
 #endif
     dirRootLabel->setText(tr("Folder tree root"));
     iconThemeLabel->setText(tr("Toolbar icons theme"));
-#ifdef Q_OS_MAC
-    closeOnLastWindowClosed->setText(tr("Quit Qoobar on its window closed"));
-#endif
     dirBox->setWhatsThis(tr("Check this box to show or hide the Folders navigation tree"));
     dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
     dirRootLabel->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
@@ -284,9 +273,6 @@ void InterfacePage::saveSettings()
                                                       "after you restart Qoobar"));
     App->iconTheme = iconTheme->itemData(iconTheme->currentIndex()).toString();
     App->statusBarTrack = statusBarTrack->currentIndex();
-#ifdef Q_OS_MAC
-    App->closeOnLastWindowClosed = closeOnLastWindowClosed->isChecked();
-#endif
 }
 
 void InterfacePage::changeCharsFont()

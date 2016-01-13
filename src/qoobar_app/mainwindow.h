@@ -114,6 +114,7 @@ private Q_SLOTS:
     void retranslateUi();
     void aboutQt();
     void saveAll();
+    bool clearState();
 
     void moveFilesToTab(int tabID, const QList<Tag> &filesToMove);
 

@@ -698,39 +698,29 @@ void MainWindow::handleArgs()
 
 bool MainWindow::close()
 {DD;
-    //qDebug()<<"Close requested";
-
     return QMainWindow::close();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {DD;
-    //qDebug()<<"MainWindow::closeEvent"<<event->spontaneous();
+#ifdef Q_OS_MAC
     if (closeRequested(event->spontaneous())) {
-        //qDebug()<<"close event accepted";
         event->accept();
     }
     else {
-        //qDebug()<<"close event ignored";
         event->ignore();
     }
+#else
+    closeRequested(false);
+    event->accept();
+#endif
 }
 
 bool MainWindow::closeRequested(bool checkClosing)
 {DD;
-    //qDebug()<<"MainWindow::closeRequested"<<checkClosing;
-    if (checkClosing) {
-        if (App->closeOnLastWindowClosed) {
-            return maybeClose();
-        }
-        else {
-    #ifdef Q_OS_MAC
-            hide();
-    #else
-            setWindowState(Qt::WindowMinimized);
-    #endif
-            return false;
-        }
+    if (checkClosing && clearState()) {
+        hide();
+        return false;
     }
     else {//close application
         return maybeClose();
@@ -755,6 +745,19 @@ bool MainWindow::maybeClose()
     App->geometry=saveGeometry();
     filesToolBar->writeState();
     return true;
+}
+
+bool MainWindow::clearState()
+{
+    if (maybeClose()) {
+        //now we have saved all the tabs, so clearing all the models
+        closeOtherTabs();
+        if (currentTab) {
+            currentTab->model->delFiles();
+        }
+        return true;
+    }
+    return false;
 }
 
 #ifdef Q_OS_WIN
