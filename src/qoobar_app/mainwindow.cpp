@@ -579,7 +579,7 @@ void MainWindow::aboutQt()
 void MainWindow::showAboutDialog()
 {DD
     QString about=tr("<b>Qoobar, a Simple Tag Editor</b><br>released under the GPL 3"
-                           "<br>Version: %1<br>Copyright 2009-2015 Alex Novichkov"
+                           "<br>Version: %1<br>Copyright 2009-2016 Alex Novichkov"
                            "<p>Web site: <a href=http://qoobar.sourceforge.net>http://qoobar.sourceforge.net</a>\n"
                            "<br>E-mail: <a href=mailto:novichkov.qoobar@gmail.com>novichkov.qoobar@gmail.com</a>"
                            "<br><hr>")
@@ -603,12 +603,16 @@ void MainWindow::showAboutDialog()
             .arg(taglib)
             .arg(libdiscid);
 
+    QString help=QSL("<p>If you speak any language except English and Russian,<br>"
+                     "please help me make Qoobar better and understandable in your language.<br>"
+                     "Feel free to contact me by e-mail.");
+
     QString portable;
 #ifdef QOOBAR_PORTABLE
     portable = tr("<p>This version is compiled as portable");
 #endif
 
-    QMessageBox::about(this, tr("About Qoobar"), about + libraries + portable);
+    QMessageBox::about(this, tr("About Qoobar"), about + libraries + help + portable);
 }
 
 
