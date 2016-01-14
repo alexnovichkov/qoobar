@@ -711,8 +711,12 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
     }
 #else
-    closeRequested(false);
-    event->accept();
+    if (closeRequested(false)) {
+        event->accept();
+    }
+    else {
+        event->ignore();
+    }
 #endif
 }
 
@@ -784,6 +788,7 @@ void MainWindow::onSelectionChanged(bool filesSelected)
     actions[QSL("play")]->setEnabled(filesSelected);
     actions[QSL("newTag")]->setEnabled(filesSelected);
     actions[QSL("replaygain")]->setEnabled(filesSelected);
+    actions[QSL("autonumber")]->setEnabled(filesSelected);
     filesToolBar->updateEnabled(actions[QSL("rereadTags")]);
     filesToolBar->updateEnabled(actions[QSL("rename")]);
     filesToolBar->updateEnabled(actions[QSL("fill")]);
@@ -792,6 +797,7 @@ void MainWindow::onSelectionChanged(bool filesSelected)
     filesToolBar->updateEnabled(actions[QSL("play")]);
     filesToolBar->updateEnabled(actions[QSL("newTag")]);
     filesToolBar->updateEnabled(actions[QSL("replaygain")]);
+    filesToolBar->updateEnabled(actions[QSL("autonumber")]);
 }
 
 void MainWindow::onFilesCountChanged(int count)

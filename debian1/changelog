@@ -1,15 +1,15 @@
 qoobar (1.6.9) unstable; urgency=low
 
-  * Fixed: Undoing of the Files table editing
-  * Fixed: Small-size icons in menus
-  * Fixed: Qoobar deploying (OS X)
-  * Fixed: Cancelling of files removing
-  * Fixed: Closing of the Tags edit dialog with not closed editor (OS X)
-  * Added: The possibility to change folder tree root
-  * Added: The portable version of Qoobar
-  * Added: Changeable toolbar icons
-  * Changed: The Status bar with extended functionality
-  * Changed: The application icon
-  * Changed: The Settings dialog interface (OS X)
+  * Updated html help
+  * Fixed: Bug with scrolling to the current file
+  * Added: Customisable toolbar in non-mac
+  * Added: OS X helpbook
+  * Added: TagLib 1.10
+  * Added: SYLT frame support in id3v2 tags
+  * Added: Status bar tracking option
+  * Added: Showing tag types in the status bar
+  * Changed: Moved the autonumber plugin to the main app
+  * Changed: Updated the Italian translation
+  * Changed: The way to close Qoobar in OS X.
 
- -- Alex Novichkov <aleksej.novichkov@gmail.com>  Tue, 22 Sep 2015 10:10:49 +0300
+ -- Alex Novichkov <aleksej.novichkov@gmail.com>  Thu, 14 Jan 2016 10:10:49 +0300
