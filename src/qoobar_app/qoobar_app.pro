@@ -251,11 +251,13 @@ mac {
     OBJECTIVE_SOURCES += qocoa/qprogressindicatorspinning_mac.mm
     OBJECTIVE_SOURCES += mactoolbar.mm \
                          qoobarhelp.mm
+    OBJECTIVE_SOURCES += machelper.mm
 } else {
     SOURCES += qocoa/qbutton_nonmac.cpp
     SOURCES += qocoa/qprogressindicatorspinning_nonmac.cpp
     SOURCES += mactoolbar.cpp  \
                qoobarhelp.cpp
+    SOURCES += machelper.cpp
     HEADERS += impl.h
 }
 

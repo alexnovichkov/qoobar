@@ -315,8 +315,8 @@ void MainWindow::initRest()
         sp->setSizes(sizes);
     }
 
-    dirModel->setRootPath(App->dirViewRoot);
     dirView->setRootIndex(dirModel->index(App->dirViewRoot));
+    dirModel->setRootPath(App->dirViewRoot);
     QString dir=App->lastTreeDirectory;
     if (dir.isEmpty()) {
         dir=App->lastDirectory;
@@ -331,7 +331,7 @@ void MainWindow::initRest()
 }
 
 void MainWindow::createMenus()
-{DD
+{DD;
     int i=0;
     while (menusDescr[i].key) {
         QMenu *menu = menuBar()->addMenu(tr(menusDescr[i].text));
@@ -347,7 +347,7 @@ void MainWindow::createMenus()
 }
 
 void MainWindow::createUndoRedoActs()
-{DD
+{DD;
     delete undoAct;
     delete redoAct;
     undoAct = undoGroup->createUndoAction(this/*,tr("&Undo")*/);
@@ -421,6 +421,7 @@ void MainWindow::createActions()
     QAction *ac = new QAction(tr("Special Characters..."),this);
     ac->setShortcut(Qt::CTRL+Qt::META+Qt::Key_Space);
     ac->setMenuRole(QAction::TextHeuristicRole);
+    connect(ac,SIGNAL(triggered()), this, SLOT(openCharacterPalette()));
     actions["specialCharacters"]=ac;
 
     actions[QSL("help")]->setShortcutContext(Qt::ApplicationShortcut);
@@ -703,25 +704,19 @@ bool MainWindow::close()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {DD;
-#ifdef Q_OS_MAC
     if (closeRequested(event->spontaneous())) {
         event->accept();
     }
     else {
         event->ignore();
     }
-#else
-    if (closeRequested(false)) {
-        event->accept();
-    }
-    else {
-        event->ignore();
-    }
-#endif
 }
 
 bool MainWindow::closeRequested(bool checkClosing)
 {DD;
+#ifndef Q_OS_MAC
+    return maybeClose();
+#endif
     if (checkClosing && clearState()) {
         hide();
         return false;
@@ -1072,3 +1067,8 @@ void MainWindow::setAsTreeRoot()
 }
 
 
+#include "machelper.h"
+void MainWindow::openCharacterPalette()
+{
+    ::openCharacterPalette();
+}

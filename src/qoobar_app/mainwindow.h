@@ -90,6 +90,7 @@ public Q_SLOTS:
     void showSettingsDialog();
     bool close();
 private Q_SLOTS:
+    void openCharacterPalette();
     void initRest();
     void addDir();
     void addFiles();
