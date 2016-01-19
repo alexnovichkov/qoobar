@@ -996,6 +996,7 @@ void UtilitiesPage::retranslateUI()
     programsLabel->setText(tr("External programs"));
 #if QT_VERSION >= 0x040700
     cdromDevice->setPlaceholderText(tr("default device"));
+    player->setPlaceholderText(tr("Path/to/player"));
 #endif
     copyFiles->setText(tr("Copy files into temp folder before replaygaining them"));
     copyFiles->setToolTip(tr("Enable this if you are encountering \"File not found\" messages\n"

@@ -1050,7 +1050,7 @@ after you restart Qoobar</source>
         <translation>Qoobar - редактор тегов для классической музыки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="911"/>
+        <location filename="mainwindow.cpp" line="912"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - переименование вкладки</translation>
     </message>
@@ -1077,7 +1077,7 @@ after you restart Qoobar</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="104"/>
-        <location filename="mainwindow.cpp" line="615"/>
+        <location filename="mainwindow.cpp" line="616"/>
         <source>About Qoobar</source>
         <translation>О Qoobar</translation>
     </message>
@@ -1503,29 +1503,29 @@ after you restart Qoobar</source>
         <translation>&amp;Справка</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="458"/>
+        <location filename="mainwindow.cpp" line="459"/>
         <source>&amp;Undo</source>
         <translation>&amp;Отменить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="462"/>
+        <location filename="mainwindow.cpp" line="463"/>
         <source>&amp;Redo</source>
         <translation>&amp;Повторить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="581"/>
+        <location filename="mainwindow.cpp" line="582"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2016 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <translation>&lt;b&gt;Qoobar, простой редактор тегов&lt;/b&gt;&lt;br&gt;под лицензией GPL 3&lt;br&gt;Версия: %1&lt;br&gt;Copyright 2009-2016 Алексей Новичков&lt;p&gt;Сайт: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="589"/>
+        <location filename="mainwindow.cpp" line="590"/>
         <source>not installed</source>
         <translation>не установлена</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="601"/>
+        <location filename="mainwindow.cpp" line="602"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</oldsource>
         <translation>&lt;b&gt;Qoobar использует:&lt;/b&gt;</translation>
@@ -1536,17 +1536,17 @@ after you restart Qoobar</source>
         <translation>&amp;О Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="622"/>
+        <location filename="mainwindow.cpp" line="623"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - добавление файлов</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="623"/>
+        <location filename="mainwindow.cpp" line="624"/>
         <source>audio files (%1)</source>
         <translation>Файлы аудио (%1)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="630"/>
+        <location filename="mainwindow.cpp" line="631"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - добавление папки</translation>
     </message>
@@ -1587,19 +1587,19 @@ after you restart Qoobar</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="357"/>
-        <location filename="mainwindow.cpp" line="459"/>
+        <location filename="mainwindow.cpp" line="460"/>
         <source>Undo</source>
         <translation>Отменить</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="365"/>
-        <location filename="mainwindow.cpp" line="463"/>
+        <location filename="mainwindow.cpp" line="464"/>
         <source>Redo</source>
         <translation>Повторить</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="421"/>
-        <location filename="mainwindow.cpp" line="465"/>
+        <location filename="mainwindow.cpp" line="466"/>
         <source>Special Characters...</source>
         <translation>Специальные символы...</translation>
     </message>
@@ -1612,18 +1612,18 @@ after you restart Qoobar</source>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="612"/>
+        <location filename="mainwindow.cpp" line="613"/>
         <source>&lt;p&gt;This version is compiled as portable</source>
         <translation>&lt;p&gt;Эта версия скомпилирована как переносимая (portable)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="912"/>
+        <location filename="mainwindow.cpp" line="913"/>
         <source>Set a tab name</source>
         <translation>Введите новое название</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="389"/>
-        <location filename="mainwindow.cpp" line="524"/>
+        <location filename="mainwindow.cpp" line="525"/>
         <source>Tab %1</source>
         <translation>Вкладка %1</translation>
     </message>
@@ -1739,37 +1739,37 @@ all changes in them will not be saved!</source>
 <context>
     <name>NetworkPage</name>
     <message>
-        <location filename="configpages.cpp" line="1044"/>
-        <location filename="configpages.cpp" line="1091"/>
+        <location filename="configpages.cpp" line="1045"/>
+        <location filename="configpages.cpp" line="1092"/>
         <source>Use proxy server</source>
         <translation>Использовать прокси</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1052"/>
-        <location filename="configpages.cpp" line="1093"/>
+        <location filename="configpages.cpp" line="1053"/>
+        <location filename="configpages.cpp" line="1094"/>
         <source>Proxy server</source>
         <translation>Прокси-сервер</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1053"/>
-        <location filename="configpages.cpp" line="1094"/>
+        <location filename="configpages.cpp" line="1054"/>
+        <location filename="configpages.cpp" line="1095"/>
         <source>Port</source>
         <translation>Порт</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1054"/>
-        <location filename="configpages.cpp" line="1095"/>
+        <location filename="configpages.cpp" line="1055"/>
+        <location filename="configpages.cpp" line="1096"/>
         <source>Login</source>
         <translation>Логин</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1055"/>
-        <location filename="configpages.cpp" line="1096"/>
+        <location filename="configpages.cpp" line="1056"/>
+        <location filename="configpages.cpp" line="1097"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1082"/>
+        <location filename="configpages.cpp" line="1083"/>
         <source>Network</source>
         <translation>Сеть</translation>
     </message>
@@ -2094,52 +2094,52 @@ all changes in them will not be saved!</source>
 <context>
     <name>PluginsPage</name>
     <message>
-        <location filename="configpages.cpp" line="1110"/>
-        <location filename="configpages.cpp" line="1158"/>
+        <location filename="configpages.cpp" line="1111"/>
+        <location filename="configpages.cpp" line="1159"/>
         <source>Download plugins:</source>
         <translation>Интернет-плагины:</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1111"/>
-        <location filename="configpages.cpp" line="1159"/>
+        <location filename="configpages.cpp" line="1112"/>
+        <location filename="configpages.cpp" line="1160"/>
         <source>Tags editing plugins:</source>
         <translation>Плагины изменения тегов:</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1147"/>
+        <location filename="configpages.cpp" line="1148"/>
         <source>Plugins</source>
         <translation>Плагины</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1160"/>
-        <location filename="configpages.cpp" line="1165"/>
+        <location filename="configpages.cpp" line="1161"/>
+        <location filename="configpages.cpp" line="1166"/>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1160"/>
-        <location filename="configpages.cpp" line="1165"/>
+        <location filename="configpages.cpp" line="1161"/>
+        <location filename="configpages.cpp" line="1166"/>
         <source>Version</source>
         <translation>Версия</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1160"/>
-        <location filename="configpages.cpp" line="1165"/>
+        <location filename="configpages.cpp" line="1161"/>
+        <location filename="configpages.cpp" line="1166"/>
         <source>Description</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1161"/>
+        <location filename="configpages.cpp" line="1162"/>
         <source>Manual</source>
         <translation>Вручную</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1162"/>
+        <location filename="configpages.cpp" line="1163"/>
         <source>By CD</source>
         <translation>По CD</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1163"/>
+        <location filename="configpages.cpp" line="1164"/>
         <source>By files</source>
         <translation>По файлам</translation>
     </message>
@@ -3535,6 +3535,7 @@ all changes in them will not be saved!</source>
     </message>
     <message>
         <location filename="configpages.cpp" line="895"/>
+        <location filename="configpages.cpp" line="999"/>
         <source>Path/to/player</source>
         <translation>Путь/к/плееру</translation>
     </message>
@@ -3582,20 +3583,20 @@ the enca utility</source>
     </message>
     <message>
         <location filename="configpages.cpp" line="926"/>
-        <location filename="configpages.cpp" line="1000"/>
+        <location filename="configpages.cpp" line="1001"/>
         <source>Copy files into temp folder before replaygaining them</source>
         <translation>Копировать файлы во временную папку перед сканированием ReplayGain</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="927"/>
-        <location filename="configpages.cpp" line="1001"/>
+        <location filename="configpages.cpp" line="1002"/>
         <source>Enable this if you are encountering &quot;File not found&quot; messages
 in the ReplayGain dialog</source>
         <translation>Отметьте, если при сканировании ReplayGain появляются
  сообщения вида &quot;File not found&quot;</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1013"/>
+        <location filename="configpages.cpp" line="1014"/>
         <source>Cannot find in </source>
         <translation>Не могу найти в </translation>
     </message>
@@ -3609,13 +3610,13 @@ in the ReplayGain dialog</source>
         <translation>Утилиты</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1032"/>
-        <location filename="configpages.cpp" line="1035"/>
+        <location filename="configpages.cpp" line="1033"/>
+        <location filename="configpages.cpp" line="1036"/>
         <source>Executable files (*.exe)</source>
         <translation>Исполняемые файлы (*.exe)</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1037"/>
+        <location filename="configpages.cpp" line="1038"/>
         <source>Choose a player file</source>
         <translation>Выберите плеер</translation>
     </message>

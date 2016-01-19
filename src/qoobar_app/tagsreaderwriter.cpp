@@ -1657,15 +1657,15 @@ bool TagsReaderWriter::writeTags()
         }
         case Tag::APE_FILE: {
             APEFILE *f=new APEFILE(FILE_NAME(tag->fullFileName()));
-            if (f->isValid()) {qDebug()<<tag->fullFileName();
+            if (f->isValid()) {//qDebug()<<tag->fullFileName();
                 TagLib::APE::Tag *tag=f->APETag(true);
                 writeAPE(tag);
                 if (App->id3v1Synchro<2) {//do write id3v1
-                    qDebug()<<"attempting to write id3v1";
+                    //qDebug()<<"attempting to write id3v1";
                     TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
                     writeID3v1(tag);
                 }
-                else {qDebug()<<"attempting to remove id3v1";
+                else {//qDebug()<<"attempting to remove id3v1";
                     f->strip(TagLib::APE::File::ID3v1);
                 }
                 b=f->save();

@@ -718,6 +718,7 @@ bool MainWindow::closeRequested(bool checkClosing)
     return maybeClose();
 #endif
     if (checkClosing && clearState()) {
+    //if (checkClosing && maybeClose()) {
         hide();
         return false;
     }
