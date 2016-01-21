@@ -1565,12 +1565,12 @@ after you restart Qoobar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="912"/>
+        <location filename="mainwindow.cpp" line="913"/>
         <source>Qoobar - renaming the tab</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="913"/>
+        <location filename="mainwindow.cpp" line="914"/>
         <source>Set a tab name</source>
         <translation></translation>
     </message>

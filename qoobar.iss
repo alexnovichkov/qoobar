@@ -13,7 +13,7 @@
 
 AppId={{59A39891-F88A-49E6-A738-AC5580273280}
 AppName=Qoobar
-AppCopyright=Copyright (C) 2009-2015 Alex Novichkov
+AppCopyright=Copyright (C) 2009-2016 Alex Novichkov
 AppVersion={#VERSION}
 AppVerName=Qoobar {#VERSION}
 AppPublisher=Alex Novichkov
@@ -166,6 +166,7 @@ Source: "src\qoobar_app\icons\*.gif"; DestDir: "{app}\icons\default"; Flags: ign
 Source: "src\qoobar_app\icons\coloured\*.ico"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly; Components: main
 Source: "src\qoobar_app\icons\coloured\*.png"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly; Components: main
 Source: "src\qoobar_app\icons\coloured\*.gif"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly; Components: main
+Source: "src\qoobar_app\icons\coloured\properties.json"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly; Components: main
 
 ; help
 Source: "html\*"; DestDir: "{app}\html"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help

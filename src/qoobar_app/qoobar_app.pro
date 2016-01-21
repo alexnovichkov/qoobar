@@ -353,6 +353,7 @@ unix {
     coloredicons.files = icons/coloured/*.ico
     coloredicons.files += icons/coloured/*.png
     coloredicons.files += icons/coloured/*.gif
+    coloredicons.files += icons/coloured/*.json
     coloredicons.path = $${SHARED_PATH}/qoobar/icons/coloured
     INSTALLS += target docfiles resources icons coloredicons
     INSTALLS += schemes desktop manfiles completions
@@ -431,6 +432,7 @@ os2 {
     coloredicons.files = icons/coloured/*.ico
     coloredicons.files += icons/coloured/*.png
     coloredicons.files += icons/coloured/*.gif
+    coloredicons.files += icons/coloured/*.json
     coloredicons.path = $${SHARED_PATH}/icons/coloured
     INSTALLS += target
     #INSTALLS += icon desktop
@@ -503,6 +505,7 @@ mac|macx {
     coloredicons.files = icons/coloured/*.ico
     coloredicons.files += icons/coloured/*.png
     coloredicons.files += icons/coloured/*.gif
+    coloredicons.files += icons/coloured/*.json
     coloredicons.path = $$INSTALL_PATH/Resources/icons/coloured
 
     INSTALLS += icon resources schemes completions icons coloredicons
