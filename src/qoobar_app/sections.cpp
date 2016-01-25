@@ -26,8 +26,8 @@ QDebug & operator<< (QDebug dbg, const section &t)
 }
 
 int removeSingle(QVector<int> &seta, QVector<int> &setb, const QString &sa)
-{//qDebug()<<sa<<sb;
-    //qDebug()<<seta<<setb;
+{
+    Q_UNUSED(sa)
     int deleted = 0;
     if (seta.isEmpty() || setb.isEmpty()) return deleted;
 

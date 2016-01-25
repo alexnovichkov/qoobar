@@ -9,7 +9,7 @@
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 
-#define VERSION "1.6.9"
+#define VERSION "1.6.9.1"
 
 AppId={{59A39891-F88A-49E6-A738-AC5580273280}
 AppName=Qoobar

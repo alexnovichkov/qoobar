@@ -132,6 +132,8 @@ bool FLAC::File::save()
 
 bool FLAC::File::save(int tags, bool stripOthers)
 {
+    (void)tags;
+    (void)stripOthers;
   if(readOnly()) {
     debug("FLAC::File::save() - Cannot save to a read only file.");
     return false;

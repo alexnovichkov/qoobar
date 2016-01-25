@@ -29,9 +29,9 @@ With Qoobar you can:
 Qoobar uses Qt for GUI and TagLib for tags manipulation and runs
 under GNU/Linux and Windows.
 
-Current version: 1.6.9
+Current version: 1.6.9.1
 
 License: GPL v3.0
 
 Homepage: http://qoobar.sourceforge.net
-Copyright: 2009-2015 Alex Novichkov, novichkov.qoobar@gmail.com
+Copyright: 2009-2016 Alex Novichkov, novichkov.qoobar@gmail.com
