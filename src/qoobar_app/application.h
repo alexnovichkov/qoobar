@@ -249,7 +249,9 @@ Q_SIGNALS:
     void settingsCleared();
     void dockClicked();
 private Q_SLOTS:
+#ifdef Q_OS_MAC
     void onApplicationStateChanged(Qt::ApplicationState);
+#endif
 private:
     class Private;
     Private *p;
