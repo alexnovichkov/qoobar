@@ -11,7 +11,7 @@ CppApplication {
     Depends { name: "Qt.gui" }
     Depends { name: "Qt.concurrent" }
 
-    property string qoobarVersion: '1.6.9.1'
+    property string qoobarVersion: '1.7.0'
 
     property string sharedPath
     property string docPath
@@ -25,7 +25,7 @@ CppApplication {
 
 
     cpp.defines: {
-        var list = [ "QOOBAR_VERSION=\"1.6.9.1\"",
+        var list = [ "QOOBAR_VERSION=\"1.7.0\"",
                     "QOOBAR_SHARED_PATH=\""+sharedPath+"\"",
                     "QOOBAR_DOC_PATH=\""+docPath+"/qoobar-doc\"",
                     "QOOBAR_NO_PROPERTY_MAPS", "HAVE_ZLIB",

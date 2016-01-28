@@ -14,4 +14,4 @@ qoobar_app/qoobar.rc
 qoobar_app/qoobar.pro
 qoobar_app/qoobar.qbs
 
-current version = 1.6.9.1
+current version = 1.7.0

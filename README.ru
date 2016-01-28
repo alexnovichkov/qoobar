@@ -30,7 +30,7 @@ Qoobar может:
 Qoobar использует библиотеки Qt и Taglib
 и может работать как в GNU/Linux, так и в Windows.
 
-Текущая версия: 1.6.9.1
+Текущая версия: 1.7.0
 
 Homepage: http://qoobar.sourceforge.net
 Copyright: 2009-2016 Алексей Новичков, novichkov.qoobar@gmail.com

@@ -7,27 +7,27 @@
       <language>en</language>
 
          <item>
-            <title>Version 1.6.9.1 for OS X</title>
+            <title>Version 1.7.0 for OS X</title>
             <description>This version fixes the bug with restoring the tags table fields.</description>
             <pubDate>Mon, 25 Jan 2016 16:40:42 +0300</pubDate>
             <sparkle:releaseNotesLink>http://qoobar.sourceforge.net/en/changelog_latest.htm</sparkle:releaseNotesLink>
             <enclosure
-              sparkle:version="1.6.9.1"
+              sparkle:version="1.7.0"
               sparkle:dsaSignature="MC0CFAUMW8jWlhkQ6ZDmp8jeNzQ+S1j4AhUAjOXlZUtvBUCKwP+Cli23WdUAOWc="
-              url="http://sourceforge.net/projects/qoobar/files/qoobar-1.6.9.1/Mac_OS_X/qoobar-1.6.9.1.dmg/download"
+              url="http://sourceforge.net/projects/qoobar/files/qoobar-1.7.0/Mac_OS_X/qoobar-1.7.0.dmg/download"
               length="14334789"
               type="application/octet-stream"/>
          </item>
 
          <item>
-            <title>Version 1.6.9.1 for Windows</title>
+            <title>Version 1.7.0 for Windows</title>
             <description>This version fixes the bug with restoring the tags table fields.</description>
             <pubDate>Mon, 25 Jan 2016  16:40:42 +0300</pubDate>
             <sparkle:releaseNotesLink>http://qoobar.sourceforge.net/en/changelog_latest.htm</sparkle:releaseNotesLink>
             <enclosure
               sparkle:os="windows"
-              sparkle:version="1.6.9.1"
-              url="http://sourceforge.net/projects/qoobar/files/qoobar-1.6.9.1/Windows/qoobar-1.6.9.1.exe"
+              sparkle:version="1.7.0"
+              url="http://sourceforge.net/projects/qoobar/files/qoobar-1.7.0/Windows/qoobar-1.7.0.exe"
               length="10424261"
               type="application/octet-stream"/>
          </item>

@@ -1,4 +1,4 @@
-qoobar (1.6.9.1) unstable; urgency=low
+qoobar (1.7.0) unstable; urgency=low
 
   * Fixed: Bug with restoring the state of the tags table
 
