@@ -142,7 +142,7 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     grid->addWidget(buttonBox,5,0,1,4,Qt::AlignRight);
 #endif
     setLayout(grid);
-    resize(::dpiAwareSize(800,500,this));
+    resize(::dpiAwareSize({800,500},this));
 
     initTable();
 }

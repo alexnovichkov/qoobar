@@ -79,8 +79,9 @@ ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
 
     imageLabel = new QLabel(this);
     //TODO: devicePixelRatio()
-    imageLabel->setMaximumSize(::dpiAwareSize(100,100, this));
-    imageLabel->setMinimumSize(::dpiAwareSize(100,100,this));
+    const auto size = ::dpiAwareSize({100,100}, this);
+    imageLabel->setMaximumSize(size);
+    imageLabel->setMinimumSize(size);
     imageLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     QGridLayout *l = new QGridLayout;

@@ -100,8 +100,8 @@ DisplayedTagsDialog::DisplayedTagsDialog(QWidget *parent) :
 
     setLayout(layout);
     //TODO: this->devicePixelRatio()
-    resize(::dpiAwareSize(App->primaryScreen()->availableSize().width()/4,
-                          App->primaryScreen()->availableSize().height()/3,
+    resize(::dpiAwareSize({App->primaryScreen()->availableSize().width()/4,
+                          App->primaryScreen()->availableSize().height()/3},
                           this));
 }
 

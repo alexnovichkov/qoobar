@@ -139,7 +139,7 @@ SearchBar::SearchBar(QWidget *parent) :
 
 #ifndef Q_OS_MAC
     QWidget* spacer = new QWidget(this);
-    spacer->setFixedSize(::dpiAwareSize(5,1,this));
+    spacer->setFixedSize(::dpiAwareSize({5,1},this));
     addWidget(spacer);
 #endif
     progress = new QProgressIndicatorSpinning(this);
@@ -148,7 +148,7 @@ SearchBar::SearchBar(QWidget *parent) :
     progress->hide();
 #ifndef Q_OS_MAC
     QWidget* spacer1 = new QWidget();
-    spacer1->setFixedSize(::dpiAwareSize(5,1,this));
+    spacer1->setFixedSize(::dpiAwareSize({5,1},this));
     addWidget(spacer1);
 #endif
 

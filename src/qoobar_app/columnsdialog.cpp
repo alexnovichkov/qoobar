@@ -70,8 +70,8 @@ ColumnsDialog::ColumnsDialog(QTreeView *tree) :
 
     setLayout(layout);
     //TODO: this->devicePixelRatio()
-    resize(::dpiAwareSize(App->screens().first()->availableSize().width()/4,
-                          App->screens().first()->availableSize().height()/3,this));
+    resize(::dpiAwareSize({App->screens().first()->availableSize().width()/4,
+                          App->screens().first()->availableSize().height()/3},this));
 }
 
 

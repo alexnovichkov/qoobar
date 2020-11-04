@@ -299,11 +299,11 @@ void MainWindow::initRest()
     App->readGuiSettings();
     App->loadPlugins();
     createPluginsMenu();
-    if (App->geometry.isEmpty())
+    if (App->geometry.isEmpty()) {
         //TODO: this->devicePixelRatio()
-        resize(::dpiAwareSize(App->primaryScreen()->availableSize().width()*2/3,
-                              App->primaryScreen()->availableSize().height()*2/3,
-                              this));
+        QSize size = App->primaryScreen()->availableSize()*0.666;
+        resize(::dpiAwareSize(size, this));
+    }
     else
         restoreGeometry(App->geometry);
     createNewTab(true);

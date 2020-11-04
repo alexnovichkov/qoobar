@@ -49,8 +49,8 @@ CompletionsDialog::CompletionsDialog(const int &tagID, QWidget *parent) :
     setLayout(layout);
 
     //TODO: this->devicePixelRatio()
-    resize(::dpiAwareSize(App->primaryScreen()->availableSize().width()/4,
-                          App->primaryScreen()->availableSize().height()/3,this));
+    resize(::dpiAwareSize({App->primaryScreen()->availableSize().width()/4,
+                          App->primaryScreen()->availableSize().height()/3},this));
 }
 
 void CompletionsDialog::accept()

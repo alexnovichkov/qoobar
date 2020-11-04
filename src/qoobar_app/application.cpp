@@ -723,24 +723,24 @@ void Autocompletions::set(int tagID, const QStringList &newVariants)
     }
 }
 
-QSize dpiAwareSize(int width, int height, QPaintDevice *d)
-{
-    if (!d) return {width, height};
-
-#if QT_VERSION >= QT_VERSION_CHECK(5,6,0)
-    return {int(width*d->devicePixelRatioF()), int(height*d->devicePixelRatioF())};
-#else
-    return {width*d->devicePixelRatio(), height*d->devicePixelRatio()};
-#endif
-}
-
-int dpiAwareSize(int size, QPaintDevice *d)
+QSize dpiAwareSize(const QSize &size, QPaintDevice *d)
 {
     if (!d) return size;
 
 #if QT_VERSION >= QT_VERSION_CHECK(5,6,0)
-    return int(size*d->devicePixelRatioF());
+    return size * d->devicePixelRatioF();
 #else
     return size * d->devicePixelRatio();
+#endif
+}
+
+int dpiAwareSize(double size, QPaintDevice *d)
+{
+    if (!d) return static_cast<int>(size);
+
+#if QT_VERSION >= QT_VERSION_CHECK(5,6,0)
+    return static_cast<int>(size * d->devicePixelRatioF());
+#else
+    return static_cast<int>(size * d->devicePixelRatio());
 #endif
 }

@@ -386,8 +386,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
 #endif
     setLayout(layout);
 
-    resize(::dpiAwareSize(App->primaryScreen()->availableSize().width()/2,
-                          App->primaryScreen()->availableSize().height()/2,this));
+    resize(::dpiAwareSize(App->primaryScreen()->availableSize()/2, this));
 
     currentAlbum=-1;
 }

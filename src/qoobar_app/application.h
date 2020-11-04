@@ -121,8 +121,9 @@ private:
 void criticalMessage(QWidget *parent, const QString &caption, const QString &text);
 void warningMessage(QWidget *parent, const QString &caption, const QString &text);
 
-QSize dpiAwareSize(int width, int height, QPaintDevice *d);
-int dpiAwareSize(int size, QPaintDevice *d);
+QSize dpiAwareSize(const QSize &size, QPaintDevice *d);
+
+int dpiAwareSize(double size, QPaintDevice *d);
 
 class Application : public QApplication
 {

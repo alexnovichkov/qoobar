@@ -137,8 +137,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     mainLayout->setMenuBar(toolBar);
     setLayout(mainLayout);
 #endif
-    resize(::dpiAwareSize(qApp->primaryScreen()->availableSize().width()/4,
-                          qApp->primaryScreen()->availableSize().height()/3,this));
+    resize(::dpiAwareSize({qApp->primaryScreen()->availableSize().width()/4,
+                          qApp->primaryScreen()->availableSize().height()/3},this));
     retranslateUI();
 }
 

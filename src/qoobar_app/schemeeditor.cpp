@@ -144,7 +144,7 @@ SchemeEditor::SchemeEditor(const QString &file, Operation operation, QWidget *pa
     setLayout(layout);
     edit->selectAll();
 
-    resize(::dpiAwareSize(750,410,this));
+    resize(::dpiAwareSize({750,410},this));
 }
 
 SchemeEditor::~SchemeEditor()

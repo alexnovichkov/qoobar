@@ -94,16 +94,21 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     showIcon = QIcon::fromTheme("unfold");
 
 #ifndef Q_OS_MAC
-    int h = QFontMetrics(App->charsFont).height();
+    double h = QFontMetricsF(App->charsFont).height();
 
     scroll = new QScrollArea;
-    scroll->setWidgetResizable(true);
+    //scroll->setWidgetResizable(true);
     scroll->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    //scroll->setMinimumWidth(::dpiAwareSize(100,this));
-    scroll->setMaximumWidth(::dpiAwareSize(h*4,this));
+    int sbw = 10;
+    int factor = 4;
+    if (devicePixelRatio()==1) factor = 5;
+    scroll->setMinimumWidth(::dpiAwareSize(h*factor+sbw,this));
+    scroll->setMaximumWidth(::dpiAwareSize(h*factor+sbw,this));
     scroll->setFocusPolicy(Qt::NoFocus);
     QWidget *charsWidget = new QWidget(this);
     charsWidget->setFocusPolicy(Qt::NoFocus);
+    charsWidget->setMinimumWidth(::dpiAwareSize(h*4,this));
+    charsWidget->setMaximumWidth(::dpiAwareSize(h*4,this));
 
     QGridLayout *charsLayout = new QGridLayout(this);
     charsLayout->setContentsMargins(0,0,0,0);
@@ -307,7 +312,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 
     searchPanel->hide();
 
-    resize(::dpiAwareSize(800,300,this));
+    resize(::dpiAwareSize({800,300},this));
 }
 
 

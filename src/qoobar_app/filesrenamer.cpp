@@ -285,7 +285,7 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     setLayout(mainLayout);
 #endif
     //TODO: this->devicePixelRatio()
-    resize(::dpiAwareSize(800, 550, this));
+    resize(::dpiAwareSize({800, 550}, this));
 
     table->setFocusPolicy(Qt::NoFocus);
     table->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);

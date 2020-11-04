@@ -150,15 +150,16 @@ SplitDialog::SplitDialog(QWidget *parent) :
 #else
     grid->addWidget(buttonBox,10,0,1,3,Qt::AlignRight);
 #endif
-    grid->setRowMinimumHeight(1,::dpiAwareSize(10,this));
-    grid->setRowMinimumHeight(4,::dpiAwareSize(10,this));
-    grid->setRowMinimumHeight(8,::dpiAwareSize(10,this));
+    const int dpisize = ::dpiAwareSize(10,this);
+    grid->setRowMinimumHeight(1,dpisize);
+    grid->setRowMinimumHeight(4,dpisize);
+    grid->setRowMinimumHeight(8,dpisize);
 
     setLayout(grid);
     warningLabel->setHidden(warningLabel->text().isEmpty());
     startButton->setEnabled(warningLabel->text().isEmpty());
 
-    resize(::dpiAwareSize(600,400,this));
+    resize(::dpiAwareSize({600,400},this));
 }
 
 SplitDialog::~SplitDialog()
