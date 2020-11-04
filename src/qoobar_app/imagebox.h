@@ -36,9 +36,7 @@ class QLabel;
 class ClickableLabel;
 class QAction;
 class QToolButton;
-#if QT_VERSION >= 0x040600
 class QGraphicsOpacityEffect;
-#endif
 
 //stolen from Qt Creator src
 class FadingPanel : public QWidget
@@ -46,19 +44,23 @@ class FadingPanel : public QWidget
 public:
     FadingPanel(QWidget *parent = 0);
     void fadeTo(float value);
-#if QT_VERSION >= 0x040600
 protected:
     QGraphicsOpacityEffect *m_opacityEffect;
-#endif
 };
 
 class Panel : public QWidget
 {
     Q_OBJECT
 public:
-    Panel(QWidget *parent = 0);
+    enum PanelType{
+        PanelText,
+        PanelImage,
+        PanelMixed
+    };
+    Panel(PanelType type, QWidget *parent = 0);
     void setText(QString text, bool clip=false);
     void setPixmap(QPixmap,const QString &);
+    void setType(PanelType type) {this->type = type;}
     void addWidget(QWidget *);
     void clear();
 protected:
@@ -75,6 +77,7 @@ private:
     bool empty;
     QPixmap backgroundPixmap;
     QPixmap image;
+    PanelType type = PanelMixed;
 };
 
 

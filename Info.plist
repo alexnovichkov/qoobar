@@ -25,13 +25,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleHelpBookFolder</key>
-        <string>Qoobar.help</string>
+    <string>Qoobar.help</string>
 	<key>CFBundleHelpBookName</key>
-        <string>com.qoobar.qoobar.help</string>
+    <string>com.qoobar.qoobar.help</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6</string>
 	<key>LSApplicationCategoryType</key>
-  <string>public.app-category.music</string>
+    <string>public.app-category.music</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>
@@ -42,5 +42,9 @@
 	<string>NO</string>
 	<key>SUEnableSystemProfiling</key>
 	<string>YES</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    <key>NSHighResolutionCapable</key>
+    <string>True</string>
 </dict>
 </plist>

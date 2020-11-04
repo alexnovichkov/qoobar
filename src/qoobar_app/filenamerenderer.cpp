@@ -6,6 +6,8 @@
 
 #include <QtDebug>
 
+const int dummyChar = 0x263c;
+
 void FileNameRenderer::updateTags()
 {DD;
     TagsRenderer::updateTags();
@@ -19,7 +21,7 @@ void FileNameRenderer::updateTags()
         s.replace(QLS("/"),App->renameOptions.winCharsReplacer);
 
         //some operations we perform only on file names and not paths
-        QStringList list=s.split(QChar(0x263c));
+        QStringList list=s.split(QChar(dummyChar));
         QString fileName=list.takeLast();
 
         if (App->renameOptions.replaceWinChars) {
@@ -65,8 +67,8 @@ void FileNameRenderer::updateTags()
 
         // always sanitize file name in Windows
 #ifdef Q_OS_WIN
-        if (fileName.length()+suffixLength > 255)
-            fileName.truncate(255 - suffixLength);
+        if (fileName.length()+suffixLength > MAXIMUM_FILENAME_LENGTH)
+            fileName.truncate(MAXIMUM_FILENAME_LENGTH - suffixLength);
 #endif
 
         if (App->renameOptions.renamingOperation != 2) {
@@ -106,5 +108,5 @@ void FileNameRenderer::preprocess()
     }
 
     m_pattern.replace(QLS("\\"),QLS("/"));
-    m_pattern.replace(QLS("/"),QString(QChar(0x263c)));
+    m_pattern.replace(QLS("/"),QString(QChar(dummyChar)));
 }

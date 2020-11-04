@@ -13,7 +13,7 @@
 
 AppId={{59A39891-F88A-49E6-A738-AC5580273280}
 AppName=Qoobar
-AppCopyright=Copyright (C) 2009-2016 Alex Novichkov
+AppCopyright=Copyright (C) 2009-2020 Alex Novichkov
 AppVersion={#VERSION}
 AppVerName=Qoobar {#VERSION}
 AppPublisher=Alex Novichkov
@@ -80,7 +80,6 @@ fr.Plugins=Plugins supplémentaires
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
-Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Components]
 Name: "main"; Description: "{cm:Main}"; Types: full compact custom; Flags: fixed
@@ -96,27 +95,20 @@ Name: "{app}\schemes"; Flags: uninsalwaysuninstall; Components: main
 Name: "{app}\completions"; Flags: uninsalwaysuninstall; Components: main
 Name: "{app}\platforms"; Flags: uninsalwaysuninstall; Components: main
 Name: "{app}\plugins"; Flags: uninsalwaysuninstall; Components: plugins
-Name: "{app}\icons\default"; Flags: uninsalwaysuninstall; Components: main
-Name: "{app}\icons\coloured"; Flags: uninsalwaysuninstall; Components: main
+Name: "{app}\icons"; Flags: uninsalwaysuninstall; Components: main
+Name: "{app}\icons"; Flags: uninsalwaysuninstall; Components: main
 
 [Files]
-#define QT_VERSION 5
-
-#if QT_VERSION==5
-#define PATH_TO_QT "K:/Qt/Qt5.5.0/5.5/mingw492_32"
-#else
-#define PATH_TO_QT "K:/Qt/4.8.4"
-#endif
+#define PATH_TO_QT "C:/Qt/Qt5.12.8/5.12.8/mingw73_32"
+#define PATH_TO_QOOBAR "E:/My/build/build-qoobar-Desktop_Qt_5_12_8_MinGW_32_bit-Release/release"
 
 ; main
-Source: "release\qoobar.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: "release\plugins\*.dll"; DestDir: "{app}\plugins"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: plugins
+Source: {#PATH_TO_QOOBAR+"/qoobar.exe"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QOOBAR+"/plugins/*.dll"}; DestDir: "{app}\plugins"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: plugins
 ; libraries dependent on current Qt version
-#if QT_VERSION==5
 Source: {#PATH_TO_QT+"/plugins/imageformats/qjpeg.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/plugins/imageformats/qgif.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/plugins/imageformats/qico.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/plugins/platforms/qminimal.dll"}; DestDir: "{app}\platforms"; Flags: ignoreversion createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/plugins/platforms/qwindows.dll"}; DestDir: "{app}\platforms"; Flags: ignoreversion createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/Qt5Core.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/Qt5Concurrent.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
@@ -126,16 +118,6 @@ Source: {#PATH_TO_QT+"/bin/Qt5Widgets.dll"}; DestDir: "{app}"; Flags: ignorevers
 Source: {#PATH_TO_QT+"/bin/Qt5WinExtras.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/libwinpthread-1.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/libstdc++-6.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-;Source: {#PATH_TO_QT+"/bin/icu*.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-#else
-Source: {#PATH_TO_QT+"/plugins/imageformats/qjpeg4.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/plugins/imageformats/qgif4.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/plugins/imageformats/qico4.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/QtCore4.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/QtGui4.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/QtNetwork4.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/mingwm10.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-#endif
 Source: {#PATH_TO_QT+"/bin/libgcc_s_dw2-1.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 ; libraries that do not change
 Source: "..\windows\libdiscid.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
@@ -160,13 +142,8 @@ Source: "src\qoobar_app\schemes\*.xml"; DestDir: "{app}\schemes"; Flags: ignorev
 Source: "src\qoobar_app\completions\*.txt"; DestDir: "{app}\completions"; Flags: ignoreversion overwritereadonly; Components: main
 Source: "COPYING"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: "LICENSE.rtf"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: "src\qoobar_app\icons\*.ico"; DestDir: "{app}\icons\default"; Flags: ignoreversion overwritereadonly; Components: main
-Source: "src\qoobar_app\icons\*.png"; DestDir: "{app}\icons\default"; Flags: ignoreversion overwritereadonly; Components: main
-Source: "src\qoobar_app\icons\*.gif"; DestDir: "{app}\icons\default"; Flags: ignoreversion overwritereadonly; Components: main
-Source: "src\qoobar_app\icons\coloured\*.ico"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly; Components: main
-Source: "src\qoobar_app\icons\coloured\*.png"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly; Components: main
-Source: "src\qoobar_app\icons\coloured\*.gif"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly; Components: main
-Source: "src\qoobar_app\icons\coloured\properties.json"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly; Components: main
+Source: "src\qoobar_app\icons\maia\*"; DestDir: "{app}\icons\maia"; Flags: ignoreversion overwritereadonly createallsubdirs recursesubdirs; Components: main
+Source: "src\qoobar_app\icons\coloured\*"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly createallsubdirs recursesubdirs; Components: main
 
 ; help
 Source: "html\*"; DestDir: "{app}\html"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help
@@ -180,7 +157,6 @@ Name: "{group}\Qoobar"; Filename: "{app}\qoobar.exe"; WorkingDir: "{app}"
 Name: "{group}\Qoobar Help"; Filename: "{app}\html\en\index.htm"; Components: help; WorkingDir: "{app}"
 Name: "{group}\{cm:UninstallProgram,Qoobar}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\Qoobar"; Filename: "{app}\qoobar.exe"; Tasks: desktopicon; WorkingDir: "{app}"
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Qoobar"; Filename: "{app}\qoobar.exe"; Tasks: quicklaunchicon; WorkingDir: "{app}"
 
 [Run]
 Filename: "{app}\qoobar.exe"; Description: "{cm:LaunchProgram,Qoobar}"; Flags: nowait postinstall skipifsilent

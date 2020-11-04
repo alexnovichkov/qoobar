@@ -45,7 +45,7 @@ int fileTypeByExt(QString extension, QString &icon)
     else if (extension=="aif") extension=QSL("aiff");
 
     static const QStringList list=QString("mp3.ogg.wma.flac.m4a.mpc.wv.wav.spx.tta.oga.ape.aiff.opus.dsf").split(QSL("."));
-    icon = QString("%1.png").arg(extension);
+    icon = extension;
     return list.indexOf(extension);
 }
 
@@ -168,11 +168,11 @@ void Tag::setTag(const int tagID,const QString &value)
 }
 
 
-void Tag::setUserTag(const QString &id, const QString &s)
+void Tag::setUserTag(const QString &tagKey, const QString &value)
 {
-    if (d->otherTags.value(id)==s) return;
-    d->wasChanged=true;
-    d->otherTags.insert(id,s);
+    if (d->otherTags.value(tagKey) == value) return;
+    d->wasChanged = true;
+    d->otherTags.insert(tagKey, value);
 }
 
 /* ================================================*/

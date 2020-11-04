@@ -1,9 +1,5 @@
 #include "mp3tagsdialog.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "application.h"
 #include "enums.h"
 #include "qoobarglobals.h"
@@ -34,7 +30,8 @@ MP3TagsDialog::MP3TagsDialog(int fileCount, QWidget *parent) :
     l->addWidget(apeCheckBox);
     l->addWidget(buttonBox);
     setLayout(l);
-    resize(200,100);
+    //TODO: this->devicePixelRatioF()
+    resize(::dpiAwareSize(200,100,this));
 }
 
 void MP3TagsDialog::accept()

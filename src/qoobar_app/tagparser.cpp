@@ -50,32 +50,20 @@ PairList TagParser::parse(QString source, QString pattern)
             int sourcePos=source.indexOf(delim, startSource);
             if (sourcePos!=-1) {
                 QString s = source.mid(startSource, sourcePos-startSource);
-                result << StringPair(stack
-                     #if QT_VERSION < QT_VERSION_CHECK(4,8,0)
-                                     .toString()
-                     #endif
-                                     .startsWith('%')?stack.toString().mid(1,1):stack.toString(), s);
+                result << StringPair(stack.startsWith('%')?stack.toString().mid(1,1):stack.toString(), s);
                 startSource = sourcePos+delim.length();
                 startPattern += delim.length();
             }
             else {
                 QString s = source.mid(startSource, -1);
-                result << StringPair(stack
-                     #if QT_VERSION < QT_VERSION_CHECK(4,8,0)
-                                     .toString()
-                     #endif
-                                     .startsWith('%')?stack.toString().mid(1,1):stack.toString(), s);
+                result << StringPair(stack.startsWith('%')?stack.toString().mid(1,1):stack.toString(), s);
                 startPattern = endPattern;
             }
             stack.clear();
         }
     }
     if (!stack.isEmpty())
-        result << StringPair(stack
-                     #if QT_VERSION < QT_VERSION_CHECK(4,8,0)
-                                     .toString()
-                     #endif
-                             .startsWith('%')?stack.toString().mid(1,1):stack.toString(), source.mid(startSource, -1));
+        result << StringPair(stack.startsWith('%')?stack.toString().mid(1,1):stack.toString(), source.mid(startSource, -1));
 
     return result;
 }

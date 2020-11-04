@@ -30,26 +30,20 @@
 #include "completionsdialog.h"
 #include "legendbutton.h"
 #include "schemeeditor.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#include "idownloadplugin.h"
-#include "iqoobarplugin.h"
-#endif
 #include "enums.h"
 
-#ifdef HAVE_QT5
 #include <QJsonDocument>
-#else
-#include "ereilin/json.h"
-#endif
 
 #include "clearlineedit.h"
 #include "fancylineedit.h"
 
 #include <QVector>
 #include <QtConcurrentRun>
+
+constexpr int canSearchManuallyColumn = 3;
+constexpr int canSearchByCDColumn = 4;
+constexpr int canSearchByFilesColumn = 5;
 
 ConfigPage::ConfigPage(QWidget *parent) : QWidget(parent)
 {DD;
@@ -58,7 +52,7 @@ ConfigPage::ConfigPage(QWidget *parent) : QWidget(parent)
 #ifdef Q_OS_WIN
     contentsWidget->setFrameShape(QFrame::StyledPanel);
 #endif
-    QVBoxLayout *contentsLayout = new QVBoxLayout;
+    auto *contentsLayout = new QVBoxLayout;
     contentsLayout->setContentsMargins(0,0,0,0);
 
     contentsLayout->addWidget(contentsWidget);
@@ -82,19 +76,17 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     dirBox = new QCheckBox(tr("Show folder tree"),this);
     dirBox->setWhatsThis(tr("Check this box to show or hide the Folders navigation tree"));
     dirRoot = new FancyLineEdit(this);
-    QPixmap pixmap(16, 16);
+    //TODO: this->devicePixelRatio()
+    QPixmap pixmap(SMALL_ICON_SIZE, SMALL_ICON_SIZE);
     pixmap.fill(Qt::transparent);
     QPainter painter(&pixmap);
-    painter.drawText(0,14,QSL("..."));
+    painter.drawText(0,SMALL_ICON_SIZE-2,QSL("..."));
     dirRoot->setButtonPixmap(FancyLineEdit::Right, pixmap);
     dirRoot->setButtonVisible(FancyLineEdit::Right, true);
     dirRoot->setButtonToolTip(FancyLineEdit::Right, tr("Choose..."));
     dirRoot->setAutoHideButton(FancyLineEdit::Right, false);
     dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
-#if QT_VERSION >= 0x040700
     dirRoot->setPlaceholderText(tr("All disks"));
-    //dirRoot->setMinimumWidth(dirRoot->fontMetrics().width(QSL("Path/to/player"))*3/2);
-#endif
     connect(dirRoot, SIGNAL(rightButtonClicked()), this, SLOT(chooseDirRoot()));
 
     dirRootLabel = new QLabel(tr("Folder tree root"),this);
@@ -107,7 +99,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
                                   "when pasting a single line"),this);
 #ifndef Q_OS_MAC
     chars=new FancyLineEdit(this);
-    chars->setButtonPixmap(FancyLineEdit::Right, App->iconThemeIcon("font.png").pixmap(16,16));
+    chars->setButtonPixmap(FancyLineEdit::Right, QIcon::fromTheme("font").pixmap(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
     chars->setButtonVisible(FancyLineEdit::Right, true);
     chars->setButtonToolTip(FancyLineEdit::Right, tr("Font..."));
     chars->setAutoHideButton(FancyLineEdit::Right, false);
@@ -142,13 +134,8 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
         QFile jsonFile(ApplicationPaths::sharedPath()+"/icons/"+dir+"/properties.json");
         QVariantMap result;
         if (jsonFile.open(QFile::ReadOnly)) {
-#ifdef HAVE_QT5
             QVariant parsed = QJsonDocument::fromJson(jsonFile.readAll()).toVariant();
             result = parsed.toMap();
-#else
-            bool ok=true;
-            result = QtJson::Json::parse(QString::fromUtf8(jsonFile.readAll()),ok).toMap();
-#endif
         }
         if (result.isEmpty()) {
             iconTheme->addItem(dir);
@@ -168,7 +155,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     statusBarTrack->addItem(tr("current hovered file"));
     statusBarTrack->addItem(tr("current selected file"));
 
-    QFormLayout *UIlayout = new QFormLayout;
+    auto *UIlayout = new QFormLayout;
 #ifdef Q_OS_MAC
     UIlayout->addRow("",useUndo);
     UIlayout->addRow("",autoexpand);
@@ -189,7 +176,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     UIlayout->addRow(iconThemeLabel, iconTheme);
     UIlayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
 
-    QVBoxLayout *UIML = new QVBoxLayout;
+    auto *UIML = new QVBoxLayout;
     UIML->addLayout(UIlayout);
     UIML->addStretch();
 
@@ -225,7 +212,7 @@ QString InterfacePage::description()
 }
 QString InterfacePage::iconFilename()
 {DD;
-    return App->themeIcon("interface.png");
+    return "preferences-system-windows";
 }
 void InterfacePage::retranslateUI()
 {DD;
@@ -247,9 +234,7 @@ void InterfacePage::retranslateUI()
     useUndo->setText(tr("Use undo / redo"));
     dirBox->setText(tr("Show folder tree"));
     hideTabBar->setText(tr("Hide Tab bar with only one tab"));
-#if QT_VERSION >= 0x040700
     dirRoot->setPlaceholderText(tr("All disks"));
-#endif
     dirRootLabel->setText(tr("Folder tree root"));
     iconThemeLabel->setText(tr("Toolbar icons theme"));
     dirBox->setWhatsThis(tr("Check this box to show or hide the Folders navigation tree"));
@@ -327,7 +312,7 @@ CompletionPage::CompletionPage(QWidget *parent) : ConfigPage(parent)
     completionStyle->addItem(tr("Completer matches the whole string"));
     completionStyleLabel = new QLabel(tr("Completion style"),this);
 
-    QSignalMapper *mapper = new QSignalMapper(this);
+    auto *mapper = new QSignalMapper(this);
     connect(mapper,SIGNAL(mapped(int)),SLOT(editList(int)));
 
     completionTree = new QTreeWidget(this);
@@ -335,29 +320,28 @@ CompletionPage::CompletionPage(QWidget *parent) : ConfigPage(parent)
     completionTree->setColumnCount(3);
     completionTree->setHeaderHidden(true);
     completionTree->header()->setStretchLastSection(false);
-    completionTree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
+    completionTree->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     completionTree->setWhatsThis(tr("Check the tags for which you wish to use the autocompletion.<br>"
                                     "<br>The <i>Edit...</i> buttons allows you to manually change the remembered text lines"));
-    completionTree->setMinimumHeight(300);
     completionTree->setAlternatingRowColors(true);
 #ifdef Q_OS_MAC
     completionTree->setAttribute(Qt::WA_MacSmallSize, true);
 #endif
     const int tagsCount = App->currentScheme->tagsCount();
     for (int i=0; i<tagsCount; ++i) {
-        QTreeWidgetItem *item = new QTreeWidgetItem(completionTree);
+        auto *item = new QTreeWidgetItem(completionTree);
 
-        QPushButton *button = new QPushButton(this);
+        auto *button = new QPushButton(this);
         connect(button,SIGNAL(clicked()),mapper,SLOT(map()));
         mapper->setMapping(button,i);
         completionTree->setItemWidget(item,2,button);
     }
 
-    QFormLayout *l = new QFormLayout;
+    auto *l = new QFormLayout;
     l->addRow(collectTextLabel,collectText);
     l->addRow(completionStyleLabel,completionStyle);
 
-    QGridLayout *autocompletionLayout = new QGridLayout;
+    auto *autocompletionLayout = new QGridLayout;
     autocompletionLayout->addLayout(l,0,0);
     autocompletionLayout->addWidget(completionTree,1,0);
 
@@ -392,16 +376,16 @@ QString CompletionPage::description()
 }
 QString CompletionPage::iconFilename()
 {DD;
-    return App->themeIcon("completion.png");
+    return "auto-type";
 }
 void CompletionPage::retranslateUI()
 {DD;
     ConfigPage::retranslateUI();
     for (int i=0; i<completionTree->topLevelItemCount(); ++i) {
         completionTree->topLevelItem(i)->setText(0, App->currentScheme->localizedFieldName[i]);
-        QPushButton *b = qobject_cast<QPushButton *>(completionTree->itemWidget(completionTree->topLevelItem(i),2));
-        if (b) b->setText(tr("Edit..."));
-        int count = App->autocompletions->variantsCount(i);
+        if (auto *b = qobject_cast<QPushButton *>(completionTree->itemWidget(completionTree->topLevelItem(i),2)))
+            b->setText(tr("Edit..."));
+        const int count = App->autocompletions->variantsCount(i);
         if (count==0) completionTree->topLevelItem(i)->setText(1,tr("Empty"));
         else completionTree->topLevelItem(i)->setText(1, tr("%n record(s)","",count));
     }
@@ -472,13 +456,13 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
     id3v2version->addItem(QSL("2.4"));
     id3v2versionLabel = new QLabel(tr("ID3v2 tags version"),this);
     id3v2versionLabel->setBuddy(id3v2version);
-    QHBoxLayout *id3v2versionLayout = new QHBoxLayout;
+    auto *id3v2versionLayout = new QHBoxLayout;
     id3v2versionLayout->addWidget(id3v2versionLabel);
     id3v2versionLayout->addWidget(id3v2version);
 
     box=new QGroupBox(tr("Mp3 files"));
-    QVBoxLayout *mp3Layout=new QVBoxLayout;
-    QHBoxLayout *mp3l1 = new QHBoxLayout;
+    auto *mp3Layout=new QVBoxLayout;
+    auto *mp3l1 = new QHBoxLayout;
     mp3l1->addWidget(readMp3);
     mp3l1->addWidget(readID3);
     mp3l1->addWidget(readAPE);
@@ -486,7 +470,7 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
     mp3l1->addWidget(writeID3);
     mp3l1->addWidget(writeAPE);
     mp3l1->addStretch();
-    QHBoxLayout *mp3l2 = new QHBoxLayout;
+    auto *mp3l2 = new QHBoxLayout;
     mp3l2->addWidget(id3v2versionLabel);
     mp3l2->addWidget(id3v2version);
     mp3l2->addStretch();
@@ -501,7 +485,7 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
 
     oggbox = new QGroupBox(tr("Ogg / Speex files"));
     oggLabel = new QLabel(tr("Write picture into tag"),this);
-    QFormLayout *oggBoxLayout = new QFormLayout;
+    auto *oggBoxLayout = new QFormLayout;
     oggPicture = new QComboBox(this);
     oggPicture->addItem(tr("COVERART (old standard)"));
     oggPicture->addItem(tr("METADATA_BLOCK_PICTURE (new standard)"));
@@ -529,7 +513,7 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
     id3v1encoding->setEditable(false);
 
     id3Label = new QLabel(tr("ID3v1 tag encoding"),this);
-    QFormLayout *id3v1L = new QFormLayout;
+    auto *id3v1L = new QFormLayout;
     id3v1L->addRow(id3v1writeLabel, id3v1write);
     id3v1L->addRow(id3Label,id3v1encoding);
     id3v1L->addWidget(id3v1transliterate);
@@ -543,18 +527,17 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
     mpcReplayGain->setEditable(false);
     mpcReplayGain->addItem(tr("File header"));
     mpcReplayGain->addItem(tr("APE tags"));
-    QFormLayout *mpcL = new QFormLayout;
+    auto *mpcL = new QFormLayout;
     mpcL->addRow(mpcLabel, mpcReplayGain);
     mpcL->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
     mpcbox->setLayout(mpcL);
 #endif
 
-    QVBoxLayout *rwLayout = new QVBoxLayout;
+    auto *rwLayout = new QVBoxLayout;
     rwLayout->addWidget(saveChanges);
     rwLayout->addWidget(trim);
     rwLayout->addWidget(writeFieldsSeparately);
     rwLayout->addWidget(box);
-//    rwLayout->addWidget(flacBox);
     rwLayout->addWidget(oggbox);
 #ifdef Q_OS_LINUX
     rwLayout->addWidget(mpcbox);
@@ -594,7 +577,7 @@ QString WritingPage::description()
 }
 QString WritingPage::iconFilename()
 {DD;
-    return App->themeIcon("writing.png");
+    return "tag-write";
 }
 void WritingPage::retranslateUI()
 {DD;
@@ -670,7 +653,7 @@ PatternsPage::PatternsPage(QWidget *parent) : ConfigPage(parent)
     patterns->viewport()->setAcceptDrops(true);
     patterns->setDropIndicatorShown(true);
     patterns->setDragDropMode(QAbstractItemView::InternalMove);
-    patterns->setMinimumHeight(200);
+    //patterns->setMinimumHeight(200);
 #ifdef Q_OS_MAC
     patterns->setAlternatingRowColors(true);
 #endif
@@ -685,7 +668,7 @@ PatternsPage::PatternsPage(QWidget *parent) : ConfigPage(parent)
     connect(legendButton,SIGNAL(placeholderChosen(QString)),SLOT(insertLegend(QString)));
     legendButton->setFocusPolicy(Qt::NoFocus);
 
-    QGridLayout *renamingLayout = new QGridLayout;
+    auto *renamingLayout = new QGridLayout;
     renamingLayout->addWidget(patterns,0,0,4,2);
     renamingLayout->addWidget(addPatternButton,0,2);
     renamingLayout->addWidget(removePatternButton,1,2);
@@ -730,7 +713,7 @@ PatternsPage::PatternsPage(QWidget *parent) : ConfigPage(parent)
     removeSchemeButton = new QPushButton(tr("Remove"),this);
     connect(removeSchemeButton,SIGNAL(clicked()),SLOT(removeScheme()));
 
-    QGridLayout *schemesListLayout = new QGridLayout;
+    auto *schemesListLayout = new QGridLayout;
     schemesListLayout->addWidget(schemesLabel,0,0);
     schemesListLayout->addWidget(schemesComboBox,0,1);
     schemesListLayout->addWidget(editSchemeButton,0,2);
@@ -738,10 +721,11 @@ PatternsPage::PatternsPage(QWidget *parent) : ConfigPage(parent)
     schemesListLayout->addWidget(removeSchemeButton,0,4);
     schemesBox->setLayout(schemesListLayout);
 
-    QVBoxLayout *patternsLayout = new QVBoxLayout;
+    auto *patternsLayout = new QVBoxLayout;
     patternsLayout->addWidget(renamingPatternsBox);
     patternsLayout->addWidget(schemesBox);
-    patternsLayout->addStretch();
+    patternsLayout->setStretch(0,1);
+    //patternsLayout->addStretch();
 
     finalize(patternsLayout);
 }
@@ -765,7 +749,7 @@ QString PatternsPage::description()
 }
 QString PatternsPage::iconFilename()
 {DD;
-    return App->themeIcon("patterns.png");
+    return "patterns";
 }
 void PatternsPage::retranslateUI()
 {DD;
@@ -812,7 +796,7 @@ void PatternsPage::removeScheme()
     if (f.remove())
         schemesComboBox->removeItem(curIndex);
     else {
-        criticalMessage(0, QSL("Qoobar"), tr("Cannot delete the file\n%1.").arg(f.fileName()));
+        criticalMessage(nullptr, QSL("Qoobar"), tr("Cannot delete the file\n%1.").arg(f.fileName()));
     }
 }
 
@@ -834,19 +818,18 @@ void PatternsPage::editScheme()
 
 void PatternsPage::addScheme()
 {DD;
-    QAction *a = qobject_cast<QAction *>(sender());
-    if (!a) return;
+    if (auto *a = qobject_cast<QAction *>(sender())) {
+        int curIndex = schemesComboBox->currentIndex();
+        if (a->data().toString()=="default")
+            curIndex=0;
+        if (curIndex<0) return;
 
-    int curIndex = schemesComboBox->currentIndex();
-    if (a->data().toString()=="default")
-        curIndex=0;
-    if (curIndex<0) return;
+        SchemeEditor editor(schemesComboBox->itemData(curIndex).toString(),SchemeEditor::Copy,this);
 
-    SchemeEditor editor(schemesComboBox->itemData(curIndex).toString(),SchemeEditor::Copy,this);
-
-    if (editor.exec()) {
-        schemesComboBox->addItem(editor.scheme->name(), editor.scheme->filePath());
-        schemesComboBox->setCurrentIndex(schemesComboBox->count()-1);
+        if (editor.exec()) {
+            schemesComboBox->addItem(editor.scheme->name(), editor.scheme->filePath());
+            schemesComboBox->setCurrentIndex(schemesComboBox->count()-1);
+        }
     }
 }
 
@@ -860,7 +843,7 @@ void PatternsPage::updatePatterns()
 
 void PatternsPage::insertLegend(const QString &s)
 {DD;
-    QLineEdit *edit = qobject_cast<QLineEdit *>(patterns->itemWidget(patterns->currentItem()));
+    auto *edit = qobject_cast<QLineEdit *>(patterns->itemWidget(patterns->currentItem()));
     if (edit)
         edit->insert(s);
 }
@@ -882,26 +865,22 @@ void PatternsPage::removePattern()
 UtilitiesPage::UtilitiesPage(QWidget *parent) : ConfigPage(parent)
 {DD;
     player=new FancyLineEdit(this);
-    QPixmap pixmap(16, 16);
+    QPixmap pixmap(SMALL_ICON_SIZE, SMALL_ICON_SIZE);
     pixmap.fill(Qt::transparent);
     QPainter painter(&pixmap);
-    painter.drawText(0,14,QSL("..."));
+    painter.drawText(0,SMALL_ICON_SIZE-2,QSL("..."));
 
     player->setButtonPixmap(FancyLineEdit::Right, pixmap);
     player->setButtonVisible(FancyLineEdit::Right, true);
     player->setButtonToolTip(FancyLineEdit::Right, tr("Choose..."));
     player->setAutoHideButton(FancyLineEdit::Right, false);
-#if QT_VERSION >= 0x040700
     player->setPlaceholderText(tr("Path/to/player"));
-    player->setMinimumWidth(player->fontMetrics().width(QSL("Path/to/player"))*3/2);
-#endif
+    player->setMinimumWidth(player->fontMetrics().HORIZONTAL_ADVANCE(QSL("Path/to/player"))*3/2);
     connect(player, SIGNAL(rightButtonClicked()), this, SLOT(choosePlayer()));
 
     cdromDevice = new ClearLineEdit(this);
-#if QT_VERSION >= 0x040700
     cdromDevice->setPlaceholderText(tr("default device"));
-    cdromDevice->setMinimumWidth(cdromDevice->fontMetrics().width(QSL("default device"))*3/2);
-#endif
+    cdromDevice->setMinimumWidth(cdromDevice->fontMetrics().HORIZONTAL_ADVANCE(QSL("default device"))*3/2);
     playerLabel = new QLabel(tr("Player command"),this);
     cdromLabel = new QLabel(tr("CD-ROM device"),this);
 
@@ -931,37 +910,32 @@ UtilitiesPage::UtilitiesPage(QWidget *parent) : ConfigPage(parent)
     tree->header()->hide();
     tree->setColumnCount(3);
     tree->setRootIsDecorated(false);
-    tree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
-    tree->setMinimumHeight(150);
+    tree->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-
-    static const char *externalPrograms[] = {
-        "mac","flac","shntool","enca",
-    #ifndef Q_OS_WIN
-        "mp3gain",
-    #endif
-        "aacgain","vorbisgain","metaflac","wvgain","mpcgain", "replaygain",
-        "mppdec", 0
-    };
-    int i=0;
-    while (externalPrograms[i]) {
-        QTreeWidgetItem *item = new QTreeWidgetItem(tree);
-        item->setText(1,externalPrograms[i]);
-        i++;
+    QVector<QString> external {"mac","flac","shntool","enca",
+                       #ifndef Q_OS_WIN
+                               "mp3gain",
+                       #endif
+                               "aacgain","vorbisgain","metaflac","wvgain","mpcgain", "replaygain",
+                               "mppdec"};
+    Q_FOREACH(const QString &s, external) {
+        auto *item = new QTreeWidgetItem(tree);
+        item->setText(1,s);
     }
 
-    QFormLayout *utilitiesl = new QFormLayout;
+    auto *utilitiesl = new QFormLayout;
     utilitiesl->addRow(playerLabel,player);
     utilitiesl->addRow(cdromLabel,cdromDevice);
-    utilitiesl->addRow(programsLabel,tree);
     utilitiesl->addRow(cueEncodingLabel, cueEncoding);
     utilitiesl->addRow(encaLanguageLabel,encaGuessLanguage);
     utilitiesl->addRow(copyFiles);
     utilitiesl->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
 
-    QVBoxLayout *utilitieslayout = new QVBoxLayout;
+    auto *utilitieslayout = new QVBoxLayout;
+    utilitieslayout->addWidget(programsLabel);
+    utilitieslayout->addWidget(tree);
     utilitieslayout->addLayout(utilitiesl);
-    utilitieslayout->addStretch();
+    utilitieslayout->setStretch(1,1);
 
     finalize(utilitieslayout);
 }
@@ -982,7 +956,7 @@ QString UtilitiesPage::description()
 
 QString UtilitiesPage::iconFilename()
 {DD;
-    return App->themeIcon("utilities.png");
+    return "applications-utilities";
 }
 
 void UtilitiesPage::retranslateUI()
@@ -994,10 +968,8 @@ void UtilitiesPage::retranslateUI()
     encaLanguageLabel->setText(tr("Default language to use with\nthe enca utility"));
     cueEncodingLabel->setText(tr("Cue files encoding"));
     programsLabel->setText(tr("External programs"));
-#if QT_VERSION >= 0x040700
     cdromDevice->setPlaceholderText(tr("default device"));
     player->setPlaceholderText(tr("Path/to/player"));
-#endif
     copyFiles->setText(tr("Copy files into temp folder before replaygaining them"));
     copyFiles->setToolTip(tr("Enable this if you are encountering \"File not found\" messages\n"
                              "in the ReplayGain dialog"));
@@ -1006,11 +978,11 @@ void UtilitiesPage::retranslateUI()
         QString programPath;
         bool installed = Qoobar::programInstalled(tree->topLevelItem(i)->text(1),&programPath);
         if (installed) {
-            tree->topLevelItem(i)->setIcon(0,App->iconThemeIcon("tick.png"));
+            tree->topLevelItem(i)->setIcon(0,QIcon::fromTheme("tick"));
             tree->topLevelItem(i)->setText(2,programPath);
         }
         else {
-            tree->topLevelItem(i)->setIcon(0,App->iconThemeIcon("exclamation.png"));
+            tree->topLevelItem(i)->setIcon(0,QIcon::fromTheme("exclamation"));
             tree->topLevelItem(i)->setText(2,tr("Cannot find in ")+programPath);
         }
         tree->topLevelItem(i)->setToolTip(2, tree->topLevelItem(i)->text(2));
@@ -1054,7 +1026,7 @@ NetworkPage::NetworkPage(QWidget *parent) : ConfigPage(parent)
     portLabel = new QLabel(tr("Port"),this);
     loginLabel = new QLabel(tr("Login"),this);
     passwordLabel = new QLabel(tr("Password"),this);
-    QFormLayout *proxyLayout = new QFormLayout;
+    auto *proxyLayout = new QFormLayout;
     proxyLayout->addRow(serverLabel,proxyServer);
     proxyLayout->addRow(portLabel,proxyPort);
     proxyLayout->addRow(loginLabel,proxyLogin);
@@ -1062,7 +1034,7 @@ NetworkPage::NetworkPage(QWidget *parent) : ConfigPage(parent)
     proxyLayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
     useProxy->setLayout(proxyLayout);
 
-    QVBoxLayout *networkLayout = new QVBoxLayout;
+    auto *networkLayout = new QVBoxLayout;
     networkLayout->addWidget(useProxy);
     networkLayout->addStretch();
 
@@ -1084,7 +1056,7 @@ QString NetworkPage::description()
 }
 QString NetworkPage::iconFilename()
 {DD;
-    return App->themeIcon("network.png");
+    return "applications-internet";
 }
 void NetworkPage::retranslateUI()
 {DD;
@@ -1113,23 +1085,25 @@ PluginsPage::PluginsPage(QWidget *parent) : ConfigPage(parent)
 
     downloadTree = new QTreeWidget(this);
     downloadTree->setRootIsDecorated(false);
-    downloadTree->setHeaderLabels(QVector<QString>(6).toList());
-    downloadTree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
+    downloadTree->setColumnCount(6);
+    downloadTree->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     downloadTree->header()->setStretchLastSection(false);
 #ifdef Q_OS_MAC
-    downloadTree->setFixedHeight(120);
+    //TODO: this->devicePixelRatioF()
+    downloadTree->setFixedHeight(::dpiAwareSize(120,this));
 #endif
 
     editingTree = new QTreeWidget(this);
     editingTree->setRootIsDecorated(false);
-    editingTree->setHeaderLabels(QVector<QString>(3).toList());
-    editingTree->header()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
+    editingTree->setColumnCount(3);
+    editingTree->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     editingTree->header()->setStretchLastSection(false);
 #ifdef Q_OS_MAC
-    editingTree->setFixedHeight(120);
+    //TODO: this->devicePixelRatio()
+    editingTree->setFixedHeight(::dpiAwareSize(120,this));
 #endif
 
-    QVBoxLayout *l = new QVBoxLayout;
+    auto *l = new QVBoxLayout;
 #ifndef Q_OS_WIN
     QMargins m=l->contentsMargins();
     m.setBottom(0);
@@ -1150,7 +1124,7 @@ QString PluginsPage::description()
 
 QString PluginsPage::iconFilename()
 {DD;
-    return App->themeIcon("plugin.png");
+    return "preferences-plugin";
 }
 
 void PluginsPage::retranslateUI()
@@ -1165,7 +1139,6 @@ void PluginsPage::retranslateUI()
 
     editingTree->setHeaderLabels(QStringList()<<tr("Name")<<tr("Version")<<tr("Description"));
 
-#ifdef HAVE_QT5
     for (int j=0; j<downloadTree->topLevelItemCount(); ++j) {
         QJsonObject metaData = downloadTree->topLevelItem(j)->data(0, Qt::UserRole).toJsonObject();
         QString text = metaData.value(QSL("text")).toObject().value(App->langID).toString();
@@ -1185,15 +1158,11 @@ void PluginsPage::retranslateUI()
         if (!description.isEmpty())
             editingTree->topLevelItem(j)->setText(2, description);
     }
-#endif
 }
 
 void PluginsPage::setSettings()
 {DD;
-#ifdef HAVE_QT5
-    for (int it = 0; it < App->downloadPlugins.size(); ++it) {
-        QJsonObject metaData = App->downloadPlugins.at(it);
-
+    for (const auto &metaData: App->downloadPlugins) {
         QString text = metaData.value(QSL("text")).toObject().value(App->langID).toString();
         if (text.isEmpty())
             text = metaData.value(QSL("text")).toObject().value(QSL("default")).toString();
@@ -1206,30 +1175,12 @@ void PluginsPage::setSettings()
                                                     <<version <<description
                                                     <<QString()<<QString()<<QString());
         item->setData(0, Qt::UserRole, metaData);
-        if (metaData.value(QSL("canSearchManually")).toBool()) item->setIcon(3,App->iconThemeIcon("tick.png"));
-        if (metaData.value(QSL("canSearchByCD")).toBool()) item->setIcon(4,App->iconThemeIcon("tick.png"));
-        if (metaData.value(QSL("canSearchByFiles")).toBool()) item->setIcon(5,App->iconThemeIcon("tick.png"));
+        if (metaData.value(QSL("canSearchManually")).toBool()) item->setIcon(canSearchManuallyColumn, QIcon::fromTheme("tick"));
+        if (metaData.value(QSL("canSearchByCD")).toBool())     item->setIcon(canSearchByCDColumn, QIcon::fromTheme("tick"));
+        if (metaData.value(QSL("canSearchByFiles")).toBool())  item->setIcon(canSearchByFilesColumn, QIcon::fromTheme("tick"));
     }
-#else
-    for (QMap<QString, IDownloadPlugin *>::const_iterator it = App->downloadPlugins.begin();
-         it!=App->downloadPlugins.end(); ++it) {
-        QTreeWidgetItem *item = new QTreeWidgetItem(downloadTree,
-                                                    QStringList()<<it.value()->text()
-                                                    <<it.value()->version()
-                                                    <<it.value()->description()
-                                                    <<QString()
-                                                    <<QString()
-                                                    <<QString());
-        if (it.value()->canSearchManually()) item->setIcon(3,QIcon(App->iconThemeIcon("tick.png")));
-        if (it.value()->canSearchByCD()) item->setIcon(4,QIcon(App->iconThemeIcon("tick.png")));
-        if (it.value()->canSearchByFiles()) item->setIcon(5,QIcon(App->iconThemeIcon("tick.png")));
-    }
-#endif
 
-#ifdef HAVE_QT5
-    for (int it = 0; it < App->plugins.size(); ++it) {
-        QJsonObject metaData = App->plugins.at(it);
-
+    for (const auto &metaData: App->plugins) {
         QString text = metaData.value(QSL("text")).toObject().value(App->langID).toString();
         if (text.isEmpty())
             text = metaData.value(QSL("text")).toObject().value(QSL("default")).toString();
@@ -1242,13 +1193,4 @@ void PluginsPage::setSettings()
                                                     <<version <<description);
         item->setData(0, Qt::UserRole, metaData);
     }
-#else
-    for (QMap<QString, IQoobarPlugin *>::const_iterator it = App->plugins.begin();
-         it!=App->plugins.end(); ++it) {
-        new QTreeWidgetItem(editingTree,
-                            QStringList() <<it.value()->text()
-                                          <<it.value()->version()
-                                          <<it.value()->description());
-    }
-#endif
 }

@@ -39,13 +39,11 @@ static inline QString toQString(NSString *string)
     return QString::fromUtf8([string UTF8String]);
 }
 
-#ifndef HAVE_QT5
 static inline NSImage* fromQPixmap(const QPixmap &pixmap)
 {
     CGImageRef cgImage = pixmap.toMacCGImageRef();
     return [[NSImage alloc] initWithCGImage:cgImage size:NSZeroSize];
 }
-#endif
 
 static inline void setupLayout(void *cocoaView, QWidget *parent)
 {

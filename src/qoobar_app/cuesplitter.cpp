@@ -32,6 +32,7 @@
 #include "tagger.h"
 #include "tagsreaderwriter.h"
 #include "platformprocess.h"
+#include "stringroutines.h"
 
 #include <QFileInfo>
 #include <QTextStream>
@@ -52,14 +53,14 @@ QString getShortFileName(const QString &fileName)
     QString result;
     long size=0;
 
-    LPCTSTR lpszPath = (wchar_t*)fileName.utf16();
-    size = GetShortPathName(lpszPath, NULL, 0);
+    LPCTSTR lpszPath = reinterpret_cast<const wchar_t*>(fileName.utf16());
+    size = GetShortPathName(lpszPath, nullptr, 0);
     if (size > 0) {
-        TCHAR* buffer = NULL;
+        TCHAR* buffer = nullptr;
         buffer = new TCHAR[size];
         size = GetShortPathName(lpszPath, buffer, size);
         if (size > 0)
-            result = QString::fromUtf16((ushort*)buffer);
+            result = QString::fromUtf16(reinterpret_cast<ushort*>(buffer));
         delete [] buffer;
     }
 
@@ -85,12 +86,12 @@ QStringList CueSplitter::formats()
 }
 
 CueSplitter::CueSplitter(QObject *parent) :
-    QObject(parent), process(0), _trackCount(0), _notLatin1(false)
+    QObject(parent), process(nullptr), _trackCount(0), _notLatin1(false)
 {DD;
-    shntoolInstalled = Qoobar::programInstalled(QSL("shntool"),0);
-    flacInstalled = Qoobar::programInstalled(QSL("flac"),0);
-    macInstalled = Qoobar::programInstalled(QSL("mac"),0);
-    ffmpegInstalled = Qoobar::programInstalled(QSL("ffmpeg"),0) || Qoobar::programInstalled(QSL("avconv"),0);
+    shntoolInstalled = Qoobar::programInstalled(QSL("shntool"), nullptr);
+    flacInstalled = Qoobar::programInstalled(QSL("flac"), nullptr);
+    macInstalled = Qoobar::programInstalled(QSL("mac"), nullptr);
+    ffmpegInstalled = Qoobar::programInstalled(QSL("ffmpeg"), nullptr) || Qoobar::programInstalled(QSL("avconv"), nullptr);
 }
 
 CueSplitter::~CueSplitter()
@@ -167,9 +168,10 @@ void CueSplitter::setCueFile(const QString &cueFile)
         return;
     }
     QDataStream ind(&file);
-    char data[1024];
+    constexpr int blockSize = 1024;
+    char data[blockSize];
     while(!ind.atEnd()) {
-        int len = ind.readRawData(data, 1024);
+        int len = ind.readRawData(data, blockSize);
         for (int i=0; i<len; ++i) {
             if ((unsigned char)data[i] > 127) {
                 _notLatin1 = true;
@@ -263,7 +265,12 @@ void CueSplitter::split()
     QStringList arguments;
 
 #if defined(Q_OS_LINUX) || defined (Q_OS_MAC)
-    arguments << QDir::toNativeSeparators(qApp->applicationDirPath()+"/splitandconvert.sh");
+    QString pathToScript = qApp->applicationDirPath()+"/splitandconvert.sh";
+    if (!QFile::exists(pathToScript)) {
+        Q_EMIT message(MT_ERROR, tr("Cannot find the necessary script file: ").append(pathToScript));
+        return;
+    }
+    arguments << QDir::toNativeSeparators(pathToScript);
 //    arguments << QDir::toNativeSeparators(ApplicationPaths::sharedPath()+"/splitandconvert.sh");
     arguments << QDir::toNativeSeparators(_cueFile);
     arguments << QDir::toNativeSeparators(_outputDir);
@@ -280,16 +287,25 @@ void CueSplitter::split()
     QString oDir = getShortFileName(_outputDir);
     QString iFile = getShortFileName(_inputFile);
 
-    arguments << QDir::toNativeSeparators(qApp->applicationDirPath()+"/splitandconvert.bat");
-//    arguments << QDir::toNativeSeparators(_cueFile);
-//    arguments << QDir::toNativeSeparators(_outputDir);
-//    arguments << QDir::toNativeSeparators(_inputFile);
+    QString pathToScript = App->applicationDirPath()+"/splitandconvert.bat";
+    if (!QFile::exists(pathToScript)) {
+        Q_EMIT message(MT_ERROR, tr("Cannot find the necessary script file: ").append(pathToScript));
+        return;
+    }
+    arguments << QDir::toNativeSeparators(App->applicationDirPath()+"/splitandconvert.bat");
+
+    //cmd.exe cannot handle &s at all, so escaping them
+    cFile.replace("&","^^^&");
+    oDir.replace("&","^^^&");
+    iFile.replace("&","^^^&");
+
     arguments << QDir::toNativeSeparators(cFile.isEmpty()?_cueFile:cFile);
     arguments << QDir::toNativeSeparators(oDir.isEmpty()?_outputDir:oDir);
     arguments << QDir::toNativeSeparators(iFile.isEmpty()?_inputFile:iFile);
 
     arguments << formatExt;
     programToRun = QSL("c:\\windows\\system32\\cmd.exe");
+
 #elif defined (Q_OS_OS2)
     /** TODO: 1. Find out how to invoke splitandconvert.cmd on OS/2
               2. Find out what commands are allowed on OS/2
@@ -332,13 +348,13 @@ void CueSplitter::split()
                                                                 QDir::Files);
 
         Q_FOREACH(const QFileInfo &newFile,newFiles) {
-            if (newFile.created()>dt || newFile.lastModified()>dt)
+            if (newFile.BIRTH_TIME() > dt || newFile.lastModified() > dt)
                 _files << newFile.canonicalFilePath();
         }
     }
 
 
-    if (_files.size()>0) {
+    if (!_files.isEmpty()) {
         if (_files.at(0).contains(QRegExp(QSL("00\\b")))) {
             //remove pregap file
             QFile::remove(_files.at(0));
@@ -370,7 +386,7 @@ void CueSplitter::parseCue()
             continue;
         if (s.startsWith(QLS("TRACK"))) {
             currentTrack+=1;
-            Tag item(QSL(""), tagsCount);
+            Tag item(QLS(""), tagsCount);
             item.setTag(TRACKNUMBER,QString::number(currentTrack+1));
             item.setTag(ALBUM,album);
             item.setTag(ALBUMARTIST,albumArtist);
@@ -423,17 +439,17 @@ void CueSplitter::parseCue()
     }
     //if all artists is empty, move albumArtist there
     bool isEmpty=true;
-    for (int i=0; i<result.size(); ++i) {
-        if (!result[i].tag(ARTIST).isEmpty()) {
-            isEmpty=false;
+    for (const Tag &tag: result) {
+        if (!tag.tag(ARTIST).isEmpty()) {
+            isEmpty = false;
             break;
         }
     }
 
     if (isEmpty) {
-        for (int i=0; i<result.size(); ++i) {
-            result[i].setTag(ARTIST,result[i].tag(ALBUMARTIST));
-            result[i].setTag(ALBUMARTIST,QString());
+        for (auto &tag: result) {
+            tag.setTag(ARTIST, tag.tag(ALBUMARTIST));
+            tag.setTag(ALBUMARTIST, QString());
         }
     }
     for (int i=0; i<result.size() && i<_files.size(); ++i) {
@@ -459,18 +475,18 @@ void CueSplitter::findInputFile()
 
     QFileInfo finfo = QFileInfo(inputFile);
     if (finfo.isRelative())
-        inputFile = QString("%1/%2").arg(_outputDir).arg(inputFile);
+        inputFile = QString("%1/%2").arg(_outputDir, inputFile);
 
     if (inputFile.isEmpty() || !finfo.exists()) {
         //try to find file with the same name and another extension
         QStringList l = inputFile.split(".");
 
         l.replace(l.size()-1,"flac");
-        if (!QFileInfo(l.join(".")).exists()) {
+        if (!QFileInfo::exists(l.join("."))) {
             l.replace(l.size()-1,"ape");
-            if (!QFileInfo(l.join(".")).exists()) {
+            if (!QFileInfo::exists(l.join("."))) {
                 l.replace(l.size()-1,"wav");
-                if (!QFileInfo(l.join(".")).exists()) {
+                if (!QFileInfo::exists(l.join("."))) {
                     Q_EMIT message(MT_ERROR, tr("Cannot find the file to split: %1").arg(inputFile));
                     return;
                 }
@@ -497,15 +513,23 @@ void CueSplitter::findTrackCount()
 void CueSplitter::updateText()
 {DD;
     QByteArray b=process->readAll();
-
-    Q_EMIT textReady(QString::fromUtf8(b.data(),b.size()));
+    QString text = QString::fromUtf8(b.data(),b.size());
+   // QFile f("updateText.txt");
+  //  f.open(QFile::Append);
+  //  f.write(b);
+  //  f.close();
+#ifdef Q_OS_WIN
+    QString toRecode = QString::fromLocal8Bit(b.data(),b.size());
+    text = processFunction("recode",QStringList()<<toRecode,0);
+#endif
+    Q_EMIT textReady(text);
 }
 
 void CueSplitter::onOutputDirChanged(const QString &path)
 {DD;
     QFileInfoList newFiles = QDir(path).entryInfoList(QStringList()<<QString("*.%1").arg(formatExt),QDir::Files);
     Q_FOREACH(const QFileInfo &newFile,newFiles) {
-        if (newFile.created()>time) {
+        if (newFile.BIRTH_TIME()>time) {
 #ifdef Q_OS_WIN
             Q_EMIT textReady(tr("Processing %1 ...\n\n").arg(newFile.canonicalFilePath()));
 #endif

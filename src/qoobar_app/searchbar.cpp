@@ -1,10 +1,6 @@
 #include "searchbar.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include <QThread>
 
@@ -109,7 +105,7 @@ void Searcher::maybeAdd(const QString &file)
     }
 
     QMap<QString,QString> userTags = tag.userTags();
-    Q_FOREACH(const QString &val, userTags.values()) {
+    Q_FOREACH (const QString &val, userTags) {
         if (regExp.indexIn(removeDiacritics(val), 0) >= 0) {
             Q_EMIT found(tag);
             return;
@@ -135,7 +131,7 @@ SearchBar::SearchBar(QWidget *parent) :
     connect(startSearchButton, SIGNAL(clicked()), SLOT(toggleSearch()));
 
     textEdit = new SearchLineEdit(this);
-    textEdit->setMaximumWidth(200);
+    textEdit->setMaximumWidth(::dpiAwareSize(200,this));
     connect(textEdit, SIGNAL(textChanged(QString)), this, SLOT(updateStartSearchButton()));
     updateStartSearchButton();
     addWidget(textEdit);
@@ -143,7 +139,7 @@ SearchBar::SearchBar(QWidget *parent) :
 
 #ifndef Q_OS_MAC
     QWidget* spacer = new QWidget(this);
-    spacer->setFixedSize(5,1);
+    spacer->setFixedSize(::dpiAwareSize(5,1,this));
     addWidget(spacer);
 #endif
     progress = new QProgressIndicatorSpinning(this);
@@ -152,7 +148,7 @@ SearchBar::SearchBar(QWidget *parent) :
     progress->hide();
 #ifndef Q_OS_MAC
     QWidget* spacer1 = new QWidget();
-    spacer1->setFixedSize(5,1);
+    spacer1->setFixedSize(::dpiAwareSize(5,1,this));
     addWidget(spacer1);
 #endif
 
@@ -200,9 +196,7 @@ void SearchBar::retranslateUI()
 {DD;
     pathsButton->setText(tr("Paths"));
     startSearchButton->setText(tr("Start search"));
-#if QT_VERSION >= 0x040700
     textEdit->setPlaceholderText(tr("text to search"));
-#endif
     closeSearchPanel->setToolTip(tr("Close search bar"));
 }
 
@@ -321,8 +315,8 @@ QWidgetAction *SearchBar::createAction(const QString &text)
 
     QLabel *label = new QLabel(text, this);
     QPushButton *button = new QPushButton(this);
-    button->setIcon(QIcon(App->iconThemeIcon("editclear.png")));
-    button->setIconSize(QSize(16,16));
+    button->setIcon(QIcon::fromTheme("editclear"));
+    button->setIconSize(QSize(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
     button->setFlat(true);
     button->setProperty("path", text);
     button->setToolTip(tr("Remove"));

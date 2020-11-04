@@ -27,16 +27,12 @@
 #include "completerdelegate.h"
 #include "lineedit.h"
 #include "application.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "delegatehighlighter.h"
 #include "qoobarglobals.h"
 
 CompleterDelegate::CompleterDelegate(int type, bool useInTagsEditor, QObject *parent)
-    : QStyledItemDelegate(parent), m_type(type), useInTagsEditor_(useInTagsEditor), highlighter(0)
+    : QStyledItemDelegate(parent), m_type(type), useInTagsEditor_(useInTagsEditor), highlighter(nullptr)
 {DD;
 
 }
@@ -45,7 +41,7 @@ QWidget *CompleterDelegate::createEditor(QWidget *parent, const QStyleOptionView
 {DD;
     Q_UNUSED(option);
     Q_UNUSED(index);
-    LineEdit *edit = new LineEdit(useInTagsEditor_, parent);
+    auto *edit = new LineEdit(useInTagsEditor_, parent);
 
     connect(edit,SIGNAL(tagChanged(int,bool)),this,SIGNAL(tagChanged(int,bool)));
     connect(edit,SIGNAL(editingFinished()),SLOT(commitAndCloseEditor()));
@@ -59,9 +55,9 @@ QWidget *CompleterDelegate::createEditor(QWidget *parent, const QStyleOptionView
 
 void CompleterDelegate::commitAndCloseEditor()
 {DD;
-    QLineEdit *edit = qobject_cast<QLineEdit *>(sender());
+    auto *edit = qobject_cast<QLineEdit *>(sender());
     if (!edit) return;
-    edit->setCompleter(0);
+    edit->setCompleter(nullptr);
     Q_EMIT commitData(edit);
     Q_EMIT closeEditor(edit);
 }
@@ -78,7 +74,7 @@ void CompleterDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
         return;
     }
 
-    QStyleOptionViewItemV4 optionV4 = option;
+    QStyleOptionViewItem optionV4 = option;
     initStyleOption(&optionV4, index);
     QStyle *style = optionV4.widget? optionV4.widget->style() : QApplication::style();
     QRect textRect = style->subElementRect(QStyle::SE_ItemViewItemText, &optionV4);
@@ -87,7 +83,11 @@ void CompleterDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
 
     QTextLayout textLayout;
     textLayout.setText(optionV4.text);
-    textLayout.setAdditionalFormats(formats);
+#if (QT_VERSION < QT_VERSION_CHECK(5, 6, 0))
+        textLayout.setAdditionalFormats(formats);
+#else
+        textLayout.setFormats(formats.toVector());
+#endif
 
     QTextOption textOption = textLayout.textOption();
     textOption.setWrapMode(QTextOption::NoWrap);
@@ -96,9 +96,10 @@ void CompleterDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
     textLayout.beginLayout();
     QTextLine line = textLayout.createLine();
     if (line.isValid()) {
+        //TODO: this->devicePixelRatio()
         int indent=3;
         line.setLineWidth(textRect.width()-2*indent);
-        qreal vertPos=line.height();
+        double vertPos=line.height();
         vertPos = vertPos <= textRect.height()?(textRect.height()-vertPos)/2.0 : 0.0;
         line.setPosition(QPointF(2,vertPos));
     }

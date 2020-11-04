@@ -100,7 +100,7 @@ QString DiscIDHelper::getDiscID(const QVector<int> &lengths,int type)
     if (lengths.isEmpty()) {//get discID by CD
         int disc_read_result=0;
         if (App->cdromDevice.isEmpty())
-            disc_read_result=discid_read(disc, NULL);
+            disc_read_result=discid_read(disc, nullptr);
         else
             disc_read_result=discid_read(disc, App->cdromDevice.toLatin1().data());
         if (disc_read_result==0) {

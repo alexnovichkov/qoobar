@@ -24,11 +24,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "tablewidget.h"
 #include "logging.h"
@@ -65,16 +61,12 @@ TableWidget::TableWidget(QWidget* parent) : QTableWidget(App->currentScheme->tag
     setVerticalHeaderLabels(QVector<QString>(tagsCount,QString()).toList());
 //    if (!App->rows.isEmpty())
 //        verticalHeader()->restoreState(App->rows);
-    verticalHeader()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
+    verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     int height=verticalHeader()->sectionSize(0);
-    verticalHeader()->SETSECTIONRESIZEMODE(QHeaderView::Fixed);
+    verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     verticalHeader()->setDefaultSectionSize(height);
     verticalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
-#ifdef HAVE_QT5
     verticalHeader()->setSectionsMovable(true);
-#else
-    verticalHeader()->setMovable(true);
-#endif
 
     for (int i=tagsCount-1; i>=0; --i) {
         verticalHeader()->setSectionHidden(i,App->tagStatus.value(i)==HIDDEN);
@@ -169,7 +161,7 @@ void TableWidget::handleSentTag(int tagID, bool fromTable)
 {DD;
     Q_UNUSED(fromTable)
 
-    QLineEdit *lineEdit=qobject_cast<QLineEdit *>(qApp->focusWidget());
+    QLineEdit *lineEdit=qobject_cast<QLineEdit *>(App->focusWidget());
     if (lineEdit) {
         const QString selectedText = lineEdit->selectedText();
         if (!selectedText.isEmpty()) {

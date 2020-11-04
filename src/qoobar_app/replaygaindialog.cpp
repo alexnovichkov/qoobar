@@ -26,11 +26,7 @@
 
 #include "replaygaindialog.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "application.h"
 #include "tagsreaderwriter.h"
 #include "enums.h"
@@ -111,8 +107,8 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     tree->setAllColumnsShowFocus(true);
     tree->setUniformRowHeights(true);
     tree->setHeaderLabels(QStringList()<<tr("No.")<<tr("Name")<<tr("Album gain")<<tr("Track gain")<<tr("Album peak")<<tr("Track peak"));
-    tree->header()->resizeSection(0,50);
-    tree->header()->resizeSection(1,350);
+    tree->header()->resizeSection(0,::dpiAwareSize(50,this));
+    tree->header()->resizeSection(1,::dpiAwareSize(350,this));
 
 #ifdef Q_OS_MAC
     //tree->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
@@ -120,11 +116,11 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     tree->setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
 
-    tree->header()->SETSECTIONRESIZEMODE(0, QHeaderView::ResizeToContents);
-    tree->header()->SETSECTIONRESIZEMODE(2, QHeaderView::ResizeToContents);
-    tree->header()->SETSECTIONRESIZEMODE(3, QHeaderView::ResizeToContents);
-    tree->header()->SETSECTIONRESIZEMODE(4, QHeaderView::ResizeToContents);
-    tree->header()->SETSECTIONRESIZEMODE(5, QHeaderView::ResizeToContents);
+    tree->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+    tree->header()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+    tree->header()->setSectionResizeMode(3, QHeaderView::ResizeToContents);
+    tree->header()->setSectionResizeMode(4, QHeaderView::ResizeToContents);
+    tree->header()->setSectionResizeMode(5, QHeaderView::ResizeToContents);
     tree->header()->setStretchLastSection(false);
     tree->setTextElideMode(Qt::ElideLeft);
 
@@ -146,7 +142,7 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     grid->addWidget(buttonBox,5,0,1,4,Qt::AlignRight);
 #endif
     setLayout(grid);
-    resize(800,500);
+    resize(::dpiAwareSize(800,500,this));
 
     initTable();
 }
@@ -194,7 +190,7 @@ void ReplayGainDialog::showHelp()
 void setRg(QTreeWidgetItem *item, const ReplayGainInfo &replayGainInfo)
 {DD;
     item->setIcon(RG_NUMBER,replayGainInfo.isEmpty()?
-                      QIcon():QIcon(App->iconThemeIcon("tick.png")));
+                      QIcon():QIcon::fromTheme("tick"));
     item->setText(RG_ALBUMGAIN,replayGainInfo.albumGain);
     item->setText(RG_ALBUMPEAK,replayGainInfo.albumPeak);
     item->setText(RG_TRACKGAIN,replayGainInfo.trackGain);

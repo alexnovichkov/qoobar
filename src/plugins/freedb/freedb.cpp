@@ -8,10 +8,9 @@
 
 #include <QtDebug>
 
-#ifndef HAVE_QT5
-#include <QtPlugin>
-Q_EXPORT_PLUGIN2(freedb, FreedbPlugin)
-#endif
+const int FRREEDB_EXACT_MATCH = 200;
+const int FREEDB_MULTIPLE_MATCHES = 210;
+const int FREEDB_INEXACT_MATCH = 211;
 
 const QString freedbHello = QString("&hello=novichkov+qoobar.sourceforge.net+freedbplugin+1.0.1&proto=6");
 
@@ -57,8 +56,7 @@ Request FreedbPlugin::query(const QVector<int> &lengths)
     m_errorString = helper.errorString;
 
     return Request(QString("http://freedb.freedb.org/~cddb/cddb.cgi?cmd=cddb+query+%1%2")
-            .arg(request)
-            .arg(freedbHello));
+            .arg(request, freedbHello));
 }
 
 QList<SearchResult> FreedbPlugin::parseResponse(const QByteArray &response)
@@ -72,13 +70,13 @@ QList<SearchResult> FreedbPlugin::parseResponse(const QByteArray &response)
     bool ok;
     int code = response.left(3).toInt(&ok);
     if (ok) {
-        if (code==200) {//exact match
+        if (code==FRREEDB_EXACT_MATCH) {//exact match
             SearchResult r;
             r.fields.insert("url", frame.arg(s.section(" ",1,2)));
             r.fields.insert("album", s.section(" ",1).simplified());
             results << r;
         }
-        else if (code==210 || code == 211) {//multiple exact matches or inexact matches
+        else if (code==FREEDB_MULTIPLE_MATCHES || code == FREEDB_INEXACT_MATCH) {//multiple exact matches or inexact matches
             QStringList list = s.split(QRegExp("[\\r\\n]+"));
             for (int i=1; i<list.size()-2; ++i) {
                 SearchResult r;
@@ -166,7 +164,7 @@ SearchResult FreedbPlugin::parseRelease(const QByteArray &response)
 
     if (response.isEmpty()) return r;
     int code=response.mid(0,3).toInt();
-    if (code==210) {
+    if (code==FREEDB_MULTIPLE_MATCHES) {
         QStringList lines=QString::fromUtf8(response).split("\n");
         lines.removeFirst();
 
@@ -188,7 +186,7 @@ SearchResult FreedbPlugin::parseRelease(const QByteArray &response)
             }
             else break;
         }
-        if (offsets.size()==0) return r;
+        if (offsets.isEmpty()) return r;
 
         for (int i=0; i<offsets.count()-1; ++i) {
             offsets[i]=(offsets[i+1]-offsets[i])/75;

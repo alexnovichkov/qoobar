@@ -44,7 +44,7 @@ public:
                 QTextStream stream(&f);
                 stream.setCodec(codec.toLatin1());
                 Q_FOREACH (const QString &s, contents)
-                    stream << s << endl;
+                    stream << s << Qt::endl;
             }
             else {//write in system locale codec
                 Q_FOREACH (const QString &s, contents)
@@ -86,7 +86,8 @@ public:
         QStringList l;
         l<<"#EXTM3U";
         for (int i=0; i<tags.size(); ++i) {
-            l << QString("#EXTINF:%1,%2: %3 - %4").arg(tags.at(i).length())
+            l << QString("#EXTINF:%1,%2: %3 - %4")
+                 .arg(tags.at(i).length())
                  .arg(tags.at(i).artist())
                  .arg(tags.at(i).album())
                  .arg(tags.at(i).title());

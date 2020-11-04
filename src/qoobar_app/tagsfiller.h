@@ -118,9 +118,7 @@ private:
     int currentAlbum;
     QList<SearchResult> searchResults;
     ReleaseInfoWidget *releaseInfoWidget;
-#ifdef HAVE_QT5
     QHash<QString, IDownloadPlugin *> loadedPlugins;
-#endif
 };
 
 #endif

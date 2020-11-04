@@ -29,11 +29,7 @@
 #include "tagger.h"
 #include "filenamerenderer.h"
 #include "legendbutton.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "highlightdelegate.h"
 #include "filedelegatehighlighter.h"
 #include "fancylineedit.h"
@@ -44,11 +40,12 @@
 
 #include "qbutton.h"
 
-QWidgetAction *createWidgetAction(QWidget *widget1,QWidget *widget2, QWidget *parent=0)
+QWidgetAction *createWidgetAction(QWidget *widget1, QWidget *widget2, QWidget *parent=nullptr)
 {DD;
-    QWidgetAction *a = new QWidgetAction(parent);
-    QWidget *inner = new QWidget(parent);
-    QHBoxLayout *l = new QHBoxLayout;
+    auto *a = new QWidgetAction(parent);
+    auto *inner = new QWidget(parent);
+    auto *l = new QHBoxLayout;
+    //TODO: this->devicePixelRatio()
 #ifdef Q_OS_MAC
     l->setContentsMargins(5,1,5,1);
 #else
@@ -91,10 +88,10 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     directoryGroup->setEnabled(App->renameOptions.renamingOperation != 2);
 
     directoryEdit = new FancyLineEdit(this);
-    QPixmap pixmap(16, 16);
+    QPixmap pixmap(SMALL_ICON_SIZE, SMALL_ICON_SIZE);
     pixmap.fill(Qt::transparent);
     QPainter painter(&pixmap);
-    painter.drawText(0,14,QSL("..."));
+    painter.drawText(0,SMALL_ICON_SIZE-2,QSL("..."));
 
     directoryEdit->setButtonPixmap(FancyLineEdit::Right, pixmap);
     directoryEdit->setButtonVisible(FancyLineEdit::Right, true);
@@ -107,13 +104,13 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
 
     patternEdit = new QComboBox(this);
 
-    FancyLineEdit *patternLineEdit = new FancyLineEdit(this);
+    auto *patternLineEdit = new FancyLineEdit(this);
     QIcon icon = QIcon::fromTheme(layoutDirection() == Qt::LeftToRight ?
                      QSL("edit-clear-locationbar-rtl") :
                      QSL("edit-clear-locationbar-ltr"),
-                     QIcon::fromTheme(QSL("edit-clear"), QIcon(App->iconThemeIcon("editclear.png"))));
+                     QIcon::fromTheme(QSL("edit-clear"), QIcon::fromTheme("editclear")));
 
-    patternLineEdit->setButtonPixmap(FancyLineEdit::Right, icon.pixmap(16));
+    patternLineEdit->setButtonPixmap(FancyLineEdit::Right, icon.pixmap(SMALL_ICON_SIZE));
     patternLineEdit->setButtonVisible(FancyLineEdit::Right, true);
     patternLineEdit->setButtonToolTip(FancyLineEdit::Right, tr("Remove this pattern"));
     patternLineEdit->setAutoHideButton(FancyLineEdit::Right, true);
@@ -121,8 +118,12 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     patternEdit->setLineEdit(patternLineEdit);
 
     patternEdit->setEditable(true);
-    patternEdit->setAutoCompletion(true);
-    patternEdit->setAutoCompletionCaseSensitivity(Qt::CaseSensitive);
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+     patternEdit->setAutoCompletion(true);
+     patternEdit->setAutoCompletionCaseSensitivity(Qt::CaseSensitive);
+#else
+    patternEdit->completer()->setCaseSensitivity(Qt::CaseSensitive);
+#endif
     if (!App->patterns.isEmpty()) {
         patternEdit->insertItems(0,App->patterns);
         filenameRenderer->setPattern(App->patterns.first());
@@ -135,7 +136,7 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     connect(legendButton,SIGNAL(placeholderChosen(QString)),SLOT(insertLegend(QString)));
 
 
-    QHBoxLayout *patternLayout = new QHBoxLayout;
+    auto *patternLayout = new QHBoxLayout;
     patternLayout->addWidget(patternEdit,1);
     patternLayout->addWidget(legendButton);
 
@@ -189,8 +190,8 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     applyToFoldersCheckBox->setChecked(App->renameOptions.applyToFolders);
     //applyToFoldersCheckBox->setEnabled(App->renameOptions.renamingOperation != 2);
 
-    QPushButton *optionsButton = new QPushButton(tr("Options"), this);
-    QMenu *optionsMenu = new QMenu(this);
+    auto *optionsButton = new QPushButton(tr("Options"), this);
+    auto *optionsMenu = new QMenu(this);
 
     QWidgetAction *deleteFolderWidget = createWidgetAction(removeFolderCheckBox, 0, this);
     QWidgetAction *charactersWidget = createWidgetAction(charactersCheckBox, replaceCharacterEdit, this);
@@ -214,7 +215,8 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     table = new QTableWidget(oldFileNames.count(),2,this);
     table->setHorizontalHeaderLabels(QStringList() << tr("Old names") << tr("New names"));
     table->horizontalHeader()->setStretchLastSection(true);
-    table->horizontalHeader()->resizeSection(0, 350);
+    //TODO: this->devicePixelRatio()
+    table->horizontalHeader()->resizeSection(0, ::dpiAwareSize(350,this));
     table->setTextElideMode(Qt::ElideLeft);
 #ifdef Q_OS_MAC
     table->setAttribute(Qt::WA_MacSmallSize, true);
@@ -250,8 +252,9 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     QVBoxLayout *l = new QVBoxLayout;
     QFormLayout *mainLayout = new QFormLayout;
     mainLayout->addRow(tr("Do what:"),operationComboBox);
-    directoryEdit->setMinimumWidth(200);
-    patternEdit->setMinimumWidth(200);
+    //TODO: this->devicePixelRatio()
+    directoryEdit->setMinimumWidth(::dpiAwareSize(200, this));
+    patternEdit->setMinimumWidth(::dpiAwareSize(200, this));
     mainLayout->addRow(directoryGroup, directoryEdit);
     mainLayout->addRow(tr("Output file name pattern"), patternLayout);
     mainLayout->addWidget(optionsButton);
@@ -281,7 +284,8 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     mainLayout->setColumnStretch(2,10);
     setLayout(mainLayout);
 #endif
-    resize(800,550);
+    //TODO: this->devicePixelRatio()
+    resize(::dpiAwareSize(800, 550, this));
 
     table->setFocusPolicy(Qt::NoFocus);
     table->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);

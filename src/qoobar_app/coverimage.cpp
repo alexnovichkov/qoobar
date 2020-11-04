@@ -37,8 +37,6 @@ CoverImageData::CoverImageData(const CoverImageData &other)
       description(other.description)
 { }
 
-CoverImageData::~CoverImageData() {}
-
 CoverImage::CoverImage()
 {
     d = new CoverImageData;

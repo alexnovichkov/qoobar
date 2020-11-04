@@ -45,27 +45,46 @@ enum MessageType {
     MT_SUCCESS=3
 };
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 #define FILE_NAME(f) reinterpret_cast<const wchar_t *>((f).utf16())
 #else
 #define FILE_NAME(f) QFile::encodeName((f)).constData()
 #endif
 
-#ifdef HAVE_QT5
-  #define SETSECTIONRESIZEMODE setSectionResizeMode
-  #define SETSECTIONSCLICKABLE setSectionsClickable
+#if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0))
+    #define SKIP_EMPTY_PARTS QString::SkipEmptyParts
 #else
-  #define SETSECTIONRESIZEMODE setResizeMode
-  #define SETSECTIONSCLICKABLE setClickable
+    #define SKIP_EMPTY_PARTS Qt::SkipEmptyParts
 #endif
 
-#ifdef HAVE_QT5
-#define QSL(s) QStringLiteral(s)
+#if (QT_VERSION < QT_VERSION_CHECK(5, 11, 0))
+    #define HORIZONTAL_ADVANCE width
 #else
-#define QSL(s) (s)
+    #define HORIZONTAL_ADVANCE horizontalAdvance
 #endif
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+    #define BIRTH_TIME created
+#else
+    #define BIRTH_TIME birthTime
+#endif
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    #define STYLE_OPTION_VIEW_ITEM QStyleOptionViewItemV4
+#else
+    #define STYLE_OPTION_VIEW_ITEM QStyleOptionViewItem
+#endif
+
+
+#define QSL(s) QStringLiteral(s)
 
 #define QLS(s) QLatin1String(s)
+
+#define SMALL_ICON_SIZE 16
+#define MEDIUM_ICON_SIZE 24
+#define LARGE_ICON_SIZE 32
+
+#define MAXIMUM_FILENAME_LENGTH 255
 
 enum {
     ALWAYSVISIBLE=0,

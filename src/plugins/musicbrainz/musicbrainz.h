@@ -7,18 +7,9 @@
 class MusicbrainzPlugin : public QObject, IDownloadPlugin
 {
     Q_OBJECT
-#ifdef HAVE_QT5
     Q_PLUGIN_METADATA(IID "qoobar.IDownloadPlugin/2.0" FILE "musicbrainz.json")
-#endif
     Q_INTERFACES(IDownloadPlugin)
 public:
-#ifndef HAVE_QT5
-    QString text() {return QObject::tr("Musicbrainz");}
-    QString description() {return QObject::tr("Fill tags from Musicbrainz database");}
-    QString key() {return "musicbrainz";}
-    QString version() {return "1.0.2";}
-    QIcon icon() {return QIcon();}
-#endif
     Request queryForManualSearch(const QStringList &);
     Request queryForCD();
     Request queryForSearchByFiles(const QVector<int> &);

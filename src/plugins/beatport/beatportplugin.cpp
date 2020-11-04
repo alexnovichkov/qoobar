@@ -1,50 +1,13 @@
 #include "beatportplugin.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
 #include <QJsonDocument>
-#else
-#include <QtGui>
-#include "ereilin/json.h"
-#endif
 
 #include "corenetworksearch.h"
 #include "checkableheaderview.h"
 #include "enums.h"
 #include "tagparser.h"
 #include "downloadhelper.h"
-
-#ifndef HAVE_QT5
-QString BeatportPlugin::text()
-{
-    return tr("Fill tags from Beatport");
-}
-
-/*returns an icon for menus, tollbars etc.*/
-QIcon BeatportPlugin::icon()
-{
-    return QIcon();
-}
-
-/*returns a full localized description of a plugin*/
-QString BeatportPlugin::description()
-{
-    return tr("Filling in tags from the Beatport database");
-}
-
-/*returns a short unique key that identifies a plugin*/
-QString BeatportPlugin::key()
-{
-    return "beatport";
-}
-
-QString BeatportPlugin::version()
-{
-    return QString(PLUGIN_VERSION);
-}
-
-Q_EXPORT_PLUGIN2(beatport, BeatportPlugin)
-#endif
 
 QList<Tag> BeatportPlugin::getNewTags(const QList<Tag> &oldTags)
 {
@@ -91,33 +54,33 @@ BeatportWidget::BeatportWidget(QWidget *parent)
     prevAction = new QAction(this);
     prevAction->setEnabled(false);
     connect(prevAction,SIGNAL(triggered()),SLOT(previous()));
-    QToolButton *prevButton = new QToolButton(this);
+    auto *prevButton = new QToolButton(this);
     prevButton->setDefaultAction(prevAction);
     prevButton->setArrowType(Qt::LeftArrow);
     prevButton->setAutoRaise(true);
-    prevButton->setIconSize(QSize(16,16));
+    prevButton->setIconSize(QSize(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
 
     nextAction = new QAction(this);
     nextAction->setEnabled(false);
     connect(nextAction,SIGNAL(triggered()),SLOT(next()));
-    QToolButton *nextButton = new QToolButton(this);
+    auto *nextButton = new QToolButton(this);
     nextButton->setDefaultAction(nextAction);
     nextButton->setArrowType(Qt::RightArrow);
     nextButton->setAutoRaise(true);
-    nextButton->setIconSize(QSize(16,16));
+    nextButton->setIconSize(QSize(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
 
     titleLabel = new QLabel(this);
-    titleLabel->setMaximumWidth(280);
+    titleLabel->setMaximumWidth(280*devicePixelRatio());
 
     authorsLabel = new QLabel(this);
-    authorsLabel->setMaximumWidth(280);
+    authorsLabel->setMaximumWidth(280*devicePixelRatio());
     authorsLabel->setWordWrap(true);
 
     infoLabel = new QLabel(this);
-    infoLabel->setMaximumWidth(280);
+    infoLabel->setMaximumWidth(280*devicePixelRatio());
     infoLabel->setWordWrap(true);
 
-    QGridLayout *l = new QGridLayout;
+    auto *l = new QGridLayout;
     l->addWidget(prevButton,0,0,3,1,Qt::AlignCenter | Qt::AlignVCenter);
     l->addWidget(titleLabel,0,1,1,2);
     l->addWidget(pictureLabel,1,1,2,1);
@@ -125,7 +88,11 @@ BeatportWidget::BeatportWidget(QWidget *parent)
     l->addWidget(infoLabel,2,2);
     l->addWidget(nextButton,0,3,3,1,Qt::AlignCenter | Qt::AlignVCenter);
     setLayout(l);
-    resize(400,100);
+#if QT_VERSION >= QT_VERSION_CHECK(5,6,0)
+    resize(int(400*devicePixelRatioF()), int(100*devicePixelRatioF()));
+#else
+    resize(400*devicePixelRatio(), 100*devicePixelRatio());
+#endif
     update(BeatportTrack());
 }
 
@@ -228,24 +195,24 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
 
     for (int i=0; i<oldTags.size(); ++i) {
         table->insertRow(i);
-        QTableWidgetItem *item0 = new QTableWidgetItem();
+        auto *item0 = new QTableWidgetItem();
         item0->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable);
         item0->setCheckState(Qt::Checked);
         table->setItem(i,0,item0);
 
-        QTableWidgetItem *item1 = new QTableWidgetItem();
+        auto *item1 = new QTableWidgetItem();
         item1->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
         table->setItem(i,1,item1);
 
-        QTableWidgetItem *item2 = new QTableWidgetItem();
+        auto *item2 = new QTableWidgetItem();
         item2->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
         table->setItem(i,2,item2);
 
-        QTableWidgetItem *item3 = new QTableWidgetItem();
+        auto *item3 = new QTableWidgetItem();
         item3->setFlags(Qt::ItemIsEnabled);
         table->setItem(i,3,item3);
 
-        BeatportWidget *w = new BeatportWidget(this);
+        auto *w = new BeatportWidget(this);
         widgets << w;
         table->setCellWidget(i,3,w);
     }
@@ -261,7 +228,7 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
     }
 
     connect(table,SIGNAL(cellChanged(int,int)),SLOT(checkBoxToggled(int,int)));
-    table->verticalHeader()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
+    table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     header = new CheckableHeaderView(Qt::Horizontal,table);
     table->setHorizontalHeader(header);
@@ -277,7 +244,7 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
     progressBar->setEnabled(false);
     progressBar->setTextVisible(false);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
@@ -294,7 +261,7 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
     l->addWidget(buttonBox,3,0,1,2);
 
     this->setLayout(l);
-    resize(800,480);
+    resize(800*devicePixelRatio(),480*devicePixelRatio());
 }
 
 QList<Tag> Dialog::getNewTags()
@@ -399,13 +366,11 @@ void Dialog::parseTrack(const QByteArray &b, int index)
 {
     QList<BeatportTrack> tracks;
     bool ok;
-#ifdef HAVE_QT5
+
     QVariant parsed = QJsonDocument::fromJson(b).toVariant();
     QVariantMap map = parsed.toMap();
     ok = !map.isEmpty();
-#else
-    QVariantMap map = QtJson::Json::parse(QString::fromUtf8(b),ok).toMap();
-#endif
+
     if (ok) {
         QVariantList results = map.value("results").toList();
         Q_FOREACH (const QVariant &v, results) {
@@ -492,20 +457,16 @@ QUrl Dialog::createQuery(int index)
     //queryItems.append(QPair<QString, QString>("page","1"));
     //queryItems.append(QPair<QString, QString>("perPage","20"));
 
-#ifdef HAVE_QT5
     QUrlQuery urlQuery;
     urlQuery.setQueryItems(queryItems);
     result.setQuery(urlQuery);
-#else
-    result.setQueryItems(queryItems);
-#endif
     return result;
 }
 
 void Dialog::updateTags(Tag &tag, BeatportWidget *w)
 {
     BeatportTrack track = w->currentTrack();
-    if (!track.id==0) {
+    if (track.id!=0) {
         if (!track.bpm.isEmpty()) tag.setTag(TEMPO,track.bpm);
         if (!track.key.isEmpty()) {
             tag.setTag(KEY,track.key);

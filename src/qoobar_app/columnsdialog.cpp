@@ -26,22 +26,18 @@
 
 #include "columnsdialog.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "qoobarglobals.h"
 #include "application.h"
 #include "checkableheaderview.h"
 #include "enums.h"
 
 ColumnsDialog::ColumnsDialog(QTreeView *tree) :
-    QDialog(tree), tree(tree), header(0)
+    QDialog(tree), tree(tree), header(nullptr)
 {DD;
     setWindowTitle(tr("Qoobar - Adjust columns visibility"));
 
-    QVBoxLayout *layout = new QVBoxLayout;
+    auto *layout = new QVBoxLayout;
 
     const int columnCount = tree->header()->count();
 
@@ -73,7 +69,9 @@ ColumnsDialog::ColumnsDialog(QTreeView *tree) :
     layout->addWidget(buttonBox);
 
     setLayout(layout);
-    resize(500,400);
+    //TODO: this->devicePixelRatio()
+    resize(::dpiAwareSize(App->screens().first()->availableSize().width()/4,
+                          App->screens().first()->availableSize().height()/3,this));
 }
 
 

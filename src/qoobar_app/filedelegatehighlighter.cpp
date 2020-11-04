@@ -26,20 +26,22 @@
 
 #include "filedelegatehighlighter.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "qoobarglobals.h"
 
 FileDelegateHighlighter::FileDelegateHighlighter()
 {
 }
 
-QList<QTextLayout::FormatRange> FileDelegateHighlighter::generateFormats(QStyleOptionViewItemV4 *option,
-                                                                         const QRect &textRect,
-                                                                         const QModelIndex &index)
+QList<QTextLayout::FormatRange> FileDelegateHighlighter::generateFormats(
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+        QStyleOptionViewItemV4
+#else
+        QStyleOptionViewItem
+#endif
+        *option,
+        const QRect &textRect,
+        const QModelIndex &index)
 {DD;
     QList<QTextLayout::FormatRange> formats;
 

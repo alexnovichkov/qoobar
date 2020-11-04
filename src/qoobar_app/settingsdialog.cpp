@@ -26,17 +26,15 @@
 
 #include "settingsdialog.h"
 #include "configpages.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "application.h"
 #include "qoobarglobals.h"
+#include "enums.h"
 
 #ifdef Q_OS_MAC
 #include "mactoolbar.h"
 #include "qocoa/qbutton.h"
+//defines settings dialog that resizes each time page is changed
 #define DYNAMICPAGES
 #endif
 #include "qoobarhelp.h"
@@ -89,12 +87,12 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
     toolBar->setMovable(false);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    toolBar->setIconSize(QSize(48,48));
+    toolBar->setIconSize(QSize(LARGE_ICON_SIZE, LARGE_ICON_SIZE));
 
     QActionGroup *ag = new QActionGroup(this);
     for (int i=0; i<configPages.size(); ++i) {
         ConfigPage *page = configPages.at(i);
-        QAction *a = new QAction(QIcon(page->iconFilename()), page->description(),this);
+        QAction *a = new QAction(QIcon::fromTheme(page->iconFilename()), page->description(),this);
         a->setCheckable(true);
         a->setActionGroup(ag);
         if (i==0) a->setChecked(true);
@@ -106,7 +104,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     resetSettingsButton = new QPushButton(tr("Reset Settings"),this);
     connect(resetSettingsButton,SIGNAL(clicked()),this,SLOT(resetSettings()));
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 #ifdef Q_OS_MAC
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(close()));
@@ -119,27 +117,28 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
     //laying out
-    QHBoxLayout *horizontalLayout = new QHBoxLayout;
+    auto *horizontalLayout = new QHBoxLayout;
     horizontalLayout->addWidget(pagesWidget, 1);
 
-    QHBoxLayout *bottomLayout = new QHBoxLayout;
+    auto *bottomLayout = new QHBoxLayout;
     bottomLayout->addWidget(resetSettingsButton);
     bottomLayout->addWidget(buttonBox);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     mainLayout->addLayout(horizontalLayout);
     //mainLayout->addStretch(1);
     mainLayout->addSpacing(12);
     mainLayout->addLayout(bottomLayout);
 #ifdef Q_OS_MAC
-    QWidget *w = new QWidget(this);
+    auto *w = new QWidget(this);
     w->setLayout(mainLayout);
     setCentralWidget(w);
 #else
     mainLayout->setMenuBar(toolBar);
     setLayout(mainLayout);
 #endif
-    resize(500,300);
+    resize(::dpiAwareSize(qApp->primaryScreen()->availableSize().width()/4,
+                          qApp->primaryScreen()->availableSize().height()/3,this));
     retranslateUI();
 }
 

@@ -53,19 +53,19 @@ public:
     bool isDiscidResolved() {return libdiscidResolved;}
     QString errorString;
 private:
-    bool libdiscidResolved;
+    bool libdiscidResolved = false;
 #ifndef Q_OS_MAC
     bool resolveLibdiscid();
-    Discid_new discid_new;
-    Discid_free discid_free;
-    Discid_get_freedb_id discid_get_freedb_id;
-    Discid_read discid_read;
-    Discid_get_first_track_num discid_get_first_track_num;
-    Discid_get_last_track_num discid_get_last_track_num;
-    Discid_get_sectors discid_get_sectors;
-    Discid_get_track_offset discid_get_track_offset;
-    Discid_put discid_put;
-    Discid_get_id discid_get_id;
+    Discid_new discid_new = nullptr;
+    Discid_free discid_free = nullptr;
+    Discid_get_freedb_id discid_get_freedb_id = nullptr;
+    Discid_read discid_read = nullptr;
+    Discid_get_first_track_num discid_get_first_track_num = nullptr;
+    Discid_get_last_track_num discid_get_last_track_num = nullptr;
+    Discid_get_sectors discid_get_sectors = nullptr;
+    Discid_get_track_offset discid_get_track_offset = nullptr;
+    Discid_put discid_put = nullptr;
+    Discid_get_id discid_get_id = nullptr;
 #endif
 };
 

@@ -4,23 +4,12 @@
 
 #include <QUrl>
 #include <QVariant>
-#ifdef HAVE_QT5
 #include <QtConcurrent/QtConcurrent>
 #include <QJsonDocument>
-#else
-#include <QtConcurrentMap>
-#include <QtConcurrentFilter>
-#include "ereilin/json.h"
-#endif
-
-#ifndef HAVE_QT5
-#include <QtPlugin>
-
-Q_EXPORT_PLUGIN2(discogs, DiscogsPlugin)
-#endif
 
 const char CONSUMER_KEY[] = "rNTSpiaQHGyopsmOuRHC";
 const char CONSUMER_SECRET[] = "ZdhxWUelUWhHjAOkVRUIEzguggsJYVUT";
+const int PREFERRED_PAUSE_SIZE = 201;
 
 Artist toArtist(const QVariant &v)
 {
@@ -28,7 +17,7 @@ Artist toArtist(const QVariant &v)
     QVariantMap artist=v.toMap();
     static const char *fields[] = {"name", "role", "tracks"};
     for (int i=0; i<3; ++i)
-        a.fields.insert(fields[i],artist[fields[i]].toString());
+        a.fields.insert(fields[i],artist.value(fields[i]).toString());
 
     return a;
 }
@@ -107,7 +96,7 @@ Request DiscogsPlugin::queryForManualSearch(const QStringList &list)
     if (!list.first().isEmpty()) query.append("&artist=" + QString(QUrl::toPercentEncoding(list.first())));
     if (!list.last().isEmpty()) query.append("&release_title=" + QString(QUrl::toPercentEncoding(list.last())));
 
-    query.append(QString("&key=%1&secret=%2").arg(CONSUMER_KEY).arg(CONSUMER_SECRET));
+    query.append(QString("&key=%1&secret=%2").arg(CONSUMER_KEY, CONSUMER_SECRET));
 
     return Request(QUrl(query));
 }
@@ -130,7 +119,7 @@ Request DiscogsPlugin::queryForPicture(const QString &url)
 Request DiscogsPlugin::queryForRelease(const QString &url)
 {
     Request r(url);
-    r.addRawHeader("Authorization",QString("Discogs key=%1, secret=%2").arg(CONSUMER_KEY).arg(CONSUMER_SECRET).toLatin1());
+    r.addRawHeader("Authorization",QString("Discogs key=%1, secret=%2").arg(CONSUMER_KEY, CONSUMER_SECRET).toLatin1());
     return r;
 }
 
@@ -139,21 +128,12 @@ QList<SearchResult> DiscogsPlugin::parseResponse(const QByteArray &response)
     QList<SearchResult> results;
     m_errorString.clear();
 
-#ifdef HAVE_QT5
     QVariant parsed = QJsonDocument::fromJson(response).toVariant();
     QVariantMap result = parsed.toMap();
     if (result.isEmpty()) {
         m_errorString = tr("Cannot parse response from Discogs server");
         return results;
     }
-#else
-    bool ok=true;
-    QVariantMap result = QtJson::Json::parse(QString::fromUtf8(response),ok).toMap();
-    if (!ok) {
-        m_errorString = tr("Cannot parse response from Discogs server");
-        return results;
-    }
-#endif
 
     QVariantList filtered=QtConcurrent::blockingFiltered(result["results"].toList(), isCD);
     results = parseToList(filtered,toSearchResult);
@@ -167,21 +147,12 @@ SearchResult DiscogsPlugin::parseRelease(const QByteArray &response)
     r.loaded = true;
     m_errorString.clear();
 
-#ifdef HAVE_QT5
     QVariant parsed = QJsonDocument::fromJson(response).toVariant();
     QVariantMap result = parsed.toMap();
     if (result.isEmpty()) {
         m_errorString = tr("Cannor parse response from Discogs server");
         return r;
     }
-#else
-    bool ok=true;
-    QVariantMap result = QtJson::Json::parse(QString::fromUtf8(response),ok).toMap();
-    if (!ok) {
-        m_errorString = tr("Cannor parse response from Discogs server");
-        return r;
-    }
-#endif
 
     r.fields.insert("label", toString(result["labels"].toList(),toLabel,"; "));
     r.fields.insert("year", result["year"].toString());
@@ -226,7 +197,7 @@ QStringList DiscogsPlugin::releaseToList(const SearchResult &r)
 
 int DiscogsPlugin::preferredPauseSize()
 {
-    return 201;
+    return PREFERRED_PAUSE_SIZE;
 }
 
 QMap<QString, QString> DiscogsPlugin::authenticationInfo()

@@ -25,11 +25,7 @@
  */
 
 #include "schemeeditor.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "qoobarglobals.h"
 #include "taggingscheme.h"
 #include "application.h"
@@ -148,7 +144,7 @@ SchemeEditor::SchemeEditor(const QString &file, Operation operation, QWidget *pa
     setLayout(layout);
     edit->selectAll();
 
-    resize(750,410);
+    resize(::dpiAwareSize(750,410,this));
 }
 
 SchemeEditor::~SchemeEditor()

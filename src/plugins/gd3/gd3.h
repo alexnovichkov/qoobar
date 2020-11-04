@@ -7,18 +7,9 @@
 class GD3Plugin : public QObject, IDownloadPlugin
 {
     Q_OBJECT
-#ifdef HAVE_QT5
     Q_PLUGIN_METADATA(IID "qoobar.IDownloadPlugin/2.0" FILE "gd3.json")
-#endif
     Q_INTERFACES(IDownloadPlugin)
 public:
-#ifndef HAVE_QT5
-    QString text() {return QObject::tr("GD3 database");}
-    QString description() {return QObject::tr("Fill tags from GD3 database");}
-    QString key() {return "gd3";}
-    QString version() {return "1.0.1";}
-    QIcon icon() {return QIcon();}
-#endif
     Request queryForManualSearch(const QStringList &);
     Request queryForCD();
     Request queryForSearchByFiles(const QVector<int> &);
@@ -37,7 +28,7 @@ public:
 private:
     Request query(const QVector<int> &lengths);
     QStringList getTOC(const QVector<int> &lengths);
-    QString getRequestString(const QString &operation, const QString &argument, const QString argument1=QString());
+    QString getRequestString(const QString &operation, const QString &argument, const QString &argument1=QString());
     QString m_errorString;
 
 #ifndef Q_OS_MAC

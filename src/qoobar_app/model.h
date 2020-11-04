@@ -292,10 +292,6 @@ Q_SIGNALS:
 private:
     void setTagValue(int index, int tagID, const QString &newValue);
     void setTagValue(int index, const QString &tagID, const QString &newValue);
-#if QT_VERSION < 0x050000
-    QVector<int> sortInteger(int column, Qt::SortOrder order, int sortType);
-    QVector<int> sortString(int column, Qt::SortOrder order, int sortType);
-#endif
     QVector<int> indexes;
     QList<Tag> tags;
     int changedFileIndex;
@@ -304,8 +300,6 @@ private:
     QThread *readThread;
     int currentFileIndex;
 
-    QFont uFont;
-    QFont bFont;
     QIcon rgIcon;
     QIcon saveIcon;
     QIcon imgIcon;

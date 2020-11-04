@@ -1,45 +1,9 @@
 #include "playlistsplugin.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "enums.h"
 #include "AbstractPlaylist.h"
-
-#ifndef HAVE_QT5
-QString PlaylistsPlugin::text()
-{
-    return tr("Create playlist");
-}
-
-/*returns an icon for menus, tollbars etc.*/
-QIcon PlaylistsPlugin::icon()
-{
-    return QIcon();
-}
-
-/*returns a full localized description of a plugin*/
-QString PlaylistsPlugin::description()
-{
-    return tr("Create playlist for selected files");
-}
-
-/*returns a short unique key that identifies a plugin*/
-QString PlaylistsPlugin::key()
-{
-    return "Playlists";
-}
-
-QString PlaylistsPlugin::version()
-{
-    return QString(PLUGIN_VERSION);
-}
-
-Q_EXPORT_PLUGIN2(Playlists, PlaylistsPlugin)
-#endif
 
 QList<Tag> PlaylistsPlugin::getNewTags(const QList<Tag> &oldTags)
 {
@@ -89,7 +53,7 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
     buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Save"));
 
-    QGridLayout *l = new QGridLayout;
+    auto *l = new QGridLayout;
     l->addWidget(new QLabel(tr("Format:"), this),0,0);
     l->addWidget(formatComboBox,0,1);
     l->addWidget(new QLabel(tr("Paths:"), this),1,0);
@@ -99,7 +63,6 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
     l->addWidget(buttonBox,3,0,1,2);
 
     this->setLayout(l);
-    resize(50,50);
 }
 
 Dialog::~Dialog()
@@ -139,7 +102,7 @@ bool Dialog::createPlaylist(const QString &format, int pathType, int type)
     if (!fileName.endsWith("."+format))
         fileName.append("."+format);
 
-    AbstractPlaylist *playlist=0;
+    AbstractPlaylist *playlist = nullptr;
     if (format=="m3u" || format=="m3u8") {
         if (type==0) playlist = new M3UPlaylist(oldTags, format=="m3u8");
         else playlist = new ExtendedM3UPlaylist(oldTags, format=="m3u8");

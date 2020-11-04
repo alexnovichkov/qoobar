@@ -42,8 +42,6 @@ protected:
     void mouseReleaseEvent(QMouseEvent *ev);
     void enterEvent(QEvent *event);
     void leaveEvent(QEvent *event);
-private:
-    QPixmap cursor;
 };
 
 

@@ -40,7 +40,6 @@ class CoreNetworkSearch : public QObject
     Q_OBJECT
 public:
     explicit CoreNetworkSearch(QObject *parent = 0);
-    virtual ~CoreNetworkSearch();
     void setProxy(const QString &proxyServer,
                   const QString &proxyPort,
                   const QString &proxyLogin,

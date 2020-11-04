@@ -2,11 +2,7 @@
 #define BEATPORTPLUGIN_H
 
 #include <QObject>
-#ifdef HAVE_QT5
 #include <QtWidgets/QDialog>
-#else
-#include <QDialog>
-#endif
 
 #include <QUrl>
 #include "iqoobarplugin.h"
@@ -14,18 +10,9 @@
 class BeatportPlugin : public QObject, IQoobarPlugin
 {
     Q_OBJECT
-#ifdef HAVE_QT5
     Q_PLUGIN_METADATA(IID "qoobar.IQoobarPlugin/1.1" FILE "beatport.json")
-#endif
     Q_INTERFACES(IQoobarPlugin)
 public:
-#ifndef HAVE_QT5
-    QString text();
-    QString description();
-    QString key();
-    QString version();
-    QIcon icon();
-#endif
     QList<Tag> getNewTags(const QList<Tag> &oldTags);
     bool canWorkWithNoFilesSelected() {return false;}
 };
@@ -115,7 +102,7 @@ private:
     CoreNetworkSearch *search;
     QProgressBar *progressBar;
     QCheckBox *filterCheckBox;
-    QCheckBox *skipCheckBox;
+    QCheckBox *skipCheckBox=0;
 };
 
 #endif // BEATPORTPLUGIN_H

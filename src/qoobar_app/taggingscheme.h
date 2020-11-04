@@ -37,7 +37,12 @@ public:
     int id;
     QString name;
 //    QChar placeholder;
+    bool canBeSimplified; //true by default
     QVector<QStringList> fields;
+    FieldDescription() : id(-1), canBeSimplified(true) {
+
+    }
+
     bool operator ==(const FieldDescription &other) const
     {
         return (other.id == id && other.name == name && other.fields == fields);
@@ -79,7 +84,7 @@ public:
 
     int tagIDBySimplifiedName(const QString &name) const;
 
-    void addField(const QString fieldName, int id);
+    void addField(const QString &fieldName, int id);
 
     QList<int> search(TagType tagType, const QString &field);
 

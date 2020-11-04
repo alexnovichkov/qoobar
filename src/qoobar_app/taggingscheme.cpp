@@ -74,6 +74,17 @@ void TaggingScheme::read(bool nameOnly)
             else if (name == "tag") {
                 addField(xml.attributes().value(QSL("name")).toString(),
                          xml.attributes().value(QSL("id")).toString().toInt());
+                if (!xml.attributes().hasAttribute(QSL("canBeSimplified"))) {
+                    //fixing old scheme files
+                    if (m_fields.last().id == LYRICS ||
+                        m_fields.last().id == COMMENT ||
+                        m_fields.last().name==QSL("Synchronized lyrics"))
+                        m_fields.last().canBeSimplified = false;
+                    else
+                        m_fields.last().canBeSimplified = true;
+                }
+                else
+                    m_fields.last().canBeSimplified = xml.attributes().value(QSL("canBeSimplified")).toString()==QSL("true");
             }
             else if (name == "format") {
                 type = (TagType)xml.attributes().value(QSL("id")).toString().toInt();
@@ -116,6 +127,8 @@ bool TaggingScheme::save()
             stream.writeStartElement(QSL("tag"));
             stream.writeAttribute(QSL("name"), field.name);
             stream.writeAttribute(QSL("id"), QString::number(field.id));
+            stream.writeAttribute(QSL("canBeSimplified"), field.canBeSimplified?QSL("true"):QSL("false"));
+
             for (int j=0; j<field.fields.size(); ++j) {
                 stream.writeStartElement(QSL("format"));
                 stream.writeAttribute(QSL("id"), QString::number(j));
@@ -202,8 +215,10 @@ QString TaggingScheme::fieldName(int tagID) const
 
 bool TaggingScheme::canBeSimplified(int tagID) const
 {
-    if (tagID == LYRICS || tagID == COMMENT || fieldName(tagID)=="Synchronized lyrics") return false;
-    return true;
+    return m_fields.at(tagID).canBeSimplified;
+
+//    if (tagID == LYRICS || tagID == COMMENT || fieldName(tagID)=="Synchronized lyrics") return false;
+//    return true;
 }
 
 //QString TaggingScheme::localizedFieldName(int tagID) const
@@ -231,7 +246,7 @@ int TaggingScheme::tagIDBySimplifiedName(const QString &name) const
     return -1;
 }
 
-void TaggingScheme::addField(const QString fieldName, int id)
+void TaggingScheme::addField(const QString &fieldName, int id)
 {DD;
     FieldDescription field;
     field.fields.resize(5);

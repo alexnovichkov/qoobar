@@ -26,11 +26,7 @@
 
 #include "imagedialog.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "enums.h"
 #include "application.h"
@@ -46,9 +42,14 @@ void ClickableLabel::mouseReleaseEvent(QMouseEvent *ev)
 void ClickableLabel::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);
-    if (pixmap()) {
-        if (cursor.isNull()) cursor = App->iconThemeIcon("zoom-in.png").pixmap(16,16);
-        setCursor(cursor);
+    bool hadPixmap = false;
+#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+    hadPixmap = pixmap()!=0;
+#else
+    hadPixmap = (!pixmap(Qt::ReturnByValue).isNull());
+#endif
+    if (hadPixmap) {
+        setCursor(Qt::PointingHandCursor);
     }
 }
 

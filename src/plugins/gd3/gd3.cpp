@@ -1,15 +1,9 @@
 #include "gd3.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
-
 #include <QLibrary>
 #include <QUrl>
 #include <QSettings>
-
 #include <QXmlStreamReader>
 #include "qoobarglobals.h"
 
@@ -17,11 +11,8 @@
 #include "discid.h"
 #endif
 
-#ifndef HAVE_QT5
-#include <QtPlugin>
-
-Q_EXPORT_PLUGIN2(gd3, GD3Plugin)
-#endif
+constexpr int maximumCDTracks = 99;
+constexpr int firstTrackOffset = 150;
 
 Request GD3Plugin::queryForManualSearch(const QStringList &list)
 {
@@ -98,13 +89,13 @@ QStringList GD3Plugin::getTOC(const QVector<int> &lengths)
             return offsetsInFrames;
         }
 
-        discid_new = (Discid_new)lib.resolve(libName,"discid_new");
-        discid_free = (Discid_free)lib.resolve(libName,"discid_free");
+        discid_new = reinterpret_cast<Discid_new>(lib.resolve("discid_new"));
+        discid_free = reinterpret_cast<Discid_free>(lib.resolve("discid_free"));
 
-        discid_read = (Discid_read)lib.resolve(libName,"discid_read");
-        discid_get_first_track_num = (Discid_get_first_track_num)lib.resolve(libName,"discid_get_first_track_num");
-        discid_get_last_track_num = (Discid_get_last_track_num)lib.resolve(libName,"discid_get_last_track_num");
-        discid_get_track_offset = (Discid_get_track_offset)lib.resolve(libName,"discid_get_track_offset");
+        discid_read = (Discid_read)lib.resolve("discid_read");
+        discid_get_first_track_num = reinterpret_cast<Discid_get_first_track_num>(lib.resolve("discid_get_first_track_num"));
+        discid_get_last_track_num = reinterpret_cast<Discid_get_last_track_num>(lib.resolve("discid_get_last_track_num"));
+        discid_get_track_offset = reinterpret_cast<Discid_get_track_offset>(lib.resolve("discid_get_track_offset"));
 #endif
 
         DiscId *disc = discid_new();
@@ -113,7 +104,7 @@ QStringList GD3Plugin::getTOC(const QVector<int> &lengths)
             return offsetsInFrames;
         }
 
-        int disc_read_result=discid_read(disc, NULL);
+        int disc_read_result=discid_read(disc, nullptr);
         if (disc_read_result==0) {
             m_errorString=tr("Cannot read CD");
             discid_free(disc);
@@ -132,17 +123,16 @@ QStringList GD3Plugin::getTOC(const QVector<int> &lengths)
 #endif
     }
     else {//get TOC by files
-        int size=qMin(lengths.size(), 99);
-        int *offsets = new int[100];
+        const int size = qMin(lengths.size(), maximumCDTracks);
+        QVector<int> offsets(size + 1, 0);
 
-        offsets[1]=150;//by default the first track has offset 150
+        offsets[0] = firstTrackOffset;//by default the first track has offset 150
 
         for (int i=0; i<size-1; ++i)
-            offsets[i+2]=offsets[i+1]+lengths.at(i)*75;
+            offsets[i+1] = offsets.at(i) + lengths.at(i)*(firstTrackOffset/2);
 
         for (int i=0; i<size; ++i)
-            offsetsInFrames << QString::number(offsets[i+1]);
-        delete [] offsets;
+            offsetsInFrames << QString::number(offsets.at(i));
     }
 
     return offsetsInFrames;
@@ -169,7 +159,7 @@ Request GD3Plugin::query(const QVector<int> &lengths)
     return r;
 }
 
-QString GD3Plugin::getRequestString(const QString &operation, const QString &argument, const QString argument1)
+QString GD3Plugin::getRequestString(const QString &operation, const QString &argument, const QString &argument1)
 {
     QMap<QString, QString> auth = authenticationInfo();
     QString login = auth.value("user");
@@ -201,7 +191,7 @@ QString GD3Plugin::getRequestString(const QString &operation, const QString &arg
                        "      <Artist>%1</Artist>\n"
                        "      <AlbumTitle>%2</AlbumTitle>\n"
                        "      <NumberResults>20</NumberResults>\n"
-                       "    </SearchAlbum>\n").arg(argument).arg(argument1);
+                       "    </SearchAlbum>\n").arg(argument, argument1);
     }
 
     QString requestString = QString("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
@@ -218,9 +208,7 @@ QString GD3Plugin::getRequestString(const QString &operation, const QString &arg
                                     "  <soap:Body>\n%3"
                                     "  </soap:Body>\n"
                                     "</soap:Envelope>")
-            .arg(login)
-            .arg(password)
-            .arg(body);
+            .arg(login, password, body);
 
     return requestString;
 }
@@ -394,7 +382,7 @@ QStringList GD3Plugin::releaseToList(const SearchResult &r)
            << r.fields.value("artist");
     QString s=r.fields.value("label");
     if (!r.fields.value("numberoftracks").isEmpty()) {
-        s.append(", "+tr("%n track(s)",0,r.fields.value("numberoftracks").toInt()));
+        s.append(", "+tr("%n track(s)",nullptr,r.fields.value("numberoftracks").toInt()));
     }
     if (!s.isEmpty()) result << s;
     return result;
@@ -412,9 +400,9 @@ LoginDialog::LoginDialog(const QString &login, const QString &pass, QWidget *par
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
-    QVBoxLayout *ll = new QVBoxLayout;
+    auto *ll = new QVBoxLayout;
     ll->addWidget(new QLabel(tr("Please set your GD3 login and password"),this));
-    QHBoxLayout *l = new QHBoxLayout;
+    auto *l = new QHBoxLayout;
     l->addWidget(new QLabel(tr("Login:"),this));
     l->addWidget(loginEdit);
     l->addWidget(new QLabel(tr("Password:"),this));

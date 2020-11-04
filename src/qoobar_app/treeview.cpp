@@ -2,11 +2,7 @@
 #include "qoobarglobals.h"
 #include "application.h"
 #include "columnsdialog.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "tab.h"
 #include "tagsreaderwriter.h"
 #include "enums.h"
@@ -82,16 +78,16 @@ void TreeView::resetHeader()
 {DD;
     header()->setSortIndicatorShown(true);
 #ifdef Q_OS_LINUX
-    header()->setMinimumSectionSize(fontMetrics().width(QSL("5555")));
+    header()->setMinimumSectionSize(fontMetrics().HORIZONTAL_ADVANCE(QSL("5555")));
 #endif
-    header()->SETSECTIONRESIZEMODE(COL_TRACKNUMBER, QHeaderView::ResizeToContents); //No.
-    header()->SETSECTIONRESIZEMODE(COL_LENGTH, QHeaderView::ResizeToContents); //length
-    header()->SETSECTIONRESIZEMODE(COL_SAVEICON, QHeaderView::ResizeToContents); //saved
-    header()->SETSECTIONRESIZEMODE(COL_REPLAYGAIN, QHeaderView::ResizeToContents); //saved
-    header()->SETSECTIONRESIZEMODE(COL_IMAGE, QHeaderView::ResizeToContents); //saved
+    header()->setSectionResizeMode(COL_TRACKNUMBER, QHeaderView::ResizeToContents); //No.
+    header()->setSectionResizeMode(COL_LENGTH, QHeaderView::ResizeToContents); //length
+    header()->setSectionResizeMode(COL_SAVEICON, QHeaderView::ResizeToContents); //saved
+    header()->setSectionResizeMode(COL_REPLAYGAIN, QHeaderView::ResizeToContents); //saved
+    header()->setSectionResizeMode(COL_IMAGE, QHeaderView::ResizeToContents); //saved
     header()->setStretchLastSection(false);
     header()->setContextMenuPolicy(Qt::ActionsContextMenu);
-    header()->SETSECTIONSCLICKABLE(true);
+    header()->setSectionsClickable(true);
 
     connect(header(),SIGNAL(geometriesChanged()),SLOT(updateTreeHeaderGeometry()));
     connect(header(),SIGNAL(sectionMoved(int,int,int)),SLOT(updateTreeHeaderGeometry()));
@@ -144,7 +140,7 @@ void TreeView::contextMenuEvent(QContextMenuEvent *event)
         tabNames.insert(-1,tr("New tab"));
         Q_FOREACH (int tabID, tabNames.keys()) {
             QAction *a = new QAction(tabNames.value(tabID),moveToTabMenu);
-            moveToTabMenu->insertAction(0,a);
+            moveToTabMenu->insertAction(nullptr,a);
             connect(a, SIGNAL(triggered()), mapper, SLOT(map()));
             mapper->setMapping(a, tabID);
         }

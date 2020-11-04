@@ -1,11 +1,11 @@
 win32|win {
-    exists(K:/My/programming/sources/libz-1.2.3-1-mingw32-dev/lib/libz.dll.a) {
-        INCLUDEPATH += K:/My/programming/sources/libz-1.2.3-1-mingw32-dev/include
-        LIBS += K:/My/programming/sources/libz-1.2.3-1-mingw32-dev/lib/libz.dll.a
+    exists(E:/My/programming/sources/libz-1.2.3-1-mingw32-dev/lib/libz.dll.a) {
+        INCLUDEPATH += E:/My/programming/sources/libz-1.2.3-1-mingw32-dev/include
+        LIBS += E:/My/programming/sources/libz-1.2.3-1-mingw32-dev/lib/libz.dll.a
     }
-    exists(D:/soft/Programming/libz-1.2.3-1-mingw32-dev/lib/libz.dll.a) {
-        INCLUDEPATH += D:/soft/Programming/libz-1.2.3-1-mingw32-dev/include
-        LIBS += D:/soft/Programming/libz-1.2.3-1-mingw32-dev/lib/libz.dll.a
+    exists(G:/soft/Programming/libz-1.2.3-1-mingw32-dev/lib/libz.dll.a) {
+        INCLUDEPATH += G:/soft/Programming/libz-1.2.3-1-mingw32-dev/include
+        LIBS += G:/soft/Programming/libz-1.2.3-1-mingw32-dev/lib/libz.dll.a
     }
 }
 

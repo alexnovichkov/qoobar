@@ -1,14 +1,11 @@
 #include "styledbar.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include <QPainter>
 #include <QStyleOption>
 #include "qoobarglobals.h"
+#include "application.h"
 
 StyledBar::StyledBar(QWidget *parent)
     : QWidget(parent)
@@ -27,7 +24,7 @@ void StyledBar::paintEvent(QPaintEvent *event)
 StyledSeparator::StyledSeparator(QWidget *parent)
     : QWidget(parent)
 {DD;
-    setFixedWidth(10);
+    setFixedWidth(::dpiAwareSize(10,this));
 }
 
 void StyledSeparator::paintEvent(QPaintEvent *event)

@@ -26,11 +26,7 @@
 
 #include "splitdialog.h"
 #include "application.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "enums.h"
 
 #include "cuesplitter.h"
@@ -52,7 +48,7 @@ SplitDialog::SplitDialog(QWidget *parent) :
     bool ffmpegInstalled = splitter->ffmpegInstalled;
 
     warningLabel = new QLabel(this);
-    warningLabel->setMaximumWidth(500);
+    warningLabel->setMaximumWidth(::dpiAwareSize(500,this));
     warningLabel->setOpenExternalLinks(true);
     warningLabel->setWordWrap(true);
 
@@ -154,15 +150,15 @@ SplitDialog::SplitDialog(QWidget *parent) :
 #else
     grid->addWidget(buttonBox,10,0,1,3,Qt::AlignRight);
 #endif
-    grid->setRowMinimumHeight(1,10);
-    grid->setRowMinimumHeight(4,10);
-    grid->setRowMinimumHeight(8,10);
+    grid->setRowMinimumHeight(1,::dpiAwareSize(10,this));
+    grid->setRowMinimumHeight(4,::dpiAwareSize(10,this));
+    grid->setRowMinimumHeight(8,::dpiAwareSize(10,this));
 
     setLayout(grid);
     warningLabel->setHidden(warningLabel->text().isEmpty());
     startButton->setEnabled(warningLabel->text().isEmpty());
 
-    resize(600,400);
+    resize(::dpiAwareSize(600,400,this));
 }
 
 SplitDialog::~SplitDialog()

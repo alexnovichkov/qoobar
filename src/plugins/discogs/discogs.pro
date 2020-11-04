@@ -24,9 +24,4 @@ SOURCES += ../../qoobar_app/coverimage.cpp \
 #HEADERS += ../../qoobar_app/o2/*.h
 #SOURCES += ../../qoobar_app/o2/*.cpp
 
-lessThan(QT_MAJOR_VERSION, 5) {
-    HEADERS += ../../qoobar_app/ereilin/json.h
-    SOURCES += ../../qoobar_app/ereilin/json.cpp
-}
-
 TARGET = discogs

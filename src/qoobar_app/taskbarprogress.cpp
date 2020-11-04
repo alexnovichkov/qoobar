@@ -10,11 +10,7 @@
 #endif
 #endif
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #ifdef Q_OS_LINUX
 #include <QDBusMessage>

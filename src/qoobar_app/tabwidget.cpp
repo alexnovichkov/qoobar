@@ -25,11 +25,7 @@
  */
 
 #include "tabwidget.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "enums.h"
 #include "qoobarglobals.h"
@@ -51,7 +47,7 @@ public:
         opt.rect = pe->rect();
 
         //style()->drawPrimitive(QStyle::PE_FrameTabBarBase,&opt,&p);
-        style()->drawItemPixmap(&p,opt.rect,Qt::AlignCenter,this->icon().pixmap(16,16));
+        style()->drawItemPixmap(&p,opt.rect,Qt::AlignCenter,this->icon().pixmap(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
         p.end();
     }
 private:
@@ -59,7 +55,7 @@ private:
 };
 #endif
 
-TabBar::TabBar(QWidget *parent) : QTabBar(parent), index(-1)
+TabBar::TabBar(QWidget *parent) : QTabBar(parent)
 {DD;
     setAcceptDrops(true);
 
@@ -87,6 +83,7 @@ void TabBar::mouseDoubleClickEvent(QMouseEvent * event)
 
             if( rect.contains(event->pos()))
             {
+                //TODO: check dpi awareness
                 editor->setGeometry(rect.adjusted(2, 2, -2, -2));
                 QString oldTabName = tabText(index);
                 if (oldTabName.endsWith(QSL("*"))) oldTabName.chop(1);
@@ -161,8 +158,8 @@ TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent)
 
     setTabBar(m_tabBar);
 #ifndef Q_OS_MAC
-    QToolButton *newTabButton = new QToolButton(this);
-    QAction *a = new QAction(QIcon(App->iconThemeIcon("list-add1.png")),tr("New tab"),this);
+    auto *newTabButton = new QToolButton(this);
+    auto *a = new QAction(QIcon::fromTheme("list-add"),tr("New tab"),this);
     connect(a,SIGNAL(triggered()),this,SIGNAL(newTab()));
     newTabButton->setDefaultAction(a);
     newTabButton->setAutoRaise(true);

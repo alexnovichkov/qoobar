@@ -25,11 +25,7 @@
  */
 
 #include "newtagdialog.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "enums.h"
 #include "qoobarglobals.h"
 

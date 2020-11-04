@@ -25,11 +25,7 @@
  */
 
 #include "displayedtagsdialog.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "qoobarglobals.h"
 #include "application.h"
 #include "enums.h"
@@ -38,10 +34,9 @@ QWidget *ComboBoxItemDelegate::createEditor(QWidget *parent,
                                             const QStyleOptionViewItem &/* option */,
                                             const QModelIndex &/* index */) const
 {DD;
-    QComboBox *editor = new QComboBox(parent);
-    if (editor) {
-        for (int i=0; i<3; ++i) editor->addItem(tagStatusByID(i));
-    }
+    auto *editor = new QComboBox(parent);
+    for (int i=0; i<3; ++i) editor->addItem(tagStatusByID(i));
+
     return editor;
 }
 
@@ -50,15 +45,14 @@ void ComboBoxItemDelegate::setEditorData(QWidget *editor,
 {DD;
     int row = index.model()->data(index, Qt::UserRole).toInt();
 
-    QComboBox *box = qobject_cast<QComboBox*>(editor);
-    if (box) box->setCurrentIndex(row);
+    if (auto *box = qobject_cast<QComboBox*>(editor))
+        box->setCurrentIndex(row);
 }
 
 void ComboBoxItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
                                         const QModelIndex &index) const
 {DD;
-    QComboBox *box = qobject_cast<QComboBox*>(editor);
-    if (box) {
+    if (auto *box = qobject_cast<QComboBox*>(editor)) {
         model->setData(index, box->currentIndex(), Qt::UserRole);
         model->setData(index, box->currentText(), Qt::DisplayRole);
     }
@@ -105,7 +99,10 @@ DisplayedTagsDialog::DisplayedTagsDialog(QWidget *parent) :
     layout->addWidget(buttonBox);
 
     setLayout(layout);
-    resize(500,400);
+    //TODO: this->devicePixelRatio()
+    resize(::dpiAwareSize(App->primaryScreen()->availableSize().width()/4,
+                          App->primaryScreen()->availableSize().height()/3,
+                          this));
 }
 
 void DisplayedTagsDialog::cellClicked(const int row, const int col)

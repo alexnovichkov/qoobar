@@ -29,6 +29,7 @@
 #include <QTextCodec>
 #include <QDateTime>
 #include <QProcess>
+#include <QtDebug>
 #include "qoobarglobals.h"
 #include "application.h"
 
@@ -78,13 +79,7 @@ QString replaceWinChars(const QString &source, const QString &byWhat, bool useSm
 
 bool isLatin(const QChar &c)
 {DD;
-#ifdef HAVE_QT5
     return (c.script() == QChar::Script_Latin);
-#else
-    ushort cu=c.unicode();
-    return ((cu>=0x00c0 && cu<=0x024f) || (cu>=0x2c60 && cu<=0x2c7f)
-            || (cu>=0x1e00 && cu<=0x1eff));
-#endif
 }
 
 QString removeDiacritics(const QString &source, bool replaceOthers)
@@ -266,7 +261,7 @@ QString lastWord(QStringList &args, int index)
     Q_UNUSED(index);
     if (args.isEmpty()) return QSL("");
 
-    QStringList words = args.first().split(QRegExp(QSL("\\W")), QString::SkipEmptyParts);
+    QStringList words = args.first().split(QRegExp(QSL("\\W")), SKIP_EMPTY_PARTS);
     return words.isEmpty()?args.first():words.last();
 }
 
@@ -277,7 +272,7 @@ QString firstWord(QStringList &args, int index)
     Q_UNUSED(index);
     if (args.isEmpty()) return QSL("");
 
-    QStringList words = args.first().split(QRegExp(QSL("\\W")), QString::SkipEmptyParts);
+    QStringList words = args.first().split(QRegExp(QSL("\\W")), SKIP_EMPTY_PARTS);
     return words.isEmpty()?args.first():words.first();
 }
 
@@ -292,7 +287,7 @@ QString nthWord(QStringList &args, int index)
     int wordPos = args.at(1).toInt();
     if (wordPos<=0) return args.first();
 
-    QStringList words = args.first().split(QRegExp(QSL("\\W")), QString::SkipEmptyParts);
+    QStringList words = args.first().split(QRegExp(QSL("\\W")), SKIP_EMPTY_PARTS);
     if (words.isEmpty()) return args.first();
     return words.at(qMin(wordPos,words.size())-1);
 }
@@ -676,7 +671,7 @@ QString recode(QStringList &args, int index)
             p.write(source.toLatin1());
             p.closeWriteChannel();
             if (p.waitForFinished()) {
-                QByteArray b=p.readAll();
+                QByteArray b=p.readAll(); //qDebug()<<b;
                 if (!b.isEmpty())
                     codec = QTextCodec::codecForName(b.simplified().split(' ').at(0));
             }

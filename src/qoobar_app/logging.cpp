@@ -1,13 +1,13 @@
 #include "logging.h"
 
 #ifndef QT_NO_DEBUG
-#include <QTime>
+#include <QElapsedTimer>
 #include <QtDebug>
 #define DO_TRACE
 Trace::Trace(const QString &msg) : _msg(msg)
 {
 #ifdef DO_TRACE
-    time = new QTime();
+    time = new QElapsedTimer();
     time->start();
     qDebug()<<"Entering "<<_msg;
 #endif
@@ -15,8 +15,8 @@ Trace::Trace(const QString &msg) : _msg(msg)
 Trace::~Trace()
 {
 #ifdef DO_TRACE
-    qDebug()<<"Leaving  "<<_msg << "time" << time->elapsed();
+    qDebug()<<"Leaving  "<<_msg << "time" << time->nsecsElapsed()/1000 <<"mks";
     delete time;
 #endif
 }
-#endif
+#endif //ifndef QT_NO_DEBUG

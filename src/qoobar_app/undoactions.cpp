@@ -28,11 +28,7 @@
 
 #include "tab.h"
 #include "model.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "qoobarglobals.h"
 #include "application.h"
@@ -81,7 +77,7 @@ void ChangeFilesCommand::undo()
 
 void ChangeFilesCommand::redo()
 {DD;
-    qSort(changedRows);
+    std::sort(changedRows.begin(), changedRows.end());
     tab->setTags(changedIndexes,newTags,changedRows);
 }
 

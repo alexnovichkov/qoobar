@@ -55,7 +55,7 @@
 static void execMenuAtWidget(QMenu *menu, QWidget *widget)
 {DD;
     QPoint p;
-    QRect screen = qApp->desktop()->availableGeometry(widget);
+    QRect screen = App->desktop()->availableGeometry(widget);
     QSize sh = menu->sizeHint();
     QRect rect = widget->rect();
     if (widget->isRightToLeft()) {
@@ -104,7 +104,7 @@ class FancyLineEditPrivate : public QObject
 public:
     explicit FancyLineEditPrivate(FancyLineEdit *parent);
 
-    virtual bool eventFilter(QObject *obj, QEvent *event);
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
     FancyLineEdit  *m_lineEdit;
     QPixmap m_pixmap[2];
@@ -112,8 +112,6 @@ public:
     bool m_menuTabFocusTrigger[2];
     IconButton *m_iconbutton[2];
     bool m_iconEnabled[2];
-
-//    HistoryCompleter *m_historyCompleter;
 };
 
 
@@ -363,9 +361,9 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) : FancyLineEdit(parent)
     QIcon icon = QIcon::fromTheme(layoutDirection() == Qt::LeftToRight ?
                      QSL("edit-clear-locationbar-rtl") :
                      QSL("edit-clear-locationbar-ltr"),
-                     QIcon::fromTheme(QSL("edit-clear"), QIcon(App->iconThemeIcon("editclear.png"))));
+                     QIcon::fromTheme(QSL("edit-clear"), QIcon::fromTheme("editclear")));
 
-    setButtonPixmap(FancyLineEdit::Right, icon.pixmap(16));
+    setButtonPixmap(FancyLineEdit::Right, icon.pixmap(SMALL_ICON_SIZE));
     setButtonVisible(FancyLineEdit::Right, true);
     setButtonToolTip(FancyLineEdit::Right, tr("Clear text"));
     setAutoHideButton(FancyLineEdit::Right, true);
@@ -380,15 +378,15 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) : FancyLineEdit(parent)
         const char *slot;
         const char *icon;
     } options[] = {
-        {QT_TR_NOOP("Case Sensitive"),SLOT(setCaseSensitive(bool)),"casesensitively.png"},
-        {QT_TR_NOOP("Whole Words Only"),SLOT(setWholeWord(bool)),"wholewords.png"},
-        {QT_TR_NOOP("Use Regular Expressions"),SLOT(setRegularExpressions(bool)),"regexp.png"}
+        {QT_TR_NOOP("Case Sensitive"),SLOT(setCaseSensitive(bool)),"casesensitively"},
+        {QT_TR_NOOP("Whole Words Only"),SLOT(setWholeWord(bool)),"wholewords"},
+        {QT_TR_NOOP("Use Regular Expressions"),SLOT(setRegularExpressions(bool)),"regexp"}
     };
     for (int i=0; i<3; ++i) {
         QAction *a = new QAction(options[i].text, this);
         a->setCheckable(true);
         a->setChecked(false);
-        a->setIcon(QIcon(App->iconThemeIcon(options[i].icon)));
+        a->setIcon(QIcon::fromTheme(options[i].icon));
         connect(a, SIGNAL(triggered(bool)), this, options[i].slot);
         lineEditMenu->addAction(a);
     }
@@ -402,10 +400,10 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) : FancyLineEdit(parent)
 void SearchLineEdit::findFlagsChanged()
 {DD;
     if (!m_caseSensitive && !m_wholeWord && !m_useRegularExpressions) {
-        QPixmap pixmap(17, 17);
+        QPixmap pixmap(SMALL_ICON_SIZE+1, SMALL_ICON_SIZE+1);
         pixmap.fill(Qt::transparent);
         QPainter painter(&pixmap);
-        const QPixmap mag = QPixmap(App->themeIcon("magnifier.png"));
+        const QPixmap mag = QIcon::fromTheme("magnifier").pixmap(QSize(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
         painter.drawPixmap(0, (pixmap.height() - mag.height()) / 2, mag);
         setButtonPixmap(FancyLineEdit::Left, pixmap);
     } else {
@@ -415,16 +413,19 @@ void SearchLineEdit::findFlagsChanged()
 
 QPixmap SearchLineEdit::pixmapForFindFlags()
 {DD;
-    static const QPixmap casesensitiveIcon = QPixmap(App->themeIcon("casesensitively.png"));
-    static const QPixmap regexpIcon = QPixmap(App->themeIcon("regexp.png"));
-    static const QPixmap wholewordsIcon = QPixmap(App->themeIcon("wholewords.png"));
+    QIcon ico = QIcon::fromTheme("casesensitively");
+    static const QPixmap casesensitiveIcon = ico.pixmap(QSize(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
+    ico = QIcon::fromTheme("regexp");
+    static const QPixmap regexpIcon = ico.pixmap(QSize(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
+    ico = QIcon::fromTheme("wholewords");
+    static const QPixmap wholewordsIcon = ico.pixmap(QSize(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
 
     int width = 0;
     if (m_caseSensitive) width += 6;
     if (m_wholeWord) width += 6;
     if (m_useRegularExpressions) width += 6;
     if (width > 0) --width;
-    QPixmap pixmap(width, 17);
+    QPixmap pixmap(width, SMALL_ICON_SIZE+1);
     pixmap.fill(Qt::transparent);
     QPainter painter(&pixmap);
     int x = 0;

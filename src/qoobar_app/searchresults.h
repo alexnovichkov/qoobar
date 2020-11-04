@@ -45,13 +45,10 @@ struct Artist {
 
         if (artist.size()==3)
             return QString("%1 (%2, %3)")
-                      .arg(artist.at(0))
-                      .arg(artist.at(1))
-                      .arg(artist.at(2));
+                      .arg(artist.at(0), artist.at(1), artist.at(2));
         if (artist.size()==2)
             return QString("%1 (%2)")
-                      .arg(artist.at(0))
-                      .arg(artist.at(1));
+                      .arg(artist.at(0), artist.at(1));
         return artist.at(0);
     }
 };
@@ -92,7 +89,7 @@ struct SearchResult {
         l << fields.value(QSL("album"));
         l << fields.value(QSL("label"));
         l << fields.value(QSL("extraData"));
-        l.removeAll(QSL(""));
+        l.removeAll(QLS(""));
         return l;
     }
 

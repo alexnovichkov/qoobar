@@ -25,11 +25,7 @@
  */
 
 #include "completionsdialog.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "qoobarglobals.h"
 #include "application.h"
 #include "enums.h"
@@ -47,11 +43,14 @@ CompletionsDialog::CompletionsDialog(const int &tagID, QWidget *parent) :
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
-    QVBoxLayout *layout = new QVBoxLayout;
+    auto *layout = new QVBoxLayout;
     layout->addWidget(edit);
     layout->addWidget(buttonBox);
     setLayout(layout);
-    resize(590,410);
+
+    //TODO: this->devicePixelRatio()
+    resize(::dpiAwareSize(App->primaryScreen()->availableSize().width()/4,
+                          App->primaryScreen()->availableSize().height()/3,this));
 }
 
 void CompletionsDialog::accept()

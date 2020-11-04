@@ -37,7 +37,7 @@
 #include "applicationpaths.h"
 #include "coverimage.h"
 
-#define App (static_cast<Application *>(QCoreApplication::instance()))
+#define App (dynamic_cast<Application *>(QCoreApplication::instance()))
 
 class IQoobarPlugin;
 class IDownloadPlugin;
@@ -121,6 +121,9 @@ private:
 void criticalMessage(QWidget *parent, const QString &caption, const QString &text);
 void warningMessage(QWidget *parent, const QString &caption, const QString &text);
 
+QSize dpiAwareSize(int width, int height, QPaintDevice *d);
+int dpiAwareSize(int size, QPaintDevice *d);
+
 class Application : public QApplication
 {
     Q_OBJECT
@@ -136,21 +139,15 @@ public:
     void setFilesNames(const QStringList &names) {filesNames = names;}
 
     void loadPlugins();
-#ifdef HAVE_QT5
     QList<QJsonObject> downloadPlugins;
     QList<QJsonObject> plugins;
-#else
-    QMap<QString, IDownloadPlugin *> downloadPlugins;
-    QMap<QString, IQoobarPlugin *> plugins;
-#endif
+
     void readGuiSettings();
     void readGlobalSettings();
     void clearSettings();
     void resetSettings();
     void writeGuiSettings();
     void writeGlobalSettings();
-    QString themeIcon(const QString &icon);
-    QIcon iconThemeIcon(const QString &icon);
 
     void onDockIconClick();
     bool consoleMode;
@@ -193,7 +190,7 @@ public:
     RenameOptions renameOptions;
 
     //autocompletion options
-    Autocompletions *autocompletions;
+    Autocompletions *autocompletions {nullptr};
 
 
     CoverImage imageBuffer;
@@ -242,7 +239,7 @@ public:
     QString delimiters;
 
     QStringList searchPaths;
-    bool hideTabBar;
+    bool hideTabBar = false;
     QString defaultSplitFormat;
     int statusBarTrack;
 Q_SIGNALS:
@@ -253,8 +250,6 @@ private Q_SLOTS:
     void onApplicationStateChanged(Qt::ApplicationState);
 #endif
 private:
-    class Private;
-    Private *p;
     QTranslator *appTranslator;
     QTranslator *qtTranslator;
 };

@@ -5,9 +5,15 @@ SectionDelegateHighlighter::SectionDelegateHighlighter()
 {DD
 }
 
-QList<QTextLayout::FormatRange> SectionDelegateHighlighter::generateFormats(QStyleOptionViewItemV4 *option,
-                                                                         const QRect &textRect,
-                                                                         const QModelIndex &index)
+QList<QTextLayout::FormatRange> SectionDelegateHighlighter::generateFormats(
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+        QStyleOptionViewItemV4
+#else
+        QStyleOptionViewItem
+#endif
+        *option,
+        const QRect &textRect,
+        const QModelIndex &index)
 {DD
     QList<QTextLayout::FormatRange> formats;
 

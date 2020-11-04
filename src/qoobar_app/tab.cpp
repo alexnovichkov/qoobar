@@ -45,12 +45,8 @@
 #include "autonumber.h"
 #include "fancylineedit.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
 #include <QtConcurrent/QtConcurrent>
-#else
-#include <QtGui>
-#endif
 #include "enums.h"
 #include "stringroutines.h"
 
@@ -147,12 +143,12 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
 
     searchBar->hide();
 
-    moveUpAct = new QAction(QIcon(App->iconThemeIcon("go-up.png")),tr("Move up"),this);
+    moveUpAct = new QAction(QIcon::fromTheme("go-up"),tr("Move up"),this);
     connect(moveUpAct,SIGNAL(triggered()),this,SLOT(moveUp()));
     moveUpAct->setShortcut(tr("Ctrl+Up"));
     moveUpAct->setDisabled(true);
 
-    moveDownAct = new QAction(QIcon(App->iconThemeIcon("go-down.png")),tr("Move down"),this);
+    moveDownAct = new QAction(QIcon::fromTheme("go-down"),tr("Move down"),this);
     connect(moveDownAct,SIGNAL(triggered()),this,SLOT(moveDown()));
     moveDownAct->setShortcut(tr("Ctrl+Down"));
     moveDownAct->setDisabled(true);
@@ -164,7 +160,7 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     connect(multilineEditAct,SIGNAL(triggered()),this,SLOT(editCell()));
 
 
-    removeAct = new QAction(QIcon(App->iconThemeIcon("edit-clear.ico")),tr("C&lear tags"),this);
+    removeAct = new QAction(QIcon::fromTheme("edit-clear"),tr("C&lear tags"),this);
     removeAct->setShortcut(Qt::Key_Delete);
     removeAct->setShortcutContext(Qt::WidgetShortcut);
     connect(removeAct,SIGNAL(triggered()),this,SLOT(remove()));
@@ -405,7 +401,7 @@ struct Reduce
     }
 
     bool needToAdd(const QStringList &list) const {
-        return qApp->fontMetrics().width(list.join(QSL(";"))) < m_size;
+        return qApp->fontMetrics().HORIZONTAL_ADVANCE(list.join(QSL(";"))) < m_size;
     }
 
     int m_size;

@@ -28,11 +28,7 @@
 #include "qoobarglobals.h"
 #include "application.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "stringroutines.h"
 
@@ -47,7 +43,7 @@ QMenu *createOperations(QSignalMapper *mapper, QWidget *parent)
         const int parent;
         const bool hasMenu;
     } operationsTexts[] = {
-        {QT_TRANSLATE_NOOP("QObject","Change case"),         0,              -1,true},
+        {QT_TRANSLATE_NOOP("QObject","Change case"),         nullptr,        -1,true},
         {QT_TRANSLATE_NOOP("QObject","lower"),               "lower",         0,false},
         {QT_TRANSLATE_NOOP("QObject","UPPER"),               "upper",         0,false},
         {QT_TRANSLATE_NOOP("QObject","Only first up"),       "caps3",         0,false},
@@ -57,7 +53,7 @@ QMenu *createOperations(QSignalMapper *mapper, QWidget *parent)
         {QT_TRANSLATE_NOOP("QObject","Remove diacritics"),   "ansi",         -1,false},
         {QT_TRANSLATE_NOOP("QObject","Transliterate"),       "transliterate",-1,false},
         {QT_TRANSLATE_NOOP("QObject","Fix encoding"),        "recode",       -1,false},
-        {0,0,-1,false}
+        {nullptr,nullptr,-1,false}
     };
 
 
@@ -86,7 +82,7 @@ QMenu *createOperations(QSignalMapper *mapper, QWidget *parent)
 }
 
 MyCompleter::MyCompleter(int type, QObject * parent) :
-        QCompleter(parent), m_model(), m_type(type)
+        QCompleter(parent), m_type(type)
 {DD
     setModel(&m_model);
     map = App->autocompletions->variants(type);
@@ -107,7 +103,7 @@ void MyCompleter::update(const QString &word)
 }
 
 LineEdit::LineEdit(bool useInTable, QWidget *parent)
-    : QLineEdit(parent), useInTable_(useInTable), c(0)
+    : QLineEdit(parent), useInTable_(useInTable), c(nullptr)
 {DD
     QSignalMapper *mapper = new QSignalMapper(this);
     const int tagsCount = App->currentScheme->tagsCount();
@@ -197,7 +193,7 @@ void LineEdit::handleOperation(const QString &type)
 void LineEdit::setCompleter(MyCompleter *completer)
 {DD
     if (c)
-        QObject::disconnect(c, 0, this, 0);
+        QObject::disconnect(c, nullptr, this, nullptr);
     c = completer;
     if (!c)
         return;

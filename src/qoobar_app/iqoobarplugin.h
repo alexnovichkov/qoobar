@@ -10,22 +10,6 @@ class IQoobarPlugin
 public:
     virtual ~IQoobarPlugin() {}
 
-#ifndef HAVE_QT5
-    /*returns localized text for menus, tollbars etc.*/
-    virtual QString text() = 0;
-
-    /*returns a full localized description of a plugin*/
-    virtual QString description() = 0;
-
-    /*returns a short unique key that identifies a plugin*/
-    virtual QString key() = 0;
-
-    /*returns an icon of a plugin*/
-    virtual QIcon icon() = 0;
-
-    /*returns a version string*/
-    virtual QString version() = 0;
-#endif
     /*does all editing*/
     virtual QList<Tag> getNewTags(const QList<Tag> &oldTags) = 0;
 

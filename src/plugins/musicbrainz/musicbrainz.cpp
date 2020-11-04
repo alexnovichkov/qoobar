@@ -4,11 +4,6 @@
 #include "qoobarglobals.h"
 #include <QXmlStreamReader>
 
-#ifndef HAVE_QT5
-#include <QtPlugin>
-Q_EXPORT_PLUGIN2(musicbrainz, MusicbrainzPlugin)
-#endif
-
 Request MusicbrainzPlugin::queryForManualSearch(const QStringList &list)
 {
     QString artist=QString(QUrl::toPercentEncoding(list.at(0),"' "));
@@ -146,7 +141,7 @@ QList<Artist> parseRelations(QXmlStreamReader &x/*relation-list*/)
         x.readNext();
         if (x.isEndElement()) {
             if (x.name()=="relation-list") return result;
-            else if (x.name()=="relation") {
+            if (x.name()=="relation") {
                 if (type=="instrument" || type=="vocal" || type=="vocals") type=attributes;
                 if (result.isEmpty()) result << Artist();
                 result.last().fields.insert("role", type);
@@ -226,9 +221,9 @@ QList<Track> parseMediums(QXmlStreamReader &mediumList)
 
 void shrinkArtists(QList<Artist> &artists)
 {
-    QMap<QString, QString> artistsMap;
+    QMultiMap<QString, QString> artistsMap;
     Q_FOREACH (const Artist &a,artists) {
-        artistsMap.insertMulti(a.fields.value("name"), a.fields.value("role"));
+        artistsMap.insert(a.fields.value("name"), a.fields.value("role"));
     }
 
     artists.clear();
@@ -339,9 +334,9 @@ SearchResult MusicbrainzPlugin::parseRelease(const QByteArray &response)
     }
 
     shrinkArtists(r.artists);
-    for (int i=0; i<r.tracks.size(); ++i) {
-        shrinkArtists(r.tracks[i].artists);
-    }
+    for (auto &track: r.tracks)
+        shrinkArtists(track.artists);
+
     return r;
 }
 

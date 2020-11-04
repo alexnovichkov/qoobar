@@ -35,9 +35,15 @@ class DelegateHighlighter
 {
 public:
     virtual ~DelegateHighlighter() {}
-    virtual QList<QTextLayout::FormatRange> generateFormats(QStyleOptionViewItemV4 *,
-                                                            const QRect &,
-                                                            const QModelIndex &)=0;
+    virtual QList<QTextLayout::FormatRange> generateFormats(
+        #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+            QStyleOptionViewItemV4
+        #else
+            QStyleOptionViewItem
+        #endif
+            *,
+            const QRect &,
+            const QModelIndex &)=0;
 };
 
 QTextCharFormat charFormat(const QFont &font, const QBrush &foreground);

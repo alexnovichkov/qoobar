@@ -25,11 +25,7 @@
  */
 
 #include "checkableheaderview.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "enums.h"
 
@@ -37,7 +33,7 @@ CheckableHeaderView::CheckableHeaderView(Qt::Orientation orientation, QWidget *p
     : QHeaderView(orientation, parent)
 
 {
-    SETSECTIONSCLICKABLE(true);
+    setSectionsClickable(true);
     connect(this,SIGNAL(sectionCountChanged(int,int)),SLOT(updateSectionCount(int,int)));
 }
 
@@ -84,6 +80,7 @@ void CheckableHeaderView::mousePressEvent(QMouseEvent *event)
     else QHeaderView::mousePressEvent(event);
 }
 
+//TODO: this->devicePixelRatioF()
 QRect CheckableHeaderView::checkBoxRect(const QRect &sourceRect) const
 {
     QStyleOptionButton checkBoxStyleOption;
@@ -93,7 +90,7 @@ QRect CheckableHeaderView::checkBoxRect(const QRect &sourceRect) const
                          sourceRect.y() +
                          sourceRect.height() / 2 -
                          checkBoxRect.height() / 2);
-    return QRect(checkBoxPoint, checkBoxRect.size());
+    return {checkBoxPoint, checkBoxRect.size()};
 }
 
 void CheckableHeaderView::setCheckable(int section, bool checkable)

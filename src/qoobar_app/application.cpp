@@ -25,13 +25,8 @@
  */
 
 #include "application.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
 #include <QtConcurrent/QtConcurrent>
-#else
-#include <QtGui>
-#include <QDesktopServices>
-#endif
 
 #include "id3v1stringhandler.h"
 
@@ -54,34 +49,20 @@ bool isValidLibrary(const QFileInfo &path)
 }
 
 Application::Application(int &argc, char **argv, bool useGui)
-    :  QApplication(argc,argv,useGui), autocompletions(0)
+    :  QApplication(argc,argv,useGui)
 {DD;
 #ifdef Q_OS_MAC
     connect(this,SIGNAL(applicationStateChanged(Qt::ApplicationState)),SLOT(onApplicationStateChanged(Qt::ApplicationState)));
 #endif
-    if (useGui) setWindowIcon(QIcon(QSL(":/src/icons/app/qoobar.ico")));
     appTranslator = new QTranslator(this);
     qtTranslator = new QTranslator(this);
     installTranslator(appTranslator);
     installTranslator(qtTranslator);
 
-//    setStyle(new ProxyStyle);
-
     // Setting default values
     langID = QSL("en");
-    static const QChar rawChars[] = {0xdf,
-        0xe0, 0xe1, 0xe2, 0xe3, 0xe4, 0xe5, 0xe6, 0xe7, 0xe8, 0xe9, 0xea, 0xeb, 0xec, 0xed, 0xee, 0xef,
-        0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6,       0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff,
-             0x101,      0x103,      0x105,      0x107,      0x109,      0x10b,      0x10d,      0x10f,
-             0x111,      0x113,      0x115,      0x117,      0x119,      0x11b,      0x11d,      0x11f,
-             0x121,      0x123,      0x125,      0x127,      0x129,      0x12b,      0x12d,      0x12f,
-             0x131,      0x133,      0x135,      0x137,0x138,      0x13a,      0x13c,      0x13e,
-       0x140,      0x142,      0x144,      0x146,      0x148,0x149,      0x14b,      0x14d,      0x14f,
-             0x151,      0x153,      0x155,      0x157,      0x159,      0x15b,      0x15d,      0x15f,
-             0x161,      0x163,      0x165,      0x167,      0x169,      0x16b,      0x16d,      0x16f,
-             0x171,      0x173,      0x175,      0x177,            0x17a,      0x17c,      0x17e
-    };
-    chars = QString(rawChars,96);
+
+    chars = QString("ßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿāăąćĉċčďđēĕėęěĝğġģĥħĩīĭįıĳĵķĸĺļľŀłńņňŉŋōŏőœŕŗřśŝşšţťŧũūŭůűųŵŷźżž");
     lastDirectory = QDir::homePath();
     mp3readape = false;
     mp3writeape = false;
@@ -118,7 +99,7 @@ Application::Application(int &argc, char **argv, bool useGui)
     cueEncoding = QSL("Locale");
     showDirView = true;
     currentSchemeName = QSL("default");
-    currentScheme = 0;
+    currentScheme = nullptr;
     useUndo = false;
     encaGuessLanguage = QSL("russian");
     writeFieldsSeparately = false;
@@ -128,7 +109,7 @@ Application::Application(int &argc, char **argv, bool useGui)
     recursive = false;
     consoleMode = false;
     mpcWriteRg = true;
-    iconTheme = "default";
+    iconTheme = "maia";
     statusBarTrack = 0; // tracks hovered file
 
     /*Testing for loadable libraries*/
@@ -146,6 +127,10 @@ Application::Application(int &argc, char **argv, bool useGui)
             break;
         }
     }
+
+    QStringList themePaths = QIcon::themeSearchPaths();
+    themePaths.prepend(ApplicationPaths::sharedPath()+"/icons");
+    QIcon::setThemeSearchPaths(themePaths);
 }
 
 template <class T>
@@ -164,7 +149,7 @@ Application::~Application()
     writeGlobalSettings();
 
     delete currentScheme;
-    currentScheme=0;
+    currentScheme=nullptr;
 }
 
 void Application::loadTranslations()
@@ -179,7 +164,7 @@ void Application::loadTranslations()
 void Application::setId3v1Encoding(const QString &s)
 {DD;
     id3v1Encoding=s;
-    ID3v1StringHandler *stringHandler = new ID3v1StringHandler;
+    auto *stringHandler = new ID3v1StringHandler;
     if (id3v1Encoding=="Locale")
         stringHandler->setCodec(QTextCodec::codecForLocale());
     else
@@ -239,9 +224,9 @@ void Application::readGuiSettings()
     dirViewRoot = se->value(QSL("dirViewRoot"), dirViewRoot).toString();
     if (dirViewRoot.isEmpty()) {
 #ifdef Q_OS_WIN
-        dirViewRoot = QSL("");
+        dirViewRoot = QLS("");
 #else
-        dirViewRoot = QSL("/");
+        dirViewRoot = QLS("/");
 #endif
     }
 
@@ -254,16 +239,12 @@ void Application::readGuiSettings()
 
     lastCueFile = se->value(QSL("lastCueFile")).toString();
 
-#ifdef HAVE_QT5
     columns167 = se->value(QSL("columns167_5.0")).toByteArray();
-#else
-    columns167 = se->value(QSL("columns167")).toByteArray();
-#endif
     rows=se->value(QSL("rows")).toByteArray();
 
     QVariantList variantList = se->value(QSL("tagStatus")).toList();
-    for (int i=0; i<variantList.size(); ++i)
-            tagStatus << variantList.at(i).toInt();
+    for (const auto &status: variantList)
+            tagStatus << status.toInt();
     tagStatus.resize(currentScheme->tagsCount());
 
 /** Autocompletion options*/
@@ -283,11 +264,7 @@ void Application::readGuiSettings()
 
     searchPaths = se->value(QSL("searchPaths")).toStringList();
     if (searchPaths.isEmpty()) {
-#ifdef HAVE_QT5
         searchPaths = QStandardPaths::standardLocations(QStandardPaths::MusicLocation);
-#else
-        searchPaths << QDesktopServices::storageLocation(QDesktopServices::MusicLocation);
-#endif
     }
 
     hideTabBar = se->value(QSL("hideTabBar"), false).toBool();
@@ -362,7 +339,7 @@ void Application::readGlobalSettings()
 
     int length = se->value("maximum-length", 0).toInt();
     if (length<=0) {
-        renameOptions.maximumLength = 255;
+        renameOptions.maximumLength = MAXIMUM_FILENAME_LENGTH;
         renameOptions.trimFileLength = false;
     }
     else {
@@ -399,7 +376,10 @@ void Application::readGlobalSettings()
 #else
     defaultSplitFormat = se->value("default-split-format", "flac").toString();
 #endif
-    iconTheme = se->value(QSL("iconTheme"),QSL("default")).toString();
+
+    iconTheme = se->value(QSL("iconTheme"),QSL("maia")).toString();
+    QIcon::setThemeName(iconTheme);
+
     delete se;
 }
 
@@ -408,7 +388,7 @@ void Application::writeGuiSettings()
     QSettings *se = guiSettings();
 
     if (!se->isWritable()) {
-        criticalMessage(0,tr("Qoobar"),tr("Cannot write settings. The settings file is read-only"));
+        criticalMessage(nullptr,tr("Qoobar"),tr("Cannot write settings. The settings file is read-only"));
         delete se;
         return;
     }
@@ -434,11 +414,7 @@ void Application::writeGuiSettings()
     se->setValue("cdromDevice",cdromDevice);
     se->setValue("charsFont",charsFont);
     se->setValue("lastCueFile",lastCueFile);
-#ifdef HAVE_QT5
     se->setValue("columns167_5.0",columns167);
-#else
-    se->setValue("columns167",columns167);
-#endif
 
     se->setValue("rows",rows);
     se->setValue("tagStatus",QVariant(makeList(tagStatus)));
@@ -523,28 +499,6 @@ void Application::writeGlobalSettings()
     delete se;
 }
 
-QIcon Application::iconThemeIcon(const QString &icon)
-{
-    static QHash<QString, QIcon> icons;
-    if (icons.contains(icon)) return icons.value(icon);
-    else {
-        QIcon ico = QIcon(QString("%1/icons/%2/%3")
-                          .arg(ApplicationPaths::sharedPath())
-                          .arg(App->iconTheme)
-                          .arg(icon));
-        icons.insert(icon,ico);
-        return ico;
-    }
-}
-
-QString Application::themeIcon(const QString &icon)
-{DD;
-    return QString("%1/icons/%2/%3")
-            .arg(ApplicationPaths::sharedPath())
-            .arg(App->iconTheme)
-            .arg(icon);
-}
-
 void Application::clearSettings()
 {DD;
 #ifdef Q_OS_LINUX
@@ -566,7 +520,7 @@ void Application::clearSettings()
 void Application::resetSettings()
 {DD;
     delete currentScheme;
-    currentScheme=0;
+    currentScheme=nullptr;
     clearSettings();
     Q_EMIT settingsCleared();
     readGlobalSettings();
@@ -595,7 +549,6 @@ void Application::loadPlugins()
     Q_FOREACH (const QFileInfo &fileName, potentialPlugins) {
         QString path=fileName.canonicalFilePath();
         QPluginLoader loader(path);
-#ifdef HAVE_QT5
         QJsonObject metaData = loader.metaData().value("MetaData").toObject();
 
         if (metaData.isEmpty()) continue;
@@ -605,15 +558,6 @@ void Application::loadPlugins()
             downloadPlugins << metaData;
         if (pluginInterface=="IQoobarPlugin")
             plugins << metaData;
-#else
-        QObject *plugin = loader.instance();
-        if (plugin) {
-            IQoobarPlugin *iplugin = qobject_cast<IQoobarPlugin *>(plugin);
-            if (iplugin) plugins.insert(iplugin->key(),iplugin);
-            IDownloadPlugin *iplugin1 = qobject_cast<IDownloadPlugin *>(plugin);
-            if (iplugin1) downloadPlugins.insert(iplugin1->key(),iplugin1);
-        }
-#endif
     }
 }
 
@@ -676,17 +620,17 @@ void Autocompletions::read(QSettings *se)
     const QString userPath = ApplicationPaths::userCompletionsPath();
     const QString path = ApplicationPaths::completionsPath();
 
-    for (int tagID=0; tagID<completions.size(); ++tagID) {
-        QString name = completions.at(tagID).name;
+    for (auto &completion: completions) {
+        QString name = completion.name;
         name.remove("/").remove("\\");
-        QString fileName = QString("%1/%2.txt").arg(userPath).arg(name);
-        if (!QFileInfo(fileName).exists())
-            fileName = QString("%1/%2.txt").arg(path).arg(name);
+        QString fileName = QString("%1/%2.txt").arg(userPath, name);
+        if (!QFileInfo::exists(fileName))
+            fileName = QString("%1/%2.txt").arg(path, name);
         QFile file(fileName);
         if (file.open(QFile::ReadOnly | QFile::Text)) {
             QTextStream in(&file);
             in.setCodec("UTF-8");
-            completions[tagID].variants = in.readAll().split('\n');
+            completion.variants = in.readAll().split('\n');
         }
     }
 }
@@ -697,8 +641,8 @@ bool Autocompletions::write(QSettings *se)
     se->setValue("collectSilently", collectSilently);
 
     QVariantList useCompletion;
-    for (int tagID = 0; tagID < completions.size(); ++tagID) {
-        useCompletion.append(completions.at(tagID).use);
+    for (const auto &completion: completions) {
+        useCompletion.append(completion.use);
     }
     se->setValue("useCompletion", QVariant(useCompletion));
 
@@ -707,7 +651,7 @@ bool Autocompletions::write(QSettings *se)
     QString path = ApplicationPaths::userCompletionsPath();
     if (!QDir().exists(path)) {
         if (!QDir().mkpath(path)) {
-            criticalMessage(0,tr("Qoobar"),tr("Cannot write resource files into\n%1.\n"
+            criticalMessage(nullptr,tr("Qoobar"),tr("Cannot write resource files into\n%1.\n"
                                               "Please check the folder").arg(path));
             return false;
         }
@@ -720,7 +664,7 @@ bool Autocompletions::write(QSettings *se)
         QString name = c.name;
         name.remove("/").remove("\\");
 
-        QFile file(QString("%1/%2.txt").arg(path).arg(name));
+        QFile file(QString("%1/%2.txt").arg(path, name));
         if (!list.isEmpty()) {
             if (file.open(QFile::WriteOnly | QFile::Text)) {
                 QTextStream out(&file);
@@ -728,7 +672,7 @@ bool Autocompletions::write(QSettings *se)
                 out << list.join(QChar('\n'));
             }
             else {
-                criticalMessage(0,tr("Qoobar"),tr("Cannot write %1.\n"
+                criticalMessage(nullptr,tr("Qoobar"),tr("Cannot write %1.\n"
                                                   "Please check the file").arg(file.fileName()));
                 return false;
             }
@@ -777,4 +721,26 @@ void Autocompletions::set(int tagID, const QStringList &newVariants)
         c.wasChanged = true;
         wasChanged = true;
     }
+}
+
+QSize dpiAwareSize(int width, int height, QPaintDevice *d)
+{
+    if (!d) return {width, height};
+
+#if QT_VERSION >= QT_VERSION_CHECK(5,6,0)
+    return {int(width*d->devicePixelRatioF()), int(height*d->devicePixelRatioF())};
+#else
+    return {width*d->devicePixelRatio(), height*d->devicePixelRatio()};
+#endif
+}
+
+int dpiAwareSize(int size, QPaintDevice *d)
+{
+    if (!d) return size;
+
+#if QT_VERSION >= QT_VERSION_CHECK(5,6,0)
+    return int(size*d->devicePixelRatioF());
+#else
+    return size * d->devicePixelRatio();
+#endif
 }

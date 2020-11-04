@@ -1,10 +1,6 @@
 #include "highlightdelegate.h"
 #include "delegatehighlighter.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "qoobarglobals.h"
 
 HighlightDelegate::HighlightDelegate(QObject *parent) :
@@ -26,7 +22,12 @@ void HighlightDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
         return;
     }
 
-    QStyleOptionViewItemV4 optionV4 = option;
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    QStyleOptionViewItemV4
+#else
+    QStyleOptionViewItem
+#endif
+            optionV4 = option;
     initStyleOption(&optionV4, index);
     QStyle *style = optionV4.widget? optionV4.widget->style() : QApplication::style();
     QRect textRect = style->subElementRect(QStyle::SE_ItemViewItemText, &optionV4);
@@ -34,7 +35,11 @@ void HighlightDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
     QList<QTextLayout::FormatRange> formats=highlighter->generateFormats(&optionV4,textRect,index);
 
     textLayout->setText(optionV4.text);
-    textLayout->setAdditionalFormats(formats);
+#if (QT_VERSION < QT_VERSION_CHECK(5, 6, 0))
+    textLayout.setAdditionalFormats(formats);
+#else
+    textLayout->setFormats(formats.toVector());
+#endif
 
     QTextOption textOption = textLayout->textOption();
     textOption.setWrapMode(QTextOption::NoWrap);

@@ -38,6 +38,8 @@
 #include "downloadhelper.h"
 #include "application.h"
 
+const int bufferSize = 4096;
+
 void unzipResponse(QByteArray& response)
 {
     QTemporaryFile file;
@@ -49,10 +51,10 @@ void unzipResponse(QByteArray& response)
         response.clear();
 
         gzFile gzDoc = gzopen(fname.constData(), "rb");
-        if (gzDoc != NULL) {
-            char buff[4097];
+        if (gzDoc != nullptr) {
+            char buff[bufferSize+1];
             int i;
-            while ((i = gzread(gzDoc, &buff, 4096)) > 0) {
+            while ((i = gzread(gzDoc, &buff, bufferSize)) > 0) {
                 buff[i] = '\0';
                 response.append(buff);
             }
@@ -69,11 +71,6 @@ CoreNetworkSearch::CoreNetworkSearch(QObject *parent) :  QObject(parent)
                  App->proxyPort,
                  App->proxyLogin,
                  App->proxyPassword);
-}
-
-CoreNetworkSearch::~CoreNetworkSearch()
-{
-
 }
 
 void CoreNetworkSearch::setProxy(const QString &proxyServer,
@@ -103,7 +100,7 @@ void CoreNetworkSearch::setProxyAuthentication(const QNetworkProxy &proxy, QAuth
 QByteArray CoreNetworkSearch::get(const Request &request)
 {
     QByteArray response;
-    QEventLoop *loop = new QEventLoop();
+    auto *loop = new QEventLoop();
 
     QNetworkRequest r;
 
@@ -117,7 +114,7 @@ QByteArray CoreNetworkSearch::get(const Request &request)
     r.setRawHeader("User-Agent",userAgent.toLatin1());
     r.setUrl(request.url);
 
-    QNetworkReply * reply=0;
+    QNetworkReply * reply=nullptr;
     if (request.data.isEmpty())
         reply = m->get(r);
     else
@@ -149,8 +146,7 @@ QByteArray CoreNetworkSearch::get(const Request &request)
 
 void CoreNetworkSearch::analyseError()
 {
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
-    if (reply) {
+    if (auto *reply = qobject_cast<QNetworkReply *>(sender())) {
         Q_EMIT error(reply->errorString());
     }
 }

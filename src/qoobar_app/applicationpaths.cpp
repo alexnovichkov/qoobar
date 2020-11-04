@@ -5,7 +5,7 @@
 //namespace ApplicationPaths
 //{
 #ifdef Q_OS_MAC
-const QString ApplicationPaths::bundlePath()
+QString ApplicationPaths::bundlePath()
 {DD;
     static QString _bundlePath;
     if (_bundlePath.isEmpty()) {
@@ -17,7 +17,7 @@ const QString ApplicationPaths::bundlePath()
 }
 #endif
 
-const QString ApplicationPaths::sharedPath()
+QString ApplicationPaths::sharedPath()
 {DD;
 #ifdef Q_OS_LINUX
     return QString("/usr/share/qoobar");
@@ -28,17 +28,17 @@ const QString ApplicationPaths::sharedPath()
 #endif
 }
 
-const QString ApplicationPaths::translationsPath()
+QString ApplicationPaths::translationsPath()
 {DD;
     return sharedPath();
 }
 
-const QString ApplicationPaths::schemesPath()
+QString ApplicationPaths::schemesPath()
 {DD;
     return sharedPath()+"/schemes";
 }
 
-const QString ApplicationPaths::userSchemesPath()
+QString ApplicationPaths::userSchemesPath()
 {DD;
 #ifdef Q_OS_LINUX
     return QDir::homePath() + "/.config/qoobar/schemes";
@@ -47,12 +47,12 @@ const QString ApplicationPaths::userSchemesPath()
 #endif
 }
 
-const QString ApplicationPaths::completionsPath()
+QString ApplicationPaths::completionsPath()
 {DD;
     return sharedPath()+"/completions";
 }
 
-const QString ApplicationPaths::userCompletionsPath()
+QString ApplicationPaths::userCompletionsPath()
 {DD;
 #ifdef Q_OS_LINUX
     return QDir::homePath() + "/.config/qoobar/completions";
@@ -61,12 +61,12 @@ const QString ApplicationPaths::userCompletionsPath()
 #endif
 }
 
-const QString ApplicationPaths::documentationPath()
+QString ApplicationPaths::documentationPath()
 {DD;
     return sharedPath()+"/html/en/documentation.htm";
 }
 
-const QString ApplicationPaths::pluginsPath()
+QString ApplicationPaths::pluginsPath()
 {DD;
 #ifdef Q_OS_LINUX
     return QString("/usr/lib/qoobar/plugins");

@@ -4,17 +4,17 @@
 #include <QString>
 
 #ifndef QT_NO_DEBUG
-class QTime;
+class QElapsedTimer;
 class Trace {
 public:
     Trace(const QString &msg);
     ~Trace();
 private:
     QString _msg;
-    QTime *time;
+    QElapsedTimer *time;
 };
 
-#define DD  Trace trace(Q_FUNC_INFO);
+#define DD  Trace trace(QString(Q_FUNC_INFO));
 #else
 #define DD
 #endif

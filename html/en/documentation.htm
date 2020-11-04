@@ -337,7 +337,7 @@
                 for album, <code>%n</code> for track number, and so on. There are only 44 predefined short placeholders that cover
                 all standard tags and file properties supported by Qoobar.</p>
               <p><strong>Long placeholder</strong> is a tag name enclosed in &lt; and &gt;, f.e. <code>&lt;title&gt;</code> or <code>&lt;performer&gt;</code>.
-                Note that long placeholders are case and spaces irrelevant, so <code>&lt;tracknumber&gt;</code> and <code>&lt;Track Number&gt;</code> are equivalent.
+                Note that long placeholders are case and spaces insensitive, so <code>&lt;tracknumber&gt;</code> and <code>&lt;Track Number&gt;</code> are equivalent.
                 You can also use localized tag name instead of the English name, that is if the German language is chosen as the user interface language,
               you can use either <code>%c</code>, <code>&lt;composer&gt;</code> or <code>&lt;komponist&gt;</code> for the composer tag.</p>
               <p>Unlike short placeholders, long placeholders are not limited by 44 predefinite tags: <strong>any</strong> tag name shown in the Tags Table
@@ -1520,7 +1520,7 @@
             <div>
               <h2><a id=regular_expressions>Appendix 4. Regular expressions</a></h2>
               <p>A regular expression is a pattern for matching sub-strings in a text.
-              Qoobar supports regular expressions provided by the QRegExp class, which is modelled on Perl's regexp language.
+              Qoobar supports regular expressions similar to Perl's regexp language.
               Here is only a brief description of expressions, quantifiers, and assertions that can be useful in your search.</p>
 
               <table>

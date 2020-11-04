@@ -37,7 +37,6 @@ class CoverImageData : public QSharedData
 public:
     CoverImageData();
     CoverImageData(const CoverImageData &other);
-    ~CoverImageData();
 
     QByteArray pixmap;
     int type;

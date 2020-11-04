@@ -2,11 +2,7 @@
 
 #ifdef QOOBAR_ENABLE_CLI
 
-#ifdef HAVE_QT5
 #include <QJsonDocument>
-#else
-#include "ereilin/json.h"
-#endif
 
 #ifdef Q_OS_LINUX
 #include <sys/ioctl.h>
@@ -243,14 +239,10 @@ bool CLParser::setArgScheme(const QByteArray &json)
 {
     bool ok=true;
     QVariantMap map;
-#ifdef HAVE_QT5
     QJsonParseError error;
     QVariant parsed = QJsonDocument::fromJson(json, &error).toVariant();
     if (error.error!=QJsonParseError::NoError) return false;
     map = parsed.toMap();
-#else
-    map = QtJson::Json::parse(QString::fromUtf8(json),ok).toMap();
-#endif
     if (!ok || map.isEmpty()) return false;
     QVariantList list = map.value("args").toList();
     if (list.isEmpty()) return false;

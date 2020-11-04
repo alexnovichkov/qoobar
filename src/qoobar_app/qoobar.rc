@@ -1,4 +1,4 @@
-IDI_ICON1   ICON    "icons/app/qoobar.ico"
+IDI_ICON1   ICON  DISCARDABLE  "icons/app/qoobar.ico"
 
 #include <winver.h>
 

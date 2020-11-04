@@ -4,16 +4,13 @@
 #include <QAction>
 #include <QtDebug>
 #include <QSettings>
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include <QContextMenuEvent>
 #include "application.h"
 #include "mainwindow.h"
 #include "qoobarglobals.h"
 #include "impl.h"
+#include "enums.h"
 
 QAction *findAction(QList<QAction*> &list, const QString &s)
 {
@@ -59,8 +56,9 @@ Toolbar::Toolbar(QMainWindow *parent) : QObject(parent)
 {DD;
     d = new Impl(parent);
     parent->addToolBar(d);
-    d->setIconSize(QSize(24,24));
+    d->setIconSize(QSize(LARGE_ICON_SIZE, LARGE_ICON_SIZE));
     d->setMovable(false);
+    d->setToolButtonStyle(Qt::ToolButtonIconOnly);
 }
 
 Toolbar::~Toolbar()
@@ -73,7 +71,7 @@ void Toolbar::addAction(QAction *act, const QString &key, bool showText)
     Q_UNUSED(showText)
     if (!act) return;
 
-    QAction *a = new QAction(act->icon(),act->text(),this);
+    auto *a = new QAction(act->icon(),act->text(),this);
     a->setText(act->text());
     a->setToolTip(act->toolTip());
     a->setEnabled(act->isEnabled());

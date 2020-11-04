@@ -27,8 +27,9 @@
 #include "application.h"
 #include "mainwindow.h"
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 #include "windows.h"
+#include "winuser.h"
 #endif
 
 #include <QTimer>
@@ -46,9 +47,22 @@
 
 #include <QProcess>
 
+extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
+
 int main(int argc, char *argv[])
-{DD
-#ifdef Q_OS_WIN32
+{DD;
+    qt_ntfs_permission_lookup++; // turn NTFS ownership and permissions checking on
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5,14,0)
+    qputenv("QT_ENABLE_HIGHDPI_SCALING", "1");
+#elif QT_VERSION >= QT_VERSION_CHECK(5,6,0)
+    qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+#endif // QT_VERSION
+    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+
+#ifdef Q_OS_WIN
+
     //This mutex is used to prevent the user from installing new versions
     //of Qoobar while Qoobar is still running, and to prevent
     //the user from uninstalling a running application.
@@ -61,16 +75,14 @@ int main(int argc, char *argv[])
     QCoreApplication::setLibraryPaths(paths);
 #endif
 
-#ifdef HAVE_QT5
-    #ifdef QT_NO_DEBUG
-    qSetMessagePattern("%{file} on %{line}: %{type}: %{message}");
-    #endif
-#endif
+//    #ifdef QT_NO_DEBUG
+    qSetMessagePattern("%{function}: %{type}: %{message}");
+//    #endif
 
     Application app(argc, argv);
-    app.setApplicationName(QSL("qoobar"));
-    app.setOrganizationName(QSL("qoobar"));
-    app.setApplicationVersion(QString(QOOBAR_VERSION));
+    QCoreApplication::setApplicationName(QSL("qoobar"));
+    QCoreApplication::setOrganizationName(QSL("qoobar"));
+    QCoreApplication::setApplicationVersion(QString(QOOBAR_VERSION));
     app.readGlobalSettings();
 
 #ifdef QOOBAR_ENABLE_CLI
@@ -80,7 +92,7 @@ int main(int argc, char *argv[])
     //starts parsing argv and creates MainWindow if not in command line mode
     QTimer::singleShot(0,&parser,SLOT(parse()));
 #else
-    QStringList filesNames = app.arguments().mid(1);
+    QStringList filesNames = QCoreApplication::arguments().mid(1);
     app.setFilesNames(Qoobar::expandFilesNames(filesNames, true));
     new MainWindow();
 #endif

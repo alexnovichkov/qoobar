@@ -24,11 +24,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "tagseditor.h"
 #include "application.h"
@@ -52,11 +48,7 @@
 
 #define USE_CONCURRENT
 #ifdef USE_CONCURRENT
-#ifdef HAVE_QT5
 #include <QtConcurrent/QtConcurrent>
-#else
-#include <QtConcurrentMap>
-#endif
 #endif
 
 
@@ -87,26 +79,28 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     table = new QTableWidget(count,1);
     table->horizontalHeader()->setVisible(false);
     table->horizontalHeader()->setStretchLastSection(true);
-    table->verticalHeader()->SETSECTIONRESIZEMODE(QHeaderView::ResizeToContents);
+    table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     int height=table->verticalHeader()->sectionSize(0);
     QHeaderView::ResizeMode rm = QHeaderView::Interactive;
     if (plain) rm=QHeaderView::Fixed;
-    table->verticalHeader()->SETSECTIONRESIZEMODE(rm);
+    table->verticalHeader()->setSectionResizeMode(rm);
     table->verticalHeader()->setDefaultSectionSize(height);
     for (int i = 0; i < count; ++i)
         table->setItem(i, 0, new QTableWidgetItem(list.at(i)));
     connect(table,SIGNAL(cellClicked(int,int)),this,SLOT(cellClicked(int,int)));
     connect(table,SIGNAL(currentCellChanged(int,int,int,int)),this,SLOT(currentCellChanged(int)));
 
-    hideIcon = QIcon(App->iconThemeIcon("fold.png"));
-    showIcon = QIcon(App->iconThemeIcon("unfold.png"));
+    hideIcon = QIcon::fromTheme("fold");
+    showIcon = QIcon::fromTheme("unfold");
 
 #ifndef Q_OS_MAC
+    int h = QFontMetrics(App->charsFont).height();
+
     scroll = new QScrollArea;
     scroll->setWidgetResizable(true);
     scroll->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    scroll->setMinimumWidth(100);
-    scroll->setMaximumWidth(100);
+    //scroll->setMinimumWidth(::dpiAwareSize(100,this));
+    scroll->setMaximumWidth(::dpiAwareSize(h*4,this));
     scroll->setFocusPolicy(Qt::NoFocus);
     QWidget *charsWidget = new QWidget(this);
     charsWidget->setFocusPolicy(Qt::NoFocus);
@@ -116,7 +110,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     charsLayout->setSpacing(0);
     int row=0; int col=0;
     QString chars = App->chars;
-    int h = QFontMetrics(App->charsFont).height();
+
     Q_FOREACH (const QChar &c, chars) {
         QAction *a=new QAction(QString(c),this);
         a->setToolTip(tr("%1 (%2 with Shift key)").arg(c).arg(c.toUpper()));
@@ -125,7 +119,8 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
         QToolButton *b = new QToolButton(this);
         b->setAutoRaise(true);
         b->setFocusPolicy(Qt::NoFocus);
-        b->setFixedSize(h+4,h+4);
+//        b->setFixedSize(h+::dpiAwareSize(4,this),h+::dpiAwareSize(4,this));
+        //b->setFixedSize(::dpiAwareSize(h,this),dpiAwareSize(h,this));
         b->setDefaultAction(a);
         if (col==4) {
             col=0; row++;
@@ -173,8 +168,8 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     }
     else {
         pedit = new QPlainTextEdit(this);
-        pedit->setMinimumHeight(80);
-        pedit->setMaximumHeight(200);
+        pedit->setMinimumHeight(::dpiAwareSize(80,this));
+        pedit->setMaximumHeight(::dpiAwareSize(200,this));
         if (!text.startsWith(QLS("<<")))  pedit->setPlainText(list.at(0));
 
         table->setItemDelegate(new TextEditDelegate(this));
@@ -205,7 +200,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     connect(searchPanel,SIGNAL(replaceAll()),SLOT(replaceAll()));
     connect(searchPanel,SIGNAL(replaceAndFind()),SLOT(replaceAndFind()));
 
-    QAction *startSearchAct = new QAction(QIcon(App->iconThemeIcon("edit-find.png")),tr("Find/Replace"),this);
+    QAction *startSearchAct = new QAction(QIcon::fromTheme("edit-find"),tr("Find/Replace"),this);
 #ifndef Q_OS_MAC
     startSearchAct->setShortcut(QKeySequence::Find);
 #endif
@@ -231,14 +226,14 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
         const char *icon;
         const char *map;
     } operations[] = {
-        {QT_TR_NOOP("lower"),"small.png","lower"},
-        {QT_TR_NOOP("UPPER"),"caps.png","upper"},
-        {QT_TR_NOOP("Only first up"),"word.png","caps3"},
-        {QT_TR_NOOP("Every First Up"),"everyword.png","caps"},
-        {QT_TR_NOOP("Simplify whitespaces"),"trim.png","simplify"},
-        {QT_TR_NOOP("Remove diacritics"),"diacritics.png","ansi"},
-        {QT_TR_NOOP("Transliterate"),"transliterate.png","transliterate"},
-        {QT_TR_NOOP("Fix encoding"),"fix.png","recode"}
+        {QT_TR_NOOP("lower"),"small","lower"},
+        {QT_TR_NOOP("UPPER"),"caps","upper"},
+        {QT_TR_NOOP("Only first up"),"word","caps3"},
+        {QT_TR_NOOP("Every First Up"),"everyword","caps"},
+        {QT_TR_NOOP("Simplify whitespaces"),"trim","simplify"},
+        {QT_TR_NOOP("Remove diacritics"),"diacritics","ansi"},
+        {QT_TR_NOOP("Transliterate"),"transliterate","transliterate"},
+        {QT_TR_NOOP("Fix encoding"),"fix","recode"}
     };
 
 
@@ -249,7 +244,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     l->setSpacing(0);
     l->setMargin(0);
     for (int i=0; i<8; ++i) {
-        QAction *a = new QAction(QIcon(App->iconThemeIcon(operations[i].icon)),
+        QAction *a = new QAction(QIcon::fromTheme(operations[i].icon),
                                  operations[i].text,this);
         connect(a,SIGNAL(triggered()),operationsMapper,SLOT(map()));
         operationsMapper->setMapping(a, operations[i].map);
@@ -272,11 +267,11 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     operationsToolBar->addSeparator();
 
     operationsToolBar->setMovable(false);
-    operationsToolBar->setIconSize(QSize(16,16));
+    operationsToolBar->setIconSize(QSize(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
 
     for (int i=0; i<8; ++i)
         operationsMapper->setMapping(
-                    operationsToolBar->addAction(QIcon(App->iconThemeIcon(operations[i].icon)),
+                    operationsToolBar->addAction(QIcon::fromTheme(operations[i].icon),
                                                  operations[i].text,
                                                  operationsMapper,
                                                  SLOT(map()))
@@ -312,7 +307,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 
     searchPanel->hide();
 
-    resize(800,300);
+    resize(::dpiAwareSize(800,300,this));
 }
 
 

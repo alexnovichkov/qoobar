@@ -85,7 +85,7 @@ private:
     CoverImage oldimg;
     CoverImage newimg;
     Tab *t;
-    bool status;
+    bool status = false;
 };
 
 #endif // UNDOACTIONS_H

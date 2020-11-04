@@ -1,15 +1,13 @@
 #include "autonumber.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "application.h"
 #include "enums.h"
 #include "tagger.h"
 #include "qbutton.h"
 #include "qoobarhelp.h"
+
+constexpr int maximumTracksCount = 9999;
 
 AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
     : QDialog(parent), oldTags(oldTags)
@@ -53,12 +51,12 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
                                        <<tr("Album")
                                        <<tr("Title"));
     for (int i=0; i<4; ++i)
-        tree->header()->SETSECTIONRESIZEMODE(i, QHeaderView::ResizeToContents);
+        tree->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
     tree->header()->setStretchLastSection(false);
 
 
     startNumberEdit = new QSpinBox(this);
-    startNumberEdit->setRange(1,9999);
+    startNumberEdit->setRange(1,maximumTracksCount);
     startNumberEdit->setValue(startNumber);
     connect(startNumberEdit,SIGNAL(valueChanged(int)),SLOT(updateTrackNumbers()));
     //startNumberEdit->setMaximumWidth(100);
@@ -99,7 +97,7 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
 #endif
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
-    QGridLayout *l = new QGridLayout;
+    auto *l = new QGridLayout;
     l->addWidget(new QLabel(tr("Begin at number")),0,0);
     l->addWidget(startNumberEdit,0,1);
     l->addWidget(new QLabel(tr("Number format")),0,2,1,1,Qt::AlignRight);
@@ -121,7 +119,10 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
 
 
     this->setLayout(l);
-    resize(800,480);
+
+    resize(dpiAwareSize(App->primaryScreen()->availableSize().width()/3,
+                        App->primaryScreen()->availableSize().height()/2,
+                        this));
 
     updateTrackNumbers();
 }
@@ -165,17 +166,18 @@ void AutonumberDialog::updateTrackNumbers()
     tree->clear();
 
     QList<QTreeWidgetItem*> items;
-    for (int i=0; i<oldTags.size(); ++i) {
+    for (const auto &tag: oldTags) {
         QTreeWidgetItem *item = new QTreeWidgetItem(
-                    QStringList()<<oldTags.at(i).tracknumber()
-                    <<oldTags.at(i).tracknumber()
-                    <<oldTags.at(i).totalTracks()
-                    <<oldTags.at(i).totalTracks()
-                    <<oldTags.at(i).fileNameExt()
-                    <<oldTags.at(i).artist()
-                    <<oldTags.at(i).composer()
-                    <<oldTags.at(i).album()
-                    <<oldTags.at(i).title());
+                                    QStringList()
+                                        <<tag.tracknumber()
+                                        <<tag.tracknumber()
+                                        <<tag.totalTracks()
+                                        <<tag.totalTracks()
+                                        <<tag.fileNameExt()
+                                        <<tag.artist()
+                                        <<tag.composer()
+                                        <<tag.album()
+                                        <<tag.title());
         item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
         items << item;
     }
@@ -210,10 +212,10 @@ void AutonumberDialog::updateTrackNumbers()
 
         QMap<QString, QVector<int> > byAlbum;
         if (resetAlbum) {
-            for (int i=0; i<indexes.size(); ++i) {
-                QString album = oldTags.at(indexes.at(i)).album();
+            for (int i: indexes) {
+                QString album = oldTags.at(i).album();
                 QVector<int> indexesA = byAlbum.value(album);
-                indexesA.append(indexes.at(i));
+                indexesA.append(i);
                 byAlbum.insert(album, indexesA);
             }
         }

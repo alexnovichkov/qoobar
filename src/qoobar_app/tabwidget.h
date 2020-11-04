@@ -53,8 +53,7 @@ private Q_SLOTS:
 
     void editTabName();
 private:
-    int index;
-    int pressedTab;
+    int index{-1};
     QLineEdit *editor;
 };
 

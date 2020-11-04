@@ -87,7 +87,7 @@ QString peak(int v)
 }
 QString gain(int v)
 {DD;
-    return QString("%2 dB").arg(v == 0 ? 0.f : 64.82f - v / 256.f,0,'f',2);
+    return QString("%2 dB").arg(v == 0 ? 0.f : 64.82f - float(v) / 256.f,0,'f',2);
 }
 
 void TagsReaderWriter::readTags(int tagTypes)
@@ -139,7 +139,7 @@ void TagsReaderWriter::readTags(int tagTypes)
     static int intTags[] = {YEAR, TRACKNUMBER, TOTALTRACKS, RATING, DISCNUMBER, TOTALDISCS, TEMPO};
     for (int i=0; i<7; ++i) {
         if (tag->tag(intTags[i])=="0")
-            tag->d->tags[intTags[i]] = QSL("");
+            tag->d->tags[intTags[i]] = QLS("");
     }
 }
 
@@ -879,11 +879,7 @@ TagLib::FLAC::Picture *createFlacPicture(const CoverImage &image)
         picture->setColorDepth(img.depth());
         picture->setHeight(img.height());
         picture->setWidth(img.width());
-#if QT_VERSION >= 0x040600
         picture->setNumColors(img.colorCount());
-#else
-        picture->setNumColors(img.numColors());
-#endif
     }
     return picture;
 }
@@ -957,7 +953,7 @@ void TagsReaderWriter::writeXiph(TagLib::Ogg::XiphComment *xiph)
     const QMap<QString, QString> &other = tag->userTags();
     QMap<QString, QString>::const_iterator it = other.constBegin();
     for (; it != other.constEnd(); ++it) {
-        QStringList fields = App->writeFieldsSeparately ? it.value().split(QSL(";"),QString::SkipEmptyParts)
+        QStringList fields = App->writeFieldsSeparately ? it.value().split(QSL(";"),SKIP_EMPTY_PARTS)
                                                         : QStringList(it.value()) ;
 
         xiph->removeField(TS(it.key().toUpper()));
@@ -1056,7 +1052,7 @@ void TagsReaderWriter::writeAsf(TagLib::ASF::Tag *asftag)
     const QMap<QString, QString> &other = tag->userTags();
     QMap<QString, QString>::const_iterator it = other.constBegin();
     for (; it != other.constEnd(); ++it) {
-        QStringList fields = App->writeFieldsSeparately ? it.value().split(QSL(";"),QString::SkipEmptyParts)
+        QStringList fields = App->writeFieldsSeparately ? it.value().split(QSL(";"),SKIP_EMPTY_PARTS)
                                                         : QStringList(it.value());
         asftag->removeItem(TS(it.key()));
         Q_FOREACH (const QString &field, fields)
@@ -1372,7 +1368,7 @@ void TagsReaderWriter::renderTags(const TaggingScheme::TagType type, TagLib::Tag
             switch (type) {
                 case TaggingScheme::VORBIS: {
                     TagLib::Ogg::XiphComment *t =  static_cast<TagLib::Ogg::XiphComment *>(taglibtag);
-                    QStringList tags = App->writeFieldsSeparately ? value1.split(QSL(";"),QString::SkipEmptyParts) : QStringList(value1);
+                    QStringList tags = App->writeFieldsSeparately ? value1.split(QSL(";"),SKIP_EMPTY_PARTS) : QStringList(value1);
                     t->removeField(TS(field));
 
                     Q_FOREACH (const QString &v, tags) {
@@ -1392,7 +1388,7 @@ void TagsReaderWriter::renderTags(const TaggingScheme::TagType type, TagLib::Tag
                     break;
                 case TaggingScheme::ASF: {
                     TagLib::ASF::Tag *t = static_cast<TagLib::ASF::Tag *>(taglibtag);
-                    QStringList tags = App->writeFieldsSeparately ?  value1.split(QSL(";"),QString::SkipEmptyParts) : QStringList(value1);
+                    QStringList tags = App->writeFieldsSeparately ?  value1.split(QSL(";"),SKIP_EMPTY_PARTS) : QStringList(value1);
                     t->removeItem(TS(field));
                     Q_FOREACH (const QString &v, tags) {
                         writeAsfItem(t,v,TS(field));

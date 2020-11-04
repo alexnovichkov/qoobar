@@ -26,11 +26,7 @@
 
 #include "tagsfiller.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "corenetworksearch.h"
 #include "application.h"
@@ -158,8 +154,12 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     patternEdit = new QComboBox(this);
     patternEdit->setSizePolicy(QSizePolicy::Expanding, patternEdit->sizePolicy().verticalPolicy());
     patternEdit->setEditable(true);
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     patternEdit->setAutoCompletion(true);
     patternEdit->setAutoCompletionCaseSensitivity(Qt::CaseSensitive);
+#else
+    patternEdit->completer()->setCaseSensitivity(Qt::CaseSensitive);
+#endif
     if (!App->fillPatterns.isEmpty()) {
         patternEdit->insertItems(0,App->fillPatterns);
         patternEdit->setEditText(App->fillPatterns.first());
@@ -195,8 +195,8 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
 
     header = new CheckableHeaderView(Qt::Horizontal,table);
     table->setHorizontalHeader(header);
-    table->setColumnWidth(0,25);
-    table->setColumnWidth(1,400);
+    table->setColumnWidth(0,::dpiAwareSize(25,this));
+    table->setColumnWidth(1,::dpiAwareSize(400,this));
     header->setCheckable(0,true);
     header->setCheckState(0,Qt::Checked);
     connect(header,SIGNAL(toggled(int,Qt::CheckState)),this,SLOT(headerToggled(int,Qt::CheckState)));
@@ -230,7 +230,6 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     sourceComboBox->setEditable(false);
     sourceComboBox->setIconSize(QSize(50,17));
 
-#ifdef HAVE_QT5
     for (int it = 0; it < App->downloadPlugins.size(); ++it) {
         QJsonObject metaData = App->downloadPlugins.at(it);
 
@@ -242,12 +241,6 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
         QString key = metaData.value(QSL("path")).toString();
         sourceComboBox->addItem(icon, text, key);
     }
-#else
-    QMap<QString, IDownloadPlugin *>::const_iterator it = App->downloadPlugins.begin();
-    for (;it!=App->downloadPlugins.end(); ++it) {
-        sourceComboBox->addItem(it.value()->icon(), it.value()->text(), it.value()->key());
-    }
-#endif
     sourceComboBox->adjustSize();
     connect(sourceComboBox,SIGNAL(currentIndexChanged(int)),SLOT(handleSourceComboBox(int)));
 
@@ -268,7 +261,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     filesSearchRadioButton->setChecked(true);
 
 
-    QPushButton *swapButton = new QPushButton(QIcon(App->iconThemeIcon("flip.png")),QString(),this);
+    QPushButton *swapButton = new QPushButton(QIcon::fromTheme("flip"),QString(),this);
     swapButton->setFlat(true);
     connect(swapButton,SIGNAL(clicked()),SLOT(swapArtistAndAlbum()));
 
@@ -326,7 +319,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     nl->addWidget(progress);
     //nl->addSpacing(50);
     nl->addWidget(networkStatusInfo);
-    nl->addSpacing(50);
+    nl->addSpacing(::dpiAwareSize(50,this));
     nl->addWidget(networkErrorInfo);
     nl->addStretch();
 
@@ -381,7 +374,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
 #endif
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
-    QVBoxLayout *layout = new QVBoxLayout;
+    auto *layout = new QVBoxLayout;
     layout->addWidget(tab);
 #ifdef Q_OS_MAC
     QHBoxLayout *boxL = new QHBoxLayout;
@@ -392,7 +385,9 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     layout->addWidget(buttonBox);
 #endif
     setLayout(layout);
-    resize(1000,560);
+
+    resize(::dpiAwareSize(App->primaryScreen()->availableSize().width()/2,
+                          App->primaryScreen()->availableSize().height()/2,this));
 
     currentAlbum=-1;
 }
@@ -525,7 +520,6 @@ void TagsFillDialog::downloadRelease(const QString &url, const int releaseIndex)
 
 IDownloadPlugin *TagsFillDialog::maybeLoadPlugin(const QString &path)
 {DD
-#ifdef HAVE_QT5
     IDownloadPlugin *plugin = loadedPlugins.value(path, 0);
     if (!plugin) {
         QPluginLoader loader(path);
@@ -533,9 +527,6 @@ IDownloadPlugin *TagsFillDialog::maybeLoadPlugin(const QString &path)
         if (o) plugin = qobject_cast<IDownloadPlugin *>(o);
         if (plugin) loadedPlugins.insert(path, plugin);
     }
-#else
-    IDownloadPlugin *plugin = App->downloadPlugins.value(path, 0);
-#endif
     return plugin;
 }
 
@@ -583,19 +574,10 @@ void TagsFillDialog::handleAlbumSelection(QTreeWidgetItem *item)
 void TagsFillDialog::handleSourceComboBox(int row)
 {DD
     if (row<0 || row>=App->downloadPlugins.size()) return;
-#ifdef HAVE_QT5
     QJsonObject meta = App->downloadPlugins.at(row);
     bool canSearchByFiles=meta.value(QSL("canSearchByFiles")).toBool(false);
     bool canSearchByCD=meta.value(QSL("canSearchByCD")).toBool(false);
     bool canSearchManually=meta.value(QSL("canSearchManually")).toBool(false);
-#else
-    QString path=sourceComboBox->itemData(row).toString();
-    IDownloadPlugin *plugin = App->downloadPlugins.value(path, 0);
-
-    bool canSearchByFiles = plugin->canSearchByFiles();
-    bool canSearchByCD = plugin->canSearchByCD();
-    bool canSearchManually = plugin->canSearchManually();
-#endif
 
     filesSearchRadioButton->setEnabled(canSearchByFiles);
     cdSearchRadioButton->setEnabled(canSearchByCD);
@@ -752,11 +734,8 @@ void TagsFillDialog::updateTags(bool alsoUpdateTable)
         PairList parsed = TagParser::parse(source.at(i), pattern);
         Q_FOREACH(const StringPair &pair, parsed) {
             int id = Placeholders::placeholderToId(pair.first);
-            if (id >= 0) {
-                if (!map.contains(id)) map << id;
-                tag.setTag(id, pair.second);
-            }
-            else id = App->currentScheme->tagIDBySimplifiedName(pair.first);
+            if (id<0)
+                id = App->currentScheme->tagIDBySimplifiedName(pair.first);
             if (id >= 0) {
                 if (!map.contains(id)) map << id;
                 tag.setTag(id, pair.second);

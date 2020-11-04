@@ -1,11 +1,7 @@
 #include "statusbar.h"
 #include "tagger.h"
 #include "qoobarglobals.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include "application.h"
 
 /****************************************************************************
@@ -67,12 +63,11 @@ void ElidingLabel::setElideMode(const Qt::TextElideMode &elideMode)
 
 void ElidingLabel::paintEvent(QPaintEvent *e)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(4, 7, 0))
     const int m = margin();
     QRect contents = contentsRect().adjusted(m, m, -m, -m);
     QFontMetrics fm = fontMetrics();
     QString txt = text();
-    if (txt.length() > 4 && fm.width(txt) > contents.width()) {
+    if (txt.length() > 4 && fm.HORIZONTAL_ADVANCE(txt) > contents.width()) {
         setToolTip(txt);
         txt = fm.elidedText(txt, m_elideMode, contents.width());
         int flags = QStyle::visualAlignment(layoutDirection(), alignment()) | Qt::TextSingleLine;
@@ -89,9 +84,6 @@ void ElidingLabel::paintEvent(QPaintEvent *e)
         setToolTip(QString());
         QLabel::paintEvent(e);
     }
-#else
-    QLabel::paintEvent(e);
-#endif
 }
 /*       end of Eliding label     */
 /**********************************/
@@ -140,7 +132,7 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     fileIconLabel = new QLabel(this);
 
     fileNameLabel = new ElidingLabel(this);
-    fileNameLabel->setMinimumWidth(200);
+    fileNameLabel->setMinimumWidth(::dpiAwareSize(200,this));
     fileNameLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     fileNameLabel->setElideMode(Qt::ElideLeft);
     fileNameLabel->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
@@ -160,7 +152,7 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     sizeLabel->setAttribute(Qt::WA_MacSmallSize);
 
     sizeContentsLabel = new QLabel(this);
-    sizeContentsLabel->setFixedWidth(sizeContentsLabel->fontMetrics().width(QSL("000.000 Mib  ")));
+    sizeContentsLabel->setFixedWidth(sizeContentsLabel->fontMetrics().HORIZONTAL_ADVANCE(QSL("000.000 Mib  ")));
     sizeContentsLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     sizeContentsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     sizeContentsLabel->setAttribute(Qt::WA_MacSmallSize);
@@ -170,7 +162,7 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     lengthLabel->setAttribute(Qt::WA_MacSmallSize);
 
     lengthContentsLabel = new QLabel(this);
-    lengthContentsLabel->setFixedWidth(lengthContentsLabel->fontMetrics().width(QSL("h:mm:ss  ")));
+    lengthContentsLabel->setFixedWidth(lengthContentsLabel->fontMetrics().HORIZONTAL_ADVANCE(QSL("h:mm:ss  ")));
     lengthContentsLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     lengthContentsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     lengthContentsLabel->setAttribute(Qt::WA_MacSmallSize);
@@ -254,7 +246,7 @@ void PropertiesPanel::updateFileName()
         }
         typeLabel->setText(properties);
         readOnlyLabel->setVisible(currentHover.readOnly());
-        fileIconLabel->setPixmap(QPixmap(App->themeIcon(currentHover.icon())));
+        fileIconLabel->setPixmap(QIcon::fromTheme(currentHover.icon()).pixmap(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
     }
     else {
         fileNameLabel->clear();
@@ -263,6 +255,7 @@ void PropertiesPanel::updateFileName()
         typeLabel->clear();
     }
 }
+
 void PropertiesPanel::updateSizeContents()
 {DD;
     if (currentHover.size()>0) {

@@ -27,9 +27,9 @@ ClearLineEdit::ClearLineEdit(QWidget *parent) :
     QIcon icon = QIcon::fromTheme(layoutDirection() == Qt::LeftToRight ?
                      QSL("edit-clear-locationbar-rtl") :
                      QSL("edit-clear-locationbar-ltr"),
-                     QIcon::fromTheme(QSL("edit-clear"), QIcon(App->iconThemeIcon(QSL("editclear.png")))));
+                     QIcon::fromTheme("edit-clear"));
 
-    setButtonPixmap(Right, icon.pixmap(16));
+    setButtonPixmap(Right, icon.pixmap(SMALL_ICON_SIZE));
     setButtonVisible(Right, true);
     setButtonToolTip(Right, tr("Clear text"));
     setAutoHideButton(Right, true);

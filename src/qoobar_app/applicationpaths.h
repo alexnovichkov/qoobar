@@ -8,24 +8,24 @@
 namespace ApplicationPaths
 {
 #ifdef Q_OS_MAC
-const QString bundlePath();
+QString bundlePath();
 #endif
 
-const QString sharedPath();
+QString sharedPath();
 
-const QString translationsPath();
+QString translationsPath();
 
-const QString schemesPath();
+QString schemesPath();
 
-const QString userSchemesPath();
+QString userSchemesPath();
 
-const QString completionsPath();
+QString completionsPath();
 
-const QString userCompletionsPath();
+QString userCompletionsPath();
 
-const QString documentationPath();
+QString documentationPath();
 
-const QString pluginsPath();
+QString pluginsPath();
 } // namespace
 
 #endif // APPLICATIONPATHS_H

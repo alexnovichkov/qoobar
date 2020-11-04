@@ -29,23 +29,20 @@
 #include "application.h"
 #include "imageresizedialog.h"
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "enums.h"
 #include "qoobarglobals.h"
 
-#ifdef Q_OS_MAC
+//#ifdef Q_OS_MAC
 #define IMAGEBOX_TOOLBAR
-#endif
+//#endif
 
-Panel::Panel(QWidget *parent) : QWidget(parent)
+Panel::Panel(PanelType type, QWidget *parent) : QWidget(parent), type(type)
 {DD
     label = new ClickableLabel(this);
     connect(label,SIGNAL(clicked()),SLOT(showFullImage()));
+    //TODO: this->devicePixelRatio()
     label->setContentsMargins(5,5,0,5);
     panel = new FadingPanel(this);
     QHBoxLayout *layout = new QHBoxLayout;
@@ -55,7 +52,7 @@ Panel::Panel(QWidget *parent) : QWidget(parent)
     layout->addStretch();
     layout->addWidget(panel);
     setLayout(layout);
-    empty=true;
+    clear();
 }
 
 void Panel::showFullImage()
@@ -68,7 +65,8 @@ void Panel::showFullImage()
 }
 
 void Panel::setText(QString text, bool clip/*=false*/)
-{DD
+{DD;
+    if (type == PanelImage) return;
     empty = false;
     image = QPixmap();
     if (clip) text=this->fontMetrics().elidedText(text,Qt::ElideRight,150);
@@ -76,11 +74,13 @@ void Panel::setText(QString text, bool clip/*=false*/)
 }
 
 void Panel::setPixmap(QPixmap p, const QString &toolTip)
-{DD
+{DD;
+    if (type == PanelText) return;
     setToolTip(toolTip);
     label->setText(QString());
     empty=false;
     image=p;
+    //TODO: this->devicePixelRatio()
     int max=qMax(p.width(),p.height());
     if (max>150) {
         if (p.width()==max) p=p.scaledToWidth(150);
@@ -93,6 +93,11 @@ void Panel::clear()
 {DD
     empty=true;
     label->clear();
+    setToolTip("");
+    if (type != PanelText) {
+        label->setPixmap(QIcon::fromTheme("view-preview").pixmap(64,64));
+        setToolTip(tr("No image"));
+    }
 }
 
 void Panel::enterEvent(QEvent * event)
@@ -132,20 +137,24 @@ QPixmap Panel::cacheBackground(const QSize &size)
     pixmap.fill(Qt::transparent);
     QPainter p(&pixmap);
 
-    QRect fullRect(0, 0, size.width(), size.height());
-    p.fillRect(fullRect, QColor(255, 255, 255, 40));
+//    QRect fullRect(0, 0, size.width(), size.height());
+//    p.fillRect(fullRect, QColor(255, 255, 255, 40));
 
-    QLinearGradient lg(fullRect.topLeft(), fullRect.bottomLeft());
-    lg.setColorAt(0, QColor(255, 255, 255, 130));
-    lg.setColorAt(1, QColor(255, 255, 255, 0));
-    p.fillRect(fullRect, lg);
-    p.setRenderHint(QPainter::Antialiasing, true);
-    p.translate(0.5, 0.5);
-    p.setPen(QColor(0, 0, 0, 40));
-    p.setBrush(Qt::NoBrush);
-    p.drawRoundedRect(fullRect.adjusted(0, 0, -1, -1), 2, 2);
-    p.setPen(QColor(255,255,255,140));
-    p.drawRoundedRect(fullRect.adjusted(1, 1, -2, -2), 2, 2);
+//    QLinearGradient lg(fullRect.topLeft(), fullRect.bottomLeft());
+//    lg.setColorAt(0, QColor(255, 255, 255, 130));
+//    lg.setColorAt(1, QColor(255, 255, 255, 0));
+//    p.fillRect(fullRect, lg);
+//    p.setRenderHint(QPainter::Antialiasing, true);
+//    p.translate(0.5, 0.5);
+//    p.setPen(QColor(0, 0, 0, 40));
+//    p.setBrush(Qt::NoBrush);
+//    p.drawRoundedRect(fullRect.adjusted(0, 0, -1, -1), 2, 2);
+//    p.setPen(QColor(255,255,255,140));
+//    p.drawRoundedRect(fullRect.adjusted(1, 1, -2, -2), 2, 2);
+
+    QRect fullRect(0, 0, size.width(), size.height());
+    p.setPen(QColor(40,40,40,40));
+    p.drawRect(fullRect.adjusted(1, 1, -1, -1));
 
     return pixmap;
 }
@@ -164,11 +173,9 @@ FadingPanel::FadingPanel(QWidget *parent) :
     QWidget(parent)
 {DD
 #ifndef Q_OS_MAC
-#if QT_VERSION >= 0x040600
     m_opacityEffect=new QGraphicsOpacityEffect;
     m_opacityEffect->setOpacity(0);
     setGraphicsEffect(m_opacityEffect);
-#endif
     QPalette pal;
     pal.setBrush(QPalette::All, QPalette::Window, Qt::transparent);
     setPalette(pal);
@@ -181,38 +188,36 @@ FadingPanel::FadingPanel(QWidget *parent) :
 
 void FadingPanel::fadeTo(float value)
 {DD
-#if QT_VERSION >= 0x040600
     QPropertyAnimation *animation = new QPropertyAnimation(m_opacityEffect, "opacity");
     animation->setDuration(200);
     animation->setEndValue(value);
     animation->start(QAbstractAnimation::DeleteWhenStopped);
-#endif
 }
 
 ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
 {DD
-    typePanel = new Panel(this);
-    descriptionPanel = new Panel(this);
-    imagePanel = new Panel(this);
+    typePanel = new Panel(Panel::PanelText, this);
+    descriptionPanel = new Panel(Panel::PanelText, this);
+    imagePanel = new Panel(Panel::PanelMixed, this);
 
 #ifdef IMAGEBOX_TOOLBAR
-    addImageAct = makeAction(SLOT(addImage()), App->themeIcon("list-add1.png"));
-    removeImageAct = makeAction(SLOT(removeImage()), App->themeIcon("list-remove.png"));
-    saveImageAct = makeAction(SLOT(saveImage()), App->themeIcon("document-save.ico"));
+    addImageAct = makeAction(SLOT(addImage()), "list-add");
+    removeImageAct = makeAction(SLOT(removeImage()), "list-remove");
+    saveImageAct = makeAction(SLOT(saveImage()), "document-save");
 
     addImageAct->setEnabled(true);
 
-    typeButton = makeButton(SLOT(changeType()),App->themeIcon("TextEdit.png"));
-    descriptionButton = makeButton(SLOT(changeDescription()),App->themeIcon("TextEdit.png"));
-    copyAct = makeAction(SLOT(copyImage()), App->themeIcon("edit-copy.ico"));
-    cutAct = makeAction(SLOT(cutImage()), App->themeIcon("edit-cut.ico"));
-    pasteAct = makeAction(SLOT(pasteImage()), App->themeIcon("edit-paste.ico"));
-    resizeAct = makeAction(SLOT(resizeImage()),App->themeIcon("image_resize.png"));
+    typeButton = makeButton(SLOT(changeType()),"TextEdit");
+    descriptionButton = makeButton(SLOT(changeDescription()),"TextEdit");
+    copyAct = makeAction(SLOT(copyImage()), "edit-copy");
+    cutAct = makeAction(SLOT(cutImage()), "edit-cut");
+    pasteAct = makeAction(SLOT(pasteImage()), "edit-paste");
+    resizeAct = makeAction(SLOT(resizeImage()),"image-resize");
     typePanel->addWidget(typeButton);
     descriptionPanel->addWidget(descriptionButton);
 
     QToolBar *toolBar = new QToolBar(this);
-    toolBar->setIconSize(QSize(16,16));
+    toolBar->setIconSize(QSize(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
     toolBar->addAction(addImageAct);
     toolBar->addAction(removeImageAct);
     toolBar->addAction(saveImageAct);
@@ -225,15 +230,9 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
     addImageAct = new QAction(this);
     removeImageAct = new QAction(this);
     saveImageAct = new QAction(this);
-    QToolButton *addImageButton = makeButton(addImageAct,
-                                             SLOT(addImage()),
-                                             App->themeIcon("list-add1.png"));
-    QToolButton *removeImageButton = makeButton(removeImageAct,
-                                                SLOT(removeImage()),
-                                                App->themeIcon("list-remove.png"));
-    QToolButton *saveImageButton = makeButton(saveImageAct,
-                                              SLOT(saveImage()),
-                                              App->themeIcon("document-save.ico"));
+    QToolButton *addImageButton = makeButton(addImageAct,SLOT(addImage()),"list-add");
+    QToolButton *removeImageButton = makeButton(removeImageAct,SLOT(removeImage()),"list-remove");
+    QToolButton *saveImageButton = makeButton(saveImageAct,SLOT(saveImage()),"document-save");
 
 
     addImageAct->setEnabled(false);
@@ -245,17 +244,17 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
     pasteAct = new QAction(this);
     resizeAct = new QAction(this);
 
-    typePanel->addWidget(makeButton(typeAct, SLOT(changeType()),App->themeIcon("TextEdit.png")));
+    typePanel->addWidget(makeButton(typeAct, SLOT(changeType()),"TextEdit"));
     descriptionPanel->addWidget(makeButton(descriptionAct, SLOT(changeDescription()),
-                                           App->themeIcon("TextEdit.png")));
+                                           "TextEdit"));
     imagePanel->addWidget(makeButton(cutAct, SLOT(cutImage()),
-                                     App->themeIcon("edit-cut.ico")));
+                                     "edit-cut"));
     imagePanel->addWidget(makeButton(copyAct, SLOT(copyImage()),
-                                     App->themeIcon("edit-copy.ico")));
+                                     "edit-copy"));
     imagePanel->addWidget(makeButton(pasteAct, SLOT(pasteImage()),
-                                     App->themeIcon("edit-paste.ico")));
+                                     "edit-paste"));
     imagePanel->addWidget(makeButton(resizeAct, SLOT(resizeImage()),
-                                     App->themeIcon("image_resize.png")));
+                                     "image-resize"));
 #endif
 
     QGridLayout *imageLayout=new QGridLayout;
@@ -271,7 +270,8 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
     imageLayout->setRowStretch(0,1);
     imageLayout->setRowStretch(1,1);
     imageLayout->setRowStretch(2,20);
-    setFixedWidth(220);
+//    setFixedWidth(220);
+    //setFixedWidth(toolBar->contentsRect().width());
 #else
     imageLayout->setContentsMargins(0,0,0,0);
     imageLayout->setVerticalSpacing(0);
@@ -403,7 +403,8 @@ QToolButton *ImageBox::makeButton(QAction *act, const char *slot, const QString 
     QToolButton *button = new QToolButton(this);
     button->setAutoRaise(true);
     button->setDefaultAction(act);
-    act->setIcon(QIcon(icon));
+    button->setIconSize(QSize(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
+    act->setIcon(QIcon::fromTheme(icon));
     act->setEnabled(false);
     return button;
 }
@@ -414,8 +415,8 @@ QPushButton *ImageBox::makeButton(const char *slot, const QString &icon)
     connect(button,SIGNAL(clicked()),slot);
 
     button->setFlat(true);
-    button->setMaximumSize(24,24);
-    button->setIcon(QIcon(icon));
+    button->setMaximumSize(MEDIUM_ICON_SIZE, MEDIUM_ICON_SIZE);
+    button->setIcon(QIcon::fromTheme(icon));
     button->setEnabled(false);
     return button;
 }
@@ -424,7 +425,7 @@ QAction *ImageBox::makeAction(const char *slot, const QString &icon)
 {DD
     QAction *act = new QAction(this);
     connect(act,SIGNAL(triggered()),slot);
-    act->setIcon(QIcon(icon));
+    act->setIcon(QIcon::fromTheme(icon));
     act->setEnabled(false);
     return act;
 }

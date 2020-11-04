@@ -24,11 +24,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "mainwindow.h"
 #include "application.h"
@@ -44,7 +40,7 @@
 #include "logging.h"
 #include "macsplitter.h"
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 #include "windows.h"
 #endif
 
@@ -88,7 +84,7 @@ const Act MainWindow::actionsDescr[] = {
     {"fill", QT_TR_NOOP("&Fill tags..."),
      QT_TR_NOOP("Fill tags..."),
      QT_TR_NOOP("Fill"),
-     0, QT_TR_NOOP("Ctrl+F"), QKeySequence::UnknownKey, "fill", SLOT(fill())},
+     0, QT_TR_NOOP("Ctrl+F"), QKeySequence::UnknownKey, "tag-fill", SLOT(fill())},
     {"rereadTags", QT_TR_NOOP("&Reread tags"),
      QT_TR_NOOP("Reread tags"),
      QT_TR_NOOP("Reread"),
@@ -114,7 +110,7 @@ const Act MainWindow::actionsDescr[] = {
     {"play", QT_TR_NOOP("&Play selected"), QT_TR_NOOP("Play selected"), QT_TR_NOOP("Play"),
      0, QT_TR_NOOP("Ctrl+P"), QKeySequence::UnknownKey, "media-playback-start",SLOT(play())},
     {"removeTags", QT_TR_NOOP("Clear all tags"), QT_TR_NOOP("Clear all tags"), QT_TR_NOOP("Clear"),
-     0, 0, QKeySequence::UnknownKey, "Delete", SLOT(removeAllTags())},
+     0, 0, QKeySequence::UnknownKey, "tag-clear", SLOT(removeAllTags())},
     {"cut", QT_TR_NOOP("Cu&t"), QT_TR_NOOP("Cut"), QT_TR_NOOP("Cut"),
      0, 0, QKeySequence::Cut, "edit-cut",SLOT(cut())},
     {"copy", QT_TR_NOOP("&Copy"), QT_TR_NOOP("Copy"), QT_TR_NOOP("Copy"),
@@ -128,7 +124,7 @@ const Act MainWindow::actionsDescr[] = {
     {"newTag", QT_TR_NOOP("&Add new tag..."),
      QT_TR_NOOP("Add new tag..."),
      QT_TR_NOOP("New tag"),
-     0, 0, QKeySequence::New, "list-add",SLOT(newTag())},
+     0, 0, QKeySequence::New, "tag-add",SLOT(newTag())},
     {"autonumber", QT_TR_NOOP("Autonumber selected files..."),
      QT_TR_NOOP("Autonumber selected files..."),
      QT_TR_NOOP("Autonumber"),
@@ -278,7 +274,12 @@ void MainWindow::init()
     sp->addWidget(dirView);
     sp->addWidget(tabWidget);
 #ifndef Q_OS_MAC
-    sp->setContentsMargins(5,5,5,5);
+    //TODO: this->devicePixelRatio()
+    const int dpiSize = 0;//dpiAwareSize(5, this);
+    sp->setContentsMargins(dpiSize,
+                           dpiSize,
+                           dpiSize,
+                           dpiSize);
 #endif
     //sp->setStretchFactor(0,1);
     //sp->setStretchFactor(1,3);
@@ -299,7 +300,10 @@ void MainWindow::initRest()
     App->loadPlugins();
     createPluginsMenu();
     if (App->geometry.isEmpty())
-        resize(1000,800);
+        //TODO: this->devicePixelRatio()
+        resize(::dpiAwareSize(App->primaryScreen()->availableSize().width()*2/3,
+                              App->primaryScreen()->availableSize().height()*2/3,
+                              this));
     else
         restoreGeometry(App->geometry);
     createNewTab(true);
@@ -310,8 +314,9 @@ void MainWindow::initRest()
     else {
         QList<int> sizes = sp->sizes();
         int total = sizes.at(0)+sizes.last();
-        sizes[0]=200;
-        sizes[1]=total-200;
+        //TODO: this->devicePixelRatio()
+        sizes[0]=::dpiAwareSize(200, this);
+        sizes[1]=::dpiAwareSize(total-200, this);
         sp->setSizes(sizes);
     }
 
@@ -352,7 +357,7 @@ void MainWindow::createUndoRedoActs()
     delete redoAct;
     undoAct = undoGroup->createUndoAction(this/*,tr("&Undo")*/);
     undoAct->setShortcutContext(Qt::ApplicationShortcut);
-    undoAct->setIcon(QIcon(App->iconThemeIcon("edit-undo.ico")));
+    undoAct->setIcon(QIcon::fromTheme("edit-undo"));
     undoAct->setShortcut(QKeySequence(QKeySequence::Undo).toString());
     undoAct->setProperty("shortDescr",tr("Undo"));
     undoAct->setPriority(QAction::LowPriority);
@@ -360,7 +365,7 @@ void MainWindow::createUndoRedoActs()
 
     redoAct = undoGroup->createRedoAction(this/*,tr("&Redo")*/);
     redoAct->setShortcutContext(Qt::ApplicationShortcut);
-    redoAct->setIcon(QIcon(App->iconThemeIcon("edit-redo.ico")));
+    redoAct->setIcon(QIcon::fromTheme("edit-redo"));
     redoAct->setShortcut(QKeySequence(QKeySequence::Redo).toString());
     redoAct->setProperty("shortDescr",tr("Redo"));
     redoAct->setPriority(QAction::LowPriority);
@@ -402,7 +407,7 @@ void MainWindow::createActions()
 
         if (actionsDescr[i].slot) connect(a,SIGNAL(triggered()),this,actionsDescr[i].slot);
         if (actionsDescr[i].icon) {
-            a->setIcon(QIcon(App->iconThemeIcon(QString("%1.ico").arg(actionsDescr[i].icon))));
+            a->setIcon(QIcon::fromTheme(actionsDescr[i].icon));
         }
         a->setText(tr(actionsDescr[i].text));
         a->setProperty("shortDescr",tr(actionsDescr[i].shortText));
@@ -467,7 +472,6 @@ void MainWindow::retranslateActions()
 
     filesToolBar->retranslateUI();
 
-#ifdef HAVE_QT5
     Q_FOREACH (QAction *a, pluginsActions) {
         QJsonObject metaData = App->plugins.at(a->property("id").toInt());
         QString text = metaData.value(QSL("text")).toObject().value(App->langID).toString();
@@ -475,12 +479,6 @@ void MainWindow::retranslateActions()
             text = metaData.value(QSL("text")).toObject().value(QSL("default")).toString();
         a->setText(text);
     }
-#else
-    Q_FOREACH (QAction *a, pluginsActions) {
-        QString key=a->property("key").toString();
-        a->setText(App->plugins.value(key)->text());
-    }
-#endif
 }
 
 void MainWindow::saveAll()
@@ -580,7 +578,7 @@ void MainWindow::aboutQt()
 void MainWindow::showAboutDialog()
 {DD
     QString about=tr("<b>Qoobar, a Simple Tag Editor</b><br>released under the GPL 3"
-                           "<br>Version: %1<br>Copyright 2009-2016 Alex Novichkov"
+                           "<br>Version: %1<br>Copyright 2009-2020 Alex Novichkov"
                            "<p>Web site: <a href=http://qoobar.sourceforge.net>http://qoobar.sourceforge.net</a>\n"
                            "<br>E-mail: <a href=mailto:novichkov.qoobar@gmail.com>novichkov.qoobar@gmail.com</a>"
                            "<br><hr>")
@@ -604,16 +602,12 @@ void MainWindow::showAboutDialog()
             .arg(taglib)
             .arg(libdiscid);
 
-    QString help=QSL("<p>If you speak any language except English and Russian,<br>"
-                     "please help me make Qoobar better and understandable in your language.<br>"
-                     "Feel free to contact me by e-mail.");
-
     QString portable;
 #ifdef QOOBAR_PORTABLE
     portable = tr("<p>This version is compiled as portable");
 #endif
 
-    QMessageBox::about(this, tr("About Qoobar"), about + libraries + help + portable);
+    QMessageBox::about(this, tr("About Qoobar"), about + libraries + portable);
 }
 
 
@@ -999,7 +993,6 @@ void MainWindow::createPluginsMenu()
     QSignalMapper *mapper = new QSignalMapper(this);
     connect(mapper,SIGNAL(mapped(QString)), this, SLOT(onPluginTriggered(QString)));
 
-#ifdef HAVE_QT5
     for (int it = 0; it < App->plugins.size(); ++it) {
         QJsonObject metaData = App->plugins.at(it);
         QString pluginInterface=metaData.value(QSL("interface")).toString();
@@ -1017,23 +1010,10 @@ void MainWindow::createPluginsMenu()
             pluginsActions << a;
         }
     }
-#else
-    QMap<QString, IQoobarPlugin *>::const_iterator  it;
-    for (it = App->plugins.constBegin(); it != App->plugins.constEnd(); ++it) {
-        QString key=it.key();
-        QAction *a = new QAction(it.value()->icon(), it.value()->text(),this);
-        a->setProperty("key",key);
-        connect(a,SIGNAL(triggered()),mapper,SLOT(map()));
-        mapper->setMapping(a,key);
-        toolsMenu->insertAction(0,a);
-        pluginsActions << a;
-    }
-#endif
 }
 
 void MainWindow::onPluginTriggered(const QString &pluginKey)
 {DD
-#ifdef HAVE_QT5
     IQoobarPlugin *plugin = loadedPlugins.value(pluginKey, 0);
     if (!plugin) {
         QPluginLoader loader(pluginKey);
@@ -1041,9 +1021,6 @@ void MainWindow::onPluginTriggered(const QString &pluginKey)
         if (o) plugin = qobject_cast<IQoobarPlugin *>(o);
         loadedPlugins.insert(pluginKey, plugin);
     }
-#else
-    IQoobarPlugin *plugin = App->plugins.value(pluginKey);
-#endif
 
     if (!plugin) return;
     currentTab->doPlugin(plugin);

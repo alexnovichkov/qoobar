@@ -159,7 +159,7 @@ void processCurly(QStringList &args, QString &pattern, int index, int size)
         /**       {1-3,  1:3, 3:2; 2-3, 2:4, 3:3}
 result: 1 1 1 2 3 3 2 2 2 2 3 3 3
 */
-        QStringList sections = wholeSection.split(QSL(";"),QString::SkipEmptyParts);
+        QStringList sections = wholeSection.split(QSL(";"),SKIP_EMPTY_PARTS);
 
         Q_FOREACH (const QString &sec, sections) {
             // 1-3,  1:3, 3:2
@@ -187,7 +187,7 @@ result: 1 1 1 2 3 3 2 2 2 2 3 3 3
             }
             else
                 for (int i=1; i<1+size; ++i) list << i;
-            qSort(list);
+            std::sort(list.begin(), list.end());
             wholeList += list;
             if (index < wholeList.size()) {
                 args << QString::number(wholeList.at(index));
@@ -326,7 +326,7 @@ void processFunctions(QStringList &args, QString &pattern, Tag &tag, int index, 
             processFunctions(args1, functionArg, tag, index, size);
 
         fillPlaceholders(functionArg, tag, args1, true);
-        QStringList functionArgs=functionArg.split(QChar(0x25a0),QString::SkipEmptyParts);
+        QStringList functionArgs=functionArg.split(QChar(0x25a0),SKIP_EMPTY_PARTS);
 
         if (functionArgs.size()==1 && functionArgs.first().simplified()==QSL(""))
             functionArgs.clear();

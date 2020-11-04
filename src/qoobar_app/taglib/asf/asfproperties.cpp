@@ -126,6 +126,7 @@ bool ASF::Properties::isEncrypted() const
 
 void ASF::Properties::setLength(int length)
 {
+    (void)length;
   //d->length = length;
 }
 

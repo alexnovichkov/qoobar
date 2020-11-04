@@ -27,13 +27,16 @@ THE SOFTWARE.
 #include <QLabel>
 #include "../application.h"
 
+#define OSX_SPIN_SPEED 200
+
 class QProgressIndicatorSpinningPrivate : public QObject
 {
 public:
     QProgressIndicatorSpinningPrivate(QProgressIndicatorSpinning *qProgressIndicatorSpinning,
                                       QMovie *movie)
         : QObject(qProgressIndicatorSpinning), movie(movie) {}
-
+private:
+    friend class QProgressIndicatorSpinning;
     QPointer<QMovie> movie;
 };
 
@@ -41,15 +44,16 @@ QProgressIndicatorSpinning::QProgressIndicatorSpinning(QWidget *parent,
                                                        Thickness thickness)
     : QWidget(parent)
 {
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setMargin(0);
 
     QSize size(thickness, thickness);
-    QMovie *movie = new QMovie(this);
-    movie->setFileName(App->themeIcon("progressindicator.gif"));
+    auto *movie = new QMovie(this);
+    movie->setFileName(QString("%1/icons/%2/progressindicator.gif")
+                       .arg(ApplicationPaths::sharedPath(), App->iconTheme));
     movie->setScaledSize(size);
     // Roughly match OSX speed.
-    movie->setSpeed(200);
+    movie->setSpeed(OSX_SPIN_SPEED);
     pimpl = new QProgressIndicatorSpinningPrivate(this, movie);
 
     QLabel *label = new QLabel(this);

@@ -25,11 +25,7 @@
  */
 
 #include "texteditdelegate.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "qoobarglobals.h"
 

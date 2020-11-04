@@ -26,7 +26,7 @@
 #include "qoobarglobals.h"
 
 ProcessLineMaker::ProcessLineMaker(QObject *parent) :
-    QObject(parent), m_proc(0)
+    QObject(parent), m_proc(nullptr)
 {DD;
 
 }

@@ -25,19 +25,16 @@
  */
 
 #include "releaseinfowidget.h"
-#ifdef HAVE_QT5
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "qoobarglobals.h"
 #include "enums.h"
-
+#include "application.h"
 #include "checkableheaderview.h"
 
 QPixmap previewIcon(const QPixmap &pixmap)
 {DD;
+    //TODO: devicePixelRatio()
     int max_dimension=100;
     int w=pixmap.width();
     int h = pixmap.height();
@@ -57,16 +54,16 @@ ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
     albumTable->setAlternatingRowColors(true);
     albumTable->setColumnCount(2);
     albumTable->setHeaderLabels(QStringList()<<tr("Tag")<<tr("Value"));
-    albumTable->header()->SETSECTIONRESIZEMODE(0, QHeaderView::ResizeToContents);
+    albumTable->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     albumTable->header()->setStretchLastSection(false);
     albumTable->setRootIsDecorated(false);
 
     tracksTable = new QTreeWidget(this);
     tracksTable->setAllColumnsShowFocus(true);
     tracksTable->setAlternatingRowColors(true);
-    tracksTable->setColumnWidth(0,qApp->fontMetrics().width(QSL("999")));
-    tracksTable->header()->SETSECTIONRESIZEMODE(0, QHeaderView::ResizeToContents);
-    tracksTable->setColumnWidth(4,qApp->fontMetrics().width(QSL("999:99")));
+    tracksTable->setColumnWidth(0,qApp->fontMetrics().HORIZONTAL_ADVANCE(QSL("999")));
+    tracksTable->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+    tracksTable->setColumnWidth(4,qApp->fontMetrics().HORIZONTAL_ADVANCE(QSL("999:99")));
     tracksTable->header()->setStretchLastSection(false);
     tracksTable->setHeaderLabels(QStringList()<<tr("No.")<<tr("Title")<<tr("Artists")
                                  <<tr("Comment")<<tr("Length"));
@@ -81,8 +78,9 @@ ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
 
 
     imageLabel = new QLabel(this);
-    imageLabel->setMaximumSize(100,100);
-    imageLabel->setMinimumSize(100,100);
+    //TODO: devicePixelRatio()
+    imageLabel->setMaximumSize(::dpiAwareSize(100,100, this));
+    imageLabel->setMinimumSize(::dpiAwareSize(100,100,this));
     imageLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     QGridLayout *l = new QGridLayout;
@@ -91,6 +89,7 @@ ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
     l->addWidget(imageLabel,1,1,1,1,Qt::AlignHCenter | Qt::AlignVCenter);
     l->addWidget(tracksCheckBox,2,0,1,1,Qt::AlignLeft | Qt::AlignTop);
     l->addWidget(tracksTable,3,0,1,2);
+    //TODO: devicePixelRatio()
     l->setContentsMargins(10,0,0,0);
 
     setLayout(l);

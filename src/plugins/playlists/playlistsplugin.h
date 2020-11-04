@@ -2,28 +2,15 @@
 #define PLAYLISTSPLUGIN_H
 
 #include <QObject>
-#ifdef HAVE_QT5
 #include <QtWidgets/QDialog>
-#else
-#include <QDialog>
-#endif
 #include "iqoobarplugin.h"
 
 class PlaylistsPlugin : public QObject, IQoobarPlugin
 {
     Q_OBJECT
-#ifdef HAVE_QT5
     Q_PLUGIN_METADATA(IID "qoobar.IQoobarPlugin/1.1" FILE "playlists.json")
-#endif
     Q_INTERFACES(IQoobarPlugin)
 public:
-#ifndef HAVE_QT5
-    QString text();
-    QString description();
-    QString key();
-    QString version();
-    QIcon icon();
-#endif
     QList<Tag> getNewTags(const QList<Tag> &oldTags);
     bool canWorkWithNoFilesSelected() {return false;}
 };
