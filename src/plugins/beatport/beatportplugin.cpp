@@ -2,6 +2,7 @@
 
 #include <QtWidgets>
 #include <QJsonDocument>
+#include <QApplication>
 
 #include "corenetworksearch.h"
 #include "checkableheaderview.h"
@@ -46,6 +47,7 @@ BeatportWidget::BeatportWidget(QWidget *parent)
     current = 0;
 
     emptyPixmap = QPixmap(100,100);
+    emptyPixmap.setDevicePixelRatio(devicePixelRatioF());
     emptyPixmap.fill(Qt::gray);
 
     pictureLabel = new QLabel(this);

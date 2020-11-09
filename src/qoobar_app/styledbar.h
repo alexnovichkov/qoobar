@@ -1,6 +1,8 @@
 #ifndef STYLEDBAR_H
 #define STYLEDBAR_H
 
+#ifdef Q_OS_MAC
+
 #include <QWidget>
 #include <QToolButton>
 
@@ -29,6 +31,7 @@ public:
     FancyToolButton(QWidget *parent = 0);
     void paintEvent(QPaintEvent *event);
 };
+#endif
 
 #endif // STYLEDBAR_H
 

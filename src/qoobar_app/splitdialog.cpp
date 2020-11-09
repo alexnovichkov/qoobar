@@ -48,7 +48,7 @@ SplitDialog::SplitDialog(QWidget *parent) :
     bool ffmpegInstalled = splitter->ffmpegInstalled;
 
     warningLabel = new QLabel(this);
-    warningLabel->setMaximumWidth(::dpiAwareSize(500,this));
+    warningLabel->setMaximumWidth(500);
     warningLabel->setOpenExternalLinks(true);
     warningLabel->setWordWrap(true);
 
@@ -150,7 +150,7 @@ SplitDialog::SplitDialog(QWidget *parent) :
 #else
     grid->addWidget(buttonBox,10,0,1,3,Qt::AlignRight);
 #endif
-    const int dpisize = ::dpiAwareSize(10,this);
+    const int dpisize = 10;
     grid->setRowMinimumHeight(1,dpisize);
     grid->setRowMinimumHeight(4,dpisize);
     grid->setRowMinimumHeight(8,dpisize);
@@ -159,7 +159,7 @@ SplitDialog::SplitDialog(QWidget *parent) :
     warningLabel->setHidden(warningLabel->text().isEmpty());
     startButton->setEnabled(warningLabel->text().isEmpty());
 
-    resize(::dpiAwareSize({600,400},this));
+    resize(qApp->primaryScreen()->availableSize()/2);
 }
 
 SplitDialog::~SplitDialog()

@@ -41,6 +41,7 @@
 #include <QStyle>
 #include <QPaintEvent>
 #include <QDesktopWidget>
+#include <QtDebug>
 
 #include "enums.h"
 #include "qoobarglobals.h"
@@ -220,8 +221,11 @@ void FancyLineEdit::updateMargins()
     Side realLeft = (leftToRight ? Left : Right);
     Side realRight = (leftToRight ? Right : Left);
 
-    int leftMargin = d->m_iconbutton[realLeft]->pixmap().width() + LEFT_MARGIN;
-    int rightMargin = d->m_iconbutton[realRight]->pixmap().width() + RIGHT_MARGIN;
+    int leftMargin = d->m_iconbutton[realLeft]->pixmap().width();
+    leftMargin = leftMargin / d->m_iconbutton[realLeft]->pixmap().devicePixelRatioF() + LEFT_MARGIN;
+    int rightMargin = d->m_iconbutton[realRight]->pixmap().width();
+    rightMargin = rightMargin / d->m_iconbutton[realRight]->pixmap().devicePixelRatioF() + RIGHT_MARGIN;
+
     // Note KDE does not reserve space for the highlight color
     if (style()->inherits("OxygenStyle")) {
         leftMargin = qMax(24, leftMargin);
@@ -258,7 +262,7 @@ void FancyLineEdit::resizeEvent(QResizeEvent *)
 }
 
 void FancyLineEdit::setButtonPixmap(Side side, const QPixmap &buttonPixmap)
-{DD
+{DD;
     d->m_iconbutton[side]->setPixmap(buttonPixmap);
     updateMargins();
     updateButtonPositions();
@@ -266,18 +270,18 @@ void FancyLineEdit::setButtonPixmap(Side side, const QPixmap &buttonPixmap)
 }
 
 QPixmap FancyLineEdit::buttonPixmap(Side side) const
-{DD
+{DD;
     return d->m_pixmap[side];
 }
 
 void FancyLineEdit::setButtonMenu(Side side, QMenu *buttonMenu)
-{DD
-            d->m_menu[side] = buttonMenu;
+{DD;
+    d->m_menu[side] = buttonMenu;
     d->m_iconbutton[side]->setIconOpacity(1.0);
 }
 
 QMenu *FancyLineEdit::buttonMenu(Side side) const
-{DD
+{DD;
     return  d->m_menu[side];
 }
 
@@ -331,7 +335,7 @@ IconButton::IconButton(QWidget *parent)
 void IconButton::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    QRect pixmapRect = QRect(0, 0, m_pixmap.width(), m_pixmap.height());
+    QRect pixmapRect = QRect({0, 0}, m_pixmap.size()/m_pixmap.devicePixelRatioF());
     pixmapRect.moveCenter(rect().center());
 
     if (m_autoHide)
@@ -400,12 +404,8 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) : FancyLineEdit(parent)
 void SearchLineEdit::findFlagsChanged()
 {DD;
     if (!m_caseSensitive && !m_wholeWord && !m_useRegularExpressions) {
-        QPixmap pixmap(SMALL_ICON_SIZE+1, SMALL_ICON_SIZE+1);
-        pixmap.fill(Qt::transparent);
-        QPainter painter(&pixmap);
         const QPixmap mag = QIcon::fromTheme("magnifier").pixmap(QSize(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
-        painter.drawPixmap(0, (pixmap.height() - mag.height()) / 2, mag);
-        setButtonPixmap(FancyLineEdit::Left, pixmap);
+        setButtonPixmap(FancyLineEdit::Left, mag);
     } else {
         setButtonPixmap(FancyLineEdit::Left, pixmapForFindFlags());
     }

@@ -30,8 +30,8 @@ MP3TagsDialog::MP3TagsDialog(int fileCount, QWidget *parent) :
     l->addWidget(apeCheckBox);
     l->addWidget(buttonBox);
     setLayout(l);
-    //TODO: this->devicePixelRatioF()
-    resize(::dpiAwareSize({200,100},this));
+
+    resize(qApp->primaryScreen()->availableSize() / 4);
 }
 
 void MP3TagsDialog::accept()

@@ -10,6 +10,7 @@ ImageResizeDialog::ImageResizeDialog(CoverImage &img, QWidget *parent) :
 
     QPixmap x;
     x.loadFromData(image.pixmap());
+//    x.setDevicePixelRatio(devicePixelRatioF());
     origWidth = x.width();
     origHeight = x.height();
     newWidth = origWidth;

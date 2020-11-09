@@ -32,13 +32,15 @@
 #include "application.h"
 #include "checkableheaderview.h"
 
-QPixmap previewIcon(const QPixmap &pixmap)
+QPixmap previewIcon(const QPixmap &pixmap, double pixelRatio)
 {DD;
-    //TODO: devicePixelRatio()
+
     int max_dimension=100;
     int w=pixmap.width();
     int h = pixmap.height();
     QPixmap p = w>h?pixmap.scaledToWidth(max_dimension) : pixmap.scaledToHeight(max_dimension);
+    //TODO: devicePixelRatio()
+    p.setDevicePixelRatio(pixelRatio);
     return p;
 }
 
@@ -78,8 +80,8 @@ ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
 
 
     imageLabel = new QLabel(this);
-    //TODO: devicePixelRatio()
-    const auto size = ::dpiAwareSize({100,100}, this);
+
+    const QSize size = {100,100};
     imageLabel->setMaximumSize(size);
     imageLabel->setMinimumSize(size);
     imageLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -90,7 +92,7 @@ ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
     l->addWidget(imageLabel,1,1,1,1,Qt::AlignHCenter | Qt::AlignVCenter);
     l->addWidget(tracksCheckBox,2,0,1,1,Qt::AlignLeft | Qt::AlignTop);
     l->addWidget(tracksTable,3,0,1,2);
-    //TODO: devicePixelRatio()
+
     l->setContentsMargins(10,0,0,0);
 
     setLayout(l);
@@ -130,7 +132,7 @@ void ReleaseInfoWidget::setSearchResult(SearchResult &r,int cdNum)
 
     imageLabel->clear();
     QPixmap p;
-    if (p.loadFromData(r.image.pixmap())) imageLabel->setPixmap(previewIcon(p));
+    if (p.loadFromData(r.image.pixmap())) imageLabel->setPixmap(previewIcon(p, devicePixelRatioF()));
 }
 
 bool ReleaseInfoWidget::use(const int &tagID)

@@ -30,6 +30,7 @@
 #include "filenamerenderer.h"
 #include "legendbutton.h"
 #include <QtWidgets>
+#include <QResizeEvent>
 #include "highlightdelegate.h"
 #include "filedelegatehighlighter.h"
 #include "fancylineedit.h"
@@ -39,6 +40,22 @@
 #include "qoobarhelp.h"
 
 #include "qbutton.h"
+
+class RenameTableWidget : public QTableWidget {
+public:
+    RenameTableWidget(int rows, int cols, QWidget *parent=0) :
+        QTableWidget(rows, cols, parent) {}
+
+    // QWidget interface
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
+};
+
+void RenameTableWidget::resizeEvent(QResizeEvent *event)
+{
+    QTableWidget::resizeEvent(event);
+    setColumnWidth(0, event->size().width()*0.45);
+}
 
 QWidgetAction *createWidgetAction(QWidget *widget1, QWidget *widget2, QWidget *parent=nullptr)
 {DD;
@@ -109,8 +126,9 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
                      QSL("edit-clear-locationbar-rtl") :
                      QSL("edit-clear-locationbar-ltr"),
                      QIcon::fromTheme(QSL("edit-clear"), QIcon::fromTheme("editclear")));
+    QPixmap buttonPix = icon.pixmap(SMALL_ICON_SIZE);
 
-    patternLineEdit->setButtonPixmap(FancyLineEdit::Right, icon.pixmap(SMALL_ICON_SIZE));
+    patternLineEdit->setButtonPixmap(FancyLineEdit::Right, buttonPix);
     patternLineEdit->setButtonVisible(FancyLineEdit::Right, true);
     patternLineEdit->setButtonToolTip(FancyLineEdit::Right, tr("Remove this pattern"));
     patternLineEdit->setAutoHideButton(FancyLineEdit::Right, true);
@@ -212,11 +230,10 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     optionsButton->setMenu(optionsMenu);
 
     ////////////////////////////////////////////////////////////////////////////
-    table = new QTableWidget(oldFileNames.count(),2,this);
+    table = new RenameTableWidget(oldFileNames.count(),2,this);
     table->setHorizontalHeaderLabels(QStringList() << tr("Old names") << tr("New names"));
     table->horizontalHeader()->setStretchLastSection(true);
-    //TODO: this->devicePixelRatio()
-    table->horizontalHeader()->resizeSection(0, ::dpiAwareSize(350,this));
+
     table->setTextElideMode(Qt::ElideLeft);
 #ifdef Q_OS_MAC
     table->setAttribute(Qt::WA_MacSmallSize, true);
@@ -253,8 +270,8 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     QFormLayout *mainLayout = new QFormLayout;
     mainLayout->addRow(tr("Do what:"),operationComboBox);
     //TODO: this->devicePixelRatio()
-    directoryEdit->setMinimumWidth(::dpiAwareSize(200, this));
-    patternEdit->setMinimumWidth(::dpiAwareSize(200, this));
+    directoryEdit->setMinimumWidth(200);
+    patternEdit->setMinimumWidth((200);
     mainLayout->addRow(directoryGroup, directoryEdit);
     mainLayout->addRow(tr("Output file name pattern"), patternLayout);
     mainLayout->addWidget(optionsButton);
@@ -284,11 +301,12 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     mainLayout->setColumnStretch(2,10);
     setLayout(mainLayout);
 #endif
-    //TODO: this->devicePixelRatio()
-    resize(::dpiAwareSize({800, 550}, this));
+
+    resize(qApp->primaryScreen()->availableSize()/2);
 
     table->setFocusPolicy(Qt::NoFocus);
     table->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    //table->horizontalHeader()->resizeSection(0, std::round(table->width()*0.4));
 
     connect(operationComboBox,SIGNAL(currentIndexChanged(int)), SLOT(handleOperation(int)));
     connect(removeFolderCheckBox,SIGNAL(toggled(bool)),SLOT(handleRemoveFolders()));

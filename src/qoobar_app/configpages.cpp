@@ -1088,9 +1088,10 @@ PluginsPage::PluginsPage(QWidget *parent) : ConfigPage(parent)
     downloadTree->setColumnCount(6);
     downloadTree->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     downloadTree->header()->setStretchLastSection(false);
+
 #ifdef Q_OS_MAC
-    //TODO: this->devicePixelRatioF()
-    downloadTree->setFixedHeight(::dpiAwareSize(120,this));
+    const int height = 120;
+    downloadTree->setFixedHeight(height);
 #endif
 
     editingTree = new QTreeWidget(this);
@@ -1099,8 +1100,7 @@ PluginsPage::PluginsPage(QWidget *parent) : ConfigPage(parent)
     editingTree->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     editingTree->header()->setStretchLastSection(false);
 #ifdef Q_OS_MAC
-    //TODO: this->devicePixelRatio()
-    editingTree->setFixedHeight(::dpiAwareSize(120,this));
+    editingTree->setFixedHeight(height);
 #endif
 
     auto *l = new QVBoxLayout;

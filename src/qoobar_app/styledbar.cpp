@@ -1,5 +1,6 @@
 #include "styledbar.h"
 
+#ifdef Q_OS_MAC
 #include <QtWidgets>
 
 #include <QPainter>
@@ -24,7 +25,7 @@ void StyledBar::paintEvent(QPaintEvent *event)
 StyledSeparator::StyledSeparator(QWidget *parent)
     : QWidget(parent)
 {DD;
-    setFixedWidth(::dpiAwareSize(10,this));
+    setFixedWidth(10);
 }
 
 void StyledSeparator::paintEvent(QPaintEvent *event)
@@ -62,3 +63,4 @@ void FancyToolButton::paintEvent(QPaintEvent *event)
 
     painter.drawPixmap(iconRect, px);
 }
+#endif

@@ -302,7 +302,7 @@ void MainWindow::initRest()
     if (App->geometry.isEmpty()) {
         //TODO: this->devicePixelRatio()
         QSize size = App->primaryScreen()->availableSize()*0.666;
-        resize(::dpiAwareSize(size, this));
+        resize(size);
     }
     else
         restoreGeometry(App->geometry);
@@ -315,8 +315,10 @@ void MainWindow::initRest()
         QList<int> sizes = sp->sizes();
         int total = sizes.at(0)+sizes.last();
         //TODO: this->devicePixelRatio()
-        sizes[0]=::dpiAwareSize(200, this);
-        sizes[1]=::dpiAwareSize(total-200, this);
+//        sizes[0]=::dpiAwareSize(200, this);
+//        sizes[1]=::dpiAwareSize(total-200, this);
+        sizes[0]=200;
+        sizes[1]=total-200;
         sp->setSizes(sizes);
     }
 

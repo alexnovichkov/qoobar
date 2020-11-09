@@ -120,9 +120,7 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
 
     this->setLayout(l);
 
-    resize(dpiAwareSize({App->primaryScreen()->availableSize().width()/3,
-                        App->primaryScreen()->availableSize().height()/2},
-                        this));
+    resize(App->primaryScreen()->availableSize()/2);
 
     updateTrackNumbers();
 }

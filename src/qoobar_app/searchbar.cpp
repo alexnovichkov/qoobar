@@ -131,7 +131,7 @@ SearchBar::SearchBar(QWidget *parent) :
     connect(startSearchButton, SIGNAL(clicked()), SLOT(toggleSearch()));
 
     textEdit = new SearchLineEdit(this);
-    textEdit->setMaximumWidth(::dpiAwareSize(200,this));
+    textEdit->setMaximumWidth(200);
     connect(textEdit, SIGNAL(textChanged(QString)), this, SLOT(updateStartSearchButton()));
     updateStartSearchButton();
     addWidget(textEdit);
@@ -139,7 +139,7 @@ SearchBar::SearchBar(QWidget *parent) :
 
 #ifndef Q_OS_MAC
     QWidget* spacer = new QWidget(this);
-    spacer->setFixedSize(::dpiAwareSize({5,1},this));
+    spacer->setFixedSize({5,1});
     addWidget(spacer);
 #endif
     progress = new QProgressIndicatorSpinning(this);
@@ -148,7 +148,7 @@ SearchBar::SearchBar(QWidget *parent) :
     progress->hide();
 #ifndef Q_OS_MAC
     QWidget* spacer1 = new QWidget();
-    spacer1->setFixedSize(::dpiAwareSize({5,1},this));
+    spacer1->setFixedSize({5,1});
     addWidget(spacer1);
 #endif
 

@@ -132,7 +132,7 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     fileIconLabel = new QLabel(this);
 
     fileNameLabel = new ElidingLabel(this);
-    fileNameLabel->setMinimumWidth(::dpiAwareSize(200,this));
+    fileNameLabel->setMinimumWidth(200);
     fileNameLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     fileNameLabel->setElideMode(Qt::ElideLeft);
     fileNameLabel->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);

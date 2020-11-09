@@ -361,83 +361,83 @@ or album includes only one track</source>
 <context>
     <name>FileRenameDialog</name>
     <message>
-        <location filename="filesrenamer.cpp" line="64"/>
+        <location filename="filesrenamer.cpp" line="81"/>
         <source>Move/Copy/Rename files</source>
         <translation>Dateien verschieben/kopieren/umbenennen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="78"/>
+        <location filename="filesrenamer.cpp" line="95"/>
         <source>rename/move files</source>
         <translation>Dateien umbenennen/verschieben</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="79"/>
+        <location filename="filesrenamer.cpp" line="96"/>
         <source>copy files</source>
         <translation>Dateien kopieren</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="80"/>
+        <location filename="filesrenamer.cpp" line="97"/>
         <source>rename folder</source>
         <translation>Ornder umbenennen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="98"/>
+        <location filename="filesrenamer.cpp" line="115"/>
         <source>Open existing folder</source>
         <translation>Bestehenden Ordner wählen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="115"/>
+        <location filename="filesrenamer.cpp" line="133"/>
         <source>Remove this pattern</source>
         <translation>Schema löschen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="189"/>
+        <location filename="filesrenamer.cpp" line="207"/>
         <source>Apply these options to created folders as well</source>
         <translation>Einstellungen auf erzeugte Verzeichnisse anwenden</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="193"/>
+        <location filename="filesrenamer.cpp" line="211"/>
         <source>Options</source>
         <translation>Optionen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="239"/>
+        <location filename="filesrenamer.cpp" line="256"/>
         <source>Run</source>
         <translation>Anwenden</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="216"/>
+        <location filename="filesrenamer.cpp" line="234"/>
         <source>Old names</source>
         <translation>Alte Dateinamen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="216"/>
+        <location filename="filesrenamer.cpp" line="234"/>
         <source>New names</source>
         <translation>Neue Dateinamen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="144"/>
+        <location filename="filesrenamer.cpp" line="162"/>
         <source>Delete empty folder after renaming</source>
         <translation>Leere Ordner nach Umbenennen löschen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="254"/>
         <location filename="filesrenamer.cpp" line="271"/>
+        <location filename="filesrenamer.cpp" line="288"/>
         <source>Do what:</source>
         <translation>Operation:</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="86"/>
+        <location filename="filesrenamer.cpp" line="103"/>
         <source>Output folder</source>
         <translation>Zielordner</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="148"/>
+        <location filename="filesrenamer.cpp" line="166"/>
         <source>Replace special Windows characters \/:*?&quot;&lt;&gt;| with</source>
         <translation>Spezielle Windows Symbole \/:*?&quot;&lt;&gt;| ersetzen durch</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="149"/>
+        <location filename="filesrenamer.cpp" line="167"/>
         <source>Characters \/:*| will be replaced by this text
 character ? will be removed
 characters &lt;&gt; will be replaced by (),
@@ -448,60 +448,58 @@ and &quot; by two single quotes &apos;&apos;</source>
 &quot; wird ersetzt durch zwei einfache Anführungszeichen &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="159"/>
+        <location filename="filesrenamer.cpp" line="177"/>
         <source>Replace spaces with</source>
         <translation>Leerzeichen ersetzen durch</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="186"/>
+        <location filename="filesrenamer.cpp" line="204"/>
         <source>Remove diacritics</source>
         <translation>Diakritische Zeichen entfernen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="174"/>
+        <location filename="filesrenamer.cpp" line="192"/>
         <source>Case</source>
         <translation>Groß-/Kleinschreibung</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="179"/>
+        <location filename="filesrenamer.cpp" line="197"/>
         <source>lower</source>
         <translation>kleinbuchstaben</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="180"/>
+        <location filename="filesrenamer.cpp" line="198"/>
         <source>UPPER</source>
         <translation>GROSSBUCHSTABEN</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="181"/>
+        <location filename="filesrenamer.cpp" line="199"/>
         <source>Only first up</source>
         <translation>Nur erster buchstabe groß</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="182"/>
+        <location filename="filesrenamer.cpp" line="200"/>
         <source>Every First Up</source>
         <translation>Alle Anfangsbuchstaben Groß</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="171"/>
+        <location filename="filesrenamer.cpp" line="189"/>
         <source>Maximum file name length</source>
         <translation>Maximale Länge des Dateinamens</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="259"/>
         <location filename="filesrenamer.cpp" line="276"/>
+        <location filename="filesrenamer.cpp" line="293"/>
         <source>Output file name pattern</source>
         <translation>Dateinamenschema</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="446"/>
         <source>Nothing to rename, file names not changed.</source>
-        <translation>Nichts zu benennen, die Dateinamen wurden nicht geändert.</translation>
+        <translation type="vanished">Nichts zu benennen, die Dateinamen wurden nicht geändert.</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="428"/>
         <source>Folder to move/copy files</source>
-        <translation>Zielordner</translation>
+        <translation type="vanished">Zielordner</translation>
     </message>
 </context>
 <context>
@@ -737,27 +735,27 @@ and &quot; by two single quotes &apos;&apos;</source>
         <translation>Bildgröße ändern</translation>
     </message>
     <message>
-        <location filename="imageresizedialog.cpp" line="30"/>
+        <location filename="imageresizedialog.cpp" line="31"/>
         <source>Keep proportions</source>
         <translation>Proportionen erhalten</translation>
     </message>
     <message>
-        <location filename="imageresizedialog.cpp" line="35"/>
+        <location filename="imageresizedialog.cpp" line="36"/>
         <source>Width</source>
         <translation>Breite</translation>
     </message>
     <message>
-        <location filename="imageresizedialog.cpp" line="37"/>
+        <location filename="imageresizedialog.cpp" line="38"/>
         <source>Height</source>
         <translation>Höhe</translation>
     </message>
     <message>
-        <location filename="imageresizedialog.cpp" line="40"/>
+        <location filename="imageresizedialog.cpp" line="41"/>
         <source>Original width: %1 px</source>
         <translation>Ursprüngliche Breite: %1 px</translation>
     </message>
     <message>
-        <location filename="imageresizedialog.cpp" line="41"/>
+        <location filename="imageresizedialog.cpp" line="42"/>
         <source>Original height: %1 px</source>
         <translation>Ursprüngliche Höhe: %1 px</translation>
     </message>
@@ -1013,7 +1011,7 @@ after you restart Qoobar</source>
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.cpp" line="193"/>
-        <location filename="mainwindow.cpp" line="379"/>
+        <location filename="mainwindow.cpp" line="381"/>
         <source>Qoobar - Tag editor for classical music</source>
         <translation>Qoobar - Tag-Editor für klassische Musik</translation>
     </message>
@@ -1028,8 +1026,8 @@ after you restart Qoobar</source>
         <translation>Tags aktualisieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="394"/>
-        <location filename="mainwindow.cpp" line="523"/>
+        <location filename="mainwindow.cpp" line="396"/>
+        <location filename="mainwindow.cpp" line="525"/>
         <source>Tab %1</source>
         <translation>%1. Tab</translation>
     </message>
@@ -1085,7 +1083,7 @@ after you restart Qoobar</source>
 &lt;br&gt;E-Mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt; {3&lt;?} {1&lt;?} {2009-2016 ?}</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="908"/>
+        <location filename="mainwindow.cpp" line="910"/>
         <source>Set a tab name</source>
         <translation>Name des Tabs anpassen</translation>
     </message>
@@ -1507,29 +1505,29 @@ after you restart Qoobar</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="464"/>
+        <location filename="mainwindow.cpp" line="466"/>
         <source>&amp;Undo</source>
         <translation>&amp;Rückgängig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="468"/>
+        <location filename="mainwindow.cpp" line="470"/>
         <source>&amp;Redo</source>
         <translation>&amp;Wiederholen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="580"/>
+        <location filename="mainwindow.cpp" line="582"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2020 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <translation type="unfinished">&lt;b&gt;Qoobar, ein einfach zu bedienender Tag Editor&lt;/b&gt;&lt;br&gt;unter der GPL 3 veröffentlicht.&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov &lt;p&gt;Website: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/ a&gt;
 &lt;br&gt;E-Mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt; {3&lt;?} {1&lt;?} {2009-2020 ?}</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="588"/>
+        <location filename="mainwindow.cpp" line="590"/>
         <source>not installed</source>
         <translation>nicht installiert</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="600"/>
+        <location filename="mainwindow.cpp" line="602"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</oldsource>
         <translation type="unfinished">&lt;b&gt;Qoobar verwendet:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Bibliotheken:&lt;/b&gt;</translation>
@@ -1540,7 +1538,7 @@ after you restart Qoobar</source>
         <translation>Ü&amp;ber Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="907"/>
+        <location filename="mainwindow.cpp" line="909"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - Tab umbenennen</translation>
     </message>
@@ -1551,7 +1549,7 @@ after you restart Qoobar</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="100"/>
-        <location filename="mainwindow.cpp" line="610"/>
+        <location filename="mainwindow.cpp" line="612"/>
         <source>About Qoobar</source>
         <translation>Über Qoobar</translation>
     </message>
@@ -1571,20 +1569,20 @@ after you restart Qoobar</source>
         <translation>Neuen Tag hinzufügen...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="362"/>
-        <location filename="mainwindow.cpp" line="465"/>
+        <location filename="mainwindow.cpp" line="364"/>
+        <location filename="mainwindow.cpp" line="467"/>
         <source>Undo</source>
         <translation>Rückgängig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="370"/>
-        <location filename="mainwindow.cpp" line="469"/>
+        <location filename="mainwindow.cpp" line="372"/>
+        <location filename="mainwindow.cpp" line="471"/>
         <source>Redo</source>
         <translation>Wiederholen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="426"/>
-        <location filename="mainwindow.cpp" line="471"/>
+        <location filename="mainwindow.cpp" line="428"/>
+        <location filename="mainwindow.cpp" line="473"/>
         <source>Special Characters...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1597,22 +1595,22 @@ after you restart Qoobar</source>
 &lt;br&gt;E-Mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="607"/>
+        <location filename="mainwindow.cpp" line="609"/>
         <source>&lt;p&gt;This version is compiled as portable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="617"/>
+        <location filename="mainwindow.cpp" line="619"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - Dateien hinzufügen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="618"/>
+        <location filename="mainwindow.cpp" line="620"/>
         <source>audio files (%1)</source>
         <translation>Audiodateien (%1)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="625"/>
+        <location filename="mainwindow.cpp" line="627"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - Ordner hinzufügen</translation>
     </message>
@@ -2441,47 +2439,47 @@ all changes in them will not be saved!</source>
 <context>
     <name>ReleaseInfoWidget</name>
     <message>
-        <location filename="releaseinfowidget.cpp" line="69"/>
+        <location filename="releaseinfowidget.cpp" line="71"/>
         <source>Comment</source>
         <translation>Kommentar</translation>
     </message>
     <message>
-        <location filename="releaseinfowidget.cpp" line="47"/>
+        <location filename="releaseinfowidget.cpp" line="49"/>
         <source>Tracks</source>
         <translation>Stücke</translation>
     </message>
     <message>
-        <location filename="releaseinfowidget.cpp" line="48"/>
+        <location filename="releaseinfowidget.cpp" line="50"/>
         <source>Cover art</source>
         <translation>Cover</translation>
     </message>
     <message>
-        <location filename="releaseinfowidget.cpp" line="56"/>
+        <location filename="releaseinfowidget.cpp" line="58"/>
         <source>Tag</source>
         <translation>Tag</translation>
     </message>
     <message>
-        <location filename="releaseinfowidget.cpp" line="56"/>
+        <location filename="releaseinfowidget.cpp" line="58"/>
         <source>Value</source>
         <translation>Wert</translation>
     </message>
     <message>
-        <location filename="releaseinfowidget.cpp" line="68"/>
+        <location filename="releaseinfowidget.cpp" line="70"/>
         <source>No.</source>
         <translation>Nr.</translation>
     </message>
     <message>
-        <location filename="releaseinfowidget.cpp" line="68"/>
+        <location filename="releaseinfowidget.cpp" line="70"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="releaseinfowidget.cpp" line="68"/>
+        <location filename="releaseinfowidget.cpp" line="70"/>
         <source>Artists</source>
         <translation>Künstler</translation>
     </message>
     <message>
-        <location filename="releaseinfowidget.cpp" line="69"/>
+        <location filename="releaseinfowidget.cpp" line="71"/>
         <source>Length</source>
         <translation>Dauer</translation>
     </message>
@@ -2700,22 +2698,22 @@ Please install it.</source>
 <context>
     <name>SearchLineEdit</name>
     <message>
-        <location filename="fancylineedit.cpp" line="368"/>
+        <location filename="fancylineedit.cpp" line="372"/>
         <source>Clear text</source>
         <translation>Text löschen</translation>
     </message>
     <message>
-        <location filename="fancylineedit.cpp" line="381"/>
+        <location filename="fancylineedit.cpp" line="385"/>
         <source>Case Sensitive</source>
         <translation>Groß-/Kleinschreibung beachten</translation>
     </message>
     <message>
-        <location filename="fancylineedit.cpp" line="382"/>
+        <location filename="fancylineedit.cpp" line="386"/>
         <source>Whole Words Only</source>
         <translation>Nur ganze Worte</translation>
     </message>
     <message>
-        <location filename="fancylineedit.cpp" line="383"/>
+        <location filename="fancylineedit.cpp" line="387"/>
         <source>Use Regular Expressions</source>
         <translation>Reguläre Ausdrücke verwenden</translation>
     </message>
@@ -2869,12 +2867,12 @@ Please choose the encoding:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="188"/>
+        <location filename="splitdialog.cpp" line="189"/>
         <source>Choose a folder to save files</source>
         <translation>Zielordner wählen</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="213"/>
+        <location filename="splitdialog.cpp" line="214"/>
         <source>Choose a cue file</source>
         <translation>CUE-Datei wählen</translation>
     </message>
@@ -3158,84 +3156,84 @@ Open the Settings dialog?</source>
         <translation>Verschiedene Werte:</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="114"/>
+        <location filename="tagseditor.cpp" line="126"/>
         <source>%1 (%2 with Shift key)</source>
         <translation>%1 (%2 mit Shift-Taste)</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="132"/>
+        <location filename="tagseditor.cpp" line="145"/>
         <source>Ctrl+Meta+Space</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="141"/>
-        <location filename="tagseditor.cpp" line="559"/>
+        <location filename="tagseditor.cpp" line="154"/>
+        <location filename="tagseditor.cpp" line="572"/>
         <source>Hide characters</source>
         <translation>Zeichen verbergen</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="146"/>
-        <location filename="tagseditor.cpp" line="553"/>
+        <location filename="tagseditor.cpp" line="159"/>
+        <location filename="tagseditor.cpp" line="566"/>
         <source>Show characters</source>
         <translation>Zeichen anzeigen</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="226"/>
+        <location filename="tagseditor.cpp" line="239"/>
         <source>lower</source>
         <translation>kleinbuchstaben</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="227"/>
+        <location filename="tagseditor.cpp" line="240"/>
         <source>UPPER</source>
         <translation>GROSSBUCHSTABEN</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="228"/>
+        <location filename="tagseditor.cpp" line="241"/>
         <source>Only first up</source>
         <translation>Nur erster buchstabe groß</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="229"/>
+        <location filename="tagseditor.cpp" line="242"/>
         <source>Every First Up</source>
         <translation>Alle Anfangsbuchstaben Groß</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="230"/>
+        <location filename="tagseditor.cpp" line="243"/>
         <source>Simplify whitespaces</source>
         <translation>Leerzeichen vereinfachen</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="231"/>
+        <location filename="tagseditor.cpp" line="244"/>
         <source>Remove diacritics</source>
         <translation>Diakritische Zeichen entfernen</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="232"/>
+        <location filename="tagseditor.cpp" line="245"/>
         <source>Transliterate</source>
         <translation>Transliterieren</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="233"/>
+        <location filename="tagseditor.cpp" line="246"/>
         <source>Fix encoding</source>
         <translation>Encoding-Fehler verbessern</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="190"/>
+        <location filename="tagseditor.cpp" line="203"/>
         <source>Collect for future use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="200"/>
+        <location filename="tagseditor.cpp" line="213"/>
         <source>Find/Replace</source>
         <translation>Suchen/ersetzen</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="406"/>
+        <location filename="tagseditor.cpp" line="419"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="406"/>
+        <location filename="tagseditor.cpp" line="419"/>
         <source>Nothing found</source>
         <translation>Es wurden keine Treffer gefunden</translation>
     </message>
@@ -3264,7 +3262,7 @@ Open the Settings dialog?</source>
     </message>
     <message>
         <location filename="tagsfiller.cpp" line="177"/>
-        <location filename="tagsfiller.cpp" line="750"/>
+        <location filename="tagsfiller.cpp" line="747"/>
         <source>Source</source>
         <translation>Quelle</translation>
     </message>
@@ -3319,27 +3317,27 @@ Open the Settings dialog?</source>
         <translation>Suchen in</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="339"/>
+        <location filename="tagsfiller.cpp" line="338"/>
         <source>from network</source>
         <translation>aus dem Netzwerk</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="350"/>
+        <location filename="tagsfiller.cpp" line="349"/>
         <source>No download plugins found. Internet search is inaccessible</source>
         <translation>Keine Tag-Quellen-Plugins gefunden. Die Internetsuche ist nicht verfügbar.</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="431"/>
+        <location filename="tagsfiller.cpp" line="428"/>
         <source>Searching %1...</source>
         <translation>Suche %1...</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="461"/>
+        <location filename="tagsfiller.cpp" line="458"/>
         <source>Nothing found</source>
         <translation>Es wurden keine Treffer gefunden</translation>
     </message>
     <message numerus="yes">
-        <location filename="tagsfiller.cpp" line="466"/>
+        <location filename="tagsfiller.cpp" line="463"/>
         <source>Found %n album(s)</source>
         <translation>
             <numerusform>%n Album gefunden</numerusform>
@@ -3347,17 +3345,17 @@ Open the Settings dialog?</source>
         </translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="503"/>
+        <location filename="tagsfiller.cpp" line="500"/>
         <source>Retrieving release info...</source>
         <translation>Rufe Release Infos ab...</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="516"/>
+        <location filename="tagsfiller.cpp" line="513"/>
         <source>Done</source>
         <translation>Fertig</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="426"/>
+        <location filename="tagsfiller.cpp" line="423"/>
         <source>Please specify an artist and an album for the manual search</source>
         <translation>Bitte geben Sie ein Künstler und ein Album für die manuelle Suche ein</translation>
     </message>

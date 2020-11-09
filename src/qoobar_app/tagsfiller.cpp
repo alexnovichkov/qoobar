@@ -195,8 +195,8 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
 
     header = new CheckableHeaderView(Qt::Horizontal,table);
     table->setHorizontalHeader(header);
-    table->setColumnWidth(0,::dpiAwareSize(25,this));
-    table->setColumnWidth(1,::dpiAwareSize(400,this));
+    table->setColumnWidth(0,25);
+    table->setColumnWidth(1,400);
     header->setCheckable(0,true);
     header->setCheckState(0,Qt::Checked);
     connect(header,SIGNAL(toggled(int,Qt::CheckState)),this,SLOT(headerToggled(int,Qt::CheckState)));
@@ -317,9 +317,8 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
 
     QHBoxLayout *nl = new QHBoxLayout;
     nl->addWidget(progress);
-    //nl->addSpacing(50);
     nl->addWidget(networkStatusInfo);
-    nl->addSpacing(::dpiAwareSize(50,this));
+    nl->addSpacing(50);
     nl->addWidget(networkErrorInfo);
     nl->addStretch();
 
@@ -385,8 +384,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     layout->addWidget(buttonBox);
 #endif
     setLayout(layout);
-
-    resize(::dpiAwareSize(App->primaryScreen()->availableSize()/2, this));
+    resize(App->primaryScreen()->availableSize()/2);
 
     currentAlbum=-1;
 }

@@ -98,17 +98,22 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 
     scroll = new QScrollArea;
     //scroll->setWidgetResizable(true);
-    scroll->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    scroll->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    scroll->setSizePolicy(QSizePolicy::Preferred, scroll->sizePolicy().verticalPolicy());
     int sbw = 10;
     int factor = 4;
     if (devicePixelRatio()==1) factor = 5;
-    scroll->setMinimumWidth(::dpiAwareSize(h*factor+sbw,this));
-    scroll->setMaximumWidth(::dpiAwareSize(h*factor+sbw,this));
+//    scroll->setMinimumWidth(::dpiAwareSize(h*factor+sbw,this));
+//    scroll->setMaximumWidth(::dpiAwareSize(h*factor+sbw,this));
+    //scroll->setMinimumWidth(h*factor+sbw);
+    //scroll->setMaximumWidth(h*factor+sbw);
     scroll->setFocusPolicy(Qt::NoFocus);
     QWidget *charsWidget = new QWidget(this);
     charsWidget->setFocusPolicy(Qt::NoFocus);
-    charsWidget->setMinimumWidth(::dpiAwareSize(h*4,this));
-    charsWidget->setMaximumWidth(::dpiAwareSize(h*4,this));
+//    charsWidget->setMinimumWidth(::dpiAwareSize(h*4,this));
+//    charsWidget->setMaximumWidth(::dpiAwareSize(h*4,this));
+//    charsWidget->setMinimumWidth(h*4);
+//    charsWidget->setMaximumWidth(h*4);
 
     QGridLayout *charsLayout = new QGridLayout(this);
     charsLayout->setContentsMargins(0,0,0,0);
@@ -173,8 +178,8 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     }
     else {
         pedit = new QPlainTextEdit(this);
-        pedit->setMinimumHeight(::dpiAwareSize(80,this));
-        pedit->setMaximumHeight(::dpiAwareSize(200,this));
+        pedit->setMinimumHeight(80);
+        pedit->setMaximumHeight(200);
         if (!text.startsWith(QLS("<<")))  pedit->setPlainText(list.at(0));
 
         table->setItemDelegate(new TextEditDelegate(this));
@@ -312,7 +317,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 
     searchPanel->hide();
 
-    resize(::dpiAwareSize({800,300},this));
+    resize(qApp->primaryScreen()->availableSize()/2);
 }
 
 

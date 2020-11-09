@@ -107,8 +107,8 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     tree->setAllColumnsShowFocus(true);
     tree->setUniformRowHeights(true);
     tree->setHeaderLabels(QStringList()<<tr("No.")<<tr("Name")<<tr("Album gain")<<tr("Track gain")<<tr("Album peak")<<tr("Track peak"));
-    tree->header()->resizeSection(0,::dpiAwareSize(50,this));
-    tree->header()->resizeSection(1,::dpiAwareSize(350,this));
+    tree->header()->resizeSection(0,50);
+    tree->header()->resizeSection(1,350);
 
 #ifdef Q_OS_MAC
     //tree->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
@@ -142,7 +142,7 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     grid->addWidget(buttonBox,5,0,1,4,Qt::AlignRight);
 #endif
     setLayout(grid);
-    resize(::dpiAwareSize({800,500},this));
+    resize(qApp->primaryScreen()->availableSize()/2);
 
     initTable();
 }

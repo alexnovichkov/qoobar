@@ -48,9 +48,8 @@ CompletionsDialog::CompletionsDialog(const int &tagID, QWidget *parent) :
     layout->addWidget(buttonBox);
     setLayout(layout);
 
-    //TODO: this->devicePixelRatio()
-    resize(::dpiAwareSize({App->primaryScreen()->availableSize().width()/4,
-                          App->primaryScreen()->availableSize().height()/3},this));
+    resize({App->primaryScreen()->availableSize().width()/4,
+            App->primaryScreen()->availableSize().height()/3});
 }
 
 void CompletionsDialog::accept()
