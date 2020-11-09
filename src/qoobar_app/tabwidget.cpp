@@ -97,6 +97,14 @@ void TabBar::mouseDoubleClickEvent(QMouseEvent * event)
     QTabBar::mouseDoubleClickEvent(event);
 }
 
+void TabBar::keyPressEvent(QKeyEvent *event)
+{
+    if (!editor->isHidden() && event->key() == Qt::Key_Return) {
+        editTabName();
+    }
+    else QTabBar::keyPressEvent(event);
+}
+
 void TabBar::contextMenuEvent(QContextMenuEvent * event)
 {DD;
     QMenu menu;

@@ -45,6 +45,7 @@ public:
     TabBar(QWidget *parent = 0);
 protected:
     void mouseDoubleClickEvent(QMouseEvent * event);
+    void keyPressEvent(QKeyEvent *event);
     void contextMenuEvent(QContextMenuEvent * event);
 private Q_SLOTS:
     void closeTab();
