@@ -131,21 +131,8 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     iconTheme = new QComboBox(this);
     QStringList iconThemes = QDir(ApplicationPaths::sharedPath()+"/icons").entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
     Q_FOREACH(const QString &dir, iconThemes) {
-        QFile jsonFile(ApplicationPaths::sharedPath()+"/icons/"+dir+"/properties.json");
-        QVariantMap result;
-        if (jsonFile.open(QFile::ReadOnly)) {
-            QVariant parsed = QJsonDocument::fromJson(jsonFile.readAll()).toVariant();
-            result = parsed.toMap();
-        }
-        if (result.isEmpty()) {
+        if (QFile::exists(ApplicationPaths::sharedPath()+"/icons/"+dir+"/index.theme")) {
             iconTheme->addItem(dir);
-            iconTheme->setItemData(iconTheme->count()-1, dir);
-        }
-        else {
-            QString themeName = result["name"].toMap()[App->langID].toString();
-            if (themeName.isEmpty()) themeName = result["name"].toMap()["default"].toString();
-            if (themeName.isEmpty()) themeName = dir;
-            iconTheme->addItem(themeName);
             iconTheme->setItemData(iconTheme->count()-1, dir);
         }
     }

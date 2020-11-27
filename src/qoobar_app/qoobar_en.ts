@@ -3011,23 +3011,23 @@ Open the Settings dialog?</source>
 <context>
     <name>TabBar</name>
     <message>
-        <location filename="tabwidget.cpp" line="103"/>
+        <location filename="tabwidget.cpp" line="111"/>
         <source>New Tab</source>
         <oldsource>New &amp;Tab</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="tabwidget.cpp" line="108"/>
+        <location filename="tabwidget.cpp" line="116"/>
         <source>Close tab</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tabwidget.cpp" line="109"/>
+        <location filename="tabwidget.cpp" line="117"/>
         <source>Close other tabs</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tabwidget.cpp" line="111"/>
+        <location filename="tabwidget.cpp" line="119"/>
         <source>Rename tab...</source>
         <translation></translation>
     </message>
@@ -3035,7 +3035,7 @@ Open the Settings dialog?</source>
 <context>
     <name>TabWidget</name>
     <message>
-        <location filename="tabwidget.cpp" line="162"/>
+        <location filename="tabwidget.cpp" line="170"/>
         <source>New tab</source>
         <translation></translation>
     </message>

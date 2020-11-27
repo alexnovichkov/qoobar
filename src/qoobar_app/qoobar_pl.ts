@@ -3134,22 +3134,22 @@ Czy zapisać zmiany?</translation>
 <context>
     <name>TabBar</name>
     <message>
-        <location filename="tabwidget.cpp" line="103"/>
+        <location filename="tabwidget.cpp" line="111"/>
         <source>New Tab</source>
         <translation>Nowa karta</translation>
     </message>
     <message>
-        <location filename="tabwidget.cpp" line="108"/>
+        <location filename="tabwidget.cpp" line="116"/>
         <source>Close tab</source>
         <translation>Zamknij kartę</translation>
     </message>
     <message>
-        <location filename="tabwidget.cpp" line="109"/>
+        <location filename="tabwidget.cpp" line="117"/>
         <source>Close other tabs</source>
         <translation>Zamknij inne karty</translation>
     </message>
     <message>
-        <location filename="tabwidget.cpp" line="111"/>
+        <location filename="tabwidget.cpp" line="119"/>
         <source>Rename tab...</source>
         <translation>Zmień nazwę karty...</translation>
     </message>
@@ -3157,7 +3157,7 @@ Czy zapisać zmiany?</translation>
 <context>
     <name>TabWidget</name>
     <message>
-        <location filename="tabwidget.cpp" line="162"/>
+        <location filename="tabwidget.cpp" line="170"/>
         <source>New tab</source>
         <translation>Nowa karta</translation>
     </message>
