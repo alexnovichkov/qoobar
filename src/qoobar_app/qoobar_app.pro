@@ -446,7 +446,7 @@ unix {
 
     EXEC_PATH = $${INSTALL_PREFIX}/bin
     PIXMAP_PATH = $${SHARED_PATH}/pixmaps
-    ICON_PATH = $${SHARED_PATH}/icons/hicolor
+    ICON_PATH = $${SHARED_PATH}/qoobar/icons
     MAN_PATH = $${SHARED_PATH}/man/man1
     DESKTOP_PATH = $${SHARED_PATH}/applications
 
@@ -464,7 +464,7 @@ unix {
     icon256.path = $$PIXMAP_PATH/256x256/apps
     icon256.files = icons/app/256/qoobar.png
     INSTALLS += icon16 icon32 icon48 icon64 icon128 icon256
-    resources.path = /usr/share/qoobar
+    resources.path = $${SHARED_PATH}/qoobar
     resources.files = *.qm
     resources.files += args.json splitandconvert.sh
     schemes.path = $${SHARED_PATH}/qoobar/schemes
@@ -478,14 +478,14 @@ unix {
     target.path = $$EXEC_PATH
     docfiles.path = $${DOC_PATH}/qoobar
     docfiles.files = ../../README*
-    icons.files = icons/*.ico
-    icons.files += icons/*.png
-    icons.files += icons/*.gif
-    icons.path = $${SHARED_PATH}/qoobar/icons/default
-    coloredicons.files = icons/coloured/*.ico
-    coloredicons.files += icons/coloured/*.png
-    coloredicons.files += icons/coloured/*.gif
-    coloredicons.files += icons/coloured/*.json
+    icons.files = icons/maia
+#    icons.files += icons/*.png
+#    icons.files += icons/*.gif
+    icons.path = $${SHARED_PATH}/qoobar/icons/maia
+    coloredicons.files = icons/coloured
+#    coloredicons.files += icons/coloured/*.png
+#    coloredicons.files += icons/coloured/*.gif
+#    coloredicons.files += icons/coloured/*.json
     coloredicons.path = $${SHARED_PATH}/qoobar/icons/coloured
     INSTALLS += target docfiles resources icons coloredicons
     INSTALLS += schemes desktop manfiles completions
