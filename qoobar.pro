@@ -4,7 +4,6 @@ DEFINES += QOOBAR_PORTABLE
 
 SUBDIRS  = src/qoobar_app
 SUBDIRS += src/plugins/beatport \
-           src/plugins/freedb \
            src/plugins/discogs \
            src/plugins/musicbrainz \
            src/plugins/gd3 \
