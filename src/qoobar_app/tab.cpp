@@ -384,24 +384,23 @@ struct Reduce
     QString operator()(const QStringList &list)
     {
         if (list.isEmpty()) return QString();
-        QStringList l;
-        if (list.size()<=50) {
-            l=list;
-            l.removeDuplicates();
+        if (list.size()==1) return list.first();
+
+        QString current;
+
+        QSet<QString> set;
+        for (const QString& s: list) {
+            if (set.contains(s)) continue;
+            if (!needToAdd(s, current)) break;
+            set.insert(s);
         }
-        else {
-            //reduce to a string with length not greater than table width
-            Q_FOREACH (const QString &s, list) {
-                if (!needToAdd(l)) break;
-                if (!l.contains(s)) l<<s;
-            }
-        }
-        if (l.size()==1) return l.first();
-        return QObject::tr("<<multiple>>") + l.join(QSL(";"));
+        if (set.count()<=1) return current;
+        return QObject::tr("<<multiple>>") + current;
     }
 
-    bool needToAdd(const QStringList &list) const {
-        return qApp->fontMetrics().HORIZONTAL_ADVANCE(list.join(QSL(";"))) < m_size;
+    bool needToAdd(const QString &s, QString &current) {
+        current = current.isEmpty() ? s: (current+";"+s);
+        return qApp->fontMetrics().HORIZONTAL_ADVANCE(current) < m_size;
     }
 
     int m_size;
@@ -432,6 +431,7 @@ void Tab::updateTagsTable(const QVector<int> &rows)
         QList<QStringList> tableTags;
         Q_FOREACH (const int &i,_rows)
             tableTags << getTags(i);
+
         QStringList reducedTags = QtConcurrent::blockingMapped(tableTags,Reduce(table->width()));
 
         table->blockSignals(true);
