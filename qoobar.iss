@@ -99,8 +99,8 @@ Name: "{app}\icons"; Flags: uninsalwaysuninstall; Components: main
 Name: "{app}\icons"; Flags: uninsalwaysuninstall; Components: main
 
 [Files]
-#define PATH_TO_QT "C:/Qt/Qt5.12.8/5.12.8/mingw73_32"
-#define PATH_TO_QOOBAR "E:/My/build/build-qoobar-Desktop_Qt_5_12_8_MinGW_32_bit-Release/release"
+#define PATH_TO_QT "C:/Qt/5.15.0/mingw81_32"
+#define PATH_TO_QOOBAR "G:/build/build-qoobar-Desktop_Qt_5_15_0_MinGW_32_bit-Release/release"
 
 ; main
 Source: {#PATH_TO_QOOBAR+"/qoobar.exe"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
@@ -110,6 +110,7 @@ Source: {#PATH_TO_QT+"/plugins/imageformats/qjpeg.dll"}; DestDir: "{app}\imagefo
 Source: {#PATH_TO_QT+"/plugins/imageformats/qgif.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/plugins/imageformats/qico.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/plugins/platforms/qwindows.dll"}; DestDir: "{app}\platforms"; Flags: ignoreversion createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/plugins/styles/qwindowsvistastyle.dll"}; DestDir: "{app}\styles"; Flags: ignoreversion createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/Qt5Core.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/Qt5Concurrent.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/Qt5Gui.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
