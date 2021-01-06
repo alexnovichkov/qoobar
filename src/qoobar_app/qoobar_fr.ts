@@ -2451,7 +2451,7 @@ all changes in them will not be saved!</source>
         <translation>Caché</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="400"/>
+        <location filename="tab.cpp" line="398"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;divers&gt;&gt;</translation>
     </message>

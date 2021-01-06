@@ -1065,44 +1065,45 @@ void TagsReaderWriter::readMP4(TagLib::MP4::Tag *mp4tag)
     if (!mp4tag)
         return;
 
-    TagLib::MP4::ItemListMap map=mp4tag->itemListMap();
+    const TagLib::MP4::ItemListMap &map = mp4tag->itemListMap();
 
     for (TagLib::MP4::ItemListMap::ConstIterator it = map.begin(); it != map.end(); ++it)  {
         QString id=QS((*it).first);
+        const auto &item = (*it).second;
 
 //        qDebug()<<id << (*it).second.atomDataType() << QS((*it).second.toStringList().toString(";"));
 
         if (id=="trkn" || id=="disk") {
-            int tn = (*it).second.toIntPair().first;
-            int tt = (*it).second.toIntPair().second;
+            int tn = item.toIntPair().first;
+            int tt = item.toIntPair().second;
             parseTag(id,TaggingScheme::MP4,QString("%1/%2").arg(tn).arg(tt));
         }
         else if (id == "cpil" || id == "pgap" || id == "pcst" || id == "hdvd") {
-            bool b=(*it).second.toBool();
+            bool b=item.toBool();
             parseTag(id,TaggingScheme::MP4, b ? QSL("1") : QSL("0"));
         }
         else if (id=="tmpo") {
-            parseTag(id, TaggingScheme::MP4, QString::number((*it).second.toInt()));
+            parseTag(id, TaggingScheme::MP4, QString::number(item.toInt()));
         }
         else if (id == "tvsn" || id == "tves" || id == "cnID" ||
                  id == "sfID" || id == "atID" || id == "geID") {
-            parseTag(id, TaggingScheme::MP4, QString::number((*it).second.toUInt()));
+            parseTag(id, TaggingScheme::MP4, QString::number(item.toUInt()));
         }
         else if (id == "akID") {
-            parseTag(id, TaggingScheme::MP4, QString::number((*it).second.toByte()));
+            parseTag(id, TaggingScheme::MP4, QString::number(item.toByte()));
         }
         else if (id == "plID") {
-            parseTag(id, TaggingScheme::MP4, QString::number((*it).second.toLongLong()));
+            parseTag(id, TaggingScheme::MP4, QString::number(item.toLongLong()));
         }
         else if (id == "rati") {
-            parseTag(id, TaggingScheme::MP4, QString::number((*it).second.toUShort()));
+            parseTag(id, TaggingScheme::MP4, QString::number(item.toUShort()));
         }
         else if (id=="rtng") {
-            int r=(*it).second.toByte();
+            int r=item.toByte();
             parseTag(id, TaggingScheme::MP4, QString::number(r / 20));
         }
         else if (id=="stik") {
-            uchar stik = (*it).second.toByte();
+            uchar stik = item.toByte();
 //            QString val = QSL("Unknown");
 //            switch (stik) {
 //                case 1: val = QSL("Normal"); break;
@@ -1118,7 +1119,7 @@ void TagsReaderWriter::readMP4(TagLib::MP4::Tag *mp4tag)
             parseTag(id, TaggingScheme::MP4, QString::number(stik));
         }
         else if (id=="covr") {
-            TagLib::MP4::CoverArtList coverList=(*it).second.toCoverArtList();
+            TagLib::MP4::CoverArtList coverList=item.toCoverArtList();
             if (!coverList.isEmpty()) {
                 TagLib::MP4::CoverArt cover=coverList[0];
                 tag->d->image.setMimetype(cover.format()==TagLib::MP4::CoverArt::JPEG ? QSL("image/jpeg"):QSL("image/png"));
@@ -1133,7 +1134,7 @@ void TagsReaderWriter::readMP4(TagLib::MP4::Tag *mp4tag)
             continue;
         }
         else {
-            QString value = QS((*it).second.toStringList().toString(";"));
+            QString value = QS(item.toStringList().toString(";"));
             parseTag(id,TaggingScheme::MP4,value);
         }
     }

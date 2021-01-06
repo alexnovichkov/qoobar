@@ -1,12 +1,12 @@
-Qoobar - Audio Tagger for Classical Music
+# Qoobar - Audio Tagger for Classical Music
 
-With Qoobar you can:
+## With Qoobar you can:
 
 - Edit ID3v2.4, APE, ASF, MP4 tags, Vorbis comments
-- Edit tags in MP3 (*.mp3), Ogg/Vorbis (*.ogg), Ogg/FLAC (*.oga),
-  FLAC (*.flac), Musepack (*.mpc), Speex (*.spx), TrueAudio (*.tta),
-  WavPack (*.wv), Wma/Asf (*.wma),  APE (*.ape), Wav (*.wav),
-  Aiff (*.aif, *.aiff) and MP4 (*.m4a, *.mp4) files.
+- Edit tags in MP3 (\*.mp3), Ogg/Vorbis (\*.ogg), Ogg/FLAC (\*.oga),
+  FLAC (\*.flac), Musepack (\*.mpc), Speex (\*.spx), TrueAudio (\*.tta),
+  WavPack (\*.wv), Wma/Asf (\*.wma),  APE (\*.ape), Wav (\*.wav),
+  Aiff (\*.aif, \*.aiff) and MP4 (\*.m4a, \*.mp4) files.
 - Batch tagging - edit any tags in group of files, giving the same value
   or individual values.
 - Easy copy&paste any tags between groups of files.
@@ -19,7 +19,7 @@ With Qoobar you can:
 - Edit all other tags written in your music files.
 - Add your own tags and save them.
 - Generate tags from filenames and filepaths.
-- Import tags from Discogs, Musicbraiz and freedb.
+- Import tags from Discogs and Musicbraiz.
 - Rename / copy / move files by their tags, creating folders if necessary.
 - Convert tags with Windows 1251, KOI8-R, CP866 encodings into UTF8.
 - Edit cover art pictures in all supported file types.
@@ -29,9 +29,9 @@ With Qoobar you can:
 Qoobar uses Qt for GUI and TagLib for tags manipulation and runs
 under GNU/Linux and Windows.
 
-Current version: 1.7.0
+**Current version:** 1.7.0
 
-License: GPL v3.0
+**License:** GPL v3.0
 
-Homepage: http://qoobar.sourceforge.net
-Copyright: 2009-2016 Alex Novichkov, novichkov.qoobar@gmail.com
+**Homepage:** [qoobar.sourceforge.net](http://qoobar.sourceforge.net)
+**Copyright:** 2009-2021 Alex Novichkov, novichkov.qoobar@gmail.com

@@ -2458,7 +2458,7 @@ le modifiche non verranno registrate!</translation>
         <translation>Nascosto</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="400"/>
+        <location filename="tab.cpp" line="398"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;diversi&gt;&gt;</translation>
     </message>

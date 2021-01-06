@@ -2459,7 +2459,7 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="400"/>
+        <location filename="tab.cpp" line="398"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;wiele wartości&gt;&gt;</translation>
     </message>

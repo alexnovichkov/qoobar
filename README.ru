@@ -1,12 +1,12 @@
-﻿Qoobar - редактор тегов для классической музыки
+﻿# Qoobar - редактор тегов для классической музыки
 
-Qoobar может:
+## Qoobar может:
 
 - редактировать теги ID3v2.4, Xiph.org, APE, ASF, MP4
-- редактировать теги в файлах MP3 (*.mp3), Ogg/Vorbis (*.ogg), Ogg/FLAC (*.oga),
-  FLAC (*.flac), Musepack (*.mpc), Speex (*.spx), TrueAudio (*.tta),
-  WavPack (*.wv), Wma/Asf (*.wma), APE (*.ape), Wav (*.wav),
-  Aiff (*.aif, *.aiff), MP4 (*.m4a, *.mp4) и Opus (*.opus).
+- редактировать теги в файлах MP3 (\*.mp3), Ogg/Vorbis (\*.ogg), Ogg/FLAC (\*.oga),
+  FLAC (\*.flac), Musepack (\*.mpc), Speex (\*.spx), TrueAudio (\*.tta),
+  WavPack (\*.wv), Wma/Asf (\*.wma), APE (\*.ape), Wav (\*.wav),
+  Aiff (\*.aif, \*.aiff), MP4 (\*.m4a, \*.mp4) и Opus (\*.opus).
 - задавать единое значение тега для группы файлов.
 - изменять следующие теги:
   Composer - композитор, Album - альбом, Title - название,
@@ -30,7 +30,7 @@ Qoobar может:
 Qoobar использует библиотеки Qt и Taglib
 и может работать как в GNU/Linux, так и в Windows.
 
-Текущая версия: 1.7.0
+**Текущая версия:** 1.7.0
 
-Homepage: http://qoobar.sourceforge.net
-Copyright: 2009-2016 Алексей Новичков, novichkov.qoobar@gmail.com
+**Homepage:** [qoobar.sourceforge.net](http://qoobar.sourceforge.net)
+**Copyright:** 2009-2021 Алексей Новичков, novichkov.qoobar@gmail.com
