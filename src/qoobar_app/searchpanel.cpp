@@ -123,8 +123,17 @@ void SearchPanel::findPrev()
     Q_EMIT find(false);
 }
 
+const QString SearchPanel::replaceBy(const QStringList &captures)
+{DD;
+    QString s = replaceByEdit->text();
+    for (int i=0; i<captures.size();++i) {
+        s.replace(QString("\\%1").arg(i+1), captures.at(i));
+    }
+    return s;
+}
+
 const QString SearchPanel::replaceBy()
-{DD
+{
     return replaceByEdit->text();
 }
 

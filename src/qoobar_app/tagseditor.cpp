@@ -388,8 +388,9 @@ void TagsEditDialog::find(const bool forward)
     QString searchWhat = searchPanel->searchWhat();
     if (searchWhat.isEmpty()) return;
 
-    QRegExp rx=createRegExp(searchPanel->caseSensitive(), searchPanel->useRegularExpressions(),
+    rx = createRegExp(searchPanel->caseSensitive(), searchPanel->useRegularExpressions(),
                             searchPanel->wholeWord(), searchWhat);
+    captures.clear();
 
     int row = table->currentRow();
 
@@ -409,6 +410,8 @@ void TagsEditDialog::find(const bool forward)
             pos = rx.lastIndexIn(e->text(),pos);
         if (pos>=0) {
             e->setSelection(pos,rx.matchedLength());
+            captures = rx.capturedTexts();
+            captures.removeFirst();
             return;
         }
     }
@@ -425,8 +428,11 @@ void TagsEditDialog::find(const bool forward)
     e = qobject_cast<QLineEdit *>(table->cellWidget(row,0));
     if (!e) return;
     int pos = forward ? rx.indexIn(e->text(),0) : rx.lastIndexIn(e->text(),-1);
-    if (pos>=0)
+    if (pos>=0) {
         e->setSelection(pos,rx.matchedLength());
+        captures = rx.capturedTexts();
+        captures.removeFirst();
+    }
     else find(forward);
 }
 
@@ -435,7 +441,7 @@ void TagsEditDialog::replace()
     int row = table->currentRow();
     QLineEdit *e=qobject_cast<QLineEdit *>(table->cellWidget(row,0));
     if (!e) return;
-    if (e->hasSelectedText()) e->insert(searchPanel->replaceBy());
+    if (e->hasSelectedText()) e->insert(searchPanel->replaceBy(captures));
 }
 
 void TagsEditDialog::replaceAndFind()
@@ -444,7 +450,7 @@ void TagsEditDialog::replaceAndFind()
     QLineEdit *e=qobject_cast<QLineEdit *>(table->cellWidget(row,0));
     if (e)
         if (e->hasSelectedText()) {
-            e->insert(searchPanel->replaceBy());
+            e->insert(searchPanel->replaceBy(captures));
         }
     find(true);
 }
@@ -453,12 +459,13 @@ void TagsEditDialog::replaceAll()
 {DD
     QString searchWhat = searchPanel->searchWhat();
     if (searchWhat.isEmpty()) return;
-    QRegExp rx=createRegExp(searchPanel->caseSensitive(), searchPanel->useRegularExpressions(),
+    rx=createRegExp(searchPanel->caseSensitive(), searchPanel->useRegularExpressions(),
                             searchPanel->wholeWord(), searchWhat);
+    captures.clear();
 
     for (int i=0; i<count; ++i) {
         QString s = table->item(i,0)->text();
-        s = s.replace(rx,searchPanel->replaceBy());
+        s = s.replace(rx, searchPanel->replaceBy());
         table->item(i,0)->setText(s);
     }
 }

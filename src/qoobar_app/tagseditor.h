@@ -46,6 +46,7 @@ class Model;
 
 #include <QIcon>
 #include <QToolButton>
+#include <QRegExp>
 
 class TagsEditDialog : public QDialog
 {
@@ -106,6 +107,8 @@ private:
 
     QStringList newValues;
     Model *model;
+    QRegExp rx;
+    QStringList captures;
 };
 
 #endif

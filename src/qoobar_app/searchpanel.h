@@ -16,6 +16,7 @@ public:
     bool wholeWord() const;
     bool useRegularExpressions() const;
     void startSearch(const QString &searchWhat);
+    const QString replaceBy(const QStringList &captures);
     const QString replaceBy();
     const QString searchWhat();
 Q_SIGNALS:
