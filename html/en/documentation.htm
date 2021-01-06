@@ -1547,7 +1547,8 @@
                 <tr><td><code>[abc]</code></td><td>matches 'a' or 'b' or 'c'.</td></tr>
                 <tr><td><code>[^abc]</code></td><td>matches anything <i>but</i> 'a' or 'b' or 'c'.</td></tr>
                 <tr><td><code>[a-e]</code></td><td>matches a range of characters from 'a' to 'e'.</td></tr>
-                <tr><td><code>(E|N)</code></td><td>matches expression E or expression N, where E and N can be complex.</td></tr>
+                <tr><td><code>(E|N)</code></td><td>matches expression E or expression N, where E and N can be complex. This is a capturing expression, for non-capturing one
+                use (?:E|N).</td></tr>
                 <tr><th colspan=2>Quantifiers</th></tr>
                 <tr><td><code>E?</code></td><td>matches zero or one occurrences of E.</td></tr>
                 <tr><td><code>E+</code></td><td>matches one or more occurrences of E.</td></tr>
@@ -1559,7 +1560,7 @@
                 <tr><td colspan=2>To apply a quantifier to more than just the preceding character,
                   use parentheses to group characters together in an expression.<br />
                   For example, tag+ matches a 't' followed by an 'a' followed by at least
-                  one 'g', whereas (tag)+ matches at least one occurrence of 'tag'</td></tr>
+                  one 'g', whereas (tag)+ matches at least one occurrence of 'tag'. See also "Capturing" below.</td></tr>
                 <tr><th colspan=2>Assertions</th></tr>
                 <tr><td><code>^</code></td><td>The caret signifies the beginning of the string.
                 If you wish to match a literal <code>^</code> you must escape it by writing <code>\\^</code>.</td></tr>
@@ -1578,6 +1579,10 @@
                   For example, <code>const(?!\s+char)</code> matches 'const' except when it
                       is followed by 'char'..</td>
                 </tr>
+                <tr><th colspan=2>Capturing</th></tr>
+                <tr><td><code>(E)</code></td><td>matches expression E and captures it.</td></tr>
+                <tr><td><code>(?:E)</code></td><td>matches expression E but not captures it.</td></tr>
+                <tr><td><code>\1, \2, \3 etc.</code></td><td>matches previously captured expression. NOTE: you can use the \n syntax in the replace strings.</td></tr>
               </table>
             </div>
           </article>
