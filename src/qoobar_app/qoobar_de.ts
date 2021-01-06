@@ -3167,13 +3167,13 @@ Open the Settings dialog?</source>
     </message>
     <message>
         <location filename="tagseditor.cpp" line="154"/>
-        <location filename="tagseditor.cpp" line="572"/>
+        <location filename="tagseditor.cpp" line="579"/>
         <source>Hide characters</source>
         <translation>Zeichen verbergen</translation>
     </message>
     <message>
         <location filename="tagseditor.cpp" line="159"/>
-        <location filename="tagseditor.cpp" line="566"/>
+        <location filename="tagseditor.cpp" line="573"/>
         <source>Show characters</source>
         <translation>Zeichen anzeigen</translation>
     </message>
@@ -3228,12 +3228,12 @@ Open the Settings dialog?</source>
         <translation>Suchen/ersetzen</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="419"/>
+        <location filename="tagseditor.cpp" line="422"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="419"/>
+        <location filename="tagseditor.cpp" line="422"/>
         <source>Nothing found</source>
         <translation>Es wurden keine Treffer gefunden</translation>
     </message>
