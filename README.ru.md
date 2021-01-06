@@ -33,4 +33,5 @@ Qoobar использует библиотеки Qt и Taglib
 **Текущая версия:** 1.7.0
 
 **Homepage:** [qoobar.sourceforge.net](http://qoobar.sourceforge.net)
+
 **Copyright:** 2009-2021 Алексей Новичков, novichkov.qoobar@gmail.com
