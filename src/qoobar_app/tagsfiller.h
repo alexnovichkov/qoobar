@@ -119,6 +119,10 @@ private:
     QList<SearchResult> searchResults;
     ReleaseInfoWidget *releaseInfoWidget;
     QHash<QString, IDownloadPlugin *> loadedPlugins;
+
+    // QWidget interface
+protected:
+    virtual void keyPressEvent(QKeyEvent *event) override;
 };
 
 #endif
