@@ -142,6 +142,11 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     statusBarTrack->addItem(tr("current hovered file"));
     statusBarTrack->addItem(tr("current selected file"));
 
+    sortOptionsLabel = new QLabel(tr("Sort file names and other text fields"), this);
+    sortOptions = new QComboBox(this);
+    sortOptions->addItem(tr("case sensitively"));
+    sortOptions->addItem(tr("case insensitively"));
+
     auto *UIlayout = new QFormLayout;
 #ifdef Q_OS_MAC
     UIlayout->addRow("",useUndo);
@@ -158,6 +163,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 #ifndef Q_OS_MAC
     UIlayout->addRow(charsBox, chars);
 #endif
+    UIlayout->addRow(sortOptionsLabel, sortOptions);
     UIlayout->addRow(statusBarTrackLabel, statusBarTrack);
     UIlayout->addRow(langLabel, lang);
     UIlayout->addRow(iconThemeLabel, iconTheme);
@@ -177,6 +183,7 @@ void InterfacePage::setSettings()
     dirRoot->setText(App->dirViewRoot);
     useUndo->setChecked(App->useUndo);
     autoexpand->setChecked(App->autoexpand);
+    sortOptions->setCurrentIndex(App->sortOption);
 #ifndef Q_OS_MAC
     chars->setText(App->chars);
     chars->setCursorPosition(0);
@@ -208,6 +215,10 @@ void InterfacePage::retranslateUI()
     statusBarTrackLabel->setText(tr("Status bar is tracking"));
     statusBarTrack->setItemText(0, tr("current hovered file"));
     statusBarTrack->setItemText(1, tr("current selected file"));
+
+    sortOptionsLabel->setText(tr("Sort file names and other text fields"));
+    sortOptions->setItemText(0, tr("case sensitively"));
+    sortOptions->setItemText(1, tr("case insensitively"));
 
     autoexpand->setText(tr("Automatically fill a tag "
                            "when pasting a single line"));
@@ -245,6 +256,7 @@ void InterfacePage::saveSettings()
                                                       "after you restart Qoobar"));
     App->iconTheme = iconTheme->itemData(iconTheme->currentIndex()).toString();
     App->statusBarTrack = statusBarTrack->currentIndex();
+    App->sortOption = sortOptions->currentIndex();
 }
 
 void InterfacePage::changeCharsFont()

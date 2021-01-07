@@ -176,6 +176,7 @@ public:
     bool trim; //whether or not trim tags when saving files
     QStringList patterns; //file rename patterns
     bool autoexpand;
+    int sortOption = 0; //0 = case sensitively, 1 = case insensitively
 
     bool oggPictureNew;
 

@@ -90,6 +90,8 @@ private:
     QComboBox *iconTheme;
     QLabel *statusBarTrackLabel;
     QComboBox *statusBarTrack;
+    QComboBox *sortOptions;
+    QLabel *sortOptionsLabel;
 };
 
 class QFormLayout;

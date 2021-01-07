@@ -270,6 +270,8 @@ void Application::readGuiSettings()
     hideTabBar = se->value(QSL("hideTabBar"), false).toBool();
     statusBarTrack = se->value(QSL("statusBarTrack"), 0).toInt();
 
+    sortOption = se->value(QSL("sortOption"), 0).toInt();
+
 //    showFullFilesProperties = se->value(QSL("showFullFilesProperties"),false).toBool();
     delete se;
 }
@@ -427,6 +429,7 @@ void Application::writeGuiSettings()
     se->setValue(QSL("searchPaths"), searchPaths);
     se->setValue(QSL("hideTabBar"), hideTabBar);
     se->setValue(QSL("statusBarTrack"), statusBarTrack);
+    se->setValue(QSL("sortOption"), sortOption);
 
 //    se->setValue(QSL("showFullFilesProperties"), showFullFilesProperties);
 

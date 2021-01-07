@@ -124,6 +124,7 @@ void TreeView::sortIndicatorChanged(int section, Qt::SortOrder order)
 {DD;
     int sortType = SortString;
     if (section==COL_LENGTH) sortType = SortTime;
+    //else if (section == )
     Q_EMIT sortRequested(section, order, sortType);
 }
 

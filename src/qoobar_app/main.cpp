@@ -47,6 +47,8 @@
 
 #include <QProcess>
 
+#include <QVariantMap>
+
 extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 
 int main(int argc, char *argv[])
@@ -115,5 +117,18 @@ int main(int argc, char *argv[])
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 #endif
 
+//    QList<QPair<QVariant, int>> map;
+//    using P = QPair<QVariant, int>;
+//    map.append({QString("aaa"),0});
+//    map.append({QString("Aab"),1});
+//    map.append({QString("Aac"),2});
+//    map.append({QString("aad"),3});
+//    for (auto it = map.begin(); it!=map.end(); ++it)
+//        qDebug()<<*it;
+//    std::sort(map.begin(), map.end(), [](const P &first, const P &second){
+//        return first.first.toString().toLower() < second.first.toString().toLower();
+//    });
+//    for (auto it = map.begin(); it!=map.end(); ++it)
+//        qDebug()<<*it;
     return app.exec();
 }

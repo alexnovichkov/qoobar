@@ -635,35 +635,46 @@ void Model::move(bool up)
 void Model::sortByColumn(int column, Qt::SortOrder order, int sortType)
 {DD;
     QVector<int> newIndexes;
-
-    QMultiMap<QVariant, int> map;
-
-    bool ok;
-    for (int i=0; i<size(); ++i) {
-        if (sortType==SortTime) {
+    if (sortType==SortTime) {
+        QMultiMap<int, int> map;
+        for (int i=0; i<size(); ++i)
             map.insert(tags.at(i).length(),i);
-        }
-        else {
-            QString s = data(index(i,column)).toString();
-            int intval=s.toInt(&ok);
-            if (ok && !s.isEmpty()) map.insert(intval,i);
-            else map.insert(s,i);
-        }
-    }
-    QMapIterator<QVariant, int> i(map);
-    if (order==Qt::DescendingOrder) {
-        i.toBack();
-        while (i.hasPrevious()) {
-            i.previous();
-            newIndexes << i.value();
-        }
+        newIndexes = map.values().toVector();
     }
     else {
-        while (i.hasNext()) {
-            i.next();
-            newIndexes << i.value();
+        bool allNumbers = true;
+        for (int i=0; i<size(); ++i) {
+            bool ok;
+            QString s = data(index(i,column)).toString();
+            int intval=s.toInt(&ok);
+            if (!ok && !s.isEmpty()) {
+                allNumbers = false;
+                break;
+            }
+        }
+
+        if (allNumbers) {
+            QMultiMap<int, int> map;
+            for (int i=0; i<size(); ++i) {
+                QString s = data(index(i,column)).toString();
+                int intval=s.toInt();
+                map.insert(intval,i);
+            }
+            newIndexes = map.values().toVector();
+        }
+        else {
+            QMultiMap<QString, int> map;
+            for (int i=0; i<size(); ++i) {
+                QString s = data(index(i,column)).toString();
+                if (App->sortOption == 0)
+                    map.insert(s,i);
+                else
+                    map.insert(s.toLower(),i);
+            }
+            newIndexes = map.values().toVector();
         }
     }
+    if (order==Qt::DescendingOrder) std::reverse(newIndexes.begin(), newIndexes.end());
 
     for (int i=0; i<newIndexes.size()-1; ++i) {
         if (newIndexes.at(i) == i) continue;
