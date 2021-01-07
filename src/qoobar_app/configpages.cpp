@@ -502,6 +502,8 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
     id3Label = new QLabel(tr("ID3v1 tag encoding"),this);
     auto *id3v1L = new QFormLayout;
     id3v1L->addRow(id3v1writeLabel, id3v1write);
+    id3v1L->addRow(new QLabel("<small>"+tr("(for mp3, flac, tta, mpc, wv, ape files)")
+                              +"</small>", this));
     id3v1L->addRow(id3Label,id3v1encoding);
     id3v1L->addWidget(id3v1transliterate);
     id3v1L->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
