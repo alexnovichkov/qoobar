@@ -1536,16 +1536,24 @@ bool TagsReaderWriter::writeTags()
 //                    TagLib::ID3v2::Tag *tag = f->ID3v2Tag(false);
 //                    delete tag;
 //                }
-//                if (App->id3v1Synchro<2) {
-//                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
-//                    if (tag) {
-//                        writeID3v1(tag);
-//                    }
-//                }
-//                else if (App->id3v1Synchro==2) {
-//                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(false);
-//                    delete tag;
-//                }
+                if (App->id3v1Synchro<2) {
+                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
+                    if (tag) {
+                        writeID3v1(tag);
+                    }
+                }
+                else {//not possible to remove id3v1 tags from flac files
+                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(false);
+                    if (tag) {
+                        tag->setAlbum(TagLib::String::null);
+                        tag->setArtist(TagLib::String::null);
+                        tag->setTrack(0);
+                        tag->setTitle(TagLib::String::null);
+                        tag->setComment(TagLib::String::null);
+                        tag->setGenre(TagLib::String::null);
+                        tag->setYear(0);
+                    }
+                }
                 b=f->save();
             }
             delete f;
