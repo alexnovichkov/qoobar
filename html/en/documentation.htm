@@ -340,7 +340,7 @@
                 Note that long placeholders are case and spaces insensitive, so <code>&lt;tracknumber&gt;</code> and <code>&lt;Track Number&gt;</code> are equivalent.
                 You can also use localized tag name instead of the English name, that is if the German language is chosen as the user interface language,
               you can use either <code>%c</code>, <code>&lt;composer&gt;</code> or <code>&lt;komponist&gt;</code> for the composer tag.</p>
-              <p>Unlike short placeholders, long placeholders are not limited by 44 predefinite tags: <strong>any</strong> tag name shown in the Tags Table
+              <p>Unlike short placeholders, long placeholders are not limited by 44 predefined tags: <strong>any</strong> tag name shown in the Tags Table
                 can be used as a long placeholder. In other words, every user tag added to the tagging scheme, any new tag added to the Tags Table, and even any
               non-standard tag added by other tagging program can be addressed by its name.</p>
               <p>Examples: <code>&lt;TSSE&gt;</code> in some mp3 files (Software/Hardware and settings used for encoding) or 
@@ -402,7 +402,9 @@
                 <code>[Section from 2nd to 20th character of album is $section(%a,2,20)]</code> will be removed if the album tag is shorter
               than 2 characters.</p>
               <p>The full list of functions can be found in <a href="#placeholders">Appendix 3</a>.</p>
-              <div class="notebox"><p><strong>Note:</strong> Not all functions works identical to their Foobar equivalents, please test them before saving changes.</p></div>
+              <div class="notebox"><p><strong>Note 1:</strong> Not all functions works identical to their Foobar equivalents, please test them before saving changes.</p></div>
+              <div class="notebox"><p><strong>Note 2:</strong> You can use escape sequences for the Qoobar special characters if you need to preserve them in the function
+                arguments. Use <code>\,  \[   [[   \]  ]]  \{  {{  \}  }}  \(  \)  \<  \>  \$  %%</code> escape sequences for the corresponding characters.</p></div>
 
 
               <h3><a name="autonumbering"></a>Autonumbering</h3>

@@ -39,7 +39,7 @@
 #include <QtDebug>
 
 void fillPlaceholders(QString &currentPattern, Tag &tag, QStringList &args, bool remove)
-{DD
+{DD;
 
     for (int i=0; i<args.size(); ++i)
         currentPattern = currentPattern.arg(args.at(i));
@@ -320,7 +320,11 @@ void processFunctions(QStringList &args, QString &pattern, Tag &tag, int index, 
         int capturedLength = re.matchedLength();
         const QString functionName=re.cap(1);
         QString functionArg = getFunctionArg(pos, capturedLength, pattern);
+        qDebug()<<functionArg;
+        functionArg.replace("\\,",QChar(0x25da));
         functionArg.replace(',',QChar(0x25a0));
+        functionArg.replace(QChar(0x25da),',');
+        qDebug()<<functionArg;
 
         if (functionArg.contains("$"))
             processFunctions(args1, functionArg, tag, index, size);
@@ -367,11 +371,13 @@ void TagsRenderer::updateTags()
     const int size = m->selectedFilesCount();
 
     m_newTags.clear();
+    qDebug()<<m_pattern;
     preprocess();
+    qDebug()<<m_pattern;
 
     for (int index=0; index<size; ++index) {
         QStringList args;
-        Tag tag = m->fileAtSelection(index);
+        Tag &tag = m->fileAtSelection(index);
         QString currentPattern=m_pattern;
 
         // 1. process {} functions, replace function by {0} or {1} etc.
