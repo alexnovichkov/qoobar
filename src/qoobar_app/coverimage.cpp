@@ -55,6 +55,12 @@ CoverImage::CoverImage(const CoverImage &other)
     : d(other.d)
 {}
 
+CoverImage& CoverImage::operator=(const CoverImage &other)
+{
+    d = other.d;
+    return *this;
+}
+
 void CoverImage::setType(int type)
 {
     d->type = type;

@@ -135,6 +135,7 @@ public:
     Tag(int tagsCount = TAGSCOUNT);
     Tag(const QString &filename, int tagsCount = TAGSCOUNT);
     Tag(const Tag &other) : d(other.d) {}
+    Tag& operator=(const Tag &other);
 
     void clear();
 

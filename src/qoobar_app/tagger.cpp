@@ -123,6 +123,12 @@ Tag::Tag(const QString &filename, int tagsCount)
     setFile(filename);
 }
 
+Tag& Tag::operator=(const Tag &other)
+{
+    d = other.d;
+    return *this;
+}
+
 QString Tag::tag(const int &tagID) const
 {
     return tagID < d->tags.size() ? d->tags.at(tagID) : QString();

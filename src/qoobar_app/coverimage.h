@@ -50,6 +50,7 @@ public:
     CoverImage();
     CoverImage(const QByteArray &pixmap,int type,const QString &mimetype,const QString &description);
     CoverImage(const CoverImage &other);
+    CoverImage& operator=(const CoverImage &other);
 
     void setType(int type);
     void setPixmap(const QByteArray &pixmap);
