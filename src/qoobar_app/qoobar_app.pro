@@ -481,12 +481,12 @@ unix {
     icons.files = icons/maia
 #    icons.files += icons/*.png
 #    icons.files += icons/*.gif
-    icons.path = $${SHARED_PATH}/qoobar/icons/maia
+    icons.path = $${SHARED_PATH}/qoobar/icons
     coloredicons.files = icons/coloured
 #    coloredicons.files += icons/coloured/*.png
 #    coloredicons.files += icons/coloured/*.gif
 #    coloredicons.files += icons/coloured/*.json
-    coloredicons.path = $${SHARED_PATH}/qoobar/icons/coloured
+    coloredicons.path = $${SHARED_PATH}/qoobar/icons
     INSTALLS += target docfiles resources icons coloredicons
     INSTALLS += schemes desktop manfiles completions
 
