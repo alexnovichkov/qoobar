@@ -2,10 +2,11 @@
 #ifdef WITH_DECODING
 #include <gst/gst.h>
 #include <gst/app/gstappsink.h>
-#include <gst/audio/multichannel.h>
+#include <gst/audio/audio-channels.h>
 
 #include <locale.h>
-
+#include <stdio.h>
+#include <stddef.h>
 #include "input.h"
 #include "ebur128.h"
 
@@ -33,7 +34,7 @@ struct input_handle {
   GstAudioChannelPosition *channel_positions;
 };
 
-static GStaticMutex gstreamer_mutex = G_STATIC_MUTEX_INIT;
+static GMutex gstreamer_mutex;
 static gboolean verbose = FALSE;
 
 static gboolean bus_call(GstBus *bus, GstMessage *msg, gpointer data)
@@ -51,12 +52,12 @@ static gboolean bus_call(GstBus *bus, GstMessage *msg, gpointer data)
     case GST_MESSAGE_EOS:{
       if (verbose) g_print("End-of-stream\n");
       ih->ready = TRUE;
-      g_static_mutex_lock(&gstreamer_mutex);
+      g_mutex_lock(&gstreamer_mutex);
       if (!ih->main_loop_quit) {
         ih->main_loop_quit = TRUE;
         g_main_loop_quit(ih->loop);
       }
-      g_static_mutex_unlock(&gstreamer_mutex);
+      g_mutex_unlock(&gstreamer_mutex);
       break;
     }
     case GST_MESSAGE_ERROR:{
@@ -70,12 +71,12 @@ static gboolean bus_call(GstBus *bus, GstMessage *msg, gpointer data)
       g_error_free (err);
 
       ih->ready = TRUE;
-      g_static_mutex_lock(&gstreamer_mutex);
+      g_mutex_lock(&gstreamer_mutex);
       if (!ih->main_loop_quit) {
         ih->main_loop_quit = TRUE;
         g_main_loop_quit(ih->loop);
       }
-      g_static_mutex_unlock(&gstreamer_mutex);
+      g_mutex_unlock(&gstreamer_mutex);
       break;
     }
     case GST_MESSAGE_STATE_CHANGED: {
@@ -102,28 +103,39 @@ static gboolean bus_call(GstBus *bus, GstMessage *msg, gpointer data)
 }
 
 static gboolean query_data(struct input_handle* ih) {
-  GstBuffer *preroll;
+  //GstBuffer *preroll;
   GstCaps *src_caps;
   GstStructure *s;
+  GstSample *sample;
   int i;
 
   ih->n_channels = 0;
   ih->sample_rate = 0;
   ih->channel_positions = NULL;
 
-  preroll = gst_app_sink_pull_preroll(GST_APP_SINK(ih->appsink));
-  src_caps = gst_buffer_get_caps(preroll);
+  sample =  gst_app_sink_pull_preroll(GST_APP_SINK_CAST(ih->appsink));
+  src_caps = gst_sample_get_caps(sample);
+  //preroll = GST_BUFFER(gst_app_sink_pull_preroll(GST_APP_SINK(ih->appsink)));
+  //src_caps = gst_buffer_get_caps(preroll);
 
   s = gst_caps_get_structure(src_caps, 0);
   gst_structure_get_int(s, "rate", &(ih->sample_rate));
   gst_structure_get_int(s, "channels", &(ih->n_channels));
+  //preroll = gst_sample_get_buffer(sample);
   if (!ih->sample_rate || !ih->n_channels) {
     gst_caps_unref(src_caps);
-    gst_buffer_unref(preroll);
+    gst_sample_unref(sample);
+    //gst_buffer_unref(preroll);
     return FALSE;
   }
 
-  ih->channel_positions = gst_audio_get_channel_positions(s);
+  GstAudioInfo info;
+  if (gst_audio_info_from_caps(&info, src_caps)) {
+    ih->channel_positions = g_new (GstAudioChannelPosition, ih->n_channels);
+    memcpy (ih->channel_positions, info.position,
+          info.channels * sizeof (info.position[0]));
+  }
+
   if (verbose) {
     if (ih->channel_positions) {
       for (i = 0; i < ih->n_channels; ++i) {
@@ -134,7 +146,8 @@ static gboolean query_data(struct input_handle* ih) {
   }
 
   gst_caps_unref(src_caps);
-  gst_buffer_unref(preroll);
+  gst_sample_unref(sample);
+  //gst_buffer_unref(preroll);
 
   return TRUE;
 }
@@ -209,7 +222,7 @@ static gpointer gstreamer_loop(struct input_handle *ih) {
 }
 
 int gstreamer_open_file(struct input_handle* ih, const char* filename) {
-  GTimeVal beg, end;
+  gint64 beg, end;
 
   ih->filename = filename;
   ih->quit_pipeline = TRUE;
@@ -217,14 +230,13 @@ int gstreamer_open_file(struct input_handle* ih, const char* filename) {
   ih->ready = FALSE;
   ih->bin = NULL;
   ih->message_source = NULL;
-  ih->gstreamer_loop = g_thread_create((GThreadFunc) gstreamer_loop, ih, TRUE, NULL);
+  ih->gstreamer_loop = g_thread_new("thr",(GThreadFunc) gstreamer_loop, ih);
 
-  g_get_current_time(&beg);
+  beg = g_get_real_time();
   while (!ih->ready) {
     g_thread_yield();
-    g_get_current_time(&end);
-    if (end.tv_usec + end.tv_sec * G_USEC_PER_SEC
-      - beg.tv_usec - beg.tv_sec * G_USEC_PER_SEC > 1 * G_USEC_PER_SEC) {
+    end = g_get_real_time();
+    if (end - beg > 1 * G_USEC_PER_SEC) {
       break;
     }
   }
@@ -262,7 +274,7 @@ int gstreamer_set_channel_map(struct input_handle* ih, int* st) {
     switch (ih->channel_positions[j]) {
       case GST_AUDIO_CHANNEL_POSITION_INVALID:
         st[j] = EBUR128_UNUSED;         break;
-      case GST_AUDIO_CHANNEL_POSITION_FRONT_MONO:
+      case GST_AUDIO_CHANNEL_POSITION_MONO:
         st[j] = EBUR128_CENTER;         break;
       case GST_AUDIO_CHANNEL_POSITION_FRONT_LEFT:
         st[j] = EBUR128_LEFT;           break;
@@ -298,7 +310,7 @@ size_t gstreamer_get_total_frames(struct input_handle* ih) {
   gint64 time = 0;
   GstFormat format = GST_FORMAT_TIME;
 
-  if (gst_element_query_duration(ih->bin, &format, &time)) {
+  if (gst_element_query_duration(ih->bin, format, &time)) {
       double tmp = time * 1e-9 * ih->sample_rate;
       if (tmp <= 0.0) {
           return 0;
@@ -315,23 +327,38 @@ size_t gstreamer_read_frames(struct input_handle* ih) {
     GSList *next;
 
     while (ih->current_bytes < BUFFER_SIZE) {
-        GstBuffer *buf = gst_app_sink_pull_buffer(GST_APP_SINK(ih->appsink));
+        GstSample *sample = gst_app_sink_pull_sample(GST_APP_SINK_CAST(ih->appsink));
+        if (!sample) break;
+        GstBuffer *buf = gst_sample_get_buffer(sample);
+        //GstBuffer *buf = gst_app_sink_pull_buffer(GST_APP_SINK_CAST(ih->appsink));
         if (!buf) {
+            gst_sample_unref(sample);
             break;
         }
-        ih->buffer_list = g_slist_append(ih->buffer_list, buf);
-        ih->current_bytes += buf->size;
+        ih->buffer_list = g_slist_append(ih->buffer_list, sample);
+        ih->current_bytes += gst_buffer_get_size(buf);
+        gst_buffer_unref(buf);
+        //ih->current_bytes += buf->size;
     }
 
-    while (ih->buffer_list &&
-           GST_BUFFER(ih->buffer_list->data)->size + buf_pos <= BUFFER_SIZE) {
-        memcpy((guint8 *) ih->buffer + buf_pos,
-               GST_BUFFER(ih->buffer_list->data)->data,
-               GST_BUFFER(ih->buffer_list->data)->size);
-        buf_pos           += GST_BUFFER(ih->buffer_list->data)->size;
-        ih->current_bytes -= GST_BUFFER(ih->buffer_list->data)->size;
+    while (ih->buffer_list) {
+        GstSample *sample = GST_SAMPLE_CAST(ih->buffer_list->data);
+        GstBuffer *buf = gst_sample_get_buffer(sample);
+        gsize s = gst_buffer_get_size(buf);
+        if (s + buf_pos <= BUFFER_SIZE) {
+            gst_buffer_unref(buf);
+            gst_sample_unref(sample);
+            break;
+        }
+        GstMapInfo info;
+        gst_buffer_map(buf, &info, GST_MAP_READ);
+        memcpy((guint8 *) ih->buffer + buf_pos,  info.data, s);
+        buf_pos           += s;
+        ih->current_bytes -= s;
+        gst_buffer_unmap(buf, &info);
 
-        gst_buffer_unref(GST_BUFFER(ih->buffer_list->data));
+        gst_buffer_unref(buf);
+        gst_sample_unref(sample);
         next = ih->buffer_list->next;
         g_slist_free_1(ih->buffer_list);
         ih->buffer_list = next;
