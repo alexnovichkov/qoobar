@@ -49,12 +49,15 @@
 
 #include <QVariantMap>
 
+#ifdef Q_OS_WIN
 extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
+#endif
 
 int main(int argc, char *argv[])
 {DD;
+#ifdef Q_OS_WIN
     qt_ntfs_permission_lookup++; // turn NTFS ownership and permissions checking on
-
+#endif
 
 #if QT_VERSION >= QT_VERSION_CHECK(5,14,0)
     qputenv("QT_ENABLE_HIGHDPI_SCALING", "1");
