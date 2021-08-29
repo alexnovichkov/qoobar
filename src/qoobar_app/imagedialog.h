@@ -40,7 +40,7 @@ Q_SIGNALS:
     void clicked();
 protected:
     void mouseReleaseEvent(QMouseEvent *ev);
-    void enterEvent(QEvent *event);
+    void enterEvent(QEnterEvent *event);
     void leaveEvent(QEvent *event);
 };
 

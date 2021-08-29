@@ -42,6 +42,7 @@
 #include <QTextCodec>
 #include <QDir>
 #include <QtDebug>
+#include <QRegularExpression>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -60,7 +61,7 @@ QString getShortFileName(const QString &fileName)
         buffer = new TCHAR[size];
         size = GetShortPathName(lpszPath, buffer, size);
         if (size > 0)
-            result = QString::fromUtf16(reinterpret_cast<ushort*>(buffer));
+            result = QString::fromUtf16(reinterpret_cast<char16_t*>(buffer));
         delete [] buffer;
     }
 
@@ -187,12 +188,18 @@ void CueSplitter::setCueFile(const QString &cueFile)
         Q_EMIT message(MT_ERROR, tr("Cannot open cue file %1").arg(_cueFile));
         return;
     }
+    QTextStream in(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     QTextCodec *codec = QTextCodec::codecForLocale();
     if (App->cueEncoding != QSL("Locale"))
         codec = QTextCodec::codecForName(App->cueEncoding.toLatin1());
-    QTextStream in(&file);
     if (codec)
         in.setCodec(codec);
+#else
+    //TODO: Add the full ICU encodings support
+    if (App->cueEncoding == QSL("Locale"))
+        in.setEncoding(QStringConverter::System);
+#endif
     in.setAutoDetectUnicode(true);
 
     while(!in.atEnd()) {
@@ -264,7 +271,7 @@ void CueSplitter::split()
     QString programToRun;
     QStringList arguments;
 
-#if defined(Q_OS_LINUX) || defined (Q_OS_MAC)
+#if defined(Q_OS_LINUX) //|| defined (Q_OS_MAC)
     QString pathToScript = qApp->applicationDirPath()+"/splitandconvert.sh";
     if (!QFile::exists(pathToScript)) {
         Q_EMIT message(MT_ERROR, tr("Cannot find the necessary script file: ").append(pathToScript));
@@ -355,7 +362,7 @@ void CueSplitter::split()
 
 
     if (!_files.isEmpty()) {
-        if (_files.at(0).contains(QRegExp(QSL("00\\b")))) {
+        if (_files.at(0).contains(QRegularExpression(QSL("00\\b")))) {
             //remove pregap file
             QFile::remove(_files.at(0));
             _files.removeFirst();
@@ -382,7 +389,7 @@ void CueSplitter::parseCue()
     const int tagsCount = App->currentScheme->tagsCount();
     for (int i=0; i<_cueFileContents.count(); ++i) {
         QString s=_cueFileContents.at(i).simplified();
-        if (s.contains(QRegExp(QSL("\\b(INDEX|FILE|PREGAP|POSTGAP|CDTEXTFILE|FLAGS)\\b"))))
+        if (s.contains(QRegularExpression(QSL("\\b(INDEX|FILE|PREGAP|POSTGAP|CDTEXTFILE|FLAGS)\\b"))))
             continue;
         if (s.startsWith(QLS("TRACK"))) {
             currentTrack+=1;
@@ -465,10 +472,11 @@ void CueSplitter::findInputFile()
     _inputFile.clear();
 
     QString inputFile;
-    QRegExp r(QSL("FILE\\s+\"?([^\"]+)\"?"));
+    QRegularExpression r(QSL("FILE\\s+\"?([^\"]+)\"?"));
+    QRegularExpressionMatch match;
     Q_FOREACH(const QString &s, _cueFileContents) {
-        if (r.indexIn(s)>-1) {
-            inputFile=r.cap(1).trimmed();
+        if (s.indexOf(r,0,&match)>-1) {
+            inputFile=match.captured(1).trimmed();
             break;
         }
     }

@@ -7,9 +7,9 @@
 #include <QXmlStreamReader>
 #include "qoobarglobals.h"
 
-#ifdef Q_OS_MAC
-#include "discid.h"
-#endif
+//#ifdef Q_OS_MAC
+//#include "discid.h"
+//#endif
 
 constexpr int maximumCDTracks = 99;
 constexpr int firstTrackOffset = 150;
@@ -67,7 +67,7 @@ QStringList GD3Plugin::getTOC(const QVector<int> &lengths)
     m_errorString.clear();
 
     if (lengths.isEmpty()) {//get discID by CD
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
         /*Testing for loadable libraries*/
         QString libName;
 #ifdef Q_OS_LINUX
@@ -96,7 +96,7 @@ QStringList GD3Plugin::getTOC(const QVector<int> &lengths)
         discid_get_first_track_num = reinterpret_cast<Discid_get_first_track_num>(lib.resolve("discid_get_first_track_num"));
         discid_get_last_track_num = reinterpret_cast<Discid_get_last_track_num>(lib.resolve("discid_get_last_track_num"));
         discid_get_track_offset = reinterpret_cast<Discid_get_track_offset>(lib.resolve("discid_get_track_offset"));
-#endif
+//#endif
 
         DiscId *disc = discid_new();
         if (!disc) {
@@ -118,9 +118,9 @@ QStringList GD3Plugin::getTOC(const QVector<int> &lengths)
             offsetsInFrames << QString::number(discid_get_track_offset(disc, i));
 
         discid_free(disc);
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
         lib.unload();
-#endif
+//#endif
     }
     else {//get TOC by files
         const int size = qMin(lengths.size(), maximumCDTracks);
@@ -225,20 +225,20 @@ QList<SearchResult> GD3Plugin::parseResponse(const QByteArray &response)
         x.readNext();
         // do processing
         if (x.isStartElement()) {
-            QStringRef name = x.name();
-            if (name=="SearchResult") {
+            auto name = x.name();
+            if (name.compare(QSL("SearchResult"))==0) {
                 results.append(SearchResult());
             }
-            else if (name=="AlbumID") {
+            else if (name.compare(QSL("AlbumID"))==0) {
                 results.last().fields.insert("url",x.readElementText());
             }
-            else if (name=="Publisher") {
+            else if (name.compare(QSL("Publisher"))==0) {
                 results.last().fields.insert("label",x.readElementText());
             }
-            else if (name=="NumberOfTracks") {
+            else if (name.compare(QSL("NumberOfTracks"))==0) {
                 results.last().fields.insert("numberoftracks",x.readElementText());
             }
-            else if (name=="AlbumCode") {
+            else if (name.compare(QSL("AlbumCode"))==0) {
                 if (withinAlbum) {
                     results.last().fields.insert("url",x.readElementText());
                     withinAlbum=false;
@@ -248,10 +248,10 @@ QList<SearchResult> GD3Plugin::parseResponse(const QByteArray &response)
                     withinAlbum=true;
                 }
             }
-            else if (name=="Album") {
+            else if (name.compare(QSL("Album"))==0) {
                 results.last().fields.insert("album",x.readElementText());
             }
-            else if (name=="Artist") {
+            else if (name.compare(QSL("Artist"))==0) {
                 results.last().fields.insert("artist",x.readElementText());
             }
         }
@@ -289,40 +289,40 @@ SearchResult GD3Plugin::parseRelease(const QByteArray &response)
         x.readNext();
         // do processing
         if (x.isStartElement()) {
-            QStringRef name = x.name();
+            auto name = x.name();
             if (fieldsMap.contains(name.toString()))
                 insertToMap(r.fields,
                             fieldsMap.value(name.toString()),
                             x.readElementText());
-            else if (name=="Artist") {
+            else if (name.compare(QSL("Artist"))==0) {
                 QString s = x.readElementText();
                 if (!s.isEmpty()) {
                     Artist a; a.fields.insert("name", s);
                     r.artists.append(a);
                 }
             }
-            else if (name=="AlbumImage") {
+            else if (name.compare(QSL("AlbumImage"))==0) {
                 QByteArray data = QByteArray::fromBase64(x.readElementText().toLatin1());
                 QPixmap img;
                 if (img.loadFromData(data))
                     r.image.setPixmap(data);
             }
-            else if (name=="TrackMeta") {
+            else if (name.compare(QSL("TrackMeta"))==0) {
                 Track t;
                 t.cd=-1;
                 r.tracks.append(t);
             }
-            else if (name=="TrackName") {
+            else if (name.compare(QSL("TrackName"))==0) {
                 insertToMap(r.tracks.last().fields,"title", x.readElementText());
             }
-            else if (name=="TrackLength") {
+            else if (name.compare(QSL("TrackLength"))==0) {
                 insertToMap(r.tracks.last().fields,"length",
                             Qoobar::formatLength(x.readElementText().toInt() / 1000));
             }
-            else if (name=="TrackNumber") {
+            else if (name.compare(QSL("TrackNumber"))==0) {
                 insertToMap(r.tracks.last().fields,"tracknumber", x.readElementText());
             }
-            else if (name=="TrackArtist") {
+            else if (name.compare(QSL("TrackArtist"))==0) {
                 QString s = x.readElementText();
                 if (!s.isEmpty()) {
                     Artist a;
@@ -330,7 +330,7 @@ SearchResult GD3Plugin::parseRelease(const QByteArray &response)
                     r.tracks.last().artists.append(a);
                 }
             }
-            else if (name=="ComposerName") {
+            else if (name.compare(QSL("ComposerName"))==0) {
                 QString s = x.readElementText();
                 if (!s.isEmpty()) {
                     Artist a;
@@ -339,7 +339,7 @@ SearchResult GD3Plugin::parseRelease(const QByteArray &response)
                     r.tracks.last().artists.append(a);
                 }
             }
-            else if (name=="ConductorName") {
+            else if (name.compare(QSL("ConductorName"))==0) {
                 QString s = x.readElementText();
                 if (!s.isEmpty()) {
                     Artist a;
@@ -348,7 +348,7 @@ SearchResult GD3Plugin::parseRelease(const QByteArray &response)
                     r.tracks.last().artists.append(a);
                 }
             }
-            else if (name=="Orchestra") {
+            else if (name.compare(QSL("Orchestra"))==0) {
                 QString s = x.readElementText();
                 if (!s.isEmpty()) {
                     Artist a;
@@ -357,7 +357,7 @@ SearchResult GD3Plugin::parseRelease(const QByteArray &response)
                     r.tracks.last().artists.append(a);
                 }
             }
-            else if (name=="Chorus") {
+            else if (name.compare(QSL("Chorus"))==0) {
                 QString s = x.readElementText();
                 if (!s.isEmpty()) {
                     Artist a;

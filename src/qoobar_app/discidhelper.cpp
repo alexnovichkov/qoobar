@@ -29,24 +29,24 @@
 #include <QLibrary>
 #include <QtDebug>
 
-#ifdef Q_OS_MAC
-#include "discid.h"
-#endif
+//#ifdef Q_OS_MAC
+//#include "discid.h"
+//#endif
 
 #include "enums.h"
 
 DiscIDHelper::DiscIDHelper()
 {
-#ifdef Q_OS_MAC
-    libdiscidResolved = true;
-#else
+//#ifdef Q_OS_MAC
+//    libdiscidResolved = true;
+//#else
     libdiscidResolved = resolveLibdiscid();
     if (!libdiscidResolved)
         errorString = tr("Please install libdiscid");
-#endif
+//#endif
 }
 
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
 bool DiscIDHelper::resolveLibdiscid()
 {
     QString libName=App->discidLibraryPath;
@@ -64,7 +64,7 @@ bool DiscIDHelper::resolveLibdiscid()
 
     return (discid_new && discid_free);
 }
-#endif
+//#endif
 
 int * computeTrackFrameOffsets(const QVector<int> &tracksLengths, const int size)
 {

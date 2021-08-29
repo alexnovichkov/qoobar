@@ -92,13 +92,13 @@ void Searcher::maybeAdd(const QString &file)
     TagsReaderWriter trw(&tag);
     trw.readTags();
 
-    if (regExp.indexIn(removeDiacritics(file), 0) >= 0) {
+    if (removeDiacritics(file).indexOf(regExp) >= 0) {
          Q_EMIT found(tag);
          return;
     }
 
     for (int i=0; i<tagsCount; ++i) {
-        if (regExp.indexIn(removeDiacritics(tag.tag(i)), 0) >= 0) {
+        if (removeDiacritics(tag.tag(i)).indexOf(regExp) >= 0) {
             Q_EMIT found(tag);
             return;
         }
@@ -106,7 +106,7 @@ void Searcher::maybeAdd(const QString &file)
 
     QMap<QString,QString> userTags = tag.userTags();
     Q_FOREACH (const QString &val, userTags) {
-        if (regExp.indexIn(removeDiacritics(val), 0) >= 0) {
+        if (removeDiacritics(val).indexOf(regExp) >= 0) {
             Q_EMIT found(tag);
             return;
         }
@@ -120,9 +120,9 @@ SearchBar::SearchBar(QWidget *parent) :
     qRegisterMetaType<Tag>("Tag");
 
     pathsButton = new QPushButton(this);
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     pathsButton->setFlat(true);
-#endif
+//#endif
     pathsMenu = createPathsMenu();
     pathsButton->setMenu(pathsMenu);
     addWidget(pathsButton);
@@ -137,20 +137,20 @@ SearchBar::SearchBar(QWidget *parent) :
     addWidget(textEdit);
     addWidget(startSearchButton);
 
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     QWidget* spacer = new QWidget(this);
     spacer->setFixedSize({5,1});
     addWidget(spacer);
-#endif
+//#endif
     progress = new QProgressIndicatorSpinning(this);
     progress->animate(false);
     addWidget(progress);
     progress->hide();
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     QWidget* spacer1 = new QWidget();
     spacer1->setFixedSize({5,1});
     addWidget(spacer1);
-#endif
+//#endif
 
     currentPathLabel = new QLineEdit(this);
     currentPathLabel->setReadOnly(true);

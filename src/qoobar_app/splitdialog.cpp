@@ -27,6 +27,9 @@
 #include "splitdialog.h"
 #include "application.h"
 #include <QtWidgets>
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+#include <QtCore5Compat/QTextCodec>
+#endif
 #include "enums.h"
 
 #include "cuesplitter.h"
@@ -71,20 +74,24 @@ SplitDialog::SplitDialog(QWidget *parent) :
     progress->setMinimum(0);
     progress->setTextVisible(false);
 
+
     QComboBox *cueEncoding = new QComboBox(this);
     QStringList codecs;
+
     QList<int> codecMibs = QTextCodec::availableMibs();
     Q_FOREACH(const int &mib, codecMibs)
         codecs << QString(QTextCodec::codecForMib(mib)->name());
+
     codecs.sort();
     cueEncoding->addItem("Locale");
     cueEncoding->addItems(codecs);
     cueEncoding->setEditable(false);
     cueEncoding->setCurrentIndex(cueEncoding->findText(App->cueEncoding));
-    connect(cueEncoding, SIGNAL(currentIndexChanged(QString)), this, SLOT(changeCueEncoding(QString)));
+    connect(cueEncoding, SIGNAL(currentTextChanged(QString)), this, SLOT(changeCueEncoding(QString)));
 
     QLabel *cueEncodingLabel = new QLabel(tr("Warning! Cue file contains non-Latin characters!\n"
                                              "Please choose the encoding:"), this);
+
     cueEncodingWidget = new QWidget(this);
     QHBoxLayout *cueEncodingLayout = new QHBoxLayout;
     cueEncodingLayout->setContentsMargins(0,0,0,0);
@@ -93,16 +100,17 @@ SplitDialog::SplitDialog(QWidget *parent) :
     cueEncodingWidget->setLayout(cueEncodingLayout);
     cueEncodingWidget->hide();
 
+
     QDialogButtonBox *buttonBox = new QDialogButtonBox(Qt::Horizontal);
     startButton = buttonBox->addButton(tr("Start"), QDialogButtonBox::AcceptRole);
     QPushButton *cancelButton = buttonBox->addButton(QDialogButtonBox::Cancel);
     connect(startButton,SIGNAL(clicked()),SLOT(run()));
     connect(cancelButton,SIGNAL(clicked()),SLOT(cancel()));
-#ifdef Q_OS_MAC
-    QButton *helpButton = new QButton(this,QButton::HelpButton);
-#else
+//#ifdef Q_OS_MAC
+//    QButton *helpButton = new QButton(this,QButton::HelpButton);
+//#else
     QPushButton *helpButton = buttonBox->addButton(QDialogButtonBox::Help);
-#endif
+//#endif
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
 
@@ -142,14 +150,14 @@ SplitDialog::SplitDialog(QWidget *parent) :
     grid->addWidget(edit,5,0,1,3);
     grid->addWidget(progress,6,0,1,3);
     grid->addWidget(cueEncodingWidget, 8,0,1,3);
-#ifdef Q_OS_MAC
-    QHBoxLayout *boxL = new QHBoxLayout;
-    boxL->addWidget(helpButton);
-    boxL->addWidget(buttonBox);
-    grid->addLayout(boxL,10,0,1,3,Qt::AlignRight);
-#else
+//#ifdef Q_OS_MAC
+//    QHBoxLayout *boxL = new QHBoxLayout;
+//    boxL->addWidget(helpButton);
+//    boxL->addWidget(buttonBox);
+//    grid->addLayout(boxL,10,0,1,3,Qt::AlignRight);
+//#else
     grid->addWidget(buttonBox,10,0,1,3,Qt::AlignRight);
-#endif
+//#endif
     const int dpisize = 10;
     grid->setRowMinimumHeight(1,dpisize);
     grid->setRowMinimumHeight(4,dpisize);

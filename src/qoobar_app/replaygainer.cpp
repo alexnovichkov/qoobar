@@ -182,10 +182,10 @@ QList<ReplayGainInfo> ReplayGainer::scanWithUtilities(int fileType, const QVecto
     connect(&process,SIGNAL(error(QProcess::ProcessError)),&q,SLOT(quit()));
 
     QString program = QString::fromLatin1(options[fileType].program);
-#ifdef Q_OS_MAC
-    program = QString("%1/%2").arg(ApplicationPaths::sharedPath())
-            .arg(program);
-#endif
+//#ifdef Q_OS_MAC
+//    program = QString("%1/%2").arg(ApplicationPaths::sharedPath())
+//            .arg(program);
+//#endif
 
     process.start(program, arguments);
 

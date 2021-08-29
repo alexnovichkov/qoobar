@@ -36,6 +36,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QLocale>
+#include <QStandardPaths>
 
 //void Qoobar::showHelp(const QString &section)
 //{DD;
@@ -94,30 +95,30 @@ bool Qoobar::programInstalled(const QString &program, QString *path)
     }
     return false;
 #endif
-#ifdef Q_OS_MAC
-    QDir dir(qApp->applicationDirPath());
-    dir.cdUp();
-    QString s = QString("%1/Resources/%2").arg(dir.canonicalPath()).arg(program);
-    if (path) *path = s;
-    if (QFile::exists(s)) {
-        return true;
-    }
-    else {
-        QProcess p;
-        p.start(QString("which %1").arg(program));
-        p.waitForFinished();
-        QByteArray b=p.readAll();
-        s=QString(b).simplified();
-        if (path && path->isEmpty()) *path = s;
-        if (b.isEmpty()) {
-            return false;
-        }
-        else if (QFile::exists(s)) {
-            return true;
-        }
-    }
-    return false;
-#endif
+//#ifdef Q_OS_MAC
+//    QDir dir(qApp->applicationDirPath());
+//    dir.cdUp();
+//    QString s = QString("%1/Resources/%2").arg(dir.canonicalPath()).arg(program);
+//    if (path) *path = s;
+//    if (QFile::exists(s)) {
+//        return true;
+//    }
+//    else {
+//        QProcess p;
+//        p.start(QString("which %1").arg(program));
+//        p.waitForFinished();
+//        QByteArray b=p.readAll();
+//        s=QString(b).simplified();
+//        if (path && path->isEmpty()) *path = s;
+//        if (b.isEmpty()) {
+//            return false;
+//        }
+//        else if (QFile::exists(s)) {
+//            return true;
+//        }
+//    }
+//    return false;
+//#endif
 }
 
 

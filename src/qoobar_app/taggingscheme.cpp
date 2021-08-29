@@ -65,13 +65,13 @@ void TaggingScheme::read(bool nameOnly)
 
     while (!xml.atEnd()) {
         xml.readNext();
+        auto name=xml.name().toString();
         if (xml.isStartElement()) {
-            QStringRef name=xml.name();
-            if (name == "scheme") {
+            if (name.compare(QSL("scheme"))==0) {
                 setName(xml.attributes().value(QSL("name")).toString());
                 if (nameOnly) return;
             }
-            else if (name == "tag") {
+            else if (name.compare(QSL("tag"))==0) {
                 addField(xml.attributes().value(QSL("name")).toString(),
                          xml.attributes().value(QSL("id")).toString().toInt());
                 if (!xml.attributes().hasAttribute(QSL("canBeSimplified"))) {
@@ -86,10 +86,10 @@ void TaggingScheme::read(bool nameOnly)
                 else
                     m_fields.last().canBeSimplified = xml.attributes().value(QSL("canBeSimplified")).toString()==QSL("true");
             }
-            else if (name == "format") {
+            else if (name.compare(QSL("format"))==0) {
                 type = (TagType)xml.attributes().value(QSL("id")).toString().toInt();
             }
-            else if (name=="field") {
+            else if (name.compare(QSL("field"))==0) {
                 if (type!=UNKNOWN) {
                     QString s = xml.readElementText();
                     setFields(m_fields.size()-1, type, QStringList()<<s);

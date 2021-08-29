@@ -25,7 +25,13 @@
  */
 
 #include "id3v1stringhandler.h"
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+#include <QtCore5Compat/QTextCodec>
+#else
 #include <QTextCodec>
+#endif
 
 ID3v1StringHandler::ID3v1StringHandler() : codec(0)
 {

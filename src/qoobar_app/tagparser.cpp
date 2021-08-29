@@ -1,5 +1,6 @@
 #include "tagparser.h"
 #include <QtDebug>
+#include <QRegularExpression>
 
 void TagParser::truncateFileNamesToShortest(QString &pattern, QStringList &source)
 {
@@ -26,22 +27,22 @@ PairList TagParser::parse(QString source, QString pattern)
 {
     PairList result;
 
-    QRegExp re("[%<]");
+    QRegularExpression re("[%<]");
 
     int startPattern = 0;
     const int endPattern=pattern.length();
     int startSource=0;
 
-    QStringRef stack;
+    QString stack;
 
     while (startPattern < endPattern) {
         if (pattern[startPattern] == '%') {
-            stack=pattern.midRef(startPattern, 2);
+            stack=pattern.mid(startPattern, 2);
             startPattern+=2;
         }
         else if (pattern[startPattern] == '<') {
             const int end = pattern.indexOf('>', startPattern);
-            stack = pattern.midRef(startPattern+1,end-startPattern-1);
+            stack = pattern.mid(startPattern+1,end-startPattern-1);
             startPattern += (end<=0?1:stack.length()+2);
         }
         else {
@@ -50,20 +51,20 @@ PairList TagParser::parse(QString source, QString pattern)
             int sourcePos=source.indexOf(delim, startSource);
             if (sourcePos!=-1) {
                 QString s = source.mid(startSource, sourcePos-startSource);
-                result << StringPair(stack.startsWith('%')?stack.toString().mid(1,1):stack.toString(), s);
+                result << StringPair(stack.startsWith('%')?stack.mid(1,1):stack, s);
                 startSource = sourcePos+delim.length();
                 startPattern += delim.length();
             }
             else {
                 QString s = source.mid(startSource, -1);
-                result << StringPair(stack.startsWith('%')?stack.toString().mid(1,1):stack.toString(), s);
+                result << StringPair(stack.startsWith('%')?stack.mid(1,1):stack, s);
                 startPattern = endPattern;
             }
             stack.clear();
         }
     }
     if (!stack.isEmpty())
-        result << StringPair(stack.startsWith('%')?stack.toString().mid(1,1):stack.toString(), source.mid(startSource, -1));
+        result << StringPair(stack.startsWith('%')?stack.mid(1,1):stack, source.mid(startSource, -1));
 
     return result;
 }

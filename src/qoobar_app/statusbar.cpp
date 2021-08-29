@@ -176,14 +176,14 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     updateSelected();
 
     QGridLayout *l = new QGridLayout(this);
-#ifdef Q_OS_MAC
-    l->setMargin(2);
-    l->setContentsMargins(1,1,1,1);
-    l->setVerticalSpacing(3);
-#else
-    l->setMargin(0);
+//#ifdef Q_OS_MAC
+//    l->setMargin(2);
+//    l->setContentsMargins(1,1,1,1);
+//    l->setVerticalSpacing(3);
+//#else
+//    l->setMargin(0);
     l->setContentsMargins(2,0,2,2);
-#endif
+//#endif
     l->addWidget(selectedLabel,0,0,1,1,Qt::AlignLeft | Qt::AlignVCenter);
     l->addItem(new QSpacerItem(10,1),0,1,1,1,Qt::AlignLeft | Qt::AlignVCenter);
     l->addWidget(fileIconLabel,0,2,1,1,Qt::AlignLeft | Qt::AlignVCenter);

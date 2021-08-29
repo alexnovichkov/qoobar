@@ -45,7 +45,7 @@ QSize MacSplitterHandle::sizeHint() const
         return QSize(1, parent.height());
 }
 
-void MacSplitterHandle::enterEvent(QEvent *e)
+void MacSplitterHandle::enterEvent(QEnterEvent *e)
 {
     QSplitterHandle::enterEvent(e);
     setCursor(orientation() == Qt::Vertical?Qt::SplitVCursor:Qt::SplitHCursor);

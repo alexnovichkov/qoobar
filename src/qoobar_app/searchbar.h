@@ -4,6 +4,7 @@
 #include <QToolBar>
 
 #include "tagger.h"
+#include <qregularexpression.h>
 
 class QMenu;
 class QWidgetAction;
@@ -38,7 +39,7 @@ private:
     QStringList paths;
     QStringList filters;
     QString text;
-    QRegExp regExp;
+    QRegularExpression regExp;
 };
 
 class SearchBar : public QToolBar

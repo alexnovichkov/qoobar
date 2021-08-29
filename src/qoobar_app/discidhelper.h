@@ -29,7 +29,7 @@
 
 #include <QObject>
 
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
 typedef void *DiscId;
 
 typedef DiscId * (*Discid_new)();
@@ -42,7 +42,7 @@ typedef int (*Discid_get_first_track_num)(DiscId *);
 typedef int (*Discid_get_last_track_num)(DiscId *);
 typedef int (*Discid_get_sectors)(DiscId *);
 typedef int (*Discid_get_track_offset)(DiscId *, int);
-#endif
+//#endif
 
 class DiscIDHelper : public QObject
 {
@@ -54,7 +54,7 @@ public:
     QString errorString;
 private:
     bool libdiscidResolved = false;
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     bool resolveLibdiscid();
     Discid_new discid_new = nullptr;
     Discid_free discid_free = nullptr;
@@ -66,7 +66,7 @@ private:
     Discid_get_track_offset discid_get_track_offset = nullptr;
     Discid_put discid_put = nullptr;
     Discid_get_id discid_get_id = nullptr;
-#endif
+//#endif
 };
 
 #endif // DISCIDHELPER_H

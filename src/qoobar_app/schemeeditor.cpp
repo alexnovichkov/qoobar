@@ -60,10 +60,11 @@ QString uniqueSchemeName(const QString &name)
 
     // if the name ends in ' (1)' remove the suffix
     QString work = name;
-    QRegExp re(" \\((\\d+)\\)$");
-    if (re.indexIn(name) != -1) {
-        work.chop(re.matchedLength());
-        index = re.cap(1).toInt();
+    QRegularExpression re(" \\((\\d+)\\)$");
+    QRegularExpressionMatch match;
+    if (name.indexOf(re,0,&match) != -1) {
+        work.chop(match.capturedLength());
+        index = match.captured(1).toInt();
     }
 
     index++;
@@ -117,7 +118,7 @@ SchemeEditor::SchemeEditor(const QString &file, Operation operation, QWidget *pa
 
     addFieldAct = new QAction("+",this);
     addFieldAct->setToolTip(tr("Add tag"));
-    removeFieldAct = new QAction(QString(0x2012),this);
+    removeFieldAct = new QAction(QString(QChar(0x2012)),this);
     removeFieldAct->setToolTip(tr("Remove tag"));
     connect(addFieldAct, SIGNAL(triggered()), SLOT(addField()));
     connect(removeFieldAct, SIGNAL(triggered()), SLOT(removeField()));

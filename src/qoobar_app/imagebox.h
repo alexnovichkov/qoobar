@@ -64,7 +64,7 @@ public:
     void addWidget(QWidget *);
     void clear();
 protected:
-    void enterEvent(QEvent *event);
+    void enterEvent(QEnterEvent *event);
     void leaveEvent(QEvent *event);
     void paintEvent(QPaintEvent *paintEvent);
 private Q_SLOTS:

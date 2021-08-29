@@ -3,6 +3,8 @@
 #include "application.h"
 #include "stringroutines.h"
 
+#include <QRegularExpression>
+
 #include "taglib/mpeg/id3v2/frames/textidentificationframe.h"
 #include "taglib/mpeg/id3v2/frames/unsynchronizedlyricsframe.h"
 #include "taglib/mpeg/id3v2/frames/urllinkframe.h"
@@ -635,17 +637,21 @@ void writeID3v2Frame(TagLib::ID3v2::Tag *id3v2tag,const QString &s,const QString
         id3v2tag->removeFrames(id);
         if (!s.isEmpty()) {
             TagLib::ID3v2::OwnershipFrame *owne = new TagLib::ID3v2::OwnershipFrame();
-            QRegExp price("pricePaid=(\\w+)\\s+");
-            int index = price.indexIn(s);
-            owne->setPricePaid(TS(price.cap(1)));
+            QRegularExpression price("pricePaid=(\\w+)\\s+");
+            QRegularExpressionMatch match;
+            int index = s.indexOf(price, 0, &match);
+            if (index >= 0)
+                owne->setPricePaid(TS(match.captured(1)));
 
-            QRegExp date("datePurchased=(\\w+)");
-            index = date.indexIn(s, index<0?0:index);
-            owne->setDatePurchased(TS(date.cap(1)));
+            QRegularExpression date("datePurchased=(\\w+)");
+            index = s.indexOf(date, index<0?0:index, &match);
+            if (index >= 0)
+                owne->setDatePurchased(TS(match.captured(1)));
 
-            QRegExp seller("seller=([\\w\\s]*)");
-            index = seller.indexIn(s, index<0?0:index);
-            owne->setSeller(TS(seller.cap(1)));
+            QRegularExpression seller("seller=([\\w\\s]*)");
+            index = s.indexOf(seller, index<0?0:index, &match);
+            if (index >= 0)
+                owne->setSeller(TS(match.captured(1)));
             id3v2tag->addFrame(owne);
         }
     }

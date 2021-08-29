@@ -93,7 +93,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     hideIcon = QIcon::fromTheme("fold");
     showIcon = QIcon::fromTheme("unfold");
 
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     double h = QFontMetricsF(App->charsFont).height();
 
     scroll = new QScrollArea;
@@ -158,7 +158,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
         toggleCharsAct->setIcon(showIcon);
         toggleCharsAct->setToolTip(tr("Show characters"));
     }
-#endif
+//#endif
 
     if (plain) {
         edit = new LineEdit(false,this);
@@ -198,7 +198,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
         acts << a;
     }
     collectIntoMenu->addActions(acts);
-    connect(mapper,SIGNAL(mapped(int)),this,SLOT(collectTags(int)));
+    connect(mapper, &QSignalMapper::mappedInt, this, qOverload<int>(&TagsEditDialog::collectTags));
 
     QAction *collect = new QAction(tr("Collect for future use"),this);
     connect(collect,SIGNAL(triggered()),this,SLOT(collectTags()));
@@ -211,25 +211,25 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     connect(searchPanel,SIGNAL(replaceAndFind()),SLOT(replaceAndFind()));
 
     QAction *startSearchAct = new QAction(QIcon::fromTheme("edit-find"),tr("Find/Replace"),this);
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     startSearchAct->setShortcut(QKeySequence::Find);
-#endif
+//#endif
     connect(startSearchAct,SIGNAL(triggered()),SLOT(startSearch()));
     addAction(startSearchAct);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-#ifdef Q_OS_MAC
-    QButton *helpButton = new QButton(this,QButton::HelpButton);
-#else
+//#ifdef Q_OS_MAC
+//    QButton *helpButton = new QButton(this,QButton::HelpButton);
+//#else
     QPushButton *helpButton = buttonBox->addButton(QDialogButtonBox::Help);
-#endif
+//#endif
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
 
     QSignalMapper *operationsMapper = new QSignalMapper(this);
-    connect(operationsMapper,SIGNAL(mapped(QString)),SLOT(handleOperation(QString)));
+    connect(mapper, &QSignalMapper::mappedString, this, &TagsEditDialog::handleOperation);
 
     static const struct Operation {
         const char *text;
@@ -248,30 +248,30 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 
 
 
-#ifdef Q_OS_MAC
-    StyledBar *operationsToolBar = new StyledBar(this);
-    QHBoxLayout *l = new QHBoxLayout;
-    l->setSpacing(0);
-    l->setMargin(0);
-    for (int i=0; i<8; ++i) {
-        QAction *a = new QAction(QIcon::fromTheme(operations[i].icon),
-                                 operations[i].text,this);
-        connect(a,SIGNAL(triggered()),operationsMapper,SLOT(map()));
-        operationsMapper->setMapping(a, operations[i].map);
-        QToolButton *tb = new FancyToolButton(this);
-        tb->setDefaultAction(a);
-        l->addWidget(tb);
-    }
-    QToolButton *tb=new FancyToolButton(this);
-    tb->setDefaultAction(startSearchAct);
-    l->addWidget(tb);
-    tb=new QToolButton(this);
-    tb->setDefaultAction(collect);
-    l->addWidget(new StyledSeparator(this));
-    l->addWidget(tb);
-    l->addStretch();
-    operationsToolBar->setLayout(l);
-#else
+//#ifdef Q_OS_MAC
+//    StyledBar *operationsToolBar = new StyledBar(this);
+//    QHBoxLayout *l = new QHBoxLayout;
+//    l->setSpacing(0);
+//    l->setMargin(0);
+//    for (int i=0; i<8; ++i) {
+//        QAction *a = new QAction(QIcon::fromTheme(operations[i].icon),
+//                                 operations[i].text,this);
+//        connect(a,SIGNAL(triggered()),operationsMapper,SLOT(map()));
+//        operationsMapper->setMapping(a, operations[i].map);
+//        QToolButton *tb = new FancyToolButton(this);
+//        tb->setDefaultAction(a);
+//        l->addWidget(tb);
+//    }
+//    QToolButton *tb=new FancyToolButton(this);
+//    tb->setDefaultAction(startSearchAct);
+//    l->addWidget(tb);
+//    tb=new QToolButton(this);
+//    tb->setDefaultAction(collect);
+//    l->addWidget(new StyledSeparator(this));
+//    l->addWidget(tb);
+//    l->addStretch();
+//    operationsToolBar->setLayout(l);
+//#else
     QToolBar *operationsToolBar = new QToolBar(this);
     operationsToolBar->addWidget(toggleCharsButton);
     operationsToolBar->addSeparator();
@@ -290,13 +290,13 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     operationsToolBar->addAction(startSearchAct);
     operationsToolBar->addSeparator();
     operationsToolBar->addAction(collect);
-#endif
+//#endif
 
     //synthesizing
     QGridLayout *tagsEditorLayout = new QGridLayout;
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     tagsEditorLayout->addWidget(scroll,1,0,plain?3:4,1);
-#endif
+//#endif
     if (plain) tagsEditorLayout->addWidget(edit,1,1);
     else tagsEditorLayout->addWidget(pedit,1,1,2,1);
     tagsEditorLayout->addWidget(legendButton,1,2);
@@ -304,14 +304,14 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     tagsEditorLayout->addWidget(mLabel,pos,1,1,2); pos++;
     tagsEditorLayout->addWidget(table,pos,1,1,2); pos++;
     tagsEditorLayout->addWidget(searchPanel,pos,0,1,3); pos++;
-#ifdef Q_OS_MAC
-    QHBoxLayout *boxL = new QHBoxLayout;
-    boxL->addWidget(helpButton);
-    boxL->addWidget(buttonBox);
-    tagsEditorLayout->addLayout(boxL,pos,0,1,3);
-#else
+//#ifdef Q_OS_MAC
+//    QHBoxLayout *boxL = new QHBoxLayout;
+//    boxL->addWidget(helpButton);
+//    boxL->addWidget(buttonBox);
+//    tagsEditorLayout->addLayout(boxL,pos,0,1,3);
+//#else
     tagsEditorLayout->addWidget(buttonBox,pos,0,1,3);
-#endif
+//#endif
     setLayout(tagsEditorLayout);
     this->layout()->setMenuBar(operationsToolBar);
 
@@ -393,9 +393,11 @@ void TagsEditDialog::find(const bool forward)
     captures.clear();
 
     int row = table->currentRow();
+    QRegularExpressionMatch match;
 
     QLineEdit *e=qobject_cast<QLineEdit *>(table->cellWidget(row,0));
     if (e) {
+
         //search in the current line
         int pos = e->cursorPosition();
         if (e->hasSelectedText()) {
@@ -405,12 +407,12 @@ void TagsEditDialog::find(const bool forward)
                 pos = e->selectionStart()-1;
         }
         if (forward)
-            pos = rx.indexIn(e->text(),pos);
+            pos = e->text().indexOf(rx, pos, &match);
         else
-            pos = rx.lastIndexIn(e->text(),pos);
+            pos = e->text().lastIndexOf(rx, pos, &match);
         if (pos>=0) {
-            e->setSelection(pos,rx.matchedLength());
-            captures = rx.capturedTexts();
+            e->setSelection(pos, match.capturedLength());
+            captures = match.capturedTexts();
             captures.removeFirst();
             return;
         }
@@ -427,10 +429,10 @@ void TagsEditDialog::find(const bool forward)
     table->editItem(table->item(row,0));
     e = qobject_cast<QLineEdit *>(table->cellWidget(row,0));
     if (!e) return;
-    int pos = forward ? rx.indexIn(e->text(),0) : rx.lastIndexIn(e->text(),-1);
+    int pos = forward ? e->text().indexOf(rx, 0, &match) : e->text().lastIndexOf(rx, -1, &match);
     if (pos>=0) {
-        e->setSelection(pos,rx.matchedLength());
-        captures = rx.capturedTexts();
+        e->setSelection(pos, match.capturedLength());
+        captures = match.capturedTexts();
         captures.removeFirst();
     }
     else find(forward);
@@ -566,7 +568,7 @@ void TagsEditDialog::handleSentTag(int tagID,bool fromTable)
 
 void TagsEditDialog::toggleCharsWidget()
 {DD;
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     if (scroll->isVisible()) {
         scroll->hide();
         toggleCharsAct->setIcon(showIcon);
@@ -579,7 +581,7 @@ void TagsEditDialog::toggleCharsWidget()
         toggleCharsAct->setToolTip(tr("Hide characters"));
         App->charsShown = true;
     }
-#endif
+//#endif
 }
 
 void TagsEditDialog::insertLegend(const QString &s)

@@ -29,7 +29,9 @@
 #include <QtConcurrent/QtConcurrent>
 
 #include "id3v1stringhandler.h"
-
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+#include <QtCore5Compat/QTextCodec>
+#endif
 
 #include "applicationpaths.h"
 #include "iqoobarplugin.h"
@@ -51,9 +53,9 @@ bool isValidLibrary(const QFileInfo &path)
 Application::Application(int &argc, char **argv, bool useGui)
     :  QApplication(argc,argv,useGui)
 {DD;
-#ifdef Q_OS_MAC
-    connect(this,SIGNAL(applicationStateChanged(Qt::ApplicationState)),SLOT(onApplicationStateChanged(Qt::ApplicationState)));
-#endif
+//#ifdef Q_OS_MAC
+//    connect(this,SIGNAL(applicationStateChanged(Qt::ApplicationState)),SLOT(onApplicationStateChanged(Qt::ApplicationState)));
+//#endif
     appTranslator = new QTranslator(this);
     qtTranslator = new QTranslator(this);
     installTranslator(appTranslator);
@@ -155,7 +157,7 @@ Application::~Application()
 void Application::loadTranslations()
 {DD;
     if (qtTranslator)
-        qtTranslator->load(QSL("qt_") + langID, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        qtTranslator->load(QSL("qt_") + langID, QLibraryInfo::LOCATION_PATH(QLibraryInfo::TranslationsPath));
     if (appTranslator)
         appTranslator->load(ApplicationPaths::translationsPath()+QSL("/qoobar_") + langID);
     if (currentScheme) currentScheme->retranslateUI();
@@ -283,8 +285,8 @@ QSettings *Application::globalSettings()
 #else
 #ifdef Q_OS_LINUX
     return new QSettings(QString("%1/.config/qoobar/global.ini").arg(QDir::homePath()), QSettings::IniFormat);
-#elif defined(Q_OS_MAC)
-    return new QSettings(QSL("qoobar"),QSL("global"));
+//#elif defined(Q_OS_MAC)
+//    return new QSettings(QSL("qoobar"),QSL("global"));
 #else
     return new QSettings(QSL("qoobar"),QSL("gui"));
 #endif
@@ -373,11 +375,11 @@ void Application::readGlobalSettings()
     //"tags" - write rg into ape tags
     mpcWriteRg = se->value("mpc-replaygain-format", "header").toString()=="header";
 
-#ifdef Q_OS_MAC
-    defaultSplitFormat = se->value("default-split-format", "m4a").toString();
-#else
+//#ifdef Q_OS_MAC
+//    defaultSplitFormat = se->value("default-split-format", "m4a").toString();
+//#else
     defaultSplitFormat = se->value("default-split-format", "flac").toString();
-#endif
+//#endif
 
     iconTheme = se->value(QSL("iconTheme"),QSL("maia")).toString();
     QIcon::setThemeName(iconTheme);
@@ -508,10 +510,10 @@ void Application::clearSettings()
     QSettings se(QString("%1/.config/qoobar/global.ini").arg(QDir::homePath()), QSettings::IniFormat);
     se.clear();
 #endif
-#ifdef Q_OS_MAC
-    QSettings se(QSL("qoobar"),QSL("global"));
-    se.clear();
-#endif
+//#ifdef Q_OS_MAC
+//    QSettings se(QSL("qoobar"),QSL("global"));
+//    se.clear();
+//#endif
 #ifdef QOOBAR_PORTABLE
     QSettings se1(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
 #else
@@ -564,14 +566,14 @@ void Application::loadPlugins()
     }
 }
 
-#ifdef Q_OS_MAC
-void Application::onApplicationStateChanged(Qt::ApplicationState state)
-{
-    if (state==Qt::ApplicationActive) {
-        Q_EMIT dockClicked();
-    }
-}
-#endif
+//#ifdef Q_OS_MAC
+//void Application::onApplicationStateChanged(Qt::ApplicationState state)
+//{
+//    if (state==Qt::ApplicationActive) {
+//        Q_EMIT dockClicked();
+//    }
+//}
+//#endif
 
 void criticalMessage(QWidget *parent, const QString &caption, const QString &text)
 {DD;
@@ -632,7 +634,11 @@ void Autocompletions::read(QSettings *se)
         QFile file(fileName);
         if (file.open(QFile::ReadOnly | QFile::Text)) {
             QTextStream in(&file);
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+            in.setEncoding(QStringConverter::Utf8);
+#else
             in.setCodec("UTF-8");
+#endif
             completion.variants = in.readAll().split('\n');
         }
     }
@@ -671,7 +677,11 @@ bool Autocompletions::write(QSettings *se)
         if (!list.isEmpty()) {
             if (file.open(QFile::WriteOnly | QFile::Text)) {
                 QTextStream out(&file);
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+                out.setEncoding(QStringConverter::Utf8);
+#else
                 out.setCodec("UTF-8");
+#endif
                 out << list.join(QChar('\n'));
             }
             else {

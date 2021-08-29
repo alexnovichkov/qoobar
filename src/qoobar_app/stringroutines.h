@@ -43,8 +43,8 @@ struct Operated
 typedef QString (*RenderFunction)(QStringList &, int);
 typedef QHash<QString, RenderFunction> FunctionsHash;
 
-QRegExp createRegExp(bool caseSensitive, bool useRegularExpressions,
-                     bool wholeWord, const QString &pattern);
+QRegularExpression createRegExp(bool caseSensitive, bool useRegularExpressions,
+                     bool wholeWord, QString pattern);
 
 QString processFunction(const QString &functionName, QStringList &args, int index);
 

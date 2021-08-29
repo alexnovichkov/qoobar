@@ -42,9 +42,20 @@ public:
         if (f.open(QFile::WriteOnly | QFile::Text)) {
             if (!codec.isEmpty()) {//write with specified codec
                 QTextStream stream(&f);
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
                 stream.setCodec(codec.toLatin1());
-                Q_FOREACH (const QString &s, contents)
-                    stream << s << Qt::endl;
+#else
+                auto encoding = QStringConverter::encodingForName(codec.toLatin1().data());
+                if (encoding.has_value()) stream.setEncoding(encoding.value());
+#endif
+                Q_FOREACH (const QString &s, contents) {
+                    stream << s <<
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+                              Qt::endl;
+#else
+                              endl;
+#endif
+                }
             }
             else {//write in system locale codec
                 Q_FOREACH (const QString &s, contents)

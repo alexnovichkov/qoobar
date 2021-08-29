@@ -14,9 +14,9 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
 {
     setWindowTitle(tr("Qoobar - Autonumber files"));
 
-#ifdef Q_OS_MAC
-    setWindowModality(Qt::WindowModal);
-#endif
+//#ifdef Q_OS_MAC
+//    setWindowModality(Qt::WindowModal);
+//#endif
 
     QSettings *se = App->guiSettings();
     se->beginGroup("autonumberPlugin");
@@ -35,12 +35,12 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
     tree->setAlternatingRowColors(true);
     tree->setSelectionMode(QAbstractItemView::SingleSelection);
     tree->setUniformRowHeights(true);
-#ifdef Q_OS_MAC
-    //tree->setFrameStyle(/*QFrame::NoFrame |*/ QFrame::Plain);
-    tree->setAttribute(Qt::WA_MacShowFocusRect, false);
-    tree->setAutoFillBackground(true);
-    tree->setAttribute(Qt::WA_MacSmallSize, true);
-#endif
+//#ifdef Q_OS_MAC
+//    //tree->setFrameStyle(/*QFrame::NoFrame |*/ QFrame::Plain);
+//    tree->setAttribute(Qt::WA_MacShowFocusRect, false);
+//    tree->setAutoFillBackground(true);
+//    tree->setAttribute(Qt::WA_MacSmallSize, true);
+//#endif
     tree->setHeaderLabels(QStringList()<<tr("Old #")
                                        <<tr("New #")
                                        <<tr("Old ##")
@@ -90,11 +90,11 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
     buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-#ifdef Q_OS_MAC
-    QButton *helpButton = new QButton(this,QButton::HelpButton);
-#else
+//#ifdef Q_OS_MAC
+//    QButton *helpButton = new QButton(this,QButton::HelpButton);
+//#else
     QPushButton *helpButton = buttonBox->addButton(QDialogButtonBox::Help);
-#endif
+//#endif
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
     auto *l = new QGridLayout;
@@ -110,12 +110,12 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
                                "\nor album includes only one track")),1,2,3,1);
     l->addWidget(actionComboBox,1,3,3,1);
     l->addWidget(tree,5,0,1,5);
-#ifdef Q_OS_MAC
-    l->addWidget(helpButton,6,0);
-    l->addWidget(buttonBox,6,1,1,4);
-#else
+//#ifdef Q_OS_MAC
+//    l->addWidget(helpButton,6,0);
+//    l->addWidget(buttonBox,6,1,1,4);
+//#else
     l->addWidget(buttonBox,6,0,1,5);
-#endif
+//#endif
 
 
     this->setLayout(l);

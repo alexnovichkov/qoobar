@@ -39,7 +39,7 @@ void ClickableLabel::mouseReleaseEvent(QMouseEvent *ev)
     QLabel::mouseReleaseEvent(ev);
 }
 
-void ClickableLabel::enterEvent(QEvent *event)
+void ClickableLabel::enterEvent(QEnterEvent *event)
 {
     QLabel::enterEvent(event);
     bool hadPixmap = false;
@@ -66,7 +66,7 @@ ImageDialog::ImageDialog(QWidget *parent) :
     label = new ClickableLabel();
 
     QVBoxLayout *vbox = new QVBoxLayout;
-    vbox->setMargin(0);
+    vbox->setContentsMargins(0,0,0,0);
     vbox->addWidget(label);
     setLayout(vbox);
     connect(label, SIGNAL(clicked()), SLOT(close()));
@@ -77,7 +77,7 @@ void ImageDialog::setImage(const QPixmap &data,const QString &toolTip)
     setWindowTitle(QString("%1, %2").arg(windowTitle()).arg(toolTip));
     QPixmap pixmap=data;
 
-    QRect screenSize = qApp->desktop()->availableGeometry();
+    QRect screenSize = qApp->primaryScreen()->availableGeometry();
     int w=pixmap.width(); int h=pixmap.height();
     int W=screenSize.width(); int H=screenSize.height();
     if (w>W) {

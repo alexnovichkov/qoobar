@@ -31,29 +31,29 @@
 #include "qoobarglobals.h"
 #include "application.h"
 
-#ifdef Q_OS_MAC
-class TabButton : public QToolButton
-{
-public:
-    explicit TabButton(QTabWidget *header, QWidget*parent=0) : QToolButton(parent),
-        m_header(header)
-    {}
-    void paintEvent(QPaintEvent * pe)
-    {
-        QPainter p(this);
+//#ifdef Q_OS_MAC
+//class TabButton : public QToolButton
+//{
+//public:
+//    explicit TabButton(QTabWidget *header, QWidget*parent=0) : QToolButton(parent),
+//        m_header(header)
+//    {}
+//    void paintEvent(QPaintEvent * pe)
+//    {
+//        QPainter p(this);
 
-        QStyleOptionTabBarBaseV2 opt;
-        opt.initFrom(m_header);
-        opt.rect = pe->rect();
+//        QStyleOptionTabBarBaseV2 opt;
+//        opt.initFrom(m_header);
+//        opt.rect = pe->rect();
 
-        //style()->drawPrimitive(QStyle::PE_FrameTabBarBase,&opt,&p);
-        style()->drawItemPixmap(&p,opt.rect,Qt::AlignCenter,this->icon().pixmap(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
-        p.end();
-    }
-private:
-    QTabWidget *m_header;
-};
-#endif
+//        //style()->drawPrimitive(QStyle::PE_FrameTabBarBase,&opt,&p);
+//        style()->drawItemPixmap(&p,opt.rect,Qt::AlignCenter,this->icon().pixmap(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
+//        p.end();
+//    }
+//private:
+//    QTabWidget *m_header;
+//};
+//#endif
 
 TabBar::TabBar(QWidget *parent) : QTabBar(parent)
 {DD;
@@ -165,14 +165,14 @@ TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent)
     connect(m_tabBar, SIGNAL(tabTextChanged(QString)), this, SIGNAL(tabTextChanged(QString)));
 
     setTabBar(m_tabBar);
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     auto *newTabButton = new QToolButton(this);
     auto *a = new QAction(QIcon::fromTheme("list-add"),tr("New tab"),this);
     connect(a,SIGNAL(triggered()),this,SIGNAL(newTab()));
     newTabButton->setDefaultAction(a);
     newTabButton->setAutoRaise(true);
     setCornerWidget(newTabButton);
-#endif
+//#endif
 }
 
 void TabWidget::hideTabBar(bool hide)

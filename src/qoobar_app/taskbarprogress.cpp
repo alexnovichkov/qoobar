@@ -1,12 +1,14 @@
 #include "taskbarprogress.h"
 
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
 
 #ifdef Q_OS_WIN
 #if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #define WIN_TASKBAR
 #include <QWinTaskbarProgress>
 #include <QWinTaskbarButton>
+#endif
 #endif
 #endif
 
@@ -96,4 +98,4 @@ void TaskBarProgress::finalize()
 
 
 
-#endif //Q_OS_MAC
+//#endif //Q_OS_MAC

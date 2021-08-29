@@ -164,7 +164,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
         patternEdit->insertItems(0,App->fillPatterns);
         patternEdit->setEditText(App->fillPatterns.first());
     }
-    connect(patternEdit,SIGNAL(currentIndexChanged(QString)),this,SLOT(updateTags()));
+    connect(patternEdit,SIGNAL(currentTextChanged(QString)),this,SLOT(updateTags()));
     connect(patternEdit,SIGNAL(editTextChanged(QString)),this,SLOT(updateTags()));
 
     legendButton = new LegendButton(this);
@@ -176,12 +176,12 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     table = new QTableWidget(count,2,this);
     table->setHorizontalHeaderLabels(QStringList() << QSL("") << tr("Source"));
 
-#ifdef Q_OS_MAC
-    table->setAttribute(Qt::WA_MacSmallSize, true);
-    table->setWordWrap(true);
-#else
+//#ifdef Q_OS_MAC
+//    table->setAttribute(Qt::WA_MacSmallSize, true);
+//    table->setWordWrap(true);
+//#else
     table->setWordWrap(false);
-#endif
+//#endif
     for (int i=0; i<count; ++i) {
         QTableWidgetItem *item = new QTableWidgetItem(QSL(""));
         item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
@@ -272,13 +272,13 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     searchResultsList->setAlternatingRowColors(true);
     searchResultsList->setColumnCount(1);
     searchResultsList->setRootIsDecorated(false);
-#ifdef Q_OS_MAC
-    searchResultsList->setHeaderLabels(QStringList()<<tr("Search results"));
-    searchResultsList->setAlternatingRowColors(true);
-    searchResultsList->header()->setDefaultAlignment(Qt::AlignCenter);
-#else
+//#ifdef Q_OS_MAC
+//    searchResultsList->setHeaderLabels(QStringList()<<tr("Search results"));
+//    searchResultsList->setAlternatingRowColors(true);
+//    searchResultsList->header()->setDefaultAlignment(Qt::AlignCenter);
+//#else
     searchResultsList->header()->hide();
-#endif
+//#endif
     searchResultsList->setSelectionMode(QAbstractItemView::SingleSelection);
 
     connect(searchResultsList,SIGNAL(itemClicked(QTreeWidgetItem*,int)),
@@ -366,23 +366,23 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
     setTabOrder(releaseInfoWidget,buttonBox);
 
-#ifdef Q_OS_MAC
-    QButton *helpButton = new QButton(this, QButton::HelpButton);
-#else
+//#ifdef Q_OS_MAC
+//    QButton *helpButton = new QButton(this, QButton::HelpButton);
+//#else
     QPushButton *helpButton = buttonBox->addButton(QDialogButtonBox::Help);
-#endif
+//#endif
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
     auto *layout = new QVBoxLayout;
     layout->addWidget(tab);
-#ifdef Q_OS_MAC
-    QHBoxLayout *boxL = new QHBoxLayout;
-    boxL->addWidget(helpButton);
-    boxL->addWidget(buttonBox);
-    layout->addLayout(boxL);
-#else
+//#ifdef Q_OS_MAC
+//    QHBoxLayout *boxL = new QHBoxLayout;
+//    boxL->addWidget(helpButton);
+//    boxL->addWidget(buttonBox);
+//    layout->addLayout(boxL);
+//#else
     layout->addWidget(buttonBox);
-#endif
+//#endif
     setLayout(layout);
     resize(App->primaryScreen()->availableSize()/2);
 

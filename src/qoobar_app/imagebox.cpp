@@ -100,26 +100,26 @@ void Panel::clear()
     }
 }
 
-void Panel::enterEvent(QEvent * event)
+void Panel::enterEvent(QEnterEvent * event)
 {//DD
     QWidget::enterEvent(event);
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     changeHoverState(true);
-#endif
+//#endif
 }
 
 void Panel::leaveEvent(QEvent * event)
 {//DD
     QWidget::leaveEvent(event);
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     changeHoverState(false);
-#endif
+//#endif
 }
 
 void Panel::paintEvent(QPaintEvent *paintEvent)
 {//DD
     QWidget::paintEvent(paintEvent);
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     QPainter p(this);
 
     QPoint topLeft(label->geometry().left(), contentsRect().top());
@@ -128,7 +128,7 @@ void Panel::paintEvent(QPaintEvent *paintEvent)
     if (backgroundPixmap.isNull() || backgroundPixmap.size() != size())
         backgroundPixmap = cacheBackground(paintArea.size());
     p.drawPixmap(paintArea, backgroundPixmap);
-#endif
+//#endif
 }
 
 QPixmap Panel::cacheBackground(const QSize &size)
@@ -172,14 +172,14 @@ void Panel::addWidget(QWidget *w)
 FadingPanel::FadingPanel(QWidget *parent) :
     QWidget(parent)
 {DD
-#ifndef Q_OS_MAC
+//#ifndef Q_OS_MAC
     m_opacityEffect=new QGraphicsOpacityEffect;
     m_opacityEffect->setOpacity(0);
     setGraphicsEffect(m_opacityEffect);
     QPalette pal;
     pal.setBrush(QPalette::All, QPalette::Window, Qt::transparent);
     setPalette(pal);
-#endif
+//#endif
     QVBoxLayout *l = new QVBoxLayout;
     l->setContentsMargins(0,0,0,0);
     l->addStretch();
@@ -260,7 +260,7 @@ ImageBox::ImageBox(QWidget *parent) : QWidget(parent)
     QGridLayout *imageLayout=new QGridLayout;
 #ifdef IMAGEBOX_TOOLBAR
     imageLayout->setContentsMargins(0,3,3,3);
-    imageLayout->setMargin(0);
+//    imageLayout->setMargin(0);
     imageLayout->setVerticalSpacing(0);
     imageLayout->setMenuBar(toolBar);
     imageLayout->addWidget(typePanel,0,0);

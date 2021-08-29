@@ -40,7 +40,6 @@
 #include <QPainter>
 #include <QStyle>
 #include <QPaintEvent>
-#include <QDesktopWidget>
 #include <QtDebug>
 
 #include "enums.h"
@@ -56,7 +55,7 @@
 static void execMenuAtWidget(QMenu *menu, QWidget *widget)
 {DD;
     QPoint p;
-    QRect screen = App->desktop()->availableGeometry(widget);
+    QRect screen = App->primaryScreen()->availableGeometry();
     QSize sh = menu->sizeHint();
     QRect rect = widget->rect();
     if (widget->isRightToLeft()) {

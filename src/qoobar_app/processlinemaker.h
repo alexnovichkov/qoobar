@@ -25,7 +25,6 @@
 #include <QObject>
 
 class QProcess;
-class QStringList;
 
 class ProcessLineMaker : public QObject
 {

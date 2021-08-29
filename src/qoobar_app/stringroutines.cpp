@@ -26,28 +26,36 @@
 
 #include "stringroutines.h"
 #include <QStringList>
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+#include <QStringConverter>
+#endif
 #include <QTextCodec>
+
 #include <QDateTime>
 #include <QProcess>
 #include <QtDebug>
 #include "qoobarglobals.h"
 #include "application.h"
+#include <QRegularExpression>
 
 struct Rus {
     int index;
     std::string l;
 };
 
-QRegExp createRegExp(bool caseSensitive, bool useRegularExpressions,
-                     bool wholeWord, const QString &pattern)
-{DD
-    QRegExp rx(pattern,
-               caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive,
-               useRegularExpressions ? QRegExp::RegExp : QRegExp::FixedString);
-    if (wholeWord) {
-        rx.setPatternSyntax(QRegExp::RegExp);
-        rx.setPattern(QString("\\b%1\\b").arg(pattern));
+QRegularExpression createRegExp(bool caseSensitive, bool useRegularExpressions,
+                     bool wholeWord, QString pattern)
+{DD;
+    if (!useRegularExpressions) {
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
+        pattern = QRegularExpression::escape(pattern);
+#endif
     }
+    if (wholeWord) {
+        pattern = QString("\\b%1\\b").arg(pattern);
+    }
+    QRegularExpression rx(pattern, !caseSensitive ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
+
     return rx;
 }
 
@@ -118,7 +126,7 @@ QString changeCase(QString source, const Case::Case ca)
     if (ca!=Case::EveryFirstCapsPreserving)
         source = source.toLower();
     int pos=0;
-    QRegExp re(QSL("(\\b\\w)")); //beginning of the word
+    QRegularExpression re(QSL("(\\b\\w)")); //beginning of the word
     while (pos>=0) {
         pos=source.indexOf(re,pos);
         if (pos>=0) {
@@ -227,7 +235,7 @@ QString transliterate(const QString &source)
     };
 
     for (int i=0; i<7; ++i)
-        s.replace(QRegExp(QString("%1([%2-%3%4])")
+        s.replace(QRegularExpression(QString("%1([%2-%3%4])")
                           .arg(QChar(capitalMultipleLetters[i].index))
                           .arg(QChar(0x430))
                           .arg(QChar(0x44f))
@@ -261,7 +269,7 @@ QString lastWord(QStringList &args, int index)
     Q_UNUSED(index);
     if (args.isEmpty()) return QSL("");
 
-    QStringList words = args.first().split(QRegExp(QSL("\\W")), SKIP_EMPTY_PARTS);
+    QStringList words = args.first().split(QRegularExpression(QSL("\\W")), SKIP_EMPTY_PARTS);
     return words.isEmpty()?args.first():words.last();
 }
 
@@ -272,7 +280,7 @@ QString firstWord(QStringList &args, int index)
     Q_UNUSED(index);
     if (args.isEmpty()) return QSL("");
 
-    QStringList words = args.first().split(QRegExp(QSL("\\W")), SKIP_EMPTY_PARTS);
+    QStringList words = args.first().split(QRegularExpression(QSL("\\W")), SKIP_EMPTY_PARTS);
     return words.isEmpty()?args.first():words.first();
 }
 
@@ -287,7 +295,7 @@ QString nthWord(QStringList &args, int index)
     int wordPos = args.at(1).toInt();
     if (wordPos<=0) return args.first();
 
-    QStringList words = args.first().split(QRegExp(QSL("\\W")), SKIP_EMPTY_PARTS);
+    QStringList words = args.first().split(QRegularExpression(QSL("\\W")), SKIP_EMPTY_PARTS);
     if (words.isEmpty()) return args.first();
     return words.at(qMin(wordPos,words.size())-1);
 }
@@ -481,16 +489,19 @@ QString occurrences(QStringList &args, int index) {
 // Returns an abbreviation of X if X is longer than Y characters; otherwise returns full value of X.
 // $abbr(X)
 // Returns an abbreviation of X.
-void testSection(QString &section, QString &result, QRegExp &re)
+void testSection(QString &section, QString &result, QRegularExpression &re)
 {
     bool ok;
     section.toInt(&ok, 0);
     if (ok)
         result.append(section);
     // roman numeral
-    else if (re.exactMatch(section))
-        result.append(section);
-    else result.append(section.at(0));
+    else {
+        re.setPattern(QRegularExpression::anchoredPattern(re.pattern()));
+        if (re.match(section).hasMatch())
+            result.append(section);
+        else result.append(section.at(0));
+    }
     section.clear();
 }
 
@@ -509,9 +520,9 @@ QString abbr(QStringList &args, int index) {
 
     int pos = 0;
     QString section;
-    QRegExp roman("[IVXLCDM]+");
+    QRegularExpression roman("[IVXLCDM]+");
     while (pos < arg.length()) {
-        QCharRef c = arg[pos];
+        QChar c = arg[pos];
         if (c.isSpace() || c == '\\' || c == '/' || c == '|' || c == ',') {
             if (!section.isEmpty())
                 testSection(section, result, roman);
@@ -612,13 +623,14 @@ QString stripPrefix(QStringList &args, int index)
     if (args.isEmpty()) return QString();
     QStringList prefixes;
     for (int i=1; i<args.size(); ++i) {
-        prefixes << QRegExp::escape(args.at(i));
+        prefixes << QRegularExpression::escape(args.at(i));
     }
     QString prefix = prefixes.join(QSL(","));
     if (prefix.isEmpty()) prefix = QSL("the|a|an");
-    QRegExp prefixRE("^(" + prefix + ")(?=\\s+\\w)", Qt::CaseInsensitive);
-    if (prefixRE.indexIn(args.first())==0)
-        return args.first().mid(prefixRE.matchedLength()+1);
+    QRegularExpression prefixRE("^(" + prefix + ")(?=\\s+\\w)", QRegularExpression::CaseInsensitiveOption);
+    auto match =prefixRE.match(args.first());
+    if (match.capturedStart()==0)
+        return args.first().mid(match.capturedLength()+1);
 
     return args.first();
 }
@@ -631,13 +643,14 @@ QString swapPrefix(QStringList &args, int index)
     if (args.isEmpty()) return QString();
     QStringList prefixes;
     for (int i=1; i<args.size(); ++i) {
-        prefixes << QRegExp::escape(args.at(i));
+        prefixes << QRegularExpression::escape(args.at(i));
     }
     QString prefix = prefixes.join(QSL(","));
     if (prefix.isEmpty()) prefix = QSL("the|a|an");
-    QRegExp prefixRE("^(" + prefix + ")(?=\\s+\\w)", Qt::CaseInsensitive);
-    if (prefixRE.indexIn(args.first())==0)
-        return args.first().mid(prefixRE.matchedLength()+1) + ", "+prefixRE.cap(1);
+    QRegularExpression prefixRE("^(" + prefix + ")(?=\\s+\\w)", QRegularExpression::CaseInsensitiveOption);
+    auto match =prefixRE.match(args.first());
+    if (match.capturedStart()==0)
+        return args.first().mid(match.capturedLength()+1) + ", "+match.captured(1);
 
     return args.first();
 }

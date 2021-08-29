@@ -21,7 +21,7 @@ public:
     void paintEvent(QPaintEvent *);
     QSize sizeHint() const;
 protected:
-    void enterEvent(QEvent *e);
+    void enterEvent(QEnterEvent *e);
     void leaveEvent(QEvent *e);
 };
 

@@ -64,7 +64,9 @@ int main(int argc, char *argv[])
 #elif QT_VERSION >= QT_VERSION_CHECK(5,6,0)
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
 #endif // QT_VERSION
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
 
 #ifdef Q_OS_WIN
 
@@ -111,11 +113,11 @@ int main(int argc, char *argv[])
                             proxyUrl.port(), proxyUrl.userName(), proxyUrl.password());
         QNetworkProxy::setApplicationProxy(proxy);
     }
-# if defined(Q_OS_MAC) // unix and mac
-    else {
-        QNetworkProxyFactory::setUseSystemConfiguration(true);
-    }
-# endif
+//# if defined(Q_OS_MAC) // unix and mac
+//    else {
+//        QNetworkProxyFactory::setUseSystemConfiguration(true);
+//    }
+//# endif
 #else // windows and os/2
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 #endif

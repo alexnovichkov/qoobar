@@ -14,6 +14,11 @@ include(../portable.pri)
 # DEFINES *= QOOBAR_ENABLE_CLI
 
 QT *= widgets concurrent network
+
+qtHaveModule(core5compat) {
+  QT *= core5compat
+}
+
 CONFIG *= c++11
 
 TARGET = qoobar
@@ -440,8 +445,8 @@ unix {
 #    PKGCONFIG += libavutil
 #    DEFINES += USE_FFMPEG
 
-    PKGCONFIG += gstreamer-app-0.10
-    PKGCONFIG += gstreamer-audio-0.10
+    PKGCONFIG += gstreamer-app-1.0
+    PKGCONFIG += gstreamer-audio-1.0
     DEFINES += WITH_DECODING
 
     EXEC_PATH = $${INSTALL_PREFIX}/bin
@@ -502,7 +507,7 @@ unix {
 }
 
 win32|win {
-    QT *= winextras
+#    QT *= winextras
 
 # So far no cli support in Win
 #    DEFINES *= QOOBAR_ENABLE_CLI
@@ -513,9 +518,13 @@ win32|win {
         INCLUDEPATH += E:/My/build/winsparkle/include
         LIBS += E:/My/build/winsparkle/Release/WinSparkle.lib
     }
-    exists("G:/soft/Programming/WinSparkle/Release/WinSparkle.lib") {
-        INCLUDEPATH += G:/soft/Programming/WinSparkle/include
-        LIBS += G:/soft/Programming/WinSparkle/Release/WinSparkle.lib
+    exists("G:/soft/Programming/WinSparkle-0.7.0/Release/WinSparkle.lib") {
+        INCLUDEPATH *= G:/soft/Programming/WinSparkle-0.7.0/include
+        LIBS += G:/soft/Programming/WinSparkle-0.7.0/Release/WinSparkle.lib
+    }
+    exists("G:/soft/Programming/WinSparkle-0.7.0/x64/Release/WinSparkle.lib") {
+        INCLUDEPATH *= G:/soft/Programming/WinSparkle-0.7.0/include
+        LIBS += G:/soft/Programming/WinSparkle-0.7.0/x64/Release/WinSparkle.lib
     }
     SOURCES += sparkleupdater.cpp
 }

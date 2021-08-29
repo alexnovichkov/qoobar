@@ -35,7 +35,9 @@ NewTagDialog::NewTagDialog(QWidget *parent) :
     setWindowModality(Qt::WindowModal);
     setWindowTitle(tr("New tag"));
     edit = new QLineEdit(this);
-    edit->setValidator(new QRegExpValidator(QRegExp(QSL("[A-Z][A-Z0-9/ _]+"),Qt::CaseInsensitive),this));
+    edit->setValidator(new QRegularExpressionValidator(
+                           QRegularExpression(QSL("[A-Z][A-Z0-9/ _]+"), QRegularExpression::CaseInsensitiveOption),
+                           this));
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok |
                                                        QDialogButtonBox::Cancel);

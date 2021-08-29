@@ -64,11 +64,11 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
 
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-#ifdef Q_OS_MAC
-    QButton *helpButton = new QButton(this,QButton::HelpButton);
-#else
+//#ifdef Q_OS_MAC
+//    QButton *helpButton = new QButton(this,QButton::HelpButton);
+//#else
     QPushButton *helpButton = buttonBox->addButton(QDialogButtonBox::Help);
-#endif
+//#endif
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
     scanFileButton = new QPushButton(tr("Scan per file track gain"),this);
@@ -78,7 +78,7 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     scanAlbumsByFolderButton = new QPushButton(tr("Scan as albums (by folder)"),this);
 
     QSignalMapper *mapper = new QSignalMapper(this);
-    connect(mapper, SIGNAL(mapped(int)),this, SLOT(operate(int)));
+    connect(mapper, &QSignalMapper::mappedInt, this, &ReplayGainDialog::operate);
 
     connect(scanFileButton,SIGNAL(clicked()), mapper, SLOT(map()));
     connect(scanAlbumButton,SIGNAL(clicked()), mapper, SLOT(map()));
@@ -110,11 +110,11 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     tree->header()->resizeSection(0,50);
     tree->header()->resizeSection(1,350);
 
-#ifdef Q_OS_MAC
-    //tree->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
-    tree->setAutoFillBackground(true);
-    tree->setAttribute(Qt::WA_MacShowFocusRect, false);
-#endif
+//#ifdef Q_OS_MAC
+//    //tree->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
+//    tree->setAutoFillBackground(true);
+//    tree->setAttribute(Qt::WA_MacShowFocusRect, false);
+//#endif
 
     tree->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     tree->header()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
@@ -133,14 +133,14 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     grid->addWidget(scanAlbumsByFolderButton,2,1);
     grid->addWidget(skipCheckBox,3,0,1,4);
     grid->addWidget(edit,4,0,1,4);
-#ifdef Q_OS_MAC
-    QHBoxLayout *boxL = new QHBoxLayout;
-    boxL->addWidget(helpButton);
-    boxL->addWidget(buttonBox);
-    grid->addLayout(boxL,5,0,1,4,Qt::AlignRight);
-#else
+//#ifdef Q_OS_MAC
+//    QHBoxLayout *boxL = new QHBoxLayout;
+//    boxL->addWidget(helpButton);
+//    boxL->addWidget(buttonBox);
+//    grid->addLayout(boxL,5,0,1,4,Qt::AlignRight);
+//#else
     grid->addWidget(buttonBox,5,0,1,4,Qt::AlignRight);
-#endif
+//#endif
     setLayout(grid);
     resize(qApp->primaryScreen()->availableSize()/2);
 

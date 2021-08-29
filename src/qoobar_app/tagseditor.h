@@ -30,7 +30,6 @@
 #include <QDialog>
 class QTableWidget;
 class QLineEdit;
-class QStringList;
 class LineEdit;
 
 class QTabWidget;
@@ -46,7 +45,8 @@ class Model;
 
 #include <QIcon>
 #include <QToolButton>
-#include <QRegExp>
+//#include <QRegExp>
+#include <QRegularExpression>
 
 class TagsEditDialog : public QDialog
 {
@@ -107,7 +107,7 @@ private:
 
     QStringList newValues;
     Model *model;
-    QRegExp rx;
+    QRegularExpression rx;
     QStringList captures;
 };
 

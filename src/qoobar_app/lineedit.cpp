@@ -113,7 +113,8 @@ LineEdit::LineEdit(bool useInTable, QWidget *parent)
         connect(a,SIGNAL(triggered()),mapper,SLOT(map()));
         acts << a;
     }
-    connect(mapper,SIGNAL(mapped(int)),this,SLOT(tagChosen(int)));
+
+    connect(mapper, &QSignalMapper::mappedInt, this, &LineEdit::tagChosen);
 
     if (useInTable_) {
         QSignalMapper *mapper1 = new QSignalMapper(this);
@@ -123,7 +124,7 @@ LineEdit::LineEdit(bool useInTable, QWidget *parent)
             connect(a,SIGNAL(triggered()),mapper1,SLOT(map()));
             acts1 << a;
         }
-        connect(mapper1,SIGNAL(mapped(int)),this,SLOT(tagChosen1(int)));
+        connect(mapper1, &QSignalMapper::mappedInt, this, &LineEdit::tagChosen1);
     }
 }
 
@@ -140,7 +141,7 @@ void LineEdit::tagChosen1(int i)
 QMenu *LineEdit::createOperationsMenu()
 {DD
     QSignalMapper *operationsMapper = new QSignalMapper(this);
-    connect(operationsMapper,SIGNAL(mapped(QString)),SLOT(handleOperation(QString)));
+    connect(operationsMapper, &QSignalMapper::mappedString, this, &LineEdit::handleOperation);
 
     QMenu *menu = createOperations(operationsMapper,this);
     menu->setTitle(tr("Operations"));
@@ -223,7 +224,7 @@ QString findLastWord(const QString &text, int cursorPosition)
     if (cursorPosition<=0) return QString();
     QString workString = text.left(cursorPosition);
     //now we search word break from the end of the workString
-    int lastWordPos = workString.indexOf(QRegExp(QSL("\\b\\w+$")));
+    int lastWordPos = workString.indexOf(QRegularExpression(QSL("\\b\\w+$")));
     if (lastWordPos>=0)
         return workString.right(workString.length()-lastWordPos);
     return QString();

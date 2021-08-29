@@ -32,13 +32,15 @@
 #include <QHash>
 #include <QTimer>
 
+#include "tagger.h"
+
 class QAction;
 class QLabel;
 class TabWidget;
 class Tab;
 class QMenu;
 class QUndoGroup;
-class Tag;
+
 class StatusBar;
 
 class QFileSystemModel;

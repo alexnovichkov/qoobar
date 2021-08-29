@@ -76,12 +76,12 @@ QString parseLabels(QXmlStreamReader &x /*label-info-list*/)
     while (!x.atEnd()) {
         x.readNext();
         if (x.isEndElement()) {
-            if (x.name()=="label-info-list") return results.join("; ");
+            if (x.name().compare(QLS("label-info-list"))==0) return results.join("; ");
         }
         else if (x.isStartElement()) {
-            if (x.name()=="catalog-number")
+            if (x.name().compare(QLS("catalog-number"))==0)
                 results << x.readElementText();
-            else if (x.name()=="name") {
+            else if (x.name().compare(QLS("name"))==0) {
                 if (results.isEmpty()) results << x.readElementText();
                 else results.last().prepend(x.readElementText()+", ");
             }
@@ -97,13 +97,13 @@ QList<Artist> parseArtists(QXmlStreamReader &x)
     while (!x.atEnd()) {
         x.readNext();
         if (x.isEndElement()) {
-            if (x.name()=="artist-credit") return result;
+            if (x.name().compare(QLS("artist-credit"))==0) return result;
         }
         else if (x.isStartElement()) {
-            QStringRef name=x.name();
-            if (name=="artist")
+            x.name();
+            if (x.name().compare(QLS("artist"))==0)
                 result << Artist();
-            else if (name=="name") {
+            else if (x.name().compare(QLS("name"))==0) {
                 if (result.isEmpty()) result << Artist();
                 result.last().fields.insert("name", x.readElementText());
             }
@@ -119,10 +119,10 @@ QString parseAttributes(QXmlStreamReader &x/*"attribute-list"*/)
     while (!x.atEnd()) {
         x.readNext();
         if (x.isEndElement()) {
-            if (x.name()=="attribute-list") return result.join(", ");
+            if (x.name().compare(QLS("attribute-list"))==0) return result.join(", ");
         }
         else if (x.isStartElement()) {
-            if (x.name()=="attribute")
+            if (x.name().compare(QLS("attribute"))==0)
                 result.append(x.readElementText());
         }
     }
@@ -133,31 +133,30 @@ QList<Artist> parseRelations(QXmlStreamReader &x/*relation-list*/)
 {
     QList<Artist> result;
 
-    if (x.attributes().value("target-type")!="artist") return result;
+    if (!x.attributes().value("target-type").compare(QLS("artist"))==0) return result;
 
     QString type;
     QString attributes;
     while (!x.atEnd()) {
         x.readNext();
         if (x.isEndElement()) {
-            if (x.name()=="relation-list") return result;
-            if (x.name()=="relation") {
+            if (x.name().compare(QLS("relation-list"))==0) return result;
+            if (x.name().compare(QLS("relation"))==0) {
                 if (type=="instrument" || type=="vocal" || type=="vocals") type=attributes;
                 if (result.isEmpty()) result << Artist();
                 result.last().fields.insert("role", type);
             }
         }
         else if (x.isStartElement()) {
-            QStringRef name=x.name();
-            if (name=="relation") {
+            if (x.name().compare(QLS("relation"))==0) {
                 result.append(Artist());
                 type = x.attributes().value("type").toString();
             }
-            else if (name=="name") {
+            else if (x.name().compare(QLS("name"))==0) {
                 if (result.isEmpty()) result << Artist();
                 result.last().fields.insert("name", x.readElementText());
             }
-            else if (name=="attribute-list")
+            else if (x.name().compare(QLS("attribute-list"))==0)
                 attributes = parseAttributes(x);
         }
     }
@@ -171,25 +170,25 @@ QList<Track> parseTracks(QXmlStreamReader &trackList, int cdNum)
     while (!trackList.atEnd()) {
         trackList.readNext();
         if (trackList.isEndElement()) {
-            if (trackList.name()=="track-list") return result;
+            if (trackList.name().compare(QLS("track-list"))==0) return result;
         }
         else if (trackList.isStartElement()) {
-            QStringRef name=trackList.name();
+            auto name=trackList.name();
 
-            if (name == "track") {
+            if (name.compare(QLS("track"))==0) {
                 Track t;
                 t.cd = cdNum;
                 result << t;
             }
-            else if (name=="position")
+            else if (name.compare(QLS("position"))==0)
                 result.last().fields.insert("tracknumber", trackList.readElementText());
-            else if (name=="length")
+            else if (name.compare(QLS("length"))==0)
                 result.last().fields.insert("length", Qoobar::formatLength(trackList.readElementText().toInt()/1000));
-            else if (name=="title")
+            else if (name.compare(QLS("title"))==0)
                 result.last().fields.insert("title", trackList.readElementText());
-            else if (name=="artist-credit")
+            else if (name.compare(QLS("artist-credit"))==0)
                 result.last().artists.append(parseArtists(trackList));
-            else if (name=="relation-list")
+            else if (name.compare(QLS("relation-list"))==0)
                 result.last().artists.append(parseRelations(trackList));
         }
     }
@@ -205,11 +204,11 @@ QList<Track> parseMediums(QXmlStreamReader &mediumList)
     while (!mediumList.atEnd()) {
         mediumList.readNext();
         if (mediumList.isEndElement()) {
-            if (mediumList.name()=="medium-list") return result;
+            if (mediumList.name().compare(QLS("medium-list"))==0) return result;
         }
         else if (mediumList.isStartElement()) {
-            QStringRef name = mediumList.name();
-            if (name=="track-list") {
+            auto name = mediumList.name();
+            if (name.compare(QLS("track-list"))==0) {
                 cdNum++;
                 result.append(parseTracks(mediumList, cdNum));
             }
@@ -248,31 +247,31 @@ QList<SearchResult> MusicbrainzPlugin::parseResponse(const QByteArray &response)
         x.readNext();
         // do processing
         if (x.isStartElement()) {
-            QStringRef name = x.name();
-            if (name=="release") {
+            auto name = x.name();
+            if (name.compare(QLS("release"))==0) {
                 SearchResult r;
                 r.fields.insert("url", x.attributes().value("id").toString());
                 results.append(r);
             }
-            else if (name=="format") {
+            else if (name.compare(QLS("format"))==0) {
                 results.last().fields.insert("format",x.readElementText());
             }
-            else if (name=="title") {
+            else if (name.compare(QLS("title"))==0) {
                 results.last().fields.insert("album",x.readElementText());
             }
-            else if (name=="artist-credit") {
+            else if (name.compare(QLS("artist-credit"))==0) {
                 results.last().fields.insert("album",
                                              results.last().fields.value("album")
                                              + " / "
                                              +artistsText(parseArtists(x)));
             }
-            else if (name=="label-info-list") {
+            else if (name.compare(QLS("label-info-list"))==0) {
                 results.last().fields.insert("label", parseLabels(x));
             }
-            else if (name=="date") {
+            else if (name.compare(QLS("date"))==0) {
                 results.last().fields.insert("year",x.readElementText());
             }
-            else if (name=="medium-list") {
+            else if (name.compare(QLS("medium-list"))==0) {
                 results.last().cdCount = x.attributes().value("count").toString().toInt();
             }
         }
@@ -302,28 +301,28 @@ SearchResult MusicbrainzPlugin::parseRelease(const QByteArray &response)
         x.readNext();
         // do processing
         if (x.isStartElement()) {
-            QStringRef name = x.name();
-            if (name=="title") {
+            auto name = x.name();
+            if (name.compare(QLS("title"))==0) {
                 r.fields.insert("album",x.readElementText());
             }
-            else if (name=="artist-credit") {
+            else if (name.compare(QLS("artist-credit"))==0) {
                 r.artists = parseArtists(x);
             }
-            else if (name=="date") {
+            else if (name.compare(QLS("date"))==0) {
                 r.fields.insert("year",x.readElementText().left(4));
             }
-            else if (name=="label-info-list") {
+            else if (name.compare(QLS("label-info-list"))==0) {
                 r.fields.insert("label",parseLabels(x));
             }
-            else if (name=="asin") {
+            else if (name.compare(QLS("asin"))==0) {
                 r.image.setDescription(x.readElementText());
                 r.image.setType(3);
                 r.image.setMimetype("image/jpeg");
             }
-            else if (name=="relation-list") {
+            else if (name.compare(QLS("relation-list"))==0) {
                 r.artists.append(parseRelations(x));
             }
-            else if (name=="medium-list") {
+            else if (name.compare(QLS("medium-list"))==0) {
                 r.tracks = parseMediums(x);
                 r.cdCount = r.tracks.isEmpty()?0:r.tracks.last().cd;
             }

@@ -63,9 +63,9 @@ ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
     tracksTable = new QTreeWidget(this);
     tracksTable->setAllColumnsShowFocus(true);
     tracksTable->setAlternatingRowColors(true);
-    tracksTable->setColumnWidth(0,qApp->fontMetrics().HORIZONTAL_ADVANCE(QSL("999")));
+    tracksTable->setColumnWidth(0,QFontMetrics(qApp->font()).HORIZONTAL_ADVANCE(QSL("999")));
     tracksTable->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
-    tracksTable->setColumnWidth(4,qApp->fontMetrics().HORIZONTAL_ADVANCE(QSL("999:99")));
+    tracksTable->setColumnWidth(4,QFontMetrics(qApp->font()).HORIZONTAL_ADVANCE(QSL("999:99")));
     tracksTable->header()->setStretchLastSection(false);
     tracksTable->setHeaderLabels(QStringList()<<tr("No.")<<tr("Title")<<tr("Artists")
                                  <<tr("Comment")<<tr("Length"));

@@ -9,9 +9,9 @@ PlatformProcess::PlatformProcess(QObject *parent) :
     setReadChannel(QProcess::StandardOutput);
     setProcessChannelMode(QProcess::MergedChannels);
 
-#ifdef Q_OS_MAC
-    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    env.insert("PATH", env.value("PATH") + ":" + ApplicationPaths::sharedPath());
-    setProcessEnvironment(env);
-#endif
+//#ifdef Q_OS_MAC
+//    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+//    env.insert("PATH", env.value("PATH") + ":" + ApplicationPaths::sharedPath());
+//    setProcessEnvironment(env);
+//#endif
 }

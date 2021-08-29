@@ -37,6 +37,7 @@
 #include "model.h"
 
 #include <QtDebug>
+#include <QRegularExpression>
 
 void fillPlaceholders(QString &currentPattern, Tag &tag, QStringList &args, bool remove)
 {DD;
@@ -141,8 +142,8 @@ void fillPlaceholders(QString &currentPattern, Tag &tag, QStringList &args, bool
 
 void processCurly(QStringList &args, QString &pattern, int index, int size)
 {DD
-    static QRegExp startNumRx(QSL("(\\d+)(?:\\s*-\\s*)*(\\d*)"));
-    static QRegExp repeatRx(QSL("(\\d+)(?:\\s*:\\s*)(\\d+)"));
+    static QRegularExpression startNumRx(QSL("(\\d+)(?:\\s*-\\s*)*(\\d*)"));
+    static QRegularExpression repeatRx(QSL("(\\d+)(?:\\s*:\\s*)(\\d+)"));
 
     int beginSec = pattern.indexOf("{",0);
     int endSec = 0;
@@ -166,21 +167,22 @@ result: 1 1 1 2 3 3 2 2 2 2 3 3 3
             QVector<int> list;
 
             int pos=0;
-            pos = startNumRx.indexIn(sec, pos);
+            QRegularExpressionMatch match;
+            pos = sec.indexOf(startNumRx, pos, &match);
             if (pos!=-1) {
-                const int startNum = startNumRx.cap(1).toInt(); //1
-                int endNum = startNumRx.cap(2).toInt(); //3
+                const int startNum = match.captured(1).toInt(); //1
+                int endNum = match.captured(2).toInt(); //3
                 if (endNum==0) endNum=size+startNum-1;
 
-                int repeatPos = pos + startNumRx.matchedLength();
-                while ((repeatPos = repeatRx.indexIn(sec, repeatPos)) != -1) {
-                    int whatToRepeat=repeatRx.cap(1).toInt();
+                int repeatPos = pos + match.capturedLength();
+                while ((repeatPos = sec.indexOf(repeatRx, repeatPos, &match)) != -1) {
+                    int whatToRepeat=match.captured(1).toInt();
                     if (whatToRepeat>0) {
-                        int repeats=repeatRx.cap(2).toInt();
+                        int repeats=match.captured(2).toInt();
                         if (repeats>1) {
                             for (int i=0; i<repeats-1; ++i) list << whatToRepeat;
                         }
-                        repeatPos += repeatRx.matchedLength();
+                        repeatPos += match.capturedLength();
                     }
                 }
                 for (int i=startNum; i<=endNum; ++i) list << i;
@@ -243,40 +245,41 @@ void removeEmptySections(Tag &tag, QString &pattern)
         if (tag.tag(TRACKNUMBER).isEmpty()) sec.remove(QSL("%N"));
         if (tag.bitrate().isEmpty()) {
             sec.remove(QSL("%b"));
-            QRegExp re(QSL("<\\s*bit\\s*rate\\s*>")); re.setMinimal(true); re.setCaseSensitivity(Qt::CaseInsensitive);
+            QRegularExpression re(QSL("<\\s*bit\\s*rate\\s*>"), QRegularExpression::CaseInsensitiveOption);
+            //re.setMinimal(true);
             sec.remove(re);
         }
         if (tag.length() <= 0) {
             sec.remove(QSL("%l"));
             sec.remove(QSL("%L"));
-            QRegExp re(QSL("<\\s*length\\s*>")); re.setMinimal(true); re.setCaseSensitivity(Qt::CaseInsensitive);
+            QRegularExpression re(QSL("<\\s*length\\s*>"), QRegularExpression::CaseInsensitiveOption); //re.setMinimal(true);
             sec.remove(re);
         }
         if (tag.fileName().isEmpty()) {
             sec.remove(QSL("%f"));
-            QRegExp re(QSL("<\\s*file\\s*name\\s*>")); re.setMinimal(true); re.setCaseSensitivity(Qt::CaseInsensitive);
+            QRegularExpression re(QSL("<\\s*file\\s*name\\s*>"), QRegularExpression::CaseInsensitiveOption); //re.setMinimal(true);
             sec.remove(re);
         }
         if (tag.fileNameExt().isEmpty()) sec.remove(QSL("%F"));
         if (tag.fileExt().isEmpty()) {
             sec.remove(QSL("%E"));
-            QRegExp re(QSL("<\\s*file\\s*extension\\s*>")); re.setMinimal(true); re.setCaseSensitivity(Qt::CaseInsensitive);
+            QRegularExpression re(QSL("<\\s*file\\s*extension\\s*>"), QRegularExpression::CaseInsensitiveOption); //re.setMinimal(true);
             sec.remove(re);
         }
         if (tag.fullFileName().isEmpty()) sec.remove(QSL("%z"));
         if (tag.filePath().isEmpty()) {
             sec.remove(QSL("%Z"));
-            QRegExp re(QSL("<\\s*file\\s*path\\s*>")); re.setMinimal(true); re.setCaseSensitivity(Qt::CaseInsensitive);
+            QRegularExpression re(QSL("<\\s*file\\s*path\\s*>"), QRegularExpression::CaseInsensitiveOption); //re.setMinimal(true);
             sec.remove(re);
         }
         if (tag.sampleRate() <= 0) {
             sec.remove(QSL("%r"));
-            QRegExp re(QSL("<\\s*sample\\s*rate\\s*>")); re.setMinimal(true); re.setCaseSensitivity(Qt::CaseInsensitive);
+            QRegularExpression re(QSL("<\\s*sample\\s*rate\\s*>"), QRegularExpression::CaseInsensitiveOption); //re.setMinimal(true);
             sec.remove(re);
         }
         if (tag.channels() <= 0) {
             sec.remove(QSL("%h"));
-            QRegExp re(QSL("<\\s*channels\\s*>")); re.setMinimal(true); re.setCaseSensitivity(Qt::CaseInsensitive);
+            QRegularExpression re(QSL("<\\s*channels\\s*>"), QRegularExpression::CaseInsensitiveOption); //re.setMinimal(true);
             sec.remove(re);
         }
         if (!sec.contains(QSL("%")) && !sec.contains(QSL("<")))
@@ -309,16 +312,17 @@ QString getFunctionArg(const int pos, int &capturedLength, const QString &patter
 
 void processFunctions(QStringList &args, QString &pattern, Tag &tag, int index, int size)
 {DD
-    static QRegExp re(QSL("\\$([a-zA-Z_0-9]+)(?=\\()"));
+    static QRegularExpression re(QSL("\\$([a-zA-Z_0-9]+)(?=\\()"));
 
-    re.setMinimal(true);
+    //re.setMinimal(true);
     int pos = 0;
 
     QStringList args1=args;
+    QRegularExpressionMatch match;
 
-    while ((pos = re.indexIn(pattern, pos)) != -1) {
-        int capturedLength = re.matchedLength();
-        const QString functionName=re.cap(1);
+    while ((pos = pattern.indexOf(re, pos, &match)) != -1) {
+        int capturedLength = match.capturedLength();
+        const QString functionName=match.captured(1);
         QString functionArg = getFunctionArg(pos, capturedLength, pattern);
         qDebug()<<functionArg;
         functionArg.replace("\\,",QChar(0x25da));

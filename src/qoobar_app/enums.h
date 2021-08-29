@@ -38,12 +38,20 @@ enum {
     TAGSCOUNT
 };
 
+#include <QtGlobal>
+
 enum MessageType {
     MT_WARNING=0,
     MT_INFORMATION=1,
     MT_ERROR=2,
     MT_SUCCESS=3
 };
+
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+#define LOCATION_PATH location
+#else
+#define LOCATION_PATH path
+#endif
 
 #ifdef Q_OS_WIN
 #define FILE_NAME(f) reinterpret_cast<const wchar_t *>((f).utf16())
