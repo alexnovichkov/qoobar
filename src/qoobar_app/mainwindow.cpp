@@ -227,6 +227,12 @@ void MainWindow::init()
     }
     filesToolBar->attachToWindow(this);
     filesToolBar->updateEnabled(actions[QSL("paste")]);
+    connect(undoGroup, &QUndoGroup::canUndoChanged, [=](bool canUndo){
+        filesToolBar->updateEnabled(undoAct);
+    });
+    connect(undoGroup, &QUndoGroup::canRedoChanged, [=](bool canRedo){
+        filesToolBar->updateEnabled(redoAct);
+    });
 
 
 //========================================================================
