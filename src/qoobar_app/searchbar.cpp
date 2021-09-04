@@ -120,9 +120,9 @@ SearchBar::SearchBar(QWidget *parent) :
     qRegisterMetaType<Tag>("Tag");
 
     pathsButton = new QPushButton(this);
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     pathsButton->setFlat(true);
-//#endif
+#endif
     pathsMenu = createPathsMenu();
     pathsButton->setMenu(pathsMenu);
     addWidget(pathsButton);
@@ -137,20 +137,20 @@ SearchBar::SearchBar(QWidget *parent) :
     addWidget(textEdit);
     addWidget(startSearchButton);
 
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     QWidget* spacer = new QWidget(this);
     spacer->setFixedSize({5,1});
     addWidget(spacer);
-//#endif
+#endif
     progress = new QProgressIndicatorSpinning(this);
     progress->animate(false);
     addWidget(progress);
     progress->hide();
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     QWidget* spacer1 = new QWidget();
     spacer1->setFixedSize({5,1});
     addWidget(spacer1);
-//#endif
+#endif
 
     currentPathLabel = new QLineEdit(this);
     currentPathLabel->setReadOnly(true);

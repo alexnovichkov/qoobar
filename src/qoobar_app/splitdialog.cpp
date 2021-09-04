@@ -106,11 +106,11 @@ SplitDialog::SplitDialog(QWidget *parent) :
     QPushButton *cancelButton = buttonBox->addButton(QDialogButtonBox::Cancel);
     connect(startButton,SIGNAL(clicked()),SLOT(run()));
     connect(cancelButton,SIGNAL(clicked()),SLOT(cancel()));
-//#ifdef Q_OS_MAC
-//    QButton *helpButton = new QButton(this,QButton::HelpButton);
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    QButton *helpButton = new QButton(this,QButton::HelpButton);
+#else
     QPushButton *helpButton = buttonBox->addButton(QDialogButtonBox::Help);
-//#endif
+#endif
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
 
@@ -150,14 +150,14 @@ SplitDialog::SplitDialog(QWidget *parent) :
     grid->addWidget(edit,5,0,1,3);
     grid->addWidget(progress,6,0,1,3);
     grid->addWidget(cueEncodingWidget, 8,0,1,3);
-//#ifdef Q_OS_MAC
-//    QHBoxLayout *boxL = new QHBoxLayout;
-//    boxL->addWidget(helpButton);
-//    boxL->addWidget(buttonBox);
-//    grid->addLayout(boxL,10,0,1,3,Qt::AlignRight);
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    QHBoxLayout *boxL = new QHBoxLayout;
+    boxL->addWidget(helpButton);
+    boxL->addWidget(buttonBox);
+    grid->addLayout(boxL,10,0,1,3,Qt::AlignRight);
+#else
     grid->addWidget(buttonBox,10,0,1,3,Qt::AlignRight);
-//#endif
+#endif
     const int dpisize = 10;
     grid->setRowMinimumHeight(1,dpisize);
     grid->setRowMinimumHeight(4,dpisize);

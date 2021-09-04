@@ -31,28 +31,28 @@
 #include "qoobarglobals.h"
 #include "enums.h"
 
-//#ifdef Q_OS_MAC
-//#include "mactoolbar.h"
-//#include "qocoa/qbutton.h"
-////defines settings dialog that resizes each time page is changed
-//#define DYNAMICPAGES
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+#include "mactoolbar.h"
+#include "qocoa/qbutton.h"
+//defines settings dialog that resizes each time page is changed
+#define DYNAMICPAGES
+#endif
 #include "qoobarhelp.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
-//#ifdef Q_OS_MAC
-//    // We define settings dialog as QMainWindow to obtain nice-looking OSX-style toolbar
-//    QMainWindow(parent)
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    // We define settings dialog as QMainWindow to obtain nice-looking OSX-style toolbar
+    QMainWindow(parent)
+#else
     QDialog(parent)
-//#endif
+#endif
 {DD;
     setWindowTitle(tr("Qoobar settings"));
-//#ifdef Q_OS_MAC
-//    setWindowFlags(Qt::Dialog);
-//    setAttribute(Qt::WA_DeleteOnClose, true);
-//    setWindowModality(Qt::ApplicationModal);
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    setWindowFlags(Qt::Dialog);
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setWindowModality(Qt::ApplicationModal);
+#endif
 
     QSignalMapper *mapper = new QSignalMapper(this);
 
@@ -82,12 +82,12 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 #endif
     currentPage = 0;
 
-//#ifdef Q_OS_MAC
-//    setUnifiedTitleAndToolBarOnMac(true);
-//    toolBar = addToolBar("ttolbar");
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    setUnifiedTitleAndToolBarOnMac(true);
+    toolBar = addToolBar("ttolbar");
+#else
     toolBar = new QToolBar(this);
-//#endif
+#endif
 
     toolBar->setMovable(false);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -109,13 +109,13 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect(resetSettingsButton,SIGNAL(clicked()),this,SLOT(resetSettings()));
 
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-//#ifdef Q_OS_MAC
-//    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-//    connect(buttonBox, SIGNAL(rejected()), this, SLOT(close()));
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(close()));
+#else
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-//#endif
+#endif
 
     QPushButton *helpButton = buttonBox->addButton(QDialogButtonBox::Help);
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
@@ -133,14 +133,14 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     //mainLayout->addStretch(1);
     mainLayout->addSpacing(12);
     mainLayout->addLayout(bottomLayout);
-//#ifdef Q_OS_MAC
-//    auto *w = new QWidget(this);
-//    w->setLayout(mainLayout);
-//    setCentralWidget(w);
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    auto *w = new QWidget(this);
+    w->setLayout(mainLayout);
+    setCentralWidget(w);
+#else
     mainLayout->setMenuBar(toolBar);
     setLayout(mainLayout);
-//#endif
+#endif
     resize({qApp->primaryScreen()->availableSize().width()/4,
             qApp->primaryScreen()->availableSize().height()/3});
     retranslateUI();
@@ -165,11 +165,11 @@ void SettingsDialog::accept()
         configPages[i]->saveSettings();
     }
 
-//#ifdef Q_OS_MAC
-//    close();
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    close();
+#else
     QDialog::accept();
-//#endif
+#endif
 }
 
 void SettingsDialog::resetSettings()

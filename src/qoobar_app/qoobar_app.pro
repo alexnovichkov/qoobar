@@ -10,15 +10,20 @@ DEFINES *= QOOBAR_DOC_PATH=\\\"$${DOC_PATH}/qoobar-doc\\\"
 
 include(../portable.pri)
 
+# this define adds the OS X specific features to the app.
+# Right now all OS X support is switched off as I have no possibility to test it properly
+# DEFINES *= OSX_SUPPORT_ENABLED
+
 # place this define in OS-specific section to enable command-line interface
 # DEFINES *= QOOBAR_ENABLE_CLI
 
 QT *= widgets concurrent network
 
-qtHaveModule(core5compat) {
+greaterThan(QT_MAJOR_VERSION, 5) {
   QT *= core5compat
 }
 
+# minimal c++ version is c++11
 CONFIG *= c++11
 
 TARGET = qoobar
@@ -165,9 +170,7 @@ HEADERS = mainwindow.h \
     autonumber.h
 
 OTHER_FILES *= splitandconvert.bat \
-               splitandconvert.sh \
-               ../../mac-deploy.command
-
+               splitandconvert.sh
 
 TRANSLATIONS = qoobar_ru.ts \
     qoobar_en.ts \
@@ -507,22 +510,20 @@ unix {
 }
 
 win32|win {
-#    QT *= winextras
+    qtHaveModule(winextras) {
+      QT *= winextras
+    }
 
 # So far no cli support in Win
 #    DEFINES *= QOOBAR_ENABLE_CLI
 
     RC_FILE = qoobar.rc
 
-    exists(E:/My/build/winsparkle/Release/WinSparkle.lib) {
-        INCLUDEPATH += E:/My/build/winsparkle/include
-        LIBS += E:/My/build/winsparkle/Release/WinSparkle.lib
-    }
-    exists("G:/soft/Programming/WinSparkle-0.7.0/Release/WinSparkle.lib") {
+    contains(QT_ARCH, "i386") {
         INCLUDEPATH *= G:/soft/Programming/WinSparkle-0.7.0/include
         LIBS += G:/soft/Programming/WinSparkle-0.7.0/Release/WinSparkle.lib
     }
-    exists("G:/soft/Programming/WinSparkle-0.7.0/x64/Release/WinSparkle.lib") {
+    contains(QT_ARCH, "x86_64") {
         INCLUDEPATH *= G:/soft/Programming/WinSparkle-0.7.0/include
         LIBS += G:/soft/Programming/WinSparkle-0.7.0/x64/Release/WinSparkle.lib
     }
@@ -590,59 +591,61 @@ os2 {
        o:/usr/local/include
 }
 
-mac|macx {
-    message(Mac OS build)
+#mac|macx {
+#    message(Mac OS build)
 
-    DEFINES *= QOOBAR_ENABLE_CLI
+#    OTHER_FILES *= ../../mac-deploy.command
 
-    qtHaveModule(macextras) {
-      QT *= macextras
-    }
+#    DEFINES *= QOOBAR_ENABLE_CLI
 
-    LIBS += -F../../mac_os/ -framework discid
-    INCLUDEPATH += ../../mac_os/discid.framework/Versions/A/Headers
-    DEPENDPATH += ../../mac_os/discid.framework/Versions/A/Headers
+#    qtHaveModule(macextras) {
+#      QT *= macextras
+#    }
 
-    LIBS += -framework AppKit -framework Foundation
-    LIBS += -F$$PWD/../../mac_os/ -framework Sparkle
-    INCLUDEPATH += $$PWD/../../mac_os/Sparkle.framework/Versions/A/Headers
+#    LIBS += -F../../mac_os/ -framework discid
+#    INCLUDEPATH += ../../mac_os/discid.framework/Versions/A/Headers
+#    DEPENDPATH += ../../mac_os/discid.framework/Versions/A/Headers
+
+#    LIBS += -framework AppKit -framework Foundation
+#    LIBS += -F$$PWD/../../mac_os/ -framework Sparkle
+#    INCLUDEPATH += $$PWD/../../mac_os/Sparkle.framework/Versions/A/Headers
 
 
 
-    ICON = icons/app/qoobar.icns
-    INSTALL_PATH = $$DESTDIR/qoobar.app/Contents
+#    ICON = icons/app/qoobar.icns
+#    INSTALL_PATH = $$DESTDIR/qoobar.app/Contents
 
-    OTHER_FILES += ../../Info.plist \
-                   ../../Entitlements.plist
-    QMAKE_INFO_PLIST = ../../Info.plist
-    HEADERS +=              cocoainit.h
-    OBJECTIVE_SOURCES +=    sparkleupdater.mm \
-                            cocoainit.mm \
-                            mactaskbar.mm
+#    OTHER_FILES += ../../Info.plist \
+#                   ../../Entitlements.plist
+#    QMAKE_INFO_PLIST = ../../Info.plist
+#    HEADERS +=              cocoainit.h
+#    OBJECTIVE_SOURCES +=    sparkleupdater.mm \
+#                            cocoainit.mm \
+#                            mactaskbar.mm
 
-    icon.path = $$INSTALL_PATH/Resources
-    icon.files = icons/app/qoobar.icns
-    resources.path = $$INSTALL_PATH/Resources
-    resources.files = *.qm
-    resources.files += args.json splitandconvert.sh
-    schemes.path = $$INSTALL_PATH/Resources/schemes
-    schemes.files = schemes/*.xml
-    completions.path = $$INSTALL_PATH/Resources/completions
-    completions.files = completions/*.txt
-    icons.files = icons/*.ico
-    icons.files += icons/*.png
-    icons.files += icons/*.gif
-    icons.path = $$INSTALL_PATH/Resources/icons/default
-    coloredicons.files = icons/coloured/*.ico
-    coloredicons.files += icons/coloured/*.png
-    coloredicons.files += icons/coloured/*.gif
-    coloredicons.files += icons/coloured/*.json
-    coloredicons.path = $$INSTALL_PATH/Resources/icons/coloured
+#    icon.path = $$INSTALL_PATH/Resources
+#    icon.files = icons/app/qoobar.icns
+#    resources.path = $$INSTALL_PATH/Resources
+#    resources.files = *.qm
+#    resources.files += args.json splitandconvert.sh
+#    schemes.path = $$INSTALL_PATH/Resources/schemes
+#    schemes.files = schemes/*.xml
+#    completions.path = $$INSTALL_PATH/Resources/completions
+#    completions.files = completions/*.txt
+#    icons.files = icons/*.ico
+#    icons.files += icons/*.png
+#    icons.files += icons/*.gif
+#    icons.path = $$INSTALL_PATH/Resources/icons/default
+#    coloredicons.files = icons/coloured/*.ico
+#    coloredicons.files += icons/coloured/*.png
+#    coloredicons.files += icons/coloured/*.gif
+#    coloredicons.files += icons/coloured/*.json
+#    coloredicons.path = $$INSTALL_PATH/Resources/icons/coloured
 
-    INSTALLS += icon resources schemes completions icons coloredicons
+#    INSTALLS += icon resources schemes completions icons coloredicons
 
-    public_key.path = $$INSTALL_PATH/Resources
-    public_key.files = ../../mac_os/dsa_pub.pem
+#    public_key.path = $$INSTALL_PATH/Resources
+#    public_key.files = ../../mac_os/dsa_pub.pem
 
-    INSTALLS += public_key
-}
+#    INSTALLS += public_key
+#}

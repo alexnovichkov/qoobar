@@ -45,9 +45,13 @@ QSize MacSplitterHandle::sizeHint() const
         return QSize(1, parent.height());
 }
 
-void MacSplitterHandle::enterEvent(QEnterEvent *e)
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    void MacSplitterHandle::enterEvent(QEnterEvent *event)
+#else
+    void MacSplitterHandle::enterEvent(QEvent *event)
+#endif
 {
-    QSplitterHandle::enterEvent(e);
+    QSplitterHandle::enterEvent(event);
     setCursor(orientation() == Qt::Vertical?Qt::SplitVCursor:Qt::SplitHCursor);
 }
 

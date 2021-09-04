@@ -93,7 +93,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     hideIcon = QIcon::fromTheme("fold");
     showIcon = QIcon::fromTheme("unfold");
 
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     double h = QFontMetricsF(App->charsFont).height();
 
     scroll = new QScrollArea;
@@ -158,7 +158,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
         toggleCharsAct->setIcon(showIcon);
         toggleCharsAct->setToolTip(tr("Show characters"));
     }
-//#endif
+#endif
 
     if (plain) {
         edit = new LineEdit(false,this);
@@ -198,8 +198,11 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
         acts << a;
     }
     collectIntoMenu->addActions(acts);
-    connect(mapper, &QSignalMapper::mappedInt, this, qOverload<int>(&TagsEditDialog::collectTags));
-
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
+    connect(mapper, SIGNAL(mappedInt(int)), this, SLOT(collectTags(int)));
+#else
+    connect(mapper, SIGNAL(mapped(int)), this, SLOT(collectTags(int)));
+#endif
     QAction *collect = new QAction(tr("Collect for future use"),this);
     connect(collect,SIGNAL(triggered()),this,SLOT(collectTags()));
     collect->setMenu(collectIntoMenu);
@@ -211,20 +214,20 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     connect(searchPanel,SIGNAL(replaceAndFind()),SLOT(replaceAndFind()));
 
     QAction *startSearchAct = new QAction(QIcon::fromTheme("edit-find"),tr("Find/Replace"),this);
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     startSearchAct->setShortcut(QKeySequence::Find);
-//#endif
+#endif
     connect(startSearchAct,SIGNAL(triggered()),SLOT(startSearch()));
     addAction(startSearchAct);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-//#ifdef Q_OS_MAC
-//    QButton *helpButton = new QButton(this,QButton::HelpButton);
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    QButton *helpButton = new QButton(this,QButton::HelpButton);
+#else
     QPushButton *helpButton = buttonBox->addButton(QDialogButtonBox::Help);
-//#endif
+#endif
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
 
 
@@ -248,30 +251,30 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 
 
 
-//#ifdef Q_OS_MAC
-//    StyledBar *operationsToolBar = new StyledBar(this);
-//    QHBoxLayout *l = new QHBoxLayout;
-//    l->setSpacing(0);
-//    l->setMargin(0);
-//    for (int i=0; i<8; ++i) {
-//        QAction *a = new QAction(QIcon::fromTheme(operations[i].icon),
-//                                 operations[i].text,this);
-//        connect(a,SIGNAL(triggered()),operationsMapper,SLOT(map()));
-//        operationsMapper->setMapping(a, operations[i].map);
-//        QToolButton *tb = new FancyToolButton(this);
-//        tb->setDefaultAction(a);
-//        l->addWidget(tb);
-//    }
-//    QToolButton *tb=new FancyToolButton(this);
-//    tb->setDefaultAction(startSearchAct);
-//    l->addWidget(tb);
-//    tb=new QToolButton(this);
-//    tb->setDefaultAction(collect);
-//    l->addWidget(new StyledSeparator(this));
-//    l->addWidget(tb);
-//    l->addStretch();
-//    operationsToolBar->setLayout(l);
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    StyledBar *operationsToolBar = new StyledBar(this);
+    QHBoxLayout *l = new QHBoxLayout;
+    l->setSpacing(0);
+    l->setMargin(0);
+    for (int i=0; i<8; ++i) {
+        QAction *a = new QAction(QIcon::fromTheme(operations[i].icon),
+                                 operations[i].text,this);
+        connect(a,SIGNAL(triggered()),operationsMapper,SLOT(map()));
+        operationsMapper->setMapping(a, operations[i].map);
+        QToolButton *tb = new FancyToolButton(this);
+        tb->setDefaultAction(a);
+        l->addWidget(tb);
+    }
+    QToolButton *tb=new FancyToolButton(this);
+    tb->setDefaultAction(startSearchAct);
+    l->addWidget(tb);
+    tb=new QToolButton(this);
+    tb->setDefaultAction(collect);
+    l->addWidget(new StyledSeparator(this));
+    l->addWidget(tb);
+    l->addStretch();
+    operationsToolBar->setLayout(l);
+#else
     QToolBar *operationsToolBar = new QToolBar(this);
     operationsToolBar->addWidget(toggleCharsButton);
     operationsToolBar->addSeparator();
@@ -290,13 +293,13 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     operationsToolBar->addAction(startSearchAct);
     operationsToolBar->addSeparator();
     operationsToolBar->addAction(collect);
-//#endif
+#endif
 
     //synthesizing
     QGridLayout *tagsEditorLayout = new QGridLayout;
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     tagsEditorLayout->addWidget(scroll,1,0,plain?3:4,1);
-//#endif
+#endif
     if (plain) tagsEditorLayout->addWidget(edit,1,1);
     else tagsEditorLayout->addWidget(pedit,1,1,2,1);
     tagsEditorLayout->addWidget(legendButton,1,2);
@@ -304,14 +307,14 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     tagsEditorLayout->addWidget(mLabel,pos,1,1,2); pos++;
     tagsEditorLayout->addWidget(table,pos,1,1,2); pos++;
     tagsEditorLayout->addWidget(searchPanel,pos,0,1,3); pos++;
-//#ifdef Q_OS_MAC
-//    QHBoxLayout *boxL = new QHBoxLayout;
-//    boxL->addWidget(helpButton);
-//    boxL->addWidget(buttonBox);
-//    tagsEditorLayout->addLayout(boxL,pos,0,1,3);
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    QHBoxLayout *boxL = new QHBoxLayout;
+    boxL->addWidget(helpButton);
+    boxL->addWidget(buttonBox);
+    tagsEditorLayout->addLayout(boxL,pos,0,1,3);
+#else
     tagsEditorLayout->addWidget(buttonBox,pos,0,1,3);
-//#endif
+#endif
     setLayout(tagsEditorLayout);
     this->layout()->setMenuBar(operationsToolBar);
 
@@ -568,7 +571,7 @@ void TagsEditDialog::handleSentTag(int tagID,bool fromTable)
 
 void TagsEditDialog::toggleCharsWidget()
 {DD;
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     if (scroll->isVisible()) {
         scroll->hide();
         toggleCharsAct->setIcon(showIcon);
@@ -581,7 +584,7 @@ void TagsEditDialog::toggleCharsWidget()
         toggleCharsAct->setToolTip(tr("Hide characters"));
         App->charsShown = true;
     }
-//#endif
+#endif
 }
 
 void TagsEditDialog::insertLegend(const QString &s)

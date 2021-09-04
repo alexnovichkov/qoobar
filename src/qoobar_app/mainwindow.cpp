@@ -203,9 +203,9 @@ void MainWindow::init()
     //menu
     createMenus();
     menuSeparator = menus[QSL("edit")]->actions().first();
-//#ifdef Q_OS_MAC
-//    menus[QSL("edit")]->addAction(actions["specialCharacters"]);
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    menus[QSL("edit")]->addAction(actions["specialCharacters"]);
+#endif
     const QStringList toolBarActs =
             QString("addDir,addFiles,split,,save,rereadTags,,*,rename,fill,"
                     "removeTags,delAllFiles,,play,,cut,copy,paste,newTag").split(QSL(","));
@@ -232,7 +232,7 @@ void MainWindow::init()
 //========================================================================
     dirModel = new QFileSystemModel(this);
     dirModel->setFilter(QDir::AllDirs | QDir::Drives | QDir::NoDotAndDotDot);
-    dirModel->setIconProvider(new QAbstractFileIconProvider);
+    //dirModel->setIconProvider(new QAbstractFileIconProvider);
     dirModel->setReadOnly(true);
     dirView = new QTreeView(this);
     dirView->setSortingEnabled(false);
@@ -243,10 +243,10 @@ void MainWindow::init()
     dirView->setColumnHidden(3,true);
     dirView->setHeaderHidden(true);
     dirView->setContextMenuPolicy(Qt::ActionsContextMenu);
-//#ifdef Q_OS_MAC
-//    dirView->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
-//    dirView->setAttribute(Qt::WA_MacShowFocusRect,false);
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    dirView->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
+    dirView->setAttribute(Qt::WA_MacShowFocusRect,false);
+#endif
 
 #ifndef Q_OS_WIN
     dirView->expandToDepth(100);
@@ -265,23 +265,23 @@ void MainWindow::init()
     connect(tabWidget,SIGNAL(currentChanged(int)),SLOT(changeCurrentTab(int)));
     connect(tabWidget,SIGNAL(tabTextChanged(QString)),SLOT(onTabTextChanged()));
 
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     sp = new QSplitter(Qt::Horizontal,this);
-//#else
-//    sp = new MacSplitter(Qt::Horizontal,this);
-//    sp->setChildrenCollapsible(false);
-//#endif
+#else
+    sp = new MacSplitter(Qt::Horizontal,this);
+    sp->setChildrenCollapsible(false);
+#endif
     sp->setOpaqueResize(false);
     sp->addWidget(dirView);
     sp->addWidget(tabWidget);
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     //TODO: this->devicePixelRatio()
     const int dpiSize = 0;//dpiAwareSize(5, this);
     sp->setContentsMargins(dpiSize,
                            dpiSize,
                            dpiSize,
                            dpiSize);
-//#endif
+#endif
     //sp->setStretchFactor(0,1);
     //sp->setStretchFactor(1,3);
 
@@ -595,9 +595,9 @@ void MainWindow::showAboutDialog()
                    .arg(TAGLIB_PATCH_VERSION);
 
     QString libdiscid=QSL("libdiscid");
-//#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     if (App->discidLibraryPath.isEmpty()) libdiscid.append(notInstalled);
-//#endif
+#endif
 
     QString libraries=QString("%1<ul><li>Qt %2</li><li>%3</li><li>%4</li></ul>")
             .arg(tr("<b>Qoobar uses:</b>"))
@@ -711,9 +711,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 bool MainWindow::closeRequested(bool checkClosing)
 {DD;
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
+    Q_UNUSED(checkClosing)
     return maybeClose();
-//#endif
+#else
     if (checkClosing && clearState()) {
     //if (checkClosing && maybeClose()) {
         hide();
@@ -722,6 +723,7 @@ bool MainWindow::closeRequested(bool checkClosing)
     else {//close application
         return maybeClose();
     }
+#endif
 }
 
 bool MainWindow::maybeClose()
@@ -937,20 +939,20 @@ void MainWindow::checkUpdates()
 
 void MainWindow::showSettingsDialog()
 {DD;
-//#ifdef Q_OS_MAC
-//    SettingsDialog *settingsDialog = new SettingsDialog();
-//    connect(settingsDialog,SIGNAL(retranslate()),SLOT(retranslateUi()));
+#ifdef OSX_SUPPORT_ENABLED
+    SettingsDialog *settingsDialog = new SettingsDialog();
+    connect(settingsDialog,SIGNAL(retranslate()),SLOT(retranslateUi()));
 
-//    QEventLoop q;
-//    connect(settingsDialog,SIGNAL(destroyed()),&q,SLOT(quit()));
+    QEventLoop q;
+    connect(settingsDialog,SIGNAL(destroyed()),&q,SLOT(quit()));
 
-//    settingsDialog->show();
-//    q.exec();
-//#else
+    settingsDialog->show();
+    q.exec();
+#else
     SettingsDialog settingsDialog(this);
     connect(&settingsDialog,SIGNAL(retranslate()),SLOT(retranslateUi()));
     settingsDialog.exec();
-//#endif
+#endif
     if (!App->useUndo) {
         Q_FOREACH (QUndoStack *stack,undoGroup->stacks()) stack->clear();
     }

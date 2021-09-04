@@ -103,7 +103,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 
     autoexpand = new QCheckBox(tr("Automatically fill a tag "
                                   "when pasting a single line"),this);
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     chars=new FancyLineEdit(this);
     chars->setButtonPixmap(FancyLineEdit::Right, QIcon::fromTheme("font").pixmap(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
     chars->setButtonVisible(FancyLineEdit::Right, true);
@@ -113,7 +113,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
     charsBox = new QLabel(tr("Characters"),this);
     charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
-//#endif
+#endif
     lang = new QComboBox(this);
     QStringList ts=QDir(ApplicationPaths::translationsPath()).entryList(QStringList(QSL("*.qm")), QDir::Files | QDir::Readable);
     QTranslator translator;
@@ -154,21 +154,21 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     sortOptions->addItem(tr("case insensitively"));
 
     auto *UIlayout = new QFormLayout;
-//#ifdef Q_OS_MAC
-//    UIlayout->addRow("",useUndo);
-//    UIlayout->addRow("",autoexpand);
-//    UIlayout->addRow("",hideTabBar);
-//    UIlayout->addRow("",dirBox);
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    UIlayout->addRow("",useUndo);
+    UIlayout->addRow("",autoexpand);
+    UIlayout->addRow("",hideTabBar);
+    UIlayout->addRow("",dirBox);
+#else
     UIlayout->addRow(useUndo);
     UIlayout->addRow(autoexpand);
     UIlayout->addRow(hideTabBar);
     UIlayout->addRow(dirBox);
-//#endif
+#endif
     UIlayout->addRow(dirRootLabel,dirRoot);
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     UIlayout->addRow(charsBox, chars);
-//#endif
+#endif
     UIlayout->addRow(sortOptionsLabel, sortOptions);
     UIlayout->addRow(statusBarTrackLabel, statusBarTrack);
     UIlayout->addRow(langLabel, lang);
@@ -190,10 +190,10 @@ void InterfacePage::setSettings()
     useUndo->setChecked(App->useUndo);
     autoexpand->setChecked(App->autoexpand);
     sortOptions->setCurrentIndex(App->sortOption);
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     chars->setText(App->chars);
     chars->setCursorPosition(0);
-//#endif
+#endif
     int langIndex = lang->findData(App->langID);
     if (langIndex>=0) lang->setCurrentIndex(langIndex);
 
@@ -228,12 +228,12 @@ void InterfacePage::retranslateUI()
 
     autoexpand->setText(tr("Automatically fill a tag "
                            "when pasting a single line"));
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     chars->setButtonToolTip(FancyLineEdit::Right, tr("Font..."));
     charsBox->setText(tr("Characters"));
     chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
     charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
-//#endif
+#endif
     langLabel->setText(tr("User interface language"));
     useUndo->setText(tr("Use undo / redo"));
     dirBox->setText(tr("Show folder tree"));
@@ -249,9 +249,9 @@ void InterfacePage::retranslateUI()
 }
 void InterfacePage::saveSettings()
 {DD;
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     App->chars=chars->text();
-//#endif
+#endif
     App->autoexpand=autoexpand->isChecked();
     App->useUndo = useUndo->isChecked();
     App->showDirView = dirBox->isChecked();
@@ -332,9 +332,9 @@ CompletionPage::CompletionPage(QWidget *parent) : ConfigPage(parent)
     completionTree->setWhatsThis(tr("Check the tags for which you wish to use the autocompletion.<br>"
                                     "<br>The <i>Edit...</i> buttons allows you to manually change the remembered text lines"));
     completionTree->setAlternatingRowColors(true);
-//#ifdef Q_OS_MAC
-//    completionTree->setAttribute(Qt::WA_MacSmallSize, true);
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    completionTree->setAttribute(Qt::WA_MacSmallSize, true);
+#endif
     const int tagsCount = App->currentScheme->tagsCount();
     for (int i=0; i<tagsCount; ++i) {
         auto *item = new QTreeWidgetItem(completionTree);
@@ -1097,19 +1097,19 @@ PluginsPage::PluginsPage(QWidget *parent) : ConfigPage(parent)
     downloadTree->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     downloadTree->header()->setStretchLastSection(false);
 
-//#ifdef Q_OS_MAC
-//    const int height = 120;
-//    downloadTree->setFixedHeight(height);
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    const int height = 120;
+    downloadTree->setFixedHeight(height);
+#endif
 
     editingTree = new QTreeWidget(this);
     editingTree->setRootIsDecorated(false);
     editingTree->setColumnCount(3);
     editingTree->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     editingTree->header()->setStretchLastSection(false);
-//#ifdef Q_OS_MAC
-//    editingTree->setFixedHeight(height);
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    editingTree->setFixedHeight(height);
+#endif
 
     auto *l = new QVBoxLayout;
 #ifndef Q_OS_WIN

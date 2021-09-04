@@ -34,9 +34,7 @@
 #include "enums.h"
 #include "qoobarglobals.h"
 
-//#ifdef Q_OS_MAC
 #define IMAGEBOX_TOOLBAR
-//#endif
 
 Panel::Panel(PanelType type, QWidget *parent) : QWidget(parent), type(type)
 {DD
@@ -100,26 +98,30 @@ void Panel::clear()
     }
 }
 
-void Panel::enterEvent(QEnterEvent * event)
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    void Panel::enterEvent(QEnterEvent *event)
+#else
+    void Panel::enterEvent(QEvent *event)
+#endif
 {//DD
     QWidget::enterEvent(event);
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     changeHoverState(true);
-//#endif
+#endif
 }
 
 void Panel::leaveEvent(QEvent * event)
 {//DD
     QWidget::leaveEvent(event);
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     changeHoverState(false);
-//#endif
+#endif
 }
 
 void Panel::paintEvent(QPaintEvent *paintEvent)
 {//DD
     QWidget::paintEvent(paintEvent);
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     QPainter p(this);
 
     QPoint topLeft(label->geometry().left(), contentsRect().top());
@@ -128,7 +130,7 @@ void Panel::paintEvent(QPaintEvent *paintEvent)
     if (backgroundPixmap.isNull() || backgroundPixmap.size() != size())
         backgroundPixmap = cacheBackground(paintArea.size());
     p.drawPixmap(paintArea, backgroundPixmap);
-//#endif
+#endif
 }
 
 QPixmap Panel::cacheBackground(const QSize &size)
@@ -172,14 +174,14 @@ void Panel::addWidget(QWidget *w)
 FadingPanel::FadingPanel(QWidget *parent) :
     QWidget(parent)
 {DD
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     m_opacityEffect=new QGraphicsOpacityEffect;
     m_opacityEffect->setOpacity(0);
     setGraphicsEffect(m_opacityEffect);
     QPalette pal;
     pal.setBrush(QPalette::All, QPalette::Window, Qt::transparent);
     setPalette(pal);
-//#endif
+#endif
     QVBoxLayout *l = new QVBoxLayout;
     l->setContentsMargins(0,0,0,0);
     l->addStretch();

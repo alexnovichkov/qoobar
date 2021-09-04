@@ -37,11 +37,11 @@ class QToolBar;
 
 
 class SettingsDialog : public
-//        #ifdef Q_OS_MAC
-//        QMainWindow
-//        #else
+        #ifdef OSX_SUPPORT_ENABLED
+        QMainWindow
+        #else
         QDialog
-//        #endif
+        #endif
 {
 Q_OBJECT
 public:

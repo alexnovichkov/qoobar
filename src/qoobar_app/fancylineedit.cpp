@@ -33,6 +33,7 @@
 #include <QString>
 #include <QPropertyAnimation>
 #include <QApplication>
+#include <QScreen>
 #include <QMenu>
 #include <QMouseEvent>
 #include <QLabel>

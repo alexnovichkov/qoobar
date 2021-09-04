@@ -9,35 +9,35 @@
 #include "mainwindow.h"
 #include "model.h"
 
-//#ifdef Q_OS_MAC
-//class ColumnSelectorButton : public QToolButton
-//{
-//public:
-//    explicit ColumnSelectorButton(QHeaderView *header, QWidget*parent=0) : QToolButton(parent),
-//        m_header(header)
-//    {}
-//    void paintEvent(QPaintEvent * pe)
-//    {
-//        int w = width();
-//        int h = m_header->height();
-//        w++;
+#ifdef OSX_SUPPORT_ENABLED
+class ColumnSelectorButton : public QToolButton
+{
+public:
+    explicit ColumnSelectorButton(QHeaderView *header, QWidget*parent=0) : QToolButton(parent),
+        m_header(header)
+    {}
+    void paintEvent(QPaintEvent * pe)
+    {
+        int w = width();
+        int h = m_header->height();
+        w++;
 
-//        QPainter p(this);
-//        p.setClipRect(pe->rect());
+        QPainter p(this);
+        p.setClipRect(pe->rect());
 
-//        QStyleOptionHeader opt;
-//        opt.initFrom(m_header);
-//        opt.state |= QStyle::State_Horizontal |
-//                     QStyle::State_Enabled |
-//                     QStyle::State_Raised;
-//        opt.rect = QRect(0,0, w,h);
-//        style()->drawControl(QStyle::CE_Header, &opt, &p, m_header);
-//        p.end();
-//    }
-//private:
-//    QHeaderView *m_header;
-//};
-//#endif
+        QStyleOptionHeader opt;
+        opt.initFrom(m_header);
+        opt.state |= QStyle::State_Horizontal |
+                     QStyle::State_Enabled |
+                     QStyle::State_Raised;
+        opt.rect = QRect(0,0, w,h);
+        style()->drawControl(QStyle::CE_Header, &opt, &p, m_header);
+        p.end();
+    }
+private:
+    QHeaderView *m_header;
+};
+#endif
 
 TreeView::TreeView(Tab *parent) : QTreeView(parent)
 {DD;
@@ -53,15 +53,15 @@ TreeView::TreeView(Tab *parent) : QTreeView(parent)
     showAct = new QAction(tr("Show/hide columns..."), this);
     connect(showAct,SIGNAL(triggered()),this,SLOT(adjustDisplayedTags()));
 
-//#ifdef Q_OS_MAC
-//    ColumnSelectorButton *selector = new ColumnSelectorButton(this->header(), this);
-//    this->addScrollBarWidget(selector,Qt::AlignTop);
-//    selector->setDefaultAction(showAct);
+#ifdef OSX_SUPPORT_ENABLED
+    ColumnSelectorButton *selector = new ColumnSelectorButton(this->header(), this);
+    this->addScrollBarWidget(selector,Qt::AlignTop);
+    selector->setDefaultAction(showAct);
 
-//    setFrameStyle(QFrame::NoFrame | QFrame::Plain);
-//    setAttribute(Qt::WA_MacShowFocusRect, false);
-//    setAutoFillBackground(true);
-//#endif
+    setFrameStyle(QFrame::NoFrame | QFrame::Plain);
+    setAttribute(Qt::WA_MacShowFocusRect, false);
+    setAutoFillBackground(true);
+#endif
 
     if (!App->columns167.isEmpty()) {
         header()->restoreState(App->columns167);

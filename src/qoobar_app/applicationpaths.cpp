@@ -2,28 +2,28 @@
 #include "applicationpaths.h"
 #include "qoobarglobals.h"
 
-//#ifdef Q_OS_MAC
-//QString ApplicationPaths::bundlePath()
-//{DD;
-//    static QString _bundlePath;
-//    if (_bundlePath.isEmpty()) {
-//        QDir dir(qApp->applicationDirPath());
-//        dir.cdUp();
-//        _bundlePath=dir.canonicalPath();
-//    }
-//    return _bundlePath;
-//}
-//#endif
+#ifdef Q_OS_MACOS
+QString ApplicationPaths::bundlePath()
+{DD;
+    static QString _bundlePath;
+    if (_bundlePath.isEmpty()) {
+        QDir dir(qApp->applicationDirPath());
+        dir.cdUp();
+        _bundlePath=dir.canonicalPath();
+    }
+    return _bundlePath;
+}
+#endif
 
 QString ApplicationPaths::sharedPath()
 {DD;
+#ifdef Q_OS_MACOS
+    return bundlePath() +"/Resources";
+#endif
 #ifdef Q_OS_LINUX
     return QString("/usr/share/qoobar");
-//#elif defined Q_OS_MAC
-//    return bundlePath() +"/Resources";
-#else
-    return qApp->applicationDirPath();
 #endif
+    return qApp->applicationDirPath();
 }
 
 QString ApplicationPaths::translationsPath()
@@ -68,8 +68,8 @@ QString ApplicationPaths::pluginsPath()
 {DD;
 #ifdef Q_OS_LINUX
     return QString("/usr/lib/qoobar/plugins");
-//#elif defined Q_OS_MAC
-//    return bundlePath() +"/PlugIns";
+#elif defined Q_OS_MACOS
+    return bundlePath() +"/PlugIns";
 #else
     return sharedPath()+"/plugins";
 #endif

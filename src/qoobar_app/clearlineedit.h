@@ -15,6 +15,7 @@
 
 class ClearLineEdit : public QLineEdit
 {
+    Q_OBJECT
 public:
     explicit ClearLineEdit(QWidget *parent = 0);
 };

@@ -39,7 +39,11 @@ void ClickableLabel::mouseReleaseEvent(QMouseEvent *ev)
     QLabel::mouseReleaseEvent(ev);
 }
 
-void ClickableLabel::enterEvent(QEnterEvent *event)
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    void ClickableLabel::enterEvent(QEnterEvent *event)
+#else
+    void ClickableLabel::enterEvent(QEvent *event)
+#endif
 {
     QLabel::enterEvent(event);
     bool hadPixmap = false;

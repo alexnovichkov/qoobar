@@ -37,6 +37,7 @@ class ClickableLabel;
 class QAction;
 class QToolButton;
 class QGraphicsOpacityEffect;
+class QEnterEvent;
 
 //stolen from Qt Creator src
 class FadingPanel : public QWidget
@@ -64,7 +65,11 @@ public:
     void addWidget(QWidget *);
     void clear();
 protected:
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
     void enterEvent(QEnterEvent *event);
+#else
+    void enterEvent(QEvent *event);
+#endif
     void leaveEvent(QEvent *event);
     void paintEvent(QPaintEvent *paintEvent);
 private Q_SLOTS:

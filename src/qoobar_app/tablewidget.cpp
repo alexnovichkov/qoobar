@@ -44,11 +44,11 @@ TableWidget::TableWidget(QWidget* parent) : QTableWidget(App->currentScheme->tag
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setWordWrap(false);
 
-//#ifdef Q_OS_MAC
-//    setFrameStyle(QFrame::NoFrame | QFrame::Plain);
-//    //setAttribute(Qt::WA_MacShowFocusRect, false);
-//    setAutoFillBackground(true);
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    setFrameStyle(QFrame::NoFrame | QFrame::Plain);
+    //setAttribute(Qt::WA_MacShowFocusRect, false);
+    setAutoFillBackground(true);
+#endif
 
     const int tagsCount = App->currentScheme->tagsCount();
     for (int i=0; i<tagsCount; ++i) {

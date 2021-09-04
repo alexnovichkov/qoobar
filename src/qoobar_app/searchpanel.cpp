@@ -17,16 +17,16 @@ SearchPanel::SearchPanel(QWidget *parent) :
     replaceByEdit = new ClearLineEdit(this);
     replaceByEdit->setMinimumWidth(200);
 
-//#ifdef Q_OS_MAC
-//    QButton *closeSearchPanel = new QButton(this, QButton::RoundRect);
-//    closeSearchPanel->setText(tr("Close"));
+#ifdef OSX_SUPPORT_ENABLED
+    QButton *closeSearchPanel = new QButton(this, QButton::RoundRect);
+    closeSearchPanel->setText(tr("Close"));
 
-//    QButton *findNextButton = new QButton(this, QButton::RoundRect);
-//    QButton *findPrevButton = new QButton(this, QButton::RoundRect);
-//    QButton *replaceAllButton = new QButton(this, QButton::RoundRect);
-//    QButton *replaceButton = new QButton(this, QButton::RoundRect);
-//    QButton *replaceAndFindButton = new QButton(this, QButton::RoundRect);
-//#else
+    QButton *findNextButton = new QButton(this, QButton::RoundRect);
+    QButton *findPrevButton = new QButton(this, QButton::RoundRect);
+    QButton *replaceAllButton = new QButton(this, QButton::RoundRect);
+    QButton *replaceButton = new QButton(this, QButton::RoundRect);
+    QButton *replaceAndFindButton = new QButton(this, QButton::RoundRect);
+#else
     QToolButton *closeSearchPanel = new QToolButton(this);
     closeSearchPanel->setIcon(style()->standardPixmap(QStyle::SP_DockWidgetCloseButton));
     closeSearchPanel->setAutoRaise(true);
@@ -55,7 +55,7 @@ SearchPanel::SearchPanel(QWidget *parent) :
 
     QToolButton *replaceAndFindButton = new QToolButton(this);
     replaceAndFindButton->setAutoRaise(true);
-//#endif
+#endif
 
     findNextButton->setText(tr("Find next"));
     findPrevButton->setText(tr("Find previous"));

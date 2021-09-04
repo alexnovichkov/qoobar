@@ -113,11 +113,11 @@ int main(int argc, char *argv[])
                             proxyUrl.port(), proxyUrl.userName(), proxyUrl.password());
         QNetworkProxy::setApplicationProxy(proxy);
     }
-//# if defined(Q_OS_MAC) // unix and mac
-//    else {
-//        QNetworkProxyFactory::setUseSystemConfiguration(true);
-//    }
-//# endif
+# if defined(Q_OS_MACOS) // unix and mac
+    else {
+        QNetworkProxyFactory::setUseSystemConfiguration(true);
+    }
+# endif
 #else // windows and os/2
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 #endif

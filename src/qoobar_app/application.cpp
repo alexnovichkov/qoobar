@@ -53,9 +53,9 @@ bool isValidLibrary(const QFileInfo &path)
 Application::Application(int &argc, char **argv, bool useGui)
     :  QApplication(argc,argv,useGui)
 {DD;
-//#ifdef Q_OS_MAC
-//    connect(this,SIGNAL(applicationStateChanged(Qt::ApplicationState)),SLOT(onApplicationStateChanged(Qt::ApplicationState)));
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    connect(this,SIGNAL(applicationStateChanged(Qt::ApplicationState)),SLOT(onApplicationStateChanged(Qt::ApplicationState)));
+#endif
     appTranslator = new QTranslator(this);
     qtTranslator = new QTranslator(this);
     installTranslator(appTranslator);
@@ -285,11 +285,11 @@ QSettings *Application::globalSettings()
 #else
 #ifdef Q_OS_LINUX
     return new QSettings(QString("%1/.config/qoobar/global.ini").arg(QDir::homePath()), QSettings::IniFormat);
-//#elif defined(Q_OS_MAC)
-//    return new QSettings(QSL("qoobar"),QSL("global"));
-#else
-    return new QSettings(QSL("qoobar"),QSL("gui"));
 #endif
+#ifdef OSX_SUPPORT_ENABLED
+    return new QSettings(QSL("qoobar"),QSL("global"));
+#endif
+    return new QSettings(QSL("qoobar"),QSL("gui"));
 #endif
 }
 
@@ -375,11 +375,11 @@ void Application::readGlobalSettings()
     //"tags" - write rg into ape tags
     mpcWriteRg = se->value("mpc-replaygain-format", "header").toString()=="header";
 
-//#ifdef Q_OS_MAC
-//    defaultSplitFormat = se->value("default-split-format", "m4a").toString();
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    defaultSplitFormat = se->value("default-split-format", "m4a").toString();
+#else
     defaultSplitFormat = se->value("default-split-format", "flac").toString();
-//#endif
+#endif
 
     iconTheme = se->value(QSL("iconTheme"),QSL("maia")).toString();
     QIcon::setThemeName(iconTheme);
@@ -510,10 +510,10 @@ void Application::clearSettings()
     QSettings se(QString("%1/.config/qoobar/global.ini").arg(QDir::homePath()), QSettings::IniFormat);
     se.clear();
 #endif
-//#ifdef Q_OS_MAC
-//    QSettings se(QSL("qoobar"),QSL("global"));
-//    se.clear();
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    QSettings se(QSL("qoobar"),QSL("global"));
+    se.clear();
+#endif
 #ifdef QOOBAR_PORTABLE
     QSettings se1(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
 #else
@@ -566,14 +566,14 @@ void Application::loadPlugins()
     }
 }
 
-//#ifdef Q_OS_MAC
-//void Application::onApplicationStateChanged(Qt::ApplicationState state)
-//{
-//    if (state==Qt::ApplicationActive) {
-//        Q_EMIT dockClicked();
-//    }
-//}
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+void Application::onApplicationStateChanged(Qt::ApplicationState state)
+{
+    if (state==Qt::ApplicationActive) {
+        Q_EMIT dockClicked();
+    }
+}
+#endif
 
 void criticalMessage(QWidget *parent, const QString &caption, const QString &text)
 {DD;

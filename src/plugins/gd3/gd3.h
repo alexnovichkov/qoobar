@@ -31,7 +31,7 @@ private:
     QString getRequestString(const QString &operation, const QString &argument, const QString &argument1=QString());
     QString m_errorString;
 
-//#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     typedef void *DiscId;
 
     typedef DiscId * (*Discid_new)();
@@ -47,7 +47,7 @@ private:
     Discid_get_first_track_num discid_get_first_track_num;
     Discid_get_last_track_num discid_get_last_track_num;
     Discid_get_track_offset discid_get_track_offset;
-//#endif
+#endif
 
     // IDownloadPlugin interface
 public:

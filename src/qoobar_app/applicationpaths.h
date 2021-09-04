@@ -7,9 +7,9 @@
 
 namespace ApplicationPaths
 {
-//#ifdef Q_OS_MAC
-//QString bundlePath();
-//#endif
+#ifdef Q_OS_MACOS
+QString bundlePath();
+#endif
 
 QString sharedPath();
 

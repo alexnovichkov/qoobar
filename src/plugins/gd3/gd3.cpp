@@ -7,9 +7,9 @@
 #include <QXmlStreamReader>
 #include "qoobarglobals.h"
 
-//#ifdef Q_OS_MAC
-//#include "discid.h"
-//#endif
+#ifdef Q_OS_MACOS
+#include "discid.h"
+#endif
 
 constexpr int maximumCDTracks = 99;
 constexpr int firstTrackOffset = 150;
@@ -67,7 +67,7 @@ QStringList GD3Plugin::getTOC(const QVector<int> &lengths)
     m_errorString.clear();
 
     if (lengths.isEmpty()) {//get discID by CD
-//#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
         /*Testing for loadable libraries*/
         QString libName;
 #ifdef Q_OS_LINUX
@@ -96,7 +96,7 @@ QStringList GD3Plugin::getTOC(const QVector<int> &lengths)
         discid_get_first_track_num = reinterpret_cast<Discid_get_first_track_num>(lib.resolve("discid_get_first_track_num"));
         discid_get_last_track_num = reinterpret_cast<Discid_get_last_track_num>(lib.resolve("discid_get_last_track_num"));
         discid_get_track_offset = reinterpret_cast<Discid_get_track_offset>(lib.resolve("discid_get_track_offset"));
-//#endif
+#endif
 
         DiscId *disc = discid_new();
         if (!disc) {
@@ -118,9 +118,9 @@ QStringList GD3Plugin::getTOC(const QVector<int> &lengths)
             offsetsInFrames << QString::number(discid_get_track_offset(disc, i));
 
         discid_free(disc);
-//#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
         lib.unload();
-//#endif
+#endif
     }
     else {//get TOC by files
         const int size = qMin(lengths.size(), maximumCDTracks);

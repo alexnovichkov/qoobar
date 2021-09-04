@@ -271,7 +271,7 @@ void CueSplitter::split()
     QString programToRun;
     QStringList arguments;
 
-#if defined(Q_OS_LINUX) //|| defined (Q_OS_MAC)
+#if defined(Q_OS_LINUX) || defined (Q_OS_MACOS)
     QString pathToScript = qApp->applicationDirPath()+"/splitandconvert.sh";
     if (!QFile::exists(pathToScript)) {
         Q_EMIT message(MT_ERROR, tr("Cannot find the necessary script file: ").append(pathToScript));

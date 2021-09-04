@@ -102,13 +102,13 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     connect(searchBar, SIGNAL(addFile(Tag)),model,SLOT(addFile(Tag)));
     connect(searchBar, SIGNAL(reset()), this, SLOT(delAllFiles()));
 
-//#ifndef Q_OS_MAC
+#ifndef OSX_SUPPORT_ENABLED
     QSplitter *innerSplitter = new QSplitter(Qt::Horizontal,this);
     innerSplitter->setContentsMargins(0,0,0,0);
-//#else
-//    QSplitter *innerSplitter = new MacSplitter();
-//    innerSplitter->setOrientation(Qt::Horizontal);
-//#endif
+#else
+    QSplitter *innerSplitter = new MacSplitter(Qt::Horizontal,this);
+    innerSplitter->setOrientation(Qt::Horizontal);
+#endif
     innerSplitter->setProperty("id", "innerSplitter");
     innerSplitter->setOpaqueResize(false);
     innerSplitter->addWidget(table);
@@ -120,12 +120,12 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
         innerSplitter->restoreState(App->innerSplitterState);
     connect(innerSplitter,SIGNAL(splitterMoved(int,int)),SLOT(saveSplitterState()));
 
-//#ifdef Q_OS_MAC
-//    QSplitter *sp = new MacSplitter(Qt::Vertical,this);
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    QSplitter *sp = new MacSplitter(Qt::Vertical,this);
+#else
     QSplitter *sp = new QSplitter(Qt::Vertical,this);
     sp->setContentsMargins(0,0,0,0);
-//#endif
+#endif
     sp->setProperty("id", "splitter");
     sp->setOpaqueResize(false);
     sp->addWidget(tree);
@@ -498,45 +498,45 @@ void Tab::editCell() /*SLOT*/
     if (a) plain = (a!=multilineEditAct);
 
     QStringList oldValues = getTags(row);
-//#ifdef Q_OS_MAC
-//    //As TagsEditDialog is window modal, all actions enabled in the menu should be disabled manually
-//    QHash<QAction*,bool> actionStates;
-//    actionStates.insert(win->actions[QSL("addDir")], win->actions[QSL("addDir")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("addFiles")], win->actions[QSL("addFiles")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("save")], win->actions[QSL("save")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("saveAll")], win->actions[QSL("saveAll")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("rename")], win->actions[QSL("rename")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("fill")], win->actions[QSL("fill")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("rereadTags")], win->actions[QSL("rereadTags")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("delFiles")], win->actions[QSL("delFiles")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("delAllFiles")], win->actions[QSL("delAllFiles")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("play")], win->actions[QSL("play")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("removeTags")], win->actions[QSL("removeTags")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("cut")], win->actions[QSL("cut")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("copy")], win->actions[QSL("copy")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("paste")], win->actions[QSL("paste")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("newTag")], win->actions[QSL("newTag")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("split")], win->actions[QSL("split")]->isEnabled());
-//    actionStates.insert(win->actions[QSL("replaygain")], win->actions[QSL("replaygain")]->isEnabled());
+#ifdef OSX_SUPPORT_ENABLED
+    //As TagsEditDialog is window modal, all actions enabled in the menu should be disabled manually
+    QHash<QAction*,bool> actionStates;
+    actionStates.insert(win->actions[QSL("addDir")], win->actions[QSL("addDir")]->isEnabled());
+    actionStates.insert(win->actions[QSL("addFiles")], win->actions[QSL("addFiles")]->isEnabled());
+    actionStates.insert(win->actions[QSL("save")], win->actions[QSL("save")]->isEnabled());
+    actionStates.insert(win->actions[QSL("saveAll")], win->actions[QSL("saveAll")]->isEnabled());
+    actionStates.insert(win->actions[QSL("rename")], win->actions[QSL("rename")]->isEnabled());
+    actionStates.insert(win->actions[QSL("fill")], win->actions[QSL("fill")]->isEnabled());
+    actionStates.insert(win->actions[QSL("rereadTags")], win->actions[QSL("rereadTags")]->isEnabled());
+    actionStates.insert(win->actions[QSL("delFiles")], win->actions[QSL("delFiles")]->isEnabled());
+    actionStates.insert(win->actions[QSL("delAllFiles")], win->actions[QSL("delAllFiles")]->isEnabled());
+    actionStates.insert(win->actions[QSL("play")], win->actions[QSL("play")]->isEnabled());
+    actionStates.insert(win->actions[QSL("removeTags")], win->actions[QSL("removeTags")]->isEnabled());
+    actionStates.insert(win->actions[QSL("cut")], win->actions[QSL("cut")]->isEnabled());
+    actionStates.insert(win->actions[QSL("copy")], win->actions[QSL("copy")]->isEnabled());
+    actionStates.insert(win->actions[QSL("paste")], win->actions[QSL("paste")]->isEnabled());
+    actionStates.insert(win->actions[QSL("newTag")], win->actions[QSL("newTag")]->isEnabled());
+    actionStates.insert(win->actions[QSL("split")], win->actions[QSL("split")]->isEnabled());
+    actionStates.insert(win->actions[QSL("replaygain")], win->actions[QSL("replaygain")]->isEnabled());
 
-//    win->actions[QSL("addDir")]->setEnabled(false);
-//    win->actions[QSL("addFiles")]->setEnabled(false);
-//    win->actions[QSL("save")]->setEnabled(false);
-//    win->actions[QSL("saveAll")]->setEnabled(false);
-//    win->actions[QSL("rename")]->setEnabled(false);
-//    win->actions[QSL("fill")]->setEnabled(false);
-//    win->actions[QSL("rereadTags")]->setEnabled(false);
-//    win->actions[QSL("delFiles")]->setEnabled(false);
-//    win->actions[QSL("delAllFiles")]->setEnabled(false);
-//    win->actions[QSL("play")]->setEnabled(false);
-//    win->actions[QSL("removeTags")]->setEnabled(false);
-//    win->actions[QSL("cut")]->setEnabled(false);
-//    win->actions[QSL("copy")]->setEnabled(false);
-//    win->actions[QSL("paste")]->setEnabled(false);
-//    win->actions[QSL("newTag")]->setEnabled(false);
-//    win->actions[QSL("split")]->setEnabled(false);
-//    win->actions[QSL("replaygain")]->setEnabled(false);
-//#endif
+    win->actions[QSL("addDir")]->setEnabled(false);
+    win->actions[QSL("addFiles")]->setEnabled(false);
+    win->actions[QSL("save")]->setEnabled(false);
+    win->actions[QSL("saveAll")]->setEnabled(false);
+    win->actions[QSL("rename")]->setEnabled(false);
+    win->actions[QSL("fill")]->setEnabled(false);
+    win->actions[QSL("rereadTags")]->setEnabled(false);
+    win->actions[QSL("delFiles")]->setEnabled(false);
+    win->actions[QSL("delAllFiles")]->setEnabled(false);
+    win->actions[QSL("play")]->setEnabled(false);
+    win->actions[QSL("removeTags")]->setEnabled(false);
+    win->actions[QSL("cut")]->setEnabled(false);
+    win->actions[QSL("copy")]->setEnabled(false);
+    win->actions[QSL("paste")]->setEnabled(false);
+    win->actions[QSL("newTag")]->setEnabled(false);
+    win->actions[QSL("split")]->setEnabled(false);
+    win->actions[QSL("replaygain")]->setEnabled(false);
+#endif
     TagsEditDialog editor(row,table->verticalHeaderItem(row)->text(),
                           oldValues,table->item(row,0)->text(),plain,win);
     editor.setModel(model);
@@ -550,25 +550,25 @@ void Tab::editCell() /*SLOT*/
 
         tagsChanged(row,newValues);
     }
-//#ifdef Q_OS_MAC
-//    win->actions[QSL("addDir")]->setEnabled(actionStates.value(win->actions[QSL("addDir")]));
-//    win->actions[QSL("addFiles")]->setEnabled(actionStates.value(win->actions[QSL("addFiles")]));
-//    win->actions[QSL("save")]->setEnabled(actionStates.value(win->actions[QSL("save")]));
-//    win->actions[QSL("saveAll")]->setEnabled(actionStates.value(win->actions[QSL("saveAll")]));
-//    win->actions[QSL("rename")]->setEnabled(actionStates.value(win->actions[QSL("rename")]));
-//    win->actions[QSL("fill")]->setEnabled(actionStates.value(win->actions[QSL("fill")]));
-//    win->actions[QSL("rereadTags")]->setEnabled(actionStates.value(win->actions[QSL("rereadTags")]));
-//    win->actions[QSL("delFiles")]->setEnabled(actionStates.value(win->actions[QSL("delFiles")]));
-//    win->actions[QSL("delAllFiles")]->setEnabled(actionStates.value(win->actions[QSL("delAllFiles")]));
-//    win->actions[QSL("play")]->setEnabled(actionStates.value(win->actions[QSL("play")]));
-//    win->actions[QSL("removeTags")]->setEnabled(actionStates.value(win->actions[QSL("removeTags")]));
-//    win->actions[QSL("cut")]->setEnabled(actionStates.value(win->actions[QSL("cut")]));
-//    win->actions[QSL("copy")]->setEnabled(actionStates.value(win->actions[QSL("copy")]));
-//    win->actions[QSL("paste")]->setEnabled(actionStates.value(win->actions[QSL("paste")]));
-//    win->actions[QSL("newTag")]->setEnabled(actionStates.value(win->actions[QSL("newTag")]));
-//    win->actions[QSL("split")]->setEnabled(actionStates.value(win->actions[QSL("split")]));
-//    win->actions[QSL("replaygain")]->setEnabled(actionStates.value(win->actions[QSL("replaygain")]));
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    win->actions[QSL("addDir")]->setEnabled(actionStates.value(win->actions[QSL("addDir")]));
+    win->actions[QSL("addFiles")]->setEnabled(actionStates.value(win->actions[QSL("addFiles")]));
+    win->actions[QSL("save")]->setEnabled(actionStates.value(win->actions[QSL("save")]));
+    win->actions[QSL("saveAll")]->setEnabled(actionStates.value(win->actions[QSL("saveAll")]));
+    win->actions[QSL("rename")]->setEnabled(actionStates.value(win->actions[QSL("rename")]));
+    win->actions[QSL("fill")]->setEnabled(actionStates.value(win->actions[QSL("fill")]));
+    win->actions[QSL("rereadTags")]->setEnabled(actionStates.value(win->actions[QSL("rereadTags")]));
+    win->actions[QSL("delFiles")]->setEnabled(actionStates.value(win->actions[QSL("delFiles")]));
+    win->actions[QSL("delAllFiles")]->setEnabled(actionStates.value(win->actions[QSL("delAllFiles")]));
+    win->actions[QSL("play")]->setEnabled(actionStates.value(win->actions[QSL("play")]));
+    win->actions[QSL("removeTags")]->setEnabled(actionStates.value(win->actions[QSL("removeTags")]));
+    win->actions[QSL("cut")]->setEnabled(actionStates.value(win->actions[QSL("cut")]));
+    win->actions[QSL("copy")]->setEnabled(actionStates.value(win->actions[QSL("copy")]));
+    win->actions[QSL("paste")]->setEnabled(actionStates.value(win->actions[QSL("paste")]));
+    win->actions[QSL("newTag")]->setEnabled(actionStates.value(win->actions[QSL("newTag")]));
+    win->actions[QSL("split")]->setEnabled(actionStates.value(win->actions[QSL("split")]));
+    win->actions[QSL("replaygain")]->setEnabled(actionStates.value(win->actions[QSL("replaygain")]));
+#endif
 }
 
 void Tab::updateTags(QList<Tag> &oldTags, QList<Tag> &newTags, const QString &motivation)
@@ -969,15 +969,15 @@ void Tab::renameFiles() /*SLOT*/
   */
 void Tab::delFiles() /*SLOT*/
 {DD;
-//#ifdef Q_OS_MAC
-//    // Why Qt 5.5.0 ignores widget-shortcut context?
-//    QWidget *w = QApplication::focusWidget();
-//    if (qobject_cast<QTreeView*>(w))
-//    delFiles(false);
-//    else remove();
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    // Why Qt 5.5.0 ignores widget-shortcut context?
+    QWidget *w = QApplication::focusWidget();
+    if (qobject_cast<QTreeView*>(w))
     delFiles(false);
-//#endif
+    else remove();
+#else
+    delFiles(false);
+#endif
 }
 
 /**

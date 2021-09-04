@@ -30,6 +30,10 @@
 #include <QDialog>
 #include <QLabel>
 
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+class QEnterEvent;
+#endif
+
 class ClickableLabel : public QLabel
 {
     Q_OBJECT
@@ -40,7 +44,12 @@ Q_SIGNALS:
     void clicked();
 protected:
     void mouseReleaseEvent(QMouseEvent *ev);
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
     void enterEvent(QEnterEvent *event);
+#else
+    void enterEvent(QEvent *event);
+#endif
+
     void leaveEvent(QEvent *event);
 };
 

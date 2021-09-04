@@ -248,9 +248,9 @@ Q_SIGNALS:
     void settingsCleared();
     void dockClicked();
 private Q_SLOTS:
-//#ifdef Q_OS_MAC
-//    void onApplicationStateChanged(Qt::ApplicationState);
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    void onApplicationStateChanged(Qt::ApplicationState);
+#endif
 private:
     QTranslator *appTranslator;
     QTranslator *qtTranslator;

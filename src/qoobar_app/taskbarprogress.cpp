@@ -1,7 +1,5 @@
 #include "taskbarprogress.h"
 
-//#ifndef Q_OS_MAC
-
 #ifdef Q_OS_WIN
 #if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -94,8 +92,3 @@ void TaskBarProgress::finalize()
 {DD
     QTimer::singleShot(500, this, SLOT(reset()));
 }
-
-
-
-
-//#endif //Q_OS_MAC

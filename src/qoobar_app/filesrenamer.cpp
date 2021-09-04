@@ -63,11 +63,11 @@ QWidgetAction *createWidgetAction(QWidget *widget1, QWidget *widget2, QWidget *p
     auto *inner = new QWidget(parent);
     auto *l = new QHBoxLayout;
     //TODO: this->devicePixelRatio()
-//#ifdef Q_OS_MAC
-//    l->setContentsMargins(5,1,5,1);
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    l->setContentsMargins(5,1,5,1);
+#else
     l->setContentsMargins(0,1,0,1);
-//#endif
+#endif
     if (widget1) l->addWidget(widget1);
     if (widget2) l->addWidget(widget2);
     inner->setLayout(l);
@@ -79,9 +79,9 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     : QDialog(parent), m(model)
 {DD;
     setWindowTitle(tr("Move/Copy/Rename files"));
-//#ifdef Q_OS_MAC
-//    setWindowModality(Qt::WindowModal);
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    setWindowModality(Qt::WindowModal);
+#endif
     if (!m || !m->hasSelection()) return;
 
     oldFileNames = m->selectedFilesNames();
@@ -235,9 +235,9 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     table->horizontalHeader()->setStretchLastSection(true);
 
     table->setTextElideMode(Qt::ElideLeft);
-//#ifdef Q_OS_MAC
-//    table->setAttribute(Qt::WA_MacSmallSize, true);
-//#endif
+#ifdef OSX_SUPPORT_ENABLED
+    table->setAttribute(Qt::WA_MacSmallSize, true);
+#endif
     HighlightDelegate *delegate = new HighlightDelegate(this);
     delegate->setHighlighter(highlighter);
     table->setItemDelegateForColumn(1, delegate);
@@ -257,33 +257,33 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     buttonBox->addButton(QDialogButtonBox::Cancel);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(run()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-//#ifdef Q_OS_MAC
-//    QButton *helpButton = new QButton(this,QButton::HelpButton);
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    QButton *helpButton = new QButton(this,QButton::HelpButton);
+#else
     QPushButton *helpButton = buttonBox->addButton(QDialogButtonBox::Help);
-//#endif
+#endif
     connect(helpButton, SIGNAL(clicked()), SLOT(showHelp()));
     //////////////////////////////////////////////////////////////////////////////
 
-//#ifdef Q_OS_MAC
-//    QVBoxLayout *l = new QVBoxLayout;
-//    QFormLayout *mainLayout = new QFormLayout;
-//    mainLayout->addRow(tr("Do what:"),operationComboBox);
-//    //TODO: this->devicePixelRatio()
-//    directoryEdit->setMinimumWidth(200);
-//    patternEdit->setMinimumWidth((200);
-//    mainLayout->addRow(directoryGroup, directoryEdit);
-//    mainLayout->addRow(tr("Output file name pattern"), patternLayout);
-//    mainLayout->addWidget(optionsButton);
-//    mainLayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
-//    l->addLayout(mainLayout);
-//    l->addWidget(table);
-//    QHBoxLayout *boxL = new QHBoxLayout;
-//    boxL->addWidget(helpButton);
-//    boxL->addWidget(buttonBox);
-//    l->addLayout(boxL);
-//    setLayout(l);
-//#else
+#ifdef OSX_SUPPORT_ENABLED
+    QVBoxLayout *l = new QVBoxLayout;
+    QFormLayout *mainLayout = new QFormLayout;
+    mainLayout->addRow(tr("Do what:"),operationComboBox);
+    //TODO: this->devicePixelRatio()
+    directoryEdit->setMinimumWidth(200);
+    patternEdit->setMinimumWidth(200);
+    mainLayout->addRow(directoryGroup, directoryEdit);
+    mainLayout->addRow(tr("Output file name pattern"), patternLayout);
+    mainLayout->addWidget(optionsButton);
+    mainLayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
+    l->addLayout(mainLayout);
+    l->addWidget(table);
+    QHBoxLayout *boxL = new QHBoxLayout;
+    boxL->addWidget(helpButton);
+    boxL->addWidget(buttonBox);
+    l->addLayout(boxL);
+    setLayout(l);
+#else
     QGridLayout *mainLayout = new QGridLayout;
     mainLayout->addWidget(new QLabel(tr("Do what:")),0,0);
     mainLayout->addWidget(operationComboBox,0,1);
@@ -300,7 +300,7 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     mainLayout->setColumnStretch(1,1);
     mainLayout->setColumnStretch(2,10);
     setLayout(mainLayout);
-//#endif
+#endif
 
     resize(qApp->primaryScreen()->availableSize()/2);
 
