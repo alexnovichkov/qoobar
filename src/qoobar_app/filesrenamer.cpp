@@ -122,10 +122,7 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     patternEdit = new QComboBox(this);
 
     auto *patternLineEdit = new FancyLineEdit(this);
-    QIcon icon = QIcon::fromTheme(layoutDirection() == Qt::LeftToRight ?
-                     QSL("edit-clear-locationbar-rtl") :
-                     QSL("edit-clear-locationbar-ltr"),
-                     QIcon::fromTheme(QSL("edit-clear"), QIcon::fromTheme("editclear")));
+    QIcon icon = QIcon::fromTheme("editclear");
     QPixmap buttonPix = icon.pixmap(SMALL_ICON_SIZE);
 
     patternLineEdit->setButtonPixmap(FancyLineEdit::Right, buttonPix);
@@ -133,6 +130,7 @@ FileRenameDialog::FileRenameDialog(Model *model, QWidget *parent)
     patternLineEdit->setButtonToolTip(FancyLineEdit::Right, tr("Remove this pattern"));
     patternLineEdit->setAutoHideButton(FancyLineEdit::Right, true);
     connect(patternLineEdit, SIGNAL(rightButtonClicked()), this, SLOT(removePattern()));
+
     patternEdit->setLineEdit(patternLineEdit);
 
     patternEdit->setEditable(true);
