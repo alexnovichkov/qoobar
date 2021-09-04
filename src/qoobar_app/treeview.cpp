@@ -9,7 +9,6 @@
 #include "mainwindow.h"
 #include "model.h"
 
-#ifdef OSX_SUPPORT_ENABLED
 class ColumnSelectorButton : public QToolButton
 {
 public:
@@ -37,7 +36,6 @@ public:
 private:
     QHeaderView *m_header;
 };
-#endif
 
 TreeView::TreeView(Tab *parent) : QTreeView(parent)
 {DD;
@@ -63,8 +61,8 @@ TreeView::TreeView(Tab *parent) : QTreeView(parent)
     setAutoFillBackground(true);
 #endif
 
-    if (!App->columns167.isEmpty()) {
-        header()->restoreState(App->columns167);
+    if (!App->columns170.isEmpty()) {
+        header()->restoreState(App->columns170);
     }
     connect(App,SIGNAL(settingsCleared()),SLOT(resetHeader()));
 
@@ -103,7 +101,7 @@ void TreeView::resetHeader()
 
 void TreeView::updateTreeHeaderGeometry()
 {DD;
-    App->columns167 = header()->saveState();
+    App->columns170 = header()->saveState();
 }
 
 void TreeView::retranslateUi()

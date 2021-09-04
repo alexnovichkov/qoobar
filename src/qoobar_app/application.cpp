@@ -241,7 +241,7 @@ void Application::readGuiSettings()
 
     lastCueFile = se->value(QSL("lastCueFile")).toString();
 
-    columns167 = se->value(QSL("columns167_5.0")).toByteArray();
+    columns170 = se->value(QSL("columns170_5.0")).toByteArray();
     rows=se->value(QSL("rows")).toByteArray();
 
     QVariantList variantList = se->value(QSL("tagStatus")).toList();
@@ -418,7 +418,7 @@ void Application::writeGuiSettings()
     se->setValue("cdromDevice",cdromDevice);
     se->setValue("charsFont",charsFont);
     se->setValue("lastCueFile",lastCueFile);
-    se->setValue("columns167_5.0",columns167);
+    se->setValue("columns170_5.0",columns170);
 
     se->setValue("rows",rows);
     se->setValue("tagStatus",QVariant(makeList(tagStatus)));
