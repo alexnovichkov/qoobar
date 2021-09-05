@@ -283,6 +283,7 @@ void CueSplitter::split()
     arguments << QDir::toNativeSeparators(_outputDir);
     arguments << QDir::toNativeSeparators(_inputFile);
     arguments << formatExt;
+    arguments << (ffmpegInstalled?"1":"0");
     programToRun = QSL("sh");
 #elif defined(Q_OS_WIN)
     arguments << "/C";
@@ -311,7 +312,15 @@ void CueSplitter::split()
     arguments << QDir::toNativeSeparators(iFile.isEmpty()?_inputFile:iFile);
 
     arguments << formatExt;
-    programToRun = QSL("c:\\windows\\system32\\cmd.exe");
+    arguments << (ffmpegInstalled?"1":"0");
+
+    QString powershellPath;
+    bool powerShell = Qoobar::programInstalled("powershell", &powershellPath);
+
+    if (powerShell)
+        programToRun = QDir::toNativeSeparators(powershellPath);
+    else
+        programToRun = QSL("c:\\windows\\system32\\cmd.exe");
 
 #elif defined (Q_OS_OS2)
     /** TODO: 1. Find out how to invoke splitandconvert.cmd on OS/2
@@ -330,6 +339,7 @@ void CueSplitter::split()
     arguments[11]=_inputFile;
     arguments[4]=_cueFile;
     arguments[6]=_outputDir;
+    arguments << (ffmpegInstalled?"1":"0");
     programToRun = QSL("shntool");
 #endif
 
@@ -346,6 +356,8 @@ void CueSplitter::split()
     watcher.addPath(_outputDir);
     connect(&watcher,SIGNAL(directoryChanged(QString)),SLOT(onOutputDirChanged(QString)),Qt::QueuedConnection);
 
+    Q_EMIT message(MT_INFORMATION, tr("Now invoking the script file with arguments:\n")
+                   .append(programToRun + " "+arguments.join(" ")));
     process->start(programToRun, arguments);
     q.exec();
 

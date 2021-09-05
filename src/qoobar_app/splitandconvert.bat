@@ -4,10 +4,12 @@
 :: %2 - path to write output
 :: %3 - input file
 :: %4 - output file ext
+:: %5 - 1 if ffmpeg is present, 0 if not
 @echo off
 SETLOCAL ENABLEEXTENSIONS
 SETLOCAL ENABLEDELAYEDEXPANSION
 
+:: Default bitrate for lossy codecs
 set bitrate=320K
 
 if not exist shntool.exe (
@@ -26,20 +28,25 @@ for /f "useback tokens=*" %%a in ('!cueFile!') do set cueFile=%%~a
 for /f "useback tokens=*" %%a in ('!outputDir!') do set outputDir=%%~a
 for /f "useback tokens=*" %%a in ('!inputFile!') do set inputFile=%%~a
 
-
-echo.Ffmpeg found. First decoding input file into temp.wav...
-
-ffmpeg -y -v warning -i "!inputFile!" "!outputDir!\temp.wav"
-set inputFile="!outputDir!\temp.wav"
-echo.Done
+if %5==1 (
+  echo.Ffmpeg found. First decoding input file into temp.wav...
+  ffmpeg -y -v warning -i "!inputFile!" "!outputDir!\temp.wav"
+  set inputFile="!outputDir!\temp.wav"
+  echo.Done
+)
 
 echo.Splitting temp.wav using shntool
+if %5==1 (
 shntool split -P dot -f %1 -d %2 -O always !inputFile!
+) else shntool split -P dot -f %1 -d %2 -O always -o flac !inputFile! )
 :: removing temporary file
+if %5==1 (
 del !inputFile!
+)
 echo.Done
 echo.
 
+if %5==1 (
 echo.Converting files into %4 ...
 for %%i in ("!outputDir!"\split-track*.wav) do (
   echo.Converting %%i ...
@@ -57,6 +64,6 @@ echo.
 echo.Removing temporary files ...
 del /F /Q "!outputDir!"\split-track*.wav
 echo.Done
-
+)
 
 goto :eof

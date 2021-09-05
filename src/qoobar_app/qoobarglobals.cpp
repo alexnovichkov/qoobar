@@ -53,6 +53,8 @@ bool Qoobar::programInstalled(const QString &program, QString *path)
 {DD;
 #ifdef Q_OS_WIN
     if (path != nullptr) *path = qApp->applicationDirPath();
+
+    //prefer the program from the installation folder
     QString programPath = QString("%1/%2.exe").arg(qApp->applicationDirPath(), program);
     bool exists = QFile::exists(programPath);
     if (exists) {
@@ -60,6 +62,7 @@ bool Qoobar::programInstalled(const QString &program, QString *path)
         return true;
     }
 
+    //fallback to search in system paths
     programPath = QStandardPaths::findExecutable(program);
     if (!programPath.isEmpty()) {
         if (path != nullptr) *path = programPath;

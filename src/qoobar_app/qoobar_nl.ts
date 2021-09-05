@@ -412,49 +412,49 @@ or album includes only one track</source>
         <translation>Open bestaande map</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="133"/>
+        <location filename="filesrenamer.cpp" line="130"/>
         <source>Remove this pattern</source>
         <translation>Verwijder patroon</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="207"/>
+        <location filename="filesrenamer.cpp" line="205"/>
         <source>Apply these options to created folders as well</source>
         <translation>Pas deze opties ook toe op aangemaakte mappen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="211"/>
+        <location filename="filesrenamer.cpp" line="209"/>
         <source>Options</source>
         <translation>Opties</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="256"/>
+        <location filename="filesrenamer.cpp" line="254"/>
         <source>Run</source>
         <translation>Uitvoeren</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="276"/>
-        <location filename="filesrenamer.cpp" line="293"/>
+        <location filename="filesrenamer.cpp" line="274"/>
+        <location filename="filesrenamer.cpp" line="291"/>
         <source>Output file name pattern</source>
         <translation>Uitvoer bestandsnaam patroon</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="234"/>
+        <location filename="filesrenamer.cpp" line="232"/>
         <source>Old names</source>
         <translation>Oude namen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="234"/>
+        <location filename="filesrenamer.cpp" line="232"/>
         <source>New names</source>
         <translation>Nieuwe namen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="162"/>
+        <location filename="filesrenamer.cpp" line="160"/>
         <source>Delete empty folder after renaming</source>
         <translation>Verwijder lege folder na hernoemen</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="271"/>
-        <location filename="filesrenamer.cpp" line="288"/>
+        <location filename="filesrenamer.cpp" line="269"/>
+        <location filename="filesrenamer.cpp" line="286"/>
         <source>Do what:</source>
         <translation>Wat te doen:</translation>
     </message>
@@ -464,12 +464,12 @@ or album includes only one track</source>
         <translation>Uitvoer map</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="166"/>
+        <location filename="filesrenamer.cpp" line="164"/>
         <source>Replace special Windows characters \/:*?&quot;&lt;&gt;| with</source>
         <translation>Vervang speciale Windows tekens \\/:*?\&quot;&lt;&gt;| met</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="167"/>
+        <location filename="filesrenamer.cpp" line="165"/>
         <source>Characters \/:*| will be replaced by this text
 character ? will be removed
 characters &lt;&gt; will be replaced by (),
@@ -480,52 +480,52 @@ De tekens &lt;&gt; worden vervangen door (),
 en &quot;door twee enkele aanhalingstekens &quot;</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="177"/>
+        <location filename="filesrenamer.cpp" line="175"/>
         <source>Replace spaces with</source>
         <translation>Vervang spaties met</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="204"/>
+        <location filename="filesrenamer.cpp" line="202"/>
         <source>Remove diacritics</source>
         <translation>Verwijder diakritische tekens</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="192"/>
+        <location filename="filesrenamer.cpp" line="190"/>
         <source>Case</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="197"/>
+        <location filename="filesrenamer.cpp" line="195"/>
         <source>lower</source>
         <translation>onderste</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="198"/>
+        <location filename="filesrenamer.cpp" line="196"/>
         <source>UPPER</source>
         <translation>BOVENSTE</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="199"/>
+        <location filename="filesrenamer.cpp" line="197"/>
         <source>Only first up</source>
         <translation>Alleen eerste omhoog</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="200"/>
+        <location filename="filesrenamer.cpp" line="198"/>
         <source>Every First Up</source>
         <translation>Elke eerste omhoog</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="189"/>
+        <location filename="filesrenamer.cpp" line="187"/>
         <source>Maximum file name length</source>
         <translation>Maximale bestandsnaam lengte</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="464"/>
+        <location filename="filesrenamer.cpp" line="462"/>
         <source>Nothing to rename, file names not changed.</source>
         <translation>Niets te hernoemen, bestandsnamen zijn niet veranderd.</translation>
     </message>
     <message>
-        <location filename="filesrenamer.cpp" line="446"/>
+        <location filename="filesrenamer.cpp" line="444"/>
         <source>Folder to move/copy files</source>
         <translation>Verplaats/Kopieer bestanden naar folder</translation>
     </message>
@@ -1061,13 +1061,13 @@ after you restart Qoobar</source>
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.cpp" line="193"/>
-        <location filename="mainwindow.cpp" line="382"/>
+        <location filename="mainwindow.cpp" line="388"/>
         <source>Qoobar - Tag editor for classical music</source>
         <translation>Qoobar - Label bewerker voor klassikale muziek</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="397"/>
-        <location filename="mainwindow.cpp" line="526"/>
+        <location filename="mainwindow.cpp" line="403"/>
+        <location filename="mainwindow.cpp" line="532"/>
         <source>Tab %1</source>
         <translation>Tabblad %1</translation>
     </message>
@@ -1080,12 +1080,12 @@ after you restart Qoobar</source>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="610"/>
+        <location filename="mainwindow.cpp" line="616"/>
         <source>&lt;p&gt;This version is compiled as portable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="913"/>
+        <location filename="mainwindow.cpp" line="919"/>
         <source>Set a tab name</source>
         <translation>Stel a tabnaam in</translation>
     </message>
@@ -1258,7 +1258,7 @@ after you restart Qoobar</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="100"/>
-        <location filename="mainwindow.cpp" line="613"/>
+        <location filename="mainwindow.cpp" line="619"/>
         <source>About Qoobar</source>
         <translation>Over Qoobar</translation>
     </message>
@@ -1588,30 +1588,30 @@ after you restart Qoobar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="429"/>
-        <location filename="mainwindow.cpp" line="474"/>
+        <location filename="mainwindow.cpp" line="435"/>
+        <location filename="mainwindow.cpp" line="480"/>
         <source>Special Characters...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="467"/>
+        <location filename="mainwindow.cpp" line="473"/>
         <source>&amp;Undo</source>
         <translation>&amp;Ondedaan maken</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="365"/>
-        <location filename="mainwindow.cpp" line="468"/>
+        <location filename="mainwindow.cpp" line="371"/>
+        <location filename="mainwindow.cpp" line="474"/>
         <source>Undo</source>
         <translation>Ondedaan maken</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="471"/>
+        <location filename="mainwindow.cpp" line="477"/>
         <source>&amp;Redo</source>
         <translation>&amp;Opnieuw</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="373"/>
-        <location filename="mainwindow.cpp" line="472"/>
+        <location filename="mainwindow.cpp" line="379"/>
+        <location filename="mainwindow.cpp" line="478"/>
         <source>Redo</source>
         <translation>Opnieuw</translation>
     </message>
@@ -1622,12 +1622,12 @@ after you restart Qoobar</source>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt; {3&lt;?} {1&lt;?} {2009-2016 ?}</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="591"/>
+        <location filename="mainwindow.cpp" line="597"/>
         <source>not installed</source>
         <translation>niet geinstalleerd</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="603"/>
+        <location filename="mainwindow.cpp" line="609"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</oldsource>
         <translation type="unfinished">&lt;b&gt;Qoobar gebruikt:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Bibliotheken:&lt;/b&gt;</translation>
@@ -1638,29 +1638,29 @@ after you restart Qoobar</source>
         <translation>&amp;Over Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="583"/>
+        <location filename="mainwindow.cpp" line="589"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2020 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <translation type="unfinished">&lt;b&gt;Qoobar, Een Simpele Label Bewerker&lt;/b&gt;&lt;br&gt;uitgebracht onder de GPL 3&lt;br&gt;Versie: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt; {3&lt;?} {1&lt;?} {2009-2016 ?} {3&lt;?} {1&lt;?} {2009-2020 ?}</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="628"/>
+        <location filename="mainwindow.cpp" line="634"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoodar - Map toevoegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="912"/>
+        <location filename="mainwindow.cpp" line="918"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - Hernoem tabblad</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="620"/>
+        <location filename="mainwindow.cpp" line="626"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - bestanden toevoegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="621"/>
+        <location filename="mainwindow.cpp" line="627"/>
         <source>audio files (%1)</source>
         <translation>audio bestanden (%1)</translation>
     </message>
@@ -3427,23 +3427,23 @@ Open the Settings dialog?</source>
 <context>
     <name>TreeView</name>
     <message>
-        <location filename="treeview.cpp" line="53"/>
-        <location filename="treeview.cpp" line="111"/>
+        <location filename="treeview.cpp" line="51"/>
+        <location filename="treeview.cpp" line="109"/>
         <source>Show/hide columns...</source>
         <translation>Aanpassen/weergegeven kolommen...</translation>
     </message>
     <message>
-        <location filename="treeview.cpp" line="141"/>
+        <location filename="treeview.cpp" line="139"/>
         <source>Move to the tab...</source>
         <translation>Ga naar het tabblad...</translation>
     </message>
     <message>
-        <location filename="treeview.cpp" line="145"/>
+        <location filename="treeview.cpp" line="143"/>
         <source>New tab</source>
         <translation>Nieuw Tabblad</translation>
     </message>
     <message>
-        <location filename="treeview.cpp" line="156"/>
+        <location filename="treeview.cpp" line="154"/>
         <source>MP3 tag types...</source>
         <translation>MP3 label soorten...</translation>
     </message>
