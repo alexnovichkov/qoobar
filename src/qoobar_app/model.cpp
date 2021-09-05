@@ -30,7 +30,7 @@ void ReadWorker::setFiles(const QStringList &filesToAdd)
 }
 
 void ReadWorker::run()
-{DD
+{DD;
     _tags.clear();
     int i = 0;
     const int tagsCount = App->currentScheme->tagsCount();

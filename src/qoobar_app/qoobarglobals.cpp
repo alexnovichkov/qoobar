@@ -198,7 +198,6 @@ void maybeAppend(const QString &s, QStringList &list)
 void Qoobar::processDir(const QString &file, QStringList &files, bool includeSubfolders)
 {DD;
     static QStringList filters=musicalFilters();
-
     if (QFileInfo(file).isDir()) {
         QFileInfoList dirLst = QDir(file).entryInfoList(filters,
                                                         QDir::AllDirs | QDir::Files | QDir::NoDotAndDotDot,

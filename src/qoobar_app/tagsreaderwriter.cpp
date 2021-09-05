@@ -103,7 +103,6 @@ void TagsReaderWriter::readTags(int tagTypes)
             tag->d->bitrate = QString::number(properties->bitrate());
             tag->d->sampleRate = properties->sampleRate();
             tag->d->channels = properties->channels();
-
             TagLib::MPC::Properties *p=dynamic_cast<TagLib::MPC::Properties *>(properties);
             if (p) {
                 if (p->trackPeak()!=0)
@@ -118,7 +117,6 @@ void TagsReaderWriter::readTags(int tagTypes)
         }
         delete f;
     }
-
     QHashIterator<int, QStringList> i(rawValues);
     while (i.hasNext()) {
         i.next();
@@ -127,7 +125,6 @@ void TagsReaderWriter::readTags(int tagTypes)
         l.removeDuplicates();
         tag->d->tags[i.key()] = l.join(";");
     }
-
     QHashIterator<QString, QStringList> ii(rawUserValues);
     while (ii.hasNext()) {
         ii.next();
@@ -135,8 +132,6 @@ void TagsReaderWriter::readTags(int tagTypes)
         l.removeDuplicates();
         tag->d->otherTags[ii.key()] = l.join(";");
     }
-
-
 
     static int intTags[] = {YEAR, TRACKNUMBER, TOTALTRACKS, RATING, DISCNUMBER, TOTALDISCS, TEMPO};
     for (int i=0; i<7; ++i) {
@@ -275,32 +270,39 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
             if (f->isValid()) {
                 if (f->hasID3v2Tag()) tag->d->tagTypes |= TAG_ID3V2;
 //                if (f->hasInfoTag())
-                if (tagTypes & TAG_ID3V2)
+                if ((tagTypes & TAG_ID3V2) && f->tag())
                     readID3v2(f->tag());
             }
             return f;
         }
         case Tag::AIFF_FILE: {
             TagLib::RIFF::AIFF::File *f = new TagLib::RIFF::AIFF::File(FILE_NAME(tag->fullFileName()));
-            if (f->isValid() && (tagTypes & TAG_ID3V2) )
-                readID3v2(f->tag());
-            if (f->hasID3v2Tag()) tag->d->tagTypes |= TAG_ID3V2;
+            if (f->tag()) {
+                if (f->isValid() && (tagTypes & TAG_ID3V2) )
+                    readID3v2(f->tag());
+                if (f->hasID3v2Tag()) tag->d->tagTypes |= TAG_ID3V2;
+            }
             return f;
         }
 
         case Tag::WMA_FILE: {
             TagLib::ASF::File *f=new TagLib::ASF::File(FILE_NAME(tag->fullFileName()));
-            if (f->isValid() && (tagTypes & TAG_ASF) )
-                readAsf(f->tag());
-            if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_ASF;
+            if (f->tag()) {
+                if (f->isValid() && (tagTypes & TAG_ASF) )
+                    readAsf(f->tag());
+                if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_ASF;
+            }
             return f;
         }
 
         case Tag::M4A_FILE: {
             TagLib::MP4::File *f=new TagLib::MP4::File(FILE_NAME(tag->fullFileName()));
-            if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_MP4;
-            if (f->isValid() && (tagTypes & TAG_MP4) )
-                readMP4(f->tag());
+            if (!f) return nullptr;
+            if (f->tag()) {
+                if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_MP4;
+                if (f->isValid() && (tagTypes & TAG_MP4) )
+                    readMP4(f->tag());
+            }
             return f;
         }
         default: return 0;
