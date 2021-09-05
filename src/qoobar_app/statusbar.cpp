@@ -181,7 +181,9 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     l->setContentsMargins(1,1,1,1);
     l->setVerticalSpacing(3);
 #else
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     l->setMargin(0);
+#endif
     l->setContentsMargins(2,0,2,2);
 #endif
     l->addWidget(selectedLabel,0,0,1,1,Qt::AlignLeft | Qt::AlignVCenter);

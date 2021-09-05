@@ -33,6 +33,7 @@ CONFIG *= no_keywords
 
 # main sources and headers
 SOURCES = main.cpp \
+    fileiconprovider.cpp \
     mainwindow.cpp \
     tagseditor.cpp \
     tablewidget.cpp \
@@ -99,6 +100,7 @@ SOURCES = main.cpp \
     autonumber.cpp
 
 HEADERS = mainwindow.h \
+    fileiconprovider.h \
     tagseditor.h \
     tablewidget.h \
     filesrenamer.h \

@@ -302,17 +302,23 @@ or album includes only one track</source>
     </message>
     <message>
         <location filename="cuesplitter.cpp" line="277"/>
-        <location filename="cuesplitter.cpp" line="299"/>
+        <location filename="cuesplitter.cpp" line="300"/>
         <source>Cannot find the necessary script file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="498"/>
+        <location filename="cuesplitter.cpp" line="359"/>
+        <source>Now invoking the script file with arguments:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="cuesplitter.cpp" line="510"/>
         <source>Cannot find the file to split: %1</source>
         <translation>Nie można znależć pliku do podziału: %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="542"/>
+        <location filename="cuesplitter.cpp" line="554"/>
         <source>Processing %1 ...
 
 </source>
@@ -351,7 +357,7 @@ or album includes only one track</source>
         <translation>Proszę czekać, Qoobar dzieli plik %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="518"/>
+        <location filename="cuesplitter.cpp" line="530"/>
         <source>Total track count: &quot;%1&quot;</source>
         <translation>Liczba utworów: &quot;%1&quot;</translation>
     </message>
@@ -1004,37 +1010,37 @@ after you restart Qoobar</source>
 <context>
     <name>MAC_APPLICATION_MENU</name>
     <message>
-        <location filename="mainwindow.cpp" line="54"/>
+        <location filename="mainwindow.cpp" line="55"/>
         <source>Services</source>
         <translation>Usługi</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="55"/>
+        <location filename="mainwindow.cpp" line="56"/>
         <source>Hide %1</source>
         <translation>Ukryj %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="56"/>
+        <location filename="mainwindow.cpp" line="57"/>
         <source>Hide Others</source>
         <translation>Ukryj pozostałe</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="57"/>
+        <location filename="mainwindow.cpp" line="58"/>
         <source>Show All</source>
         <translation>Pokaż wszystko</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="58"/>
+        <location filename="mainwindow.cpp" line="59"/>
         <source>Preferences...</source>
         <translation>Preferencje…</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="59"/>
+        <location filename="mainwindow.cpp" line="60"/>
         <source>Quit %1</source>
         <translation>Zakończ %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="60"/>
+        <location filename="mainwindow.cpp" line="61"/>
         <source>About %1</source>
         <translation>%1…</translation>
     </message>
@@ -1059,511 +1065,511 @@ after you restart Qoobar</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.cpp" line="64"/>
+        <location filename="mainwindow.cpp" line="65"/>
         <source>&amp;Add folder...</source>
         <translation>Dod&amp;aj katalog...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="65"/>
+        <location filename="mainwindow.cpp" line="66"/>
         <source>Add folder...</source>
         <translation>Dodaj katalog...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="66"/>
+        <location filename="mainwindow.cpp" line="67"/>
         <source>Add folder</source>
         <translation>Katalog</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="68"/>
+        <location filename="mainwindow.cpp" line="69"/>
         <source>Add &amp;files...</source>
         <translation>Dodaj &amp;pliki...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="69"/>
+        <location filename="mainwindow.cpp" line="70"/>
         <source>Add files...</source>
         <translation>Dodaj pliki...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="70"/>
+        <location filename="mainwindow.cpp" line="71"/>
         <source>Add files</source>
         <translation>Pliki</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="71"/>
+        <location filename="mainwindow.cpp" line="72"/>
         <source>Shift+Ctrl+O</source>
         <translation>Shift+Ctrl+O</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="72"/>
+        <location filename="mainwindow.cpp" line="73"/>
         <source>&amp;Save current tab</source>
         <translation>Zapi&amp;sz obecną kartę</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="73"/>
+        <location filename="mainwindow.cpp" line="74"/>
         <source>Save current tab</source>
         <translation>Zapisz obecną kartę</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="74"/>
+        <location filename="mainwindow.cpp" line="75"/>
         <source>Save</source>
         <translation>Zapisz</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="76"/>
+        <location filename="mainwindow.cpp" line="77"/>
         <source>Save all &amp;tabs</source>
         <translation>Zapisz wszystkie kar&amp;ty</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="77"/>
+        <location filename="mainwindow.cpp" line="78"/>
         <source>Save all tabs</source>
         <translation>Zapisz wszystkie karty</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="78"/>
+        <location filename="mainwindow.cpp" line="79"/>
         <source>Save all</source>
         <translation>Zapisz wszystko</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="80"/>
+        <location filename="mainwindow.cpp" line="81"/>
         <source>&amp;Rename files...</source>
         <translation>Zmień &amp;nazwy plików...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="81"/>
+        <location filename="mainwindow.cpp" line="82"/>
         <source>Rename files...</source>
         <translation>Zmień nazwy plików...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="82"/>
+        <location filename="mainwindow.cpp" line="83"/>
         <source>Rename</source>
         <translation>Zmień nazwy</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="83"/>
+        <location filename="mainwindow.cpp" line="84"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="84"/>
+        <location filename="mainwindow.cpp" line="85"/>
         <source>&amp;Fill tags...</source>
         <translation>&amp;Wypełnij tagi...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="85"/>
+        <location filename="mainwindow.cpp" line="86"/>
         <source>Fill tags...</source>
         <translation>Wypełnij tagi...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="86"/>
+        <location filename="mainwindow.cpp" line="87"/>
         <source>Fill</source>
         <translation>Wypełnij</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="87"/>
+        <location filename="mainwindow.cpp" line="88"/>
         <source>Ctrl+F</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="88"/>
+        <location filename="mainwindow.cpp" line="89"/>
         <source>&amp;Reread tags</source>
         <translation>W&amp;czytaj ponownie tagi</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="89"/>
+        <location filename="mainwindow.cpp" line="90"/>
         <source>Reread tags</source>
         <translation>Wczytaj ponownie tagi</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="90"/>
+        <location filename="mainwindow.cpp" line="91"/>
         <source>Reread</source>
         <translation>Wczytaj ponownie</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="92"/>
-        <location filename="mainwindow.cpp" line="172"/>
+        <location filename="mainwindow.cpp" line="93"/>
+        <location filename="mainwindow.cpp" line="173"/>
         <source>&amp;Help</source>
         <translation>&amp;Pomoc</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="94"/>
+        <location filename="mainwindow.cpp" line="95"/>
         <source>Help</source>
         <translation>Pomoc</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="93"/>
+        <location filename="mainwindow.cpp" line="94"/>
         <source>Help on Qoobar</source>
         <translation>Pomoc programu Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="96"/>
         <location filename="mainwindow.cpp" line="97"/>
         <location filename="mainwindow.cpp" line="98"/>
+        <location filename="mainwindow.cpp" line="99"/>
         <source>Qoobar Online</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="100"/>
+        <location filename="mainwindow.cpp" line="101"/>
         <source>&amp;About Qoobar</source>
         <translation>&amp;O programie Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="100"/>
-        <location filename="mainwindow.cpp" line="619"/>
+        <location filename="mainwindow.cpp" line="101"/>
+        <location filename="mainwindow.cpp" line="624"/>
         <source>About Qoobar</source>
         <translation>O programie Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="100"/>
+        <location filename="mainwindow.cpp" line="101"/>
         <source>About</source>
         <translation>O</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="102"/>
+        <location filename="mainwindow.cpp" line="103"/>
         <source>About &amp;Qt</source>
         <translation>O &amp;Qt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="102"/>
+        <location filename="mainwindow.cpp" line="103"/>
         <source>About Qt</source>
         <translation>O Qt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="104"/>
+        <location filename="mainwindow.cpp" line="105"/>
         <source>&amp;Settings...</source>
         <translation>U&amp;stawienia...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="104"/>
+        <location filename="mainwindow.cpp" line="105"/>
         <source>Settings...</source>
         <translation>Ustawienia...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="104"/>
+        <location filename="mainwindow.cpp" line="105"/>
         <source>Settings</source>
         <translation>Ustawienia</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="106"/>
+        <location filename="mainwindow.cpp" line="107"/>
         <source>Re&amp;move from the list</source>
         <translation>&amp;Usuń z listy</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="106"/>
+        <location filename="mainwindow.cpp" line="107"/>
         <source>Remove from the list</source>
         <translation>Usuń z listy</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="106"/>
-        <location filename="mainwindow.cpp" line="108"/>
+        <location filename="mainwindow.cpp" line="107"/>
+        <location filename="mainwindow.cpp" line="109"/>
         <source>Remove</source>
         <translation>Usuń</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="107"/>
+        <location filename="mainwindow.cpp" line="108"/>
         <source>Delete</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="108"/>
+        <location filename="mainwindow.cpp" line="109"/>
         <source>C&amp;lear the list</source>
         <translation>Wyczyść &amp;listę</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="108"/>
+        <location filename="mainwindow.cpp" line="109"/>
         <source>Clear the list</source>
         <translation>Wyczyść listę</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="109"/>
+        <location filename="mainwindow.cpp" line="110"/>
         <source>Ctrl+Delete</source>
         <translation>Ctrl+Delete</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="110"/>
+        <location filename="mainwindow.cpp" line="111"/>
         <source>&amp;Play selected</source>
         <translation>&amp;Odtwarzaj zaznaczone</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="110"/>
+        <location filename="mainwindow.cpp" line="111"/>
         <source>Play selected</source>
         <translation>Odtwarzaj zaznaczone</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="110"/>
+        <location filename="mainwindow.cpp" line="111"/>
         <source>Play</source>
         <translation>Odtwarzaj</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="111"/>
+        <location filename="mainwindow.cpp" line="112"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="112"/>
+        <location filename="mainwindow.cpp" line="113"/>
         <source>Clear all tags</source>
         <translation>Wyczyść wszystkie tagi</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="112"/>
+        <location filename="mainwindow.cpp" line="113"/>
         <source>Clear</source>
         <translation>Wyczyść</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="114"/>
+        <location filename="mainwindow.cpp" line="115"/>
         <source>Cu&amp;t</source>
         <translation>Wy&amp;tnij</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="114"/>
+        <location filename="mainwindow.cpp" line="115"/>
         <source>Cut</source>
         <translation>Wytnij</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="116"/>
+        <location filename="mainwindow.cpp" line="117"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopiuj</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="116"/>
+        <location filename="mainwindow.cpp" line="117"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="118"/>
+        <location filename="mainwindow.cpp" line="119"/>
         <source>&amp;Paste</source>
         <translation>&amp;Wklej</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="118"/>
+        <location filename="mainwindow.cpp" line="119"/>
         <source>Paste</source>
         <translation>Wklej</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="120"/>
+        <location filename="mainwindow.cpp" line="121"/>
         <source>Copy to clipboard</source>
         <translation>Kopiuj do schowka</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="121"/>
+        <location filename="mainwindow.cpp" line="122"/>
         <source>Shift+Ctrl+C</source>
         <translation>Shift+Ctrl+C</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="122"/>
+        <location filename="mainwindow.cpp" line="123"/>
         <source>Paste from clipboard</source>
         <translation>Wklej ze schowka</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="123"/>
+        <location filename="mainwindow.cpp" line="124"/>
         <source>Shift+Ctrl+V</source>
         <translation>Shift+Ctrl+V</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="124"/>
+        <location filename="mainwindow.cpp" line="125"/>
         <source>&amp;Add new tag...</source>
         <translation>Dod&amp;aj nowy tag...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="125"/>
+        <location filename="mainwindow.cpp" line="126"/>
         <source>Add new tag...</source>
         <translation>Dodaj nowy tag...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="126"/>
+        <location filename="mainwindow.cpp" line="127"/>
         <source>New tag</source>
         <translation>Nowy tag</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="128"/>
         <location filename="mainwindow.cpp" line="129"/>
+        <location filename="mainwindow.cpp" line="130"/>
         <source>Autonumber selected files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="130"/>
+        <location filename="mainwindow.cpp" line="131"/>
         <source>Autonumber</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="132"/>
+        <location filename="mainwindow.cpp" line="133"/>
         <source>Split &amp;disc...</source>
         <translation>Po&amp;dziel płytę...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="132"/>
+        <location filename="mainwindow.cpp" line="133"/>
         <source>Split disc...</source>
         <translation>Podziel płytę...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="132"/>
+        <location filename="mainwindow.cpp" line="133"/>
         <source>Split</source>
         <translation>Podziel</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="134"/>
+        <location filename="mainwindow.cpp" line="135"/>
         <source>E&amp;xit</source>
         <translation>&amp;Zakończ</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="134"/>
+        <location filename="mainwindow.cpp" line="135"/>
         <source>Exit</source>
         <translation>Zakończ</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="135"/>
+        <location filename="mainwindow.cpp" line="136"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="136"/>
+        <location filename="mainwindow.cpp" line="137"/>
         <source>&amp;New tab</source>
         <translation>&amp;Nowa karta</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="136"/>
+        <location filename="mainwindow.cpp" line="137"/>
         <source>New tab</source>
         <translation>Nowa karta</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="138"/>
+        <location filename="mainwindow.cpp" line="139"/>
         <source>&amp;Close the tab</source>
         <translation>&amp;Zamknij kartę</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="138"/>
+        <location filename="mainwindow.cpp" line="139"/>
         <source>Close the tab</source>
         <translation>Zamknij kartę</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="138"/>
+        <location filename="mainwindow.cpp" line="139"/>
         <source>Close tab</source>
         <translation>Zamknij kartę</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="140"/>
+        <location filename="mainwindow.cpp" line="141"/>
         <source>Close &amp;other tabs</source>
         <translation>Zamknij &amp;inne karty</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="140"/>
+        <location filename="mainwindow.cpp" line="141"/>
         <source>Close other tabs</source>
         <translation>Zamknij inne karty</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="142"/>
+        <location filename="mainwindow.cpp" line="143"/>
         <source>&amp;Rename the tab...</source>
         <translation>Zmień &amp;nazwę karty...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="142"/>
+        <location filename="mainwindow.cpp" line="143"/>
         <source>Rename the tab...</source>
         <translation>Zmień nazwę karty...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="142"/>
+        <location filename="mainwindow.cpp" line="143"/>
         <source>Rename tab</source>
         <translation>Zmień nazwę karty</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="144"/>
+        <location filename="mainwindow.cpp" line="145"/>
         <source>ReplayGain info...</source>
         <translation>Informacja ReplayGain...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="144"/>
+        <location filename="mainwindow.cpp" line="145"/>
         <source>Edit ReplayGain Info...</source>
         <translation>Edytuj informacje ReplayGain...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="144"/>
+        <location filename="mainwindow.cpp" line="145"/>
         <source>ReplayGain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="147"/>
+        <location filename="mainwindow.cpp" line="148"/>
         <source>List this folder</source>
         <translation>Dodaj ten katalog</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="147"/>
+        <location filename="mainwindow.cpp" line="148"/>
         <source>List folder</source>
         <translation>Dodaj katalog</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="149"/>
         <location filename="mainwindow.cpp" line="150"/>
+        <location filename="mainwindow.cpp" line="151"/>
         <source>List this folder with all subfolders</source>
         <translation>Dodaj ten katalog z wszystkimi podkatalogami</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="152"/>
         <location filename="mainwindow.cpp" line="153"/>
+        <location filename="mainwindow.cpp" line="154"/>
         <source>Set as folder tree root</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="155"/>
+        <location filename="mainwindow.cpp" line="156"/>
         <source>&amp;Check for updates...</source>
         <translation>Sprawdź &amp;dostępność aktualizacji...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="155"/>
+        <location filename="mainwindow.cpp" line="156"/>
         <source>Check for updates...</source>
         <translation>Sprawdź dostępność aktualizacji...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="155"/>
+        <location filename="mainwindow.cpp" line="156"/>
         <source>Check updates</source>
         <translation>Sprawdź dostępność aktualizacji</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="157"/>
+        <location filename="mainwindow.cpp" line="158"/>
         <source>S&amp;earch files...</source>
         <translation>Wy&amp;szukiwanie plików...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="157"/>
+        <location filename="mainwindow.cpp" line="158"/>
         <source>Search files...</source>
         <translation>Wyszukiwanie plików...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="157"/>
+        <location filename="mainwindow.cpp" line="158"/>
         <source>Search</source>
         <translation>Szukaj</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="158"/>
+        <location filename="mainwindow.cpp" line="159"/>
         <source>Shift+Ctrl+F</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="163"/>
+        <location filename="mainwindow.cpp" line="164"/>
         <source>&amp;File</source>
         <translation>&amp;Plik</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="166"/>
+        <location filename="mainwindow.cpp" line="167"/>
         <source>&amp;Edit</source>
         <translation>&amp;Edycja</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="170"/>
+        <location filename="mainwindow.cpp" line="171"/>
         <source>&amp;Tools</source>
         <translation>&amp;Narzędzia</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="171"/>
+        <location filename="mainwindow.cpp" line="172"/>
         <source>Tab&amp;s</source>
         <translation>&amp;Karty</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="193"/>
-        <location filename="mainwindow.cpp" line="388"/>
+        <location filename="mainwindow.cpp" line="194"/>
+        <location filename="mainwindow.cpp" line="393"/>
         <source>Qoobar - Tag editor for classical music</source>
         <translation>Qoobar - Edytor tagów dla muzyki klasycznej</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="589"/>
+        <location filename="mainwindow.cpp" line="594"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2020 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
         <translation type="unfinished">&lt;b&gt;Qoobar, prosty edytor tagów&lt;/b&gt;&lt;br&gt;wydany na licencji GPL 3&lt;br&gt;Wersja: %1&lt;br&gt;Prawa autorskie 2009-2015 Alex Novichkov&lt;p&gt;Strona internetowa: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
@@ -1580,36 +1586,36 @@ after you restart Qoobar</source>
         <translation type="obsolete">Pasek narzędzi</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="473"/>
+        <location filename="mainwindow.cpp" line="478"/>
         <source>&amp;Undo</source>
         <translation>&amp;Cofnij</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="371"/>
-        <location filename="mainwindow.cpp" line="474"/>
+        <location filename="mainwindow.cpp" line="376"/>
+        <location filename="mainwindow.cpp" line="479"/>
         <source>Undo</source>
         <translation>Cofnij</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="477"/>
+        <location filename="mainwindow.cpp" line="482"/>
         <source>&amp;Redo</source>
         <translation>&amp;Ponów</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="379"/>
-        <location filename="mainwindow.cpp" line="478"/>
+        <location filename="mainwindow.cpp" line="384"/>
+        <location filename="mainwindow.cpp" line="483"/>
         <source>Redo</source>
         <translation>Ponów</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="403"/>
-        <location filename="mainwindow.cpp" line="532"/>
+        <location filename="mainwindow.cpp" line="408"/>
+        <location filename="mainwindow.cpp" line="537"/>
         <source>Tab %1</source>
         <translation>Karta %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="435"/>
-        <location filename="mainwindow.cpp" line="480"/>
+        <location filename="mainwindow.cpp" line="440"/>
+        <location filename="mainwindow.cpp" line="485"/>
         <source>Special Characters...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1622,43 +1628,43 @@ after you restart Qoobar</source>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="597"/>
+        <location filename="mainwindow.cpp" line="602"/>
         <source>not installed</source>
         <translation>nie zainstalowane</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="609"/>
+        <location filename="mainwindow.cpp" line="614"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</oldsource>
         <translation>&lt;b&gt;Qoobar używa:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="616"/>
+        <location filename="mainwindow.cpp" line="621"/>
         <source>&lt;p&gt;This version is compiled as portable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="626"/>
+        <location filename="mainwindow.cpp" line="631"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - dodawanie plików</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="627"/>
+        <location filename="mainwindow.cpp" line="632"/>
         <source>audio files (%1)</source>
         <translation>pliki audio (%1)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="634"/>
+        <location filename="mainwindow.cpp" line="639"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - dodawanie katalogów</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="918"/>
+        <location filename="mainwindow.cpp" line="923"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - zmienianie nazwy karty</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="919"/>
+        <location filename="mainwindow.cpp" line="924"/>
         <source>Set a tab name</source>
         <translation>Ustaw nazwę karty</translation>
     </message>
@@ -2176,34 +2182,34 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
     <name>PropertiesPanel</name>
     <message>
         <location filename="statusbar.cpp" line="142"/>
-        <location filename="statusbar.cpp" line="207"/>
+        <location filename="statusbar.cpp" line="209"/>
         <source>File is read only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="statusbar.cpp" line="150"/>
-        <location filename="statusbar.cpp" line="208"/>
+        <location filename="statusbar.cpp" line="210"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="statusbar.cpp" line="160"/>
-        <location filename="statusbar.cpp" line="209"/>
+        <location filename="statusbar.cpp" line="211"/>
         <source>Length</source>
         <translation>Długość</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="233"/>
+        <location filename="statusbar.cpp" line="235"/>
         <source>%1 kbps, %2 Hz, %3 ch.</source>
         <translation>%1 kbps, %2 Hz, %3 ch.</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="235"/>
+        <location filename="statusbar.cpp" line="237"/>
         <source>no tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="284"/>
+        <location filename="statusbar.cpp" line="286"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2212,12 +2218,12 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="286"/>
+        <location filename="statusbar.cpp" line="288"/>
         <source>Overall length %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="291"/>
+        <location filename="statusbar.cpp" line="293"/>
         <source>Selected %n file(s) of %1</source>
         <oldsource>Selected %n file(s) of </oldsource>
         <translation type="unfinished">
@@ -2227,7 +2233,7 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="294"/>
+        <location filename="statusbar.cpp" line="296"/>
         <source>Selected length %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2300,167 +2306,167 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         <translation>Napraw kodowanie</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="136"/>
+        <location filename="qoobarglobals.cpp" line="139"/>
         <source>Composer</source>
         <translation>Kompozytor</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="137"/>
+        <location filename="qoobarglobals.cpp" line="140"/>
         <source>Album</source>
         <translation>Album</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="138"/>
+        <location filename="qoobarglobals.cpp" line="141"/>
         <source>Title</source>
         <translation>Tytuł</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="139"/>
+        <location filename="qoobarglobals.cpp" line="142"/>
         <source>Performer</source>
         <translation>Wykonawca</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="140"/>
+        <location filename="qoobarglobals.cpp" line="143"/>
         <source>Artist</source>
         <translation>Artysta</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="141"/>
+        <location filename="qoobarglobals.cpp" line="144"/>
         <source>Conductor</source>
         <translation>Dyrygent</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="142"/>
+        <location filename="qoobarglobals.cpp" line="145"/>
         <source>Orchestra</source>
         <translation>Orkiestra</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="143"/>
+        <location filename="qoobarglobals.cpp" line="146"/>
         <source>Subtitle</source>
         <translation>Podtytuł</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="144"/>
+        <location filename="qoobarglobals.cpp" line="147"/>
         <source>Key</source>
         <translation>Tonacja</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="145"/>
+        <location filename="qoobarglobals.cpp" line="148"/>
         <source>Comment</source>
         <translation>Komentarz</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="146"/>
+        <location filename="qoobarglobals.cpp" line="149"/>
         <source>Genre</source>
         <translation>Gatunek</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="147"/>
+        <location filename="qoobarglobals.cpp" line="150"/>
         <source>Year</source>
         <translation>Rok</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="148"/>
+        <location filename="qoobarglobals.cpp" line="151"/>
         <source>Track number</source>
         <translation>Numer utworu</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="149"/>
+        <location filename="qoobarglobals.cpp" line="152"/>
         <source>Total tracks</source>
         <translation>Liczba utworów</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="150"/>
+        <location filename="qoobarglobals.cpp" line="153"/>
         <source>Album artist</source>
         <translation>Artysta albumu</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="151"/>
+        <location filename="qoobarglobals.cpp" line="154"/>
         <source>Music category</source>
         <translation>Kategoria muzyczna</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="152"/>
+        <location filename="qoobarglobals.cpp" line="155"/>
         <source>Publisher</source>
         <translation>Wykonawca</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="153"/>
+        <location filename="qoobarglobals.cpp" line="156"/>
         <source>Copyright</source>
         <translation>Prawa autorskie</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="154"/>
+        <location filename="qoobarglobals.cpp" line="157"/>
         <source>Mood</source>
         <translation>Nastrój</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="155"/>
+        <location filename="qoobarglobals.cpp" line="158"/>
         <source>Beats per minute</source>
         <translation>Uderzenia na minutę</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="156"/>
+        <location filename="qoobarglobals.cpp" line="159"/>
         <source>Lyricist</source>
         <translation>Twórca tekstu</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="157"/>
+        <location filename="qoobarglobals.cpp" line="160"/>
         <source>Lyrics</source>
         <translation>Tekst utworu</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="158"/>
+        <location filename="qoobarglobals.cpp" line="161"/>
         <source>Disc number</source>
         <translation>Numer płyty</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="159"/>
+        <location filename="qoobarglobals.cpp" line="162"/>
         <source>Total discs</source>
         <translation>Liczba płyt</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="160"/>
+        <location filename="qoobarglobals.cpp" line="163"/>
         <source>Encoded by</source>
         <translation>Enkodowane przez</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="161"/>
+        <location filename="qoobarglobals.cpp" line="164"/>
         <source>Remixed by</source>
         <translation>Zremiksowane przez</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="162"/>
+        <location filename="qoobarglobals.cpp" line="165"/>
         <source>Rating</source>
         <translation>Ocena</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="163"/>
+        <location filename="qoobarglobals.cpp" line="166"/>
         <source>Original album</source>
         <translation>Album oryginalny</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="164"/>
+        <location filename="qoobarglobals.cpp" line="167"/>
         <source>Original artist</source>
         <translation>Artysta oryginalny</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="165"/>
+        <location filename="qoobarglobals.cpp" line="168"/>
         <source>Original lyricist</source>
         <translation>Oryginalny twórca tekstu</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="166"/>
+        <location filename="qoobarglobals.cpp" line="169"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="167"/>
+        <location filename="qoobarglobals.cpp" line="170"/>
         <source>ISRC</source>
         <translation>ISRC</translation>
     </message>
     <message numerus="yes">
-        <location filename="qoobarglobals.cpp" line="267"/>
+        <location filename="qoobarglobals.cpp" line="270"/>
         <source>%n byte(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2469,12 +2475,12 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         </translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="270"/>
+        <location filename="qoobarglobals.cpp" line="273"/>
         <source>%1 KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="272"/>
+        <location filename="qoobarglobals.cpp" line="275"/>
         <source>%1 MiB</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2925,17 +2931,17 @@ Proszę wybrać kodowanie:</translation>
     </message>
     <message>
         <location filename="splitdialog.cpp" line="140"/>
-        <source>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</source>
-        <oldsource>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;</oldsource>
+        <source>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&quot;&gt;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</source>
+        <oldsource>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</oldsource>
         <translation type="unfinished">Jeśli chcesz zmienić domyślny format wyjścia, proszę skopiować ffmpeg.exe do katalogu instalacyjnego Qoobar. Można go pobrać z &lt; href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="197"/>
+        <location filename="splitdialog.cpp" line="198"/>
         <source>Choose a folder to save files</source>
         <translation>Proszę wybrać katalog do zapisania plików</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="222"/>
+        <location filename="splitdialog.cpp" line="223"/>
         <source>Choose a cue file</source>
         <translation>Proszę wybrać plik cue</translation>
     </message>

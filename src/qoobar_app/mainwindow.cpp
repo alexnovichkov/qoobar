@@ -48,6 +48,7 @@
 #include "sparkleupdater.h"
 #include "model.h"
 #include "mactoolbar.h"
+#include "fileiconprovider.h"
 
 // We mark these strings as translatable so not to deploy all of qt_xx.qm files
 static const char *macapp_strings[] = {
@@ -240,6 +241,10 @@ void MainWindow::init()
     dirModel->setFilter(QDir::AllDirs | QDir::Drives | QDir::NoDotAndDotDot);
     //dirModel->setIconProvider(new QAbstractFileIconProvider);
     dirModel->setReadOnly(true);
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    dirModel->setIconProvider(new FileIconProvider);
+#endif
+
     dirView = new QTreeView(this);
     dirView->setSortingEnabled(false);
 
