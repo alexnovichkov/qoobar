@@ -772,8 +772,9 @@ void PatternsPage::retranslateUI()
     addSchemeButton->setText(tr("Add"));
     editSchemeButton->setText(tr("Edit"));
 
-    schemesMenu->actions()[0]->setText(tr("Clone this"));
-    schemesMenu->actions()[1]->setText(tr("Using Default"));
+    const auto schemesActions = schemesMenu->actions();
+    schemesActions[0]->setText(tr("Clone this"));
+    schemesActions[1]->setText(tr("Using Default"));
 
     removeSchemeButton->setText(tr("Remove"));
 }

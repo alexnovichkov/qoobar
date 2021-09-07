@@ -11,7 +11,7 @@ class TaskBarProgress : public QObject
 {
     Q_OBJECT
 public:
-    TaskBarProgress(QWidget *window, QObject *parent = 0);
+    explicit TaskBarProgress(QWidget *window, QObject *parent = 0);
 
 public Q_SLOTS:
     void setRange(int min, int max);
@@ -26,10 +26,10 @@ public Q_SLOTS:
 
 
 private:
-    QWidget *window;
-    QWinTaskbarProgress *winProgress;
+    QWidget *window=0;
+    QWinTaskbarProgress *winProgress=0;
     QPair<int, int> range;
-    int value;
+    int value=-1;
 };
 
 #endif // TASKBARPROGRESS_H

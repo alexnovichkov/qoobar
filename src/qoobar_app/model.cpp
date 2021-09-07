@@ -184,7 +184,7 @@ bool Model::imagesAreSame()
 {DD
     if (!hasSelection()) return true;
 
-    Tag &tag = fileAtSelection(0);
+    const Tag &tag = fileAtSelection(0);
     QByteArray h = tag.image().pixmap();
 
     for (int i=1; i<indexes.size(); ++i) {
@@ -408,7 +408,7 @@ void Model::rename(const QStringList &newFileNames)
         const QString newPath = newFileName.left(newFileName.lastIndexOf('/'));
 
         if (App->renameOptions.renamingOperation == 2) { /*rename folder*/
-            if (QFileInfo(newFileName).exists() || QDir().rename(oldPath, newPath)) {
+            if (QFileInfo::exists(newFileName) || QDir().rename(oldPath, newPath)) {
                 tags[indexes.at(i)].setFile(newFileName);
                 Q_EMIT dataChanged(index(i,COL_FILENAME),index(i,COL_FILENAME));
                 Q_EMIT fileNameChanged(indexes.at(i), tags.at(indexes.at(i)).fileNameExt());
@@ -442,7 +442,7 @@ void Model::rename(const QStringList &newFileNames)
                 int index=1;
                 QString justName = fi.completeBaseName();
                 QString justSuffix = fi.suffix();
-                while (QFileInfo(QString("%1/%2 (%3).%4").arg(newPath).arg(justName).arg(index).arg(justSuffix)).exists())
+                while (QFileInfo::exists(QString("%1/%2 (%3).%4").arg(newPath).arg(justName).arg(index).arg(justSuffix)))
                     index++;
                 newFileName = QString("%1/%2 (%3).%4").arg(newPath).arg(justName).arg(index).arg(justSuffix);
             }

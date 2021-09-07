@@ -66,7 +66,7 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
 
     //**************************************************************************
     table = new TableWidget(this);
-    connect(table,SIGNAL(itemChanged(QTableWidgetItem *)),SLOT(cellChanged(QTableWidgetItem *)));
+    connect(table,SIGNAL(itemChanged(QTableWidgetItem*)),SLOT(cellChanged(QTableWidgetItem*)));
     connect(table,SIGNAL(cellClicked()),SLOT(editCell()));
     connect(table,SIGNAL(itemSelectionChanged()),SLOT(handleCutCopy()));
     connect(table,SIGNAL(tagsSent(int,QStringList)),SLOT(tagsChanged(int,QStringList)));
@@ -1208,12 +1208,11 @@ void Tab::filesSelectionChanged() /*SLOT*/
 {DD;
     QVector<int> indexes;
 
-    QItemSelection selectedRows = tree->selectionModel()->selection();
+    const QItemSelection selectedRows = tree->selectionModel()->selection();
 
     for (int i=0; i<model->size(); ++i) {
-        QList<QItemSelectionRange>::const_iterator it = selectedRows.begin();
-        for (; it != selectedRows.end(); ++it) {
-            if ((*it).top()<=i && (*it).bottom()>=i)
+        for (const auto &selectedRow : selectedRows) {
+            if (selectedRow.top()<=i && selectedRow.bottom()>=i)
               indexes << i;
         }
     }

@@ -7,7 +7,7 @@
 class QElapsedTimer;
 class Trace {
 public:
-    Trace(const QString &msg);
+    explicit Trace(const QString &msg);
     ~Trace();
 private:
     QString _msg;

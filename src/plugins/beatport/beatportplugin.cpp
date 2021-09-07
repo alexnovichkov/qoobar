@@ -42,11 +42,10 @@ bool BeatportTrack::isEmpty() const
 }
 
 BeatportWidget::BeatportWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent), emptyPixmap{QPixmap(100,100)}
 {
     current = 0;
 
-    emptyPixmap = QPixmap(100,100);
     emptyPixmap.setDevicePixelRatio(devicePixelRatioF());
     emptyPixmap.fill(Qt::gray);
 
@@ -402,9 +401,9 @@ void Dialog::parseTrack(const QByteArray &b, int index)
                     if (image.isEmpty())
                         image = images.value("small").toMap();
                     if (!image.isEmpty()) {
-                        QByteArray b = search->get(Request(QUrl(image.value("url").toString())));
+                        QByteArray imageData = search->get(Request(QUrl(image.value("url").toString())));
                         QPixmap p;
-                        if (p.loadFromData(b)) track.image=b;
+                        if (p.loadFromData(imageData)) track.image=imageData;
                     }
                 }
                 track.trackNumber = result.value("trackNumber").toInt();

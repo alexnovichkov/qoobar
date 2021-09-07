@@ -63,7 +63,7 @@ QString getArgument(int fileType, int operation)
 
 QString fileTypeByFileID(int fileID)
 {DD;
-    if (fileID<0 || fileID>Tag::FILES_NUM) return QString();
+    if (fileID<0 || fileID>=Tag::FILES_NUM) return QString();
     return options[fileID].type;
 }
 
@@ -172,8 +172,7 @@ QList<ReplayGainInfo> ReplayGainer::scanWithUtilities(int fileType, const QVecto
 
     PlatformProcess process(this);
     process.open(QIODevice::ReadWrite);
-    ProcessLineMaker *lineMaker=0;
-    lineMaker = new ProcessLineMaker(&process);
+    ProcessLineMaker *lineMaker = new ProcessLineMaker(&process);
     connect(lineMaker,SIGNAL(receivedStdoutLines(QStringList)),SLOT(messages(QStringList)),Qt::QueuedConnection);
     connect(lineMaker,SIGNAL(receivedStderrLines(QStringList)),SLOT(messages(QStringList)),Qt::QueuedConnection);
 

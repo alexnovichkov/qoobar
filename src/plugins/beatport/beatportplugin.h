@@ -81,7 +81,7 @@ class Dialog : public QDialog
 {
     Q_OBJECT
 public:
-    Dialog(const QList<Tag> &oldTags, QWidget *parent=0);
+    explicit Dialog(const QList<Tag> &oldTags, QWidget *parent=0);
     QList<Tag> getNewTags();
 private Q_SLOTS:
     void startSearch();

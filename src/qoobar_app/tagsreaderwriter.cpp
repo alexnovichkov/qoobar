@@ -134,9 +134,9 @@ void TagsReaderWriter::readTags(int tagTypes)
     }
 
     static int intTags[] = {YEAR, TRACKNUMBER, TOTALTRACKS, RATING, DISCNUMBER, TOTALDISCS, TEMPO};
-    for (int i=0; i<7; ++i) {
-        if (tag->tag(intTags[i])=="0")
-            tag->d->tags[intTags[i]] = QLS("");
+    for (int j=0; j<7; ++j) {
+        if (tag->tag(intTags[j])=="0")
+            tag->d->tags[intTags[j]] = QLS("");
     }
 }
 
@@ -715,10 +715,9 @@ void TagsReaderWriter::writeID3v2(TagLib::ID3v2::Tag *id3v2tag)
     writeID3v2Frame(id3v2tag,tag->replayGainInfo().loudness, QSL("TXXX:replaygain_reference_loudness"));
 }
 
-void TagsReaderWriter::parseTag(const QString &id, const TaggingScheme::TagType tagType, const QString &v)
+void TagsReaderWriter::parseTag(const QString &id, const TaggingScheme::TagType tagType, QString value)
 {DD;
-    if (v.isEmpty()) return;
-    QString value=v;
+    if (value.isEmpty()) return;
 
     //hack for id3v2.4 COMM:MusicMatch_Preference
     if (id=="COMM:MusicMatch_Preference") {

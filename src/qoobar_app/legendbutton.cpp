@@ -37,7 +37,7 @@ LegendButton::LegendButton(QWidget *parent) :
 {DD;
     setText(tr("Legend"));
 
-    connect(menu,SIGNAL(triggered(QAction *)),SLOT(actionTriggered(QAction *)));
+    connect(menu,SIGNAL(triggered(QAction*)),SLOT(actionTriggered(QAction*)));
     setMenu(menu);
 }
 

@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 #else
     QStringList filesNames = QCoreApplication::arguments().mid(1);
     app.setFilesNames(Qoobar::expandFilesNames(filesNames, true));
-    new MainWindow();
+    MainWindow win;
 #endif
 
     // Make sure we honor the system's proxy settings

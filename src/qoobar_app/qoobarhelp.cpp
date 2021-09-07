@@ -7,7 +7,7 @@
 void Qoobar::showHelp(const QString &section)
 {//DD;
     QString path = ApplicationPaths::documentationPath();
-    if (!QFileInfo(path).exists())
+    if (!QFileInfo::exists(path))
         path = QSL("http://qoobar.sourceforge.net/en/documentation.htm");
     else path = QString("file:///%1").arg(path);
     if (!section.isEmpty())

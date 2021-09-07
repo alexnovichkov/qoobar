@@ -107,11 +107,11 @@ bool Dialog::createPlaylist(const QString &format, int pathType, int type)
         if (type==0) playlist = new M3UPlaylist(oldTags, format=="m3u8");
         else playlist = new ExtendedM3UPlaylist(oldTags, format=="m3u8");
     }
-    if (format=="pls") {
+    else if (format=="pls") {
         if (type==0) playlist = new PlsPlaylist(oldTags);
         else playlist = new ExtendedPlsPlaylist(oldTags);
     }
-    if (format=="xspf") playlist = new XspfPlaylist(oldTags, type!=0);
+    else if (format=="xspf") playlist = new XspfPlaylist(oldTags, type!=0);
 
     if (playlist) playlist->createPlaylist(fileName, pathType);
 

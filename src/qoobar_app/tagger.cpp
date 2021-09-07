@@ -112,14 +112,13 @@ TagData::TagData(const TagData &other) :
 
 }
 
-Tag::Tag(int tagsCount)
+Tag::Tag(int tagsCount) : d(new TagData(tagsCount))
 {
-    d = new TagData(tagsCount);
+
 }
 
-Tag::Tag(const QString &filename, int tagsCount)
+Tag::Tag(const QString &filename, int tagsCount) : d(new TagData(tagsCount))
 {
-    d = new TagData(tagsCount);
     setFile(filename);
 }
 

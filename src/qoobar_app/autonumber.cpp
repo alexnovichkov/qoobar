@@ -21,7 +21,7 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
     QSettings *se = App->guiSettings();
     se->beginGroup("autonumberPlugin");
     int startNumber = se->value("startNumber",1).toInt();
-    int formatNumber = se->value("formatNumber",0).toInt();
+    int formatNum = se->value("formatNumber",0).toInt();
     bool addTotalTracks = se->value("addTotalTracks", false).toBool();
     bool resetFolder = se->value("resetFolder", false).toBool();
     bool resetAlbum = se->value("resetAlbum", false).toBool();
@@ -65,7 +65,7 @@ AutonumberDialog::AutonumberDialog(const QList<Tag> &oldTags, QWidget *parent)
     formatComboBox->addItems(QStringList()<<tr("1")
                              <<tr("01")
                              <<tr("001"));
-    formatComboBox->setCurrentIndex(formatNumber);
+    formatComboBox->setCurrentIndex(formatNum);
     connect(formatComboBox,SIGNAL(currentIndexChanged(int)),SLOT(updateTrackNumbers()));
 
     actionComboBox = new QComboBox(this);
