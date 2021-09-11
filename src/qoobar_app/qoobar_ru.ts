@@ -3290,84 +3290,84 @@ Open the Settings dialog?</source>
         <translation>Разные значения:</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="113"/>
+        <location filename="tagseditor.cpp" line="126"/>
         <source>%1 (%2 with Shift key)</source>
         <translation>%1 (%2, удерживая Shift)</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="132"/>
+        <location filename="tagseditor.cpp" line="145"/>
         <source>Ctrl+Meta+Space</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="141"/>
-        <location filename="tagseditor.cpp" line="571"/>
+        <location filename="tagseditor.cpp" line="154"/>
+        <location filename="tagseditor.cpp" line="584"/>
         <source>Hide characters</source>
         <translation>Спрятать символы</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="146"/>
-        <location filename="tagseditor.cpp" line="565"/>
+        <location filename="tagseditor.cpp" line="159"/>
+        <location filename="tagseditor.cpp" line="578"/>
         <source>Show characters</source>
         <translation>Показать символы</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="229"/>
+        <location filename="tagseditor.cpp" line="242"/>
         <source>lower</source>
         <translation>нижний</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="230"/>
+        <location filename="tagseditor.cpp" line="243"/>
         <source>UPPER</source>
         <translation>ВЕРХНИЙ</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="231"/>
+        <location filename="tagseditor.cpp" line="244"/>
         <source>Only first up</source>
         <translation>Первое слово</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="232"/>
+        <location filename="tagseditor.cpp" line="245"/>
         <source>Every First Up</source>
         <translation>Каждое Слово</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="233"/>
+        <location filename="tagseditor.cpp" line="246"/>
         <source>Simplify whitespaces</source>
         <translation>Упростить пробелы</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="234"/>
+        <location filename="tagseditor.cpp" line="247"/>
         <source>Remove diacritics</source>
         <translation>Удалить диакритические знаки</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="235"/>
+        <location filename="tagseditor.cpp" line="248"/>
         <source>Transliterate</source>
         <translation>Транслитерировать</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="236"/>
+        <location filename="tagseditor.cpp" line="249"/>
         <source>Fix encoding</source>
         <translation>Исправить русскую кодировку</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="193"/>
+        <location filename="tagseditor.cpp" line="206"/>
         <source>Collect for future use</source>
         <translation>Запомнить на будущее</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="203"/>
+        <location filename="tagseditor.cpp" line="216"/>
         <source>Find/Replace</source>
         <translation>Найти/Заменить</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="414"/>
+        <location filename="tagseditor.cpp" line="427"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="414"/>
+        <location filename="tagseditor.cpp" line="427"/>
         <source>Nothing found</source>
         <translation>Ничего не найдено</translation>
     </message>

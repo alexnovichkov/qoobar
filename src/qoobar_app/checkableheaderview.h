@@ -49,8 +49,6 @@ protected:
 private Q_SLOTS:
     void updateSectionCount(int,int);
 private:
-    QRect checkBoxRect(const QRect &sourceRect) const;
-
     QVector<Qt::CheckState> m_isChecked;
     QVector<bool> m_isCheckable;
 };

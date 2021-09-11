@@ -3216,84 +3216,84 @@ Open the Settings dialog?</source>
         <translation>Valeurs diverses:</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="113"/>
+        <location filename="tagseditor.cpp" line="126"/>
         <source>%1 (%2 with Shift key)</source>
         <translation>%1 (%2 avec la touche Maj)</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="132"/>
+        <location filename="tagseditor.cpp" line="145"/>
         <source>Ctrl+Meta+Space</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="141"/>
-        <location filename="tagseditor.cpp" line="571"/>
+        <location filename="tagseditor.cpp" line="154"/>
+        <location filename="tagseditor.cpp" line="584"/>
         <source>Hide characters</source>
         <translation>Masquer les caractères</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="146"/>
-        <location filename="tagseditor.cpp" line="565"/>
+        <location filename="tagseditor.cpp" line="159"/>
+        <location filename="tagseditor.cpp" line="578"/>
         <source>Show characters</source>
         <translation>Afficher les caractères</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="229"/>
+        <location filename="tagseditor.cpp" line="242"/>
         <source>lower</source>
         <translation>minuscule</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="230"/>
+        <location filename="tagseditor.cpp" line="243"/>
         <source>UPPER</source>
         <translation>MAJUSCULE</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="231"/>
+        <location filename="tagseditor.cpp" line="244"/>
         <source>Only first up</source>
         <translation>Seulement d&apos;abord vers le haut</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="232"/>
+        <location filename="tagseditor.cpp" line="245"/>
         <source>Every First Up</source>
         <translation>Chaque Premier Vers Le Haut</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="233"/>
+        <location filename="tagseditor.cpp" line="246"/>
         <source>Simplify whitespaces</source>
         <translation>Simplifier les espaces</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="234"/>
+        <location filename="tagseditor.cpp" line="247"/>
         <source>Remove diacritics</source>
         <translation>Retirer signes diacritiques</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="235"/>
+        <location filename="tagseditor.cpp" line="248"/>
         <source>Transliterate</source>
         <translation>Translittérer mots russes</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="236"/>
+        <location filename="tagseditor.cpp" line="249"/>
         <source>Fix encoding</source>
         <translation>Corriger l&apos;encodage russe</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="193"/>
+        <location filename="tagseditor.cpp" line="206"/>
         <source>Collect for future use</source>
         <translation>Collecter pour une utilisation future</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="203"/>
+        <location filename="tagseditor.cpp" line="216"/>
         <source>Find/Replace</source>
         <translation>Remplacer / Chercher</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="414"/>
+        <location filename="tagseditor.cpp" line="427"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="414"/>
+        <location filename="tagseditor.cpp" line="427"/>
         <source>Nothing found</source>
         <translation>Aucun résultat trouvé</translation>
     </message>

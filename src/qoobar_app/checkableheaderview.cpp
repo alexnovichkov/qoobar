@@ -52,17 +52,32 @@ void CheckableHeaderView::paintSection(QPainter *painter, const QRect &rect, int
     painter->restore();
 
     if (m_isCheckable.at(logicalIndex)) {
+        //first draw checkbox on a pixmap with pixel ratio set to the actual one
+        //to respect high dpi screens
+        QCheckBox cb;
+
+        QPixmap img(rect.size() * this->devicePixelRatioF());
+        img.setDevicePixelRatio(this->devicePixelRatioF());
+        img.fill(Qt::transparent);
+
+        QStylePainter p(&img, &cb);
+
         QStyleOptionButton option;
+        option.initFrom(&cb);
         if (isEnabled())
             option.state |= QStyle::State_Enabled;
-        option.rect = checkBoxRect(rect);
+        option.rect = rect;
+        option.rect.translate(3,0);
         if (m_isChecked.at(logicalIndex)==Qt::Checked)
             option.state |= QStyle::State_On;
         else if (m_isChecked.at(logicalIndex)==Qt::Unchecked)
             option.state |= QStyle::State_Off;
         else
             option.state |= QStyle::State_NoChange;
-        style()->drawControl(QStyle::CE_CheckBox, &option, painter);
+
+        p.drawControl(QStyle::CE_CheckBox, option);
+        //next draw this pixmap on the screen
+        style()->drawItemPixmap(painter, rect, Qt::AlignLeft | Qt::AlignTop, img);
     }
 }
 
@@ -78,19 +93,6 @@ void CheckableHeaderView::mousePressEvent(QMouseEvent *event)
         Q_EMIT toggled(logicalIndex, m_isChecked.at(logicalIndex));
     }
     else QHeaderView::mousePressEvent(event);
-}
-
-//TODO: this->devicePixelRatioF()
-QRect CheckableHeaderView::checkBoxRect(const QRect &sourceRect) const
-{
-    QStyleOptionButton checkBoxStyleOption;
-    QRect checkBoxRect = style()->subElementRect(QStyle::SE_CheckBoxIndicator,
-                                                 &checkBoxStyleOption);
-    QPoint checkBoxPoint(sourceRect.x() + 3,
-                         sourceRect.y() +
-                         sourceRect.height() / 2 -
-                         checkBoxRect.height() / 2);
-    return {checkBoxPoint, checkBoxRect.size()};
 }
 
 void CheckableHeaderView::setCheckable(int section, bool checkable)
