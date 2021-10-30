@@ -46,6 +46,7 @@
 #include "placeholders.h"
 #include "qprogressindicatorspinning.h"
 #include "qbutton.h"
+#include "importmodel.h"
 
 class SearchResultsListDelegate : public QItemDelegate
 {
@@ -164,8 +165,8 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
         patternEdit->insertItems(0,App->fillPatterns);
         patternEdit->setEditText(App->fillPatterns.first());
     }
-    connect(patternEdit,SIGNAL(currentTextChanged(QString)),this,SLOT(updateTags()));
-    connect(patternEdit,SIGNAL(editTextChanged(QString)),this,SLOT(updateTags()));
+    connect(patternEdit,SIGNAL(currentTextChanged(QString)),this, SLOT(updateTags()));
+    connect(patternEdit,SIGNAL(editTextChanged(QString)),this, SLOT(updateTags()));
 
     legendButton = new LegendButton(this);
     legendButton->setCategories(LegendButton::WritablePlaceholders | LegendButton::VoidPlaceholder);
@@ -173,8 +174,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     legendButton->setFocusPolicy(Qt::NoFocus);
     legendButton->retranslateUi();
 
-    table = new QTableWidget(count,2,this);
-    table->setHorizontalHeaderLabels(QStringList() << QSL("") << tr("Source"));
+    table = new QTableView(this);
 
 #ifdef OSX_SUPPORT_ENABLED
     table->setAttribute(Qt::WA_MacSmallSize, true);
@@ -182,27 +182,19 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
 #else
     table->setWordWrap(false);
 #endif
-    for (int i=0; i<count; ++i) {
-        QTableWidgetItem *item = new QTableWidgetItem(QSL(""));
-        item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-        item->setCheckState(Qt::Checked);
-        table->setItem(i,0,item);
+    importModel = new ImportModel(table);
+    importModel->setTags(oldTags);
+    table->setModel(importModel);
 
-        item = new QTableWidgetItem(QSL(""));
-        item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        table->setItem(i,1,item);
-    }
-
-    header = new CheckableHeaderView(Qt::Horizontal,table);
+    header = new HeaderView(Qt::Horizontal,table);
     table->setHorizontalHeader(header);
     table->setColumnWidth(0,25);
     table->setColumnWidth(1,400);
     header->setCheckable(0,true);
-    header->setCheckState(0,Qt::Checked);
-    connect(header,SIGNAL(toggled(int,Qt::CheckState)),this,SLOT(headerToggled(int,Qt::CheckState)));
     table->resizeColumnToContents(0);
 
     setSource(0);
+    updateTags();
     connect(table,SIGNAL(cellChanged(int,int)),SLOT(cellChanged(int,int)));
 
     QHBoxLayout *patternLayout = new QHBoxLayout;
@@ -677,97 +669,13 @@ void TagsFillDialog::insertLegend(const QString &s)
 
 void TagsFillDialog::setSource(int sourceId)
 {DD
-    if (sourceId<0) return;
-    tagsSource.clear();
-
-    QVector<QString> clipboardStrings;
-
-    if (sourceId==1) {
-        clipboardStrings = qApp->clipboard()->text().split(QSL("\n")).toVector();
-        clipboardStrings.resize(count);
-    }
-    for (int i=0; i<count; ++i) {
-        QString s;
-        if (sourceId==0) {
-            s=QString("%1/%2").arg(oldTags.at(i).filePath()).arg(oldTags.at(i).fileName());
-            if (s=="/") {//dont know why it happens, but still:
-                QStringList list = oldTags.at(i).fullFileName().split(".");
-                if (list.size()==1) s = list.first();
-                else {
-                    list.takeLast();
-                    s = list.join(".");
-                }
-            }
-        }
-        else if (sourceId==1) {
-            s=clipboardStrings.at(i);
-        }
-        else s = oldTags.at(i).tag(sourceId-2);
-        tagsSource << s;
-        table->item(i,1)->setText(s);
-    }
-    //table->resizeRowsToContents();
-    updateTags();
+    if (sourceId < 0) return;
+    importModel->setSource(sourceId);
 }
 
-void TagsFillDialog::updateTags(bool alsoUpdateTable)
-{DD
-    QString pattern=patternEdit->currentText();
-    if (!TagParser::needParsing(pattern)) return;
-
-    newTags = oldTags;
-    QStringList source = tagsSource;
-
-    //truncates pattern according to the filename length
-    const bool isFileNames = (tagsSourceComboBox->currentIndex()==0);
-    if (isFileNames)
-        TagParser::truncateFileNamesToShortest(pattern,source);
-
-    QVector<int> map;
-
-    for (int i=0; i<count; ++i) {
-        if (table->item(i,0)->checkState()==Qt::Unchecked) continue;
-        Tag &tag = newTags[i];
-        PairList parsed = TagParser::parse(source.at(i), pattern);
-        Q_FOREACH(const StringPair &pair, parsed) {
-            int id = Placeholders::placeholderToId(pair.first);
-            if (id<0)
-                id = App->currentScheme->tagIDBySimplifiedName(pair.first);
-            if (id >= 0) {
-                if (!map.contains(id)) map << id;
-                tag.setTag(id, pair.second);
-            }
-        }
-    }
-
-    if (alsoUpdateTable) {
-        int column=2;
-
-        QStringList headers;
-        headers << QSL("") << tr("Source");
-
-        Q_FOREACH(const int &key, map) {
-            if (key!=-1) {
-                headers << App->currentScheme->localizedFieldName[key];
-                if (table->columnCount()<=column)
-                    table->insertColumn(column);
-                for (int i=0; i<count; ++i) {
-                    QTableWidgetItem *item = new QTableWidgetItem(newTags[i].tag(key));
-                    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-                    item->setData(Qt::UserRole+1, key);
-                    if (table->item(i,0)->checkState()==Qt::Unchecked) {
-                        item->setForeground(Qt::gray);
-                        item->setText(oldTags[i].tag(key));
-                    }
-                    table->setItem(i,column,item);
-                }
-                table->resizeColumnToContents(column);
-                column++;
-            }
-        }
-        table->setColumnCount(column);
-        table->setHorizontalHeaderLabels(headers);
-    }
+void TagsFillDialog::updateTags()
+{DD;
+    importModel->setPattern(patternEdit->currentText());
 }
 
 void TagsFillDialog::accept()
@@ -775,43 +683,11 @@ void TagsFillDialog::accept()
     if (tab->currentIndex()==0) {
         //add pattern to file renaming patterns
         App->addPattern(patternEdit->currentText(), App->fillPatterns);
-        updateTags(false);
+        newTags = importModel->getTags();
     }
     if (tab->currentIndex()==1) updateTagsFromNetwork();
 
     QDialog::accept();
-}
-
-void TagsFillDialog::cellChanged(int row, int col)
-{DD
-    if (col!=0) return;
-    bool isChecked = table->item(row,0)->checkState()==Qt::Checked;
-
-    for (int i=2; i<table->columnCount(); ++i) {
-        QTableWidgetItem *item = table->item(row,i);
-        if (isChecked) {
-            item->setForeground(palette().brush(QPalette::Text));
-            if (newTags.size()>=row+1)
-                item->setText(newTags.at(row).tag(item->data(Qt::UserRole+1).toInt()));
-        }
-        else {
-            item->setForeground(Qt::gray);
-            item->setText(oldTags.at(row).tag(item->data(Qt::UserRole+1).toInt()));
-        }
-    }
-
-//    int checked=0;
-//    for (int i=0; i<count; ++i)
-//        if (table->item(i,0)->checkState()==Qt::Checked) checked++;
-//    header->setCheckState(0,checked==0?Qt::Unchecked:(checked==count?Qt::Checked : Qt::PartiallyChecked));
-}
-
-void TagsFillDialog::headerToggled(int section, Qt::CheckState checkState) /*SLOT*/
-{DD
-    if (section!=0) return;
-    if (checkState==Qt::PartiallyChecked) return;
-    for (int i=0; i<count; ++i)
-        table->item(i,0)->setCheckState(checkState);
 }
 
 void TagsFillDialog::showHelp()
@@ -827,3 +703,4 @@ void TagsFillDialog::keyPressEvent(QKeyEvent *event)
         startSearchButton->click();
     else QWidget::keyPressEvent(event);
 }
+

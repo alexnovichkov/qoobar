@@ -29,6 +29,7 @@
 
 #include <QDialog>
 #include <QItemDelegate>
+#include <QAbstractTableModel>
 
 class QTableWidget;
 class QComboBox;
@@ -40,8 +41,9 @@ class CoreNetworkSearch;
 class QListWidget;
 class ReleaseInfoWidget;
 class QProgressBar;
+class HeaderView;
 class CheckableHeaderView;
-
+class QTableView;
 class DownloadHelper;
 class IDownloadPlugin;
 class ClearLineEdit;
@@ -52,23 +54,22 @@ class ClearLineEdit;
 class Tab;
 class QTreeWidgetItem;
 class QProgressIndicatorSpinning;
+class ImportModel;
 
 class TagsFillDialog : public QDialog
 {
 Q_OBJECT
 
 public:
-    TagsFillDialog(const QList<Tag> &,QWidget *parent = 0);
+    explicit TagsFillDialog(const QList<Tag> &,QWidget *parent = 0);
     ~TagsFillDialog();
     QList<Tag> getNewTags() {return newTags;}
 public Q_SLOTS:
-    void accept();
+    void accept() override;
 private Q_SLOTS:
-    void updateTags(bool alsoUpdateTable=true);
+    void updateTags();
     void setSource(int n);
     void insertLegend(const QString &);
-    void cellChanged(int row, int col);
-
     void handleSourceComboBox(int);
     void handleManualSearchRadioButton();
     void swapArtistAndAlbum();
@@ -78,7 +79,6 @@ private Q_SLOTS:
     void resultFinished(const SearchResult &,int);
     //void downloadingImageFinished(const QByteArray &,int);
     void downloadRelease(QTreeWidgetItem*);
-    void headerToggled(int,Qt::CheckState);
 
     void showHelp();
 private:
@@ -95,10 +95,11 @@ private:
     //from tags
     QComboBox *tagsSourceComboBox;
     QComboBox *patternEdit;
-    QTableWidget *table;
+    QTableView *table;
+    ImportModel *importModel;
     LegendButton *legendButton;
     QStringList tagsSource;
-    CheckableHeaderView *header;
+    HeaderView *header;
 
     //from Network
     QComboBox *sourceComboBox;

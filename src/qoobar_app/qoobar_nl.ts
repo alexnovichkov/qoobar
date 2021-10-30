@@ -795,6 +795,14 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
     </message>
 </context>
 <context>
+    <name>ImportModel</name>
+    <message>
+        <location filename="importmodel.cpp" line="84"/>
+        <source>Source</source>
+        <translation type="unfinished">Bron</translation>
+    </message>
+</context>
+<context>
     <name>InterfacePage</name>
     <message>
         <location filename="configpages.cpp" line="101"/>
@@ -3311,103 +3319,101 @@ Open the Settings dialog?</source>
 <context>
     <name>TagsFillDialog</name>
     <message>
-        <location filename="tagsfiller.cpp" line="136"/>
+        <location filename="tagsfiller.cpp" line="137"/>
         <source>Fill tags</source>
         <translation>Labels invullen</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="141"/>
+        <location filename="tagsfiller.cpp" line="142"/>
         <source>Pattern:</source>
         <translation>Patroon:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="145"/>
+        <location filename="tagsfiller.cpp" line="146"/>
         <source>File name</source>
         <translation>Bestands naam</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="146"/>
+        <location filename="tagsfiller.cpp" line="147"/>
         <source>Clipboard</source>
         <translation>Klembord</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="177"/>
-        <location filename="tagsfiller.cpp" line="747"/>
         <source>Source</source>
-        <translation>Bron</translation>
+        <translation type="vanished">Bron</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="209"/>
+        <location filename="tagsfiller.cpp" line="202"/>
         <source>Source:</source>
         <translation>Bron:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="220"/>
+        <location filename="tagsfiller.cpp" line="213"/>
         <source>from other tags</source>
         <translation>Van andere labels</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="254"/>
+        <location filename="tagsfiller.cpp" line="247"/>
         <source>manually</source>
         <translation>Handmatig</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="257"/>
+        <location filename="tagsfiller.cpp" line="250"/>
         <source>by CD in CD-ROM</source>
         <translation>door de CD in de CD-ROM</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="259"/>
+        <location filename="tagsfiller.cpp" line="252"/>
         <source>by selected files</source>
         <translation>door geselecteerde bestanden</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="268"/>
+        <location filename="tagsfiller.cpp" line="261"/>
         <source>Search</source>
         <translation>Zoek</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="276"/>
+        <location filename="tagsfiller.cpp" line="269"/>
         <source>Search results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="303"/>
+        <location filename="tagsfiller.cpp" line="296"/>
         <source>artist:</source>
         <translation>Artiest:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="306"/>
+        <location filename="tagsfiller.cpp" line="299"/>
         <source>album:</source>
         <translation>Album:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="310"/>
+        <location filename="tagsfiller.cpp" line="303"/>
         <source>Search in</source>
         <translation>Zoek in</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="338"/>
+        <location filename="tagsfiller.cpp" line="331"/>
         <source>from network</source>
         <translation>van netwerk</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="349"/>
+        <location filename="tagsfiller.cpp" line="342"/>
         <source>No download plugins found. Internet search is inaccessible</source>
         <translation>Download plugin niet gevonden.Zoeken met internet in niet toegangkelijk</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="428"/>
+        <location filename="tagsfiller.cpp" line="421"/>
         <source>Searching %1...</source>
         <translation>Zoeken %1...</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="458"/>
+        <location filename="tagsfiller.cpp" line="451"/>
         <source>Nothing found</source>
         <translation>Niets gevonden</translation>
     </message>
     <message numerus="yes">
-        <location filename="tagsfiller.cpp" line="463"/>
+        <location filename="tagsfiller.cpp" line="456"/>
         <source>Found %n album(s)</source>
         <translation>
             <numerusform>Found %n album</numerusform>
@@ -3415,17 +3421,17 @@ Open the Settings dialog?</source>
         </translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="500"/>
+        <location filename="tagsfiller.cpp" line="493"/>
         <source>Retrieving release info...</source>
         <translation>Ophalen versie info...</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="513"/>
+        <location filename="tagsfiller.cpp" line="506"/>
         <source>Done</source>
         <translation>Uitgevoerd</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="423"/>
+        <location filename="tagsfiller.cpp" line="416"/>
         <source>Please specify an artist and an album for the manual search</source>
         <translation>Geef een artiest en een album op voor het handmatig zoeken</translation>
     </message>

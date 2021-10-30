@@ -34,6 +34,7 @@ CONFIG *= no_keywords
 # main sources and headers
 SOURCES = main.cpp \
     fileiconprovider.cpp \
+    importmodel.cpp \
     mainwindow.cpp \
     tagseditor.cpp \
     tablewidget.cpp \
@@ -101,6 +102,7 @@ SOURCES = main.cpp \
 
 HEADERS = mainwindow.h \
     fileiconprovider.h \
+    importmodel.h \
     tagseditor.h \
     tablewidget.h \
     filesrenamer.h \
