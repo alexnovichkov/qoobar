@@ -458,8 +458,8 @@ void Model::rename(const QStringList &newFileNames)
                 Q_EMIT fileNameChanged(indexes.at(i), tags.at(indexes.at(i)).fileNameExt());
             }
             if (App->renameOptions.renamingOperation==0 && App->renameOptions.removeFolder) {
-                QFileInfo fi(oldFileName);
-                QDir().rmdir(fi.absolutePath());
+                QFileInfo ofi(oldFileName);
+                QDir().rmdir(ofi.absolutePath());
             }
         }
     }

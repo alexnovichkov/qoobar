@@ -123,11 +123,10 @@ Application::Application(int &argc, char **argv, bool useGui)
     libFiles << QDir(QSL("/usr/lib64")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
     libFiles << QDir(QSL("/usr/lib/x86_64-linux-gnu")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
     libFiles << QDir(App->applicationDirPath()).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
-    Q_FOREACH(const QFileInfo &fi, libFiles) {
-        if (isValidLibrary(fi)) {
-            discidLibraryPath = fi.canonicalFilePath();
-            break;
-        }
+
+    if (auto libFile = std::find_if(libFiles.cbegin(), libFiles.cend(), [](const QFileInfo &fi){
+        return isValidLibrary(fi);}); libFile != libFiles.cend()) {
+        discidLibraryPath = (*libFile).canonicalFilePath();
     }
 
     QStringList themePaths = QIcon::themeSearchPaths();
@@ -156,10 +155,14 @@ Application::~Application()
 
 void Application::loadTranslations()
 {DD;
-    if (qtTranslator)
-        qtTranslator->load(QSL("qt_") + langID, QLibraryInfo::LOCATION_PATH(QLibraryInfo::TranslationsPath));
-    if (appTranslator)
-        appTranslator->load(ApplicationPaths::translationsPath()+QSL("/qoobar_") + langID);
+    if (qtTranslator) {
+        if (!qtTranslator->load(QSL("qt_") + langID, QLibraryInfo::LOCATION_PATH(QLibraryInfo::TranslationsPath)))
+            qDebug()<<"Loading qt translation files failed";
+    }
+    if (appTranslator) {
+        if (!appTranslator->load(ApplicationPaths::translationsPath()+QSL("/qoobar_") + langID))
+            qDebug()<<"Loading app translation files failed";
+    }
     if (currentScheme) currentScheme->retranslateUI();
 }
 
@@ -259,8 +262,8 @@ void Application::readGuiSettings()
     fillPatterns = se->value(QSL("fill_Patterns"), QStringList("%n. %A - %a")).toStringList();
 
     if (se->contains(QSL("fillPatterns"))) {
-        QStringList l = se->value(QSL("fillPatterns")).toString().split(';');
-        Q_FOREACH (const QString &s, l) addPattern(s, fillPatterns);
+        const QStringList l = se->value(QSL("fillPatterns")).toString().split(';');
+        for (const QString &s: l) addPattern(s, fillPatterns);
         se->remove(QSL("fillPatterns"));
     }
 
@@ -550,8 +553,8 @@ void Application::removePattern(const QString &s, QStringList &where)
 void Application::loadPlugins()
 {DD;
     QDir pluginsDir = QDir(ApplicationPaths::pluginsPath());
-    QFileInfoList potentialPlugins = pluginsDir.entryInfoList(QDir::Files);
-    Q_FOREACH (const QFileInfo &fileName, potentialPlugins) {
+    const QFileInfoList potentialPlugins = pluginsDir.entryInfoList(QDir::Files);
+    for (const QFileInfo &fileName: potentialPlugins) {
         QString path=fileName.canonicalFilePath();
         QPluginLoader loader(path);
         QJsonObject metaData = loader.metaData().value("MetaData").toObject();
@@ -666,7 +669,7 @@ bool Autocompletions::write(QSettings *se)
         }
     }
 
-    Q_FOREACH (const Completion &c, completions) {
+    for (const Completion &c: completions) {
         if (!c.wasChanged) continue;
 
         QStringList list = c.variants;
@@ -708,6 +711,7 @@ void Autocompletions::update(int tagID, const QStringList &newVariants)
     list.append(newVariants);
     list.removeDuplicates();
 
+    //I don't know why not simply list.removeAll("");
     for (int i=list.size()-1; i>=0; --i) {
         if (list.at(i).isEmpty()) {
             list.removeAt(i);

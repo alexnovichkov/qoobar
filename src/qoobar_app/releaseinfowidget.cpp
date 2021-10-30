@@ -70,7 +70,6 @@ ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
     tracksTable->setHeaderLabels(QStringList()<<tr("No.")<<tr("Title")<<tr("Artists")
                                  <<tr("Comment")<<tr("Length"));
     tracksTable->setRootIsDecorated(false);
-    connect(tracksTable,SIGNAL(itemChanged(QTreeWidgetItem*,int)),SLOT(checkBoxToggled(QTreeWidgetItem*,int)));
 
     header = new CheckableHeaderView(Qt::Horizontal,tracksTable);
     tracksTable->setHeader(header);
@@ -182,17 +181,3 @@ void ReleaseInfoWidget::headerToggled(int column, Qt::CheckState checked)
     tracksTable->blockSignals(false);
 }
 
-void ReleaseInfoWidget::checkBoxToggled(QTreeWidgetItem *item, int column)
-{DD;
-    if (!header->isSectionCheckable(column)) return;
-
-    if (!item) return;
-
-    int checked=0;
-    for (int i=0; i<tracksTable->topLevelItemCount(); ++i)
-        if (tracksTable->topLevelItem(i)->checkState(column)==Qt::Checked) checked++;
-
-    if (checked==0) header->setCheckState(column,Qt::Unchecked);
-    else if (checked==tracksTable->topLevelItemCount()) header->setCheckState(column,Qt::Checked);
-    else header->setCheckState(column,Qt::PartiallyChecked);
-}

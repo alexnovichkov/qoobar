@@ -115,14 +115,14 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
 #endif
     lang = new QComboBox(this);
-    QStringList ts=QDir(ApplicationPaths::translationsPath()).entryList(QStringList(QSL("*.qm")), QDir::Files | QDir::Readable);
+    const QStringList ts=QDir(ApplicationPaths::translationsPath()).entryList(QStringList(QSL("*.qm")), QDir::Files | QDir::Readable);
     QTranslator translator;
     int index=-1;
-    Q_FOREACH(const QString &s,ts) {
+    for (const QString &s: ts) {
         if (translator.load(ApplicationPaths::translationsPath() + "/" + s)) {
             QString ID=translator.translate("Settings","en");
-            QString text=translator.translate("Settings","English");
             if (!ID.isEmpty()) {
+                QString text=translator.translate("Settings","English");
                 index++;
                 lang->addItem(text,ID);
             }
@@ -135,8 +135,8 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 
     iconThemeLabel = new QLabel(tr("Toolbar icons theme"),this);
     iconTheme = new QComboBox(this);
-    QStringList iconThemes = QDir(ApplicationPaths::sharedPath()+"/icons").entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
-    Q_FOREACH(const QString &dir, iconThemes) {
+    const QStringList iconThemes = QDir(ApplicationPaths::sharedPath()+"/icons").entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
+    for (const QString &dir: iconThemes) {
         if (QFile::exists(ApplicationPaths::sharedPath()+"/icons/"+dir+"/index.theme")) {
             iconTheme->addItem(dir);
             iconTheme->setItemData(iconTheme->count()-1, dir);
@@ -689,15 +689,11 @@ PatternsPage::PatternsPage(QWidget *parent) : ConfigPage(parent)
     schemesLabel = new QLabel(tr("Current scheme"),this);
     schemesComboBox = new QComboBox(this);
     schemesComboBox->setEditable(false);
-
-    QFileInfoList schemeFiles = QDir(ApplicationPaths::userSchemesPath()).entryInfoList(QStringList(QLS("*.xml")))
-            +QDir(ApplicationPaths::schemesPath()).entryInfoList(QStringList(QLS("*.xml")));
-
-    QStringList schemeFilesList;
-    Q_FOREACH (const QFileInfo &schemeFile, schemeFiles) schemeFilesList << schemeFile.canonicalFilePath();
-    schemeFilesList.removeDuplicates();
     schemesComboBox->addItem(tr("Default"),":/src/default.xml");
-    Q_FOREACH (const QString &schemePath, schemeFilesList) {
+    const QFileInfoList schemeFiles = QDir(ApplicationPaths::userSchemesPath()).entryInfoList(QStringList(QLS("*.xml")))
+            +QDir(ApplicationPaths::schemesPath()).entryInfoList(QStringList(QLS("*.xml")));
+    for (const auto &file: schemeFiles) {
+        const QString schemePath = file.canonicalFilePath();
         TaggingScheme scheme(schemePath);
         scheme.read(true);
         QString schemeName = scheme.name();
@@ -852,8 +848,7 @@ void PatternsPage::updatePatterns()
 
 void PatternsPage::insertLegend(const QString &s)
 {DD;
-    auto *edit = qobject_cast<QLineEdit *>(patterns->itemWidget(patterns->currentItem()));
-    if (edit)
+    if (auto *edit = qobject_cast<QLineEdit *>(patterns->itemWidget(patterns->currentItem())))
         edit->insert(s);
 }
 
@@ -1171,7 +1166,7 @@ void PluginsPage::retranslateUI()
 
 void PluginsPage::setSettings()
 {DD;
-    for (const auto &metaData: App->downloadPlugins) {
+    for (const auto &metaData: qAsConst(App->downloadPlugins)) {
         QString text = metaData.value(QSL("text")).toObject().value(App->langID).toString();
         if (text.isEmpty())
             text = metaData.value(QSL("text")).toObject().value(QSL("default")).toString();
@@ -1189,7 +1184,7 @@ void PluginsPage::setSettings()
         if (metaData.value(QSL("canSearchByFiles")).toBool())  item->setIcon(canSearchByFilesColumn, QIcon::fromTheme("tick"));
     }
 
-    for (const auto &metaData: App->plugins) {
+    for (const auto &metaData: qAsConst(App->plugins)) {
         QString text = metaData.value(QSL("text")).toObject().value(App->langID).toString();
         if (text.isEmpty())
             text = metaData.value(QSL("text")).toObject().value(QSL("default")).toString();

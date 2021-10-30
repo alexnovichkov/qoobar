@@ -37,14 +37,14 @@ CoverImageData::CoverImageData(const CoverImageData &other)
       description(other.description)
 { }
 
-CoverImage::CoverImage()
+CoverImage::CoverImage() : d{new CoverImageData}
 {
-    d = new CoverImageData;
+
 }
 
 CoverImage::CoverImage(const QByteArray &pixmap,int type,const QString &mimetype,const QString &description)
+    : d{new CoverImageData}
 {
-    d = new CoverImageData;
     setPixmap(pixmap);
     setType(type);
     setMimetype(mimetype);

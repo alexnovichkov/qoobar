@@ -35,6 +35,12 @@ CheckableHeaderView::CheckableHeaderView(Qt::Orientation orientation, QWidget *p
 {
     setSectionsClickable(true);
     connect(this,SIGNAL(sectionCountChanged(int,int)),SLOT(updateSectionCount(int,int)));
+    if (auto parentView=qobject_cast<QAbstractItemView*>(parent)) {
+        parentModel = parentView->model();
+        connect(parentModel, &QAbstractItemModel::dataChanged, this, &CheckableHeaderView::modelDataChanged);
+
+    }
+
 }
 
 void CheckableHeaderView::setCheckState(int section, Qt::CheckState checkState)
@@ -90,7 +96,19 @@ void CheckableHeaderView::mousePressEvent(QMouseEvent *event)
         else
             m_isChecked[logicalIndex] = Qt::Checked;
         updateSection(logicalIndex);
+
         Q_EMIT toggled(logicalIndex, m_isChecked.at(logicalIndex));
+
+//        if (parentModel) {
+//            parentModel->blockSignals(true);
+//            for (int i=0; i<parentModel->rowCount()-1; ++i) {
+//                parentModel->setData(parentModel->index(i, logicalIndex), m_isChecked[logicalIndex], Qt::CheckStateRole);
+//            }
+//            parentModel->blockSignals(false);
+//            parentModel->setData(parentModel->index(parentModel->rowCount()-1, logicalIndex),
+//                                 m_isChecked[logicalIndex],
+//                                 Qt::CheckStateRole);
+//        }
     }
     else QHeaderView::mousePressEvent(event);
 }
@@ -106,6 +124,28 @@ void CheckableHeaderView::updateSectionCount(int oldCount, int newCount)
     Q_UNUSED(oldCount)
     m_isChecked.resize(newCount);
     m_isCheckable.resize(newCount);
+}
+
+void CheckableHeaderView::modelDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles)
+{
+    if (!parentModel) return;
+
+    if (roles.contains(Qt::CheckStateRole) || roles.isEmpty()) {
+        for (int column = topLeft.column(); column <= bottomRight.column(); ++column) {
+            if (!isSectionCheckable(column)) continue;
+            int checkedCount=0;
+            for (int i=0; i<parentModel->rowCount(topLeft.parent()); ++i) {
+                if (parentModel->data(parentModel->index(i,column,topLeft.parent()), Qt::CheckStateRole).toInt()==Qt::Checked)
+                    checkedCount++;
+            }
+            if (checkedCount==0)
+                setCheckState(column, Qt::Unchecked);
+            else if (checkedCount == parentModel->rowCount(topLeft.parent()))
+                setCheckState(column, Qt::Checked);
+            else
+                setCheckState(column, Qt::PartiallyChecked);
+        }
+    }
 }
 
 bool CheckableHeaderView::isSectionCheckable(const int section) const

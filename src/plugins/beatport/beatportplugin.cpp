@@ -228,7 +228,6 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
         table->item(i,2)->setText(title);
     }
 
-    connect(table,SIGNAL(cellChanged(int,int)),SLOT(checkBoxToggled(int,int)));
     table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     header = new CheckableHeaderView(Qt::Horizontal,table);
@@ -311,20 +310,6 @@ void Dialog::headerToggled(int column, Qt::CheckState checked)
     if (checked==Qt::PartiallyChecked) return;
     for (int i=0; i<table->rowCount(); ++i)
         table->item(i,column)->setCheckState(checked);
-}
-
-void Dialog::checkBoxToggled(int row, int column)
-{
-    QTableWidgetItem *item=table->item(row,column);
-    if (!item) return;
-
-    if (!header->isSectionCheckable(column)) return;
-
-    int checked=0;
-    for (int i=0; i<table->rowCount(); ++i)
-        if (table->item(i,column)->checkState()==Qt::Checked) checked++;
-    if (header)
-        header->setCheckState(column,checked==0?Qt::Unchecked:(checked==table->rowCount()?Qt::Checked : Qt::PartiallyChecked));
 }
 
 QString makeKey(QVariantMap map)

@@ -44,8 +44,8 @@ ColumnsDialog::ColumnsDialog(QTreeView *tree) :
     table = new QTableWidget(columnCount, 1);
     table->setHorizontalHeaderLabels(QStringList(tr("Visibility")));
 
-    int hidden=tree->header()->hiddenSectionCount();
-    int checked = columnCount - hidden;
+    const int hidden=tree->header()->hiddenSectionCount();
+    const int checked = columnCount - hidden;
     for (int i = 0; i < columnCount; ++i) {
         QTableWidgetItem *item = new QTableWidgetItem(tree->model()->headerData(i,Qt::Horizontal).toString());
         item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
@@ -89,16 +89,6 @@ void ColumnsDialog::checkBoxToggled(int row, int column)
     }
 
     tree->header()->setSectionHidden(row, item->checkState()!=Qt::Checked);
-
-    if (!header->isSectionCheckable(column)) return;
-    int checked=0;
-    for (int i=0; i<table->rowCount(); ++i)
-        if (table->item(i,column)->checkState()==Qt::Checked) checked++;
-    if (header) {
-        if (checked==0) header->setCheckState(column,Qt::Unchecked);
-        else if (checked==tree->header()->count()) header->setCheckState(column,Qt::Checked);
-        else header->setCheckState(column,Qt::PartiallyChecked);
-    }
 }
 
 void ColumnsDialog::headerToggled(int column, Qt::CheckState checked)

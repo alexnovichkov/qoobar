@@ -165,17 +165,16 @@ void AutonumberDialog::updateTrackNumbers()
 
     QList<QTreeWidgetItem*> items;
     for (const auto &tag: oldTags) {
-        QTreeWidgetItem *item = new QTreeWidgetItem(
-                                    QStringList()
-                                        <<tag.tracknumber()
-                                        <<tag.tracknumber()
-                                        <<tag.totalTracks()
-                                        <<tag.totalTracks()
-                                        <<tag.fileNameExt()
-                                        <<tag.artist()
-                                        <<tag.composer()
-                                        <<tag.album()
-                                        <<tag.title());
+        QTreeWidgetItem *item = new QTreeWidgetItem({
+                                        tag.tracknumber(),
+                                        tag.tracknumber(),
+                                        tag.totalTracks(),
+                                        tag.totalTracks(),
+                                        tag.fileNameExt(),
+                                        tag.artist(),
+                                        tag.composer(),
+                                        tag.album(),
+                                        tag.title()});
         item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
         items << item;
     }
@@ -187,53 +186,43 @@ void AutonumberDialog::updateTrackNumbers()
     const bool addTotalTracks = addTotalTracksCheckBox->isChecked();
     const int  actionIndex    = actionComboBox->currentIndex();
 
+    //the 1st layer - group byFolder
     QMap<QString, QVector<int> > byFolder;
-    if (resetFolder) {
-        for (int i=0; i<totalCount; ++i) {
-            QString path = oldTags.at(i).filePath();
-            QVector<int> indexes = byFolder.value(path);
-            indexes.append(i);
-            byFolder.insert(path, indexes);
-        }
-    }
-    else {
-        QVector<int> indexes;
-        for (int i=0; i<totalCount; ++i)
-            indexes << i;
-        byFolder.insert(" ", indexes);
+    for (int i=0; i<totalCount; ++i) {
+        if (resetFolder)
+            byFolder[oldTags.at(i).filePath()].append(i);
+        else
+            byFolder[" "].append(i);
     }
 
+    //folder by folder group in the next layers
     QMapIterator<QString, QVector<int> > it(byFolder);
     while (it.hasNext()) {
         it.next();
-        QVector<int> indexes = it.value();
+        const QVector<int> indexes = it.value();
 
+        //the 2nd layer - group by album
         QMap<QString, QVector<int> > byAlbum;
-        if (resetAlbum) {
-            for (int i: indexes) {
-                QString album = oldTags.at(i).album();
-                QVector<int> indexesA = byAlbum.value(album);
-                indexesA.append(i);
-                byAlbum.insert(album, indexesA);
-            }
+        for (int i: indexes) {
+            if (resetAlbum)
+                byAlbum[oldTags.at(i).album()].append(i);
+            else
+                byAlbum[" "].append(i);
         }
-        else {
-            byAlbum.insert(" ", indexes);
-        }
+
 
         QVector<int> indexesLast;
 
         QMapIterator<QString, QVector<int> > itA(byAlbum);
         while (itA.hasNext()) {
             itA.next();
-            QString album = itA.key();
-            QVector<int> indexesA = itA.value();
+            const QVector<int> indexesA = itA.value();
 
             for (int i=0; i<indexesA.size(); ++i) {
                 QString trackNumber = formatNumber(i+firstNumber, numberFormat);
                 QString totalTracks = formatNumber(indexesA.size(), numberFormat);
 
-                if (album.isEmpty() || indexesA.size()<=1) {
+                if (itA.key().isEmpty() || indexesA.size()<=1) {
                     switch (actionIndex) {
                     case 0: {//0 - Remove track number
                         trackNumber.clear();
@@ -261,7 +250,6 @@ void AutonumberDialog::updateTrackNumbers()
                 items[indexesA.at(i)]->setText(1, trackNumber);
                 if (addTotalTracks)
                     items[indexesA.at(i)]->setText(3, totalTracks);
-
             }
         }
 

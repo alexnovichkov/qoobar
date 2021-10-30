@@ -53,7 +53,7 @@ public:
     void setAutoHide(bool hide) { m_autoHide = hide; }
     bool hasAutoHide() const { return m_autoHide; }
 private:
-    float m_iconOpacity;
+    float m_iconOpacity = 0.0;
     bool m_autoHide;
     QPixmap m_pixmap;
 };

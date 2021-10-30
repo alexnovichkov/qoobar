@@ -28,8 +28,8 @@ void FileNameRenderer::updateTags()
             if (App->renameOptions.renamingOperation != 2)
                 fileName = replaceWinChars(fileName, App->renameOptions.winCharsReplacer, true);
             if (App->renameOptions.applyToFolders) {
-                for (int i=0; i<list.size(); ++i)
-                    list[i] = replaceWinChars(list[i], App->renameOptions.winCharsReplacer, true);
+                for (QString &dir: list)
+                    dir = replaceWinChars(dir, App->renameOptions.winCharsReplacer, true);
             }
         }
 
@@ -48,8 +48,8 @@ void FileNameRenderer::updateTags()
             if (App->renameOptions.renamingOperation != 2)
                 fileName = removeDiacritics(fileName);
             if (App->renameOptions.applyToFolders) {
-                for (int i=0; i<list.size(); ++i)
-                    list[i] = removeDiacritics(list[i]);
+                for (QString &dir: list)
+                    dir = removeDiacritics(dir);
             }
         }
 
@@ -57,8 +57,8 @@ void FileNameRenderer::updateTags()
             if (App->renameOptions.renamingOperation != 2)
                 fileName = changeCase(fileName, (Case::Case)App->renameOptions.ccase);
             if (App->renameOptions.applyToFolders) {
-                for (int i=0; i<list.size(); ++i)
-                    list[i] = changeCase(list[i], (Case::Case)App->renameOptions.ccase);
+                for (QString &dir: list)
+                    dir = changeCase(dir, (Case::Case)App->renameOptions.ccase);
             }
         }
 

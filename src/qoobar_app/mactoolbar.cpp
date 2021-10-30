@@ -12,7 +12,7 @@
 #include "impl.h"
 #include "enums.h"
 
-QAction *findAction(QList<QAction*> &list, const QString &s)
+QAction *findAction(const QList<QAction*> &list, const QString &s)
 {
     Q_FOREACH (QAction *a, list) {
         if (a->property("itemIdentifier").toString() == s) return a;
@@ -52,9 +52,8 @@ void Impl::toggle(bool on)
 }
 
 
-Toolbar::Toolbar(QMainWindow *parent) : QObject(parent)
+Toolbar::Toolbar(QMainWindow *parent) : QObject(parent), d{new Impl(parent)}
 {DD;
-    d = new Impl(parent);
     parent->addToolBar(d);
     d->setIconSize(QSize(LARGE_ICON_SIZE, LARGE_ICON_SIZE));
     d->setMovable(false);

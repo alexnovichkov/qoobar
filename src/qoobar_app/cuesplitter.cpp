@@ -73,17 +73,7 @@ QString getShortFileName(const QString &fileName)
 
 QStringList CueSplitter::formats()
 {DD;
-    QStringList list;
-    list.append("flac");
-    list.append("alac");
-    list.append("m4a");
-    list.append("ogg");
-    list.append("mp3");
-    list.append("wma");
-    list.append("wv");
-    list.append("spx");
-    list.append("opus");
-    return list;
+    return {"flac","alac","m4a","ogg","mp3","wma","wv","spx","opus"};
 }
 
 CueSplitter::CueSplitter(QObject *parent) :
@@ -176,11 +166,11 @@ void CueSplitter::setCueFile(const QString &cueFile)
         for (int i=0; i<len; ++i) {
             if ((unsigned char)data[i] > 127) {
                 _notLatin1 = true;
-                break;
+                goto notLatin;
             }
         }
-        if (_notLatin1) break;
     }
+notLatin:
     file.close();
 
     // second iteration - actual reading of file using codec
@@ -533,14 +523,12 @@ void CueSplitter::findTrackCount()
 void CueSplitter::updateText()
 {DD;
     QByteArray b=process->readAll();
-    QString text = QString::fromUtf8(b.data(),b.size());
-   // QFile f("updateText.txt");
-  //  f.open(QFile::Append);
-  //  f.write(b);
-  //  f.close();
+
 #ifdef Q_OS_WIN
     QString toRecode = QString::fromLocal8Bit(b.data(),b.size());
-    text = processFunction("recode",QStringList()<<toRecode,0);
+    QString text = processFunction("recode",QStringList()<<toRecode,0);
+#else
+    QString text = QString::fromUtf8(b.data(),b.size());
 #endif
     Q_EMIT textReady(text);
 }

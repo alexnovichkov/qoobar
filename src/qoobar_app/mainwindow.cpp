@@ -825,8 +825,8 @@ void MainWindow::updateTabText(bool filesChanged, int index)
 {DD
     if (index<0 || index>=tabWidget->count()) return;
     QString s=tabWidget->tabText(index);
-    Tab *tab=qobject_cast<Tab *>(tabWidget->widget(index));
-    if (tab) {
+    //Tab *tab=qobject_cast<Tab *>(tabWidget->widget(index));
+    //if (tab) {
         if (filesChanged) {
             if(!s.endsWith(QLS("*")))
                 s.append("*");
@@ -834,7 +834,7 @@ void MainWindow::updateTabText(bool filesChanged, int index)
         else
             if (s.endsWith(QLS("*")))
                 s.chop(1);
-    }
+    //}
     tabWidget->setTabText(index,s);
 }
 

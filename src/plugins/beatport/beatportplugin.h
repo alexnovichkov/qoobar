@@ -86,7 +86,6 @@ public:
 private Q_SLOTS:
     void startSearch();
     void headerToggled(int, Qt::CheckState);
-    void checkBoxToggled(int,int);
     void accept();
 private:
     void updateTags(Tag &tag, BeatportWidget *w);

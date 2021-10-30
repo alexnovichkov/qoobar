@@ -48,7 +48,6 @@ public:
     int cd() {return _cd;}
 private Q_SLOTS:
     void headerToggled(int,Qt::CheckState);
-    void checkBoxToggled(QTreeWidgetItem*, int);
 private:
     QTreeWidget *albumTable;
 

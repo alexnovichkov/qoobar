@@ -800,10 +800,10 @@ void TagsFillDialog::cellChanged(int row, int col)
         }
     }
 
-    int checked=0;
-    for (int i=0; i<count; ++i)
-        if (table->item(i,0)->checkState()==Qt::Checked) checked++;
-    header->setCheckState(0,checked==0?Qt::Unchecked:(checked==count?Qt::Checked : Qt::PartiallyChecked));
+//    int checked=0;
+//    for (int i=0; i<count; ++i)
+//        if (table->item(i,0)->checkState()==Qt::Checked) checked++;
+//    header->setCheckState(0,checked==0?Qt::Unchecked:(checked==count?Qt::Checked : Qt::PartiallyChecked));
 }
 
 void TagsFillDialog::headerToggled(int section, Qt::CheckState checkState) /*SLOT*/

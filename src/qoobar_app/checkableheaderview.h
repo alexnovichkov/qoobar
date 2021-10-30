@@ -48,9 +48,11 @@ protected:
     void mousePressEvent(QMouseEvent *event);
 private Q_SLOTS:
     void updateSectionCount(int,int);
+    void modelDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles = QVector<int>());
 private:
     QVector<Qt::CheckState> m_isChecked;
     QVector<bool> m_isCheckable;
+    QAbstractItemModel *parentModel = nullptr;
 };
 
 #endif // CHECKABLEHEADERVIEW_H
