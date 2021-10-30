@@ -7,9 +7,10 @@
 #include "tagparser.h"
 #include "placeholders.h"
 
-ImportModel::ImportModel(QObject *parent) : QAbstractTableModel(parent)
+ImportModel::ImportModel(QObject *parent) : CheckableTableModel(parent)
 {
-
+    setCheckable(0, true);
+    setUpdatableColumns(QVector<int>());
 }
 
 void ImportModel::setTags(const QList<Tag> &tags)
@@ -67,10 +68,6 @@ QVariant ImportModel::data(const QModelIndex &index, int role) const
             }
             break;
         }
-        case Qt::CheckStateRole: {
-            if (col==0) return checkedRows.value(row, true)?Qt::Checked:Qt::Unchecked;
-            break;
-        }
         case Qt::ForegroundRole: {
             if (!checkedRows.value(row, true)) return QVariant(QColor(Qt::gray));
             break;
@@ -79,7 +76,7 @@ QVariant ImportModel::data(const QModelIndex &index, int role) const
         }
     }
 
-    return QVariant();
+    return CheckableTableModel::data(index, role);
 }
 
 QVariant ImportModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -92,15 +89,9 @@ QVariant ImportModel::headerData(int section, Qt::Orientation orientation, int r
             default: return App->currentScheme->localizedFieldName[map.value(section-2)];
             }
         }
-        else if (role==Qt::CheckStateRole && section==0) {
-            const auto checked = [](bool b){return b;};
-            if (std::all_of(checkedRows.cbegin(), checkedRows.cend(), checked)) return Qt::Checked;
-            if (std::none_of(checkedRows.cbegin(), checkedRows.cend(), checked)) return Qt::Unchecked;
-            return Qt::PartiallyChecked;
-        }
     }
 
-    return QAbstractTableModel::headerData(section, orientation, role);
+    return CheckableTableModel::headerData(section, orientation, role);
 }
 
 void ImportModel::update()
@@ -162,47 +153,23 @@ void ImportModel::update()
 
 Qt::ItemFlags ImportModel::flags(const QModelIndex &index) const
 {
-    if (!index.isValid()) return QAbstractTableModel::flags(index);
-
-    auto f = Qt::ItemIsSelectable | Qt::ItemIsEnabled;
-    if (index.column()==0) f |= Qt::ItemIsUserCheckable;
-    return f;
+    return CheckableTableModel::flags(index) | Qt::ItemIsSelectable | Qt::ItemIsEnabled;
 }
 
-
-bool ImportModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool ImportModel::checked(int row, int column) const
 {
-    if (index.isValid() && index.column()==0 && role==Qt::CheckStateRole) {
-        checkedRows[index.row()] = value.toInt()==Qt::Checked;
-        Q_EMIT dataChanged(index, this->index(index.row(), columnCount(QModelIndex())-1),
-                           {Qt::CheckStateRole, Qt::DisplayRole, Qt::ForegroundRole});
-        Q_EMIT headerDataChanged(Qt::Horizontal, 0, 0);
-        return true;
-    }
-    return false;
+    Q_UNUSED(column);
+    return checkedRows.value(row, true);
 }
 
-
-bool ImportModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
+void ImportModel::setChecked(int row, int column, bool checked)
 {
-    if (orientation == Qt::Vertical || section != 0)
-        return QAbstractItemModel::setHeaderData(section, orientation, value, role);
+    Q_UNUSED(column);
+    checkedRows[row] = checked;
+}
 
-    if (role == Qt::CheckStateRole) {
-        Qt::CheckState state = Qt::CheckState(value.toInt());
-        switch (state) {
-        case Qt::Checked:
-            checkedRows = QVector<bool>(tags.size(), true);
-            break;
-        case Qt::Unchecked:
-            checkedRows = QVector<bool>(tags.size(), false);
-            break;
-        default: break;
-        }
-        Q_EMIT dataChanged(index(0,0), index(rowCount(QModelIndex())-1, columnCount(QModelIndex())-1));
-        Q_EMIT headerDataChanged(orientation, section, section);
-        return true;
-    }
-
-    return QAbstractItemModel::setHeaderData(section, orientation, value, role);
+void ImportModel::setHeaderChecked(int section, bool checked)
+{
+    Q_UNUSED(section);
+    checkedRows = QVector<bool>(tags.size(), checked);
 }

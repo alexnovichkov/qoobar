@@ -803,7 +803,7 @@ e &quot; verra sostituito da due virgolette singole &apos;&apos;</translation>
 <context>
     <name>ImportModel</name>
     <message>
-        <location filename="importmodel.cpp" line="84"/>
+        <location filename="importmodel.cpp" line="92"/>
         <source>Source</source>
         <translation type="unfinished">Sorgente</translation>
     </message>
@@ -3346,77 +3346,77 @@ Vuoi salvare i cambiamenti?</translation>
         <translation type="vanished">Sorgente</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="202"/>
+        <location filename="tagsfiller.cpp" line="201"/>
         <source>Source:</source>
         <translation>Sorgente:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="213"/>
+        <location filename="tagsfiller.cpp" line="212"/>
         <source>from other tags</source>
         <translation>da altri tag</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="247"/>
+        <location filename="tagsfiller.cpp" line="246"/>
         <source>manually</source>
         <translation>ricerca manuale</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="250"/>
+        <location filename="tagsfiller.cpp" line="249"/>
         <source>by CD in CD-ROM</source>
         <translation>dal CD nel CD-ROM</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="252"/>
+        <location filename="tagsfiller.cpp" line="251"/>
         <source>by selected files</source>
         <translation>dai file selezionati</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="261"/>
+        <location filename="tagsfiller.cpp" line="260"/>
         <source>Search</source>
         <translation>Cerca</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="269"/>
+        <location filename="tagsfiller.cpp" line="268"/>
         <source>Search results</source>
         <translation>Risultati della ricerca</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="296"/>
+        <location filename="tagsfiller.cpp" line="295"/>
         <source>artist:</source>
         <translation>artista:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="299"/>
+        <location filename="tagsfiller.cpp" line="298"/>
         <source>album:</source>
         <translation>album:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="303"/>
+        <location filename="tagsfiller.cpp" line="302"/>
         <source>Search in</source>
         <translation>Cerca da</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="331"/>
+        <location filename="tagsfiller.cpp" line="330"/>
         <source>from network</source>
         <translation>dalla rete</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="342"/>
+        <location filename="tagsfiller.cpp" line="341"/>
         <source>No download plugins found. Internet search is inaccessible</source>
         <translation>Plugins per il download non trovati. La ricerca in Internet non è accessibile</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="421"/>
+        <location filename="tagsfiller.cpp" line="420"/>
         <source>Searching %1...</source>
         <translation>Ricerca in %1...</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="451"/>
+        <location filename="tagsfiller.cpp" line="450"/>
         <source>Nothing found</source>
         <translation>Nessun dato trovato</translation>
     </message>
     <message numerus="yes">
-        <location filename="tagsfiller.cpp" line="456"/>
+        <location filename="tagsfiller.cpp" line="455"/>
         <source>Found %n album(s)</source>
         <translation>
             <numerusform>Trovati %n album</numerusform>
@@ -3424,17 +3424,17 @@ Vuoi salvare i cambiamenti?</translation>
         </translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="493"/>
+        <location filename="tagsfiller.cpp" line="492"/>
         <source>Retrieving release info...</source>
         <translation>Ricezione dati...</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="506"/>
+        <location filename="tagsfiller.cpp" line="505"/>
         <source>Done</source>
         <translation>Fatto</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="416"/>
+        <location filename="tagsfiller.cpp" line="415"/>
         <source>Please specify an artist and an album for the manual search</source>
         <translation>Si prega di specificare un artista e un album per la ricerca manuale</translation>
     </message>

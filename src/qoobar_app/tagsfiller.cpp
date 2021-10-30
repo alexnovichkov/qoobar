@@ -195,7 +195,6 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
 
     setSource(0);
     updateTags();
-    connect(table,SIGNAL(cellChanged(int,int)),SLOT(cellChanged(int,int)));
 
     QHBoxLayout *patternLayout = new QHBoxLayout;
     patternLayout->addWidget(new QLabel(tr("Source:"),this));

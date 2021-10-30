@@ -33,6 +33,7 @@ CONFIG *= no_keywords
 
 # main sources and headers
 SOURCES = main.cpp \
+    checkabletablemodel.cpp \
     fileiconprovider.cpp \
     importmodel.cpp \
     mainwindow.cpp \
@@ -101,6 +102,7 @@ SOURCES = main.cpp \
     autonumber.cpp
 
 HEADERS = mainwindow.h \
+    checkabletablemodel.h \
     fileiconprovider.h \
     importmodel.h \
     tagseditor.h \

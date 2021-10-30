@@ -1,10 +1,10 @@
 #ifndef IMPORTMODEL_H
 #define IMPORTMODEL_H
 
-#include <QAbstractTableModel>
+#include "checkabletablemodel.h"
 #include "tagger.h"
 
-class ImportModel : public QAbstractTableModel
+class ImportModel : public CheckableTableModel
 {
     Q_OBJECT
 public:
@@ -21,8 +21,8 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const override;
     virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     virtual Qt::ItemFlags flags(const QModelIndex &index) const override;
-    virtual bool setData(const QModelIndex &index, const QVariant &value, int role) override;
-    virtual bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role) override;
+//    virtual bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+//    virtual bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role) override;
 private:
     void update();
     QList<Tag> tags;
@@ -32,6 +32,12 @@ private:
     QVector<int> map;
     QVector<bool> checkedRows;
     int sourceId = 0; //file names by default
+
+    // CheckableTableModel interface
+public:
+    virtual bool checked(int row, int column) const override;
+    virtual void setChecked(int row, int column, bool checked) override;
+    virtual void setHeaderChecked(int section, bool checked) override;
 };
 
 
