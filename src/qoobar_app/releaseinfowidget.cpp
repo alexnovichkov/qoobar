@@ -31,6 +31,7 @@
 #include "enums.h"
 #include "application.h"
 #include "checkableheaderview.h"
+#include "releaseinfomodel.h"
 
 QPixmap previewIcon(const QPixmap &pixmap, double pixelRatio)
 {DD;
@@ -57,26 +58,22 @@ ReleaseInfoWidget::ReleaseInfoWidget(QWidget *parent) : QWidget(parent)
     albumTable->setColumnCount(2);
     albumTable->setHeaderLabels(QStringList()<<tr("Tag")<<tr("Value"));
     albumTable->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
-    albumTable->header()->setStretchLastSection(false);
+    albumTable->header()->setStretchLastSection(true);
     albumTable->setRootIsDecorated(false);
 
-    tracksTable = new QTreeWidget(this);
+    auto tracksTable = new QTreeView(this);
     tracksTable->setAllColumnsShowFocus(true);
     tracksTable->setAlternatingRowColors(true);
+    tracksModel = new ReleaseInfoModel(this);
+    tracksTable->setModel(tracksModel);
     tracksTable->setColumnWidth(0,QFontMetrics(qApp->font()).HORIZONTAL_ADVANCE(QSL("999")));
-    tracksTable->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     tracksTable->setColumnWidth(4,QFontMetrics(qApp->font()).HORIZONTAL_ADVANCE(QSL("999:99")));
-    tracksTable->header()->setStretchLastSection(false);
-    tracksTable->setHeaderLabels(QStringList()<<tr("No.")<<tr("Title")<<tr("Artists")
-                                 <<tr("Comment")<<tr("Length"));
     tracksTable->setRootIsDecorated(false);
 
-    header = new CheckableHeaderView(Qt::Horizontal,tracksTable);
+    HeaderView *header = new HeaderView(Qt::Horizontal,tracksTable);
     tracksTable->setHeader(header);
-    header->setCheckable(0, true);
-    header->setCheckState(0,Qt::Checked);
-    connect(header,SIGNAL(toggled(int,Qt::CheckState)),this,SLOT(headerToggled(int,Qt::CheckState)));
-
+    header->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+    header->setStretchLastSection(false);
 
     imageLabel = new QLabel(this);
 
@@ -118,37 +115,11 @@ void ReleaseInfoWidget::setSearchResult(SearchResult &r,int cdNum)
         item->setCheckState(0,Qt::Checked);
     }
 
-    tracksTable->clear();
-    _cd=cdNum;
-    for (int i=0; i<r.tracks.size(); ++i) {
-        if (r.cdCount==1 || cdNum == r.tracks.at(i).cd) {
-            QTreeWidgetItem *item = new QTreeWidgetItem(tracksTable, r.tracks.at(i).toStringList());
-            item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable
-                           | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-            item->setCheckState(0,Qt::Checked);
-        }
-    }
+    tracksModel->setReleaseInfo(r, cdNum);
 
     imageLabel->clear();
     QPixmap p;
     if (p.loadFromData(r.image.pixmap())) imageLabel->setPixmap(previewIcon(p, devicePixelRatioF()));
-}
-
-bool ReleaseInfoWidget::use(const int &tagID)
-{DD;
-    Q_UNUSED(tagID)
-//    switch (tagID) {
-//    case ALBUM: return albumCheckBox->isChecked();
-//    case ARTIST: return artistCheckBox->isChecked();
-//    case YEAR: return yearCheckBox->isChecked();
-//    case GENRE: return genreCheckBox->isChecked();
-//    case COMMENT: return commentCheckBox->isChecked();
-//    case PUBLISHER: return labelCheckBox->isChecked();
-//    case TITLE: return tracksCheckBox->isChecked();
-//    case -2: return imageCheckBox->isChecked();
-//    default: return false;
-//    }
-    return true;
 }
 
 bool ReleaseInfoWidget::use(const QString &key)
@@ -166,18 +137,6 @@ bool ReleaseInfoWidget::use(const QString &key)
 
 bool ReleaseInfoWidget::useTrack(const int track)
 {DD;
-    if (track <0 || track>=tracksTable->topLevelItemCount()) return false;
-    return tracksTable->topLevelItem(track)->checkState(0)==Qt::Checked;
+    if (track <0 || track>=tracksModel->rowCount(QModelIndex())) return false;
+    return tracksModel->checked(track,0);
 }
-
-void ReleaseInfoWidget::headerToggled(int column, Qt::CheckState checked)
-{DD;
-    if (column<0 || column >= tracksTable->columnCount()) return;
-
-    if (checked==Qt::PartiallyChecked) return;
-    tracksTable->blockSignals(true);
-    for (int i=0; i<tracksTable->topLevelItemCount(); ++i)
-        tracksTable->topLevelItem(i)->setCheckState(column, checked);
-    tracksTable->blockSignals(false);
-}
-

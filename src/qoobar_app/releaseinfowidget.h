@@ -30,11 +30,12 @@
 #include <QWidget>
 #include "searchresults.h"
 class QCheckBox;
-class QLineEdit;
 class QTreeWidget;
 class QLabel;
-class CheckableHeaderView;
-class QTreeWidgetItem;
+
+class QTreeView;
+class ReleaseInfoModel;
+class HeaderView;
 
 class ReleaseInfoWidget : public QWidget
 {
@@ -42,22 +43,17 @@ class ReleaseInfoWidget : public QWidget
 public:
     explicit ReleaseInfoWidget(QWidget *parent = 0);
     void setSearchResult(SearchResult &r, int cdNum=-1);
-    bool use(const int &);
     bool use(const QString &key);
     bool useTrack(const int track);
     int cd() {return _cd;}
-private Q_SLOTS:
-    void headerToggled(int,Qt::CheckState);
 private:
     QTreeWidget *albumTable;
 
     QCheckBox *tracksCheckBox;
-    QTreeWidget *tracksTable;
-    CheckableHeaderView *header;
+    ReleaseInfoModel *tracksModel;
 
     QCheckBox *imageCheckBox;
     QLabel *imageLabel;
-    QImage image;
 
     int _cd;
 };

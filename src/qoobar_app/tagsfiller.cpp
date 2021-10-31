@@ -190,7 +190,6 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     table->setHorizontalHeader(header);
     table->setColumnWidth(0,25);
     table->setColumnWidth(1,400);
-//    header->setCheckable(0,true);
     table->resizeColumnToContents(0);
 
     setSource(0);
@@ -244,7 +243,6 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
 
     manualSearchRadioButton = new QRadioButton(tr("manually"),this);
     connect(manualSearchRadioButton,SIGNAL(clicked()),SLOT(handleManualSearchRadioButton()));
-
     cdSearchRadioButton = new QRadioButton(tr("by CD in CD-ROM"),this);
     connect(cdSearchRadioButton,SIGNAL(clicked()),SLOT(handleManualSearchRadioButton()));
     filesSearchRadioButton = new QRadioButton(tr("by selected files"),this);
@@ -481,7 +479,7 @@ void TagsFillDialog::downloadRelease(const QString &url, const int releaseIndex)
     IDownloadPlugin *plugin = maybeLoadPlugin(path);
     if (!plugin) return;
 
-    progress->animate(true);
+    this->progress->animate(true);
 
     if (plugin->needsPause()) {
         QEventLoop loop;

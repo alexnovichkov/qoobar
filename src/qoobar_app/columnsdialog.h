@@ -38,12 +38,6 @@ class ColumnsDialog : public QDialog
     Q_OBJECT
 public:
     explicit ColumnsDialog(QTreeView *tree);
-
-Q_SIGNALS:
-    void tagStatusChanged(int tagID,int status);
-private Q_SLOTS:
-//    void checkBoxToggled(int row, int column);
-//    void headerToggled(int column, Qt::CheckState checked);
 private:
     QTreeView *tree;
     HeaderView *header;

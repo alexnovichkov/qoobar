@@ -34,9 +34,11 @@ CONFIG *= no_keywords
 # main sources and headers
 SOURCES = main.cpp \
     checkabletablemodel.cpp \
+    columnsmodel.cpp \
     fileiconprovider.cpp \
     importmodel.cpp \
     mainwindow.cpp \
+    releaseinfomodel.cpp \
     tagseditor.cpp \
     tablewidget.cpp \
     filesrenamer.cpp \
@@ -103,8 +105,10 @@ SOURCES = main.cpp \
 
 HEADERS = mainwindow.h \
     checkabletablemodel.h \
+    columnsmodel.h \
     fileiconprovider.h \
     importmodel.h \
+    releaseinfomodel.h \
     tagseditor.h \
     tablewidget.h \
     filesrenamer.h \
