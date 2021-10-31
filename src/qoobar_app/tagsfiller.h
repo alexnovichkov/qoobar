@@ -42,7 +42,6 @@ class QListWidget;
 class ReleaseInfoWidget;
 class QProgressBar;
 class HeaderView;
-class CheckableHeaderView;
 class QTableView;
 class DownloadHelper;
 class IDownloadPlugin;

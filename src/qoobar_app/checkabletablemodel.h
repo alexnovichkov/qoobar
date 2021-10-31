@@ -16,10 +16,12 @@ public:
     explicit CheckableTableModel(QObject *parent = nullptr);
     void setCheckable(int column, bool checkable);
     void setUpdatableColumns(const QVector<int> &columns);
+    bool checkable(int column) const {return checkableColumns.contains(column);}
 
     //returns if the item(row, column) is checked in the implementation
     virtual bool checked(int row, int column) const = 0;
     virtual void setChecked(int row, int column, bool checked) = 0;
+    Qt::CheckState headerCheckState(int section) const;
     virtual void setHeaderChecked(int section, bool checked) = 0;
 
     // QAbstractItemModel interface

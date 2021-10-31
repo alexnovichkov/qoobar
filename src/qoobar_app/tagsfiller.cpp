@@ -190,7 +190,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     table->setHorizontalHeader(header);
     table->setColumnWidth(0,25);
     table->setColumnWidth(1,400);
-    header->setCheckable(0,true);
+//    header->setCheckable(0,true);
     table->resizeColumnToContents(0);
 
     setSource(0);

@@ -30,8 +30,8 @@
 #include <QDialog>
 
 class QTreeView;
-class CheckableHeaderView;
-class QTableWidget;
+class HeaderView;
+class QTableView;
 
 class ColumnsDialog : public QDialog
 {
@@ -42,12 +42,12 @@ public:
 Q_SIGNALS:
     void tagStatusChanged(int tagID,int status);
 private Q_SLOTS:
-    void checkBoxToggled(int row, int column);
-    void headerToggled(int column, Qt::CheckState checked);
+//    void checkBoxToggled(int row, int column);
+//    void headerToggled(int column, Qt::CheckState checked);
 private:
     QTreeView *tree;
-    CheckableHeaderView *header;
-    QTableWidget *table;
+    HeaderView *header;
+    QTableView *table;
 };
 
 #endif // COLUMNSDIALOG_H

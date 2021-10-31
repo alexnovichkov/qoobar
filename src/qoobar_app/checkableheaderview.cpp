@@ -26,7 +26,7 @@
 
 #include "checkableheaderview.h"
 #include <QtWidgets>
-
+#include "checkabletablemodel.h"
 #include "enums.h"
 
 CheckableHeaderView::CheckableHeaderView(Qt::Orientation orientation, QWidget *parent)
@@ -160,6 +160,10 @@ HeaderView::HeaderView(Qt::Orientation orientation, QWidget *parent)
 
 {
     setSectionsClickable(true);
+    if (auto parentView=qobject_cast<QAbstractItemView*>(parent)) {
+        if (auto m = qobject_cast<CheckableTableModel*>(parentView->model()))
+            parentModel = m;
+    }
 }
 
 void HeaderView::paintSection(QPainter *painter, const QRect &rect, int logicalIndex) const
@@ -168,20 +172,49 @@ void HeaderView::paintSection(QPainter *painter, const QRect &rect, int logicalI
     QHeaderView::paintSection(painter, rect, logicalIndex);
     painter->restore();
 
-    if (m_isCheckable.contains(logicalIndex)) {
+//    if (m_isCheckable.contains(logicalIndex)) {
+    if (parentModel && parentModel->checkable(logicalIndex)) {
+//        QStyleOptionButton option;
+//        if (isEnabled())
+//            option.state |= QStyle::State_Enabled;
+//        option.rect = checkBoxRect(rect);
+
+//        Qt::CheckState state = Qt::CheckState(model()->headerData(logicalIndex,Qt::Horizontal,Qt::CheckStateRole).toInt());
+//        if (state==Qt::Checked)
+//            option.state |= QStyle::State_On;
+//        else if (state==Qt::Unchecked)
+//            option.state |= QStyle::State_Off;
+//        else
+//            option.state |= QStyle::State_NoChange;
+//        style()->drawControl(QStyle::CE_CheckBox, &option, painter);
+
+        //first draw checkbox on a pixmap with pixel ratio set to the actual one
+        //to respect high dpi screens
+        QCheckBox cb;
+
+        QPixmap img(rect.size() * this->devicePixelRatioF());
+        img.setDevicePixelRatio(this->devicePixelRatioF());
+        img.fill(Qt::transparent);
+
+        QStylePainter p(&img, &cb);
+
         QStyleOptionButton option;
+        option.initFrom(&cb);
         if (isEnabled())
             option.state |= QStyle::State_Enabled;
-        option.rect = checkBoxRect(rect);
-
-        Qt::CheckState state = Qt::CheckState(model()->headerData(logicalIndex,Qt::Horizontal,Qt::CheckStateRole).toInt());
+        option.rect = rect;
+        option.rect.translate(3,0);
+        const auto state = parentModel->headerCheckState(logicalIndex);
         if (state==Qt::Checked)
             option.state |= QStyle::State_On;
         else if (state==Qt::Unchecked)
             option.state |= QStyle::State_Off;
         else
             option.state |= QStyle::State_NoChange;
-        style()->drawControl(QStyle::CE_CheckBox, &option, painter);
+
+        p.drawControl(QStyle::CE_CheckBox, option);
+        //next draw this pixmap on the screen
+        style()->drawItemPixmap(painter, rect, Qt::AlignLeft | Qt::AlignTop, img);
     }
 }
 
@@ -192,11 +225,11 @@ void HeaderView::mousePressEvent(QMouseEvent *event)
     QRect rr = checkBoxRect(r);
 
     if (isEnabled()
-        && m_isCheckable.contains(logicalIndex)
+        && parentModel && parentModel->checkable(logicalIndex)
         && rr.contains(event->pos())) {
 
-        Qt::CheckState state = Qt::CheckState(model()->headerData(logicalIndex,Qt::Horizontal,
-                                                                  Qt::CheckStateRole).toInt());
+        Qt::CheckState state = model()->headerData(logicalIndex,Qt::Horizontal,
+                                                                  Qt::CheckStateRole).value<Qt::CheckState>();
         if (state==Qt::Checked)
             state = Qt::Unchecked;
         else
@@ -218,8 +251,8 @@ QRect HeaderView::checkBoxRect(const QRect &sourceRect) const
     return QRect(checkBoxPoint, checkBoxRect.size());
 }
 
-void HeaderView::setCheckable(int section, bool checkable)
-{
-    if (checkable) m_isCheckable.insert(section);
-    else m_isCheckable.remove(section);
-}
+//void HeaderView::setCheckable(int section, bool checkable)
+//{
+//    if (checkable) m_isCheckable.insert(section);
+//    else m_isCheckable.remove(section);
+//}

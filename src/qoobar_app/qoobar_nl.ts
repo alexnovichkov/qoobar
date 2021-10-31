@@ -184,14 +184,21 @@ or album includes only one track</source>
 <context>
     <name>ColumnsDialog</name>
     <message>
-        <location filename="columnsdialog.cpp" line="38"/>
+        <location filename="columnsdialog.cpp" line="95"/>
         <source>Qoobar - Adjust columns visibility</source>
         <translation>qoobar - Zichtbaarheid van kolommen aanpassen</translation>
     </message>
     <message>
-        <location filename="columnsdialog.cpp" line="45"/>
         <source>Visibility</source>
-        <translation>Zichtbaarheid</translation>
+        <translation type="vanished">Zichtbaarheid</translation>
+    </message>
+</context>
+<context>
+    <name>ColumnsModel</name>
+    <message>
+        <location filename="columnsdialog.cpp" line="68"/>
+        <source>Visibility</source>
+        <translation type="unfinished">Zichtbaarheid</translation>
     </message>
 </context>
 <context>
@@ -797,7 +804,7 @@ en &quot;door twee enkele aanhalingstekens &quot;</translation>
 <context>
     <name>ImportModel</name>
     <message>
-        <location filename="importmodel.cpp" line="92"/>
+        <location filename="importmodel.cpp" line="88"/>
         <source>Source</source>
         <translation type="unfinished">Bron</translation>
     </message>
@@ -3343,77 +3350,77 @@ Open the Settings dialog?</source>
         <translation type="vanished">Bron</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="201"/>
+        <location filename="tagsfiller.cpp" line="200"/>
         <source>Source:</source>
         <translation>Bron:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="212"/>
+        <location filename="tagsfiller.cpp" line="211"/>
         <source>from other tags</source>
         <translation>Van andere labels</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="246"/>
+        <location filename="tagsfiller.cpp" line="245"/>
         <source>manually</source>
         <translation>Handmatig</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="249"/>
+        <location filename="tagsfiller.cpp" line="248"/>
         <source>by CD in CD-ROM</source>
         <translation>door de CD in de CD-ROM</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="251"/>
+        <location filename="tagsfiller.cpp" line="250"/>
         <source>by selected files</source>
         <translation>door geselecteerde bestanden</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="260"/>
+        <location filename="tagsfiller.cpp" line="259"/>
         <source>Search</source>
         <translation>Zoek</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="268"/>
+        <location filename="tagsfiller.cpp" line="267"/>
         <source>Search results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="295"/>
+        <location filename="tagsfiller.cpp" line="294"/>
         <source>artist:</source>
         <translation>Artiest:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="298"/>
+        <location filename="tagsfiller.cpp" line="297"/>
         <source>album:</source>
         <translation>Album:</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="302"/>
+        <location filename="tagsfiller.cpp" line="301"/>
         <source>Search in</source>
         <translation>Zoek in</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="330"/>
+        <location filename="tagsfiller.cpp" line="329"/>
         <source>from network</source>
         <translation>van netwerk</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="341"/>
+        <location filename="tagsfiller.cpp" line="340"/>
         <source>No download plugins found. Internet search is inaccessible</source>
         <translation>Download plugin niet gevonden.Zoeken met internet in niet toegangkelijk</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="420"/>
+        <location filename="tagsfiller.cpp" line="419"/>
         <source>Searching %1...</source>
         <translation>Zoeken %1...</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="450"/>
+        <location filename="tagsfiller.cpp" line="449"/>
         <source>Nothing found</source>
         <translation>Niets gevonden</translation>
     </message>
     <message numerus="yes">
-        <location filename="tagsfiller.cpp" line="455"/>
+        <location filename="tagsfiller.cpp" line="454"/>
         <source>Found %n album(s)</source>
         <translation>
             <numerusform>Found %n album</numerusform>
@@ -3421,17 +3428,17 @@ Open the Settings dialog?</source>
         </translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="492"/>
+        <location filename="tagsfiller.cpp" line="491"/>
         <source>Retrieving release info...</source>
         <translation>Ophalen versie info...</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="505"/>
+        <location filename="tagsfiller.cpp" line="504"/>
         <source>Done</source>
         <translation>Uitgevoerd</translation>
     </message>
     <message>
-        <location filename="tagsfiller.cpp" line="415"/>
+        <location filename="tagsfiller.cpp" line="414"/>
         <source>Please specify an artist and an album for the manual search</source>
         <translation>Geef een artiest en een album op voor het handmatig zoeken</translation>
     </message>

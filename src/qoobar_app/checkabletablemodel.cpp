@@ -16,6 +16,11 @@ void CheckableTableModel::setUpdatableColumns(const QVector<int> &columns)
     updatableColumns = columns;
 }
 
+Qt::CheckState CheckableTableModel::headerCheckState(int section) const
+{
+    return headerData(section, Qt::Horizontal, Qt::CheckStateRole).value<Qt::CheckState>();
+}
+
 QVariant CheckableTableModel::data(const QModelIndex &index, int role) const
 {
     if (index.isValid()) {
