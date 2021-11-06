@@ -314,6 +314,8 @@ void Application::readGlobalSettings()
     mp3readid3=se->value(QSL("read-id3v2"), QSL("on")).toString()=="on";
     mp3writeid3=se->value(QSL("write-id3v2"), QSL("on")).toString()=="on";
 
+    id3v2LineEnding = se->value(QSL("id3v2-line-ending"), 0).toInt();
+
     flacreadogg=se->value(QSL("flac-read-ogg"), QSL("on")).toString()=="on";
     flacwriteogg=se->value(QSL("flac-write-ogg"), QSL("on")).toString()=="on";
     flacreadid3=se->value(QSL("flac-read-id3v2"), QSL("off")).toString()=="on";
@@ -458,6 +460,7 @@ void Application::writeGlobalSettings()
     se->setValue("write-ape", mp3writeape?"on":"off");
     se->setValue("read-id3v2",mp3readid3?"on":"off");
     se->setValue("write-id3v2", mp3writeid3?"on":"off");
+    se->setValue(QSL("id3v2-line-ending"), id3v2LineEnding);
     se->setValue(QSL("flac-read-ogg"), flacreadogg?"on":"off");
     se->setValue(QSL("flac-write-ogg"), flacwriteogg?"on":"off");
     se->setValue(QSL("flac-read-id3v2"), flacreadid3?"on":"off");

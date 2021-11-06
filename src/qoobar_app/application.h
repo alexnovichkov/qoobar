@@ -162,6 +162,8 @@ public:
     bool mp3readid3;
     bool mp3writeid3;
 
+    int id3v2LineEnding = 0; //0=CRLF, 1=LF, 2=CR
+
     bool flacreadogg;
     bool flacwriteogg;
     bool flacreadid3;

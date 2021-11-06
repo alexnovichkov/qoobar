@@ -34,7 +34,7 @@ public:
 private:
 //    void readReplayGain(TagLib::ID3v2::Tag *);
 //    void readReplayGain(TagLib::APE::Tag *);
-    void parseTag(const QString &, const TaggingScheme::TagType , QString);
+    void parseTag(const QString &, const TaggingScheme::TagType , QVariant);
     TagLib::File *readResolver(int tagTypes);
     void readFlacPicture(TagLib::FLAC::File *f);
     void writeFlacPicture(TagLib::FLAC::File *f);

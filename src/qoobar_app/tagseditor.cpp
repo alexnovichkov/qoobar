@@ -501,7 +501,7 @@ void TagsEditDialog::tableCellSelectionChanged()
         else source << table->item(i,0)->text();
     }
 
-    const QString baseString=source.at(baseIndex);
+    const QString baseString=source.value(baseIndex);
     const int start = e->selectionStart();
     const int end = start + e->selectedText().length() - 1;
 
@@ -545,7 +545,7 @@ void TagsEditDialog::handleSentTag(int tagID,bool fromTable)
             for (int i=0; i<count; ++i) source << table->item(i,0)->text();
             const int baseIndex = table->currentRow();
             Q_ASSERT(baseIndex >= 0 && baseIndex < table->rowCount());
-            const QString baseString=source.at(baseIndex);
+            const QString baseString=source.value(baseIndex);
             const int start = lineEdit->selectionStart();
             const int end = start + selectedText.length() - 1;
 

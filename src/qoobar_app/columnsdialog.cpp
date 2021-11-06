@@ -29,7 +29,7 @@
 #include <QtWidgets>
 #include "qoobarglobals.h"
 #include "application.h"
-#include "checkableheaderview.h"
+#include "headerview.h"
 #include "enums.h"
 #include "columnsmodel.h"
 

@@ -458,6 +458,14 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
 //    flac1->addStretch();
 //    flacBox->setLayout(flac1);
 
+    id3v2lineEndingLabel = new QLabel(tr("ID3v2 frames line ending"), this);
+
+    id3v2LineEnding = new QComboBox(this);
+    id3v2LineEnding->addItem(tr("CRLF - Windows style"));
+    id3v2LineEnding->addItem(tr("LF - Unix and OS X style"));
+    id3v2LineEnding->addItem(tr("CR - pre-OS X style"));
+    id3v2lineEndingLabel->setBuddy(id3v2LineEnding);
+
     id3v2version = new QComboBox(this);
     id3v2version->setEditable(false);
     id3v2version->addItem(QSL("2.3"));
@@ -482,8 +490,13 @@ WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
     mp3l2->addWidget(id3v2versionLabel);
     mp3l2->addWidget(id3v2version);
     mp3l2->addStretch();
+    auto mp3l3 = new QHBoxLayout;
+    mp3l3->addWidget(id3v2lineEndingLabel);
+    mp3l3->addWidget(id3v2LineEnding);
+    mp3l3->addStretch();
     mp3Layout->addLayout(mp3l1);
     mp3Layout->addLayout(mp3l2);
+    mp3Layout->addLayout(mp3l3);
 //    QFormLayout *mp3Layout=new QFormLayout;
 //    mp3Layout->addRow(readID3,writeID3);
 //    mp3Layout->addRow(readAPE,writeAPE);
@@ -571,6 +584,7 @@ void WritingPage::setSettings()
     id3v1transliterate->setChecked(App->id3v1Transliterate);
     id3v1encoding->setCurrentIndex(id3v1encoding->findText(App->id3v1Encoding));
     id3v2version->setCurrentIndex(App->id3v2version==4?1:0);
+    id3v2LineEnding->setCurrentIndex(App->id3v2LineEnding);
 //    flacreadID3->setChecked(App->flacreadid3);
 //    flacreadOgg->setChecked(App->flacreadogg);
 //    flacwriteID3->setChecked(App->flacwriteid3);
@@ -621,6 +635,10 @@ void WritingPage::retranslateUI()
     id3v1write->setItemText(2,tr("delete ID3v1 tag"));
     id3v1transliterate->setText(tr("Transliterate Russian words"));
     id3Label->setText(tr("ID3v1 tag encoding"));
+    id3v2LineEnding->setItemText(0,tr("CRLF - Windows style"));
+    id3v2LineEnding->setItemText(1,tr("LF - Unix and OS X style"));
+    id3v2LineEnding->setItemText(2,tr("CR - pre-OS X style"));
+    id3v2lineEndingLabel->setText(tr("ID3v2 frames line ending"));
 #ifdef Q_OS_LINUX
     mpcbox->setTitle(tr("Musepack files"));
     mpcLabel->setText(tr("Write ReplayGain info of Musepack files into"));
@@ -645,6 +663,7 @@ void WritingPage::saveSettings()
     App->setId3v1Encoding(id3v1encoding->currentText());
     App->writeFieldsSeparately = writeFieldsSeparately->isChecked();
     App->id3v2version = id3v2version->currentIndex()==0?3:4;
+    App->id3v2LineEnding = id3v2LineEnding->currentIndex();
 #ifdef Q_OS_LINUX
     App->mpcWriteRg = mpcReplayGain->currentIndex()==0;
 #endif

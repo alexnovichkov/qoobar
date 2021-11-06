@@ -161,6 +161,9 @@ private:
     QComboBox *id3v2version;
     QLabel *id3v2versionLabel;
 
+    QLabel *id3v2lineEndingLabel;
+    QComboBox *id3v2LineEnding;
+
     QGroupBox *id3v1box;
     QLabel *id3Label;
     QLabel *oggLabel;

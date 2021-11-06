@@ -33,7 +33,7 @@
 #include "legendbutton.h"
 #include "releaseinfowidget.h"
 #include "macsplitter.h"
-#include "checkableheaderview.h"
+#include "headerview.h"
 
 #include "enums.h"
 #include "qoobarglobals.h"
@@ -143,8 +143,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
 
     tagsSourceComboBox = new QComboBox(this);
     tagsSourceComboBox->setEditable(false);
-    tagsSourceComboBox->addItem(tr("File name"));
-    tagsSourceComboBox->addItem(tr("Clipboard"));
+    tagsSourceComboBox->addItems({tr("File name"), tr("Clipboard")});
     const int tagsCount = App->currentScheme->tagsCount();
     for (int i=0; i<tagsCount; ++i)
         tagsSourceComboBox->addItem(App->currentScheme->localizedFieldName[i]);
@@ -220,9 +219,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
     sourceComboBox->setEditable(false);
     sourceComboBox->setIconSize(QSize(50,17));
 
-    for (int it = 0; it < App->downloadPlugins.size(); ++it) {
-        QJsonObject metaData = App->downloadPlugins.at(it);
-
+    for (const auto &metaData: qAsConst(App->downloadPlugins)) {
         QIcon icon(metaData.value(QSL("icon")).toString());
         //QIcon icon("K:/My/build/qoobar/src/plugins/freedb/freedb.png");
         QString text = metaData.value(QSL("text")).toObject().value(App->langID).toString();
@@ -409,7 +406,7 @@ void TagsFillDialog::startSearch()
     QString artist = artistEdit->text();
     QString album = albumEdit->text();
     if (manually && artist.isEmpty() && album.isEmpty()) {
-        networkErrorInfo->setText(tr("Please specify an artist and an album for the manual search"));
+        networkErrorInfo->setText(tr("Please specify an album and/or an artist for the manual search"));
         return;
     }
 
@@ -418,11 +415,11 @@ void TagsFillDialog::startSearch()
 
     Request query;
     if (manually) {
-        query = plugin->queryForManualSearch(QStringList()<<artist<<album);
+        query = plugin->queryForManualSearch({artist, album});
     }
     else if (fromFiles) {//search by files;
         QVector<int> filesLengths;
-        Q_FOREACH (const Tag &tag,oldTags) filesLengths << tag.length();
+        for (const Tag &tag: qAsConst(oldTags)) filesLengths << tag.length();
         query = plugin->queryForSearchByFiles(filesLengths);
     }
     else {//try to search by CD

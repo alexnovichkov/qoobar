@@ -39,15 +39,16 @@
 #include <QtDebug>
 #include <QRegularExpression>
 
-void fillPlaceholders(QString &currentPattern, Tag &tag, QStringList &args, bool remove)
+void fillPlaceholders(QString &currentPattern, const Tag &tag, const QStringList &args, bool remove)
 {DD;
 
-    for (int i=0; i<args.size(); ++i)
-        currentPattern = currentPattern.arg(args.at(i));
+    for (const QString &arg: args)
+        currentPattern = currentPattern.arg(arg);
 
     //args.clear();
     const QStringList userTags = tag.userTagsKeys();
 
+    const QString fillerString = remove?QSL(""):QSL("_");
     if (currentPattern.contains(QSL("%"))) {
         int pos = 0;
         while ((pos = currentPattern.indexOf('%', pos)) != -1) {
@@ -55,9 +56,9 @@ void fillPlaceholders(QString &currentPattern, Tag &tag, QStringList &args, bool
             QString cap = currentPattern.mid(pos+1,1);
             int index = Placeholders::placeholderToId(cap);
             if (index>=0) {
-                QString tagValue=tag.nonEmptyTag(index, remove?QSL(""):QSL("_"));
-                if (cap=="N" && tagValue!="_" && !tagValue.isEmpty())
-                    tagValue=tagValue.rightJustified(2,QChar('0'));
+                QString tagValue=tag.nonEmptyTag(index, fillerString);
+                if (cap=="N" && tagValue!=fillerString && !tagValue.isEmpty())
+                    tagValue = tagValue.rightJustified(2,QChar('0'));
                 currentPattern.replace(pos,2,tagValue);
                 pos += tagValue.length();
             }
@@ -86,53 +87,24 @@ void fillPlaceholders(QString &currentPattern, Tag &tag, QStringList &args, bool
                 QString cap = currentPattern.mid(pos1+1, pos2-pos1-1);
                 QString cap1 = cap.toLower().remove(QSL(" "));
                 int index = App->currentScheme->tagIDBySimplifiedName(cap);
-                if (index>=0) {
-                    QString tagValue=tag.nonEmptyTag(index, remove?QSL(""):QSL("_"));
-                    currentPattern.replace(pos1,pos2-pos1+1,tagValue);
-                    pos1 += tagValue.length();
-                }
-                else if (userTags.contains(cap)) {
-                    QString tagValue=tag.userTag(cap);
-                    if (tagValue.isEmpty() && !remove) tagValue = QSL("_");
-                    currentPattern.replace(pos1,pos2-pos1+1,tagValue);
-                    pos1 += tagValue.length();
-                }
-                else if (cap1 == QSL("bitrate")) {
-                    QString val = tag.bitrate();
-                    currentPattern.replace(pos1,pos2-pos1+1, val);
-                    pos1 += val.length();
-                }
-                else if (cap1 == QSL("length")) {
-                    QString val = Qoobar::formatLength(tag.length());
-                    currentPattern.replace(pos1,pos2-pos1+1, val);
-                    pos1 += val.length();
-                }
-                else if (cap1 == QSL("samplerate")) {
-                    QString val = QString::number(tag.sampleRate());
-                    currentPattern.replace(pos1,pos2-pos1+1, val);
-                    pos1 += val.length();
-                }
-                else if (cap1 == QSL("channels")) {
-                    QString val = QString::number(tag.channels());
-                    currentPattern.replace(pos1,pos2-pos1+1, val);
-                    pos1 += val.length();
-                }
-                else if (cap1 == QSL("filename")) {
-                    QString val = tag.fileName();
-                    currentPattern.replace(pos1,pos2-pos1+1, val);
-                    pos1 += val.length();
-                }
-                else if (cap1 == QSL("filepath")) {
-                    QString val = tag.filePath();
-                    currentPattern.replace(pos1,pos2-pos1+1, val);
-                    pos1 += val.length();
-                }
-                else if (cap1 == QSL("fileextension")) {
-                    QString val = tag.fileExt();
-                    currentPattern.replace(pos1,pos2-pos1+1, val);
-                    pos1 += val.length();
-                }
+                QString val;
+                bool found = true;
 
+                if (index>=0) val=tag.nonEmptyTag(index, fillerString);
+                else if (userTags.contains(cap))    val = tag.userTag(cap);
+                else if (cap1 == QSL("bitrate"))    val = tag.bitrate();
+                else if (cap1 == QSL("length"))     val = Qoobar::formatLength(tag.length());
+                else if (cap1 == QSL("samplerate")) val = QString::number(tag.sampleRate());
+                else if (cap1 == QSL("channels"))   val = QString::number(tag.channels());
+                else if (cap1 == QSL("filename"))   val = tag.fileName();
+                else if (cap1 == QSL("filepath"))   val = tag.filePath();
+                else if (cap1 == QSL("fileextension")) val = tag.fileExt();
+                else found = false;
+                if (found) {
+                    if (val.isEmpty() && !remove) val = QSL("_");
+                    currentPattern.replace(pos1, pos2-pos1+1, val);
+                    pos1 += val.length();
+                }
                 else pos1 = pos2+1;
             }
             else pos1++;
@@ -160,9 +132,9 @@ void processCurly(QStringList &args, QString &pattern, int index, int size)
         /**       {1-3,  1:3, 3:2; 2-3, 2:4, 3:3}
 result: 1 1 1 2 3 3 2 2 2 2 3 3 3
 */
-        QStringList sections = wholeSection.split(QSL(";"),SKIP_EMPTY_PARTS);
+        const QStringList sections = wholeSection.split(QSL(";"),SKIP_EMPTY_PARTS);
 
-        Q_FOREACH (const QString &sec, sections) {
+        for (const QString &sec: sections) {
             // 1-3,  1:3, 3:2
             QVector<int> list;
 
@@ -375,9 +347,9 @@ void TagsRenderer::updateTags()
     const int size = m->selectedFilesCount();
 
     m_newTags.clear();
-    qDebug()<<m_pattern;
+//    qDebug()<<m_pattern;
     preprocess();
-    qDebug()<<m_pattern;
+//    qDebug()<<m_pattern;
 
     for (int index=0; index<size; ++index) {
         QStringList args;
@@ -393,9 +365,11 @@ void TagsRenderer::updateTags()
             processFunctions(args, currentPattern, tag, index, size);
         }
 
+        // 3. empty []
         if (currentPattern.contains('['))
             removeEmptySections(tag, currentPattern);
 
+        // 4. tags placeholders
         if (currentPattern.contains('%') || currentPattern.contains('<'))
             fillPlaceholders(currentPattern, tag, args, false);
 

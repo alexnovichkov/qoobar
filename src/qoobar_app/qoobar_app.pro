@@ -36,6 +36,7 @@ SOURCES = main.cpp \
     checkabletablemodel.cpp \
     columnsmodel.cpp \
     fileiconprovider.cpp \
+    headerview.cpp \
     importmodel.cpp \
     mainwindow.cpp \
     releaseinfomodel.cpp \
@@ -75,7 +76,6 @@ SOURCES = main.cpp \
     searchpanel.cpp \
     highlightdelegate.cpp \
     filedelegatehighlighter.cpp \
-    checkableheaderview.cpp \
     sections.cpp \
     sectiondelegatehighlighter.cpp \
     delegatehighlighter.cpp \
@@ -107,6 +107,7 @@ HEADERS = mainwindow.h \
     checkabletablemodel.h \
     columnsmodel.h \
     fileiconprovider.h \
+    headerview.h \
     importmodel.h \
     releaseinfomodel.h \
     tagseditor.h \
@@ -148,7 +149,6 @@ HEADERS = mainwindow.h \
     highlightdelegate.h \
     delegatehighlighter.h \
     filedelegatehighlighter.h \
-    checkableheaderview.h \
     sections.h \
     sectiondelegatehighlighter.h \
     iqoobarplugin.h \

@@ -3,9 +3,35 @@
 
 #include <QObject>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QHeaderView>
 
 #include <QUrl>
 #include "iqoobarplugin.h"
+
+class CheckableHeaderView : public QHeaderView
+{
+    Q_OBJECT
+public:
+    explicit CheckableHeaderView(Qt::Orientation orientation, QWidget *parent = 0);
+
+    void setCheckState(int section, Qt::CheckState checkState);
+    void setCheckable(int section, bool checkable);
+    bool isSectionCheckable(int section) const;
+Q_SIGNALS:
+    void toggled(int section, Qt::CheckState checkState);
+
+protected:
+    void paintSection(QPainter *painter, const QRect &rect, int logicalIndex) const;
+    void mousePressEvent(QMouseEvent *event);
+private Q_SLOTS:
+    void updateSectionCount(int,int);
+    void modelDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles = QVector<int>());
+private:
+    QVector<Qt::CheckState> m_isChecked;
+    QVector<bool> m_isCheckable;
+    QAbstractItemModel *parentModel = nullptr;
+};
+
 
 class BeatportPlugin : public QObject, IQoobarPlugin
 {

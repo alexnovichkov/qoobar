@@ -30,7 +30,7 @@
 #include "qoobarglobals.h"
 #include "enums.h"
 #include "application.h"
-#include "checkableheaderview.h"
+#include "headerview.h"
 #include "releaseinfomodel.h"
 
 QPixmap previewIcon(const QPixmap &pixmap, double pixelRatio)

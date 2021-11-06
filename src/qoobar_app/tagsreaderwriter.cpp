@@ -75,6 +75,31 @@ const char mp4tags[]=
 
 #include "enums.h"
 
+//replaces all \r\n by \n
+void simplifyLineEnding(QString &line)
+{
+    line.replace("\r\n","\n");
+    line.replace('\r','\n');
+}
+
+void adjustLineEnding(QString &line)
+{
+    switch (App->id3v2LineEnding) {
+    //we assume that line only contains \n line endings
+    case 0: {//CRLF
+        line.replace("\n","\r\n");
+        break;
+    }
+    case 1: {//LF
+        break;
+    }
+    case 2: {//CR
+        line.replace('\n','\r');
+        break;
+    }
+    }
+}
+
 TagsReaderWriter::TagsReaderWriter(): tag(0)
 {DD;
 }
@@ -313,8 +338,7 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
 QStringList handleFrameList(const TagLib::ID3v2::FrameList &frames)
 {DD;
     QStringList result;
-    TagLib::ID3v2::FrameList::ConstIterator it = frames.begin();
-    for (; it!=frames.end(); ++it) {
+    for (auto it = frames.begin(); it!=frames.end(); ++it) {
         TagLib::String s=(*it)->toString();
         result.append(QS(s));
     }
@@ -327,8 +351,7 @@ void TagsReaderWriter::readID3v2(TagLib::ID3v2::Tag *id3v2tag)
 
     const TagLib::ID3v2::FrameListMap &map = id3v2tag->frameListMap();
 
-    TagLib::ID3v2::FrameListMap::ConstIterator it = map.begin();
-    for (; it != map.end(); ++it)  {
+    for (auto it = map.begin(); it != map.end(); ++it)  {
         QString id = QS(TagLib::String((*it).first, TagLib::String::Latin1));
 
         if (id=="COMM") {
@@ -375,7 +398,7 @@ void TagsReaderWriter::readID3v2(TagLib::ID3v2::Tag *id3v2tag)
                 int rating_=frame->rating();
                 if (rating_>0) {
                     rating_ = (rating_-19)/59+1;
-                    parseTag(QSL("POPM"),TaggingScheme::ID3,QString::number(rating_));
+                    parseTag(QSL("POPM"),TaggingScheme::ID3,rating_);
                 }
             }
         }
@@ -397,29 +420,18 @@ void TagsReaderWriter::readID3v2(TagLib::ID3v2::Tag *id3v2tag)
                          item.right(item.length()-idd.length()*2-3));
             }
         }
-        else if (id=="OWNE") {
+        else if (id=="OWNE" || id.startsWith(QLS("T")) || id.startsWith(QLS("W"))) {
             QStringList values = handleFrameList((*it).second);
             parseTag(id, TaggingScheme::ID3,values.join(QSL(";")));
         }
-        else if (id.startsWith(QLS("T")) || id.startsWith(QLS("W"))) {
-            QStringList values=handleFrameList((*it).second);
-            parseTag(id,TaggingScheme::ID3,values.join(QSL(";")));
-        }
         else if (id=="USLT") {//unsynchronized lyrics frame
-            QStringList values;
-            for (unsigned int i=0; i<(*it).second.size(); ++i) {
-                TagLib::ID3v2::UnsynchronizedLyricsFrame *frame=
-                        dynamic_cast<TagLib::ID3v2::UnsynchronizedLyricsFrame *>((*it).second[i]);
-                if (!frame) continue;
-                values << QS(frame->text());
-            }
-            parseTag(id,TaggingScheme::ID3,values.join(QSL("\n")));
+            QStringList values = handleFrameList((*it).second);
+            parseTag(id,TaggingScheme::ID3,values);
         }
         else if (id=="SYLT") {//synchronized lyrics frame
             QStringList values; //qDebug()<<"frames SYLT count"<<(*it).second.size();
             for (unsigned int i=0; i<(*it).second.size(); ++i) {
-                TagLib::ID3v2::SynchronizedLyricsFrame *frame=
-                        dynamic_cast<TagLib::ID3v2::SynchronizedLyricsFrame *>((*it).second[i]);
+                auto frame= dynamic_cast<TagLib::ID3v2::SynchronizedLyricsFrame *>((*it).second[i]);
                 if (!frame) continue;
 
                 TagLib::ID3v2::SynchronizedLyricsFrame::SynchedTextList synchedText = frame->synchedText();
@@ -433,7 +445,7 @@ void TagsReaderWriter::readID3v2(TagLib::ID3v2::Tag *id3v2tag)
                 }
             }
             //qDebug()<<values;
-            parseTag(id,TaggingScheme::ID3,values.join(QSL("\n")));
+            parseTag(id,TaggingScheme::ID3,values);
         }
     }
 }
@@ -520,8 +532,7 @@ void writeID3v2Frame(TagLib::ID3v2::Tag *id3v2tag,const QString &s,const QString
 
     if (id=="COMM") { // comment
         QString comment1=s;
-        comment1.replace(QLS("\n"),QLS("\r\n"));
-        comment1.replace(QLS("\r\r"),QLS("\r"));
+
 
         if (description=="MusicMatch_Preference") {
             if (comment1=="1") comment1=QSL("Poor");
@@ -529,6 +540,9 @@ void writeID3v2Frame(TagLib::ID3v2::Tag *id3v2tag,const QString &s,const QString
             else if (comment1=="3") comment1=QSL("Good");
             else if (comment1=="4") comment1=QSL("Very Good");
             else if (comment1=="5") comment1=QSL("Excellent");
+        }
+        else {
+            adjustLineEnding(comment1);
         }
         //first we need to find comments
         TagLib::ID3v2::CommentsFrame *frame = TagLib::ID3v2::CommentsFrame::findByDescription(id3v2tag, TS(description));
@@ -588,9 +602,10 @@ void writeID3v2Frame(TagLib::ID3v2::Tag *id3v2tag,const QString &s,const QString
     else if (id=="USLT") {
         id3v2tag->removeFrames(id);
         if (!s.isEmpty()) {
-            TagLib::ID3v2::UnsynchronizedLyricsFrame *frame =
-                    new TagLib::ID3v2::UnsynchronizedLyricsFrame(TagLib::String::UTF8);
-            frame->setText(TS(s));
+            auto frame = new TagLib::ID3v2::UnsynchronizedLyricsFrame(TagLib::String::UTF8);
+            QString s1=s;
+            adjustLineEnding(s1);
+            frame->setText(TS(s1));
             frame->setLanguage("eng");
             frame->setDescription("");
             id3v2tag->addFrame(frame);
@@ -669,7 +684,9 @@ void writeID3v2Frame(TagLib::ID3v2::Tag *id3v2tag,const QString &s,const QString
         id3v2tag->removeFrames(id);
         if (!s.isEmpty()) {
             TagLib::ID3v2::TextIdentificationFrame *frame = new TagLib::ID3v2::TextIdentificationFrame(id,TagLib::String::UTF8);
-            frame->setText(TS(s));
+            QString s1=s;
+            if (id=="TCOM") adjustLineEnding(s1);
+            frame->setText(TS(s1));
             id3v2tag->addFrame(frame);
         }
     }
@@ -715,17 +732,23 @@ void TagsReaderWriter::writeID3v2(TagLib::ID3v2::Tag *id3v2tag)
     writeID3v2Frame(id3v2tag,tag->replayGainInfo().loudness, QSL("TXXX:replaygain_reference_loudness"));
 }
 
-void TagsReaderWriter::parseTag(const QString &id, const TaggingScheme::TagType tagType, QString value)
+void TagsReaderWriter::parseTag(const QString &id, const TaggingScheme::TagType tagType, QVariant value)
 {DD;
-    if (value.isEmpty()) return;
+    if (!value.isValid()) return;
+    QString stringValue = value.toString();
+    if (stringValue.isEmpty()) return;
 
-    //hack for id3v2.4 COMM:MusicMatch_Preference
-    if (id=="COMM:MusicMatch_Preference") {
-        if (value=="Poor") value=QSL("1");
-        else if (value=="Fair") value=QSL("2");
-        else if (value=="Good") value=QSL("3");
-        else if (value=="Very Good") value=QSL("4");
-        else if (value=="Excellent") value=QSL("5");
+    if (id.startsWith("COMM")) {
+        //hack for id3v2.4 COMM:MusicMatch_Preference
+        if (id=="COMM:MusicMatch_Preference") {
+            if (stringValue=="Poor") stringValue=QSL("1");
+            else if (stringValue=="Fair") stringValue=QSL("2");
+            else if (stringValue=="Good") stringValue=QSL("3");
+            else if (stringValue=="Very Good") stringValue=QSL("4");
+            else if (stringValue=="Excellent") stringValue=QSL("5");
+        }
+        else
+            simplifyLineEnding(stringValue);
     }
 
     if (id=="TXXX:VideoKind" || id=="VIDEOKIND" || id=="stik" || id=="WM/VideoKind") {
@@ -733,74 +756,81 @@ void TagsReaderWriter::parseTag(const QString &id, const TaggingScheme::TagType 
         int v = value.toInt(&ok);
         if (ok) {
             switch (v) {
-                case 0: value = QSL("Movie"); break;
-                case 1: value = QSL("Normal"); break;
-                case 2: value = QSL("Audiobook"); break;
-                case 5: value = QSL("Whacked Bookmark"); break;
-                case 6: value = QSL("Music Video"); break;
-                case 9: value = QSL("Short Film"); break;
-                case 10: value = QSL("TV Show"); break;
-                case 11: value = QSL("Booklet"); break;
-                case 14: value = QSL("Ringtone"); break;
-                default: value = QSL("Unknown");
+                case 0: stringValue = QSL("Movie"); break;
+                case 1: stringValue = QSL("Normal"); break;
+                case 2: stringValue = QSL("Audiobook"); break;
+                case 5: stringValue = QSL("Whacked Bookmark"); break;
+                case 6: stringValue = QSL("Music Video"); break;
+                case 9: stringValue = QSL("Short Film"); break;
+                case 10: stringValue = QSL("TV Show"); break;
+                case 11: stringValue = QSL("Booklet"); break;
+                case 14: stringValue = QSL("Ringtone"); break;
+                default: stringValue = QSL("Unknown");
             }
         }
     }
 
     if (id.contains(QSL("replaygain_album_gain"),Qt::CaseInsensitive)) {
-        tag->setAlbumGain(value, false);
+        tag->setAlbumGain(stringValue, false);
         return;
     }
     if (id.contains(QSL("replaygain_album_peak"),Qt::CaseInsensitive))  {
-        tag->setAlbumPeak(value, false);
+        tag->setAlbumPeak(stringValue, false);
         return;
     }
     if (id.contains(QSL("replaygain_track_gain"),Qt::CaseInsensitive))  {
-        tag->setTrackGain(value, false);
+        tag->setTrackGain(stringValue, false);
         return;
     }
     if (id.contains(QSL("replaygain_track_peak"),Qt::CaseInsensitive))  {
-        tag->setTrackPeak(value, false);
+        tag->setTrackPeak(stringValue, false);
         return;
     }
     if (id.contains(QSL("MP3GAIN_ALBUM_MINMAX"),Qt::CaseInsensitive))  {
-        tag->setAlbumMinMax(value, false);
+        tag->setAlbumMinMax(stringValue, false);
         return;
     }
     if (id.contains(QSL("MP3GAIN_MINMAX"),Qt::CaseInsensitive))  {
-        tag->setTrackMinMax(value, false);
+        tag->setTrackMinMax(stringValue, false);
         return;
     }
     if (id.contains(QSL("replaygain_album_minmax"),Qt::CaseInsensitive)) {
-        tag->setAlbumMinMax(value, false);
+        tag->setAlbumMinMax(stringValue, false);
         return;
     }
     if (id.contains(QSL("replaygain_track_minmax"),Qt::CaseInsensitive)) {
-        tag->setTrackMinMax(value, false);
+        tag->setTrackMinMax(stringValue, false);
         return;
     }
     if (id.contains(QSL("replaygain_minmax"),Qt::CaseInsensitive)) {
-        tag->setTrackMinMax(value, false);
+        tag->setTrackMinMax(stringValue, false);
         return;
     }
     if (id.contains(QSL("replaygain_reference_loudness"),Qt::CaseInsensitive)) {
-        tag->setLoudness(value, false);
+        tag->setLoudness(stringValue, false);
         return;
     }
     if (id.contains(QSL("MP3GAIN_UNDO"),Qt::CaseInsensitive)) {
-        tag->setReplayGainUndo(value, false);
+        tag->setReplayGainUndo(stringValue, false);
         return;
+    }
+    if (id=="USLT" || id=="SYLT") {
+        //try optimizing lines with \r, \r\n or \n
+        QStringList values = value.toStringList();
+        for (QString &s: values) simplifyLineEnding(s);
+
+        stringValue = values.join("\n");
     }
 
     QList<int> idPosition = App->currentScheme->search(tagType, id);
     if (!idPosition.isEmpty()) {
         QStringList l;
         if (idPosition.size() == 1) {
-            l << value;
+            l << stringValue;
         }
         else {
             // probably tracknumber/totaltracks or discnumber/totaldiscs
-            l = value.split(QChar('/'));
+            l = stringValue.split(QChar('/'));
         }
         for (int i=0; i<l.size() && i<idPosition.size(); ++i) {
             if (!l.at(i).isEmpty())
@@ -809,7 +839,7 @@ void TagsReaderWriter::parseTag(const QString &id, const TaggingScheme::TagType 
 //        qDebug()<<"reading"<<id<<idPosition<<l;
     }
     else {
-        rawUserValues[id].append(value);
+        rawUserValues[id].append(stringValue);
     }
 }
 
@@ -1433,10 +1463,8 @@ bool TagsReaderWriter::writeTags()
         tag->d->otherTags = other;*/
     }
 
-    QString lyrics = tag->tag(LYRICS);
-    lyrics.replace(QLS("\n"),QLS("\r\n"));
-    lyrics.replace(QLS("\r\r"),QLS("\r"));
-    tag->d->tags[LYRICS] = lyrics;
+    //adjustLineEnding(tag->d->tags[LYRICS]);
+    //adjustLineEnding(tag->d->tags[COMMENT]);
 
     if (tag->d->image.mimetype().isEmpty())
         tag->d->image.setMimetype(QSL("image/png"));
@@ -1489,12 +1517,10 @@ bool TagsReaderWriter::writeTags()
         case Tag::TTA_FILE: {
             TagLib::TrueAudio::File *f=new TagLib::TrueAudio::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
-                TagLib::ID3v2::Tag *tag=f->ID3v2Tag(true);
-                writeID3v2(tag);
+                writeID3v2(f->ID3v2Tag(true));
 
                 if (App->id3v1Synchro<2) {//do write id3v1
-                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
-                    writeID3v1(tag);
+                    writeID3v1(f->ID3v1Tag(App->id3v1Synchro==0));
                 }
                 else f->strip(TagLib::TrueAudio::File::ID3v1);
                 b=f->save();
@@ -1596,11 +1622,11 @@ bool TagsReaderWriter::writeTags()
         case Tag::MPC_FILE: {
             TagLib::MPC::File *f=new TagLib::MPC::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
-                TagLib::APE::Tag *tag=f->APETag(true);
-                writeAPE(tag);
+                TagLib::APE::Tag *apetag=f->APETag(true);
+                writeAPE(apetag);
                 if (App->id3v1Synchro<2) {//do write id3v1
-                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
-                    writeID3v1(tag);
+                    TagLib::ID3v1::Tag *id3tag=f->ID3v1Tag(App->id3v1Synchro==0);
+                    writeID3v1(id3tag);
                 }
                 else f->strip(TagLib::MPC::File::ID3v1);
                 b=f->save();
