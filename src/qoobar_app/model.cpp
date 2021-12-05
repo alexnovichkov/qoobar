@@ -632,48 +632,83 @@ void Model::move(bool up)
     indexes = newIndexes;
 }
 
+//void Model::sortByColumn(int column, Qt::SortOrder order, int sortType)
+//{DD;
+//    QVector<int> newIndexes;
+//    if (sortType==SortTime) {
+//        QMultiMap<int, int> map;
+//        for (int i=0; i<size(); ++i)
+//            map.insert(tags.at(i).length(),i);
+//        newIndexes = map.values().toVector();
+//    }
+//    else {
+//        bool allNumbers = true;
+//        for (int i=0; i<size(); ++i) {
+//            bool ok;
+//            QString s = data(index(i,column)).toString();
+//            Q_UNUSED(s.toInt(&ok));
+//            if (!ok && !s.isEmpty()) {
+//                allNumbers = false;
+//                break;
+//            }
+//        }
+
+//        if (allNumbers) {
+//            QMultiMap<int, int> map;
+//            for (int i=0; i<size(); ++i) {
+//                QString s = data(index(i,column)).toString();
+//                int intval=s.toInt();
+//                map.insert(intval,i);
+//            }
+//            newIndexes = map.values().toVector();
+//        }
+//        else {
+//            QMultiMap<QString, int> map;
+//            for (int i=0; i<size(); ++i) {
+//                QString s = data(index(i,column)).toString();
+//                if (App->sortOption == 0)
+//                    map.insert(s,i);
+//                else
+//                    map.insert(s.toLower(),i);
+//            }
+//            newIndexes = map.values().toVector();
+//        }
+//    }
+//    if (order==Qt::DescendingOrder) std::reverse(newIndexes.begin(), newIndexes.end());
+
+//    for (int i=0; i<newIndexes.size()-1; ++i) {
+//        if (newIndexes.at(i) == i) continue;
+//        beginMoveRows(QModelIndex(),newIndexes.at(i),newIndexes.at(i),QModelIndex(),
+//                      newIndexes.at(i)>i?i:i+1);
+//        tags.move(newIndexes.at(i),i);
+//        endMoveRows();
+//        for(int j=i+1; j<newIndexes.size(); ++j) {
+//            if (newIndexes.at(j)<newIndexes.at(i)) newIndexes[j]+=1;
+//        }
+//    }
+//}
+
 void Model::sortByColumn(int column, Qt::SortOrder order, int sortType)
 {DD;
     QVector<int> newIndexes;
-    if (sortType==SortTime) {
-        QMultiMap<int, int> map;
-        for (int i=0; i<size(); ++i)
-            map.insert(tags.at(i).length(),i);
-        newIndexes = map.values().toVector();
-    }
-    else {
-        bool allNumbers = true;
-        for (int i=0; i<size(); ++i) {
-            bool ok;
+    QMultiMap<int, int> intMap;
+    QMultiMap<QString, int> stringMap;
+    bool ok;
+    bool allNumbers = true;
+    for (int i=0; i<size(); ++i) {
+        if (sortType==SortTime)
+            intMap.insert(tags.at(i).length(),i);
+        else {
             QString s = data(index(i,column)).toString();
             int intval=s.toInt(&ok);
-            if (!ok && !s.isEmpty()) {
-                allNumbers = false;
-                break;
-            }
-        }
-
-        if (allNumbers) {
-            QMultiMap<int, int> map;
-            for (int i=0; i<size(); ++i) {
-                QString s = data(index(i,column)).toString();
-                int intval=s.toInt();
-                map.insert(intval,i);
-            }
-            newIndexes = map.values().toVector();
-        }
-        else {
-            QMultiMap<QString, int> map;
-            for (int i=0; i<size(); ++i) {
-                QString s = data(index(i,column)).toString();
-                if (App->sortOption == 0)
-                    map.insert(s,i);
-                else
-                    map.insert(s.toLower(),i);
-            }
-            newIndexes = map.values().toVector();
+            if (!ok && !s.isEmpty()) allNumbers = false;
+            intMap.insert(intval,i);
+            stringMap.insert(App->sortOption == 0 ? s : s.toLower(),i);
         }
     }
+    if (allNumbers) newIndexes = intMap.values().toVector();
+    else newIndexes = stringMap.values().toVector();
+
     if (order==Qt::DescendingOrder) std::reverse(newIndexes.begin(), newIndexes.end());
 
     for (int i=0; i<newIndexes.size()-1; ++i) {

@@ -1,4 +1,5 @@
 #include "releaseinfomodel.h"
+#include <QtDebug>
 
 ReleaseInfoModel::ReleaseInfoModel(QObject *parent) : CheckableTableModel(parent)
 {

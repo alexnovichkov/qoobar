@@ -94,15 +94,25 @@ QVariant ImportModel::headerData(int section, Qt::Orientation orientation, int r
     return CheckableTableModel::headerData(section, orientation, role);
 }
 
+void resizeStringList(QStringList &list, int newSize)
+{
+#if QT_VERSION >=QT_VERSION_CHECK(6,0,0)
+    list.resize(newSize);
+#else
+    list=list.mid(0,newSize);
+    while(list.size()<newSize) list << "";
+#endif
+}
+
 void ImportModel::update()
 {
     const int count = tags.size();
-    tagsSource.resize(count);
+    resizeStringList(tagsSource, count);
 
     //updating tags source
     if (sourceId == 1) {
-        tagsSource = qApp->clipboard()->text().split(QSL("\n")).toVector();
-        tagsSource.resize(count);
+        tagsSource = qApp->clipboard()->text().split(QSL("\n"));
+        resizeStringList(tagsSource, count);
     }
     else {
         for (int i=0; i<count; ++i) {

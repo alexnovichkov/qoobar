@@ -124,8 +124,9 @@ Application::Application(int &argc, char **argv, bool useGui)
     libFiles << QDir(QSL("/usr/lib/x86_64-linux-gnu")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
     libFiles << QDir(App->applicationDirPath()).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
 
-    if (auto libFile = std::find_if(libFiles.cbegin(), libFiles.cend(), [](const QFileInfo &fi){
-        return isValidLibrary(fi);}); libFile != libFiles.cend()) {
+    auto libFile = std::find_if(libFiles.cbegin(), libFiles.cend(), [](const QFileInfo &fi){
+            return isValidLibrary(fi);});
+    if (libFile != libFiles.cend()) {
         discidLibraryPath = (*libFile).canonicalFilePath();
     }
 

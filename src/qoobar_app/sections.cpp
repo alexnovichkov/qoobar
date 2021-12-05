@@ -19,10 +19,11 @@ struct section {
     QString text;
 };
 
-QDebug & operator<< (QDebug dbg, const section &t)
+QDebug operator<< (QDebug dbg, const section &t)
 {
+    QDebugStateSaver saver(dbg);
     dbg.nospace() << "("<<t.start<<","<<t.end<<","<<t.common<<")";
-    return dbg.space();
+    return dbg;
 }
 
 int removeSingle(QVector<int> &seta, QVector<int> &setb, const QString &sa)
@@ -96,7 +97,7 @@ void createLongestCommonSubsequence(const QString & a, const QString & b,
     while (deleted>0);
 }
 
-QList<section> createSectionsList(QVector<int> &set, int len)
+QList<section> createSectionsList(const QVector<int> &set, int len)
 {
     QList<section> list;
     if (set.isEmpty()) {

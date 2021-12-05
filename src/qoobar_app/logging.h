@@ -4,7 +4,7 @@
 #include <QString>
 
 //#define DO_TRACE
-
+#include <QObject>
 
 #include <QElapsedTimer>
 
@@ -14,9 +14,9 @@ public:
     ~Trace();
 private:
     Q_DISABLE_COPY(Trace)
-#if QT_VERSION >= QT_VERSION_CHECK(5,13,0)
-    Q_DISABLE_MOVE(Trace)
-#endif
+//#if QT_VERSION >= QT_VERSION_CHECK(5,13,0)
+//    Q_DISABLE_COPY_MOVE(Trace)
+//#endif
     QString _msg;
     QElapsedTimer time;
 };

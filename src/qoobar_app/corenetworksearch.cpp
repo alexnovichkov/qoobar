@@ -65,6 +65,9 @@ void unzipResponse(QByteArray& response)
 
 CoreNetworkSearch::CoreNetworkSearch(QObject *parent) :  QObject(parent)
 {
+    if (!QSslSocket::supportsSsl()) Q_EMIT error(tr("This Qt version doesn't support SSL.\n"
+                                                    "Please compile Qoobar with another Qt version"));
+
     m = new QNetworkAccessManager(this);
     if (App->useProxy)
         setProxy(App->proxyServer,

@@ -10,19 +10,19 @@ FileIconProvider::FileIconProvider() : QFileIconProvider()
 QIcon FileIconProvider::icon(IconType type) const
 {
     switch (type) {
-    case QAbstractFileIconProvider::Folder:
+    case ICON_PROVIDER::Folder:
         return qApp->style()->standardIcon(QStyle::SP_DirIcon);
-    case QAbstractFileIconProvider::File:
+    case ICON_PROVIDER::File:
         return qApp->style()->standardIcon(QStyle::SP_FileIcon);
-    case QAbstractFileIconProvider::Computer:
+    case ICON_PROVIDER::Computer:
         return qApp->style()->standardIcon(QStyle::SP_ComputerIcon);
-    case QAbstractFileIconProvider::Desktop:
+    case ICON_PROVIDER::Desktop:
         return qApp->style()->standardIcon(QStyle::SP_DesktopIcon);
-    case QAbstractFileIconProvider::Trashcan:
+    case ICON_PROVIDER::Trashcan:
         return qApp->style()->standardIcon(QStyle::SP_TrashIcon);
-    case QAbstractFileIconProvider::Network:
+    case ICON_PROVIDER::Network:
         return qApp->style()->standardIcon(QStyle::SP_DriveNetIcon);
-    case QAbstractFileIconProvider::Drive:
+    case ICON_PROVIDER::Drive:
         return qApp->style()->standardIcon(QStyle::SP_DriveHDIcon);
     default: break;
 
