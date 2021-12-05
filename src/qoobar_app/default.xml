@@ -474,7 +474,7 @@
 			<field>internal</field>
 		</format>
 		<format id="3">
-			<field>rati;rtng</field>
+			<field>rati;rtng;rate</field>
 		</format>
 	</tag>
 	<tag name="Original album" id="27">
