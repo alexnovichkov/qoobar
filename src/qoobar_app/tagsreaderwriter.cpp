@@ -5,40 +5,40 @@
 
 #include <QRegularExpression>
 
-#include "taglib/mpeg/id3v2/frames/textidentificationframe.h"
-#include "taglib/mpeg/id3v2/frames/unsynchronizedlyricsframe.h"
-#include "taglib/mpeg/id3v2/frames/urllinkframe.h"
-#include "taglib/mpeg/id3v2/frames/commentsframe.h"
-#include "taglib/mpeg/id3v2/frames/attachedpictureframe.h"
-#include "taglib/mpeg/id3v2/frames/popularimeterframe.h"
-#include "taglib/mpeg/id3v2/frames/ownershipframe.h"
-#include "taglib/mpeg/id3v2/frames/synchronizedlyricsframe.h"
-#include "taglib/mpc/mpcfile.h"
-#include "taglib/ogg/flac/oggflacfile.h"
-#include "taglib/trueaudio/trueaudiofile.h"
-#include "taglib/ogg/speex/speexfile.h"
-#include "taglib/wavpack/wavpackfile.h"
-#include "taglib/mpeg/mpegfile.h"
-#include "taglib/ogg/vorbis/vorbisfile.h"
+#include "taglib/textidentificationframe.h"
+#include "taglib/unsynchronizedlyricsframe.h"
+#include "taglib/urllinkframe.h"
+#include "taglib/commentsframe.h"
+#include "taglib/attachedpictureframe.h"
+#include "taglib/popularimeterframe.h"
+#include "taglib/ownershipframe.h"
+#include "taglib/synchronizedlyricsframe.h"
+#include "taglib/mpcfile.h"
+#include "taglib/oggflacfile.h"
+#include "taglib/trueaudiofile.h"
+#include "taglib/speexfile.h"
+#include "taglib/wavpackfile.h"
+#include "taglib/mpegfile.h"
+#include "taglib/vorbisfile.h"
 
-#include "taglib/mpeg/id3v2/id3v2tag.h"
-#include "taglib/ogg/xiphcomment.h"
-#include "taglib/mpeg/id3v1/id3v1tag.h"
-#include "taglib/ape/apetag.h"
+#include "taglib/id3v2tag.h"
+#include "taglib/xiphcomment.h"
+#include "taglib/id3v1tag.h"
+#include "taglib/apetag.h"
 
-#include "taglib/asf/asffile.h"
-#include "taglib/riff/wav/wavfile.h"
-#include "taglib/riff/aiff/aifffile.h"
-#include "taglib/mp4/mp4file.h"
-#include "taglib/mpeg/id3v2/frames/privateframe.h"
-#include "taglib/mp4/mp4coverart.h"
-#include "taglib/ogg/opus/opusfile.h"
-#include "taglib/dsf/dsffile.h"
-#include "taglib/dsf/dsfproperties.h"
+#include "taglib/asffile.h"
+#include "taglib/wavfile.h"
+#include "taglib/aifffile.h"
+#include "taglib/mp4file.h"
+#include "taglib/privateframe.h"
+#include "taglib/mp4coverart.h"
+#include "taglib/opusfile.h"
+//#include "taglib/dsffile.h"
+//#include "taglib/dsfproperties.h"
 
-#include "taglib/ape/apefile.h"
-#include "taglib/ape/apeproperties.h"
-#include "taglib/flac/flacfile.h"
+#include "taglib/apefile.h"
+#include "taglib/apeproperties.h"
+#include "taglib/flacfile.h"
 #define APEFILE TagLib::APE::File
 
 #define QS(s) QString::fromStdWString(s.toWString())
@@ -187,14 +187,14 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
             }
             return f;
         }
-        case Tag::DSF_FILE: {
-            TagLib::DSF::File *f=new TagLib::DSF::File(FILE_NAME(tag->fullFileName()));
-            if (f->isValid()) {
-                if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_ID3V2;
-                if (tagTypes & TAG_ID3V2) readID3v2(f->tag());
-            }
-            return f;
-        }
+//        case Tag::DSF_FILE: {
+//            TagLib::DSF::File *f=new TagLib::DSF::File(FILE_NAME(tag->fullFileName()));
+//            if (f->isValid()) {
+//                if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_ID3V2;
+//                if (tagTypes & TAG_ID3V2) readID3v2(f->tag());
+//            }
+//            return f;
+//        }
         case Tag::TTA_FILE: {
             TagLib::TrueAudio::File *f=new TagLib::TrueAudio::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
@@ -588,7 +588,15 @@ void writeID3v2Frame(TagLib::ID3v2::Tag *id3v2tag,const QString &s,const QString
     else if (id=="PRIV") {
         TagLib::String data=TS(s);
 
-        TagLib::ID3v2::PrivateFrame *frame = TagLib::ID3v2::PrivateFrame::find(id3v2tag,TS(description));
+        TagLib::ID3v2::PrivateFrame *frame = 0;
+
+        auto l = id3v2tag->frameList("PRIV");
+        for(auto it = l.begin(); it != l.end(); ++it) {
+            auto f = dynamic_cast<TagLib::ID3v2::PrivateFrame *>(*it);
+            if (f && f->owner() == TS(description))
+                frame = f;
+        }
+
         if (frame)
             if (s.isEmpty()) id3v2tag->removeFrame(frame,true);
             else frame->setData(data.data(TagLib::String::UTF16LE));
@@ -1132,8 +1140,15 @@ void TagsReaderWriter::readMP4(TagLib::MP4::Tag *mp4tag)
         else if (id == "plID") {
             parseTag(id, TaggingScheme::MP4, QString::number(item.toLongLong()));
         }
+        else if (id == "rate") {
+            auto stringValue = item.toStringList();
+            if (!stringValue.isEmpty())
+                parseTag(id, TaggingScheme::MP4, QS(stringValue[0]));
+            else
+                parseTag(id, TaggingScheme::MP4, QString::number(item.toInt()));
+        }
         else if (id == "rati") {
-            parseTag(id, TaggingScheme::MP4, QString::number(item.toUShort()));
+            parseTag(id, TaggingScheme::MP4, QString::number(item.toInt()));
         }
         else if (id=="rtng") {
             int r=item.toByte();
@@ -1504,16 +1519,16 @@ bool TagsReaderWriter::writeTags()
             delete f;
             break;
         }
-        case Tag::DSF_FILE: {
-            TagLib::DSF::File *f=new TagLib::DSF::File(FILE_NAME(tag->fullFileName()));
-            if (f->isValid()) {
-                TagLib::ID3v2::Tag *tag=f->tag();
-                writeID3v2(tag);
-                b = f->save();
-            }
-            delete f;
-            break;
-        }
+//        case Tag::DSF_FILE: {
+//            TagLib::DSF::File *f=new TagLib::DSF::File(FILE_NAME(tag->fullFileName()));
+//            if (f->isValid()) {
+//                TagLib::ID3v2::Tag *tag=f->tag();
+//                writeID3v2(tag);
+//                b = f->save();
+//            }
+//            delete f;
+//            break;
+//        }
         case Tag::TTA_FILE: {
             TagLib::TrueAudio::File *f=new TagLib::TrueAudio::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {

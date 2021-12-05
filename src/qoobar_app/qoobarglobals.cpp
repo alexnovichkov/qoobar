@@ -186,7 +186,8 @@ QStringList Qoobar::musicalFilters()
 {DD;
     return QString("*.mp3,*.mpc,*.ogg,*.flac,*.oga,"
                    "*.wv,*.spx,*.tta,*.ape,*.opus"
-                   ",*.wma,*.asf,*.m4a,*.m4b,*.m4p,*.3g2,*.mp4,*.wav,*.aiff,*.aif,*.dsf"
+//                   ",*.wma,*.asf,*.m4a,*.m4b,*.m4p,*.3g2,*.mp4,*.wav,*.aiff,*.aif,*.dsf"
+                   ",*.wma,*.asf,*.m4a,*.m4b,*.m4p,*.3g2,*.mp4,*.wav,*.aiff,*.aif"
                    ).split(QSL(","));
 }
 

@@ -44,7 +44,8 @@ int fileTypeByExt(QString extension, QString &icon)
              || extension=="3g2") extension=QSL("m4a");
     else if (extension=="aif") extension=QSL("aiff");
 
-    static const QStringList list=QString("mp3.ogg.wma.flac.m4a.mpc.wv.wav.spx.tta.oga.ape.aiff.opus.dsf").split(QSL("."));
+//    static const QStringList list=QString("mp3.ogg.wma.flac.m4a.mpc.wv.wav.spx.tta.oga.ape.aiff.opus.dsf").split(QSL("."));
+    static const QStringList list=QString("mp3.ogg.wma.flac.m4a.mpc.wv.wav.spx.tta.oga.ape.aiff.opus").split(QSL("."));
     icon = extension;
     return list.indexOf(extension);
 }

@@ -1,7 +1,7 @@
 #ifndef TAGSREADERWRITER_H
 #define TAGSREADERWRITER_H
 
-#include "taglib/toolkit/taglib.h"
+#include "taglib/taglib.h"
 #include <QIcon>
 #include "taggingscheme.h"
 

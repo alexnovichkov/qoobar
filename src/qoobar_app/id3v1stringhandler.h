@@ -28,7 +28,7 @@
 #define ID3V1STRINGHANDLER_H
 
 class QTextCodec;
-#include "taglib/mpeg/id3v1/id3v1tag.h"
+#include "taglib/id3v1tag.h"
 
 class ID3v1StringHandler : public TagLib::ID3v1::StringHandler
 {

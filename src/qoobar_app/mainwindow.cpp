@@ -35,7 +35,7 @@
 #include "statusbar.h"
 
 #include "iqoobarplugin.h"
-#include "taglib/toolkit/taglib.h"
+#include "taglib/taglib.h"
 #include "qoobarglobals.h"
 #include "logging.h"
 #include "macsplitter.h"

@@ -8,8 +8,8 @@
 #include "application.h"
 #include "platformprocess.h"
 
-#include "taglib/mpc/mpcfile.h"
-#include "taglib/mpc/mpcproperties.h"
+#include "taglib/mpcfile.h"
+#include "taglib/mpcproperties.h"
 
 #include <QTime>
 #include <QTimer>
