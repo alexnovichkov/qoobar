@@ -48,18 +48,21 @@ TreeView::TreeView(Tab *parent) : QTreeView(parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setUniformRowHeights(true);
 
-    showAct = new QAction(tr("Show/hide columns..."), this);
+    QIcon showActIcon = QIcon::fromTheme("application-menu");
+    showAct = new QAction(showActIcon, tr("Show/hide columns..."), this);
     connect(showAct,SIGNAL(triggered()),this,SLOT(adjustDisplayedTags()));
 
 #ifdef OSX_SUPPORT_ENABLED
-    ColumnSelectorButton *selector = new ColumnSelectorButton(this->header(), this);
-    this->addScrollBarWidget(selector,Qt::AlignTop);
-    selector->setDefaultAction(showAct);
-
+    auto selector = new ColumnSelectorButton(this->header(), this);
     setFrameStyle(QFrame::NoFrame | QFrame::Plain);
     setAttribute(Qt::WA_MacShowFocusRect, false);
     setAutoFillBackground(true);
+#else
+    auto selector = new QToolButton(this);
+    selector->setAutoRaise(true);
 #endif
+    this->addScrollBarWidget(selector,Qt::AlignTop);
+    selector->setDefaultAction(showAct);
 
     if (!App->columns170.isEmpty()) {
         header()->restoreState(App->columns170);
