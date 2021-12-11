@@ -61,7 +61,7 @@ const char mp4tags[]=
         "sfID.atID.geID.stik.rtng.akID.plID.rati.covr.©too."
         "©wrt.©alb.©nam.©ART.cond.subt.©cmt.©gen.©day.aART."
         "©grp.labl.©cpy.cprt.mood.lyrt.©lyr.©enc.rmix.©ope."
-        "olyr.©url.ISRC.covr.desc.tven.tves.tvsh.tvsn"
+        "olyr.©url.ISRC.covr.desc.tven.tves.tvsh.tvsn.rate"
         ;
 //TODO: Add support of as many id3v2 tags as possible
 //TODO: Add support of all id3v2 tags supported by taglib
@@ -1568,8 +1568,7 @@ bool TagsReaderWriter::writeTags()
             if (f->isValid()) {
 //                if (App->flacwriteogg)
                 {
-                    TagLib::Ogg::XiphComment *tag=f->xiphComment(true);
-                    writeXiph(tag);
+                    writeXiph(f->xiphComment(true));
                     writeFlacPicture(f);
                 }
 //                else if (!App->flacwriteogg) {
@@ -1585,10 +1584,7 @@ bool TagsReaderWriter::writeTags()
 //                    delete tag;
 //                }
                 if (App->id3v1Synchro<2) {
-                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
-                    if (tag) {
-                        writeID3v1(tag);
-                    }
+                    writeID3v1(f->ID3v1Tag(App->id3v1Synchro==0));
                 }
                 else {//not possible to remove id3v1 tags from flac files
                     TagLib::ID3v1::Tag *tag=f->ID3v1Tag(false);
@@ -1610,15 +1606,13 @@ bool TagsReaderWriter::writeTags()
         case Tag::OGA_FILE: {
             TagLib::Ogg::FLAC::File *f = new TagLib::Ogg::FLAC::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
-                TagLib::Ogg::XiphComment *tag=f->tag();
-                writeXiph(tag);
+                writeXiph(f->tag());
                 b=f->save();
             }
             delete f;
             TagLib::Ogg::Vorbis::File *ff=new TagLib::Ogg::Vorbis::File(FILE_NAME(tag->fullFileName()));
             if (ff->isValid()) {
-                TagLib::Ogg::XiphComment *tag=ff->tag();
-                writeXiph(tag);
+                writeXiph(ff->tag());
                 b=ff->save();
             }
             delete ff;
@@ -1637,11 +1631,9 @@ bool TagsReaderWriter::writeTags()
         case Tag::MPC_FILE: {
             TagLib::MPC::File *f=new TagLib::MPC::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
-                TagLib::APE::Tag *apetag=f->APETag(true);
-                writeAPE(apetag);
+                writeAPE(f->APETag(true));
                 if (App->id3v1Synchro<2) {//do write id3v1
-                    TagLib::ID3v1::Tag *id3tag=f->ID3v1Tag(App->id3v1Synchro==0);
-                    writeID3v1(id3tag);
+                    writeID3v1(f->ID3v1Tag(App->id3v1Synchro==0));
                 }
                 else f->strip(TagLib::MPC::File::ID3v1);
                 b=f->save();
@@ -1652,12 +1644,9 @@ bool TagsReaderWriter::writeTags()
         case Tag::WV_FILE: {
             TagLib::WavPack::File *f=new TagLib::WavPack::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
-                TagLib::APE::Tag *tag=f->APETag(true);
-                writeAPE(tag);
-
+                writeAPE(f->APETag(true));
                 if (App->id3v1Synchro<2) {//do write id3v1
-                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
-                    writeID3v1(tag);
+                    writeID3v1(f->ID3v1Tag(App->id3v1Synchro==0));
                 }
                 else f->strip(TagLib::WavPack::File::ID3v1);
                 b=f->save();
@@ -1668,8 +1657,7 @@ bool TagsReaderWriter::writeTags()
         case Tag::WAV_FILE: {
             TagLib::RIFF::WAV::File *f = new TagLib::RIFF::WAV::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
-                TagLib::ID3v2::Tag *tag=f->tag();
-                writeID3v2(tag);
+                writeID3v2(f->tag());
                 b=f->save();
             }
             delete f;
@@ -1679,8 +1667,7 @@ bool TagsReaderWriter::writeTags()
         case Tag::WMA_FILE: {
             TagLib::ASF::File *f=new TagLib::ASF::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
-                TagLib::ASF::Tag *tag=f->tag();
-                writeAsf(tag);
+                writeAsf(f->tag());
                 b=f->save();
             }
             delete f;
@@ -1690,8 +1677,7 @@ bool TagsReaderWriter::writeTags()
         case Tag::AIFF_FILE: {
             TagLib::RIFF::AIFF::File *f = new TagLib::RIFF::AIFF::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
-                TagLib::ID3v2::Tag *tag=f->tag();
-                writeID3v2(tag);
+                writeID3v2(f->tag());
                 b=f->save();
             }
             delete f;
@@ -1701,8 +1687,7 @@ bool TagsReaderWriter::writeTags()
         case Tag::M4A_FILE: {
             TagLib::MP4::File *f=new TagLib::MP4::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
-                TagLib::MP4::Tag *tag=f->tag();
-                writeMP4(tag);
+                writeMP4(f->tag());
                 b=f->save();
             }
             delete f;
@@ -1711,12 +1696,9 @@ bool TagsReaderWriter::writeTags()
         case Tag::APE_FILE: {
             APEFILE *f=new APEFILE(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {//qDebug()<<tag->fullFileName();
-                TagLib::APE::Tag *tag=f->APETag(true);
-                writeAPE(tag);
+                writeAPE(f->APETag(true));
                 if (App->id3v1Synchro<2) {//do write id3v1
-                    //qDebug()<<"attempting to write id3v1";
-                    TagLib::ID3v1::Tag *tag=f->ID3v1Tag(App->id3v1Synchro==0);
-                    writeID3v1(tag);
+                    writeID3v1(f->ID3v1Tag(App->id3v1Synchro==0));
                 }
                 else {//qDebug()<<"attempting to remove id3v1";
                     f->strip(TagLib::APE::File::ID3v1);

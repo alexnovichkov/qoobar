@@ -2422,7 +2422,7 @@ all changes in them will not be saved!</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="qoobarglobals.cpp" line="269"/>
+        <location filename="qoobarglobals.cpp" line="270"/>
         <source>%n byte(s)</source>
         <translation>
             <numerusform>%n byte</numerusform>
@@ -2430,12 +2430,12 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="272"/>
+        <location filename="qoobarglobals.cpp" line="273"/>
         <source>%1 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="274"/>
+        <location filename="qoobarglobals.cpp" line="275"/>
         <source>%1 MiB</source>
         <translation></translation>
     </message>

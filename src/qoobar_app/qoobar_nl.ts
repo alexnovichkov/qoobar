@@ -2489,7 +2489,7 @@ alle veranderingen worden niet opgeslagen!</translation>
         <translation>ISRC</translation>
     </message>
     <message numerus="yes">
-        <location filename="qoobarglobals.cpp" line="269"/>
+        <location filename="qoobarglobals.cpp" line="270"/>
         <source>%n byte(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2497,12 +2497,12 @@ alle veranderingen worden niet opgeslagen!</translation>
         </translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="272"/>
+        <location filename="qoobarglobals.cpp" line="273"/>
         <source>%1 KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="274"/>
+        <location filename="qoobarglobals.cpp" line="275"/>
         <source>%1 MiB</source>
         <translation type="unfinished"></translation>
     </message>

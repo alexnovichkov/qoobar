@@ -174,7 +174,7 @@ QList<ReplayGainInfo> ReplayGainer::scanWithUtilities(int fileType, const QVecto
     process.open(QIODevice::ReadWrite);
     ProcessLineMaker *lineMaker = new ProcessLineMaker(&process);
     connect(lineMaker,SIGNAL(receivedStdoutLines(QStringList)),SLOT(messages(QStringList)),Qt::QueuedConnection);
-    connect(lineMaker,SIGNAL(receivedStderrLines(QStringList)),SLOT(messages(QStringList)),Qt::QueuedConnection);
+    //connect(lineMaker,SIGNAL(receivedStderrLines(QStringList)),SLOT(messages(QStringList)),Qt::QueuedConnection);
 
     QEventLoop q;
     connect(&process,SIGNAL(finished(int)),&q,SLOT(quit()));
