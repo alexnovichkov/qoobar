@@ -6,6 +6,10 @@
 #define WIN_TASKBAR
 #include <QWinTaskbarProgress>
 #include <QWinTaskbarButton>
+#else
+#define WIN_TASKBAR
+#include "winextras/qwintaskbarprogress.h"
+#include "winextras/qwintaskbarbutton.h"
 #endif
 #endif
 #endif

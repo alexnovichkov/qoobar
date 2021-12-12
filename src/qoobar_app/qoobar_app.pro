@@ -183,6 +183,7 @@ HEADERS = mainwindow.h \
     qoobarhelp.h \
     autonumber.h
 
+
 OTHER_FILES *= splitandconvert.bat \
                splitandconvert.sh
 
@@ -524,9 +525,30 @@ unix {
 }
 
 win32|win {
-    qtHaveModule(winextras) {
+    lessThan(QT_MAJOR_VERSION, 6) {
       QT *= winextras
     }
+    else {
+        LIBS += -lole32 -lshlwapi -lshell32 -ldwmapi
+        win32:!qtHaveModule(opengl)|qtConfig(dynamicgl):LIBS += -lgdi32
+        HEADERS +=  winextras/qwintaskbarbutton.h \
+                    winextras/qwintaskbarbutton_p.h \
+                    winextras/qwintaskbarprogress.h \
+                    winextras/qwinfunctions.h \
+                    winextras/qwinevent.h \
+                    winextras/qwineventfilter_p.h \
+                    winextras/qwinfunctions_p.h \
+                    winextras/windowsguidsdefs_p.h \
+                    winextras/winshobjidl_p.h \
+                    winextras/winpropkey_p.h
+        SOURCES +=  winextras/qwintaskbarbutton.cpp \
+                    winextras/qwintaskbarprogress.cpp \
+                    winextras/qwinfunctions.cpp \
+                    winextras/qwinevent.cpp \
+                    winextras/qwineventfilter.cpp \
+                    winextras/windowsguidsdefs.cpp
+    }
+
 
 # So far no cli support in Win
 #    DEFINES *= QOOBAR_ENABLE_CLI
