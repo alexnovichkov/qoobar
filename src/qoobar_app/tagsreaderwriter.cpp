@@ -33,8 +33,8 @@
 #include "taglib/privateframe.h"
 #include "taglib/mp4coverart.h"
 #include "taglib/opusfile.h"
-//#include "taglib/dsffile.h"
-//#include "taglib/dsfproperties.h"
+#include "dsffile.h"
+#include "dsfproperties.h"
 
 #include "taglib/apefile.h"
 #include "taglib/apeproperties.h"
@@ -187,14 +187,14 @@ TagLib::File *TagsReaderWriter::readResolver(int tagTypes)
             }
             return f;
         }
-//        case Tag::DSF_FILE: {
-//            TagLib::DSF::File *f=new TagLib::DSF::File(FILE_NAME(tag->fullFileName()));
-//            if (f->isValid()) {
-//                if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_ID3V2;
-//                if (tagTypes & TAG_ID3V2) readID3v2(f->tag());
-//            }
-//            return f;
-//        }
+        case Tag::DSF_FILE: {
+            TagLib::DSF::File *f=new TagLib::DSF::File(FILE_NAME(tag->fullFileName()));
+            if (f->isValid()) {
+                if (!f->tag()->isEmpty()) tag->d->tagTypes |= TAG_ID3V2;
+                if (tagTypes & TAG_ID3V2) readID3v2(f->tag());
+            }
+            return f;
+        }
         case Tag::TTA_FILE: {
             TagLib::TrueAudio::File *f=new TagLib::TrueAudio::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
@@ -1407,8 +1407,8 @@ void TagsReaderWriter::renderTags(const TaggingScheme::TagType type, TagLib::Tag
                 continue;
             else if (indexes.size()>1) {
                 QStringList composedValue;
-                for(int i=0; i<indexes.size()-1;++i) {
-                    composedValue << tag->tag(indexes.at(i));
+                for(int j=0; j<indexes.size()-1;++j) {
+                    composedValue << tag->tag(indexes.at(j));
                 }
                 QString s = tag->tag(indexes.last());
                 if (!s.isEmpty()) composedValue << s;
@@ -1519,16 +1519,16 @@ bool TagsReaderWriter::writeTags()
             delete f;
             break;
         }
-//        case Tag::DSF_FILE: {
-//            TagLib::DSF::File *f=new TagLib::DSF::File(FILE_NAME(tag->fullFileName()));
-//            if (f->isValid()) {
-//                TagLib::ID3v2::Tag *tag=f->tag();
-//                writeID3v2(tag);
-//                b = f->save();
-//            }
-//            delete f;
-//            break;
-//        }
+        case Tag::DSF_FILE: {
+            TagLib::DSF::File *f=new TagLib::DSF::File(FILE_NAME(tag->fullFileName()));
+            if (f->isValid()) {
+                TagLib::ID3v2::Tag *tag=f->tag();
+                writeID3v2(tag);
+                b = f->save();
+            }
+            delete f;
+            break;
+        }
         case Tag::TTA_FILE: {
             TagLib::TrueAudio::File *f=new TagLib::TrueAudio::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {

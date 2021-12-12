@@ -35,6 +35,8 @@ CONFIG *= no_keywords
 SOURCES = main.cpp \
     checkabletablemodel.cpp \
     columnsmodel.cpp \
+    dsffile.cpp \
+    dsfproperties.cpp \
     fileiconprovider.cpp \
     headerview.cpp \
     importmodel.cpp \
@@ -106,6 +108,8 @@ SOURCES = main.cpp \
 HEADERS = mainwindow.h \
     checkabletablemodel.h \
     columnsmodel.h \
+    dsffile.h \
+    dsfproperties.h \
     fileiconprovider.h \
     headerview.h \
     importmodel.h \

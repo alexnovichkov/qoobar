@@ -129,7 +129,7 @@ public:
         APE_FILE=11,
         AIFF_FILE=12,
         OPUS_FILE=13,
-//        DSF_FILE=14,
+        DSF_FILE=14,
         FILES_NUM
     };
     Tag(int tagsCount = TAGSCOUNT);

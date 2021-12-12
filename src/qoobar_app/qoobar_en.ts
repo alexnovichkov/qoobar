@@ -3331,23 +3331,23 @@ Open the Settings dialog?</source>
 <context>
     <name>TreeView</name>
     <message>
-        <location filename="treeview.cpp" line="51"/>
-        <location filename="treeview.cpp" line="109"/>
+        <location filename="treeview.cpp" line="52"/>
+        <location filename="treeview.cpp" line="112"/>
         <source>Show/hide columns...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="treeview.cpp" line="139"/>
+        <location filename="treeview.cpp" line="142"/>
         <source>Move to the tab...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="treeview.cpp" line="143"/>
+        <location filename="treeview.cpp" line="146"/>
         <source>New tab</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="treeview.cpp" line="154"/>
+        <location filename="treeview.cpp" line="157"/>
         <source>MP3 tag types...</source>
         <translation></translation>
     </message>
