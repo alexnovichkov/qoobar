@@ -13,7 +13,7 @@
 
 AppId={{59A39891-F88A-49E6-A738-AC5580273280}
 AppName=Qoobar
-AppCopyright=Copyright (C) 2009-2020 Alex Novichkov
+AppCopyright=Copyright (C) 2009-2021 Alex Novichkov
 AppVersion={#VERSION}
 AppVerName=Qoobar {#VERSION}
 AppPublisher=Alex Novichkov
@@ -30,6 +30,9 @@ OutputBaseFilename=qoobar-{#VERSION}
 Compression=lzma2/ultra
 SolidCompression=yes
 AlwaysShowComponentsList=no
+ArchitecturesAllowed=x64 ia64
+ArchitecturesInstallIn64BitMode=x64 ia64
+PrivilegesRequired=none
 
 UninstallDisplayIcon={app}\qoobar.exe
 
@@ -99,8 +102,8 @@ Name: "{app}\icons"; Flags: uninsalwaysuninstall; Components: main
 Name: "{app}\icons"; Flags: uninsalwaysuninstall; Components: main
 
 [Files]
-#define PATH_TO_QT "C:/Qt/5.15.0/mingw81_32"
-#define PATH_TO_QOOBAR "G:/build/build-qoobar-Desktop_Qt_5_15_0_MinGW_32_bit-Release/release"
+#define PATH_TO_QT "C:/Qt6/6.2.0/mingw81_64"
+#define PATH_TO_QOOBAR "G:/build/build-qoobar-Desktop_Qt_6_2_0_MinGW_64_bit-Release/release"
 
 ; main
 Source: {#PATH_TO_QOOBAR+"/qoobar.exe"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
@@ -109,21 +112,24 @@ Source: {#PATH_TO_QOOBAR+"/plugins/*.dll"}; DestDir: "{app}\plugins"; Flags: ign
 Source: {#PATH_TO_QT+"/plugins/imageformats/qjpeg.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/plugins/imageformats/qgif.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/plugins/imageformats/qico.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/plugins/imageformats/qsvg.dll"}; DestDir: "{app}\imageformats"; Flags: ignoreversion  createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/plugins/platforms/qwindows.dll"}; DestDir: "{app}\platforms"; Flags: ignoreversion createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/plugins/platforms/qminimal.dll"}; DestDir: "{app}\platforms"; Flags: ignoreversion createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/plugins/styles/qwindowsvistastyle.dll"}; DestDir: "{app}\styles"; Flags: ignoreversion createallsubdirs recursesubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/Qt5Core.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/Qt5Concurrent.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/Qt5Gui.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/Qt5Network.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/Qt5Widgets.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/Qt5WinExtras.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/bin/Qt6Core.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/bin/Qt6Concurrent.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/bin/Qt6Gui.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/bin/Qt6Network.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/bin/Qt6Widgets.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/bin/Qt6Core5Compat.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/libwinpthread-1.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/libstdc++-6.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
-Source: {#PATH_TO_QT+"/bin/libgcc_s_dw2-1.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/bin/libgcc_s_seh-1.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 ; libraries that do not change
 Source: "..\windows\libdiscid.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
-Source: "..\windows\libz-1.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
-Source: "..\windows\WinSparkle.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
+Source: "G:\soft\Programming\zlib123dllx64\dll_x64\zlibwapi.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
+Source: "G:/soft/Programming/WinSparkle-0.7.0/x64/Release/WinSparkle.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
+Source: "G:/soft/Programming/taglib-1.12.1-x64/bin/libtag.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
 Source: "..\windows\flac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
 Source: "..\windows\mac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
 Source: "..\windows\shntool.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
@@ -150,8 +156,8 @@ Source: "src\qoobar_app\icons\coloured\*"; DestDir: "{app}\icons\coloured"; Flag
 Source: "html\*"; DestDir: "{app}\html"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help
 Source: "html\en\*.htm"; DestDir: "{app}\html\en"; Flags: ignoreversion recursesubdirs createallsubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help
 Source: "html\en\images\*.png"; DestDir: "{app}\html\en\images"; Flags: ignoreversion recursesubdirs createallsubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help
-Source: "README"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly isreadme uninsremovereadonly; Attribs: readonly; Components: help
-Source: "README.ru"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help
+Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly isreadme uninsremovereadonly; Attribs: readonly; Components: help
+Source: "README.ru.md"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help
 
 [Icons]
 Name: "{group}\Qoobar"; Filename: "{app}\qoobar.exe"; WorkingDir: "{app}"
