@@ -199,7 +199,7 @@ or album includes only one track</source>
     <message>
         <location filename="columnsmodel.cpp" line="35"/>
         <source>Visibility</source>
-        <translation type="unfinished">Отображение</translation>
+        <translation>Отображение</translation>
     </message>
 </context>
 <context>
@@ -287,7 +287,8 @@ or album includes only one track</source>
         <location filename="corenetworksearch.cpp" line="68"/>
         <source>This Qt version doesn&apos;t support SSL.
 Please compile Qoobar with another Qt version</source>
-        <translation type="unfinished"></translation>
+        <translation>Эта версия Qt не поддерживает SSL.
+Пожалуйста, скомпилируйте Qoobar с другой версией Qt</translation>
     </message>
 </context>
 <context>
@@ -321,13 +322,14 @@ Please compile Qoobar with another Qt version</source>
         <location filename="cuesplitter.cpp" line="267"/>
         <location filename="cuesplitter.cpp" line="290"/>
         <source>Cannot find the necessary script file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу найти файл скрипта: </translation>
     </message>
     <message>
         <location filename="cuesplitter.cpp" line="349"/>
         <source>Now invoking the script file with arguments:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Запускаю скрипт с опциями:
+</translation>
     </message>
     <message>
         <location filename="cuesplitter.cpp" line="500"/>
@@ -816,7 +818,7 @@ and &quot; by two single quotes &apos;&apos;</source>
     <message>
         <location filename="importmodel.cpp" line="88"/>
         <source>Source</source>
-        <translation type="unfinished">Источник</translation>
+        <translation>Источник</translation>
     </message>
 </context>
 <context>
@@ -940,19 +942,19 @@ and &quot; by two single quotes &apos;&apos;</source>
         <location filename="configpages.cpp" line="151"/>
         <location filename="configpages.cpp" line="225"/>
         <source>Sort file names and other text fields</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать имена файлов и другие текстовые поля</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="153"/>
         <location filename="configpages.cpp" line="226"/>
         <source>case sensitively</source>
-        <translation type="unfinished"></translation>
+        <translation>учитывая регистр</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="154"/>
         <location filename="configpages.cpp" line="227"/>
         <source>case insensitively</source>
-        <translation type="unfinished"></translation>
+        <translation>не учитывая регистр</translation>
     </message>
     <message>
         <source>Quit Qoobar on its window closed</source>
@@ -1592,8 +1594,8 @@ after you restart Qoobar</source>
         <location filename="mainwindow.cpp" line="594"/>
         <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2020 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
-        <translation type="unfinished">&lt;b&gt;Qoobar, простой редактор тегов&lt;/b&gt;&lt;br&gt;под лицензией GPL 3&lt;br&gt;Версия: %1&lt;br&gt;Copyright 2009-2015 Алексей Новичков&lt;p&gt;Сайт: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
-&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt; {3&lt;?} {1&lt;?} {2009-2020 ?}</translation>
+        <translation>&lt;b&gt;Qoobar, простой редактор тегов&lt;/b&gt;&lt;br&gt;под лицензией GPL 3&lt;br&gt;Версия: %1&lt;br&gt;Copyright 2009-2022 Алексей Новичков&lt;p&gt;Сайт: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
+&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="631"/>
@@ -1852,7 +1854,7 @@ all changes in them will not be saved!</source>
     <message>
         <location filename="imagebox.cpp" line="97"/>
         <source>No image</source>
-        <translation type="unfinished"></translation>
+        <translation>Картинки нет</translation>
     </message>
 </context>
 <context>
@@ -2542,27 +2544,27 @@ all changes in them will not be saved!</source>
     <message>
         <location filename="releaseinfomodel.cpp" line="58"/>
         <source>No.</source>
-        <translation type="unfinished">№</translation>
+        <translation>№</translation>
     </message>
     <message>
         <location filename="releaseinfomodel.cpp" line="59"/>
         <source>Title</source>
-        <translation type="unfinished">Название</translation>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="releaseinfomodel.cpp" line="60"/>
         <source>Artists</source>
-        <translation type="unfinished">Исполнители</translation>
+        <translation>Исполнители</translation>
     </message>
     <message>
         <location filename="releaseinfomodel.cpp" line="61"/>
         <source>Comment</source>
-        <translation type="unfinished">Комментарий</translation>
+        <translation>Комментарий</translation>
     </message>
     <message>
         <location filename="releaseinfomodel.cpp" line="62"/>
         <source>Length</source>
-        <translation type="unfinished">Длина</translation>
+        <translation>Длина</translation>
     </message>
 </context>
 <context>
@@ -3032,7 +3034,7 @@ Please choose the encoding:</source>
         <location filename="splitdialog.cpp" line="140"/>
         <source>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&quot;&gt;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</source>
         <oldsource>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</oldsource>
-        <translation type="unfinished">Если вы хотите изменить формат файлов по умолчанию, скопируйте ffmpeg.exe в папку с qoobar.exe. &lt;br&gt;FFmpeg можно взять здесь: &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;Пользователи OS/2 могут взять ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;здесь&lt;/a&gt;</translation>
+        <translation>Если вы хотите изменить формат файлов по умолчанию, скопируйте ffmpeg.exe в папку с qoobar.exe. &lt;br&gt;FFmpeg можно взять здесь: &lt;a href=&quot;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&quot;&gt;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&lt;/a&gt;.&lt;br&gt;Пользователи OS/2 могут взять ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;здесь&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="splitdialog.cpp" line="128"/>
@@ -3508,7 +3510,7 @@ Open the Settings dialog?</source>
     <message>
         <location filename="tagsfiller.cpp" line="409"/>
         <source>Please specify an album and/or an artist for the manual search</source>
-        <translation type="unfinished"></translation>
+        <translation>Задайте альбом и/или исполнителя для поиска вручную</translation>
     </message>
     <message>
         <location filename="tagsfiller.cpp" line="414"/>
@@ -3782,25 +3784,25 @@ in the ReplayGain dialog</source>
         <location filename="configpages.cpp" line="461"/>
         <location filename="configpages.cpp" line="641"/>
         <source>ID3v2 frames line ending</source>
-        <translation type="unfinished"></translation>
+        <translation>Перевод строки в тегах ID3V2</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="464"/>
         <location filename="configpages.cpp" line="638"/>
         <source>CRLF - Windows style</source>
-        <translation type="unfinished"></translation>
+        <translation>CRLF - как в Windows</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="465"/>
         <location filename="configpages.cpp" line="639"/>
         <source>LF - Unix and OS X style</source>
-        <translation type="unfinished"></translation>
+        <translation>LF - как в Unix и OS X</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="466"/>
         <location filename="configpages.cpp" line="640"/>
         <source>CR - pre-OS X style</source>
-        <translation type="unfinished"></translation>
+        <translation>CR - как в старых OS X</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="473"/>
@@ -3883,7 +3885,7 @@ in the ReplayGain dialog</source>
     <message>
         <location filename="configpages.cpp" line="539"/>
         <source>(for mp3, flac, tta, mpc, wv, ape files)</source>
-        <translation type="unfinished"></translation>
+        <translation>(для файлов mp3, flac, tta, mpc, wv, ape)</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="547"/>
