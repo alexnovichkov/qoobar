@@ -76,11 +76,14 @@ public:
     void setSkip(bool skip) {this->skip = skip;}
     void setDryRun(bool dryRun) {this->dryRun = dryRun;}
     QList<ReplayGainInfo> getNewRgInfo() {return rgInfo;}
-    bool start(int operation);
+    void setOperation(int operation) {this->operation = operation;}
+public Q_SLOTS:
+    void start();
 Q_SIGNALS:
     void message(int type, const QString &message);
     void textRead(const QString &text);
     void tick();
+    void finished();
 private Q_SLOTS:
     void messages(const QStringList &messages);
 private:
@@ -101,11 +104,12 @@ private:
     Model *m;
     bool skip;
     bool dryRun;
+    int operation;
 
     QHash<QString,QString> copiedFiles;
     QList<ReplayGainInfo> rgInfo;
 
-    QProcess * m_process;
+//    QProcess * m_process;
 };
 
 #endif // REPLAYGAINER_H

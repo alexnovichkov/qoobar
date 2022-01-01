@@ -55,10 +55,10 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     setWindowTitle(tr("Qoobar - Changing ReplayGain Info"));
     setWindowModality(Qt::WindowModal);
 
-    replayGainer = new ReplayGainer(m, this);
-    connect(replayGainer, SIGNAL(textRead(QString)),SLOT(appendText(QString)));
-    connect(replayGainer, SIGNAL(message(int,QString)),SLOT(appendText(int,QString)));
-    connect(replayGainer, SIGNAL(tick()), this, SLOT(tick()));
+    replayGainer = new ReplayGainer(m);
+    connect(replayGainer, SIGNAL(finished()), this, SLOT(finalize()),Qt::QueuedConnection);
+    connect(replayGainer, SIGNAL(message(int,QString)),SLOT(appendText(int,QString)),Qt::QueuedConnection);
+    connect(replayGainer, SIGNAL(tick()), this, SLOT(tick()),Qt::QueuedConnection);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
                                                        | QDialogButtonBox::Cancel);
@@ -156,6 +156,18 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     initTable();
 }
 
+ReplayGainDialog::~ReplayGainDialog()
+{
+    if (replayGainer) {
+        replayGainer->deleteLater();
+    }
+    if (t) {
+        t->quit();
+        t->wait();
+        t->deleteLater();
+    }
+}
+
 void ReplayGainDialog::accept()
 {DD;
     if (scanned && !rgList.isEmpty()) {
@@ -164,6 +176,14 @@ void ReplayGainDialog::accept()
 
         QDialog::accept();
     }
+}
+
+void ReplayGainDialog::reject()
+{
+    if (t)
+        t->requestInterruption();
+    //replayGainer->stop();
+    QDialog::reject();
 }
 
 void ReplayGainDialog::appendText(const QString &text)
@@ -221,9 +241,23 @@ void ReplayGainDialog::operate(int operation)
     skipCheckBox->setEnabled(false);
     okButton->setEnabled(false);
 
-    scanned=replayGainer->start(operation);
-    //scanning was completed with success (I hope)
-    okButton->setEnabled(scanned);
+    if (!t) {
+        t = new QThread;
+        replayGainer->moveToThread(t);
+        connect(t, SIGNAL(started()), replayGainer, SLOT(start()));
+        connect(replayGainer, SIGNAL(finished()), t, SLOT(quit()));
+    }
+    replayGainer->setOperation(operation);
+
+    t->start();
+
+    //scanned = replayGainer->start(operation);
+}
+
+void ReplayGainDialog::finalize()
+{
+    okButton->setEnabled(true);
+    scanned = true;
 
     rgList = replayGainer->getNewRgInfo();
     for (int i=0; i< rgList.size(); ++i) {

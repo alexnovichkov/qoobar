@@ -43,12 +43,15 @@ class ReplayGainDialog : public QDialog
     Q_OBJECT
 public:
     explicit ReplayGainDialog(Model *model, QWidget *parent = 0);
+    ~ReplayGainDialog();
 Q_SIGNALS:
 
 public Q_SLOTS:
     void accept();
+    void reject();
 private Q_SLOTS:
     void operate(int);
+    void finalize();
     void appendText(const QString &text);
     void appendText(int type, const QString &text);
     void tick();
@@ -59,6 +62,7 @@ private:
     void initTable();
 
     Model *m;
+    QThread *t = nullptr;
 
     QPushButton *scanFileButton;
     QPushButton *scanAlbumButton;

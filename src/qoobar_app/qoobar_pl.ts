@@ -2682,70 +2682,70 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
 <context>
     <name>ReplayGainer</name>
     <message>
-        <location filename="replaygainer.cpp" line="91"/>
+        <location filename="replaygainer.cpp" line="92"/>
         <source>Not enough memory: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="92"/>
+        <location filename="replaygainer.cpp" line="93"/>
         <source>Could not open input: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="94"/>
+        <location filename="replaygainer.cpp" line="95"/>
         <source>Could not find stream info: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="95"/>
+        <location filename="replaygainer.cpp" line="96"/>
         <source>Audio stream: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="96"/>
+        <location filename="replaygainer.cpp" line="97"/>
         <source>Could not open codec: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="97"/>
+        <location filename="replaygainer.cpp" line="98"/>
         <source>EBU R128: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="98"/>
+        <location filename="replaygainer.cpp" line="99"/>
         <source>Could not open SWResample: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="110"/>
+        <location filename="replaygainer.cpp" line="111"/>
         <source>You have different file types in the same album!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="112"/>
+        <location filename="replaygainer.cpp" line="113"/>
         <source>Cannot calculate correct album gain when mixing Opus and non-Opus files!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="204"/>
-        <location filename="replaygainer.cpp" line="207"/>
-        <location filename="replaygainer.cpp" line="231"/>
-        <location filename="replaygainer.cpp" line="234"/>
+        <location filename="replaygainer.cpp" line="212"/>
+        <location filename="replaygainer.cpp" line="215"/>
+        <location filename="replaygainer.cpp" line="239"/>
+        <location filename="replaygainer.cpp" line="242"/>
         <source> (corrected to prevent clipping)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="210"/>
+        <location filename="replaygainer.cpp" line="218"/>
         <source>  The track will clip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="348"/>
+        <location filename="replaygainer.cpp" line="356"/>
         <source>All files already have ReplayGain info!</source>
         <translation>Wszystkie pliki posiadają już informację ReplayGain!</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="403"/>
+        <location filename="replaygainer.cpp" line="411"/>
         <source>Removing ReplayGain info from Musepack files is not supported.</source>
         <translation>Usuwanie informacji ReplayGain z nagłówka Musepack pliku nie jest obsługiwany.</translation>
     </message>
@@ -2755,7 +2755,7 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="34"/>
-        <location filename="replaygainer.cpp" line="85"/>
+        <location filename="replaygainer.cpp" line="86"/>
         <source>Processing %1</source>
         <translation>Przetwarzanie %1</translation>
     </message>

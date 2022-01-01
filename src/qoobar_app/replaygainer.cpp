@@ -14,6 +14,7 @@
 #include <libswresample/swresample.h>
 #include <libavformat/avformat.h>
 #include "loudgain-master/src/scan.h"
+#include <QTimer>
 
 QString fileTypeByFileID(int fileID)
 {DD;
@@ -31,8 +32,9 @@ QList<ReplayGainInfo> ReplayGainer::scanWithDecoding(int fileType, const QVector
 {DD;
     QList<ReplayGainInfo> newRg;
 
+    if (QThread::currentThread()->isInterruptionRequested()) return newRg;
+
     Q_EMIT message(MT_INFORMATION, "<font color=blue><b>"+tr("Processing %1").arg(fileTypeByFileID(fileType))+"</b></font>");
-    App->processEvents();
 
     int  ebur128_v_major     = 0;
     int  ebur128_v_minor     = 0;
@@ -83,7 +85,11 @@ QList<ReplayGainInfo> ReplayGainer::scanWithDecoding(int fileType, const QVector
     if (result != 0) Q_EMIT message(MT_ERROR, QString(scan_get_last_error()));
 
     for (int i = 0; i < indexes.size(); i++) {
-        Q_EMIT message(MT_INFORMATION, tr("Processing %1").arg(m->fileAt(indexes.at(i)).fileNameExt()));
+        if (QThread::currentThread()->isInterruptionRequested()) return newRg;
+
+        Q_EMIT message(MT_INFORMATION, "<font color=green><b>"+tr("Processing %1").arg(m->fileAt(indexes.at(i)).fileNameExt())
+                       +"</b></font>");
+
         result = scan_file(m->fileAt(indexes.at(i)).fullFileName().toUtf8().data(), i);
 
         if (result != 0) {
@@ -115,6 +121,8 @@ QList<ReplayGainInfo> ReplayGainer::scanWithDecoding(int fileType, const QVector
     }
 
     for (int i = 0; i < indexes.size(); i++) {
+        if (QThread::currentThread()->isInterruptionRequested()) return newRg;
+
         bool willClip = false;
         double tgain = 1.0; // "gained" track peak
         double tnew;
@@ -343,7 +351,7 @@ QHash<int, QVector<int> > ReplayGainer::sortByFileType(int operation)
     return result;
 }
 
-bool ReplayGainer::start(int operation)
+void ReplayGainer::start()
 {DD;
     rgInfo.clear();
     for (int i=0; i<m->selectedFilesCount(); ++i) {
@@ -354,16 +362,16 @@ bool ReplayGainer::start(int operation)
 
     if (sortedByFileType.isEmpty()) {
         Q_EMIT message(MT_INFORMATION, "<font color=green>"+tr("All files already have ReplayGain info!")+"</font>");
-        return false;
+        return;
     }
 
     QHash<int,QVector<int> >::const_iterator it = sortedByFileType.constBegin();
     while (it != sortedByFileType.constEnd()) {
+        if (QThread::currentThread()->isInterruptionRequested()) return;
         scanGroup(it.key(),it.value(), operation);
         ++it;
     }
-
-    return true;
+    Q_EMIT finished();
 }
 
 void ReplayGainer::scanGroup(int fileType, const QVector<int> &indexes, const int operation)
@@ -426,9 +434,10 @@ void ReplayGainer::scan(int fileType, const QVector<int> &indexes, int operation
     App->processEvents();
 
     QList<ReplayGainInfo> newRgInfo = scanWithDecoding(fileType, indexes, operation);
-    if (newRgInfo.size()==indexes.size())
+    if (newRgInfo.size()==indexes.size()) {
         for (int i=0; i<indexes.size(); ++i)
             rgInfo[indexes.at(i)] = newRgInfo.at(i);
+    }
 }
 
 void ReplayGainer::messages(const QStringList &messages)
