@@ -94,6 +94,13 @@ Application::Application(int &argc, char **argv, bool useGui)
     renameOptions.removeFolder = true;
     renameOptions.applyToFolders = false;
 
+    replaygainOptions.copyFiles = false;
+    replaygainOptions.loudness = 0; //-18 dB
+    replaygainOptions.mode = 0; //standard
+    replaygainOptions.preventClipping = true;
+    replaygainOptions.tagsCase = 0; //upper
+    replaygainOptions.units = 0; //dB
+
     charsShown = true;
     id3v1Synchro = ID3V1_DELETE;
     id3v1Transliterate = true;
@@ -105,7 +112,6 @@ Application::Application(int &argc, char **argv, bool useGui)
     useUndo = false;
     encaGuessLanguage = QSL("russian");
     writeFieldsSeparately = false;
-    copyFiles = false;
     id3v2version = 4;
     verbose = true;
     recursive = false;
@@ -372,8 +378,22 @@ void Application::readGlobalSettings()
 
     encaGuessLanguage  = se->value("enca-guess-language", encaGuessLanguage).toString();
     writeFieldsSeparately  = se->value("write-fields-separately","off").toString()=="on";
-    copyFiles = se->value("rg-copy-files","off").toString()=="on";
     id3v2version = se->value("force-id3v23","off").toString()=="on"?3:4;
+
+    replaygainOptions.copyFiles = se->value("rg-copy-files","off").toString()=="on";
+    QString rgLoudness = se->value("rg-loudness","-18dB").toString();
+    if (rgLoudness == "-18dB") replaygainOptions.loudness = 0;
+    if (rgLoudness == "-23dB") replaygainOptions.loudness = 1;
+    QString rgMode = se->value("rg-mode","standard").toString();
+    if (rgMode=="standard") replaygainOptions.mode = 0; //standard
+    if (rgMode=="enhanced") replaygainOptions.mode = 1; //enhanced
+    replaygainOptions.preventClipping = se->value("rg-prevent-clipping","on").toString()=="on";
+    QString rgCase = se->value("rg-tags-case","upper").toString();
+    if (rgCase=="upper") replaygainOptions.tagsCase = 0; //upper
+    if (rgCase=="lower") replaygainOptions.tagsCase = 1; //lower
+    QString rgUnits = se->value("rg-units","dB").toString();
+    if (rgUnits=="dB") replaygainOptions.units = 0; //dB
+    if (rgUnits=="LUFS") replaygainOptions.units = 1;
 
     verbose = se->value("verbose",false).toBool();
 
@@ -502,12 +522,20 @@ void Application::writeGlobalSettings()
     se->setValue("scheme", currentSchemeName);
     se->setValue("enca-guess-language", encaGuessLanguage);
     se->setValue("write-fields-separately", writeFieldsSeparately?"on":"off");
-    se->setValue("rg-copy-files", copyFiles?"on":"off");
+
     se->setValue("force-id3v23", id3v2version==3?"on":"off");
     se->setValue("verbose",verbose);
     se->setValue("mpc-replaygain-format", mpcWriteRg ? "header" : "tags");
     se->setValue("default-split-format", defaultSplitFormat);
     se->setValue(QSL("iconTheme"),iconTheme);
+
+    se->setValue("rg-copy-files", replaygainOptions.copyFiles?"on":"off");
+    se->setValue("rg-loudness", replaygainOptions.loudness == 0?"-18dB":"-23dB");
+    se->setValue("rg-mode",replaygainOptions.mode == 0?"standard":"enhanced");
+    se->setValue("rg-tags-case",replaygainOptions.tagsCase == 0?"upper":"lower");
+    se->setValue("rg-prevent-clipping",replaygainOptions.preventClipping?"on":"off");
+    se->setValue("rg-units",replaygainOptions.units == 0?"dB":"LUFS");
+
     delete se;
 }
 

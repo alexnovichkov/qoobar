@@ -43,6 +43,9 @@ struct Operated
 typedef QString (*RenderFunction)(QStringList &, int);
 typedef QHash<QString, RenderFunction> FunctionsHash;
 
+QString getShortFileName(const QString &fileName);
+std::string utf8_encode(const QString &str);
+
 QRegularExpression createRegExp(bool caseSensitive, bool useRegularExpressions,
                      bool wholeWord, QString pattern);
 

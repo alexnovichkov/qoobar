@@ -4,13 +4,13 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="application.cpp" line="401"/>
+        <location filename="application.cpp" line="421"/>
         <source>Qoobar</source>
         <translatorcomment>file:///K:/Qt/Qt5.2.0/5.2.0/Src/qttranslations/translations/qtbase_it.ts</translatorcomment>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="401"/>
+        <location filename="application.cpp" line="421"/>
         <source>Cannot write settings. The settings file is read-only</source>
         <translation>Impossibile scrivere le impostazioni. Il file di impostazioni è di sola lettura</translation>
     </message>
@@ -32,13 +32,13 @@ Controllare il file</translation>
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="670"/>
-        <location filename="application.cpp" line="695"/>
+        <location filename="application.cpp" line="698"/>
+        <location filename="application.cpp" line="723"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="670"/>
+        <location filename="application.cpp" line="698"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
@@ -47,7 +47,7 @@ Please check the folder</source>
 Si prega di controllare la cartella</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="695"/>
+        <location filename="application.cpp" line="723"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation>Impossibile scrivere %1.
@@ -297,47 +297,47 @@ Please compile Qoobar with another Qt version</source>
         <translation type="obsolete">Assicurarsi di avere shntool.exe e flac.exe copiato nella cartella con qoobar.exe. &lt;br&gt; Potete scaricare da &lt;a href = &quot;http://etree.org/shnutils/shntool / &quot;&gt; http://etree.org/shnutils/shntool/ &lt;/ a&gt;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="99"/>
+        <location filename="cuesplitter.cpp" line="72"/>
         <source>Please install shntool.</source>
         <translation>Si prega di installare shntool.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="101"/>
+        <location filename="cuesplitter.cpp" line="74"/>
         <source>Please install flac.</source>
         <translation>Si prega di installare flac.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="145"/>
+        <location filename="cuesplitter.cpp" line="118"/>
         <source>Opening cue file: &quot;%1&quot;</source>
         <translation>Apertura del file: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="158"/>
-        <location filename="cuesplitter.cpp" line="178"/>
+        <location filename="cuesplitter.cpp" line="131"/>
+        <location filename="cuesplitter.cpp" line="151"/>
         <source>Cannot open cue file %1</source>
         <translation>Impossibile aprire il file
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="267"/>
-        <location filename="cuesplitter.cpp" line="290"/>
+        <location filename="cuesplitter.cpp" line="240"/>
+        <location filename="cuesplitter.cpp" line="263"/>
         <source>Cannot find the necessary script file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="349"/>
+        <location filename="cuesplitter.cpp" line="322"/>
         <source>Now invoking the script file with arguments:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="500"/>
+        <location filename="cuesplitter.cpp" line="473"/>
         <source>Cannot find the file to split: %1</source>
         <translation>Impossibile trovare il file di dividere:
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="542"/>
+        <location filename="cuesplitter.cpp" line="515"/>
         <source>Processing %1 ...
 
 </source>
@@ -351,33 +351,33 @@ Please compile Qoobar with another Qt version</source>
         <translation type="obsolete">Esecuzione %1 ...</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="236"/>
+        <location filename="cuesplitter.cpp" line="209"/>
         <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</source>
         <translation>Assicurarsi di avere mac.exe copiato nella cartella con qoobar.exe. &lt;br&gt; Potete scaricare da &lt;a href = &quot;http://etree.org/shnutils/shntool / &quot;&gt; http://etree.org/shnutils/shntool/ &lt;/ a&gt;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="242"/>
+        <location filename="cuesplitter.cpp" line="215"/>
         <source>Please install mac. You can download it from &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</source>
         <translation>Si prega di installare mac. Potete scaricare da &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="246"/>
+        <location filename="cuesplitter.cpp" line="219"/>
         <source>Please install mac</source>
         <translation>Si prega di installare mac</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="224"/>
+        <location filename="cuesplitter.cpp" line="197"/>
         <source>Nothing to split.</source>
         <translation>Non c’è niente da frazionare.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="252"/>
+        <location filename="cuesplitter.cpp" line="225"/>
         <source>Please wait while Qoobar is splitting the file %1</source>
         <translation>Per favore attendi che Qoobar è dividere il file
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="520"/>
+        <location filename="cuesplitter.cpp" line="493"/>
         <source>Total track count: &quot;%1&quot;</source>
         <translation>Numero totale dei brani: &quot;%1&quot;</translation>
     </message>
@@ -1792,37 +1792,37 @@ le modifiche non verranno registrate!</translation>
 <context>
     <name>NetworkPage</name>
     <message>
-        <location filename="configpages.cpp" line="1040"/>
-        <location filename="configpages.cpp" line="1087"/>
+        <location filename="configpages.cpp" line="1030"/>
+        <location filename="configpages.cpp" line="1077"/>
         <source>Use proxy server</source>
         <translation>Usa un server proxy</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1048"/>
-        <location filename="configpages.cpp" line="1089"/>
+        <location filename="configpages.cpp" line="1038"/>
+        <location filename="configpages.cpp" line="1079"/>
         <source>Proxy server</source>
         <translation>Server proxy</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1049"/>
-        <location filename="configpages.cpp" line="1090"/>
+        <location filename="configpages.cpp" line="1039"/>
+        <location filename="configpages.cpp" line="1080"/>
         <source>Port</source>
         <translation>Porta</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1050"/>
-        <location filename="configpages.cpp" line="1091"/>
+        <location filename="configpages.cpp" line="1040"/>
+        <location filename="configpages.cpp" line="1081"/>
         <source>Login</source>
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1051"/>
-        <location filename="configpages.cpp" line="1092"/>
+        <location filename="configpages.cpp" line="1041"/>
+        <location filename="configpages.cpp" line="1082"/>
         <source>Password</source>
         <translation>Password</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1078"/>
+        <location filename="configpages.cpp" line="1068"/>
         <source>Network</source>
         <translation>Rete</translation>
     </message>
@@ -2155,52 +2155,52 @@ le modifiche non verranno registrate!</translation>
 <context>
     <name>PluginsPage</name>
     <message>
-        <location filename="configpages.cpp" line="1106"/>
-        <location filename="configpages.cpp" line="1156"/>
+        <location filename="configpages.cpp" line="1096"/>
+        <location filename="configpages.cpp" line="1146"/>
         <source>Download plugins:</source>
         <translation>Plugin per il recupero dei tag:</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1107"/>
-        <location filename="configpages.cpp" line="1157"/>
+        <location filename="configpages.cpp" line="1097"/>
+        <location filename="configpages.cpp" line="1147"/>
         <source>Tags editing plugins:</source>
         <translation>Plugin per la scrittura dei tag:</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1145"/>
+        <location filename="configpages.cpp" line="1135"/>
         <source>Plugins</source>
         <translation>Plugin</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1158"/>
-        <location filename="configpages.cpp" line="1163"/>
+        <location filename="configpages.cpp" line="1148"/>
+        <location filename="configpages.cpp" line="1153"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1158"/>
-        <location filename="configpages.cpp" line="1163"/>
+        <location filename="configpages.cpp" line="1148"/>
+        <location filename="configpages.cpp" line="1153"/>
         <source>Version</source>
         <translation>Versione</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1158"/>
-        <location filename="configpages.cpp" line="1163"/>
+        <location filename="configpages.cpp" line="1148"/>
+        <location filename="configpages.cpp" line="1153"/>
         <source>Description</source>
         <translation>Descrizione</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1159"/>
+        <location filename="configpages.cpp" line="1149"/>
         <source>Manual</source>
         <translation>Manuale</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1160"/>
+        <location filename="configpages.cpp" line="1150"/>
         <source>By CD</source>
         <translation>Da CD</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1161"/>
+        <location filename="configpages.cpp" line="1151"/>
         <source>By files</source>
         <translation>Dai file</translation>
     </message>
@@ -2477,7 +2477,7 @@ le modifiche non verranno registrate!</translation>
         <translation>ISRC</translation>
     </message>
     <message numerus="yes">
-        <location filename="qoobarglobals.cpp" line="270"/>
+        <location filename="qoobarglobals.cpp" line="269"/>
         <source>%n byte(s)</source>
         <translation>
             <numerusform>%n byte</numerusform>
@@ -2485,12 +2485,12 @@ le modifiche non verranno registrate!</translation>
         </translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="273"/>
+        <location filename="qoobarglobals.cpp" line="272"/>
         <source>%1 KiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qoobarglobals.cpp" line="275"/>
+        <location filename="qoobarglobals.cpp" line="274"/>
         <source>%1 MiB</source>
         <translation></translation>
     </message>
@@ -2594,73 +2594,88 @@ le modifiche non verranno registrate!</translation>
 <context>
     <name>ReplayGainDialog</name>
     <message>
-        <location filename="replaygaindialog.cpp" line="51"/>
+        <location filename="replaygaindialog.cpp" line="55"/>
         <source>Qoobar - Changing ReplayGain Info</source>
         <translation>Qoobar - Sto cambiando le informazioni di ReplayGain</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="62"/>
+        <location filename="replaygaindialog.cpp" line="66"/>
         <source>Update file tags</source>
         <translation>Aggiorna le etichette (tag) dei file</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="74"/>
+        <location filename="replaygaindialog.cpp" line="78"/>
         <source>Scan per file track gain</source>
         <translation>Scansiona per guadagno di singolo brano</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="75"/>
+        <location filename="replaygaindialog.cpp" line="79"/>
         <source>Scan as a single album</source>
         <translation>Scansiona come album singolo</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="76"/>
+        <location filename="replaygaindialog.cpp" line="80"/>
         <source>Remove replaygain tags from files</source>
         <translation>Rimuovi i tag ReplayGain dai file</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="77"/>
+        <location filename="replaygaindialog.cpp" line="81"/>
         <source>Scan as albums (by tags)</source>
         <translation>Scansiona come album (per etichetta (tag))</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="78"/>
+        <location filename="replaygaindialog.cpp" line="82"/>
         <source>Scan as albums (by folder)</source>
         <translation>Scansiona come album (per cartella)</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="95"/>
+        <location filename="replaygaindialog.cpp" line="99"/>
         <source>Skip already scanned files</source>
         <oldsource>Skip already tagged files</oldsource>
         <translation>Salta i file già scansionati</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="109"/>
+        <location filename="replaygaindialog.cpp" line="113"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="109"/>
+        <location filename="replaygaindialog.cpp" line="113"/>
         <source>Album gain</source>
         <translation>Guadagno dell&apos;album</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="109"/>
+        <location filename="replaygaindialog.cpp" line="113"/>
         <source>Track gain</source>
         <translation>Guadagno della brano</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="109"/>
+        <location filename="replaygaindialog.cpp" line="114"/>
         <source>Album peak</source>
         <translation>Picco dell&apos;album</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="109"/>
+        <location filename="replaygaindialog.cpp" line="114"/>
         <source>Track peak</source>
         <translation>Picco del brano</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="109"/>
+        <location filename="replaygaindialog.cpp" line="114"/>
+        <source>Album range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygaindialog.cpp" line="114"/>
+        <source>Track range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygaindialog.cpp" line="115"/>
+        <source>Reference loudness</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygaindialog.cpp" line="113"/>
         <source>No.</source>
         <translation>No.</translation>
     </message>
@@ -2668,55 +2683,213 @@ le modifiche non verranno registrate!</translation>
 <context>
     <name>ReplayGainer</name>
     <message>
-        <location filename="replaygainer.cpp" line="262"/>
+        <location filename="replaygainer.cpp" line="91"/>
+        <source>Not enough memory: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygainer.cpp" line="92"/>
+        <source>Could not open input: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygainer.cpp" line="94"/>
+        <source>Could not find stream info: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygainer.cpp" line="95"/>
+        <source>Audio stream: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygainer.cpp" line="96"/>
+        <source>Could not open codec: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygainer.cpp" line="97"/>
+        <source>EBU R128: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygainer.cpp" line="98"/>
+        <source>Could not open SWResample: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygainer.cpp" line="110"/>
+        <source>You have different file types in the same album!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygainer.cpp" line="112"/>
+        <source>Cannot calculate correct album gain when mixing Opus and non-Opus files!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygainer.cpp" line="204"/>
+        <location filename="replaygainer.cpp" line="207"/>
+        <location filename="replaygainer.cpp" line="231"/>
+        <location filename="replaygainer.cpp" line="234"/>
+        <source> (corrected to prevent clipping)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygainer.cpp" line="210"/>
+        <source>  The track will clip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="replaygainer.cpp" line="348"/>
         <source>All files already have ReplayGain info!</source>
         <translation>Tutti i file hanno già le informazioni di ReplayGain!</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="320"/>
+        <location filename="replaygainer.cpp" line="403"/>
         <source>Removing ReplayGain info from Musepack files is not supported.</source>
         <translation>Non è supportata la rimozione delle informazioni di ReplayGain dai file di tipo Musepack.</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="141"/>
-        <location filename="replaygainer.cpp" line="201"/>
         <source>Scanning was successful!</source>
-        <translation>La scansione di ReplayGain è terminata con successo!</translation>
+        <translation type="vanished">La scansione di ReplayGain è terminata con successo!</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="89"/>
+        <location filename="replaygainer.cpp" line="34"/>
+        <location filename="replaygainer.cpp" line="85"/>
         <source>Processing %1</source>
         <translation>Esecuzione %1</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="127"/>
         <source>Scanning %1 ...</source>
-        <translation>Scansione di %1 ...</translation>
+        <translation type="vanished">Scansione di %1 ...</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="134"/>
         <source>Done.</source>
-        <translation>Fatto.</translation>
+        <translation type="vanished">Fatto.</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="145"/>
-        <location filename="replaygainer.cpp" line="205"/>
         <source>There were errors during scanning.</source>
-        <translation>Si sono verificati errori durante la scansione.</translation>
+        <translation type="vanished">Si sono verificati errori durante la scansione.</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="333"/>
         <source>This type of files is not supported. Sorry
 </source>
-        <translation>Questo tipo di file non è supportato. Spiacente
+        <translation type="vanished">Questo tipo di file non è supportato. Spiacente
 </translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="338"/>
         <source>Cannot find %1.
 Please install it.</source>
-        <translation>Non riesci a trovare %1.
+        <translation type="vanished">Non riesci a trovare %1.
 Si prega di installarlo.</translation>
+    </message>
+</context>
+<context>
+    <name>ReplaygainPage</name>
+    <message>
+        <location filename="configpages.cpp" line="1213"/>
+        <location filename="configpages.cpp" line="1266"/>
+        <source>Replaygain tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1215"/>
+        <location filename="configpages.cpp" line="1267"/>
+        <source>UPPERCASE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1215"/>
+        <location filename="configpages.cpp" line="1268"/>
+        <source>lowercase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1218"/>
+        <location filename="configpages.cpp" line="1269"/>
+        <source>Replaygain mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1220"/>
+        <location filename="configpages.cpp" line="1270"/>
+        <source>Standard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1220"/>
+        <location filename="configpages.cpp" line="1271"/>
+        <source>Enhanced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1225"/>
+        <location filename="configpages.cpp" line="1273"/>
+        <source>Loudness target</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1227"/>
+        <source>-18 LUFS (Replaygain 2.0)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1227"/>
+        <source>-23 LUFS (EBU R128)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1230"/>
+        <location filename="configpages.cpp" line="1274"/>
+        <source>Loudness units</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1232"/>
+        <source>dB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1232"/>
+        <source>LU</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1235"/>
+        <location filename="configpages.cpp" line="1277"/>
+        <source>Copy files into temp folder before replaygaining them</source>
+        <translation type="unfinished">Copia i file in una cartella temporanea prima di applicare loro il ReplayGain</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1236"/>
+        <location filename="configpages.cpp" line="1278"/>
+        <source>Enable this if you are encountering &quot;File not found&quot; messages
+in the ReplayGain dialog</source>
+        <translation type="unfinished">Attivare questa opzione se si è verificato messaggi &quot;File non trovato&quot;
+nella finestra ReplayGain</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1239"/>
+        <location filename="configpages.cpp" line="1281"/>
+        <source>Prevent clipping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1256"/>
+        <source>Replaygain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1310"/>
+        <source>In this mode only the standard
+GAIN and PEAK tags are written</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1313"/>
+        <source>In this mode the additional RANGE and LOUDNESS tags are written</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2909,23 +3082,23 @@ Si prega di installarlo.</translation>
     <name>SettingsDialog</name>
     <message>
         <location filename="settingsdialog.cpp" line="50"/>
-        <location filename="settingsdialog.cpp" line="151"/>
+        <location filename="settingsdialog.cpp" line="152"/>
         <source>Qoobar settings</source>
         <translation>Qoobar impostazioni</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="108"/>
-        <location filename="settingsdialog.cpp" line="159"/>
+        <location filename="settingsdialog.cpp" line="109"/>
+        <location filename="settingsdialog.cpp" line="160"/>
         <source>Reset Settings</source>
         <translation>Ripristina le impostazioni</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="177"/>
+        <location filename="settingsdialog.cpp" line="178"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="177"/>
+        <location filename="settingsdialog.cpp" line="178"/>
         <source>Reset settings to defaults?</source>
         <translation>Applico le impostazioni originali del programma?</translation>
     </message>
@@ -3552,85 +3725,81 @@ le modifiche non verranno registrate!</translation>
     <name>UtilitiesPage</name>
     <message>
         <location filename="configpages.cpp" line="898"/>
-        <location filename="configpages.cpp" line="988"/>
+        <location filename="configpages.cpp" line="982"/>
         <source>Choose...</source>
         <translation>Scegli...</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="900"/>
-        <location filename="configpages.cpp" line="995"/>
+        <location filename="configpages.cpp" line="989"/>
         <source>Path/to/player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="905"/>
-        <location filename="configpages.cpp" line="994"/>
+        <location filename="configpages.cpp" line="988"/>
         <source>default device</source>
         <translation>predefinita CD-ROM</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="907"/>
-        <location filename="configpages.cpp" line="989"/>
+        <location filename="configpages.cpp" line="983"/>
         <source>Player command</source>
         <translation>Riproduttore esterno</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="908"/>
-        <location filename="configpages.cpp" line="990"/>
+        <location filename="configpages.cpp" line="984"/>
         <source>CD-ROM device</source>
         <translation>Periferica CD-ROM</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="910"/>
-        <location filename="configpages.cpp" line="991"/>
+        <location filename="configpages.cpp" line="985"/>
         <source>Default language to use with
 the enca utility</source>
         <translation>Lingua predefinita da usare con l&apos;utilità &apos;enca&apos;</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="916"/>
-        <location filename="configpages.cpp" line="993"/>
+        <location filename="configpages.cpp" line="987"/>
         <source>External programs</source>
         <translation>Programmi esterni</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="926"/>
-        <location filename="configpages.cpp" line="992"/>
+        <location filename="configpages.cpp" line="986"/>
         <source>Cue files encoding</source>
         <translation>Codifica dei file cue</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="928"/>
-        <location filename="configpages.cpp" line="996"/>
         <source>Copy files into temp folder before replaygaining them</source>
-        <translation>Copia i file in una cartella temporanea prima di applicare loro il ReplayGain</translation>
+        <translation type="vanished">Copia i file in una cartella temporanea prima di applicare loro il ReplayGain</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="929"/>
-        <location filename="configpages.cpp" line="997"/>
         <source>Enable this if you are encountering &quot;File not found&quot; messages
 in the ReplayGain dialog</source>
-        <translation>Attivare questa opzione se si è verificato messaggi &quot;File non trovato&quot;
+        <translation type="vanished">Attivare questa opzione se si è verificato messaggi &quot;File non trovato&quot;
 nella finestra ReplayGain</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1009"/>
+        <location filename="configpages.cpp" line="1000"/>
         <source>Cannot find in </source>
         <translation>Introvabile in </translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="977"/>
+        <location filename="configpages.cpp" line="971"/>
         <source>Utilities</source>
         <translation>Utilità</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1028"/>
-        <location filename="configpages.cpp" line="1031"/>
+        <location filename="configpages.cpp" line="1018"/>
+        <location filename="configpages.cpp" line="1021"/>
         <source>Executable files (*.exe)</source>
         <translation>File eseguibili (*.exe)</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1033"/>
+        <location filename="configpages.cpp" line="1023"/>
         <source>Choose a player file</source>
         <translation>Scegli l&apos;eseguibile del lettore</translation>
     </message>

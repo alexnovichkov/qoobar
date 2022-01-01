@@ -377,6 +377,31 @@ win32|win {
     }
 
     SOURCES += sparkleupdater.cpp
+
+# loudgain-master
+    HEADERS += loudgain-master/src/lg-util.h \
+    loudgain-master/src/scan.h \
+    loudgain-master/src/tag.h \
+    loudgain-master/src/printf.h
+
+    SOURCES += loudgain-master/src/scan.c \
+    loudgain-master/src/tag.cc \
+    loudgain-master/src/printf.c
+
+# ffmpeg libraries
+    INCLUDEPATH *= G:/soft/Programming/ffmpeg-4.4-shared-win64/include
+    LIBS += G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libavcodec.dll.a \
+    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libavdevice.dll.a \
+    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libavfilter.dll.a \
+    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libavformat.dll.a \
+    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libavutil.dll.a \
+    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libswresample.dll.a \
+    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libswscale.dll.a
+
+
+# libebur
+    INCLUDEPATH += G:/soft/Programming/libebur128/include
+    LIBS += G:/soft/Programming/libebur128/lib/libebur128.dll.a
 }
 
 os2 {

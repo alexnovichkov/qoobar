@@ -233,11 +233,39 @@ private:
     QLabel *encaLanguageLabel;
     QLabel *programsLabel;
     QComboBox *encaGuessLanguage;
-    QCheckBox *copyFiles;
-
     QLabel *cueEncodingLabel;
     QComboBox *cueEncoding;
     QTreeWidget *tree;
+};
+
+class ReplaygainPage : public ConfigPage
+{
+    Q_OBJECT
+public:
+    ReplaygainPage(QWidget *parent = 0);
+    QString description();
+    QString iconFilename();
+    void retranslateUI();
+    void saveSettings();
+    void setSettings();
+private Q_SLOTS:
+    void updateModeInfo(int);
+private:
+    QLabel *tagsLabel;
+    QComboBox *tagsCombo;
+    QLabel *modeLabel;
+    QComboBox *modeCombo;
+    QLabel *modeInfoLabel;
+    QLabel *loudnessLabel;
+    QComboBox *loudnessCombo;
+    QLabel *unitsLabel;
+    QComboBox *unitsCombo;
+    QCheckBox *copyFiles;
+    QCheckBox *clipping;
+
+//    QLabel *cueEncodingLabel;
+//    QComboBox *cueEncoding;
+//    QTreeWidget *tree;
 };
 
 class NetworkPage : public ConfigPage

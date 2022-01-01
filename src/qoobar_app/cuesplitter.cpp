@@ -44,33 +44,6 @@
 #include <QtDebug>
 #include <QRegularExpression>
 
-#ifdef Q_OS_WIN
-#include <windows.h>
-#endif
-
-QString getShortFileName(const QString &fileName)
-{DD;
-#ifdef Q_OS_WIN
-    QString result;
-    long size=0;
-
-    LPCTSTR lpszPath = reinterpret_cast<const wchar_t*>(fileName.utf16());
-    size = GetShortPathName(lpszPath, nullptr, 0);
-    if (size > 0) {
-        TCHAR* buffer = nullptr;
-        buffer = new TCHAR[size];
-        size = GetShortPathName(lpszPath, buffer, size);
-        if (size > 0)
-            result = QString::fromUtf16(reinterpret_cast<char16_t*>(buffer));
-        delete [] buffer;
-    }
-
-    return result;
-#else
-    return fileName;
-#endif
-}
-
 QStringList CueSplitter::formats()
 {DD;
     return {"flac","alac","m4a","ogg","mp3","wma","wv","spx","opus"};

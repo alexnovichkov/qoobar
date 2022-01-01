@@ -42,7 +42,11 @@ enum {
     RG_ALBUMGAIN=2,
     RG_TRACKGAIN=3,
     RG_ALBUMPEAK=4,
-    RG_TRACKPEAK=5
+    RG_TRACKPEAK=5,
+    RG_ALBUMRANGE=6,
+    RG_TRACKRANGE=7,
+    RG_REFERENCELOUDNESS=8,
+    RG_TOTAL
 };
 
 ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
@@ -106,7 +110,9 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     tree->setRootIsDecorated(false);
     tree->setAllColumnsShowFocus(true);
     tree->setUniformRowHeights(true);
-    tree->setHeaderLabels(QStringList()<<tr("No.")<<tr("Name")<<tr("Album gain")<<tr("Track gain")<<tr("Album peak")<<tr("Track peak"));
+    tree->setHeaderLabels(QStringList()<<tr("No.")<<tr("Name")<<tr("Album gain")<<tr("Track gain")
+                          <<tr("Album peak")<<tr("Track peak")<<tr("Album range")<<tr("Track range")
+                          <<tr("Reference loudness"));
     tree->header()->resizeSection(0,50);
     tree->header()->resizeSection(1,350);
 
@@ -121,6 +127,9 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     tree->header()->setSectionResizeMode(3, QHeaderView::ResizeToContents);
     tree->header()->setSectionResizeMode(4, QHeaderView::ResizeToContents);
     tree->header()->setSectionResizeMode(5, QHeaderView::ResizeToContents);
+    tree->header()->setSectionResizeMode(6, QHeaderView::ResizeToContents);
+    tree->header()->setSectionResizeMode(7, QHeaderView::ResizeToContents);
+    tree->header()->setSectionResizeMode(8, QHeaderView::ResizeToContents);
     tree->header()->setStretchLastSection(false);
     tree->setTextElideMode(Qt::ElideLeft);
 
@@ -195,6 +204,9 @@ void setRg(QTreeWidgetItem *item, const ReplayGainInfo &replayGainInfo)
     item->setText(RG_ALBUMPEAK,replayGainInfo.albumPeak);
     item->setText(RG_TRACKGAIN,replayGainInfo.trackGain);
     item->setText(RG_TRACKPEAK,replayGainInfo.trackPeak);
+    item->setText(RG_TRACKRANGE,replayGainInfo.trackMinMax);
+    item->setText(RG_ALBUMRANGE,replayGainInfo.albumMinMax);
+    item->setText(RG_REFERENCELOUDNESS,replayGainInfo.loudness);
 }
 
 void ReplayGainDialog::operate(int operation)

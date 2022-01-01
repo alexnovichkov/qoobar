@@ -65,6 +65,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     configPages << new WritingPage;
     configPages << new PatternsPage;
     configPages << new UtilitiesPage;
+    configPages << new ReplaygainPage;
     configPages << new NetworkPage;
     configPages << new PluginsPage;
 
@@ -90,7 +91,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 #endif
 
     toolBar->setMovable(false);
-    toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
     toolBar->setIconSize(QSize(LARGE_ICON_SIZE, LARGE_ICON_SIZE));
 
     QActionGroup *ag = new QActionGroup(this);
@@ -202,8 +203,9 @@ void SettingsDialog::showHelp()
     case 2: anchor="tagswriting"; break;
     case 3: anchor="patterns-settings"; break;
     case 4: anchor="utilities"; break;
-    case 5: anchor="network"; break;
-    case 6: anchor="plugins"; break;
+    case 5: anchor="replaygain"; break;
+    case 6: anchor="network"; break;
+    case 7: anchor="plugins"; break;
     }
     Qoobar::showHelp(anchor);
 }

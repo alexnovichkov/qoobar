@@ -7,8 +7,6 @@
  *         the EBU R128 standard.
  */
 
-#ifdef WITH_DECODING
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -249,8 +247,6 @@ int ebur128_sample_peak(ebur128_state* st,
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif
 
 #endif  /* EBUR128_H_ */

@@ -44,7 +44,7 @@ private:
     void readXiph(TagLib::Ogg::XiphComment *);
     void readAPE(TagLib::APE::Tag *);
     void writeID3v2(TagLib::ID3v2::Tag *);
-    void writeXiph(TagLib::Ogg::XiphComment *);
+    void writeXiph(TagLib::Ogg::XiphComment *, bool opusFile = false);
     void writeAPE(TagLib::APE::Tag *);
 #if TAGLIB_MINOR_VERSION >= 6
     void readAsf(TagLib::ASF::Tag *);

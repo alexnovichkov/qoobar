@@ -173,7 +173,7 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     UIlayout->addRow(statusBarTrackLabel, statusBarTrack);
     UIlayout->addRow(langLabel, lang);
     UIlayout->addRow(iconThemeLabel, iconTheme);
-    UIlayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
+//    UIlayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
 
     auto *UIML = new QVBoxLayout;
     UIML->addLayout(UIlayout);
@@ -925,10 +925,6 @@ UtilitiesPage::UtilitiesPage(QWidget *parent) : ConfigPage(parent)
     cueEncoding->setEditable(false);
     cueEncodingLabel = new QLabel(tr("Cue files encoding"), this);
 
-    copyFiles = new QCheckBox(tr("Copy files into temp folder before replaygaining them"),this);
-    copyFiles->setToolTip(tr("Enable this if you are encountering \"File not found\" messages\n"
-                             "in the ReplayGain dialog"));
-
     tree = new QTreeWidget(this);
     tree->header()->hide();
     tree->setColumnCount(3);
@@ -951,8 +947,7 @@ UtilitiesPage::UtilitiesPage(QWidget *parent) : ConfigPage(parent)
     utilitiesl->addRow(cdromLabel,cdromDevice);
     utilitiesl->addRow(cueEncodingLabel, cueEncoding);
     utilitiesl->addRow(encaLanguageLabel,encaGuessLanguage);
-    utilitiesl->addRow(copyFiles);
-    utilitiesl->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
+//    utilitiesl->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
 
     auto *utilitieslayout = new QVBoxLayout;
     utilitieslayout->addWidget(programsLabel);
@@ -968,7 +963,6 @@ void UtilitiesPage::setSettings()
     player->setText(App->player);
     cdromDevice->setText(App->cdromDevice);
     encaGuessLanguage->setCurrentIndex(encaGuessLanguage->findText(App->encaGuessLanguage));
-    copyFiles->setChecked(App->copyFiles);
     cueEncoding->setCurrentIndex(cueEncoding->findText(App->cueEncoding));
 }
 
@@ -993,9 +987,6 @@ void UtilitiesPage::retranslateUI()
     programsLabel->setText(tr("External programs"));
     cdromDevice->setPlaceholderText(tr("default device"));
     player->setPlaceholderText(tr("Path/to/player"));
-    copyFiles->setText(tr("Copy files into temp folder before replaygaining them"));
-    copyFiles->setToolTip(tr("Enable this if you are encountering \"File not found\" messages\n"
-                             "in the ReplayGain dialog"));
 
     for (int i=0; i<tree->topLevelItemCount(); ++i) {
         QString programPath;
@@ -1017,7 +1008,6 @@ void UtilitiesPage::saveSettings()
     App->player=player->text();
     App->cdromDevice=cdromDevice->text();
     App->encaGuessLanguage = encaGuessLanguage->currentText();
-    App->copyFiles = copyFiles->isChecked();
     App->cueEncoding = cueEncoding->currentText();
 }
 
@@ -1215,5 +1205,112 @@ void PluginsPage::setSettings()
         QTreeWidgetItem *item = new QTreeWidgetItem(editingTree, QStringList()<<text
                                                     <<version <<description);
         item->setData(0, Qt::UserRole, metaData);
+    }
+}
+
+ReplaygainPage::ReplaygainPage(QWidget *parent) : ConfigPage(parent)
+{
+    tagsLabel = new QLabel(tr("Replaygain tags"), this);
+    tagsCombo = new QComboBox(this);
+    tagsCombo->addItems(QStringList()<<tr("UPPERCASE")<<tr("lowercase"));
+    tagsLabel->setBuddy(tagsCombo);
+
+    modeLabel = new QLabel(tr("Replaygain mode"), this);
+    modeCombo = new QComboBox(this);
+    modeCombo->addItems(QStringList()<<tr("Standard")<<tr("Enhanced"));
+    modeLabel->setBuddy(modeCombo);
+    modeInfoLabel = new QLabel(this);
+    connect(modeCombo, SIGNAL(currentIndexChanged(int)),this,SLOT(updateModeInfo(int)));
+
+    loudnessLabel = new QLabel(tr("Loudness target"), this);
+    loudnessCombo = new QComboBox(this);
+    loudnessCombo->addItems(QStringList()<<tr("-18 LUFS (Replaygain 2.0)")<<tr("-23 LUFS (EBU R128)"));
+    loudnessLabel->setBuddy(loudnessCombo);
+
+    unitsLabel = new QLabel(tr("Loudness units"), this);
+    unitsCombo = new QComboBox(this);
+    unitsCombo->addItems(QStringList()<<tr("dB")<<tr("LU"));
+    unitsLabel->setBuddy(unitsCombo);
+
+    copyFiles = new QCheckBox(tr("Copy files into temp folder before replaygaining them"),this);
+    copyFiles->setToolTip(tr("Enable this if you are encountering \"File not found\" messages\n"
+                             "in the ReplayGain dialog"));
+
+    clipping = new QCheckBox(tr("Prevent clipping"), this);
+
+
+    auto *l = new QFormLayout;
+    l->addRow(tagsLabel, tagsCombo);
+    l->addRow(modeLabel, modeCombo);
+    l->addRow("", modeInfoLabel);
+    l->addRow(loudnessLabel, loudnessCombo);
+    l->addRow(unitsLabel, unitsCombo);
+    l->addRow(copyFiles);
+    l->addRow(clipping);
+
+    finalize(l);
+}
+
+QString ReplaygainPage::description()
+{
+    return tr("Replaygain");
+}
+
+QString ReplaygainPage::iconFilename()
+{
+    return "replay-gain";
+}
+
+void ReplaygainPage::retranslateUI()
+{
+    tagsLabel->setText(tr("Replaygain tags"));
+    tagsCombo->setItemText(0,tr("UPPERCASE"));
+    tagsCombo->setItemText(1,tr("lowercase"));
+    modeLabel->setText(tr("Replaygain mode"));
+    modeCombo->setItemText(0,tr("Standard"));
+    modeCombo->setItemText(1,tr("Enhanced"));
+    updateModeInfo(modeCombo->currentIndex());
+    loudnessLabel->setText(tr("Loudness target"));
+    unitsLabel->setText(tr("Loudness units"));
+    unitsLabel->setBuddy(unitsCombo);
+
+    copyFiles->setText(tr("Copy files into temp folder before replaygaining them"));
+    copyFiles->setToolTip(tr("Enable this if you are encountering \"File not found\" messages\n"
+                             "in the ReplayGain dialog"));
+
+    clipping->setText(tr("Prevent clipping"));
+}
+
+void ReplaygainPage::saveSettings()
+{
+    App->replaygainOptions.tagsCase = tagsCombo->currentIndex();
+    App->replaygainOptions.mode = modeCombo->currentIndex();
+    App->replaygainOptions.loudness = loudnessCombo->currentIndex();
+    App->replaygainOptions.units = unitsCombo->currentIndex();
+    App->replaygainOptions.copyFiles = copyFiles->isChecked();
+    App->replaygainOptions.preventClipping = clipping->isChecked();
+}
+
+void ReplaygainPage::setSettings()
+{
+    tagsCombo->setCurrentIndex(App->replaygainOptions.tagsCase);
+    modeCombo->setCurrentIndex(App->replaygainOptions.mode);
+    loudnessCombo->setCurrentIndex(App->replaygainOptions.loudness);
+    unitsCombo->setCurrentIndex(App->replaygainOptions.units);
+    copyFiles->setChecked(App->replaygainOptions.copyFiles);
+    clipping->setChecked(App->replaygainOptions.preventClipping);
+}
+
+void ReplaygainPage::updateModeInfo(int index)
+{
+    if (index == -1) modeInfoLabel->hide();
+    else {
+        modeInfoLabel->show();
+        if (index==0) //standard mode
+            modeInfoLabel->setText("<small>"+tr("In this mode only the standard\nGAIN and PEAK tags are written")
+                                   +"</small>");
+        if (index==1) //enhanced mode
+            modeInfoLabel->setText("<small>"+tr("In this mode the additional RANGE and LOUDNESS tags are written")
+                                   +"</small>");
     }
 }

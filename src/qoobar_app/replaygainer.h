@@ -8,23 +8,23 @@
 #include <QStringList>
 #include <QUrl>
 
-#ifdef WITH_DECODING
-extern "C" {
-#include "input.h"
-#ifdef __MINGW32__
-#  define _FLOAT_H___
-#endif
-#include "filetree.h"
-#include "scanner-common.h"
-#include <glib.h>
-#include "scanner-tag.h"
-}
+//#ifdef WITH_DECODING
+//extern "C" {
+//#include "input.h"
+//#ifdef __MINGW32__
+//#  define _FLOAT_H___
+//#endif
+//#include "filetree.h"
+//#include "scanner-common.h"
+//#include <glib.h>
+//#include "scanner-tag.h"
+//}
 
-struct RgNode {
-    ReplayGainInfo rg;
-    int index;
-};
-#endif
+//struct RgNode {
+//    ReplayGainInfo rg;
+//    int index;
+//};
+//#endif
 
 
 
@@ -37,7 +37,8 @@ enum RG_OPERATION {
     RG_SCAN_AS_ALBUM=2,
     RG_SCAN_AS_ALBUMS_BY_TAGS=3,
     RG_SCAN_AS_ALBUMS_BY_FOLDERS=4,
-    RG_SCAN_REMOVE=5
+    RG_SCAN_REMOVE=5,
+    RG_SCAN_TOTAL
 };
 
 const struct ProgramOption {
@@ -88,17 +89,14 @@ private:
     void scan(int fileType, const QVector<int> &indexes, int operation);
     QMap<QString,QVector<int> > sort(const QVector<int> &indexes, bool byFolder);
     void removeRG(int fileType, const QVector<int> &indexes);
-    QStringList getFileNames(const QVector<int> &indexes);
+//    QStringList getFileNames(const QVector<int> &indexes);
 
-    QList<ReplayGainInfo> scanWithUtilities(int fileType, const QVector<int> &indexes, int operation);
+//    QList<ReplayGainInfo> scanWithUtilities(int fileType, const QVector<int> &indexes, int operation);
     QList<ReplayGainInfo> scanWithDecoding(int fileType, const QVector<int> &indexes, int operation);
 
     //bool write(int fileType, const QVector<int> &indexes, int operation, const QList<ReplayGainInfo> &rgs);
 
-    void init();
-    void deinit();
-
-    bool checkFileType(int fileType);
+//    bool checkFileType(int fileType);
 
     Model *m;
     bool skip;

@@ -7,67 +7,19 @@
 #include "processlinemaker.h"
 #include "application.h"
 #include "platformprocess.h"
-
+#include "stringroutines.h"
 #include "taglib/mpcfile.h"
 #include "taglib/mpcproperties.h"
-
-#include <QTime>
-#include <QTimer>
-#include <QProcess>
-#include <QTemporaryFile>
-#include <QtDebug>
-#include <QThread>
-#include <QDir>
-
-
-#ifdef WITH_DECODING
-#include "scanner-common.h"
-#include <sstream>
-
-gboolean verbose = TRUE;
-gboolean track = TRUE;
-
-static void getAllData(struct filename_list_node *fln, QList<ReplayGainInfo> *list)
-{
-    struct file_data *fd = (struct file_data *) fln->d;
-    double trueLoudness = clamp_rg(RG_REFERENCE_LEVEL - fd->loudness);
-
-    ReplayGainInfo rg;
-    std::stringstream ss;
-    ss.precision(2);
-    ss << std::fixed;
-    ss << fd->gain_album << " dB"; rg.albumGain = QString::fromStdString(ss.str()); ss.str(std::string()); ss.clear();
-    ss << trueLoudness << " dB"; rg.trackGain = QString::fromStdString(ss.str()); ss.str(std::string()); ss.clear();
-    ss.precision(6);
-    ss << fd->peak_album; rg.albumPeak = QString::fromStdString(ss.str());  ss.str(std::string()); ss.clear();
-    ss << fd->peak; rg.trackPeak = QString::fromStdString(ss.str()); ss.str(std::string()); ss.clear();
-    list->append(rg);
-}
-#endif
-
-QString getArgument(int fileType, int operation)
-{DD;
-    const char *argument=0;
-    switch(operation) {
-    case RG_SCAN_AS_FILES:
-        argument=options[fileType].trackOptions;
-        break;
-    case RG_SCAN_AS_ALBUM:
-    case RG_SCAN_AS_ALBUMS_BY_TAGS:
-    case RG_SCAN_AS_ALBUMS_BY_FOLDERS:
-        argument=options[fileType].albumOptions;
-        break;
-    }
-    return QString::fromLatin1(argument);
-}
+#include "ebur128.h"
+#include <libswresample/swresample.h>
+#include <libavformat/avformat.h>
+#include "loudgain-master/src/scan.h"
 
 QString fileTypeByFileID(int fileID)
 {DD;
     if (fileID<0 || fileID>=Tag::FILES_NUM) return QString();
     return options[fileID].type;
 }
-
-
 
 ReplayGainer::ReplayGainer(Model *model, QObject *parent) :
     QObject(parent), m(model)
@@ -79,147 +31,289 @@ QList<ReplayGainInfo> ReplayGainer::scanWithDecoding(int fileType, const QVector
 {DD;
     QList<ReplayGainInfo> newRg;
 
-#ifndef WITH_DECODING
-    (void)fileType;
-    (void)indexes;
-    (void)operation;
-#endif
-
-#ifdef WITH_DECODING
     Q_EMIT message(MT_INFORMATION, "<font color=blue><b>"+tr("Processing %1").arg(fileTypeByFileID(fileType))+"</b></font>");
     App->processEvents();
 
-    verbose = App->verbose;
+    int  ebur128_v_major     = 0;
+    int  ebur128_v_minor     = 0;
+    int  ebur128_v_patch     = 0;
+    unsigned swr_ver         = 0;
+    unsigned lavf_ver        = 0;
 
-    track = operation==RG_SCAN_AS_FILES;
+    // libebur128 version check -- versions before 1.2.4 aren’t recommended
+    ebur128_get_version(&ebur128_v_major, &ebur128_v_minor, &ebur128_v_patch);
+    if (ebur128_v_major <= 1 && ebur128_v_minor <= 2 && ebur128_v_patch < 4)
+        Q_EMIT message(MT_WARNING, QString("Your EBU R128 library (libebur128) is version %1.%2.%3.\n"
+               "This is an old version and might cause problems.")
+                       .arg(ebur128_v_major)
+                       .arg(ebur128_v_minor)
+                       .arg(ebur128_v_patch));
+    else
+        Q_EMIT message(MT_INFORMATION, QString("Your EBU R128 library (libebur128) is version %1.%2.%3")
+                       .arg(ebur128_v_major)
+                       .arg(ebur128_v_minor)
+                       .arg(ebur128_v_patch));
 
-    std::vector<char *> roots;
-    for (QVector<int>::ConstIterator it = indexes.begin(); it != indexes.end(); ++it) {
-        roots.push_back(g_strdup(m->fileAt(*it).fullFileName().toLocal8Bit().constData()));
-    }
-    GSList *errors = NULL, *files = NULL;
-    Filetree tree = filetree_init(&roots[0], roots.size(), TRUE, FALSE, FALSE, &errors);
+    // libavformat version
+    //lavf_ver = avformat_version();
+    scan_get_library_version(&lavf_ver, &swr_ver);
+    Q_EMIT message(MT_INFORMATION, QString("Your libavformat library is version %1.%2.%3")
+                   .arg(lavf_ver>>16)
+                   .arg(lavf_ver>>8&0xff)
+                   .arg(lavf_ver&0xff));
 
-    g_slist_foreach(errors, filetree_print_error, &verbose);
-    g_slist_foreach(errors, filetree_free_error, NULL);
-    g_slist_free(errors);
+    // libswresample version
+    //swr_ver = swresample_version();
+    Q_EMIT message(MT_INFORMATION, QString("Your libswresample library is version %1.%2.%3")
+                   .arg(swr_ver>>16)
+                   .arg(swr_ver>>8 & 0xff)
+                   .arg(swr_ver & 0xff));
 
-    filetree_file_list(tree, &files);
-    filetree_remove_common_prefix(files);
+    double preGain     = 0.f;
+    if (App->replaygainOptions.loudness == 1) preGain = -5;
+    double maxTruePeakLevel = -1.0; // dBTP; default for -k, as per EBU Tech 3343
+    bool doAlbum = operation==RG_SCAN_AS_ALBUM || operation==RG_SCAN_AS_ALBUMS_BY_FOLDERS
+            || operation==RG_SCAN_AS_ALBUMS_BY_TAGS;
+    bool noClip        = App->replaygainOptions.preventClipping;
+//	bool lowercase      = App->replaygainOptions.tagsCase==1;
+    QString unit        = "dB";
+    if (App->replaygainOptions.units==1) unit = "LU";
 
+    int result = scan_init(indexes.size());
+    if (result != 0) Q_EMIT message(MT_ERROR, QString(scan_get_last_error()));
 
-    int result = 0;
+    for (int i = 0; i < indexes.size(); i++) {
+        Q_EMIT message(MT_INFORMATION, tr("Processing %1").arg(m->fileAt(indexes.at(i)).fileNameExt()));
+        result = scan_file(m->fileAt(indexes.at(i)).fullFileName().toUtf8().data(), i);
 
-    GSList *fileIt = files;
-    while (fileIt) {
-        filename_list_node *node = (filename_list_node *)fileIt->data;
-        init_and_get_number_of_frames(node, &result);
-        if (!result)
-            Q_EMIT message(MT_ERROR, QString("Could not read \"%1\"").arg(node->fr->raw));
-        fileIt = g_slist_next(fileIt);
-    }
+        if (result != 0) {
+            QString m;
+            switch (result) {
+                case SCAN_ERROR_MEMORY: m = tr("Not enough memory: "); break;
+                case SCAN_ERROR_OPEN_FILE: m = tr("Could not open input: "); break;
+                case SCAN_ERROR_INDEX_OUT_OF_RANGE: m = QString::number(i)+": "; break;
+                case SCAN_ERROR_NO_STREAM_INFO: m = tr("Could not find stream info: "); break;
+                case SCAN_ERROR_NO_STREAM: m = tr("Audio stream: "); break;
+                case SCAN_ERROR_AUDIO_CODEC: m = tr("Could not open codec: "); break;
+                case SCAN_ERROR_EBUR128_INIT: m = tr("EBU R128: "); break;
+                case SCAN_ERROR_SWRESAMPLE: m = tr("Could not open SWResample: "); break;
+            }
 
-    if (result) {
-        GSList *iter = files;
-        while(iter) {
-            filename_list_node *node = (filename_list_node *)iter->data;
-
-            Q_EMIT message(MT_INFORMATION, tr("Scanning %1 ...").arg(node->fr->raw));
-
-            init_state_and_scan_work_item(node);
-            iter = g_slist_next(iter);
-
-            App->processEvents();
+            Q_EMIT message(MT_ERROR, m+QString(scan_get_last_error()));
+            return newRg;
         }
-        Q_EMIT message(MT_INFORMATION, tr("Done."));
+    }
 
-        if (!track) {
-            g_slist_foreach(files, (GFunc) calculate_album_gain_and_peak, NULL);
-            calculate_album_gain_and_peak_last_dir();
+    // check for different file (codec) types in an album and warn
+    // (including Opus might mess up album gain)
+    if (doAlbum) {
+        if (scan_album_has_different_containers() || scan_album_has_different_codecs()) {
+            Q_EMIT message(MT_WARNING, tr("You have different file types in the same album!"));
+            if (scan_album_has_opus())
+                Q_EMIT message(MT_ERROR, tr("Cannot calculate correct album gain when mixing Opus and non-Opus files!"));
         }
-        Q_EMIT message(MT_SUCCESS, "<font color=green><b>"+fileTypeByFileID(fileType)+"</b> - "
-                     +tr("Scanning was successful!")+"</font>");
-    }
-    else {
-        Q_EMIT message(MT_ERROR, "<font color=red><b>"+fileTypeByFileID(fileType)+"</b> - "
-                     +tr("There were errors during scanning.")+"</font>");
-    }
-    g_slist_foreach(files, (GFunc) destroy_state, NULL);
-
-
-    if (result) {
-        newRg.clear();
-        g_slist_foreach(files, (GFunc) getAllData, &newRg);
     }
 
-    g_slist_foreach(files, filetree_free_list_entry, NULL);
-    g_slist_free(files);
-    filetree_destroy(tree);
-#endif
+    for (int i = 0; i < indexes.size(); i++) {
+        bool willClip = false;
+        double tgain = 1.0; // "gained" track peak
+        double tnew;
+        double tpeak = pow(10.0, maxTruePeakLevel / 20.0); // track peak limit
+        double again = 1.0; // "gained" album peak
+        double anew;
+        double apeak = pow(10.0, maxTruePeakLevel / 20.0); // album peak limit
+        bool tclip = false;
+        bool aclip = false;
+
+        scan_result *scan = scan_get_track_result(i, preGain);
+
+        if (scan == NULL)
+            continue;
+
+        if (doAlbum)
+            scan_set_album_result(scan, preGain);
+
+        // Check if track or album will clip, and correct if so requested (-k/-K)
+
+        // track peak after gain
+        tgain = pow(10.0, scan->track_gain / 20.0) * scan->track_peak;
+        tnew = tgain;
+        if (doAlbum) {
+            // album peak after gain
+            again = pow(10.0, scan->album_gain / 20.0) * scan->album_peak;
+            anew = again;
+        }
+
+        if ((tgain > tpeak) || (doAlbum && (again > apeak)))
+            willClip = true;
+
+        // printf("\ntrack: %.2f LU, peak %.6f; album: %.2f LU, peak %.6f\ntrack: %.6f, %.6f; album: %.6f, %.6f; Clip: %s\n",
+        // 	scan->track_gain, scan->track_peak, scan->album_gain, scan->album_peak,
+        // 	tgain, tpeak, again, apeak, will_clip ? "Yes" : "No");
+
+        if (willClip && noClip) {
+            if (tgain > tpeak) {
+                // set new track peak = minimum of peak after gain and peak limit
+                tnew = std::min(tgain, tpeak);
+                scan->track_gain = scan->track_gain - (log10(tgain/tnew) * 20.0);
+                tclip = true;
+            }
+
+            if (doAlbum && (again > apeak)) {
+                anew = std::min(again, apeak);
+                scan->album_gain = scan->album_gain - (log10(again/anew) * 20.0);
+                aclip = true;
+            }
+
+            willClip = false;
+
+            // printf("\nAfter clipping prevention:\ntrack: %.2f LU, peak %.6f; album: %.2f LU, peak %.6f\ntrack: %.6f, %.6f; album: %.6f, %.6f; Clip: %s\n",
+            // 	scan->track_gain, scan->track_peak, scan->album_gain, scan->album_peak,
+            // 	tgain, tpeak, again, apeak, will_clip ? "Yes" : "No");
+        }
+
+        ReplayGainInfo rg;
+        rg.trackGain = QString("%1 %2").arg(scan->track_gain, 0, 'f', 2).arg(unit);
+        if (fileType==13)
+            rg.trackGain = QString::number((int) round(scan->track_gain * 256.0));
+        rg.trackPeak = QString("%1").arg(scan->track_peak, 0, 'f', 6);
+        if (App->replaygainOptions.mode==1) {
+            rg.trackMinMax = QString("%1 %2").arg(scan->track_loudness_range, 0, 'f', 2).arg(unit);
+            rg.loudness = QString("%1 LUFS").arg(scan->track_loudness,0,'f',2);
+        }
+        if (doAlbum) {
+            rg.albumGain = QString("%1 %2").arg(scan->album_gain, 0, 'f', 2).arg(unit);
+            if (fileType==13)
+                rg.albumGain = QString::number((int) round(scan->album_gain * 256.0));
+            rg.albumPeak = QString("%1").arg(scan->album_peak, 0, 'f', 6);
+            if (App->replaygainOptions.mode==1)
+                rg.albumMinMax = QString("%1 %2").arg(scan->album_loudness_range, 0, 'f', 2).arg(unit);
+        }
+        newRg << rg;
+
+        //printing result
+        {
+            QString m = QString("<font color=green>Track: %1</font><br/>"
+                           "  Loudness: %2 LUFS<br/>"
+                           "  Range:    %3 %4<br/>"
+                           "  Peak:     %5 (%6 dBTP)<br/>"
+                           " ").arg(scan->file)
+                    .arg(scan->track_loudness,8,'g',2)
+                    .arg(scan->track_loudness_range,8,'g',2).arg(unit)
+                    .arg(scan->track_peak,8,'g',6)
+                    .arg(20.0 * log10(scan->track_peak),0,'g',2);
+
+            if (fileType==13) {//OPUS
+                // also show the Q7.8 number that goes into R128_TRACK_GAIN
+                m.append(QString("  Gain:     %1 %2 (%3)%4\n")
+                         .arg(scan->track_gain,8,'g',2)
+                         .arg(unit)
+                         .arg((int) round(scan->track_gain * 256.0))
+                 .arg(tclip ? tr(" (corrected to prevent clipping)") : ""));
+            } else {
+                m.append(QString("  Gain:     %1 %2%3\n").arg(scan->track_gain,8,'g',2).arg(unit)
+                 .arg(tclip ? tr(" (corrected to prevent clipping)") : ""));
+            }
+            if (willClip)
+                m.append(tr("  The track will clip"));
+
+            Q_EMIT message(MT_INFORMATION, m);
+
+            if ((i == (indexes.size() - 1)) && doAlbum) {
+                m = QString("<font color=green>Album:</font><br/>"
+                               "  Loudness: %1 LUFS<br/>"
+                               "  Range:    %2 %3<br/>"
+                               "  Peak:     %4 (%5 dBTP)<br/>"
+                               " ")
+                        .arg(scan->album_loudness,8,'g',2)
+                        .arg(scan->album_loudness_range,8,'g',2).arg(unit)
+                        .arg(scan->album_peak,8,'g',6)
+                        .arg(20.0 * log10(scan->album_peak),0,'g',2);
+
+                if (fileType==13) {//OPUS
+                    // also show the Q7.8 number that goes into R128_ALBUM_GAIN
+                    m.append(QString("  Gain:     %1 %2 (%3)%4\n")
+                             .arg(scan->album_gain,8,'g',2)
+                             .arg(unit)
+                             .arg((int) round(scan->album_gain * 256.0))
+                     .arg(aclip ? tr(" (corrected to prevent clipping)") : ""));
+                } else {
+                    m.append(QString("  Gain:     %1 %2%3\n").arg(scan->album_gain,8,'g',2).arg(unit)
+                     .arg(aclip ? tr(" (corrected to prevent clipping)") : ""));
+                }
+                Q_EMIT message(MT_INFORMATION, m);
+            }
+        }
+
+        free(scan);
+    }
+
+
+    scan_deinit();
     return newRg;
 }
 
-QList<ReplayGainInfo> ReplayGainer::scanWithUtilities(int fileType, const QVector<int> &indexes, int operation)
-{DD;
-    QList<ReplayGainInfo> newRg;
-    if (!checkFileType(fileType)) return newRg;
+//QList<ReplayGainInfo> ReplayGainer::scanWithUtilities(int fileType, const QVector<int> &indexes, int operation)
+//{DD;
+//    QList<ReplayGainInfo> newRg;
+//    if (!checkFileType(fileType)) return newRg;
 
-    QStringList arguments;
-    QString argument = getArgument(fileType, operation);
-    if (!argument.isEmpty()) arguments = argument.split(".");
+//    QStringList arguments;
+//    QString argument = getArgument(fileType, operation);
+//    if (!argument.isEmpty()) arguments = argument.split(".");
 
-    arguments.append(getFileNames(indexes));
+//    arguments.append(getFileNames(indexes));
 
-    PlatformProcess process(this);
-    process.open(QIODevice::ReadWrite);
-    ProcessLineMaker *lineMaker = new ProcessLineMaker(&process);
-    connect(lineMaker,SIGNAL(receivedStdoutLines(QStringList)),SLOT(messages(QStringList)),Qt::QueuedConnection);
-    //connect(lineMaker,SIGNAL(receivedStderrLines(QStringList)),SLOT(messages(QStringList)),Qt::QueuedConnection);
+//    PlatformProcess process(this);
+//    process.open(QIODevice::ReadWrite);
+//    ProcessLineMaker *lineMaker = new ProcessLineMaker(&process);
+//    connect(lineMaker,SIGNAL(receivedStdoutLines(QStringList)),SLOT(messages(QStringList)),Qt::QueuedConnection);
+//    //connect(lineMaker,SIGNAL(receivedStderrLines(QStringList)),SLOT(messages(QStringList)),Qt::QueuedConnection);
 
-    QEventLoop q;
-    connect(&process,SIGNAL(finished(int)),&q,SLOT(quit()));
-    connect(&process,SIGNAL(error(QProcess::ProcessError)),&q,SLOT(quit()));
+//    QEventLoop q;
+//    connect(&process,SIGNAL(finished(int)),&q,SLOT(quit()));
+//    connect(&process,SIGNAL(error(QProcess::ProcessError)),&q,SLOT(quit()));
 
-    QString program = QString::fromLatin1(options[fileType].program);
-#ifdef Q_OS_MACOS
-    program = QString("%1/%2").arg(ApplicationPaths::sharedPath())
-            .arg(program);
-#endif
+//    QString program = QString::fromLatin1(options[fileType].program);
+//#ifdef Q_OS_MACOS
+//    program = QString("%1/%2").arg(ApplicationPaths::sharedPath())
+//            .arg(program);
+//#endif
 
-    process.start(program, arguments);
+//    process.start(program, arguments);
 
-    QTimer timer;
-    connect(&timer, SIGNAL(timeout()), this, SIGNAL(tick()));
-    connect(&process,SIGNAL(finished(int)),&timer,SLOT(stop()));
-    timer.start(500);
+//    QTimer timer;
+//    connect(&timer, SIGNAL(timeout()), this, SIGNAL(tick()));
+//    connect(&process,SIGNAL(finished(int)),&timer,SLOT(stop()));
+//    timer.start(500);
 
-    q.exec();
-    if (lineMaker) lineMaker->flushBuffers();
+//    q.exec();
+//    if (lineMaker) lineMaker->flushBuffers();
 
-    if (process.exitCode()==0) {
-        Q_EMIT message(MT_SUCCESS, "<font color=green><b>"+fileTypeByFileID(fileType)+"</b> - "
-                     +tr("Scanning was successful!")+"</font>");
-    }
-    else {
-        Q_EMIT message(MT_ERROR, "<font color=red><b>"+fileTypeByFileID(fileType)+"</b> - "
-                     +tr("There were errors during scanning.")+"</font>");
-    }
+//    if (process.exitCode()==0) {
+//        Q_EMIT message(MT_SUCCESS, "<font color=green><b>"+fileTypeByFileID(fileType)+"</b> - "
+//                     +tr("Scanning was successful!")+"</font>");
+//    }
+//    else {
+//        Q_EMIT message(MT_ERROR, "<font color=red><b>"+fileTypeByFileID(fileType)+"</b> - "
+//                     +tr("There were errors during scanning.")+"</font>");
+//    }
 
-    if (!copiedFiles.isEmpty()) {
-        const int tagsCount = App->currentScheme->tagsCount();
-        Q_FOREACH(int i, indexes) {
-            QString fileName = m->fileAtSelection(i).fullFileName();
-            QString tempFile = copiedFiles.key(fileName);
-            Tag tag(tempFile, tagsCount);
-            TagsReaderWriter t(&tag);
-            t.readTags(fileType==Tag::MP3_FILE ? TAG_APE : TAG_ALL);
-            newRg << tag.replayGainInfo();
-            QFile::remove(tempFile);
-        }
-    }
+//    if (!copiedFiles.isEmpty()) {
+//        const int tagsCount = App->currentScheme->tagsCount();
+//        Q_FOREACH(int i, indexes) {
+//            QString fileName = m->fileAtSelection(i).fullFileName();
+//            QString tempFile = copiedFiles.key(fileName);
+//            Tag tag(tempFile, tagsCount);
+//            TagsReaderWriter t(&tag);
+//            t.readTags(fileType==Tag::MP3_FILE ? TAG_APE : TAG_ALL);
+//            newRg << tag.replayGainInfo();
+//            QFile::remove(tempFile);
+//        }
+//    }
 
-    return newRg;
-}
+//    return newRg;
+//}
 
 QHash<int, QVector<int> > ReplayGainer::sortByFileType(int operation)
 {DD;
@@ -263,15 +357,12 @@ bool ReplayGainer::start(int operation)
         return false;
     }
 
-    init();
-
     QHash<int,QVector<int> >::const_iterator it = sortedByFileType.constBegin();
     while (it != sortedByFileType.constEnd()) {
         scanGroup(it.key(),it.value(), operation);
         ++it;
     }
 
-    deinit();
     return true;
 }
 
@@ -316,7 +407,7 @@ QMap<QString, QVector<int> > ReplayGainer::sort(const QVector<int> &indexes, boo
 void ReplayGainer::removeRG(int fileType, const QVector<int> &indexes)
 {DD;
     if (fileType==Tag::MPC_FILE && App->mpcWriteRg) {
-        Q_EMIT message(MT_WARNING, "<font color=green><b>"+fileTypeByFileID(fileType)+"</b> - "
+        Q_EMIT message(MT_WARNING, "<font color=green><b>MPC</b> - "
                      +tr("Removing ReplayGain info from Musepack files is not supported.")
                      +"</font>");
     }
@@ -326,45 +417,15 @@ void ReplayGainer::removeRG(int fileType, const QVector<int> &indexes)
     }
 }
 
-bool ReplayGainer::checkFileType(int fileType)
-{DD;
-    if (!options[fileType].program) {
-        Q_EMIT message(MT_ERROR, fileTypeByFileID(fileType)+" - "
-                     +tr("This type of files is not supported. Sorry\n"));
-        return false;
-    }
-    QString program = QString::fromLatin1(options[fileType].program);
-    if (!Qoobar::programInstalled(program,0)) {
-        Q_EMIT message(MT_ERROR, tr("Cannot find %1.\nPlease install it.").arg(program));
-        return false;
-    }
-    Q_EMIT message(MT_INFORMATION, QString("\n<b><font color=blue>%1 Invoking %2.</font></b>")
-                 .arg(QTime::currentTime().toString()).arg(program));
-
-    return true;
-}
-
 void ReplayGainer::scan(int fileType, const QVector<int> &indexes, int operation)
 {DD;
     if (fileType<0 || fileType>Tag::FILES_NUM) return;
-    if (operation<=0 || operation>5) return;
+    if (operation<RG_SCAN_AS_FILES || operation>=RG_SCAN_TOTAL) return;
     if (indexes.isEmpty()) return;
 
     App->processEvents();
 
-    QList<ReplayGainInfo> newRgInfo;
-
-#ifdef Q_OS_LINUX
-    if ((fileType==Tag::MPC_FILE || fileType==Tag::FILES_NUM) && App->mpcWriteRg)
-#endif
-    {
-        newRgInfo = scanWithUtilities(fileType, indexes, operation);
-    }
-#ifdef Q_OS_LINUX
-    else {
-        newRgInfo = scanWithDecoding(fileType, indexes, operation);
-    }
-#endif
+    QList<ReplayGainInfo> newRgInfo = scanWithDecoding(fileType, indexes, operation);
     if (newRgInfo.size()==indexes.size())
         for (int i=0; i<indexes.size(); ++i)
             rgInfo[indexes.at(i)] = newRgInfo.at(i);
@@ -381,59 +442,4 @@ void ReplayGainer::messages(const QStringList &messages)
     }
 }
 
-#ifdef Q_OS_WIN
-#include <windows.h>
-#endif
 
-QStringList ReplayGainer::getFileNames(const QVector<int> &indexes)
-{DD;
-    QStringList result;
-    copiedFiles.clear();
-    Q_FOREACH(int i,indexes) {
-        QString fileName=m->fileAtSelection(i).fullFileName();
-
-        QString newName = fileName;
-        {
-            QTemporaryFile f(QString("%1/temp.XXXXXX.%2")
-                             .arg(QDir::tempPath())
-                             .arg(m->fileAtSelection(i).fileExt()));
-            if (f.open()) newName = f.fileName();
-        }
-        if (QFile::copy(fileName,newName)) {
-            copiedFiles.insert(newName,fileName);
-            fileName = newName;
-        }
-
-//#ifdef Q_OS_WIN
-//        else {
-//            long size=0;
-//            TCHAR* buffer = NULL;
-//            LPCTSTR lpszPath = (wchar_t*)fileName.utf16();
-//            size = GetShortPathName(lpszPath, NULL, 0);
-//            if (size > 0) {
-//                buffer = new TCHAR[size];
-//                size = GetShortPathName(lpszPath, buffer, size);
-//                if (size > 0)
-//                    fileName = QString::fromUtf16((ushort*)buffer);
-//                delete [] buffer;
-//            }
-//        }
-//#endif
-        result << fileName;
-    }
-    return result;
-}
-
-void ReplayGainer::init()
-{DD;
-#ifdef WITH_DECODING
-    input_init(PLUGIN_GSTREAMER);
-#endif
-}
-
-void ReplayGainer::deinit()
-{DD;
-#ifdef WITH_DECODING
-    input_deinit();
-#endif
-}

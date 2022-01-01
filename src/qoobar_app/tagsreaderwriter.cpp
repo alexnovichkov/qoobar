@@ -44,6 +44,10 @@
 #define QS(s) QString::fromStdWString(s.toWString())
 #define TS(s) TagLib::String(s.toStdWString())
 
+#define TAGLIB_VERSION (TAGLIB_MAJOR_VERSION * 10000 \
+                        + TAGLIB_MINOR_VERSION * 100 \
+                        + TAGLIB_PATCH_VERSION)
+
 const char id3v2tags[]=
         "AENC.APIC.ASPI.COMM.COMR.ENCR.EQU2.ETCO.GEOB.GRID."
         "LINK.MCDI.MLLT.OWNE.PRIV.PCNT.POPM.POSS.RBUF.RVA2."
@@ -65,6 +69,41 @@ const char mp4tags[]=
         ;
 //TODO: Add support of as many id3v2 tags as possible
 //TODO: Add support of all id3v2 tags supported by taglib
+
+static const char *RG_STRING_UPPER[] = {
+    "REPLAYGAIN_TRACK_GAIN",
+    "REPLAYGAIN_TRACK_PEAK",
+    "REPLAYGAIN_TRACK_RANGE",
+    "REPLAYGAIN_ALBUM_GAIN",
+    "REPLAYGAIN_ALBUM_PEAK",
+    "REPLAYGAIN_ALBUM_RANGE",
+    "REPLAYGAIN_REFERENCE_LOUDNESS",
+    "MP3GAIN_MINMAX",
+    "MP3GAIN_ALBUM_MINMAX",
+    "MP3GAIN_UNDO"
+};
+static const char *RG_STRING_LOWER[] = {
+    "replaygain_track_gain",
+    "replaygain_track_peak",
+    "replaygain_track_range",
+    "replaygain_album_gain",
+    "replaygain_album_peak",
+    "replaygain_album_range",
+    "replaygain_reference_loudness",
+    "mp3gain_minmax",
+    "mp3gain_album_minmax",
+    "mp3gain_undo"
+};
+
+enum RG_ENUM {
+    RG_TRACK_GAIN,
+    RG_TRACK_PEAK,
+    RG_TRACK_RANGE,
+    RG_ALBUM_GAIN,
+    RG_ALBUM_PEAK,
+    RG_ALBUM_RANGE,
+    RG_REFERENCE_LOUDNESS
+};
 
 #include <QStringList>
 #include <QTextCodec>
@@ -450,74 +489,6 @@ void TagsReaderWriter::readID3v2(TagLib::ID3v2::Tag *id3v2tag)
     }
 }
 
-void parseRG(const QString &id, const QString &value, ReplayGainInfo &rg)
-{DD;
-    if (id.contains(QSL("replaygain_album_gain"),Qt::CaseInsensitive))
-        rg.albumGain = value;
-
-    else if (id.contains(QSL("replaygain_album_peak"),Qt::CaseInsensitive))
-        rg.albumPeak = value;
-
-    else if (id.contains(QSL("replaygain_track_gain"),Qt::CaseInsensitive))
-        rg.trackGain = value;
-
-    else if (id.contains(QSL("replaygain_track_peak"),Qt::CaseInsensitive))
-        rg.trackPeak = value;
-
-    else if (id.contains(QSL("MP3GAIN_ALBUM_MINMAX"),Qt::CaseInsensitive))
-        rg.albumMinMax = value;
-
-    else if (id.contains(QSL("MP3GAIN_MINMAX"),Qt::CaseInsensitive))
-        rg.trackMinMax = value;
-
-    else if (id.contains(QSL("replaygain_album_minmax"),Qt::CaseInsensitive))
-        rg.albumMinMax = value;
-
-    else if (id.contains(QSL("replaygain_track_minmax"),Qt::CaseInsensitive))
-        rg.trackMinMax = value;
-
-    else if (id.contains(QSL("replaygain_reference_loudness"),Qt::CaseInsensitive))
-        rg.loudness = value;
-
-    else if (id.contains(QSL("MP3GAIN_UNDO"),Qt::CaseInsensitive))
-        rg.undo = value;
-}
-
-//void TagsReaderWriter::readReplayGain(TagLib::ID3v2::Tag *id3v2tag)
-//{DD;
-//    if (!id3v2tag) return;
-//    ReplayGainInfo rg = tag->replayGainInfo();
-
-//    const TagLib::ID3v2::FrameListMap &map = id3v2tag->frameListMap();
-//    TagLib::ID3v2::FrameListMap::ConstIterator it = map.begin();
-//    for (; it != map.end(); ++it) {
-//        if ((*it).first=="TXXX") {
-//            QStringList values=handleFrameList((*it).second);
-//            Q_FOREACH (const QString &item, values) {
-//                QString id = item.mid(1,item.indexOf(']')-1);
-//                QString value=item.right(item.length()-id.length()*2-4);
-//                if (!value.isEmpty()) parseRG(id, value, rg);
-//            }
-//        }
-//    }
-//    tag->setReplayGainInfo(rg, false);
-//}
-
-//void TagsReaderWriter::readReplayGain(TagLib::APE::Tag *apetag)
-//{DD;
-//    if (!apetag) return;
-//    ReplayGainInfo rg = tag->replayGainInfo();
-
-//    TagLib::APE::ItemListMap map=apetag->itemListMap();
-//    for (TagLib::APE::ItemListMap::ConstIterator it = map.begin(); it != map.end(); ++it)  {
-//        if ((*it).second.type()!=0) continue;
-//        QString id=QS((*it).first);
-//        QString value=QS((*it).second.toString());
-//        if (!value.isEmpty()) parseRG(id,value, rg);
-//    }
-//    tag->setReplayGainInfo(rg, false);
-//}
-
 void writeID3v2Frame(TagLib::ID3v2::Tag *id3v2tag,const QString &s,const QString &key)
 {DD;
     // f.e. id = "COMM" in "COMM:<description>"
@@ -532,7 +503,6 @@ void writeID3v2Frame(TagLib::ID3v2::Tag *id3v2tag,const QString &s,const QString
 
     if (id=="COMM") { // comment
         QString comment1=s;
-
 
         if (description=="MusicMatch_Preference") {
             if (comment1=="1") comment1=QSL("Poor");
@@ -730,14 +700,35 @@ void TagsReaderWriter::writeID3v2(TagLib::ID3v2::Tag *id3v2tag)
     }
 
     //replaygain
-    writeID3v2Frame(id3v2tag,tag->replayGainInfo().trackGain, QSL("TXXX:replaygain_track_gain"));
-    writeID3v2Frame(id3v2tag,tag->replayGainInfo().trackPeak, QSL("TXXX:replaygain_track_peak"));
-    writeID3v2Frame(id3v2tag,tag->replayGainInfo().albumGain, QSL("TXXX:replaygain_album_gain"));
-    writeID3v2Frame(id3v2tag,tag->replayGainInfo().albumPeak, QSL("TXXX:replaygain_album_peak"));
-    writeID3v2Frame(id3v2tag,tag->replayGainInfo().trackMinMax, QSL("TXXX:MP3GAIN_MINMAX"));
-    writeID3v2Frame(id3v2tag,tag->replayGainInfo().albumMinMax, QSL("TXXX:MP3GAIN_ALBUM_MINMAX"));
-    writeID3v2Frame(id3v2tag,tag->replayGainInfo().undo, QSL("TXXX:MP3GAIN_UNDO"));
-    writeID3v2Frame(id3v2tag,tag->replayGainInfo().loudness, QSL("TXXX:replaygain_reference_loudness"));
+    //first remove all old tags
+    TagLib::ID3v2::FrameList::Iterator it;
+    TagLib::ID3v2::FrameList frames = id3v2tag->frameList("TXXX");
+
+    for (it = frames.begin(); it != frames.end(); ++it) {
+        auto frame = dynamic_cast<TagLib::ID3v2::UserTextIdentificationFrame*>(*it);
+
+        // this removes all variants of upper-/lower-/mixed-case tags
+        if (frame && frame -> fieldList().size() >= 2) {
+            TagLib::String desc = frame -> description().upper();
+            for (unsigned i=0; i< sizeof(RG_STRING_UPPER); ++i) {
+                if (desc == RG_STRING_UPPER[i]) id3v2tag->removeFrame(frame);
+            }
+        }
+    }
+
+    const char **RG_STRING = RG_STRING_UPPER;
+
+    if (App->replaygainOptions.tagsCase == 1) {
+        RG_STRING = RG_STRING_LOWER;
+    }
+
+    writeID3v2Frame(id3v2tag,tag->replayGainInfo().trackGain, RG_STRING[RG_TRACK_GAIN]);
+    writeID3v2Frame(id3v2tag,tag->replayGainInfo().trackPeak, RG_STRING[RG_TRACK_PEAK]);
+    writeID3v2Frame(id3v2tag,tag->replayGainInfo().albumGain, RG_STRING[RG_ALBUM_GAIN]);
+    writeID3v2Frame(id3v2tag,tag->replayGainInfo().albumPeak, RG_STRING[RG_ALBUM_PEAK]);
+    writeID3v2Frame(id3v2tag,tag->replayGainInfo().trackMinMax, RG_STRING[RG_TRACK_RANGE]);
+    writeID3v2Frame(id3v2tag,tag->replayGainInfo().albumMinMax, RG_STRING[RG_ALBUM_RANGE]);
+    writeID3v2Frame(id3v2tag,tag->replayGainInfo().loudness, RG_STRING[RG_REFERENCE_LOUDNESS]);
 }
 
 void TagsReaderWriter::parseTag(const QString &id, const TaggingScheme::TagType tagType, QVariant value)
@@ -782,6 +773,14 @@ void TagsReaderWriter::parseTag(const QString &id, const TaggingScheme::TagType 
         tag->setAlbumGain(stringValue, false);
         return;
     }
+    if (id.contains(QSL("R128_TRACK_GAIN"),Qt::CaseInsensitive)) {
+        tag->setTrackGain(stringValue, false);
+        return;
+    }
+    if (id.contains(QSL("R128_ALBUM_GAIN"),Qt::CaseInsensitive)) {
+        tag->setAlbumGain(stringValue, false);
+        return;
+    }
     if (id.contains(QSL("replaygain_album_peak"),Qt::CaseInsensitive))  {
         tag->setAlbumPeak(stringValue, false);
         return;
@@ -794,11 +793,13 @@ void TagsReaderWriter::parseTag(const QString &id, const TaggingScheme::TagType 
         tag->setTrackPeak(stringValue, false);
         return;
     }
-    if (id.contains(QSL("MP3GAIN_ALBUM_MINMAX"),Qt::CaseInsensitive))  {
+    if (id.contains(QSL("MP3GAIN_ALBUM_MINMAX"),Qt::CaseInsensitive)
+            || id.contains(QSL("replaygain_album_range"),Qt::CaseInsensitive))  {
         tag->setAlbumMinMax(stringValue, false);
         return;
     }
-    if (id.contains(QSL("MP3GAIN_MINMAX"),Qt::CaseInsensitive))  {
+    if (id.contains(QSL("MP3GAIN_MINMAX"),Qt::CaseInsensitive)
+            || id.contains(QSL("replaygain_track_range"),Qt::CaseInsensitive))  {
         tag->setTrackMinMax(stringValue, false);
         return;
     }
@@ -822,6 +823,7 @@ void TagsReaderWriter::parseTag(const QString &id, const TaggingScheme::TagType 
         tag->setReplayGainUndo(stringValue, false);
         return;
     }
+
     if (id=="USLT" || id=="SYLT") {
         //try optimizing lines with \r, \r\n or \n
         QStringList values = value.toStringList();
@@ -968,16 +970,16 @@ void TagsReaderWriter::readXiph(TagLib::Ogg::XiphComment *xiph)
     }
 }
 
-void TagsReaderWriter::writeXiph(TagLib::Ogg::XiphComment *xiph)
+void TagsReaderWriter::writeXiph(TagLib::Ogg::XiphComment *xiph, bool opusFile)
 {DD;
     if (!xiph) return;
     renderTags(TaggingScheme::VORBIS, xiph);
 
-    xiph->removeField("COVERART");
-    xiph->removeField("COVERARTMIME");
-    xiph->removeField("COVERARTDESCRIPTION");
-    xiph->removeField("COVERARTTYPE");
-    xiph->removeField("METADATA_BLOCK_PICTURE");
+    xiph->removeFields("COVERART");
+    xiph->removeFields("COVERARTMIME");
+    xiph->removeFields("COVERARTDESCRIPTION");
+    xiph->removeFields("COVERARTTYPE");
+    xiph->removeFields("METADATA_BLOCK_PICTURE");
 
     if (tag->fileType()!=Tag::FLAC_FILE && !tag->image().pixmap().isEmpty()) {
         if (App->oggPictureNew) {
@@ -1001,20 +1003,44 @@ void TagsReaderWriter::writeXiph(TagLib::Ogg::XiphComment *xiph)
         QStringList fields = App->writeFieldsSeparately ? it.value().split(QSL(";"),SKIP_EMPTY_PARTS)
                                                         : QStringList(it.value()) ;
 
-        xiph->removeField(TS(it.key().toUpper()));
-        xiph->removeField(TS(it.key().toLower()));
+        xiph->removeFields(TS(it.key().toUpper()));
+        xiph->removeFields(TS(it.key().toLower()));
         Q_FOREACH (const QString &field, fields)
             xiph->addField(TS(it.key()),TS(field),false);
     }
 
-    xiph->addField("replaygain_track_gain",TS(tag->replayGainInfo().trackGain));
-    xiph->addField("replaygain_track_peak",TS(tag->replayGainInfo().trackPeak));
-    xiph->addField("replaygain_album_gain",TS(tag->replayGainInfo().albumGain));
-    xiph->addField("replaygain_album_peak",TS(tag->replayGainInfo().albumPeak));
-    xiph->addField("MP3GAIN_MINMAX",       TS(tag->replayGainInfo().trackMinMax));
-    xiph->addField("MP3GAIN_ALBUM_MINMAX", TS(tag->replayGainInfo().albumMinMax));
-    xiph->addField("MP3GAIN_UNDO",         TS(tag->replayGainInfo().undo));
-    xiph->addField("replaygain_reference_loudness",TS(tag->replayGainInfo().loudness));
+    //ReplayGain
+    //first remove old ones
+    // RFC 7845 states:
+    // To avoid confusion with multiple normalization schemes, an Opus
+    // comment header SHOULD NOT contain any of the REPLAYGAIN_TRACK_GAIN,
+    // REPLAYGAIN_TRACK_PEAK, REPLAYGAIN_ALBUM_GAIN, or
+    // REPLAYGAIN_ALBUM_PEAK tags, […]"
+    // so we remove these if present
+    xiph -> removeFields(RG_STRING_UPPER[RG_TRACK_GAIN]);
+    xiph -> removeFields(RG_STRING_UPPER[RG_TRACK_PEAK]);
+    xiph -> removeFields(RG_STRING_UPPER[RG_TRACK_RANGE]);
+    xiph -> removeFields(RG_STRING_UPPER[RG_ALBUM_GAIN]);
+    xiph -> removeFields(RG_STRING_UPPER[RG_ALBUM_PEAK]);
+    xiph -> removeFields(RG_STRING_UPPER[RG_ALBUM_RANGE]);
+    xiph -> removeFields(RG_STRING_UPPER[RG_REFERENCE_LOUDNESS]);
+    xiph -> removeFields("R128_TRACK_GAIN");
+    xiph -> removeFields("R128_ALBUM_GAIN");
+    //then write new ones
+    const auto &rg = tag->replayGainInfo();
+    if (opusFile) {
+        xiph->addField("R128_TRACK_GAIN", TS(rg.trackGain));
+        xiph->addField("R128_ALBUM_GAIN", TS(rg.albumGain));
+    }
+    else {
+        xiph->addField("REPLAYGAIN_TRACK_GAIN",TS(rg.trackGain));
+        xiph->addField("REPLAYGAIN_TRACK_PEAK",TS(rg.trackPeak));
+        xiph->addField("REPLAYGAIN_ALBUM_GAIN",TS(rg.albumGain));
+        xiph->addField("REPLAYGAIN_ALBUM_PEAK",TS(rg.albumPeak));
+        xiph->addField("REPLAYGAIN_TRACK_RANGE", TS(rg.trackMinMax));
+        xiph->addField("REPLAYGAIN_ALBUM_RANGE", TS(rg.albumMinMax));
+        xiph->addField("REPLAYGAIN_REFERENCE_LOUDNESS",TS(rg.loudness));
+    }
 }
 
 QStringList handleAttributeList(const TagLib::ASF::AttributeList &list)
@@ -1064,7 +1090,7 @@ void TagsReaderWriter::readAsf(TagLib::ASF::Tag *asftag)
         tag->d->tags[TRACKNUMBER] = QString::number(asftag->track());
 }
 
-void writeAsfItem(TagLib::ASF::Tag *tag,const QString &s,const TagLib::String &key)
+void writeAsfItem(TagLib::ASF::Tag *tag, const QString &s, const TagLib::String &key)
 {DD;
     if (!s.isEmpty()) tag->addAttribute(key,TagLib::ASF::Attribute(TS(s)));
 }
@@ -1103,6 +1129,30 @@ void TagsReaderWriter::writeAsf(TagLib::ASF::Tag *asftag)
         Q_FOREACH (const QString &field, fields)
             writeAsfItem(asftag,field,TS(it.key()));
     }
+
+    //ReplayGain
+    //first remove old RG tags
+    TagLib::ASF::AttributeListMap &items = asftag->attributeListMap();
+    for(TagLib::ASF::AttributeListMap::Iterator item = items.begin();
+        item != items.end(); ++item) {
+        TagLib::String desc = item->first.upper();
+
+        for (unsigned i=0; i<sizeof(RG_STRING_UPPER); ++i) {
+            if (desc==RG_STRING_UPPER[i]) asftag->removeItem(item->first);
+        }
+    }
+    //then write new ones
+    const char **RG_STRING = RG_STRING_UPPER;
+    if (App->replaygainOptions.tagsCase==1) RG_STRING = RG_STRING_LOWER;
+
+    const ReplayGainInfo &rg = tag->replayGainInfo();
+    writeAsfItem(asftag, RG_STRING[RG_TRACK_GAIN], TS(rg.trackGain));
+    writeAsfItem(asftag, RG_STRING[RG_TRACK_PEAK], TS(rg.trackPeak));
+    writeAsfItem(asftag, RG_STRING[RG_ALBUM_GAIN], TS(rg.albumGain));
+    writeAsfItem(asftag, RG_STRING[RG_ALBUM_PEAK], TS(rg.albumPeak));
+    writeAsfItem(asftag, RG_STRING[RG_TRACK_RANGE], TS(rg.trackMinMax));
+    writeAsfItem(asftag, RG_STRING[RG_ALBUM_RANGE], TS(rg.albumMinMax));
+    writeAsfItem(asftag, RG_STRING[RG_REFERENCE_LOUDNESS], TS(rg.loudness));
 }
 
 void TagsReaderWriter::readMP4(TagLib::MP4::Tag *mp4tag)
@@ -1252,13 +1302,18 @@ void writeMp4Item(TagLib::MP4::Tag *tag, const QString &id, const QString &val, 
     }
 }
 
+TagLib::String mp4tagname(TagLib::String s)
+{
+    s.append("----:com.apple.iTunes:");
+    return s;
+}
+
 void TagsReaderWriter::writeMP4(TagLib::MP4::Tag *mp4tag)
 {DD;
     if (!mp4tag) return;
 
     TagLib::MP4::ItemListMap &map=mp4tag->itemListMap();
     renderTags(TaggingScheme::MP4,mp4tag);
-
     map.erase("covr");
     if (!tag->image().pixmap().isEmpty()) {
         TagLib::MP4::CoverArt::Format format=TagLib::MP4::CoverArt::JPEG;
@@ -1276,15 +1331,36 @@ void TagsReaderWriter::writeMP4(TagLib::MP4::Tag *mp4tag)
         writeMp4Item(mp4tag,it.key(),it.value(),true);
     }
 
+    //remove old tags
+    TagLib::String desc;
+#if TAGLIB_VERSION >= 11200
+    TagLib::MP4::ItemMap items = mp4tag->itemMap();
+    for(TagLib::MP4::ItemMap::Iterator item = items.begin(); item != items.end(); ++item)
+#else
+    TagLib::MP4::ItemListMap &items = tag->itemListMap();
+    for(TagLib::MP4::ItemListMap::Iterator item = items.begin(); item != items.end(); ++item)
+#endif
+    {
+        desc = item->first.upper();
+        for (unsigned i=0; i<sizeof(RG_STRING_UPPER); ++i) {
+            if (desc==mp4tagname(RG_STRING_UPPER[i]).upper()) mp4tag->removeItem(item->first);
+        }
+    }
+    const char **RG_STRING = RG_STRING_UPPER;
+
+    if (App->replaygainOptions.tagsCase == 1) {
+        RG_STRING = RG_STRING_LOWER;
+    }
+
     const ReplayGainInfo &rg = tag->replayGainInfo();
-    writeMp4Item(mp4tag,QSL("replaygain_track_gain"),rg.trackGain,true);
-    writeMp4Item(mp4tag,QSL("replaygain_track_peak"),rg.trackPeak,true);
-    writeMp4Item(mp4tag,QSL("replaygain_album_gain"),rg.albumGain,true);
-    writeMp4Item(mp4tag,QSL("replaygain_album_peak"),rg.albumPeak,true);
-    writeMp4Item(mp4tag,QSL("replaygain_track_minmax"),rg.trackMinMax,true);
-    writeMp4Item(mp4tag,QSL("replaygain_album_minmax"),rg.albumMinMax,true);
-    writeMp4Item(mp4tag,QSL("replaygain_mp3gain_undo"),rg.undo,true);
-    writeMp4Item(mp4tag,QSL("replaygain_reference_loudness"),rg.loudness,true);
+    writeMp4Item(mp4tag, RG_STRING[RG_TRACK_GAIN], rg.trackGain, true);
+    writeMp4Item(mp4tag, RG_STRING[RG_TRACK_PEAK], rg.trackPeak,true);
+    writeMp4Item(mp4tag, RG_STRING[RG_ALBUM_GAIN], rg.albumGain,true);
+    writeMp4Item(mp4tag, RG_STRING[RG_ALBUM_PEAK], rg.albumPeak,true);
+    writeMp4Item(mp4tag, RG_STRING[RG_TRACK_RANGE], rg.trackMinMax,true);
+    writeMp4Item(mp4tag, RG_STRING[RG_ALBUM_RANGE], rg.albumMinMax,true);
+    //writeMp4Item(mp4tag, QSL("replaygain_mp3gain_undo"),rg.undo,true);
+    writeMp4Item(mp4tag, RG_STRING[RG_REFERENCE_LOUDNESS], rg.loudness,true);
 }
 
 void TagsReaderWriter::readAPE(TagLib::APE::Tag *apetag)
@@ -1357,14 +1433,15 @@ void TagsReaderWriter::writeAPE(TagLib::APE::Tag *apetag)
         tag->removeReplayGainInfo(false);
     else {
         const ReplayGainInfo &rg = tag->replayGainInfo();
-        apetag->addValue("replaygain_track_gain",TS(rg.trackGain));
-        apetag->addValue("replaygain_track_peak",TS(rg.trackPeak));
-        apetag->addValue("replaygain_album_gain",TS(rg.albumGain));
-        apetag->addValue("replaygain_album_peak",TS(rg.albumPeak));
-        apetag->addValue("MP3GAIN_MINMAX",       TS(rg.trackMinMax));
-        apetag->addValue("MP3GAIN_ALBUM_MINMAX", TS(rg.albumMinMax));
-        apetag->addValue("MP3GAIN_UNDO",         TS(rg.undo));
-        apetag->addValue("replaygain_reference_loudness",TS(rg.loudness));
+
+        apetag->addValue("REPLAYGAIN_TRACK_GAIN",  TS(rg.trackGain));
+        apetag->addValue("REPLAYGAIN_TRACK_PEAK",  TS(rg.trackPeak));
+        apetag->addValue("REPLAYGAIN_ALBUM_GAIN",  TS(rg.albumGain));
+        apetag->addValue("REPLAYGAIN_ALBUM_PEAK",  TS(rg.albumPeak));
+        apetag->addValue("REPLAYGAIN_TRACK_RANGE", TS(rg.trackMinMax));
+        apetag->addValue("REPLAYGAIN_ALBUM_RANGE", TS(rg.albumMinMax));
+        apetag->addValue("MP3GAIN_UNDO",           TS(rg.undo));
+        apetag->addValue("REPLAYGAIN_REFERENCE_LOUDNESS",TS(rg.loudness));
     }
 }
 
@@ -1422,7 +1499,7 @@ void TagsReaderWriter::renderTags(const TaggingScheme::TagType type, TagLib::Tag
                 case TaggingScheme::VORBIS: {
                     TagLib::Ogg::XiphComment *t =  static_cast<TagLib::Ogg::XiphComment *>(taglibtag);
                     QStringList tags = App->writeFieldsSeparately ? value1.split(QSL(";"),SKIP_EMPTY_PARTS) : QStringList(value1);
-                    t->removeField(TS(field));
+                    t->removeFields(TS(field));
 
                     Q_FOREACH (const QString &v, tags) {
                         t->addField(TS(field),TS(v),false);
@@ -1557,7 +1634,7 @@ bool TagsReaderWriter::writeTags()
             TagLib::Ogg::Opus::File *f=new TagLib::Ogg::Opus::File(FILE_NAME(tag->fullFileName()));
             if (f->isValid()) {
                 TagLib::Ogg::XiphComment *tag=f->tag();
-                writeXiph(tag);
+                writeXiph(tag, true);
                 b=f->save();
             }
             delete f;

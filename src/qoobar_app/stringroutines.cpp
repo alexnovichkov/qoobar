@@ -38,6 +38,47 @@
 #include "application.h"
 #include <QRegularExpression>
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
+QString getShortFileName(const QString &fileName)
+{DD;
+#ifdef Q_OS_WIN
+    QString result;
+    long size=0;
+
+    LPCTSTR lpszPath = reinterpret_cast<const wchar_t*>(fileName.utf16());
+    size = GetShortPathName(lpszPath, nullptr, 0);
+    if (size > 0) {
+        TCHAR* buffer = nullptr;
+        buffer = new TCHAR[size];
+        size = GetShortPathName(lpszPath, buffer, size);
+        if (size > 0)
+            result = QString::fromUtf16(reinterpret_cast<char16_t*>(buffer));
+        delete [] buffer;
+    }
+    return result;
+
+#else
+    return fileName;
+#endif
+}
+
+std::string utf8_encode(const QString &str)
+{
+#ifdef Q_OS_WIN
+    const std::wstring wstr = str.toStdWString();
+    if( wstr.empty() ) return std::string();
+    int size_needed = WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), NULL, 0, NULL, NULL);
+    std::string strTo( size_needed, 0 );
+    WideCharToMultiByte                  (CP_UTF8, 0, &wstr[0], (int)wstr.size(), &strTo[0], size_needed, NULL, NULL);
+    return strTo;
+#else
+    return str.toStdString();
+#endif
+}
+
 struct Rus {
     int index;
     std::string l;
