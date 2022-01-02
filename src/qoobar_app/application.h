@@ -73,7 +73,6 @@ struct ReplaygainOptions
 {
     int tagsCase; //0=upper, 1=lower
     int mode; //0 = standard, 1=enhanced
-    bool copyFiles;
     bool preventClipping;
     int loudness; //0 = -18 dB, 1 = -23 dB
     int units; //0 = dB, 1 = LU

@@ -224,9 +224,6 @@ mac {
     HEADERS += impl.h
 }
 
-DEFINES += QOOBAR_NO_PROPERTY_MAPS
-DEFINES += HAVE_ZLIB
-
 CONFIG(release, debug|release):BUILD_DIR = ../../release
 CONFIG(debug, debug|release):BUILD_DIR = ../../debug
 
@@ -247,33 +244,33 @@ unix {
 
     SOURCES += sparkleupdater_dummy.cpp
 
-    INCLUDEPATH += libebur128
-    SOURCES += libebur128/ebur128.c
-    SOURCES += libebur128/filetree.c
-    SOURCES += libebur128/input.c
-    SOURCES += libebur128/input_ffmpeg.c
-    SOURCES += libebur128/input_gstreamer.c
-    SOURCES += libebur128/scanner-common.c
-    SOURCES += libebur128/scanner-tag.c
-    HEADERS += libebur128/ebur128.h
-    HEADERS += libebur128/filetree.h
-    HEADERS += libebur128/input.h
-    HEADERS += libebur128/input_ffmpeg.h
-    HEADERS += libebur128/input_gstreamer.h
-    HEADERS += libebur128/queue.h
-    HEADERS += libebur128/scanner-common.h
-    HEADERS += libebur128/scanner-tag.h
+#    INCLUDEPATH += libebur128
+#    SOURCES += libebur128/ebur128.c
+#    SOURCES += libebur128/filetree.c
+#    SOURCES += libebur128/input.c
+#    SOURCES += libebur128/input_ffmpeg.c
+#    SOURCES += libebur128/input_gstreamer.c
+#    SOURCES += libebur128/scanner-common.c
+#    SOURCES += libebur128/scanner-tag.c
+#    HEADERS += libebur128/ebur128.h
+#    HEADERS += libebur128/filetree.h
+#    HEADERS += libebur128/input.h
+#    HEADERS += libebur128/input_ffmpeg.h
+#    HEADERS += libebur128/input_gstreamer.h
+#    HEADERS += libebur128/queue.h
+#    HEADERS += libebur128/scanner-common.h
+#    HEADERS += libebur128/scanner-tag.h
 
 
     PKGCONFIG += glib-2.0
-#    PKGCONFIG += libavcodec
-#    PKGCONFIG += libavformat
-#    PKGCONFIG += libavutil
+    PKGCONFIG += libavcodec
+    PKGCONFIG += libavformat
+    PKGCONFIG += libavutil
 #    DEFINES += USE_FFMPEG
 
-    PKGCONFIG += gstreamer-app-1.0
-    PKGCONFIG += gstreamer-audio-1.0
-    DEFINES += WITH_DECODING
+#    PKGCONFIG += gstreamer-app-1.0
+#    PKGCONFIG += gstreamer-audio-1.0
+#    DEFINES += WITH_DECODING
 
     EXEC_PATH = $${INSTALL_PREFIX}/bin
     PIXMAP_PATH = $${SHARED_PATH}/pixmaps
@@ -333,75 +330,79 @@ unix {
 }
 
 win32|win {
-    lessThan(QT_MAJOR_VERSION, 6) {
+  # winextras module, or just QWinTaskbarProgress in case of Qt6
+  lessThan(QT_MAJOR_VERSION, 6) {
       QT *= winextras
-    }
-    else {
-        LIBS += -lole32 -lshlwapi -lshell32 -ldwmapi
-        win32:!qtHaveModule(opengl)|qtConfig(dynamicgl):LIBS += -lgdi32
-        HEADERS +=  winextras/qwintaskbarbutton.h \
-                    winextras/qwintaskbarbutton_p.h \
-                    winextras/qwintaskbarprogress.h \
-                    winextras/qwinfunctions.h \
-                    winextras/qwinevent.h \
-                    winextras/qwineventfilter_p.h \
-                    winextras/qwinfunctions_p.h \
-                    winextras/windowsguidsdefs_p.h \
-                    winextras/winshobjidl_p.h \
-                    winextras/winpropkey_p.h
-        SOURCES +=  winextras/qwintaskbarbutton.cpp \
-                    winextras/qwintaskbarprogress.cpp \
-                    winextras/qwinfunctions.cpp \
-                    winextras/qwinevent.cpp \
-                    winextras/qwineventfilter.cpp \
-                    winextras/windowsguidsdefs.cpp
-    }
+  }
+  else {
+      LIBS += -lole32 -lshlwapi -lshell32 -ldwmapi
+      win32:!qtHaveModule(opengl)|qtConfig(dynamicgl):LIBS += -lgdi32
+      HEADERS +=  winextras/qwintaskbarbutton.h \
+                  winextras/qwintaskbarbutton_p.h \
+                  winextras/qwintaskbarprogress.h \
+                  winextras/qwinfunctions.h \
+                  winextras/qwinevent.h \
+                  winextras/qwineventfilter_p.h \
+                  winextras/qwinfunctions_p.h \
+                  winextras/windowsguidsdefs_p.h \
+                  winextras/winshobjidl_p.h \
+                  winextras/winpropkey_p.h
+      SOURCES +=  winextras/qwintaskbarbutton.cpp \
+                  winextras/qwintaskbarprogress.cpp \
+                  winextras/qwinfunctions.cpp \
+                  winextras/qwinevent.cpp \
+                  winextras/qwineventfilter.cpp \
+                  winextras/windowsguidsdefs.cpp
+  }
 
 
-# So far no cli support in Win
-#    DEFINES *= QOOBAR_ENABLE_CLI
+  # So far no cli support in Win
+  #DEFINES *= QOOBAR_ENABLE_CLI
 
-    RC_FILE = qoobar.rc
+  RC_FILE = qoobar.rc
 
-    contains(QT_ARCH, "i386") {
-        INCLUDEPATH *= G:/soft/Programming/WinSparkle-0.7.0/include
-        LIBS *= G:/soft/Programming/WinSparkle-0.7.0/Release/WinSparkle.lib
-        INCLUDEPATH *= G:/soft/Programming/taglib-1.12.1/include
-        LIBS *= G:/soft/Programming/taglib-1.12.1/lib/libtag.dll.a
-    }
-    contains(QT_ARCH, "x86_64") {
-        INCLUDEPATH *= G:/soft/Programming/WinSparkle-0.7.0/include
-        LIBS *= G:/soft/Programming/WinSparkle-0.7.0/x64/Release/WinSparkle.lib
-        INCLUDEPATH *= G:/soft/Programming/taglib-1.12.1-x64/include
-        LIBS *= G:/soft/Programming/taglib-1.12.1-x64/lib/libtag.dll.a
-    }
+# Paths to shared libraries
+# Edit these to compile on your mashine
+  WINSPARKLE_PATH = G:/soft/Programming/WinSparkle-0.7.0/x64
+  TAGLIB_PATH = G:/soft/Programming/taglib-1.12.1-x64
+  FFMPEG_PATH = G:/soft/Programming/ffmpeg-4.4-shared-win64
+  LIBEBUR_PATH = G:/soft/Programming/libebur128
+#  LIBDISCID_PATH = G:/soft/Programming/libdiscid-x64
 
-    SOURCES += sparkleupdater.cpp
+# Winsparkle library
+  INCLUDEPATH *= $${WINSPARKLE_PATH}/include
+  LIBS *= $${WINSPARKLE_PATH}/Release/WinSparkle.lib
+  SOURCES += sparkleupdater.cpp
 
-# loudgain-master
-    HEADERS += loudgain-master/src/lg-util.h \
-    loudgain-master/src/scan.h \
-    loudgain-master/src/tag.h \
-    loudgain-master/src/printf.h
-
-    SOURCES += loudgain-master/src/scan.c \
-    loudgain-master/src/tag.cc \
-    loudgain-master/src/printf.c
+# Taglib library
+  INCLUDEPATH *= $${TAGLIB_PATH}/include
+  LIBS *= $${TAGLIB_PATH}/lib/libtag.dll.a
 
 # ffmpeg libraries
-    INCLUDEPATH *= G:/soft/Programming/ffmpeg-4.4-shared-win64/include
-    LIBS += G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libavcodec.dll.a \
-    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libavdevice.dll.a \
-    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libavfilter.dll.a \
-    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libavformat.dll.a \
-    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libavutil.dll.a \
-    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libswresample.dll.a \
-    G:/soft/Programming/ffmpeg-4.4-shared-win64/lib/libswscale.dll.a
-
+  INCLUDEPATH *= $${FFMPEG_PATH}/include
+  LIBS *= $${FFMPEG_PATH}/lib/libavcodec.dll.a \
+          $${FFMPEG_PATH}/lib/libavdevice.dll.a \
+          $${FFMPEG_PATH}/lib/libavfilter.dll.a \
+          $${FFMPEG_PATH}/lib/libavformat.dll.a \
+          $${FFMPEG_PATH}/lib/libavutil.dll.a \
+          $${FFMPEG_PATH}/lib/libswresample.dll.a \
+          $${FFMPEG_PATH}/lib/libswscale.dll.a
 
 # libebur
-    INCLUDEPATH += G:/soft/Programming/libebur128/include
-    LIBS += G:/soft/Programming/libebur128/lib/libebur128.dll.a
+  INCLUDEPATH *= $${LIBEBUR_PATH}/include
+  LIBS *= $${LIBEBUR_PATH}/lib/libebur128.dll.a
+
+# loudgain-master
+  HEADERS += loudgain-master/src/lg-util.h \
+  loudgain-master/src/scan.h \
+  loudgain-master/src/printf.h
+
+  SOURCES += loudgain-master/src/scan.c \
+  loudgain-master/src/printf.c
+
+## libdiscid
+#  INCLUDEPATH *= $${LIBDISCID_PATH}/include
+#  LIBS *= $${LIBDISCID_PATH}/lib/libdiscid.dll.a
 }
 
 os2 {

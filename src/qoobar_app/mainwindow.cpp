@@ -33,9 +33,10 @@
 #include "splitdialog.h"
 #include "tabwidget.h"
 #include "statusbar.h"
-
 #include "iqoobarplugin.h"
 #include "taglib/taglib.h"
+#include "loudgain-master/src/scan.h"
+#include "ebur128.h"
 #include "qoobarglobals.h"
 #include "logging.h"
 #include "macsplitter.h"
@@ -610,11 +611,38 @@ void MainWindow::showAboutDialog()
     if (App->discidLibraryPath.isEmpty()) libdiscid.append(notInstalled);
 #endif
 
-    QString libraries=QString("%1<ul><li>Qt %2</li><li>%3</li><li>%4</li></ul>")
+    unsigned lavf_ver;
+    scan_get_library_version(&lavf_ver, 0);
+    QString ffmpeg = QString("ffmpeg %1.%2.%3").arg(lavf_ver>>16)
+            .arg(lavf_ver>>8&0xff)
+            .arg(lavf_ver&0xff);
+
+    int  ebur128_v_major     = 0;
+    int  ebur128_v_minor     = 0;
+    int  ebur128_v_patch     = 0;
+    // libebur128 version check -- versions before 1.2.4 aren’t recommended
+    ebur128_get_version(&ebur128_v_major, &ebur128_v_minor, &ebur128_v_patch);
+    QString libebur = QString("libebur %1.%2.%3").arg(ebur128_v_major)
+            .arg(ebur128_v_minor)
+            .arg(ebur128_v_patch);
+
+
+
+    QString libraries=QString("%1<ul>"
+                            "<li>Qt %2</li>"
+                            "<li>%3</li>"
+                            "<li>%4</li>"
+                            "<li>%5</li>"
+                            "<li>%6</li>"
+                            "<li>Winsparkle</li>"
+                            "<li>loudgain</li>"
+                            "</ul>")
             .arg(tr("<b>Qoobar uses:</b>"))
             .arg(qVersion())
             .arg(taglib)
-            .arg(libdiscid);
+            .arg(libdiscid)
+            .arg(ffmpeg)
+            .arg(libebur);
 
     QString portable;
 #ifdef QOOBAR_PORTABLE

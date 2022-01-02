@@ -94,7 +94,6 @@ Application::Application(int &argc, char **argv, bool useGui)
     renameOptions.removeFolder = true;
     renameOptions.applyToFolders = false;
 
-    replaygainOptions.copyFiles = false;
     replaygainOptions.loudness = 0; //-18 dB
     replaygainOptions.mode = 0; //standard
     replaygainOptions.preventClipping = true;
@@ -124,12 +123,16 @@ Application::Application(int &argc, char **argv, bool useGui)
     /*that is discid*/
     QStringList discidName = QStringList(QSL("*discid*"));
 
-    QFileInfoList libFiles = QDir(QSL("/usr/lib")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
+    QFileInfoList libFiles;
+#ifdef Q_OS_UNIX
+    libFiles << QDir(QSL("/usr/lib")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
     libFiles << QDir(QSL("/usr/lib/i386-linux-gnu")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
     libFiles << QDir(QSL("/usr/lib64")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
     libFiles << QDir(QSL("/usr/lib/x86_64-linux-gnu")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
+#endif
+#ifdef Q_OS_WIN
     libFiles << QDir(App->applicationDirPath()).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
-
+#endif
     auto libFile = std::find_if(libFiles.cbegin(), libFiles.cend(), [](const QFileInfo &fi){
             return isValidLibrary(fi);});
     if (libFile != libFiles.cend()) {
@@ -380,7 +383,6 @@ void Application::readGlobalSettings()
     writeFieldsSeparately  = se->value("write-fields-separately","off").toString()=="on";
     id3v2version = se->value("force-id3v23","off").toString()=="on"?3:4;
 
-    replaygainOptions.copyFiles = se->value("rg-copy-files","off").toString()=="on";
     QString rgLoudness = se->value("rg-loudness","-18dB").toString();
     if (rgLoudness == "-18dB") replaygainOptions.loudness = 0;
     if (rgLoudness == "-23dB") replaygainOptions.loudness = 1;
@@ -529,7 +531,6 @@ void Application::writeGlobalSettings()
     se->setValue("default-split-format", defaultSplitFormat);
     se->setValue(QSL("iconTheme"),iconTheme);
 
-    se->setValue("rg-copy-files", replaygainOptions.copyFiles?"on":"off");
     se->setValue("rg-loudness", replaygainOptions.loudness == 0?"-18dB":"-23dB");
     se->setValue("rg-mode",replaygainOptions.mode == 0?"standard":"enhanced");
     se->setValue("rg-tags-case",replaygainOptions.tagsCase == 0?"upper":"lower");

@@ -13,7 +13,7 @@
 
 AppId={{59A39891-F88A-49E6-A738-AC5580273280}
 AppName=Qoobar
-AppCopyright=Copyright (C) 2009-2021 Alex Novichkov
+AppCopyright=Copyright (C) 2009-2022 Alex Novichkov
 AppVersion={#VERSION}
 AppVerName=Qoobar {#VERSION}
 AppPublisher=Alex Novichkov
@@ -25,7 +25,7 @@ DefaultDirName={pf}\Qoobar\
 DefaultGroupName=Qoobar
 AllowNoIcons=yes
 LicenseFile=LICENSE.rtf
-InfoBeforeFile=README
+InfoBeforeFile=README.md
 OutputBaseFilename=qoobar-{#VERSION}
 Compression=lzma2/ultra
 SolidCompression=yes
@@ -37,8 +37,8 @@ PrivilegesRequired=none
 UninstallDisplayIcon={app}\qoobar.exe
 
 [Languages]
-Name: "en"; MessagesFile: "compiler:Default.isl"; InfoBeforeFile: "README"
-Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"; InfoBeforeFile: "README.ru"
+Name: "en"; MessagesFile: "compiler:Default.isl"; InfoBeforeFile: "README.md"
+Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"; InfoBeforeFile: "README.ru.md"
 Name: "nl"; MessagesFile: "compiler:Languages\Dutch.isl"
 Name: "pl"; MessagesFile: "compiler:Languages\Polish.isl"
 Name: "it"; MessagesFile: "compiler:Languages\Italian.isl"
@@ -99,7 +99,6 @@ Name: "{app}\completions"; Flags: uninsalwaysuninstall; Components: main
 Name: "{app}\platforms"; Flags: uninsalwaysuninstall; Components: main
 Name: "{app}\plugins"; Flags: uninsalwaysuninstall; Components: plugins
 Name: "{app}\icons"; Flags: uninsalwaysuninstall; Components: main
-Name: "{app}\icons"; Flags: uninsalwaysuninstall; Components: main
 
 [Files]
 #define PATH_TO_QT "C:/Qt6/6.2.0/mingw81_64"
@@ -125,22 +124,28 @@ Source: {#PATH_TO_QT+"/bin/Qt6Core5Compat.dll"}; DestDir: "{app}"; Flags: ignore
 Source: {#PATH_TO_QT+"/bin/libwinpthread-1.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/libstdc++-6.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: {#PATH_TO_QT+"/bin/libgcc_s_seh-1.dll"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/translations/qtbase_*.qm"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
+Source: {#PATH_TO_QT+"/translations/qt_*.qm"}; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 ; libraries that do not change
-Source: "..\windows\libdiscid.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
-Source: "G:\soft\Programming\zlib123dllx64\dll_x64\zlibwapi.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
+Source: "G:/soft/Programming/libdiscid-x64/lib/libdiscid.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
+Source: "G:/soft/Programming/libebur128/bin/libebur128.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
+Source: "G:/soft/Programming/zlib123dllx64/dll_x64/zlibwapi.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
 Source: "G:/soft/Programming/WinSparkle-0.7.0/x64/Release/WinSparkle.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
 Source: "G:/soft/Programming/taglib-1.12.1-x64/bin/libtag.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
-Source: "..\windows\flac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "..\windows\mac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+; ffmpeg libraries
+Source: "G:/soft/Programming/ffmpeg-4.4-shared-win64/bin/*.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
+Source: "G:/soft/Programming/ffmpeg-4.4-shared-win64/bin/ffmpeg.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
+;Source: "..\windows\flac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+;Source: "..\windows\mac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
 Source: "..\windows\shntool.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
 Source: "..\windows\enca.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "..\windows\aacgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "..\windows\metaflac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "..\windows\mpcgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "..\windows\vorbisgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "..\windows\wvgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "..\windows\replaygain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
-Source: "..\windows\mppdec.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+;Source: "..\windows\aacgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+;Source: "..\windows\metaflac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+;Source: "..\windows\mpcgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+;Source: "..\windows\vorbisgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+;Source: "..\windows\wvgain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+;Source: "..\windows\replaygain.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+;Source: "..\windows\mppdec.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
 ; other files
 Source: "src\qoobar_app\args.json"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly; Components: main
 Source: "src\qoobar_app\splitandconvert.bat"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly; Components: main

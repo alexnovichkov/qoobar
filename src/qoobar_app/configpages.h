@@ -260,12 +260,7 @@ private:
     QComboBox *loudnessCombo;
     QLabel *unitsLabel;
     QComboBox *unitsCombo;
-    QCheckBox *copyFiles;
     QCheckBox *clipping;
-
-//    QLabel *cueEncodingLabel;
-//    QComboBox *cueEncoding;
-//    QTreeWidget *tree;
 };
 
 class NetworkPage : public ConfigPage

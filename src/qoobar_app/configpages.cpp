@@ -931,12 +931,13 @@ UtilitiesPage::UtilitiesPage(QWidget *parent) : ConfigPage(parent)
     tree->setRootIsDecorated(false);
     tree->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    QVector<QString> external {"mac","flac","shntool","enca",
-                       #ifndef Q_OS_WIN
-                               "mp3gain",
-                       #endif
-                               "aacgain","vorbisgain","metaflac","wvgain","mpcgain", "replaygain",
-                               "mppdec"};
+    QVector<QString> external {/*"mac","flac",*/"shntool","enca",
+//                       #ifndef Q_OS_WIN
+//                               "mp3gain",
+//                       #endif
+//                               "aacgain","vorbisgain","metaflac","wvgain",
+//                               "mpcgain", "replaygain", "mppdec"
+    };
     Q_FOREACH(const QString &s, external) {
         auto *item = new QTreeWidgetItem(tree);
         item->setText(1,s);
@@ -1232,12 +1233,7 @@ ReplaygainPage::ReplaygainPage(QWidget *parent) : ConfigPage(parent)
     unitsCombo->addItems(QStringList()<<tr("dB")<<tr("LU"));
     unitsLabel->setBuddy(unitsCombo);
 
-    copyFiles = new QCheckBox(tr("Copy files into temp folder before replaygaining them"),this);
-    copyFiles->setToolTip(tr("Enable this if you are encountering \"File not found\" messages\n"
-                             "in the ReplayGain dialog"));
-
     clipping = new QCheckBox(tr("Prevent clipping"), this);
-
 
     auto *l = new QFormLayout;
     l->addRow(tagsLabel, tagsCombo);
@@ -1245,7 +1241,6 @@ ReplaygainPage::ReplaygainPage(QWidget *parent) : ConfigPage(parent)
     l->addRow("", modeInfoLabel);
     l->addRow(loudnessLabel, loudnessCombo);
     l->addRow(unitsLabel, unitsCombo);
-    l->addRow(copyFiles);
     l->addRow(clipping);
 
     finalize(l);
@@ -1274,10 +1269,6 @@ void ReplaygainPage::retranslateUI()
     unitsLabel->setText(tr("Loudness units"));
     unitsLabel->setBuddy(unitsCombo);
 
-    copyFiles->setText(tr("Copy files into temp folder before replaygaining them"));
-    copyFiles->setToolTip(tr("Enable this if you are encountering \"File not found\" messages\n"
-                             "in the ReplayGain dialog"));
-
     clipping->setText(tr("Prevent clipping"));
 }
 
@@ -1287,7 +1278,6 @@ void ReplaygainPage::saveSettings()
     App->replaygainOptions.mode = modeCombo->currentIndex();
     App->replaygainOptions.loudness = loudnessCombo->currentIndex();
     App->replaygainOptions.units = unitsCombo->currentIndex();
-    App->replaygainOptions.copyFiles = copyFiles->isChecked();
     App->replaygainOptions.preventClipping = clipping->isChecked();
 }
 
@@ -1297,7 +1287,6 @@ void ReplaygainPage::setSettings()
     modeCombo->setCurrentIndex(App->replaygainOptions.mode);
     loudnessCombo->setCurrentIndex(App->replaygainOptions.loudness);
     unitsCombo->setCurrentIndex(App->replaygainOptions.units);
-    copyFiles->setChecked(App->replaygainOptions.copyFiles);
     clipping->setChecked(App->replaygainOptions.preventClipping);
 }
 

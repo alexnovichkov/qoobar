@@ -4,12 +4,12 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="application.cpp" line="421"/>
+        <location filename="application.cpp" line="426"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="421"/>
+        <location filename="application.cpp" line="426"/>
         <source>Cannot write settings. The settings file is read-only</source>
         <translation>Die Einstellungen konnten nicht gespeichert werden. Die Einstellungsdatei ist schreibgeschützt</translation>
     </message>
@@ -17,13 +17,13 @@
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="698"/>
-        <location filename="application.cpp" line="723"/>
+        <location filename="application.cpp" line="703"/>
+        <location filename="application.cpp" line="728"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="698"/>
+        <location filename="application.cpp" line="703"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
@@ -32,7 +32,7 @@ Please check the folder</source>
 geschrieben werden. Bitte überprüfen Sie den Ordner</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="723"/>
+        <location filename="application.cpp" line="728"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation>%1 konnte nicht geschrieben werden. 
@@ -357,12 +357,12 @@ Please compile Qoobar with another Qt version</source>
 <context>
     <name>DiscIDHelper</name>
     <message>
-        <location filename="discidhelper.cpp" line="45"/>
+        <location filename="discidhelper.cpp" line="47"/>
         <source>Please install libdiscid</source>
         <translation>Bitte installieren Sie libdiscid</translation>
     </message>
     <message>
-        <location filename="discidhelper.cpp" line="107"/>
+        <location filename="discidhelper.cpp" line="109"/>
         <source>Cannot read CD</source>
         <translation>CD kann nicht gelesen werden</translation>
     </message>
@@ -2649,70 +2649,70 @@ all changes in them will not be saved!</source>
 <context>
     <name>ReplayGainer</name>
     <message>
-        <location filename="replaygainer.cpp" line="92"/>
+        <location filename="replaygainer.cpp" line="98"/>
         <source>Not enough memory: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="93"/>
+        <location filename="replaygainer.cpp" line="99"/>
         <source>Could not open input: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="95"/>
+        <location filename="replaygainer.cpp" line="101"/>
         <source>Could not find stream info: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="96"/>
+        <location filename="replaygainer.cpp" line="102"/>
         <source>Audio stream: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="97"/>
+        <location filename="replaygainer.cpp" line="103"/>
         <source>Could not open codec: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="98"/>
+        <location filename="replaygainer.cpp" line="104"/>
         <source>EBU R128: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="99"/>
+        <location filename="replaygainer.cpp" line="105"/>
         <source>Could not open SWResample: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="111"/>
+        <location filename="replaygainer.cpp" line="117"/>
         <source>You have different file types in the same album!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="113"/>
+        <location filename="replaygainer.cpp" line="119"/>
         <source>Cannot calculate correct album gain when mixing Opus and non-Opus files!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="212"/>
-        <location filename="replaygainer.cpp" line="215"/>
-        <location filename="replaygainer.cpp" line="239"/>
-        <location filename="replaygainer.cpp" line="242"/>
+        <location filename="replaygainer.cpp" line="220"/>
+        <location filename="replaygainer.cpp" line="223"/>
+        <location filename="replaygainer.cpp" line="247"/>
+        <location filename="replaygainer.cpp" line="250"/>
         <source> (corrected to prevent clipping)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="218"/>
+        <location filename="replaygainer.cpp" line="226"/>
         <source>  The track will clip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="356"/>
+        <location filename="replaygainer.cpp" line="364"/>
         <source>All files already have ReplayGain info!</source>
         <translation>Alle Dateien besitzen bereits ReplayGain-Informationen!</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="411"/>
+        <location filename="replaygainer.cpp" line="419"/>
         <source>Removing ReplayGain info from Musepack files is not supported.</source>
         <translation>ReplayGain-Informationen aus Musepack-Dateien zu entfernen wird nicht unterstützt.</translation>
     </message>
@@ -2721,8 +2721,8 @@ all changes in them will not be saved!</source>
         <translation type="vanished">Der Scan-Vorgang war erfolgreich!</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="34"/>
-        <location filename="replaygainer.cpp" line="86"/>
+        <location filename="replaygainer.cpp" line="37"/>
+        <location filename="replaygainer.cpp" line="90"/>
         <source>Processing %1</source>
         <translation>Bearbeite %1</translation>
     </message>

@@ -33,6 +33,8 @@
 #include "discid.h"
 #endif
 
+//#include <discid/discid.h>
+
 #include "enums.h"
 
 DiscIDHelper::DiscIDHelper()
