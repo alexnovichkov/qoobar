@@ -7,7 +7,7 @@ QOOBAR v.1.7.0 INSTALLATION:
 Manual compilation:
 
 For debian-based systems:
-Make sure you have libqt4-dev (>=4.6) or qtbase5-dev installed.
+Make sure you have qtbase5-dev installed.
 Also install libdiscid0, libflac8, flac, shntool, enca.
 
 For rpm-based systems:
@@ -29,8 +29,12 @@ Or you can install qoobar from deb or rpm package
 
 Manual compilation: (MinGW support only)
 
-1. Install Qt/Windows Open Source Edition >= 4.5.0
-2. Download http://sourceforge.net/projects/qoobar/files/utils/win_utils.tar.gz
+1. Install Qt >= 5.0.0
+2. Download and compile Taglib (https://taglib.org/releases/taglib-1.12.tar.gz)
+3. Download FFmpeg (https://www.ffmpeg.org/download.html)
+4. Download and compile libebur (https://github.com/jiixyj/libebur128)
+5. Download WinSparkle (https://github.com/vslavik/winsparkle/releases)
+6. Download http://sourceforge.net/projects/qoobar/files/utils/win_utils.tar.gz
    archive with necessary dlls and execs and unpack it into qoobar-1.7.0
 3. Build manually:
 

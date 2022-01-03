@@ -20,7 +20,7 @@
 - добавлять собственные теги.
 - читать и записывать картинки.
 - заполнять теги из имен файлов.
-- импортировать теги из Discogs, Musicbrainz, freedb и GD3.
+- импортировать теги из Discogs, Musicbrainz и GD3.
 - переименовывать / копировать / перемещать файлы согласно их тегам.
 - исправлять русские кодировки к единой для всех тегов UTF8.
 - отменять любое действие.
@@ -34,4 +34,4 @@ Qoobar использует библиотеки Qt и Taglib
 
 **Homepage:** [qoobar.sourceforge.net](http://qoobar.sourceforge.net)
 
-**Copyright:** 2009-2021 Алексей Новичков, novichkov.qoobar@gmail.com
+**Copyright:** 2009-2022 Алексей Новичков, novichkov.qoobar@gmail.com

@@ -35,4 +35,4 @@ under GNU/Linux and Windows.
 
 **Homepage:** [qoobar.sourceforge.net](http://qoobar.sourceforge.net)
 
-**Copyright:** 2009-2021 Alex Novichkov, novichkov.qoobar@gmail.com
+**Copyright:** 2009-2022 Alex Novichkov, novichkov.qoobar@gmail.com
