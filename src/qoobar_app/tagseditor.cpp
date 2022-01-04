@@ -232,8 +232,11 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
 
 
     QSignalMapper *operationsMapper = new QSignalMapper(this);
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
     connect(mapper, &QSignalMapper::mappedString, this, &TagsEditDialog::handleOperation);
-
+#else
+    connect(mapper,SIGNAL(mapped(QString)), this, SLOT(handleOperation(QString)));
+#endif
     static const struct Operation {
         const char *text;
         const char *icon;

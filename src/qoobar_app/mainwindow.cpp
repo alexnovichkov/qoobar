@@ -1036,8 +1036,11 @@ void MainWindow::createPluginsMenu()
         toolsMenu->addSeparator();
 
     QSignalMapper *mapper = new QSignalMapper(this);
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
     connect(mapper, &QSignalMapper::mappedString, this, &MainWindow::onPluginTriggered);
-
+#else
+    connect(mapper, SIGNAL(mapped(QString)), this, SLOT(onPluginTriggered(QString)));
+#endif
     for (int it = 0; it < App->plugins.size(); ++it) {
         QJsonObject metaData = App->plugins.at(it);
         QString pluginInterface=metaData.value(QSL("interface")).toString();

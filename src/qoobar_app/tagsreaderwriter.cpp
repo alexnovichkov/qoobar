@@ -1337,7 +1337,7 @@ void TagsReaderWriter::writeMP4(TagLib::MP4::Tag *mp4tag)
     TagLib::MP4::ItemMap items = mp4tag->itemMap();
     for(TagLib::MP4::ItemMap::Iterator item = items.begin(); item != items.end(); ++item)
 #else
-    TagLib::MP4::ItemListMap &items = tag->itemListMap();
+    TagLib::MP4::ItemListMap &items = mp4tag->itemListMap();
     for(TagLib::MP4::ItemListMap::Iterator item = items.begin(); item != items.end(); ++item)
 #endif
     {

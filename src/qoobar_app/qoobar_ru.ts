@@ -1020,23 +1020,23 @@ after you restart Qoobar</source>
 <context>
     <name>LineEdit</name>
     <message>
-        <location filename="lineedit.cpp" line="147"/>
+        <location filename="lineedit.cpp" line="157"/>
         <source>Operations</source>
         <translation>Действия</translation>
     </message>
     <message>
-        <location filename="lineedit.cpp" line="162"/>
+        <location filename="lineedit.cpp" line="172"/>
         <source>Set this block into...</source>
         <translation>Поместить этот блок в...</translation>
     </message>
     <message>
-        <location filename="lineedit.cpp" line="165"/>
         <location filename="lineedit.cpp" line="175"/>
+        <location filename="lineedit.cpp" line="185"/>
         <source>Other</source>
         <translation>Другие</translation>
     </message>
     <message>
-        <location filename="lineedit.cpp" line="172"/>
+        <location filename="lineedit.cpp" line="182"/>
         <source>Set this text into...</source>
         <translation>Поместить этот текст в...</translation>
     </message>
@@ -2529,7 +2529,7 @@ all changes in them will not be saved!</source>
         <translation>Скрывать</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="398"/>
+        <location filename="tab.cpp" line="402"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;разные&gt;&gt;</translation>
     </message>
@@ -2648,53 +2648,53 @@ all changes in them will not be saved!</source>
         <translation>Сканировать как альбомы (по папкам)</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="99"/>
+        <location filename="replaygaindialog.cpp" line="102"/>
         <source>Skip already scanned files</source>
         <oldsource>Skip already tagged files</oldsource>
         <translation>Пропускать ранее сканированные файлы</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="113"/>
+        <location filename="replaygaindialog.cpp" line="116"/>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="113"/>
+        <location filename="replaygaindialog.cpp" line="116"/>
         <source>Album gain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="113"/>
+        <location filename="replaygaindialog.cpp" line="116"/>
         <source>Track gain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="114"/>
+        <location filename="replaygaindialog.cpp" line="117"/>
         <source>Album peak</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="114"/>
+        <location filename="replaygaindialog.cpp" line="117"/>
         <source>Track peak</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="114"/>
+        <location filename="replaygaindialog.cpp" line="117"/>
         <source>Album range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="114"/>
+        <location filename="replaygaindialog.cpp" line="117"/>
         <source>Track range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="115"/>
+        <location filename="replaygaindialog.cpp" line="118"/>
         <source>Reference loudness</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygaindialog.cpp" line="113"/>
+        <location filename="replaygaindialog.cpp" line="116"/>
         <source>No.</source>
         <translation>№</translation>
     </message>
@@ -2702,70 +2702,70 @@ all changes in them will not be saved!</source>
 <context>
     <name>ReplayGainer</name>
     <message>
-        <location filename="replaygainer.cpp" line="98"/>
+        <location filename="replaygainer.cpp" line="99"/>
         <source>Not enough memory: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="99"/>
+        <location filename="replaygainer.cpp" line="100"/>
         <source>Could not open input: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="101"/>
+        <location filename="replaygainer.cpp" line="102"/>
         <source>Could not find stream info: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="102"/>
+        <location filename="replaygainer.cpp" line="103"/>
         <source>Audio stream: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="103"/>
+        <location filename="replaygainer.cpp" line="104"/>
         <source>Could not open codec: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="104"/>
+        <location filename="replaygainer.cpp" line="105"/>
         <source>EBU R128: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="105"/>
+        <location filename="replaygainer.cpp" line="106"/>
         <source>Could not open SWResample: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="117"/>
+        <location filename="replaygainer.cpp" line="118"/>
         <source>You have different file types in the same album!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="119"/>
+        <location filename="replaygainer.cpp" line="120"/>
         <source>Cannot calculate correct album gain when mixing Opus and non-Opus files!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="220"/>
-        <location filename="replaygainer.cpp" line="223"/>
-        <location filename="replaygainer.cpp" line="247"/>
-        <location filename="replaygainer.cpp" line="250"/>
+        <location filename="replaygainer.cpp" line="221"/>
+        <location filename="replaygainer.cpp" line="224"/>
+        <location filename="replaygainer.cpp" line="248"/>
+        <location filename="replaygainer.cpp" line="251"/>
         <source> (corrected to prevent clipping)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="226"/>
+        <location filename="replaygainer.cpp" line="227"/>
         <source>  The track will clip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="364"/>
+        <location filename="replaygainer.cpp" line="365"/>
         <source>All files already have ReplayGain info!</source>
         <translation>В файлах уже есть информация ReplayGain!</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="419"/>
+        <location filename="replaygainer.cpp" line="420"/>
         <source>Removing ReplayGain info from Musepack files is not supported.</source>
         <translation>Удаление информации ReplayGain из файлов Musepack не поддерживается.</translation>
     </message>
@@ -2774,8 +2774,8 @@ all changes in them will not be saved!</source>
         <translation type="vanished">Сканирование завершено успешно!</translation>
     </message>
     <message>
-        <location filename="replaygainer.cpp" line="37"/>
-        <location filename="replaygainer.cpp" line="90"/>
+        <location filename="replaygainer.cpp" line="38"/>
+        <location filename="replaygainer.cpp" line="91"/>
         <source>Processing %1</source>
         <translation>Анализирую %1</translation>
     </message>
@@ -3237,25 +3237,25 @@ Please choose the encoding:</source>
     <name>Tab</name>
     <message>
         <location filename="tab.cpp" line="148"/>
-        <location filename="tab.cpp" line="265"/>
+        <location filename="tab.cpp" line="269"/>
         <source>Ctrl+Up</source>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="153"/>
-        <location filename="tab.cpp" line="267"/>
+        <location filename="tab.cpp" line="271"/>
         <source>Ctrl+Down</source>
         <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="146"/>
-        <location filename="tab.cpp" line="264"/>
+        <location filename="tab.cpp" line="268"/>
         <source>Move up</source>
         <translation>Переместить вверх</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="151"/>
-        <location filename="tab.cpp" line="266"/>
+        <location filename="tab.cpp" line="270"/>
         <source>Move down</source>
         <translation>Переместить вниз</translation>
     </message>
@@ -3264,25 +3264,25 @@ Please choose the encoding:</source>
         <translation type="obsolete">Картинка</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1137"/>
+        <location filename="tab.cpp" line="1141"/>
         <source>Files in %1 have been modified.</source>
         <translation>Некоторые файлы в %1 были изменены.</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="468"/>
+        <location filename="tab.cpp" line="472"/>
         <source>clearing tags</source>
         <oldsource>Remove tags</oldsource>
         <translation>удаление тегов</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="169"/>
-        <location filename="tab.cpp" line="273"/>
+        <location filename="tab.cpp" line="277"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="196"/>
-        <location filename="tab.cpp" line="275"/>
+        <location filename="tab.cpp" line="200"/>
+        <location filename="tab.cpp" line="279"/>
         <source>Operations</source>
         <translation>Действия</translation>
     </message>
@@ -3291,153 +3291,153 @@ Please choose the encoding:</source>
         <translation type="obsolete">Сначала задайте плеер в настройках программы</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1000"/>
+        <location filename="tab.cpp" line="1004"/>
         <source>Some files have been modified</source>
         <translation>Некоторые файлы были изменены</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1002"/>
+        <location filename="tab.cpp" line="1006"/>
         <source>Remove them anyway?</source>
         <translation>Всё равно удалить?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1003"/>
+        <location filename="tab.cpp" line="1007"/>
         <source>Yes, remove without saving</source>
         <translation>Да, удалить без сохранения</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1005"/>
+        <location filename="tab.cpp" line="1009"/>
         <source>No, save them and then remove</source>
         <translation>Нет, сначала сохранить, а затем удалить</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="220"/>
-        <location filename="tab.cpp" line="999"/>
+        <location filename="tab.cpp" line="224"/>
+        <location filename="tab.cpp" line="1003"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1136"/>
+        <location filename="tab.cpp" line="1140"/>
         <source>Closing Qoobar</source>
         <translation>Закрыть Qoobar</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1290"/>
+        <location filename="tab.cpp" line="1294"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation>Qoobar - Изменение данных ReplayGain</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1291"/>
+        <location filename="tab.cpp" line="1295"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation>Qoobar умеет сканирвоать только сохраненные файлы.
 Вы хотите сохранить выбранные файлы?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="318"/>
-        <location filename="tab.cpp" line="342"/>
-        <location filename="tab.cpp" line="627"/>
+        <location filename="tab.cpp" line="322"/>
+        <location filename="tab.cpp" line="346"/>
         <location filename="tab.cpp" line="631"/>
-        <location filename="tab.cpp" line="1431"/>
+        <location filename="tab.cpp" line="635"/>
+        <location filename="tab.cpp" line="1435"/>
         <source>changing tags</source>
         <oldsource>Change tags</oldsource>
         <translation>изменение тегов</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="219"/>
+        <location filename="tab.cpp" line="223"/>
         <source>Abort</source>
         <translation>Прервать</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="156"/>
-        <location filename="tab.cpp" line="268"/>
+        <location filename="tab.cpp" line="272"/>
         <source>&amp;Edit...</source>
         <translation>&amp;Редактировать...</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="159"/>
-        <location filename="tab.cpp" line="269"/>
+        <location filename="tab.cpp" line="273"/>
         <source>Edit as &amp;multiline text...</source>
         <translation>Редактировать как &amp;многострочный текст...</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="163"/>
-        <location filename="tab.cpp" line="271"/>
+        <location filename="tab.cpp" line="275"/>
         <source>C&amp;lear tags</source>
         <translation>&amp;Удалить теги</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="168"/>
-        <location filename="tab.cpp" line="272"/>
+        <location filename="tab.cpp" line="276"/>
         <source>Collect for &amp;future use</source>
         <translation>&amp;Запомнить на будущее</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="920"/>
+        <location filename="tab.cpp" line="924"/>
         <source>Player is not set in the Settings dialog.
 Open the Settings dialog?</source>
         <translation>В натройках программы плеер не задан.
 Открыть диалог настроек?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1055"/>
+        <location filename="tab.cpp" line="1059"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation>Пожалуйста, подождите, пока Qoobar добавляет файлы</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1121"/>
+        <location filename="tab.cpp" line="1125"/>
         <source>Cannot write tags to file:
 %1</source>
         <translation>Не смог записать теги в файл:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1140"/>
+        <location filename="tab.cpp" line="1144"/>
         <source>Do you want to save your changes?</source>
         <translation>Вы хотите сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1141"/>
+        <location filename="tab.cpp" line="1145"/>
         <source>Yes, save</source>
         <translation>Да, сохранить</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1143"/>
+        <location filename="tab.cpp" line="1147"/>
         <source>No, don&apos;t save</source>
         <translation>Нет, не сохранять</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="219"/>
+        <location filename="tab.cpp" line="223"/>
         <source>Writing tags...</source>
         <translation>Сохраняю теги...</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="255"/>
+        <location filename="tab.cpp" line="259"/>
         <source>Cannot write tags to files:
 %1</source>
         <translation>Не смог записать теги в файлы:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="892"/>
+        <location filename="tab.cpp" line="896"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;разные&gt;&gt;</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="613"/>
+        <location filename="tab.cpp" line="617"/>
         <source>filling tags</source>
         <oldsource>Fill tags</oldsource>
         <translation>заполнение тегов</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="667"/>
+        <location filename="tab.cpp" line="671"/>
         <source>rereading tags</source>
         <oldsource>Reread tags</oldsource>
         <translation>Перечитать теги</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="713"/>
-        <location filename="tab.cpp" line="774"/>
+        <location filename="tab.cpp" line="717"/>
+        <location filename="tab.cpp" line="778"/>
         <source>pasting tags</source>
         <oldsource>Paste tags</oldsource>
         <translation>вставку тегов</translation>
@@ -3519,53 +3519,53 @@ Open the Settings dialog?</source>
     </message>
     <message>
         <location filename="tagseditor.cpp" line="154"/>
-        <location filename="tagseditor.cpp" line="584"/>
+        <location filename="tagseditor.cpp" line="587"/>
         <source>Hide characters</source>
         <translation>Спрятать символы</translation>
     </message>
     <message>
         <location filename="tagseditor.cpp" line="159"/>
-        <location filename="tagseditor.cpp" line="578"/>
+        <location filename="tagseditor.cpp" line="581"/>
         <source>Show characters</source>
         <translation>Показать символы</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="242"/>
+        <location filename="tagseditor.cpp" line="245"/>
         <source>lower</source>
         <translation>нижний</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="243"/>
+        <location filename="tagseditor.cpp" line="246"/>
         <source>UPPER</source>
         <translation>ВЕРХНИЙ</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="244"/>
+        <location filename="tagseditor.cpp" line="247"/>
         <source>Only first up</source>
         <translation>Первое слово</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="245"/>
+        <location filename="tagseditor.cpp" line="248"/>
         <source>Every First Up</source>
         <translation>Каждое Слово</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="246"/>
+        <location filename="tagseditor.cpp" line="249"/>
         <source>Simplify whitespaces</source>
         <translation>Упростить пробелы</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="247"/>
+        <location filename="tagseditor.cpp" line="250"/>
         <source>Remove diacritics</source>
         <translation>Удалить диакритические знаки</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="248"/>
+        <location filename="tagseditor.cpp" line="251"/>
         <source>Transliterate</source>
         <translation>Транслитерировать</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="249"/>
+        <location filename="tagseditor.cpp" line="252"/>
         <source>Fix encoding</source>
         <translation>Исправить русскую кодировку</translation>
     </message>
@@ -3580,12 +3580,12 @@ Open the Settings dialog?</source>
         <translation>Найти/Заменить</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="427"/>
+        <location filename="tagseditor.cpp" line="430"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="tagseditor.cpp" line="427"/>
+        <location filename="tagseditor.cpp" line="430"/>
         <source>Nothing found</source>
         <translation>Ничего не найдено</translation>
     </message>

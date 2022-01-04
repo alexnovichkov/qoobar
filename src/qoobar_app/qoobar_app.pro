@@ -183,6 +183,13 @@ HEADERS = mainwindow.h \
     qoobarhelp.h \
     autonumber.h
 
+# loudgain-master
+  HEADERS += loudgain-master/src/lg-util.h \
+  loudgain-master/src/scan.h \
+  loudgain-master/src/printf.h
+
+  SOURCES += loudgain-master/src/scan.c \
+  loudgain-master/src/printf.c
 
 OTHER_FILES *= splitandconvert.bat \
                splitandconvert.sh
@@ -262,10 +269,15 @@ unix {
 #    HEADERS += libebur128/scanner-tag.h
 
 
-    PKGCONFIG += glib-2.0
+#    PKGCONFIG += glib-2.0
     PKGCONFIG += libavcodec
     PKGCONFIG += libavformat
     PKGCONFIG += libavutil
+    PKGCONFIG += libswresample
+    PKGCONFIG += libebur128
+    PKGCONFIG += taglib
+
+
 #    DEFINES += USE_FFMPEG
 
 #    PKGCONFIG += gstreamer-app-1.0
@@ -391,14 +403,6 @@ win32|win {
 # libebur
   INCLUDEPATH *= $${LIBEBUR_PATH}/include
   LIBS *= $${LIBEBUR_PATH}/lib/libebur128.dll.a
-
-# loudgain-master
-  HEADERS += loudgain-master/src/lg-util.h \
-  loudgain-master/src/scan.h \
-  loudgain-master/src/printf.h
-
-  SOURCES += loudgain-master/src/scan.c \
-  loudgain-master/src/printf.c
 
 ## libdiscid
 #  INCLUDEPATH *= $${LIBDISCID_PATH}/include

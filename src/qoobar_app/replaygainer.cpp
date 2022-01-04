@@ -15,6 +15,7 @@
 #include <libavformat/avformat.h>
 #include "loudgain-master/src/scan.h"
 #include <QTimer>
+#include <QThread>
 
 QString fileTypeByFileID(int fileID)
 {DD;

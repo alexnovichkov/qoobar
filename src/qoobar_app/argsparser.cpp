@@ -433,7 +433,8 @@ void CommandLineProcessor::parse()
         connect(&gainer,SIGNAL(tick()),SLOT(tick()));
 
         gainer.setSkip(parser.isSet("skip-scanned"));
-        gainer.start(type);
+        gainer.setOperation(type);
+        gainer.start();
         QList<ReplayGainInfo> newRg = gainer.getNewRgInfo();
 
         //show rg
@@ -470,7 +471,8 @@ void CommandLineProcessor::parse()
         ReplayGainer gainer(&model);
         connect(&gainer,SIGNAL(message(QString)),this,SLOT(appendMessage(QString)),Qt::QueuedConnection);
         gainer.setSkip(parser.isSet("skip-scanned"));
-        gainer.start(RG_SCAN_REMOVE);
+        gainer.setOperation(RG_SCAN_REMOVE);
+        gainer.start();
     }
 
     if (parser.isSet("remove-all")) {//removeAllTags, including standard tags, user tags, image, replaygain info

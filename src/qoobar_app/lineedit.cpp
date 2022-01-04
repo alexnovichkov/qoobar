@@ -113,9 +113,11 @@ LineEdit::LineEdit(bool useInTable, QWidget *parent)
         connect(a,SIGNAL(triggered()),mapper,SLOT(map()));
         acts << a;
     }
-
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
     connect(mapper, &QSignalMapper::mappedInt, this, &LineEdit::tagChosen);
-
+#else
+    connect(mapper, SIGNAL(mapped(int)), this, SLOT(tagChosen(int)));
+#endif
     if (useInTable_) {
         QSignalMapper *mapper1 = new QSignalMapper(this);
         for (int i=0; i<tagsCount; ++i) {
@@ -124,7 +126,11 @@ LineEdit::LineEdit(bool useInTable, QWidget *parent)
             connect(a,SIGNAL(triggered()),mapper1,SLOT(map()));
             acts1 << a;
         }
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
         connect(mapper1, &QSignalMapper::mappedInt, this, &LineEdit::tagChosen1);
+#else
+        connect(mapper1, SIGNAL(mapped(int)), this, SLOT(tagChosen1(int)));
+#endif
     }
 }
 
@@ -141,7 +147,11 @@ void LineEdit::tagChosen1(int i)
 QMenu *LineEdit::createOperationsMenu()
 {DD
     QSignalMapper *operationsMapper = new QSignalMapper(this);
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
     connect(operationsMapper, &QSignalMapper::mappedString, this, &LineEdit::handleOperation);
+#else
+    connect(operationsMapper, SIGNAL(mapped(QString)), this, SLOT(handleOperation(QString)));
+#endif
 
     QMenu *menu = createOperations(operationsMapper,this);
     menu->setTitle(tr("Operations"));

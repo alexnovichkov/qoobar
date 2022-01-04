@@ -192,7 +192,11 @@ Tab::Tab(MainWindow *parent) : QWidget(parent)
     table->addAction(collectAct);
 
     operationsMapper = new QSignalMapper(this);
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
     connect(operationsMapper, &QSignalMapper::mappedString, this, &Tab::handleOperation);
+#else
+    connect(operationsMapper, SIGNAL(mapped(QString)), this, SLOT(handleOperation(QString)));
+#endif
     operationsAct = new QAction(tr("Operations"),this);
     table->addAction(operationsAct);
 

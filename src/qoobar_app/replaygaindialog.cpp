@@ -82,8 +82,11 @@ ReplayGainDialog::ReplayGainDialog(Model *model, QWidget *parent) :
     scanAlbumsByFolderButton = new QPushButton(tr("Scan as albums (by folder)"),this);
 
     QSignalMapper *mapper = new QSignalMapper(this);
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
     connect(mapper, &QSignalMapper::mappedInt, this, &ReplayGainDialog::operate);
-
+#else
+    connect(mapper, SIGNAL(mapped(int)), this, SLOT(operate(int)));
+#endif
     connect(scanFileButton,SIGNAL(clicked()), mapper, SLOT(map()));
     connect(scanAlbumButton,SIGNAL(clicked()), mapper, SLOT(map()));
     connect(removeButton,SIGNAL(clicked()), mapper, SLOT(map()));
