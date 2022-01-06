@@ -183,7 +183,7 @@ void SettingsDialog::resetSettings()
 }
 
 void SettingsDialog::switchPage(int page)
-{DD; qDebug()<<page;
+{DD; 
 #ifdef DYNAMICPAGES
     pagesWidget->removeWidget(pagesWidget->widget(0));
     pagesWidget->addWidget(configPages[page]);
