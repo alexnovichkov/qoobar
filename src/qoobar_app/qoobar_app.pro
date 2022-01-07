@@ -285,7 +285,8 @@ unix {
 #    DEFINES += WITH_DECODING
 
     EXEC_PATH = $${INSTALL_PREFIX}/bin
-    PIXMAP_PATH = $${SHARED_PATH}/pixmaps
+# Ubuntu 20.04 requires the app icons be placed into /usr/local/share/    
+    PIXMAP_PATH = /usr/local/share/icons/hicolor
     ICON_PATH = $${SHARED_PATH}/qoobar/icons
     MAN_PATH = $${SHARED_PATH}/man/man1
     DESKTOP_PATH = $${SHARED_PATH}/applications
