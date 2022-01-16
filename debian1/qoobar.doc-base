@@ -2,8 +2,7 @@ Document: qoobar
 Title: Debian qoobar Manual
 Author: Alex Novichkov
 Abstract: This manual describes what qoobar is
- and how it can be used to
- manage online manuals on Debian systems.
+ and how it can be used on Debian systems.
 Section: unknown
 
 Format: HTML
