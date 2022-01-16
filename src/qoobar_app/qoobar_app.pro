@@ -1,12 +1,34 @@
 TEMPLATE = app
 VERSION = 1.7.0
-INSTALL_PREFIX = /usr
-SHARED_PATH = $${INSTALL_PREFIX}/share
+
+QT *= widgets concurrent network
+
+greaterThan(QT_MAJOR_VERSION, 5) {
+  QT *= core5compat
+}
+
+TARGET = qoobar
+
+# minimal c++ version is c++11
+CONFIG *= c++11
+CONFIG *= warn_on
+CONFIG *= release
+CONFIG *= no_keywords
+
+# The install directory. When compiling into deb should be /usr. When make-installed should be /usr/local.
+# When compiling into AppImage should be something like ~/deploy/qoobar/AppDir
+INSTALL_ROOT = /
+
+
+
+message(The install path is $${INSTALL_ROOT})
+
+SHARED_PATH = $${INSTALL_ROOT}/usr/share
 DOC_PATH = $${SHARED_PATH}/doc
 
 DEFINES *= QOOBAR_VERSION=\\\"$$VERSION\\\"
-DEFINES *= QOOBAR_SHARED_PATH=\\\"$${SHARED_PATH}/qoobar\\\"
-DEFINES *= QOOBAR_DOC_PATH=\\\"$${DOC_PATH}/qoobar-doc\\\"
+DEFINES *= QOOBAR_SHARED_PATH=\\\"$${SHARED_PATH}/$${TARGET}\\\"
+DEFINES *= QOOBAR_DOC_PATH=\\\"$${DOC_PATH}/$${TARGET}-doc\\\"
 
 include(../portable.pri)
 
@@ -17,19 +39,7 @@ include(../portable.pri)
 # place this define in OS-specific section to enable command-line interface
 # DEFINES *= QOOBAR_ENABLE_CLI
 
-QT *= widgets concurrent network
 
-greaterThan(QT_MAJOR_VERSION, 5) {
-  QT *= core5compat
-}
-
-# minimal c++ version is c++11
-CONFIG *= c++11
-
-TARGET = qoobar
-CONFIG *= warn_on
-CONFIG *= release
-CONFIG *= no_keywords
 
 # main sources and headers
 SOURCES = main.cpp \
@@ -251,25 +261,6 @@ unix {
 
     SOURCES += sparkleupdater_dummy.cpp
 
-#    INCLUDEPATH += libebur128
-#    SOURCES += libebur128/ebur128.c
-#    SOURCES += libebur128/filetree.c
-#    SOURCES += libebur128/input.c
-#    SOURCES += libebur128/input_ffmpeg.c
-#    SOURCES += libebur128/input_gstreamer.c
-#    SOURCES += libebur128/scanner-common.c
-#    SOURCES += libebur128/scanner-tag.c
-#    HEADERS += libebur128/ebur128.h
-#    HEADERS += libebur128/filetree.h
-#    HEADERS += libebur128/input.h
-#    HEADERS += libebur128/input_ffmpeg.h
-#    HEADERS += libebur128/input_gstreamer.h
-#    HEADERS += libebur128/queue.h
-#    HEADERS += libebur128/scanner-common.h
-#    HEADERS += libebur128/scanner-tag.h
-
-
-#    PKGCONFIG += glib-2.0
     PKGCONFIG += libavcodec
     PKGCONFIG += libavformat
     PKGCONFIG += libavutil
@@ -278,15 +269,10 @@ unix {
     PKGCONFIG += taglib
 
 
-#    DEFINES += USE_FFMPEG
-
-#    PKGCONFIG += gstreamer-app-1.0
-#    PKGCONFIG += gstreamer-audio-1.0
-#    DEFINES += WITH_DECODING
-
-    EXEC_PATH = $${INSTALL_PREFIX}/bin
-# Ubuntu 20.04 requires the app icons be placed into /usr/local/share/    
-    PIXMAP_PATH = /usr/local/share/icons/hicolor
+    EXEC_PATH = $${INSTALL_ROOT}/usr/bin
+# Ubuntu 20.04 requires the app icons be placed into /usr/local/share/  
+# if install from make install, and into /usr/share/  if installed from deb
+    PIXMAP_PATH = $${SHARED_PATH}/icons/hicolor
     ICON_PATH = $${SHARED_PATH}/qoobar/icons
     MAN_PATH = $${SHARED_PATH}/man/man1
     DESKTOP_PATH = $${SHARED_PATH}/applications

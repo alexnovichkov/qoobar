@@ -4,12 +4,12 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="application.cpp" line="423"/>
+        <location filename="application.cpp" line="441"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="423"/>
+        <location filename="application.cpp" line="441"/>
         <source>Cannot write settings. The settings file is read-only</source>
         <translation>Nie można zapisać ustawień. Plik z ustawieniami jest tylko do odczytu</translation>
     </message>
@@ -31,13 +31,13 @@ Proszę sprawdzić ten plik</translation>
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="699"/>
-        <location filename="application.cpp" line="724"/>
+        <location filename="application.cpp" line="717"/>
+        <location filename="application.cpp" line="742"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="699"/>
+        <location filename="application.cpp" line="717"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
@@ -46,7 +46,7 @@ Please check the folder</source>
 Proszę sprawdzić ten katalog</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="724"/>
+        <location filename="application.cpp" line="742"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation>Nie można zapisać %1

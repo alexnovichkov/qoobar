@@ -4,12 +4,12 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="application.cpp" line="423"/>
+        <location filename="application.cpp" line="441"/>
         <source>Qoobar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="application.cpp" line="423"/>
+        <location filename="application.cpp" line="441"/>
         <source>Cannot write settings. The settings file is read-only</source>
         <translation></translation>
     </message>
@@ -17,20 +17,20 @@
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="699"/>
-        <location filename="application.cpp" line="724"/>
+        <location filename="application.cpp" line="717"/>
+        <location filename="application.cpp" line="742"/>
         <source>Qoobar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="application.cpp" line="699"/>
+        <location filename="application.cpp" line="717"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="application.cpp" line="724"/>
+        <location filename="application.cpp" line="742"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation></translation>

@@ -2,7 +2,6 @@
 #include "applicationpaths.h"
 #include "qoobarglobals.h"
 
-#ifdef Q_OS_MACOS
 QString ApplicationPaths::bundlePath()
 {DD;
     static QString _bundlePath;
@@ -13,7 +12,6 @@ QString ApplicationPaths::bundlePath()
     }
     return _bundlePath;
 }
-#endif
 
 QString ApplicationPaths::sharedPath()
 {DD;
@@ -21,7 +19,7 @@ QString ApplicationPaths::sharedPath()
     return bundlePath() +"/Resources";
 #endif
 #ifdef Q_OS_LINUX
-    return QString("/usr/share/qoobar");
+    return bundlePath()+"/share/qoobar";
 #endif
     return qApp->applicationDirPath();
 }
@@ -67,7 +65,7 @@ QString ApplicationPaths::documentationPath()
 QString ApplicationPaths::pluginsPath()
 {DD;
 #ifdef Q_OS_LINUX
-    return QString("/usr/lib/qoobar/plugins");
+    return bundlePath()+"/lib/qoobar/plugins";
 #elif defined Q_OS_MACOS
     return bundlePath() +"/PlugIns";
 #else
@@ -76,3 +74,8 @@ QString ApplicationPaths::pluginsPath()
 }
 //} // namespace
 
+
+QString ApplicationPaths::iconsPath()
+{DD;
+    return sharedPath()+"/icons";
+}

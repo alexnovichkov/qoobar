@@ -7,9 +7,7 @@
 
 namespace ApplicationPaths
 {
-#ifdef Q_OS_MACOS
 QString bundlePath();
-#endif
 
 QString sharedPath();
 
@@ -26,6 +24,8 @@ QString userCompletionsPath();
 QString documentationPath();
 
 QString pluginsPath();
+
+QString iconsPath();
 } // namespace
 
 #endif // APPLICATIONPATHS_H

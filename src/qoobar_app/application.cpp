@@ -50,6 +50,35 @@ bool isValidLibrary(const QFileInfo &path)
     return false;
 }
 
+QString findLibrary(const QString &libName)
+{
+    auto libraryName = QStringList("*"+libName+"*");
+
+    QFileInfoList libFiles;
+#ifdef Q_OS_UNIX
+    //first search in the directories local to the app
+    const QString appPath = ApplicationPaths::bundlePath();
+    libFiles << QDir(appPath+QSL("/lib")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
+    libFiles << QDir(appPath+QSL("/lib/i386-linux-gnu")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
+    libFiles << QDir(appPath+QSL("/lib64")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
+    libFiles << QDir(appPath+QSL("/lib/x86_64-linux-gnu")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
+    //then in the absolute directories
+    libFiles << QDir(QSL("/usr/lib")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
+    libFiles << QDir(QSL("/usr/lib/i386-linux-gnu")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
+    libFiles << QDir(QSL("/usr/lib64")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
+    libFiles << QDir(QSL("/usr/lib/x86_64-linux-gnu")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
+#endif
+#ifdef Q_OS_WIN
+    libFiles << QDir(App->applicationDirPath()).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
+#endif
+    auto libFile = std::find_if(libFiles.cbegin(), libFiles.cend(), [](const QFileInfo &fi){
+            return isValidLibrary(fi);});
+    if (libFile != libFiles.cend()) {
+        return (*libFile).canonicalFilePath();
+    }
+    return "";
+}
+
 Application::Application(int &argc, char **argv, bool useGui)
     :  QApplication(argc,argv,useGui)
 {DD;
@@ -60,7 +89,9 @@ Application::Application(int &argc, char **argv, bool useGui)
     qtTranslator = new QTranslator(this);
     installTranslator(appTranslator);
     installTranslator(qtTranslator);
-
+#ifdef Q_OS_LINUX
+    setWindowIcon(QIcon(ApplicationPaths::bundlePath()+"/share/icons/hicolor/128x128/apps/qoobar.png"));
+#endif
     // Setting default values
     langID = QSL("en");
 
@@ -121,27 +152,12 @@ Application::Application(int &argc, char **argv, bool useGui)
 
     /*Testing for loadable libraries*/
     /*that is discid*/
-    QStringList discidName = QStringList(QSL("*discid*"));
-
-    QFileInfoList libFiles;
-#ifdef Q_OS_UNIX
-    libFiles << QDir(QSL("/usr/lib")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
-    libFiles << QDir(QSL("/usr/lib/i386-linux-gnu")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
-    libFiles << QDir(QSL("/usr/lib64")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
-    libFiles << QDir(QSL("/usr/lib/x86_64-linux-gnu")).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
-#endif
-#ifdef Q_OS_WIN
-    libFiles << QDir(App->applicationDirPath()).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
-#endif
-    auto libFile = std::find_if(libFiles.cbegin(), libFiles.cend(), [](const QFileInfo &fi){
-            return isValidLibrary(fi);});
-    if (libFile != libFiles.cend()) {
-        discidLibraryPath = (*libFile).canonicalFilePath();
-    }
+    discidLibraryPath = findLibrary("discid");
 
     QStringList themePaths = QIcon::themeSearchPaths();
-    themePaths.prepend(ApplicationPaths::sharedPath()+"/icons");
+    themePaths.prepend(ApplicationPaths::iconsPath());
     QIcon::setThemeSearchPaths(themePaths);
+    qDebug()<<themePaths;
 }
 
 template <class T>
@@ -189,7 +205,11 @@ void Application::setId3v1Encoding(const QString &s)
 QSettings *Application::guiSettings()
 {DD;
 #ifdef QOOBAR_PORTABLE
+#ifdef Q_OS_LINUX
+    return new QSettings(QOOBAR_SHARED_PATH+QSL("/qoobar.ini"),QSettings::IniFormat);
+#else
     return new QSettings(ApplicationPaths::sharedPath()+QSL("/qoobar.ini"),QSettings::IniFormat);
+#endif
 #else
     return new QSettings(QSL("qoobar"),QSL("gui"));
 #endif
