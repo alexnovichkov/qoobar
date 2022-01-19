@@ -49,7 +49,7 @@ body.left-sidebar #sidebar {
 }
 
 body.left-sidebar #content	{
-  margin-left: 19em; /* = sidebar width + 7 */
+  margin-left: 12em; /* = sidebar width + 7 */
 }
 
 div {
@@ -379,7 +379,7 @@ li {
   background-color: #fff;
   height: 100%;
   box-shadow: 0 0 0.25em 0em rgba(0,0,0,0.25);
-  padding: 3em 5em 8em 5em;
+  padding: 1em 5em 1em 5em;
 }
 
 #content:after	{

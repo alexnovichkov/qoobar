@@ -2,6 +2,8 @@
 set -x
 set -e
 
+VERSION=1.7.0
+
 DEPLOY_DIR=$(mktemp -d -p ~/deployment/qoobar appimage-build-XXXXXX)
 
 # make sure to clean up build dir, even if errors occur
@@ -36,4 +38,4 @@ chmod +x linuxdeployqt*.AppImage
 ./linuxdeployqt-5-x86_64.AppImage "$DEPLOY_DIR"/usr/share/applications/qoobar.desktop -appimage -extra-plugins=iconengines,platformthemes/libqgtk3.so
 
 # move built AppImage back into original CWD
-mv Qoobar*.AppImage ~/deployment/qoobar
+mv Qoobar*.AppImage ~/deployment/qoobar/Qoobar-"$VERSION".AppImage

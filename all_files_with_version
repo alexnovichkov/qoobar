@@ -5,6 +5,7 @@ INSTALL
 qoobar.iss
 README
 README.ru
+appimage-deploy.sh
 debian1/changelog
 debian1/qoobar.dsc
 html/appcast.xml

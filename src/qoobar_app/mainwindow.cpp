@@ -634,7 +634,9 @@ void MainWindow::showAboutDialog()
                             "<li>%4</li>"
                             "<li>%5</li>"
                             "<li>%6</li>"
+#ifdef Q_OS_WIN
                             "<li>Winsparkle</li>"
+#endif
                             "<li>loudgain</li>"
                             "</ul>")
             .arg(tr("<b>Qoobar uses:</b>"))

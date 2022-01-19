@@ -11,3 +11,6 @@ function mac_installer() {
 function sources() {
 	return ("http://sourceforge.net/projects/qoobar/files/qoobar-"+_version+"/src/qoobar-"+_version+".tar.gz");
 }
+function appimage_installer() {
+	return ("http://sourceforge.net/projects/qoobar/files/qoobar-"+_version+"/Linux/Qoobar-"+_version+".AppImage");
+}

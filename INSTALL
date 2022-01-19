@@ -23,6 +23,8 @@ $ make clean
 Or you can install qoobar from deb or rpm package
   (see http://qoobar.sourceforge.net/en/download.htm).
 
+Or chmod +x and run this AppImage: 
+  http://sourceforge.net/projects/qoobar/files/qoobar-1.7.0/Linux/Qoobar-1.7.0.AppImage
 
 ** Windows
 ----------
