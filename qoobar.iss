@@ -93,6 +93,7 @@ Name: "plugins"; Description: "{cm:Plugins}"; Types: custom full
 [Dirs]
 Name: "{app}\html\en"; Flags: uninsalwaysuninstall; Components: help
 Name: "{app}\html\en\images"; Flags: uninsalwaysuninstall; Components: help
+Name: "{app}\html\en\assets"; Flags: uninsalwaysuninstall; Components: help
 Name: "{app}\imageformats"; Flags: uninsalwaysuninstall; Components: main
 Name: "{app}\schemes"; Flags: uninsalwaysuninstall; Components: main
 Name: "{app}\completions"; Flags: uninsalwaysuninstall; Components: main
@@ -158,9 +159,7 @@ Source: "src\qoobar_app\icons\maia\*"; DestDir: "{app}\icons\maia"; Flags: ignor
 Source: "src\qoobar_app\icons\coloured\*"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly createallsubdirs recursesubdirs; Components: main
 
 ; help
-Source: "html\*"; DestDir: "{app}\html"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help
-Source: "html\en\*.htm"; DestDir: "{app}\html\en"; Flags: ignoreversion recursesubdirs createallsubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help
-Source: "html\en\images\*.png"; DestDir: "{app}\html\en\images"; Flags: ignoreversion recursesubdirs createallsubdirs overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help
+Source: "html\en\*"; DestDir: "{app}\html\en"; Flags: ignoreversion recursesubdirs createallsubdirs overwritereadonly uninsremovereadonly recursesubdirs; Attribs: readonly; Components: help
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly isreadme uninsremovereadonly; Attribs: readonly; Components: help
 Source: "README.ru.md"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: help
 

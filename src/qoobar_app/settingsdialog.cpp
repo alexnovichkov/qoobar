@@ -91,7 +91,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 #endif
 
     toolBar->setMovable(false);
-    toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolBar->setIconSize(QSize(LARGE_ICON_SIZE, LARGE_ICON_SIZE));
 
     QActionGroup *ag = new QActionGroup(this);
@@ -142,7 +142,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     mainLayout->setMenuBar(toolBar);
     setLayout(mainLayout);
 #endif
-    resize({qApp->primaryScreen()->availableSize().width()/4,
+    resize({qApp->primaryScreen()->availableSize().width()/3,
             qApp->primaryScreen()->availableSize().height()/3});
     retranslateUI();
 }

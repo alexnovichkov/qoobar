@@ -1,100 +1,185 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<META name="description" content="Qoobar, a tagger for classical music">
-<title>Qoobar, a tagger for classical music</title>
-<link href="../style.css" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700|Open+Sans+Condensed:300,700" rel="stylesheet" />
-<script  type="application/javascript" src="../version.js"></script>
-</head>
-<body class="left-sidebar">
-<div id="wrapper">
-  <div id="content">
-		<div id="content-inner">
-		  <article class="is-post">
-				<header>
-					<h1>Qoobar <script type="application/javascript">version();</script></h1>
-					<span class="byline">A free tag editor for classical music</span>
-				</header>
-        <P>Qoobar is a simple tagger which is designed for editing tags in files of classical music.</P>
-        <P><STRONG>With Qoobar you can</STRONG>:</P>
-        <ul class=style1>
-          <LI>Edit ID3v2.4, APE, ASF, MP4 tags, Vorbis comments.</li>
-          <LI>Edit tags in MP3 (*.mp3), Ogg/Vorbis (*.ogg), Ogg/FLAC (*.oga), FLAC (*.flac),
-          	Musepack (*.mpc), Speex (*.spx), TrueAudio (*.tta), WavPack (*.wv),
-          	Wma/Asf (*.wma), APE (*.ape), Wav (*.wav), Aiff (*.aif, *.aiff), Opus (*.opus) and MP4 (*.m4a, *.mp4) files.</li>
-          <LI>Batch tag your files - edit any tags in group of files, giving the same value or individual values.</li>
-          <LI>Easy copy&amp;paste any tags between groups of files.</li>
-          <LI>Edit the following tags: Composer, Album, Title, Performer,
-          	Artist, Conductor, Orchestra, Subtitle, Key, Comment, Genre, Year, Track Number, Total Tracks,
-          	Album artist, Publisher, Mood, Beats per minute (Tempo), Original artist, Original lyricist, Lyricist,
-          	Original album, Lyrics, Music category (Grouping), Copyright, Disc number, Total discs, Remixed by,
-          	Encoded by, ISRC, URL, Rating.</li>
-          <LI>Edit all other tags written in your music files.</li>
-          <LI>Add your own tags and save them.</li>
-          <LI>Generate tags from filenames and filepaths.</li>
-          <LI>Import tags and covers from Discogs, Musicbraiz, GD3.</li>
-          <LI>Rename / copy / move files by their tags, creating folders if necessary.</li>
-          <LI>Convert tags from locale encoding into UTF8.</li>
-          <LI>Edit cover art pictures in all supported file types.</li>
-          <LI>Undo any tag change.</li>
-          <li>Change the scheme of tags reading and writing.</li>
-          <li>Edit your tags using rich autocomplete capabilities.</li>
-          <li>Add ReplayGain info into most of file types.</li>
-          <li>Use Qoobar as a command-line utility (in Linuxes).</li>
-        </UL>
-        <P>Qoobar uses Qt for GUI and Taglib for tags manipulation and runs under GNU/Linux, Mac OS X and Windows. </P>
-        <p>Qoobar also uses parts of other libraries: Michael E. Smoot's TCLAP library, libebur128, some files from Qt Creator sources and KDE sources.</p>
-        <P><STRONG>Current version</STRONG>: <script type="application/javascript">version();</script>, released under the <A href="http://www.gnu.org/licenses/gpl.html">GNU GPL license</A>
-         , that is Qoobar is absolutely free to use and modify.</P>
-      </article>
+	<head>
+		<title>Qoobar, a tagger for classical music</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
 
-      <div id="nav-bottom"><div class=pages>
-  			<ul>
-  				<li><a href="index.htm" TARGET="_top" class=active>Home</a></li>
-  				<li><a href="screenshots.htm" TARGET="_top">Screenshots</a></li>
-  			  <li><a href="download.htm" TARGET="_top">Download</a></li>
-  			  <li><a href="documentation.htm" TARGET="_top">Documentation</a></li>
-  		    <li><a href="changelog.htm" TARGET="_top">Changelog</a></li>
-  		    <li><a href="about.htm" TARGET="_top">About</a></li>
-  			</ul>
-  		</div></div>
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-    </div> <!-- content-inner -->
-  </div> <!-- content -->
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
 
-  <div id="sidebar">
-		<div id="logo">
-			<h1>Qoobar</h1>
-		</div>
+							<!-- Header -->
+								<header id="header">
+									<a href="index.htm" class="logo"><strong>Qoobar</strong> by Alex Novichkov</a>
+									<ul class="icons">
+										<li><a href="https://github.com/alexnovichkov/qoobar.html" class="icon brands fa-github"><span class="label">Qoobar on Github</span></a></li>
+									</ul>
+								</header>
 
-		<nav id="nav">
-			<ul>
-				<li class="current_page_item"><a href="index.htm" TARGET="_top">Home</a></li>
-				<li><a href="screenshots.htm" TARGET="_top">Screenshots</a></li>
-			  <li><a href="download.htm" TARGET="_top">Download</a></li>
-			  <li><a href="documentation.htm" TARGET="_top">Documentation</a></li>
-		    <li><a href="changelog.htm" TARGET="_top">Changelog</a></li>
-		    <li><a href="about.htm" TARGET="_top">About</a></li>
-			</ul>
-		</nav>
+							<!-- Banner -->
+								<section id="banner">
+									<div class="content">
+										<header>
+											<h1>Qoobar <span class="version">Version</span></h1>
+											<p>A free tag editor for classical music</p>
+										</header>
+										<p>Qoobar is a simple tagger which is designed for editing tags in files of classical music.</p>
+										<p>Qoobar uses Qt for GUI and Taglib for tags manipulation and runs under GNU/Linux, Mac OS X and Windows.</p>
+								        <p>Qoobar also uses parts of other libraries: loudgain library, some files from Qt Creator sources and KDE sources.</p>
+								        <p><STRONG>Current version</STRONG>: <span class="version">Version</span>, released under the <A href="http://www.gnu.org/licenses/gpl.html">GNU GPL license</A>
+								         , that is Qoobar is absolutely free to use and modify.</p>
+										<ul class="actions">
+											<li><a href="documentation.htm" class="button big">Learn More</a></li>
+										</ul>
+									</div>
+									<span class="image">
+										<img src="images/qoobar.png" alt="Qoobar main window" />
+									</span>
+								</section>
 
-		<section class="is-text-style1">
-			<div class="inner">
-				<p>
-					Any feedback, wishes, bugs please send via e-mail at <A href="mailto:novichkov.qoobar@gmail.com">novichkov.qoobar@gmail.com</A>.
-				</p>
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Features</h2>
+									</header>
+									<!-- <div class="features"> -->
+									<div class="posts">
+										<article>
+											<!-- <span class="icon fa-gem"></span> -->
+											<h3>File types</h3>
+											<!-- <p>With Qoobar you can</p> -->
+											<ul>
+												<li>ID3v2.4, APE, ASF, MP4 tags, Vorbis comments</li>
+												<li>MP3 (*.mp3), Ogg/Vorbis (*.ogg), Ogg/FLAC (*.oga), FLAC (*.flac),
+													Musepack (*.mpc), Speex (*.spx), TrueAudio (*.tta), WavPack (*.wv),
+													Wma/Asf (*.wma), APE (*.ape), Wav (*.wav), Aiff (*.aif, *.aiff), Opus (*.opus),
+												    MP4 (*.m4a, *.mp4), and DSF (*.dsf) files</li>
+											</ul>
+											<ul class="actions">
+												<li><a href="documentation.htm#features" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<!-- <span class="icon solid fa-paper-plane"></span> -->
+											<h3>Tags</h3>
+											<p>Composer, Album, Title, Performer,
+											   Artist, Conductor, Orchestra, Subtitle, Key, Comment, Genre, Year, Track Number,
+											   Total Tracks, Album artist, Publisher, Mood, Beats per minute (Tempo), Original artist,
+											   Original lyricist, Lyricist, Original album, Lyrics, Music category (Grouping),
+											   Copyright, Disc number, Total discs, Remixed by, Encoded by, ISRC, URL, Rating</p>
+											<ul class="actions">
+												<li><a href="documentation.htm#features" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<!-- <span class="icon solid fa-rocket"></span> -->
+											<h3>Editing</h3>
+											<p>Qoobar allows you to</p>
+											<ul>
+												<li>Generate tags from filenames and filepaths</li>
+												<li>Batch edit your files - edit any tags in group of files</li>
+												<li>Easy copy&amp;paste any tags between groups of files</li>
+												<li>Remember the text you are typing for future use</li>
+												<li>Use autocompletion for selected tags</li>
+												<li>Add and remove cover art pictures</li>
+											</ul>
+											<ul class="actions">
+												<li><a href="documentation.htm#features" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<!-- <span class="icon solid fa-signal"></span> -->
+											<h3>Other features</h3>
+											<p>You also can</p>
+											<ul>
+												<li>Import tags and covers from Discogs, Musicbraiz, GD3.</li>
+												<li>Rename / copy / move files by their tags, creating folders if necessary</li>
+												<li>Convert tags from local encoding into UTF8</li>
+												<li>Change the scheme of tags reading and writing</li>
+												<li>Add ReplayGain info into most of file types</li>
+												<li>Use Qoobar as a command-line utility (in Unix-like systems)</li>
+											</ul>
+											<ul class="actions">
+												<li><a href="documentation.htm#features" class="button">More</a></li>
+											</ul>
+										</article>
+									</div>
+								</section>
+
+								<section>
+									<div class="content">
+										<h3>Special thanks to:</h3>
+								        <ul>
+								        <li>Paul Smedley (<A href="http://os2ports.smedley.info/index.php?page=home">http://os2ports.smedley.info/index.php?page=home</A>)
+								        and Elbert Pol (<a href="mailto:elbert.pol@gmail.com">elbert.pol@gmail.com</a>), for the OS/2 porting.</li>
+								        <li>Amodio Pesce (<A href="mailto:pscamodio@gmail.com">pscamodio@gmail.com</A>) and Marco Spissu, for the Italian translation.</li>
+								        <li>Gwendal le Bihan (<A href="mailto:gwendal.lebihan.dev@gmail.com">gwendal.lebihan.dev@gmail.com</a>), for the French translation.</li>
+								        <li>Piotr Wicijowski (<A href="mailto:piotr.wicijowski@gmail.com">piotr.wicijowski@gmail.com</a>), for the Polish translation.</li>
+								        <li>Elbert Pol (<a href="mailto:elbert.pol@gmail.com">elbert.pol@gmail.com</a>), for the Dutch Translation.</li>
+								        <li>Hannes Riehl, for the German Translation.</li>
+								        </ul>
+									</div>
+								</section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.htm">Homepage</a></li>
+										<li><a href="download.htm">Download</a></li>
+										<li><a href="documentation.htm">Documentation</a></li>
+										<li><a href="changelog.htm">Changelog</a></li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p>Any feedback, wishes, bugs please send via</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="mailto:novichkov.qoobar@gmail.com">novichkov.qoobar@gmail.com</a></li>
+										<li class="icon brands fa-github"><a href="https://github.com/alexnovichkov/qoobar.git">Qoobar</a></li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; 2009-2022 Alex Novichkov. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
 			</div>
-		</section>
 
-		<div id="copyright">
-			<p>&copy; 2009-2022 Alex Novichkov.<br />
-				Design: <a href="http://html5up.net/">HTML5 UP</a>
-			</p>
-		</div>
-	</div> <!-- sidebar -->
-</div> <!-- wrapper -->
-</body>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/version.js"></script>
+
+	</body>
 </html>
-

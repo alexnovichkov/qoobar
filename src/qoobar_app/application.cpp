@@ -55,7 +55,7 @@ QString findLibrary(const QString &libName)
     auto libraryName = QStringList("*"+libName+"*");
 
     QFileInfoList libFiles;
-#ifdef Q_OS_UNIX
+
     //first search in the directories local to the app
     const QString appPath = ApplicationPaths::bundlePath();
     libFiles << QDir(appPath+QSL("/lib")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
@@ -67,10 +67,7 @@ QString findLibrary(const QString &libName)
     libFiles << QDir(QSL("/usr/lib/i386-linux-gnu")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
     libFiles << QDir(QSL("/usr/lib64")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
     libFiles << QDir(QSL("/usr/lib/x86_64-linux-gnu")).entryInfoList(libraryName, QDir::Files | QDir::NoSymLinks);
-#endif
-#ifdef Q_OS_WIN
-    libFiles << QDir(App->applicationDirPath()).entryInfoList(discidName, QDir::Files | QDir::NoSymLinks);
-#endif
+
     auto libFile = std::find_if(libFiles.cbegin(), libFiles.cend(), [](const QFileInfo &fi){
             return isValidLibrary(fi);});
     if (libFile != libFiles.cend()) {
@@ -274,10 +271,14 @@ void Application::readGuiSettings()
 
     lastCueFile = se->value(QSL("lastCueFile")).toString();
 
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     columns170 = se->value(QSL("columns170_5.0")).toByteArray();
+#else
+    columns170 = se->value(QSL("columns170_6.0")).toByteArray();
+#endif
     rows=se->value(QSL("rows")).toByteArray();
 
-    QVariantList variantList = se->value(QSL("tagStatus")).toList();
+    const QVariantList variantList = se->value(QSL("tagStatus")).toList();
     for (const auto &status: variantList)
             tagStatus << status.toInt();
     tagStatus.resize(currentScheme->tagsCount());
@@ -466,7 +467,11 @@ void Application::writeGuiSettings()
     se->setValue("cdromDevice",cdromDevice);
     se->setValue("charsFont",charsFont);
     se->setValue("lastCueFile",lastCueFile);
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     se->setValue("columns170_5.0",columns170);
+#else
+    se->setValue("columns170_6.0",columns170);
+#endif
 
     se->setValue("rows",rows);
     se->setValue("tagStatus",QVariant(makeList(tagStatus)));

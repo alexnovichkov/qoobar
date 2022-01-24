@@ -4,12 +4,12 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="application.cpp" line="441"/>
+        <location filename="application.cpp" line="444"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="441"/>
+        <location filename="application.cpp" line="444"/>
         <source>Cannot write settings. The settings file is read-only</source>
         <translatorcomment>Translated using Google translate</translatorcomment>
         <translation>Impossible d&apos;écrire les paramètres. Le fichier de paramètres est en lecture seule</translation>
@@ -32,13 +32,13 @@ S&apos;il vous plaît vérifiez le fichier</translation>
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="717"/>
-        <location filename="application.cpp" line="742"/>
+        <location filename="application.cpp" line="724"/>
+        <location filename="application.cpp" line="749"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="717"/>
+        <location filename="application.cpp" line="724"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
@@ -47,7 +47,7 @@ Please check the folder</source>
 S&apos;il vous plaît vérifiez le dossier</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="742"/>
+        <location filename="application.cpp" line="749"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation>Impossible d&apos;écrire%1.
@@ -1182,12 +1182,12 @@ after you restart Qoobar</source>
 &lt;br&gt;Email: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="649"/>
+        <location filename="mainwindow.cpp" line="651"/>
         <source>&lt;p&gt;This version is compiled as portable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="952"/>
+        <location filename="mainwindow.cpp" line="954"/>
         <source>Set a tab name</source>
         <translation>Définissez un nom d&apos;onglet</translation>
     </message>
@@ -1645,7 +1645,7 @@ after you restart Qoobar</source>
         <translation>n&apos;est pas installé</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="640"/>
+        <location filename="mainwindow.cpp" line="642"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</oldsource>
         <translation type="unfinished">&lt;b&gt;Qoobar utilise:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</translation>
@@ -1663,28 +1663,28 @@ after you restart Qoobar</source>
 &lt;br&gt;Email: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt; {3&lt;?} {1&lt;?} {2009-2016 ?} {3&lt;?} {1&lt;?} {2009-2020 ?}</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="667"/>
+        <location filename="mainwindow.cpp" line="669"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - ajout d&apos;un répertoire</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="951"/>
+        <location filename="mainwindow.cpp" line="953"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - renommer de l&apos;onglet</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="102"/>
-        <location filename="mainwindow.cpp" line="652"/>
+        <location filename="mainwindow.cpp" line="654"/>
         <source>About Qoobar</source>
         <translation>À propos de Qoobar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="659"/>
+        <location filename="mainwindow.cpp" line="661"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - ajout de fichiers</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="660"/>
+        <location filename="mainwindow.cpp" line="662"/>
         <source>audio files (%1)</source>
         <translation>fichiers audio (%1)</translation>
     </message>

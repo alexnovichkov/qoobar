@@ -64,9 +64,9 @@ TreeView::TreeView(Tab *parent) : QTreeView(parent)
     this->addScrollBarWidget(selector,Qt::AlignTop);
     selector->setDefaultAction(showAct);
 
-    if (!App->columns170.isEmpty()) {
-        header()->restoreState(App->columns170);
-    }
+//    if (!App->columns170.isEmpty()) {
+//        header()->restoreState(App->columns170);
+//    }
     connect(App,SIGNAL(settingsCleared()),SLOT(resetHeader()));
 
     retranslateUi();

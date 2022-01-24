@@ -1,502 +1,527 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<META name="description" content="Qoobar, a tagger for classical music">
-<title>Qoobar, a tagger for classical music</title>
-<link href="../style.css" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700|Open+Sans+Condensed:300,700" rel="stylesheet" />
-<script  type="application/javascript" src="../version.js"></script>
-</head>
-<body class="left-sidebar">
-<div id="wrapper">
-  <div id="content">
-		<div id="content-inner">
-		  <article class="is-post">
-				<header>
-					<h1>Changelog</h1>
-				</header>
-        <P><STRONG>v.1.7.0</STRONG> - 25 Jan 2022</P>
-        <UL>
-            <li>Removed: freedb support</li>
-            <li>Added: hiDPI support, including icons</li>
-            <li>Added: regexp captures in the Tags Edit dialog</li>
-            <li>Added: escape sequence for commas in the functions args</li>
-            <li>Added: case sensitivity option for sorting filenames etc.</li>
-            <li>Added: id3v2 line endings option (for lyrics and other tags)</li>
-            <li>Added: 'rate' tag to the default Mp4 file tag scheme</li>
-            <li>Added: options for replaygaining</li>
-            <li>Fixed: Bug with closing the tabs text editor</li>
-            <li>Fixed: removing id3v1 tags from flac files</li>
-            <li>Fixed: bug with undo/redo actions that are always disabled</li>
-            <li>Fixed: broken cue splitting</li>
-            <li>Fixed: possible crashes when reading mp4 files with no tags</li>
-            <li>Changed: Replaygaining is now done with ffmpeg, both in Linux and Windows</li>
-            <li>Changed: Replaygain info calculation now uses the loudgain library</li>
-            <li>Changed: Qoobar now uses Qt 6 in Windows</li>
-            <li>Changed: Qoobar is now 64-bit in Windows</li>
-            <li>Changed: Temporarily removed OS X version</li>
-            <li>Changed: The embedded taglib files were replaced by linking to the latest taglib 1.12</li>
-        </UL>
-		<P><STRONG>v.1.6.9.1</STRONG> - 25 Jan 2016</P>
-        <UL>
-            <li>Fixed: Bug with restoring the tags table fields</li>
-        </UL>
-				<P><STRONG>v.1.6.9</STRONG> - 19 Jan 2016</P>
-        <UL>
-            <li>Updated html help</li>
-            <li>Fixed: Bug with scrolling to the current file</li>
-            <li>Added: Customizable toolbars</li>
-            <li>Added: OS X helpbook</li>
-            <li>Added: TagLib 1.10</li>
-            <li>Added: SYLT frame support in id3v2 tags</li>
-            <li>Added: Status bar tracking option</li>
-            <li>Added: Showing tag types in the status bar</li>
-            <li>Changed: Moved the autonumber plugin to the main app</li>
-            <li>Changed: Updated the Italian translation</li>
-            <li>Changed: The way to close Qoobar in OS X.</li>
-        </UL>
-				<P><STRONG>v.1.6.8</STRONG> - 22 Sep 2015</P>
-        <UL>
-            <li>Fixed: Undoing of the Files table editing</li>
-            <li>Fixed: Small-size icons in menus</li>
-            <li>Fixed: Qoobar deploying (OS X)</li>
-            <li>Fixed: Cancelling of files removing</li>
-            <li>Fixed: Closing of the Tags edit dialog with not closed editor (OS X)</li>
-            <li>Added: The possibility to change folder tree root</li>
-            <li>Added: The portable version of Qoobar</li>
-            <li>Added: Changeable toolbar icons</li>
-            <li>Changed: The Status bar with extended functionality</li>
-            <li>Changed: The application icon</li>
-            <li>Changed: The Settings dialog interface (OS X)</li>
-        </UL>
-        <P><STRONG>v.1.6.7</STRONG> - 29 Aug 2015</P>
-        <UL>
-            <li>Fixed: Bug with the deleting of the replaygain info</li>
-            <li>Fixed: Discogs authentication</li>
-            <li>Fixed: Reading of tags that contain ;</li>
-            <li>Added: Sorting in the Files table</li>
-            <li>Added: The possibility to edit tags in the files table</li>
-            <li>Changed: The toolbar icons</li>
-            <li>Changed: The Settings dialog interface</li>
-        </UL>
-		<P><STRONG>v.1.6.6</STRONG> - 26 Nov 2014</P>
-        <UL>
-            <li>Fixed: Bug with updating file paths after folder renaming</li>
-            <li>Fixed: Bug with scheme names that contain not allowed chars</li>
-            <li>Fixed: Reading of tags that contain ;</li>
-            <li>Added: Support to add custom tags to tagging scheme</li>
-            <li>Added: Support for &lt;placeholders&gt;</li>
-            <li>Added: &lt;bitrate&gt; placeholder etc.</li>
-            <li>Added: "Set this text into..." action in the context menu of the main window</li>
-        </UL>
-    <P><STRONG>v.1.6.5</STRONG> - 26 Jan 2014</P>
-        <UL>
-            <li>Fixed: Error with placeholders in Fill dialog</li>
-            <li>Fixed: Error with LegendButton</li>
-            <li>Fixed: Splitting files whose path/name contains spaces</li>
-            <li>Fixed: Splitting files whose names contain non-locale chars</li>
-            <li>Fixed: Error with reading tags in m4a files</li>
-            <li>Fixed: Splitting in Linux</li>
-        </UL>
-    <P><STRONG>v.1.6.4</STRONG> - 21 Jan 2014</P>
-        <UL>
-          <li>Added: Simple search for music files in standard and user-defined locations</li>
-          <li>Added: Interaction with Windows 7 and 8 dock and Ubuntu launcher</li>
-          <li>Added: Option "Hide tab bar with one tab"</li>
-          <li>Added: Splitting in different formats</li>
-          <li>Fixed: Side-effect of right-clicking on the item in the folder tree</li>
-          <li>Fixed: Error with closing an empty tab</li>
-          <li>Fixed: Search locations for libdiscid in Linux</li>
-          <li>Fixed: Error with mp4 / m4a tags writing</li>
-          <li>Fixed: Writing of non-standard mp4 tags</li>
-          <li>Changed: 'Legend' button now has multi-level menu</li>
-          <li>Changed: Almost all dialogs now are window modal (i.e. "sheets" in OS X)</li>
-          <li>Changed: Redesigning cover art panel in OS X</li>
-          <li>Changed: Redesigning the Rename dialog: options in a separate menu etc.</li>
-          <li>Updated: Italian and Dutch translations</li>
-        </UL>
+	<head>
+		<title>Qoobar, a tagger for classical music</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
 
-		<P><STRONG>v.1.6.3</STRONG> - 29 Oct 2013</P>
-        <UL>
-          <li>Added: Detection of read-only files</li>
-          <li>Added: WinSparkle integration for Windows version</li>
-          <li>Added: Sparkle integration for OS X version</li>
-          <li>Added: The ability to change cue file encoding</li>
-          <li>Added: DSF files support (not tested)</li>
-          <li>Added: Folder renaming feature</li>
-          <li>Fixed: Bug with tags importing of multiple-CD releases</li>
-          <li>Fixed: Bug with %F, %z, %Z, %E placeholders</li>
-          <li>Fixed: Debian build control file</li>
-          <li>Changed: Files adding in a separate thread</li>
-          <li>Removed: Command-line interface in Windows</li>
-          <li>Updated: Polish translation</li>
-          <li>Updated: TagLib 1.9.1</li>
-        </UL>
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-				<P><STRONG>v.1.6.2</STRONG> - 30 Aug 2013</P>
-        <UL>
-        <li>Fixed: Missing view-refresh icon in Linux</li>
-        <li>Fixed: Bug with first start of fill dialog</li>
-        <li>Added: --force-gui command</li>
-        <li>Added: Cue splitter search for input file</li>
-        <li>Added: Correct Qt plugins loading in Windows</li>
-        <li>Added: Images resizing</li>
-        <li>Added: Remembering whether image box was expanded</li>
-        <li>Added: Functions: $function(...) etc.</li>
-        <li>Added: Unchecking tracks in tags filler dialog</li>
-        <li>Fixed: Split dialog bug with edit updation</li>
-        <li>Fixed: gstreamer initialization in rg module</li>
-        <li>Fixed: discid.dll loading in OS/2</li>
-        <li>Fixed: Bug with gui settings saving</li>
-        <li>Fixed: Error with moving down the last file</li>
-        <li>Fixed: freedb and discogs plugins search bug</li>
-        <li>Fixed: Musicbrainz plugin crash</li>
-        <li>Added: Playlist import with basic implementation</li>
-        <li>Fixed: RPM building in Fedora</li>
-        <li>Fixed: Bug in musicbrainz.cpp with multi-CD releases</li>
-        <li>Fixed: Error with renaming to too long file name in Windows</li>
-        <li>Changed: Qoobar html files style</li>
-        </UL><hr>
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
 
-        <P><STRONG>v.1.6.1</STRONG> - 18 Jun 2013</P>
-        <UL>
-        <li>Fixed: error with qoobar settings disappearing
-        <li>Fixed: error with adding files like "../folder/*.mp3"
-        <li>Fixed: error with reread files icon
-        <li>Fixed: error with plugins search in linux
-        </UL><hr>
+							<!-- Header -->
+								<header id="header">
+									<a href="index.htm" class="logo"><strong>Qoobar</strong> by Alex Novichkov</a>
+									<ul class="icons">
+										<li><a href="https://github.com/alexnovichkov/qoobar.html" class="icon brands fa-github"><span class="label">Qoobar on Github</span></a></li>
+									</ul>
+								</header>
 
-        <P><STRONG>v.1.6.0</STRONG> - 6 Mar 2013</P>
-        <UL>
-        <li>Added: Plugins support for tags editing
-        <li>Added: Plugins support for importing tags from the Internet
-        <li>Added: id3v2 tags now can be written either as v2.3 or as v2.4
-        <li>Added: Opus files support
-        <li>Added: Mutex in Windows version to prevent installing while Qoobar is
-            running
-        <li>Added: Checkable headers to tags fill dialog
-        <li>Added: highlighting of paths in the file rename dialog
-        <li>Added: fill patterns similar to rename patterns
-        <li>Added: Command line support
-        <li>Added: Proper two-stage ReplayGain scanning
-        <li>Added: Option (in Linux) to write Musepack ReplayGain info into tags.
-        <li>Added: More filename placeholders
-        <li>Added: Possibility to rename tabs by double clicking on them
-        <li>Added: "Image" column into file tree
-        <li>Changed: Now when adding folder with subfolders all subfolders come first, then
-            files
-        <li>Changed: Comments in id3v2 now written with "eng" language
-        <li>Fixed: error with tags table updating
-        <li>Fixed: error with reading TCON frame
-        <li>Fixed: error with files table updating
-        <li>Fixed: bug with too-wide labels in split dialog
-        <li>Fixed: error with reading replaygain info from ape tags of mp3 files
-            where binary fields are present
-        <li>Fixed: adding of patterns into app settings
-        <li>Fixed: searching in freedb for album with more than 99 tracks
-        <li>Fixed: compiling in mandriva 2010
-        <li>Fixed: error with deletion of replaygain info from mp3, error with
-            deletion of RG info and "skip files" option
-        </UL><hr>
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Changelog</h1>
+									</header>
 
-        <P><STRONG>v.1.5.3</STRONG> - 18 Aug 2012</P>
-        <UL>
-        <li>Added: "Reset settings" button to the Settings dialog
-        <li>Added: Aiff file support
-        <li>Added: "Apply options to folders" checkbox in the Rename dialog
-        <li>Added: the Dutch translation
-        <li>Added: Column with replaygain flag in the files table
-        <li>Added: settings option to copy files before replaygaining
-        <li>Added: replaygaining of multiple formats at once
-        <li>Added: "scan albums by folder" and "scan albums by tags" buttons
-        <li>Added: possibility to type track number as "01" and get "01,02,03..."
-        <li>Changed: Many small improvements
-        <li>Fixed: The bug with %c placeholder
-        <li>Fixed: error with %n/%N placeholders
-        <li>Fixed: error with slashes in tags in the Rename dialog
-        <li>Fixed: error with tags pasting
-        <li>Fixed: error: replaygaining files with diacritics in windows
-        <li>Fixed: error with rereading of tags
-        <li>Improved: Speeding up Qoobar launching and work
-        </UL><hr>
+									<P><STRONG>v.1.7.0</STRONG> - 25 Jan 2022</P>
+							        <UL>
+							            <li>Removed: freedb support</li>
+							            <li>Added: hiDPI support, including icons</li>
+							            <li>Added: regexp captures in the Tags Edit dialog</li>
+							            <li>Added: escape sequence for commas in the functions args</li>
+							            <li>Added: case sensitivity option for sorting filenames etc.</li>
+							            <li>Added: id3v2 line endings option (for lyrics and other tags)</li>
+							            <li>Added: 'rate' tag to the default Mp4 file tag scheme</li>
+							            <li>Added: options for replaygaining</li>
+							            <li>Fixed: Bug with closing the tabs text editor</li>
+							            <li>Fixed: removing id3v1 tags from flac files</li>
+							            <li>Fixed: bug with undo/redo actions that are always disabled</li>
+							            <li>Fixed: broken cue splitting</li>
+							            <li>Fixed: possible crashes when reading mp4 files with no tags</li>
+							            <li>Changed: Replaygaining is now done with ffmpeg, both in Linux and Windows</li>
+							            <li>Changed: Replaygain info calculation now uses the loudgain library</li>
+							            <li>Changed: Qoobar now uses Qt 6 in Windows</li>
+							            <li>Changed: Qoobar is now 64-bit in Windows</li>
+							            <li>Changed: Temporarily removed OS X version</li>
+							            <li>Changed: The embedded taglib files were replaced by linking to the latest taglib 1.12</li>
+							        </UL>
 
-        <P><STRONG>v.1.5.2</STRONG> - 9 Jun 2012</P>
-        <UL>
-        <li>Added: Reading of Musepack v8 audio properties
-        <li>Added: Replaygaining using command-line tools
-        <li>Added: Mp3 tags dialog
-        <li>Added: "Move to the tab..." action
-        <li>Added: Folder tree
-        <li>Changed: The way of qoobar launching from desktop file
-        <li>Changed: Separated "Place text into..." and "Place block into..." actions.
-        <li>Changed: The Settings dialog interface
-        <li>Fixed: Impossibility to copy non-standard tags into clipboard
-        <li>Fixed: Many small improvements in code
-        </UL><hr>
+									<P><STRONG>v.1.6.9.1</STRONG> - 25 Jan 2016</P>
+							        <UL>
+							            <li>Fixed: Bug with restoring the tags table fields</li>
+							        </UL>
+									<P><STRONG>v.1.6.9</STRONG> - 19 Jan 2016</P>
+							        <UL>
+							            <li>Updated html help</li>
+							            <li>Fixed: Bug with scrolling to the current file</li>
+							            <li>Added: Customizable toolbars</li>
+							            <li>Added: OS X helpbook</li>
+							            <li>Added: TagLib 1.10</li>
+							            <li>Added: SYLT frame support in id3v2 tags</li>
+							            <li>Added: Status bar tracking option</li>
+							            <li>Added: Showing tag types in the status bar</li>
+							            <li>Changed: Moved the autonumber plugin to the main app</li>
+							            <li>Changed: Updated the Italian translation</li>
+							            <li>Changed: The way to close Qoobar in OS X.</li>
+							        </UL>
+									<P><STRONG>v.1.6.8</STRONG> - 22 Sep 2015</P>
+							        <UL>
+							            <li>Fixed: Undoing of the Files table editing</li>
+							            <li>Fixed: Small-size icons in menus</li>
+							            <li>Fixed: Qoobar deploying (OS X)</li>
+							            <li>Fixed: Cancelling of files removing</li>
+							            <li>Fixed: Closing of the Tags edit dialog with not closed editor (OS X)</li>
+							            <li>Added: The possibility to change folder tree root</li>
+							            <li>Added: The portable version of Qoobar</li>
+							            <li>Added: Changeable toolbar icons</li>
+							            <li>Changed: The Status bar with extended functionality</li>
+							            <li>Changed: The application icon</li>
+							            <li>Changed: The Settings dialog interface (OS X)</li>
+							        </UL>
+							        <P><STRONG>v.1.6.7</STRONG> - 29 Aug 2015</P>
+							        <UL>
+							            <li>Fixed: Bug with the deleting of the replaygain info</li>
+							            <li>Fixed: Discogs authentication</li>
+							            <li>Fixed: Reading of tags that contain ;</li>
+							            <li>Added: Sorting in the Files table</li>
+							            <li>Added: The possibility to edit tags in the files table</li>
+							            <li>Changed: The toolbar icons</li>
+							            <li>Changed: The Settings dialog interface</li>
+							        </UL>
+									<P><STRONG>v.1.6.6</STRONG> - 26 Nov 2014</P>
+							        <UL>
+							            <li>Fixed: Bug with updating file paths after folder renaming</li>
+							            <li>Fixed: Bug with scheme names that contain not allowed chars</li>
+							            <li>Fixed: Reading of tags that contain ;</li>
+							            <li>Added: Support to add custom tags to tagging scheme</li>
+							            <li>Added: Support for &lt;placeholders&gt;</li>
+							            <li>Added: &lt;bitrate&gt; placeholder etc.</li>
+							            <li>Added: "Set this text into..." action in the context menu of the main window</li>
+							        </UL>
+							    	<P><STRONG>v.1.6.5</STRONG> - 26 Jan 2014</P>
+							        <UL>
+							            <li>Fixed: Error with placeholders in Fill dialog</li>
+							            <li>Fixed: Error with LegendButton</li>
+							            <li>Fixed: Splitting files whose path/name contains spaces</li>
+							            <li>Fixed: Splitting files whose names contain non-locale chars</li>
+							            <li>Fixed: Error with reading tags in m4a files</li>
+							            <li>Fixed: Splitting in Linux</li>
+							        </UL>
+							   	 	<P><STRONG>v.1.6.4</STRONG> - 21 Jan 2014</P>
+							        <UL>
+							          <li>Added: Simple search for music files in standard and user-defined locations</li>
+							          <li>Added: Interaction with Windows 7 and 8 dock and Ubuntu launcher</li>
+							          <li>Added: Option "Hide tab bar with one tab"</li>
+							          <li>Added: Splitting in different formats</li>
+							          <li>Fixed: Side-effect of right-clicking on the item in the folder tree</li>
+							          <li>Fixed: Error with closing an empty tab</li>
+							          <li>Fixed: Search locations for libdiscid in Linux</li>
+							          <li>Fixed: Error with mp4 / m4a tags writing</li>
+							          <li>Fixed: Writing of non-standard mp4 tags</li>
+							          <li>Changed: 'Legend' button now has multi-level menu</li>
+							          <li>Changed: Almost all dialogs now are window modal (i.e. "sheets" in OS X)</li>
+							          <li>Changed: Redesigning cover art panel in OS X</li>
+							          <li>Changed: Redesigning the Rename dialog: options in a separate menu etc.</li>
+							          <li>Updated: Italian and Dutch translations</li>
+							        </UL>
 
-        <P><STRONG>v.1.5.1.1</STRONG> - 8 Mar 2012</P>
-        <UL>
-        <li>Fixed: Bug with writing of APE tags.
-        </UL><hr>
+									<P><STRONG>v.1.6.3</STRONG> - 29 Oct 2013</P>
+							        <UL>
+							          <li>Added: Detection of read-only files</li>
+							          <li>Added: WinSparkle integration for Windows version</li>
+							          <li>Added: Sparkle integration for OS X version</li>
+							          <li>Added: The ability to change cue file encoding</li>
+							          <li>Added: DSF files support (not tested)</li>
+							          <li>Added: Folder renaming feature</li>
+							          <li>Fixed: Bug with tags importing of multiple-CD releases</li>
+							          <li>Fixed: Bug with %F, %z, %Z, %E placeholders</li>
+							          <li>Fixed: Debian build control file</li>
+							          <li>Changed: Files adding in a separate thread</li>
+							          <li>Removed: Command-line interface in Windows</li>
+							          <li>Updated: Polish translation</li>
+							          <li>Updated: TagLib 1.9.1</li>
+							        </UL>
 
-        <P><STRONG>v.1.5.1</STRONG> - 1 Feb 2012</P>
-        <UL>
-        <li>Added: Progress bar in internet search dialog
-        <li>Added: Autocompletion now can match the whole string or the last word
-        <li>Added: The ability to change some mp4 tags mapping
-        <li>Added: Support for some binary mp4 tags (Windows only or TagLib > 1.7.0)
-        <li>Added: Progress bar in split dialog
-        <li>Added: Option to save tags separated by ; as separate fields (for ape, ogg, flac files)
-        <li>Added: Full support for rating in mp4 files (Windows only or TagLib > 1.7.0)
-        <li>Changed: Switched to a newer taglib (Windows only)
-        <li>Changed: Id3v1 tags now append to tags, not replace the empty ones.
-        <li>Changed: scheme files to support new mp4 items
-        <li>Changed: Improved transliteration algorithm
-        <li>Fixed: Fixed two potential bugs.
-        <li>Fixed: Attempt to read binary id3v24 tag causes program crash.
-        </UL><hr>
+									<P><STRONG>v.1.6.2</STRONG> - 30 Aug 2013</P>
+							        <UL>
+								        <li>Fixed: Missing view-refresh icon in Linux</li>
+								        <li>Fixed: Bug with first start of fill dialog</li>
+								        <li>Added: --force-gui command</li>
+								        <li>Added: Cue splitter search for input file</li>
+								        <li>Added: Correct Qt plugins loading in Windows</li>
+								        <li>Added: Images resizing</li>
+								        <li>Added: Remembering whether image box was expanded</li>
+								        <li>Added: Functions: $function(...) etc.</li>
+								        <li>Added: Unchecking tracks in tags filler dialog</li>
+								        <li>Fixed: Split dialog bug with edit updation</li>
+								        <li>Fixed: gstreamer initialization in rg module</li>
+								        <li>Fixed: discid.dll loading in OS/2</li>
+								        <li>Fixed: Bug with gui settings saving</li>
+								        <li>Fixed: Error with moving down the last file</li>
+								        <li>Fixed: freedb and discogs plugins search bug</li>
+								        <li>Fixed: Musicbrainz plugin crash</li>
+								        <li>Added: Playlist import with basic implementation</li>
+								        <li>Fixed: RPM building in Fedora</li>
+								        <li>Fixed: Bug in musicbrainz.cpp with multi-CD releases</li>
+								        <li>Fixed: Error with renaming to too long file name in Windows</li>
+								        <li>Changed: Qoobar html files style</li>
+							        </UL><hr>
 
-        <P><STRONG>v.1.5.0</STRONG> - 17 Jan 2012</P>
-        <UL>
-        <li>Added: autocompletion of any standard tags
-        <li>Added: tags collecting for autocompletion works in two modes: manual and automatic
-        <li>Added: "Collect tags" operation
-        <li>Added: tags autocompletion mode switch: the whole string / the last word
-        <li>Added: tagging schemes
-        <li>Added: The option to turn off undo / redo operations
-        <li>Added: apostrophe recognition in case converting
-        <li>Added: menu
-        <li>Added: new action: Save all tabs.
-        <li>Changed: the Settings Dialog has now the left panel with icons instead of tabs
-        <li>Changed: Flac tags are now written using libFLAC and not TagLib because of some problems with TagLib.
-        <li>Changed: diacritics removing now works only with latin based characters
-        <li>Changed: The "autoexpand..." operation now works equally when pasting tags from internal buffer and from the clipboard
-        <li>Changed: The Tags Editing dialog has now a separate toolbar with common operations
-        <li>Changed: Qoobar now uses enca for tags recoding.
-        <li>Changed: discogs and musicbrainz import switched to a newer API.
-        <li>Fixed: Partial tags importing from freedb
-        <li>Fixed: Some possible memory leaks
-        <li>Fixed: Slashes in tags as path separators when renaming files.
-        <li>Fixed: ID3v1 tags reading and writing beyond tags borders.
-        </UL><hr>
+							        <P><STRONG>v.1.6.1</STRONG> - 18 Jun 2013</P>
+							        <UL>
+							        <li>Fixed: error with qoobar settings disappearing</li>
+							        <li>Fixed: error with adding files like "../folder/*.mp3"</li>
+							        <li>Fixed: error with reread files icon</li>
+							        <li>Fixed: error with plugins search in linux</li>
+							        </UL><hr>
 
-        <P><STRONG>v.1.4.0</STRONG> - 20 Aug 2011</P>
-        <UL>
-        <LI>Toolbar with characters is removed from the main window.
-        <LI>Added: autocompletion of genres and moods.
-        <LI>Added: of editing lists of composers, genres and moods.
-        <LI>Added: options to turn off the autocompletion.
-        <LI>Added: parametres of last renaming operation are saved.
-        <LI>Added: in Windows splittings files logging.
-        <LI>Added: id3v1 tags saving for all file types that support it.
-        <LI>Added: number of tags editing operations are increased.
-        <LI>Added: search & replace panel in the tags editing dialog.
-        <LI>Added: cut, copy and paste operations with cover art pictures.
-        <LI>Added: the "copy tags to clipboard" action with corresponding shortcut.
-        <LI>Added: the "autonumbering" function.
-        <LI>Added: editing of cover art type and description.
-        <LI>Fixed: changing of id3v1 tags encoding in the settings dialog.
-        <LI>Fixed bug: when splitting disc overwritten files won't add.
-        <LI>Removed: scripting support.
-        <LI>Removed: shortcut Ctrl+W "fix encoding".
-        <LI>Removed: part of undo operations.
-        <LI>The toolbar with characters in the tags editing dialog replaced with a panel.
-        <LI>Help pages are revised and improved.
-        </UL><hr>
+							        <P><STRONG>v.1.6.0</STRONG> - 6 Mar 2013</P>
+							        <UL>
+							        <li>Added: Plugins support for tags editing</li>
+							        <li>Added: Plugins support for importing tags from the Internet</li>
+							        <li>Added: id3v2 tags now can be written either as v2.3 or as v2.4</li>
+							        <li>Added: Opus files support</li>
+							        <li>Added: Mutex in Windows version to prevent installing while Qoobar is
+							            running</li>
+							        <li>Added: Checkable headers to tags fill dialog</li>
+							        <li>Added: highlighting of paths in the file rename dialog</li>
+							        <li>Added: fill patterns similar to rename patterns</li>
+							        <li>Added: Command line support</li>
+							        <li>Added: Proper two-stage ReplayGain scanning</li>
+							        <li>Added: Option (in Linux) to write Musepack ReplayGain info into tags.</li>
+							        <li>Added: More filename placeholders</li>
+							        <li>Added: Possibility to rename tabs by double clicking on them</li>
+							        <li>Added: "Image" column into file tree</li>
+							        <li>Changed: Now when adding folder with subfolders all subfolders come first, then
+							            files</li>
+							        <li>Changed: Comments in id3v2 now written with "eng" language</li>
+							        <li>Fixed: error with tags table updating</li>
+							        <li>Fixed: error with reading TCON frame</li>
+							        <li>Fixed: error with files table updating</li>
+							        <li>Fixed: bug with too-wide labels in split dialog</li>
+							        <li>Fixed: error with reading replaygain info from ape tags of mp3 files</li>
+							            where binary fields are present</li>
+							        <li>Fixed: adding of patterns into app settings</li>
+							        <li>Fixed: searching in freedb for album with more than 99 tracks</li>
+							        <li>Fixed: compiling in mandriva 2010</li>
+							        <li>Fixed: error with deletion of replaygain info from mp3, error with
+							            deletion of RG info and "skip files" option</li>
+							        </UL><hr>
 
-        <P><STRONG>v.1.3.4</STRONG> - 6 Jun 2011</P>
-        <UL>
-        <LI>When adding a picture its description is now not a full file path, but only a file name.
-        <LI>Added a context menu to tabs.
-        <LI>New shortcuts: Ctrl+T - new tab, Ctrl+F4 - close the tab
-        <LI>You can now add new tabs by double clicking on the tab bar.
-        <LI>You can now rename tabs.
-        <LI>The size and position of the main window are now restoring.
-        <LI>Fixed bug: when splitting disc overwritten files won't add.
-        <LI>All "named" tags (album artist, mood etc.) have now their placeholder.
-        <LI>Fixed severe bug: clicking on the OK button right after opening the fill tags dialog causes program crash.
-        <LI>You can now set the maximum file length in the rename dialog.
-        <LI>You can now drag'n'drop a cue file so that the split disc dialog is shown.
-        </UL><hr>
+							        <P><STRONG>v.1.5.3</STRONG> - 18 Aug 2012</P>
+							        <UL>
+							        <li>Added: "Reset settings" button to the Settings dialog</li>
+							        <li>Added: Aiff file support</li>
+							        <li>Added: "Apply options to folders" checkbox in the Rename dialog</li>
+							        <li>Added: the Dutch translation</li>
+							        <li>Added: Column with replaygain flag in the files table</li>
+							        <li>Added: settings option to copy files before replaygaining</li>
+							        <li>Added: replaygaining of multiple formats at once</li>
+							        <li>Added: "scan albums by folder" and "scan albums by tags" buttons</li>
+							        <li>Added: possibility to type track number as "01" and get "01,02,03..."</li>
+							        <li>Changed: Many small improvements</li>
+							        <li>Fixed: The bug with %c placeholder</li>
+							        <li>Fixed: error with %n/%N placeholders</li>
+							        <li>Fixed: error with slashes in tags in the Rename dialog</li>
+							        <li>Fixed: error with tags pasting</li>
+							        <li>Fixed: error: replaygaining files with diacritics in windows</li>
+							        <li>Fixed: error with rereading of tags</li>
+							        <li>Improved: Speeding up Qoobar launching and work</li>
+							        </UL><hr>
 
-        <P><STRONG>v.1.3.3</STRONG> - 21 Feb 2011</P>
-        <UL>
-        <LI>Fixed: checking if mac, flac & shntool are installed in Linux.
-        <li>Fixed: writing of FLAC files - numerous silly bugs in libflac loading.
-        </UL><hr>
+							        <P><STRONG>v.1.5.2</STRONG> - 9 Jun 2012</P>
+							        <UL>
+							        <li>Added: Reading of Musepack v8 audio properties</li>
+							        <li>Added: Replaygaining using command-line tools</li>
+							        <li>Added: Mp3 tags dialog</li>
+							        <li>Added: "Move to the tab..." action</li>
+							        <li>Added: Folder tree</li>
+							        <li>Changed: The way of qoobar launching from desktop file</li>
+							        <li>Changed: Separated "Place text into..." and "Place block into..." actions.</li>
+							        <li>Changed: The Settings dialog interface</li>
+							        <li>Fixed: Impossibility to copy non-standard tags into clipboard</li>
+							        <li>Fixed: Many small improvements in code</li>
+							        </UL><hr>
 
-        <P><STRONG>v.1.3.2</STRONG> - 13 Feb 2011</P>
-        <UL>
-        <LI>Fixed: OGA files reading.
-        <li>Fixed: writing of FLAC files - now writing is faster.
-        <li>Fixed: removing of pregap00 file when splitting a CD image.
-        <li>Fixed: splitting of a CD image - now only flac files are being added.
-        <li>Fixed: folder adding - now when you cancel it, no empty line added.
-        <li>Fixed: files moving up/down the files table.
-        <li>Fixed: tags importing from Discogs.
-        <li>Added sample rate and number of channels properties.
-        <li>Added placeholders: %l length, %L length in seconds, %b bitrate, %f filename, %r sample rate, %h channels.
-        <li>Added the ability to "join" tags together (as in files renaming).
-        <li>Added the ability to preview the whole coverart by clicking on its thumbnail.
-        <li>Some code refactoring and optimisation - now Qoobar takes less memory when working with cover arts.
-        </UL><hr>
+							        <P><STRONG>v.1.5.1.1</STRONG> - 8 Mar 2012</P>
+							        <UL>
+							        <li>Fixed: Bug with writing of APE tags.</li>
+							        </UL><hr>
 
-        <P><STRONG>v.1.3.1</STRONG> - 28 Oct 2010</P>
-        <UL>
-        <LI>Fixed: the cover art panel now correctly updates.</li>
-        <LI>Added the Italian translation.</li>
-        <LI>Added the French translation.</li>
-        <LI>Now you can change the interface language without restarting Qoobar.</li>
-        <li>Added the ability to save id3v1 tags into mp3 files.</li>
-        <li>Added the support of these tags: Disc #/Total discs, Encoded by, Remixed by, ISRC, Album artist, URL, Rating.</li>
-        <li>Added tags importing from Musicbrainz.</li>
-        <li>Some bugs fixed.</li>
-        <li>Added the ability to change the chars list font.</li>
-        <li>Now you can number the tracks from the Tags table.
-        <li>Added the ability to fill tags from other tags.
-        <li>Now you can quickly fill a tag in the Edit dialog.
-        <li>Added the ability to change the case of filenames when renaming files.
-        <li>Added the ability to split a disc image by the corresponding cue sheet.
-        </UL><hr>
+							        <P><STRONG>v.1.5.1</STRONG> - 1 Feb 2012</P>
+							        <UL>
+							        <li>Added: Progress bar in internet search dialog</li>
+							        <li>Added: Autocompletion now can match the whole string or the last word</li>
+							        <li>Added: The ability to change some mp4 tags mapping</li>
+							        <li>Added: Support for some binary mp4 tags (Windows only or TagLib > 1.7.0)</li>
+							        <li>Added: Progress bar in split dialog</li>
+							        <li>Added: Option to save tags separated by ; as separate fields (for ape, ogg, flac files)</li>
+							        <li>Added: Full support for rating in mp4 files (Windows only or TagLib > 1.7.0)</li>
+							        <li>Changed: Switched to a newer taglib (Windows only)</li>
+							        <li>Changed: Id3v1 tags now append to tags, not replace the empty ones.</li>
+							        <li>Changed: scheme files to support new mp4 items</li>
+							        <li>Changed: Improved transliteration algorithm</li>
+							        <li>Fixed: Fixed two potential bugs.</li>
+							        <li>Fixed: Attempt to read binary id3v24 tag causes program crash.</li>
+							        </UL><hr>
 
-        <P><STRONG>v.1.3.0</STRONG> - 8 Aug 2010</P>
-        <UL>
-        <LI>Fixed: Composer completion numerous bugs.</li>
-        <LI>The "About" dialog now gives more info.</li>
-        <LI>Java scripts support added.</li>
-        <LI>Some shortcuts added, some changed.</li>
-        <LI>A small file writing check added.</li>
-        <li>Trim spaces moved to scripts.</li>
-        <li>The undo / redo system added. Now you can undo even saving tags.</li>
-        <li>Added tags import from Discogs and freedb.</li>
-        <li>Added option in the rename dialog: delete empty folder after renaming.</li>
-        </UL><hr>
+							        <P><STRONG>v.1.5.0</STRONG> - 17 Jan 2012</P>
+							        <UL>
+							        <li>Added: autocompletion of any standard tags</li>
+							        <li>Added: tags collecting for autocompletion works in two modes: manual and automatic</li>
+							        <li>Added: "Collect tags" operation</li>
+							        <li>Added: tags autocompletion mode switch: the whole string / the last word</li>
+							        <li>Added: tagging schemes</li>
+							        <li>Added: The option to turn off undo / redo operations</li>
+							        <li>Added: apostrophe recognition in case converting</li>
+							        <li>Added: menu</li>
+							        <li>Added: new action: Save all tabs.</li>
+							        <li>Changed: the Settings Dialog has now the left panel with icons instead of tabs</li>
+							        <li>Changed: Flac tags are now written using libFLAC and not TagLib because of some problems with TagLib.</li>
+							        <li>Changed: diacritics removing now works only with latin based characters</li>
+							        <li>Changed: The "autoexpand..." operation now works equally when pasting tags from internal buffer and from the clipboard</li>
+							        <li>Changed: The Tags Editing dialog has now a separate toolbar with common operations</li>
+							        <li>Changed: Qoobar now uses enca for tags recoding.</li>
+							        <li>Changed: discogs and musicbrainz import switched to a newer API.</li>
+							        <li>Fixed: Partial tags importing from freedb</li>
+							        <li>Fixed: Some possible memory leaks</li>
+							        <li>Fixed: Slashes in tags as path separators when renaming files.</li>
+							        <li>Fixed: ID3v1 tags reading and writing beyond tags borders.</li>
+							        </UL><hr>
 
-        <P><STRONG>v.1.2.2</STRONG> - 2 Jul 2010</P>
-        <UL>
-        <LI>The Edit dialog: the list with chars is replaced with the toolbar.</li>
-        <LI>The Simplify whitespaces button is removed from the main toolbar.</li>
-        <LI>The behaviour of toolbar is now context-aware.</li>
-        <LI>Synchronize... is now not an option but a feature.</li>
-        <LI>Removed 'Unite' action.</li>
-        <li>Added the "About..." dialog.</li>
-        <li>Slightly changed behaviour of the Tags Table when only one file is selected:<br>
-        now to edit a tag you have to double click it.</li>
-        <li>The size of the Linux version of Qoobar is reduced by 130 kb.</li>
-        <li>A site of Qoobar at qoobar.sourceforge.net is finally created.
-        <li>A manpage is created.
-        </UL><hr>
+							        <P><STRONG>v.1.4.0</STRONG> - 20 Aug 2011</P>
+							        <UL>
+							        <li>Toolbar with characters is removed from the main window.</li>
+							        <li>Added: autocompletion of genres and moods.</li>
+							        <li>Added: of editing lists of composers, genres and moods.</li>
+							        <li>Added: options to turn off the autocompletion.</li>
+							        <li>Added: parametres of last renaming operation are saved.</li>
+							        <li>Added: in Windows splittings files logging.</li>
+							        <li>Added: id3v1 tags saving for all file types that support it.</li>
+							        <li>Added: number of tags editing operations are increased.</li>
+							        <li>Added: search & replace panel in the tags editing dialog.</li>
+							        <li>Added: cut, copy and paste operations with cover art pictures.</li>
+							        <li>Added: the "copy tags to clipboard" action with corresponding shortcut.</li>
+							        <li>Added: the "autonumbering" function.</li>
+							        <li>Added: editing of cover art type and description.</li>
+							        <li>Fixed: changing of id3v1 tags encoding in the settings dialog.</li>
+							        <li>Fixed bug: when splitting disc overwritten files won't add.</li>
+							        <li>Removed: scripting support.</li>
+							        <li>Removed: shortcut Ctrl+W "fix encoding".</li>
+							        <li>Removed: part of undo operations.</li>
+							        <li>The toolbar with characters in the tags editing dialog replaced with a panel.</li>
+							        <li>Help pages are revised and improved.</li>
+							        </UL><hr>
 
-        <P><STRONG>v.1.2.1</STRONG> - 6 Jun 2010, bugfixes only</P>
-        <UL>
-        <LI>Fixed bug: after renaming of files the files table didn't update properly.
-        <LI>Fixed bug: when filling tags from file names the extension of file didn't remove. </LI>
-        </UL><hr>
+							        <P><STRONG>v.1.3.4</STRONG> - 6 Jun 2011</P>
+							        <UL>
+							        <li>Added: a context menu to tabs.</li>
+							        <li>Added: New shortcuts: Ctrl+T - new tab, Ctrl+F4 - close the tab</li>
+							        <li>Added: You can now add new tabs by double clicking on the tab bar.</li>
+							        <li>Added: You can now rename tabs.</li>
+							        <li>Added: The size and position of the main window are now restoring.</li>
+							        <li>Added: All "named" tags (album artist, mood etc.) have now their placeholder.</li>
+							        <li>Added: You can now set the maximum file length in the rename dialog.</li>
+							        <li>Added: You can now drag'n'drop a cue file so that the split disc dialog is shown.</li>
+							        <li>Changed: When adding a picture its description is now not a full file path, but only a file name.</li>
+							        <li>Fixed bug: when splitting disc overwritten files won't add.</li>
+							        <li>Fixed severe bug: clicking on the OK button right after opening the fill tags dialog causes program crash.</li>
+							        </UL><hr>
 
-        <P><STRONG>v.1.2.0</STRONG> - 22 May 2010</P>
-        <UL>
-        <LI>Qoobar user interface has been changed.
-        <LI>Additional tags "Conductor", "Subtitle", "Orchestra", "Key" are now the main ones.
-        <LI>Multiple bugfixes.
-        <LI>Added coverart support. </LI>
-        </UL><hr>
+							        <P><STRONG>v.1.3.3</STRONG> - 21 Feb 2011</P>
+							        <UL>
+							        <li>Fixed: checking if mac, flac & shntool are installed in Linux.</li>
+							        <li>Fixed: writing of FLAC files - numerous silly bugs in libflac loading.</li>
+							        </UL><hr>
 
-        <P><B>v.1.1.4</B> - 16 Mar 2010
-        <UL>
-        <LI>The "autoexpand" feature was added.
-        <LI>Some shortcuts are now active in all window.
-        <LI>Label to the help file was replaced with the button.
-        <LI>Tags writing in the MP4 files is now corresponds to written by iTunes.
-        <LI>Several bugfixes.
-        <LI>Tags "Conductor", "Subtitle", "Orchestra", "Lyricist", "Lyrics", "Music form", "Key", "Beats per minute", "Mood", "Publisher", "Original artist", "Original album", "Original lyricist", "Copyright" were added.
-        <LI>The last directory can now be preserved after Qoobar closing.
-        <LI>Fine tuning of reading/writing tags in Musepack, True Audio, WavPack files was added.
-        <LI>The settings dialog was updated.
-        <LI>All tags now correspond to ones handled by Tag&amp;Rename. A table with all supported tags was added to this help file.
-        <LI>the ability to change the user interface language was added. </LI>
-        </UL><hr>
+							        <P><STRONG>v.1.3.2</STRONG> - 13 Feb 2011</P>
+							        <UL>
+							        <li>Added: sample rate and number of channels properties.</li>
+							        <li>Added: placeholders: %l length, %L length in seconds, %b bitrate, %f filename, %r sample rate, %h channels.</li>
+							        <li>Added: the ability to "join" tags together (as in files renaming).</li>
+							        <li>Added: the ability to preview the whole coverart by clicking on its thumbnail.	</li>
+							        <li>Fixed: OGA files reading.</li>
+							        <li>Fixed: writing of FLAC files - now writing is faster.</li>
+							        <li>Fixed: removing of pregap00 file when splitting a CD image.</li>
+							        <li>Fixed: splitting of a CD image - now only flac files are being added.</li>
+							        <li>Fixed: folder adding - now when you cancel it, no empty line added.</li>
+							        <li>Fixed: files moving up/down the files table.</li>
+							        <li>Fixed: tags importing from Discogs.</li>
+							        <li>Some code refactoring and optimisation - now Qoobar takes less memory when working with cover arts.</li>
+							        </UL><hr>
 
-        <P><B>v.1.1.3</B> - 27 Feb 2010
-        <UL>
-        <LI>Added synchronization of the current row in the Edit dialog with the corresponding row in the Files Table.
-        <LI>The "save" column which shows changed files in the Files Table is now leftmost by default.
-        <LI>You can now show/hide rows in the Tags Table.
-        <LI>You can edit renaming patterns in the Settings Dialog.
-        <LI>Added icons for some actions.
-        <LI>Added the ability to save individual files right in the Files Table by clicking on the "save" icon.
-        <LI>Fixed: after changing tags and clearing the list the Save button remained active.
-        <LI>Fixed repainting of the Files Table.
-        <LI>Added fine tuning of tags reading/writing in Musepack, True Audio, WavPack files.
-        <LI>Removed the ability of editing files names in the Tags table. </LI></UL>
-        <hr><P><B>v.1.1.2</B> - 19 Jan 2010
-        <UL>
-        <LI>Changed qoobar.pro file to better compilation in rpm-based systems.
-        <LI>(In Windows) Taglib 1.5 changed to 1.6.1, so added MP4 and Asf/Wma files support.
-        <LI>Fixed writing of MP4 tags: now unused tags are correctly deleted.
-        <LI>Fixed reading of Wav properties: length is correctly read, bitrate now is kbps (instead of kibps).
-        <LI>Various bugfixes. </LI></UL>
-        <hr><P><B>v. 1.1.1</B> - 15 Jan 2010
-        <UL>
-        <LI>Added some new settings
-        <LI>Several bugfixes </LI></UL>
-        <hr><P><B>v. 1.1.0</B> - 4 Jan 2010
-        <UL>
-        <LI>Added localization (so far Russian only).
-        <LI>Added help files in English and Russian
-        <LI>Added the ability to play selection
-        <LI>Added Settings dialog
-        <LI>Several bugfixes </LI></UL>
-        <hr><P><B>v. 1.0.0</B>
-        <UL>
-        <LI>Initial release. </LI></UL>
-      </article>
+							        <P><STRONG>v.1.3.1</STRONG> - 28 Oct 2010</P>
+							        <UL>
+							        <li>Added: the Italian translation.</li>
+							        <li>Added: the French translation.</li>
+							        <li>Added: the ability to save id3v1 tags into mp3 files.</li>
+							        <li>Added: the support of these tags: Disc #/Total discs, Encoded by, Remixed by, ISRC, Album artist, URL, Rating.</li>
+							        <li>Added: tags importing from Musicbrainz.</li>
+							        <li>Added: the ability to change the chars list font.</li>
+							        <li>Added: Now you can number the tracks from the Tags table.</li>
+							        <li>Added: the ability to fill tags from other tags.</li>
+							        <li>Added: Now you can quickly fill a tag in the Edit dialog.</li>
+							        <li>Added: the ability to change the case of filenames when renaming files.</li>
+							        <li>Added: the ability to split a disc image by the corresponding cue sheet.</li>
+							        <li>Changed: Now you can change the interface language without restarting Qoobar.</li>	
+							        <li>Fixed: the cover art panel now correctly updates.</li>
+							        </UL><hr>
 
-      <div id="nav-bottom"><div class=pages>
-  			<ul>
-  				<li><a href="index.htm" TARGET="_top">Home</a></li>
-  				<li><a href="screenshots.htm" TARGET="_top">Screenshots</a></li>
-  			  <li><a href="download.htm" TARGET="_top">Download</a></li>
-  			  <li><a href="documentation.htm" TARGET="_top">Documentation</a></li>
-  		    <li><a href="changelog.htm" TARGET="_top" class=active>Changelog</a></li>
-  		    <li><a href="about.htm" TARGET="_top">About</a></li>
-  			</ul>
-  		</div></div>
+							        <P><STRONG>v.1.3.0</STRONG> - 8 Aug 2010</P>
+							        <UL>
+							        	<li>Added: Java scripts support added.</li>
+							        	<li>Added: A small file writing check added.</li>
+							        	<li>Added: The undo / redo system. Now you can undo even saving tags.</li>
+								        <li>Added: importing tags from Discogs and freedb.</li>
+								        <li>Added: option in the rename dialog: delete empty folder after renaming.</li>	
+										<li>Changed: The "About" dialog now gives more info.</li>
+										<li>Changed: Trim spaces moved to scripts.</li>
+										<li>Some shortcuts added, some changed.</li>
+								        <li>Fixed: Composer completion numerous bugs.</li>
+							        </UL><hr>
 
-    </div> <!-- content-inner -->
-  </div> <!-- content -->
+							        <P><STRONG>v.1.2.2</STRONG> - 2 Jul 2010</P>
+							        <UL>
+							        	<li>Added: the "About..." dialog.</li>
+							        	<li>Added: A site of Qoobar at qoobar.sourceforge.net is finally created.</li>
+								        <li>Added: A manpage is created.</li>
+								        <li>Removed: 'Unite' action.</li>
+								        <li>Changed: The Edit dialog: the list with chars is replaced with the toolbar.</li>
+								        <li>Changed: The Simplify whitespaces button is removed from the main toolbar.</li>
+								        <li>Changed: The behaviour of toolbar is now context-aware.</li>
+								        <li>Changed: Synchronize... is now not an option but a feature.</li>
+								        <li>Changed: Slightly changed behaviour of the Tags Table when only one file is selected:<br>
+								        now to edit a tag you have to double click it.</li>
+								        <li>Changed: The size of the Linux version of Qoobar is reduced by 130 kb.</li>
+							        </UL><hr>
 
-  <div id="sidebar">
-		<div id="logo">
-			<h1>Qoobar</h1>
-		</div>
+							        <P><STRONG>v.1.2.1</STRONG> - 6 Jun 2010, bugfixes only</P>
+							        <UL>
+							        <li>Fixed bug: after renaming of files the files table didn't update properly.</LI>
+							        <li>Fixed bug: when filling tags from file names the extension of file didn't remove. </LI>
+							        </UL><hr>
 
-		<nav id="nav">
-			<ul>
-				<li><a href="index.htm" TARGET="_top">Home</a></li>
-				<li><a href="screenshots.htm" TARGET="_top">Screenshots</a></li>
-			  <li><a href="download.htm" TARGET="_top">Download</a></li>
-			  <li><a href="documentation.htm" TARGET="_top">Documentation</a></li>
-		    <li class="current_page_item"><a href="changelog.htm" TARGET="_top">Changelog</a></li>
-		    <li><a href="about.htm" TARGET="_top">About</a></li>
-			</ul>
-		</nav>
+							        <P><STRONG>v.1.2.0</STRONG> - 22 May 2010</P>
+							        <UL>
+							        	<li>Added: coverart support. </LI>
+								        <li>Changed: Qoobar user interface.</LI>
+								        <li>Changed: Additional tags "Conductor", "Subtitle", "Orchestra", "Key" are now the main ones.</LI>
+							        </UL><hr>
 
-		<section class="is-text-style1">
-			<div class="inner">
-				<p>
-					Any feedback, wishes, bugs please send via e-mail at <A href="mailto:novichkov.qoobar@gmail.com">novichkov.qoobar@gmail.com</A>.
-				</p>
+							        <P><B>v.1.1.4</B> - 16 Mar 2010
+							        <UL>
+								        <li>Added: The "autoexpand" feature.</LI>
+								        <li>Added: Tags "Conductor", "Subtitle", "Orchestra", "Lyricist", "Lyrics", "Music form", "Key", "Beats per minute", "Mood", "Publisher", "Original artist", "Original album", "Original lyricist", "Copyright".</LI>
+								        <li>Added: Fine tuning of reading/writing tags in Musepack, True Audio, WavPack files.</LI>
+										<li>Added: the ability to change the user interface language. </LI>
+								        <li>Changed: Some shortcuts are now active in all windows.</LI>
+								        <li>Changed: Label to the help file was replaced with the button.</LI>
+								        <li>Changed: Tags writing in the MP4 files is now corresponds to written by iTunes.</LI>
+								        <li>Changed: The last directory can now be preserved after closing Qoobar.</LI>
+								        <li>Changed: The settings dialog was updated.</LI>
+								        <li>Changed: All tags now correspond to ones handled by Tag&amp;Rename. A table with all supported tags was added to this help file.</LI>
+								    </UL><hr>
+
+							        <P><B>v.1.1.3</B> - 27 Feb 2010
+							        <UL>
+								        <li>Added: synchronization of the current row in the Edit dialog with the corresponding row in the Files Table.</LI>
+								        <li>Added: show/hide rows in the Tags Table.</LI>
+								        <li>Added: editing of renaming patterns in the Settings Dialog.</LI>
+								        <li>Added: icons for some actions.</LI>
+								        <li>Added: the ability to save individual files right in the Files Table by clicking on the "save" icon.</LI>	
+								        <li>Added: fine tuning of tags reading/writing in Musepack, True Audio, WavPack files.</LI>
+								        <li>Removed: the ability of editing files names in the Tags table. </LI>
+								        <li>Changed: The "save" column which shows changed files in the Files Table is now leftmost by default.</LI>
+								        <li>Fixed: after changing tags and clearing the list the Save button remained active.</LI>
+								        <li>Fixed: repainting of the Files Table.</LI>
+								    </UL>
+
+							        <hr><P><B>v.1.1.2</B> - 19 Jan 2010
+							        <UL>
+								        <li>Changed: qoobar.pro file to better compilation in rpm-based systems.</LI>
+								        <li>(In Windows) Taglib 1.5 changed to 1.6.1, so added MP4 and Asf/Wma files support.</LI>
+								        <li>Fixed: writing of MP4 tags: now unused tags are correctly deleted.</LI>
+								        <li>Fixed: reading of Wav properties: length is correctly read, bitrate now is kbps (instead of kibps).</LI>
+								    </UL>
+
+							        <hr><P><B>v. 1.1.1</B> - 15 Jan 2010
+							        <UL>
+								        <li>Added: some new settings</LI>
+								    </UL>
+
+							        <hr><P><B>v. 1.1.0</B> - 4 Jan 2010
+							        <UL>
+								        <li>Added: localization (so far Russian only).</LI>
+								        <li>Added: help files in English and Russian</LI>
+								        <li>Added: the ability to play selection</LI>
+								        <li>Added: Settings dialog</LI>
+								    </UL>
+
+							        <hr><P><B>v. 1.0.0</B>
+							        <UL>
+							        <li>Initial release. </LI></UL>
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.htm">Homepage</a></li>
+										<li><a href="download.htm">Download</a></li>
+										<li><a href="documentation.htm">Documentation</a></li>
+										<li><a href="changelog.htm">Changelog</a></li>
+									</ul>
+								</nav>
+							
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p>Any feedback, wishes, bugs please send via</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="mailto:novichkov.qoobar@gmail.com">novichkov.qoobar@gmail.com</a></li>
+										<li class="icon brands fa-github"><a href="https://github.com/alexnovichkov/qoobar.git">Qoobar</a></li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; 2009-2022 Alex Novichkov. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
 			</div>
-		</section>
 
-		<div id="copyright">
-			<p>&copy; 2009-2015 Alex Novichkov.<br />
-				Design: <a href="http://html5up.net/">HTML5 UP</a>
-			</p>
-		</div>
-	</div> <!-- sidebar -->
-</div> <!-- wrapper -->
-</body>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
-

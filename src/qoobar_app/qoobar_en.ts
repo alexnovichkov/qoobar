@@ -4,12 +4,12 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="application.cpp" line="441"/>
+        <location filename="application.cpp" line="444"/>
         <source>Qoobar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="application.cpp" line="441"/>
+        <location filename="application.cpp" line="444"/>
         <source>Cannot write settings. The settings file is read-only</source>
         <translation></translation>
     </message>
@@ -17,20 +17,20 @@
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="717"/>
-        <location filename="application.cpp" line="742"/>
+        <location filename="application.cpp" line="724"/>
+        <location filename="application.cpp" line="749"/>
         <source>Qoobar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="application.cpp" line="717"/>
+        <location filename="application.cpp" line="724"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="application.cpp" line="742"/>
+        <location filename="application.cpp" line="749"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation></translation>
@@ -1214,7 +1214,7 @@ after you restart Qoobar</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="102"/>
-        <location filename="mainwindow.cpp" line="652"/>
+        <location filename="mainwindow.cpp" line="654"/>
         <source>About Qoobar</source>
         <translation></translation>
     </message>
@@ -1589,38 +1589,38 @@ after you restart Qoobar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="640"/>
+        <location filename="mainwindow.cpp" line="642"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="649"/>
+        <location filename="mainwindow.cpp" line="651"/>
         <source>&lt;p&gt;This version is compiled as portable</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="659"/>
+        <location filename="mainwindow.cpp" line="661"/>
         <source>Qoobar - adding files</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="660"/>
+        <location filename="mainwindow.cpp" line="662"/>
         <source>audio files (%1)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="667"/>
+        <location filename="mainwindow.cpp" line="669"/>
         <source>Qoobar - adding folder</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="951"/>
+        <location filename="mainwindow.cpp" line="953"/>
         <source>Qoobar - renaming the tab</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="952"/>
+        <location filename="mainwindow.cpp" line="954"/>
         <source>Set a tab name</source>
         <translation></translation>
     </message>
