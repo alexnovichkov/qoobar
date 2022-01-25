@@ -38,9 +38,8 @@ QString ApplicationPaths::userSchemesPath()
 {DD;
 #ifdef Q_OS_LINUX
     return QDir::homePath() + "/.config/qoobar/schemes";
-#else
-    return schemesPath();
 #endif
+    return QString();
 }
 
 QString ApplicationPaths::completionsPath()

@@ -711,6 +711,7 @@ PatternsPage::PatternsPage(QWidget *parent) : ConfigPage(parent)
     schemesComboBox->addItem(tr("Default"),":/src/default.xml");
     const QFileInfoList schemeFiles = QDir(ApplicationPaths::userSchemesPath()).entryInfoList(QStringList(QLS("*.xml")))
             +QDir(ApplicationPaths::schemesPath()).entryInfoList(QStringList(QLS("*.xml")));
+
     for (const auto &file: schemeFiles) {
         const QString schemePath = file.canonicalFilePath();
         TaggingScheme scheme(schemePath);
