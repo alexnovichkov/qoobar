@@ -932,7 +932,7 @@ UtilitiesPage::UtilitiesPage(QWidget *parent) : ConfigPage(parent)
     tree->setRootIsDecorated(false);
     tree->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    QVector<QString> external {/*"mac","flac",*/"shntool","enca",
+    QVector<QString> external {"ffmpeg","avconv","flac","shntool","enca",
 //                       #ifndef Q_OS_WIN
 //                               "mp3gain",
 //                       #endif
