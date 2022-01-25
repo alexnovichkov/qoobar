@@ -1261,6 +1261,9 @@ input[type="radio"] + label:before {
     width: 100%; }
     .image.main img {
       width: 100%; }
+img.embed {
+	vertical-align: middle;
+}
 
 a.image {
   overflow: hidden; }
@@ -1309,7 +1312,7 @@ dl {
   dl dt {
     display: block;
     font-weight: 600;
-    margin: 0 0 1em 0; }
+    margin: 0.5em 0 0.25em 0; }
   dl dd {
     margin-left: 2em; }
 
