@@ -236,10 +236,60 @@
     "shortopt": "",
     "longopt": "mpc-replaygain-format",
     "description": "Sets the format of ReplayGain information to be written into Musepack files.\n        <header> - ReplayGain information will be written into the file header and cannot be changed afterwards.\n        <tags> - ReplayGain information will be written into APEv2 tags and can be changed or deleted.\nThe default value is <header>.",
-    "group": "Global options",
+    "group": "ReplayGain info",
     "defaultVal": "header",
     "argType": "string",
     "constraint": "header|tags"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "rg-loudness",
+    "description": "Sets the target ReplayGain loudness.\n        <-18dB> - ReplayGain 2.0 standard loudness.\n        <-23dB> - EBU R128 standard loudness.\nThe default value is <-18dB>.",
+    "group": "ReplayGain info",
+    "defaultVal": "-18dB",
+    "argType": "string",
+    "constraint": "-18dB|-23dB"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "rg-mode",
+    "description": "Sets the ReplayGain tags mode.\n        <standard> - Only the TRACKGAIN, TRACKPEAK, ALBUMGAIN, ALBUMPEAK tags are added.\n        <enhanced> - The additional TRACKRANGE, TRACKLOUDNESS, ALBUMRANGE, ALBUMLOUDNESS are added to the standard ones.\nThe default value is <standard>.",
+    "group": "ReplayGain info",
+    "defaultVal": "standard",
+    "argType": "string",
+    "constraint": "standard|enhanced"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "rg-prevent-clipping",
+    "description": "Switches on/off clipping prevention in the replaygain calculations. The default value is \"on\"",
+    "group": "ReplayGain info",
+    "defaultVal": "on",
+    "argType": "string",
+    "constraint": "on|off"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "rg-tags-case",
+    "description": "Sets the ReplayGain tags case.\n        <upper> - The TRACKGAIN, TRACKPEAK, ALBUMGAIN, ALBUMPEAK etc. tags are written in the upper case.\n        <lower> - The trackgain, trackpeak, albumgain, albumpeak etc. tags are written in the lower case.\nThe default value is <upper>.",
+    "group": "ReplayGain info",
+    "defaultVal": "upper",
+    "argType": "string",
+    "constraint": "upper|lower"
+},
+{
+    "type": "value",
+    "shortopt": "",
+    "longopt": "rg-units",
+    "description": "Sets the ReplayGain loudness unit.\n        <dB> - dB is used as a loudness unit.\n        <LU> - LU is used as a loudness unit.\nThe default value is <dB>.",
+    "group": "ReplayGain info",
+    "defaultVal": "dB",
+    "argType": "string",
+    "constraint": "dB|LU"
 },
 {
     "type": "value",

@@ -170,6 +170,7 @@ public:
     QString fullFileName() const {return d->fullFileName;}
 
     int fileType() const {return d->filetype;}
+    static QString fileTypeDescription(int fileType);
     /**
      * @brief fileNameExt
      * @return  file name with extension

@@ -164,6 +164,29 @@ void Tag::setFile(const QString &fileName)
     d->size         = fi.size();
 }
 
+QString Tag::fileTypeDescription(int fileType)
+{
+    switch (fileType) {
+        case MP3_FILE:  return "Mpeg Layer III";
+        case OGG_FILE:  return "OGG file";
+        case WMA_FILE:  return "Windows Media Audio";
+        case FLAC_FILE: return "FLAC";
+        case M4A_FILE: return "M4A";
+        case MPC_FILE: return "Musepack";
+        case WV_FILE:  return "WavPack";
+        case WAV_FILE: return "WAV";
+        case SPX_FILE: return "Speex";
+        case TTA_FILE: return "TrueType Audio";
+        case OGA_FILE: return "OGA";
+        case APE_FILE: return "Monkey's Audio";
+        case AIFF_FILE: return "AIFF";
+        case OPUS_FILE: return "OPUS";
+        case DSF_FILE:  return "DSF";
+    }
+
+    return "";
+}
+
 void Tag::setTag(const int tagID,const QString &value)
 {
     if (tagID >= d->tags.size())

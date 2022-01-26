@@ -356,7 +356,7 @@ win32|win {
 
 
   # So far no cli support in Win
-  #DEFINES *= QOOBAR_ENABLE_CLI
+  DEFINES *= QOOBAR_ENABLE_CLI
 
   RC_FILE = qoobar.rc
 

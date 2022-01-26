@@ -237,13 +237,11 @@ void CLParser::showVersion() const
 
 bool CLParser::setArgScheme(const QByteArray &json)
 {
-    bool ok=true;
-    QVariantMap map;
     QJsonParseError error;
     QVariant parsed = QJsonDocument::fromJson(json, &error).toVariant();
     if (error.error!=QJsonParseError::NoError) return false;
-    map = parsed.toMap();
-    if (!ok || map.isEmpty()) return false;
+    QVariantMap map = parsed.toMap();
+    if (map.isEmpty()) return false;
     QVariantList list = map.value("args").toList();
     if (list.isEmpty()) return false;
 

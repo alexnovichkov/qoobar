@@ -116,24 +116,6 @@ const char *imageTypes[21]= {
     "PUBLISHER_LOGO"
 };
 
-const char* fileTypes[] = {
-    "Mpeg Layer III",
-    "OGG file",
-    "Windows Media Audio",
-    "FLAC",
-    "M4A",
-    "Musepack",
-    "WavPack",
-    "WAV",
-    "Speex",
-    "TrueType Audio",
-    "OGA",
-    "Monkey's Audio",
-    "AIFF",
-    "OPUS"
-};
-
-
 CommandLineProcessor::CommandLineProcessor(QObject *parent) : QObject(parent)
 {DD
 
@@ -347,7 +329,7 @@ void CommandLineProcessor::parse()
             appendMessage("<font color=blue>"+tag.fullFileName()+"</font>",0,5);
             QString properties = QString("Time: %1    %2    [ %3 kbps @ %4 Hz - %5]")
                     .arg(Qoobar::formatLength(tag.length()))
-                    .arg(fileTypes[tag.fileType()])
+                    .arg(Tag::fileTypeDescription(tag.fileType()))
                     .arg(tag.bitrate())
                     .arg(tag.sampleRate())
                     .arg(tag.channels()==1?"Mono":(tag.channels()==2?"Stereo":QString("%1 channels").arg(tag.channels())));
