@@ -42,118 +42,118 @@ Please check the file</source>
         <location filename="autonumber.cpp" line="15"/>
         <source>Qoobar - Autonumber files</source>
         <oldsource>Autonumbering dialog</oldsource>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="44"/>
         <source>Old #</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="45"/>
         <source>New #</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="46"/>
         <source>Old ##</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="47"/>
         <source>New ##</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="48"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="49"/>
         <source>Artist</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="50"/>
         <source>Composer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="51"/>
         <source>Album</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="52"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="65"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="66"/>
         <source>01</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="67"/>
         <source>001</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="72"/>
         <source>Remove track number</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="73"/>
         <source>Keep old track number</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="74"/>
         <source>Set &quot;1&quot; as track number</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="75"/>
         <source>Number tracks separately</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="80"/>
         <source>Add total tracks</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="82"/>
         <source>Reset counter for each folder</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="84"/>
         <source>Reset counter for each album</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="101"/>
         <source>Begin at number</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="103"/>
         <source>Number format</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="autonumber.cpp" line="109"/>
         <source>If a file has no album
 or album includes only one track</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -177,7 +177,7 @@ or album includes only one track</source>
     <message>
         <location filename="columnsmodel.cpp" line="35"/>
         <source>Visibility</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -264,7 +264,7 @@ or album includes only one track</source>
         <location filename="corenetworksearch.cpp" line="68"/>
         <source>This Qt version doesn&apos;t support SSL.
 Please compile Qoobar with another Qt version</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -291,24 +291,29 @@ Please compile Qoobar with another Qt version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="240"/>
-        <location filename="cuesplitter.cpp" line="263"/>
-        <source>Cannot find the necessary script file: </source>
-        <translation type="unfinished"></translation>
+        <location filename="cuesplitter.cpp" line="215"/>
+        <source>Please install ffmpeg.</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="322"/>
+        <location filename="cuesplitter.cpp" line="238"/>
+        <location filename="cuesplitter.cpp" line="261"/>
+        <source>Cannot find the necessary script file: </source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="cuesplitter.cpp" line="320"/>
         <source>Now invoking the script file with arguments:
 </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="473"/>
+        <location filename="cuesplitter.cpp" line="471"/>
         <source>Cannot find the file to split: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="515"/>
+        <location filename="cuesplitter.cpp" line="513"/>
         <source>Processing %1 ...
 
 </source>
@@ -316,16 +321,12 @@ Please compile Qoobar with another Qt version</source>
     </message>
     <message>
         <location filename="cuesplitter.cpp" line="209"/>
-        <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</source>
+        <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://shnutils.freeshell.org/shntool/&quot;&gt;http://shnutils.freeshell.org/shntool/&lt;/a&gt;</source>
+        <oldsource>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="215"/>
-        <source>Please install mac. You can download it from &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="cuesplitter.cpp" line="219"/>
+        <location filename="cuesplitter.cpp" line="217"/>
         <source>Please install mac</source>
         <translation></translation>
     </message>
@@ -335,12 +336,12 @@ Please compile Qoobar with another Qt version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="225"/>
+        <location filename="cuesplitter.cpp" line="223"/>
         <source>Please wait while Qoobar is splitting the file %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="493"/>
+        <location filename="cuesplitter.cpp" line="491"/>
         <source>Total track count: &quot;%1&quot;</source>
         <translation></translation>
     </message>
@@ -350,7 +351,7 @@ Please compile Qoobar with another Qt version</source>
     <message>
         <location filename="discidhelper.cpp" line="47"/>
         <source>Please install libdiscid</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="discidhelper.cpp" line="109"/>
@@ -417,12 +418,12 @@ Please compile Qoobar with another Qt version</source>
     <message>
         <location filename="filesrenamer.cpp" line="444"/>
         <source>Folder to move/copy files</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="filesrenamer.cpp" line="462"/>
         <source>Nothing to rename, file names not changed.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="filesrenamer.cpp" line="232"/>
@@ -773,7 +774,7 @@ and &quot; by two single quotes &apos;&apos;</source>
     <message>
         <location filename="importmodel.cpp" line="88"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -875,37 +876,37 @@ and &quot; by two single quotes &apos;&apos;</source>
         <location filename="configpages.cpp" line="146"/>
         <location filename="configpages.cpp" line="221"/>
         <source>Status bar is tracking</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="148"/>
         <location filename="configpages.cpp" line="222"/>
         <source>current hovered file</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="149"/>
         <location filename="configpages.cpp" line="223"/>
         <source>current selected file</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="151"/>
         <location filename="configpages.cpp" line="225"/>
         <source>Sort file names and other text fields</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="153"/>
         <location filename="configpages.cpp" line="226"/>
         <source>case sensitively</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="154"/>
         <location filename="configpages.cpp" line="227"/>
         <source>case insensitively</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="211"/>
@@ -1210,7 +1211,7 @@ after you restart Qoobar</source>
         <location filename="mainwindow.cpp" line="99"/>
         <location filename="mainwindow.cpp" line="100"/>
         <source>Qoobar Online</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="102"/>
@@ -1383,12 +1384,12 @@ after you restart Qoobar</source>
         <location filename="mainwindow.cpp" line="130"/>
         <location filename="mainwindow.cpp" line="131"/>
         <source>Autonumber selected files...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="132"/>
         <source>Autonumber</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="134"/>
@@ -1547,7 +1548,7 @@ after you restart Qoobar</source>
         <location filename="mainwindow.cpp" line="441"/>
         <location filename="mainwindow.cpp" line="486"/>
         <source>Special Characters...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="479"/>
@@ -1579,9 +1580,11 @@ after you restart Qoobar</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="595"/>
-        <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2020 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
+        <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2022 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
-        <translation type="unfinished"></translation>
+        <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2020 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
+&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</oldsource>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="603"/>
@@ -1721,37 +1724,37 @@ all changes in them will not be saved!</source>
 <context>
     <name>NetworkPage</name>
     <message>
-        <location filename="configpages.cpp" line="1031"/>
-        <location filename="configpages.cpp" line="1078"/>
+        <location filename="configpages.cpp" line="1032"/>
+        <location filename="configpages.cpp" line="1079"/>
         <source>Use proxy server</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="1039"/>
-        <location filename="configpages.cpp" line="1080"/>
-        <source>Proxy server</source>
         <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1040"/>
         <location filename="configpages.cpp" line="1081"/>
-        <source>Port</source>
+        <source>Proxy server</source>
         <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1041"/>
         <location filename="configpages.cpp" line="1082"/>
-        <source>Login</source>
+        <source>Port</source>
         <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1042"/>
         <location filename="configpages.cpp" line="1083"/>
+        <source>Login</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1043"/>
+        <location filename="configpages.cpp" line="1084"/>
         <source>Password</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1069"/>
+        <location filename="configpages.cpp" line="1070"/>
         <source>Network</source>
         <translation></translation>
     </message>
@@ -1774,84 +1777,84 @@ all changes in them will not be saved!</source>
     <message>
         <location filename="imagebox.cpp" line="97"/>
         <source>No image</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>PatternsPage</name>
     <message>
         <location filename="configpages.cpp" line="679"/>
-        <location filename="configpages.cpp" line="780"/>
+        <location filename="configpages.cpp" line="781"/>
         <source>Renaming patterns</source>
         <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="688"/>
-        <location filename="configpages.cpp" line="781"/>
+        <location filename="configpages.cpp" line="782"/>
         <source>Add pattern</source>
         <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="690"/>
-        <location filename="configpages.cpp" line="782"/>
+        <location filename="configpages.cpp" line="783"/>
         <source>Remove pattern</source>
         <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="707"/>
-        <location filename="configpages.cpp" line="784"/>
+        <location filename="configpages.cpp" line="785"/>
         <source>Tagging schemes</source>
         <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="708"/>
-        <location filename="configpages.cpp" line="785"/>
+        <location filename="configpages.cpp" line="786"/>
         <source>Current scheme</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="728"/>
-        <location filename="configpages.cpp" line="787"/>
+        <location filename="configpages.cpp" line="729"/>
+        <location filename="configpages.cpp" line="788"/>
         <source>Add</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="730"/>
-        <location filename="configpages.cpp" line="791"/>
+        <location filename="configpages.cpp" line="731"/>
+        <location filename="configpages.cpp" line="792"/>
         <source>Clone this</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="732"/>
-        <location filename="configpages.cpp" line="792"/>
+        <location filename="configpages.cpp" line="733"/>
+        <location filename="configpages.cpp" line="793"/>
         <source>Using Default</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="736"/>
-        <location filename="configpages.cpp" line="794"/>
+        <location filename="configpages.cpp" line="737"/>
+        <location filename="configpages.cpp" line="795"/>
         <source>Remove</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="725"/>
-        <location filename="configpages.cpp" line="788"/>
+        <location filename="configpages.cpp" line="726"/>
+        <location filename="configpages.cpp" line="789"/>
         <source>Edit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="771"/>
+        <location filename="configpages.cpp" line="772"/>
         <source>Patterns</source>
         <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="711"/>
-        <location filename="configpages.cpp" line="786"/>
+        <location filename="configpages.cpp" line="787"/>
         <source>Default</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="823"/>
+        <location filename="configpages.cpp" line="824"/>
         <source>Cannot delete the file
 %1.</source>
         <translation></translation>
@@ -2079,52 +2082,52 @@ all changes in them will not be saved!</source>
 <context>
     <name>PluginsPage</name>
     <message>
-        <location filename="configpages.cpp" line="1097"/>
-        <location filename="configpages.cpp" line="1147"/>
+        <location filename="configpages.cpp" line="1098"/>
+        <location filename="configpages.cpp" line="1148"/>
         <source>Download plugins:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1098"/>
-        <location filename="configpages.cpp" line="1148"/>
+        <location filename="configpages.cpp" line="1099"/>
+        <location filename="configpages.cpp" line="1149"/>
         <source>Tags editing plugins:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1136"/>
+        <location filename="configpages.cpp" line="1137"/>
         <source>Plugins</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1149"/>
-        <location filename="configpages.cpp" line="1154"/>
+        <location filename="configpages.cpp" line="1150"/>
+        <location filename="configpages.cpp" line="1155"/>
         <source>Name</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1149"/>
-        <location filename="configpages.cpp" line="1154"/>
+        <location filename="configpages.cpp" line="1150"/>
+        <location filename="configpages.cpp" line="1155"/>
         <source>Version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1149"/>
-        <location filename="configpages.cpp" line="1154"/>
+        <location filename="configpages.cpp" line="1150"/>
+        <location filename="configpages.cpp" line="1155"/>
         <source>Description</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1150"/>
+        <location filename="configpages.cpp" line="1151"/>
         <source>Manual</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1151"/>
+        <location filename="configpages.cpp" line="1152"/>
         <source>By CD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1152"/>
+        <location filename="configpages.cpp" line="1153"/>
         <source>By files</source>
         <translation></translation>
     </message>
@@ -2157,7 +2160,7 @@ all changes in them will not be saved!</source>
     <message>
         <location filename="statusbar.cpp" line="237"/>
         <source>no tags</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message numerus="yes">
         <location filename="statusbar.cpp" line="286"/>
@@ -2455,27 +2458,27 @@ all changes in them will not be saved!</source>
     <message>
         <location filename="releaseinfomodel.cpp" line="58"/>
         <source>No.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="releaseinfomodel.cpp" line="59"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="releaseinfomodel.cpp" line="60"/>
         <source>Artists</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="releaseinfomodel.cpp" line="61"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="releaseinfomodel.cpp" line="62"/>
         <source>Length</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2572,17 +2575,17 @@ all changes in them will not be saved!</source>
     <message>
         <location filename="replaygaindialog.cpp" line="117"/>
         <source>Album range</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygaindialog.cpp" line="117"/>
         <source>Track range</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygaindialog.cpp" line="118"/>
         <source>Reference loudness</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygaindialog.cpp" line="116"/>
@@ -2595,47 +2598,47 @@ all changes in them will not be saved!</source>
     <message>
         <location filename="replaygainer.cpp" line="99"/>
         <source>Not enough memory: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="100"/>
         <source>Could not open input: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="102"/>
         <source>Could not find stream info: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="103"/>
         <source>Audio stream: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="104"/>
         <source>Could not open codec: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="105"/>
         <source>EBU R128: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="106"/>
         <source>Could not open SWResample: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="118"/>
         <source>You have different file types in the same album!</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="120"/>
         <source>Cannot calculate correct album gain when mixing Opus and non-Opus files!</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="221"/>
@@ -2643,12 +2646,12 @@ all changes in them will not be saved!</source>
         <location filename="replaygainer.cpp" line="248"/>
         <location filename="replaygainer.cpp" line="251"/>
         <source> (corrected to prevent clipping)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="227"/>
         <source>  The track will clip</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="replaygainer.cpp" line="365"/>
@@ -2670,94 +2673,94 @@ all changes in them will not be saved!</source>
 <context>
     <name>ReplaygainPage</name>
     <message>
-        <location filename="configpages.cpp" line="1214"/>
-        <location filename="configpages.cpp" line="1261"/>
-        <source>Replaygain tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="1216"/>
+        <location filename="configpages.cpp" line="1215"/>
         <location filename="configpages.cpp" line="1262"/>
-        <source>UPPERCASE</source>
-        <translation type="unfinished"></translation>
+        <source>Replaygain tags</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1216"/>
+        <location filename="configpages.cpp" line="1217"/>
         <location filename="configpages.cpp" line="1263"/>
-        <source>lowercase</source>
-        <translation type="unfinished"></translation>
+        <source>UPPERCASE</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1219"/>
+        <location filename="configpages.cpp" line="1217"/>
         <location filename="configpages.cpp" line="1264"/>
-        <source>Replaygain mode</source>
-        <translation type="unfinished"></translation>
+        <source>lowercase</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1221"/>
+        <location filename="configpages.cpp" line="1220"/>
         <location filename="configpages.cpp" line="1265"/>
-        <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <source>Replaygain mode</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1221"/>
+        <location filename="configpages.cpp" line="1222"/>
         <location filename="configpages.cpp" line="1266"/>
+        <source>Standard</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1222"/>
+        <location filename="configpages.cpp" line="1267"/>
         <source>Enhanced</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1226"/>
-        <location filename="configpages.cpp" line="1268"/>
-        <source>Loudness target</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="1228"/>
-        <source>-18 LUFS (Replaygain 2.0)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="1228"/>
-        <source>-23 LUFS (EBU R128)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="1231"/>
+        <location filename="configpages.cpp" line="1227"/>
         <location filename="configpages.cpp" line="1269"/>
+        <source>Loudness target</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1229"/>
+        <source>-18 LUFS (Replaygain 2.0)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1229"/>
+        <source>-23 LUFS (EBU R128)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1232"/>
+        <location filename="configpages.cpp" line="1270"/>
         <source>Loudness units</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1233"/>
+        <location filename="configpages.cpp" line="1234"/>
         <source>dB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1233"/>
+        <location filename="configpages.cpp" line="1234"/>
         <source>LU</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1236"/>
-        <location filename="configpages.cpp" line="1272"/>
+        <location filename="configpages.cpp" line="1237"/>
+        <location filename="configpages.cpp" line="1273"/>
         <source>Prevent clipping</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1251"/>
+        <location filename="configpages.cpp" line="1252"/>
         <source>Replaygain</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1299"/>
+        <location filename="configpages.cpp" line="1300"/>
         <source>In this mode only the standard
 GAIN and PEAK tags are written</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1302"/>
+        <location filename="configpages.cpp" line="1303"/>
         <source>In this mode the additional RANGE and LOUDNESS tags are written</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2862,7 +2865,7 @@ GAIN and PEAK tags are written</source>
     <message>
         <location filename="searchpanel.cpp" line="22"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="searchpanel.cpp" line="36"/>
@@ -2932,12 +2935,12 @@ GAIN and PEAK tags are written</source>
     <message>
         <location filename="settingsdialog.cpp" line="178"/>
         <source>Qoobar</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="settingsdialog.cpp" line="178"/>
         <source>Reset settings to defaults?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2977,7 +2980,7 @@ Please choose the encoding:</source>
         <location filename="splitdialog.cpp" line="140"/>
         <source>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&quot;&gt;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</source>
         <oldsource>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</oldsource>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="splitdialog.cpp" line="128"/>
@@ -2987,7 +2990,7 @@ Please choose the encoding:</source>
     <message>
         <location filename="splitdialog.cpp" line="43"/>
         <source>Split CD image file by cue</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="splitdialog.cpp" line="198"/>
@@ -3145,7 +3148,7 @@ Do you want to save changes?</source>
         <location filename="tab.cpp" line="924"/>
         <source>Player is not set in the Settings dialog.
 Open the Settings dialog?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="1059"/>
@@ -3400,7 +3403,7 @@ Open the Settings dialog?</source>
     <message>
         <location filename="tagsfiller.cpp" line="262"/>
         <source>Search results</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="tagsfiller.cpp" line="289"/>
@@ -3430,7 +3433,7 @@ Open the Settings dialog?</source>
     <message>
         <location filename="tagsfiller.cpp" line="409"/>
         <source>Please specify an album and/or an artist for the manual search</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="tagsfiller.cpp" line="414"/>
@@ -3488,72 +3491,72 @@ Open the Settings dialog?</source>
 <context>
     <name>UtilitiesPage</name>
     <message>
-        <location filename="configpages.cpp" line="898"/>
-        <location filename="configpages.cpp" line="983"/>
+        <location filename="configpages.cpp" line="899"/>
+        <location filename="configpages.cpp" line="984"/>
         <source>Choose...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="900"/>
-        <location filename="configpages.cpp" line="990"/>
+        <location filename="configpages.cpp" line="901"/>
+        <location filename="configpages.cpp" line="991"/>
         <source>Path/to/player</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="905"/>
-        <location filename="configpages.cpp" line="989"/>
+        <location filename="configpages.cpp" line="906"/>
+        <location filename="configpages.cpp" line="990"/>
         <source>default device</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="907"/>
-        <location filename="configpages.cpp" line="984"/>
-        <source>Player command</source>
         <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="908"/>
         <location filename="configpages.cpp" line="985"/>
+        <source>Player command</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="909"/>
+        <location filename="configpages.cpp" line="986"/>
         <source>CD-ROM device</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="910"/>
-        <location filename="configpages.cpp" line="986"/>
+        <location filename="configpages.cpp" line="911"/>
+        <location filename="configpages.cpp" line="987"/>
         <source>Default language to use with
 the enca utility</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="916"/>
-        <location filename="configpages.cpp" line="988"/>
+        <location filename="configpages.cpp" line="917"/>
+        <location filename="configpages.cpp" line="989"/>
         <source>External programs</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="926"/>
-        <location filename="configpages.cpp" line="987"/>
+        <location filename="configpages.cpp" line="927"/>
+        <location filename="configpages.cpp" line="988"/>
         <source>Cue files encoding</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1001"/>
+        <location filename="configpages.cpp" line="1002"/>
         <source>Cannot find in </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="972"/>
+        <location filename="configpages.cpp" line="973"/>
         <source>Utilities</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1019"/>
-        <location filename="configpages.cpp" line="1022"/>
+        <location filename="configpages.cpp" line="1020"/>
+        <location filename="configpages.cpp" line="1023"/>
         <source>Executable files (*.exe)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1024"/>
+        <location filename="configpages.cpp" line="1025"/>
         <source>Choose a player file</source>
         <translation></translation>
     </message>
@@ -3582,13 +3585,13 @@ the enca utility</source>
         <location filename="configpages.cpp" line="437"/>
         <location filename="configpages.cpp" line="611"/>
         <source>Read:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="438"/>
         <location filename="configpages.cpp" line="612"/>
         <source>Write:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="439"/>
@@ -3596,7 +3599,7 @@ the enca utility</source>
         <location filename="configpages.cpp" line="613"/>
         <location filename="configpages.cpp" line="614"/>
         <source>ID3v2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="441"/>
@@ -3604,31 +3607,31 @@ the enca utility</source>
         <location filename="configpages.cpp" line="615"/>
         <location filename="configpages.cpp" line="616"/>
         <source>APE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="461"/>
         <location filename="configpages.cpp" line="641"/>
         <source>ID3v2 frames line ending</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="464"/>
         <location filename="configpages.cpp" line="638"/>
         <source>CRLF - Windows style</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="465"/>
         <location filename="configpages.cpp" line="639"/>
         <source>LF - Unix and OS X style</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="466"/>
         <location filename="configpages.cpp" line="640"/>
         <source>CR - pre-OS X style</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="473"/>
@@ -3711,7 +3714,7 @@ the enca utility</source>
     <message>
         <location filename="configpages.cpp" line="539"/>
         <source>(for mp3, flac, tta, mpc, wv, ape files)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="547"/>

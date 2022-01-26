@@ -593,7 +593,7 @@ void MainWindow::aboutQt()
 void MainWindow::showAboutDialog()
 {DD
     QString about=tr("<b>Qoobar, a Simple Tag Editor</b><br>released under the GPL 3"
-                           "<br>Version: %1<br>Copyright 2009-2020 Alex Novichkov"
+                           "<br>Version: %1<br>Copyright 2009-2022 Alex Novichkov"
                            "<p>Web site: <a href=http://qoobar.sourceforge.net>http://qoobar.sourceforge.net</a>\n"
                            "<br>E-mail: <a href=mailto:novichkov.qoobar@gmail.com>novichkov.qoobar@gmail.com</a>"
                            "<br><hr>")

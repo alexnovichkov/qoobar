@@ -944,12 +944,26 @@ void TagsReaderWriter::readXiph(TagLib::Ogg::XiphComment *xiph)
 {DD;
     if (!xiph) return;
 
+    //first try to find pictures in the new format
+#if TAGLIB_VERSION >= 11100
+    const TagLib::List<TagLib::FLAC::Picture *> &pictureList = xiph->pictureList();
+    if (!pictureList.isEmpty()) {
+        TagLib::FLAC::Picture *pic = pictureList.front();
+        tag->d->image.setDescription(QS(pic->description()));
+        tag->d->image.setType(pic->type());
+        tag->d->image.setMimetype(QS(pic->mimeType()));
+        tag->d->image.setPixmap(QByteArray(pic->data().data(),pic->data().size()));
+    }
+#endif
+
     const TagLib::Ogg::FieldListMap &map=xiph->fieldListMap();
 
     for (TagLib::Ogg::FieldListMap::ConstIterator it = map.begin(); it != map.end(); ++it)  {
         QString id=QS((*it).first).toUpper();
         QString value=QS((*it).second.toString(";"));
-        if (id=="METADATA_BLOCK_PICTURE") {
+
+        //searching for old picture format COVERART
+        if (id=="METADATA_BLOCK_PICTURE" && tag->image().pixmap().isNull()) {
             QByteArray rawData = QByteArray::fromBase64(value.toLatin1());
             TagLib::ByteVector data=TagLib::ByteVector(rawData.data(),rawData.length());
             TagLib::FLAC::Picture pic(data);
@@ -980,15 +994,24 @@ void TagsReaderWriter::writeXiph(TagLib::Ogg::XiphComment *xiph, bool opusFile)
     xiph->removeFields("COVERARTDESCRIPTION");
     xiph->removeFields("COVERARTTYPE");
     xiph->removeFields("METADATA_BLOCK_PICTURE");
+#if TAGLIB_VERSION >= 11100
+    xiph->removeAllPictures();
+#endif
 
     if (tag->fileType()!=Tag::FLAC_FILE && !tag->image().pixmap().isEmpty()) {
         if (App->oggPictureNew) {
+#if TAGLIB_VERSION >= 11100
+            TagLib::FLAC::Picture *picture = createFlacPicture(tag->image());
+            if (picture)
+                xiph->addPicture(picture);
+#else
             TagLib::FLAC::Picture *picture = createFlacPicture(tag->image());
             if (picture) {
                 TagLib::ByteVector bv = picture->render();
                 QByteArray result = QByteArray(bv.data(),bv.size());
                 xiph->addField("METADATA_BLOCK_PICTURE",TS(QString(result.toBase64())),true);
             }
+#endif
         }
         else {
             xiph->addField("COVERARTMIME",TS(tag->image().mimetype()),true);

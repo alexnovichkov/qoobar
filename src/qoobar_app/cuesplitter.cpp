@@ -209,12 +209,10 @@ void CueSplitter::split()
             errorMessage = tr("Make sure you have mac.exe "
                               "copied into the folder with qoobar.exe.<br>"
                               "You can download it from"
-                              " <a href=\"http://etree.org/shnutils/shntool/\">"
-                              "http://etree.org/shnutils/shntool/</a>");
+                              " <a href=\"http://shnutils.freeshell.org/shntool/\">"
+                              "http://shnutils.freeshell.org/shntool/</a>");
 #elif defined(Q_OS_LINUX)
-            errorMessage = tr("Please install mac. You can download it from "
-                              "<a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb>"
-                              "http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb</a>.");
+            errorMessage = tr("Please install ffmpeg.");
 #else
             errorMessage = tr("Please install mac");
 #endif

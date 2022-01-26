@@ -317,25 +317,30 @@ Please compile Qoobar with another Qt version</source>
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="240"/>
-        <location filename="cuesplitter.cpp" line="263"/>
+        <location filename="cuesplitter.cpp" line="215"/>
+        <source>Please install ffmpeg.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="cuesplitter.cpp" line="238"/>
+        <location filename="cuesplitter.cpp" line="261"/>
         <source>Cannot find the necessary script file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="322"/>
+        <location filename="cuesplitter.cpp" line="320"/>
         <source>Now invoking the script file with arguments:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="473"/>
+        <location filename="cuesplitter.cpp" line="471"/>
         <source>Cannot find the file to split: %1</source>
         <translation>Kan het bestand om te splitsen niet vinden:
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="515"/>
+        <location filename="cuesplitter.cpp" line="513"/>
         <source>Processing %1 ...
 
 </source>
@@ -350,16 +355,16 @@ Please compile Qoobar with another Qt version</source>
     </message>
     <message>
         <location filename="cuesplitter.cpp" line="209"/>
-        <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</source>
-        <translation>Wees er zeker van dat je mac.exe heb gecopieerd in zelfde map als Qoobar.exe&lt;br&gt;Je kunt downloaden van &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</translation>
+        <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://shnutils.freeshell.org/shntool/&quot;&gt;http://shnutils.freeshell.org/shntool/&lt;/a&gt;</source>
+        <oldsource>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</oldsource>
+        <translation type="unfinished">Wees er zeker van dat je mac.exe heb gecopieerd in zelfde map als Qoobar.exe&lt;br&gt;Je kunt downloaden van &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="215"/>
         <source>Please install mac. You can download it from &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</source>
-        <translation>Installeer Mac AUB. Je kunt downloaden van &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</translation>
+        <translation type="vanished">Installeer Mac AUB. Je kunt downloaden van &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="219"/>
+        <location filename="cuesplitter.cpp" line="217"/>
         <source>Please install mac</source>
         <translation>Installeer Mac AUB</translation>
     </message>
@@ -369,13 +374,13 @@ Please compile Qoobar with another Qt version</source>
         <translation>Niets om te splitsen.</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="225"/>
+        <location filename="cuesplitter.cpp" line="223"/>
         <source>Please wait while Qoobar is splitting the file %1</source>
         <translation>Wacht AUB terwijl Qoobar het bestand aan het splitsen is
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="493"/>
+        <location filename="cuesplitter.cpp" line="491"/>
         <source>Total track count: &quot;%1&quot;</source>
         <translation>Totaal aantal nummers: &quot;%1&quot;</translation>
     </message>
@@ -1669,10 +1674,12 @@ after you restart Qoobar</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="595"/>
-        <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2020 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
+        <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2022 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
-        <translation type="unfinished">&lt;b&gt;Qoobar, Een Simpele Label Bewerker&lt;/b&gt;&lt;br&gt;uitgebracht onder de GPL 3&lt;br&gt;Versie: %1&lt;br&gt;Copyright 2009-2015 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
-&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt; {3&lt;?} {1&lt;?} {2009-2016 ?} {3&lt;?} {1&lt;?} {2009-2020 ?}</translation>
+        <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2020 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
+&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</oldsource>
+        <translation>&lt;b&gt;Qoobar, Een Simpele Label Bewerker&lt;/b&gt;&lt;br&gt;uitgebracht onder de GPL 3&lt;br&gt;Versie: %1&lt;br&gt;Copyright 2009-2022 Alex Novichkov&lt;p&gt;Web site: &lt;a href=http://qoobar.sourceforge.net&gt;http://qoobar.sourceforge.net&lt;/a&gt;
+&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="669"/>
@@ -1790,37 +1797,37 @@ alle veranderingen worden niet opgeslagen!</translation>
 <context>
     <name>NetworkPage</name>
     <message>
-        <location filename="configpages.cpp" line="1031"/>
-        <location filename="configpages.cpp" line="1078"/>
+        <location filename="configpages.cpp" line="1032"/>
+        <location filename="configpages.cpp" line="1079"/>
         <source>Use proxy server</source>
         <translation>Gebruik proxy server</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1039"/>
-        <location filename="configpages.cpp" line="1080"/>
+        <location filename="configpages.cpp" line="1040"/>
+        <location filename="configpages.cpp" line="1081"/>
         <source>Proxy server</source>
         <translation>Proxy server</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1040"/>
-        <location filename="configpages.cpp" line="1081"/>
+        <location filename="configpages.cpp" line="1041"/>
+        <location filename="configpages.cpp" line="1082"/>
         <source>Port</source>
         <translation>Poort</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1041"/>
-        <location filename="configpages.cpp" line="1082"/>
+        <location filename="configpages.cpp" line="1042"/>
+        <location filename="configpages.cpp" line="1083"/>
         <source>Login</source>
         <translation>Inloggen</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1042"/>
-        <location filename="configpages.cpp" line="1083"/>
+        <location filename="configpages.cpp" line="1043"/>
+        <location filename="configpages.cpp" line="1084"/>
         <source>Password</source>
         <translation>Paswoord</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1069"/>
+        <location filename="configpages.cpp" line="1070"/>
         <source>Network</source>
         <translation>Netwerk</translation>
     </message>
@@ -1850,72 +1857,72 @@ alle veranderingen worden niet opgeslagen!</translation>
     <name>PatternsPage</name>
     <message>
         <location filename="configpages.cpp" line="679"/>
-        <location filename="configpages.cpp" line="780"/>
+        <location filename="configpages.cpp" line="781"/>
         <source>Renaming patterns</source>
         <translation>Patroons hernoemen</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="688"/>
-        <location filename="configpages.cpp" line="781"/>
+        <location filename="configpages.cpp" line="782"/>
         <source>Add pattern</source>
         <translation>Patroon toevoegen</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="690"/>
-        <location filename="configpages.cpp" line="782"/>
+        <location filename="configpages.cpp" line="783"/>
         <source>Remove pattern</source>
         <translation>Verwijder patroon</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="707"/>
-        <location filename="configpages.cpp" line="784"/>
+        <location filename="configpages.cpp" line="785"/>
         <source>Tagging schemes</source>
         <translation>Label ontwerpen</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="708"/>
-        <location filename="configpages.cpp" line="785"/>
+        <location filename="configpages.cpp" line="786"/>
         <source>Current scheme</source>
         <translation>Huidig ontwerp</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="728"/>
-        <location filename="configpages.cpp" line="787"/>
+        <location filename="configpages.cpp" line="729"/>
+        <location filename="configpages.cpp" line="788"/>
         <source>Add</source>
         <translation>Toevoegen</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="730"/>
-        <location filename="configpages.cpp" line="791"/>
+        <location filename="configpages.cpp" line="731"/>
+        <location filename="configpages.cpp" line="792"/>
         <source>Clone this</source>
         <translation>kloon deze</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="732"/>
-        <location filename="configpages.cpp" line="792"/>
+        <location filename="configpages.cpp" line="733"/>
+        <location filename="configpages.cpp" line="793"/>
         <source>Using Default</source>
         <translation>Gebruik standaard</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="736"/>
-        <location filename="configpages.cpp" line="794"/>
+        <location filename="configpages.cpp" line="737"/>
+        <location filename="configpages.cpp" line="795"/>
         <source>Remove</source>
         <translation>Verwijder</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="725"/>
-        <location filename="configpages.cpp" line="788"/>
+        <location filename="configpages.cpp" line="726"/>
+        <location filename="configpages.cpp" line="789"/>
         <source>Edit</source>
         <translation>Bewerken</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="771"/>
+        <location filename="configpages.cpp" line="772"/>
         <source>Patterns</source>
         <translation>Patroons</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="711"/>
-        <location filename="configpages.cpp" line="786"/>
+        <location filename="configpages.cpp" line="787"/>
         <source>Default</source>
         <translation>Standaard</translation>
     </message>
@@ -1924,7 +1931,7 @@ alle veranderingen worden niet opgeslagen!</translation>
         <translation type="obsolete">Qoobar</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="823"/>
+        <location filename="configpages.cpp" line="824"/>
         <source>Cannot delete the file
 %1.</source>
         <translation>Kan bestand niet verwijderen
@@ -2153,52 +2160,52 @@ alle veranderingen worden niet opgeslagen!</translation>
 <context>
     <name>PluginsPage</name>
     <message>
-        <location filename="configpages.cpp" line="1097"/>
-        <location filename="configpages.cpp" line="1147"/>
+        <location filename="configpages.cpp" line="1098"/>
+        <location filename="configpages.cpp" line="1148"/>
         <source>Download plugins:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1098"/>
-        <location filename="configpages.cpp" line="1148"/>
+        <location filename="configpages.cpp" line="1099"/>
+        <location filename="configpages.cpp" line="1149"/>
         <source>Tags editing plugins:</source>
         <translation>Labels bewerkings plugins:</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1136"/>
+        <location filename="configpages.cpp" line="1137"/>
         <source>Plugins</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1149"/>
-        <location filename="configpages.cpp" line="1154"/>
+        <location filename="configpages.cpp" line="1150"/>
+        <location filename="configpages.cpp" line="1155"/>
         <source>Name</source>
         <translation>Naam</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1149"/>
-        <location filename="configpages.cpp" line="1154"/>
+        <location filename="configpages.cpp" line="1150"/>
+        <location filename="configpages.cpp" line="1155"/>
         <source>Version</source>
         <translation>Versie</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1149"/>
-        <location filename="configpages.cpp" line="1154"/>
+        <location filename="configpages.cpp" line="1150"/>
+        <location filename="configpages.cpp" line="1155"/>
         <source>Description</source>
         <translation>Omschrijving</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1150"/>
+        <location filename="configpages.cpp" line="1151"/>
         <source>Manual</source>
         <translation>Handmatig</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1151"/>
+        <location filename="configpages.cpp" line="1152"/>
         <source>By CD</source>
         <translation>Door CD</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1152"/>
+        <location filename="configpages.cpp" line="1153"/>
         <source>By files</source>
         <translation>Door bestanden</translation>
     </message>
@@ -2785,70 +2792,70 @@ Installeer het AUB.</translation>
 <context>
     <name>ReplaygainPage</name>
     <message>
-        <location filename="configpages.cpp" line="1214"/>
-        <location filename="configpages.cpp" line="1261"/>
+        <location filename="configpages.cpp" line="1215"/>
+        <location filename="configpages.cpp" line="1262"/>
         <source>Replaygain tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1216"/>
-        <location filename="configpages.cpp" line="1262"/>
+        <location filename="configpages.cpp" line="1217"/>
+        <location filename="configpages.cpp" line="1263"/>
         <source>UPPERCASE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1216"/>
-        <location filename="configpages.cpp" line="1263"/>
+        <location filename="configpages.cpp" line="1217"/>
+        <location filename="configpages.cpp" line="1264"/>
         <source>lowercase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1219"/>
-        <location filename="configpages.cpp" line="1264"/>
+        <location filename="configpages.cpp" line="1220"/>
+        <location filename="configpages.cpp" line="1265"/>
         <source>Replaygain mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1221"/>
-        <location filename="configpages.cpp" line="1265"/>
+        <location filename="configpages.cpp" line="1222"/>
+        <location filename="configpages.cpp" line="1266"/>
         <source>Standard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1221"/>
-        <location filename="configpages.cpp" line="1266"/>
+        <location filename="configpages.cpp" line="1222"/>
+        <location filename="configpages.cpp" line="1267"/>
         <source>Enhanced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1226"/>
-        <location filename="configpages.cpp" line="1268"/>
+        <location filename="configpages.cpp" line="1227"/>
+        <location filename="configpages.cpp" line="1269"/>
         <source>Loudness target</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1228"/>
+        <location filename="configpages.cpp" line="1229"/>
         <source>-18 LUFS (Replaygain 2.0)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1228"/>
+        <location filename="configpages.cpp" line="1229"/>
         <source>-23 LUFS (EBU R128)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1231"/>
-        <location filename="configpages.cpp" line="1269"/>
+        <location filename="configpages.cpp" line="1232"/>
+        <location filename="configpages.cpp" line="1270"/>
         <source>Loudness units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1233"/>
+        <location filename="configpages.cpp" line="1234"/>
         <source>dB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1233"/>
+        <location filename="configpages.cpp" line="1234"/>
         <source>LU</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2864,24 +2871,24 @@ in the ReplayGain dialog</source>
 in het ReplayGain dialoogvenster</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1236"/>
-        <location filename="configpages.cpp" line="1272"/>
+        <location filename="configpages.cpp" line="1237"/>
+        <location filename="configpages.cpp" line="1273"/>
         <source>Prevent clipping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1251"/>
+        <location filename="configpages.cpp" line="1252"/>
         <source>Replaygain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1299"/>
+        <location filename="configpages.cpp" line="1300"/>
         <source>In this mode only the standard
 GAIN and PEAK tags are written</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1302"/>
+        <location filename="configpages.cpp" line="1303"/>
         <source>In this mode the additional RANGE and LOUDNESS tags are written</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3726,32 +3733,32 @@ alle veranderingen worden niet opgeslagen!</translation>
 <context>
     <name>UtilitiesPage</name>
     <message>
-        <location filename="configpages.cpp" line="898"/>
-        <location filename="configpages.cpp" line="983"/>
+        <location filename="configpages.cpp" line="899"/>
+        <location filename="configpages.cpp" line="984"/>
         <source>Choose...</source>
         <translation>Kies...</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="900"/>
-        <location filename="configpages.cpp" line="990"/>
+        <location filename="configpages.cpp" line="901"/>
+        <location filename="configpages.cpp" line="991"/>
         <source>Path/to/player</source>
         <translation>Pad/naar/speler</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="905"/>
-        <location filename="configpages.cpp" line="989"/>
+        <location filename="configpages.cpp" line="906"/>
+        <location filename="configpages.cpp" line="990"/>
         <source>default device</source>
         <translation>Standaardapparaat</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="907"/>
-        <location filename="configpages.cpp" line="984"/>
+        <location filename="configpages.cpp" line="908"/>
+        <location filename="configpages.cpp" line="985"/>
         <source>Player command</source>
         <translation>Speler commando</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="908"/>
-        <location filename="configpages.cpp" line="985"/>
+        <location filename="configpages.cpp" line="909"/>
+        <location filename="configpages.cpp" line="986"/>
         <source>CD-ROM device</source>
         <translation>CD ROM apparaat</translation>
     </message>
@@ -3760,22 +3767,22 @@ alle veranderingen worden niet opgeslagen!</translation>
         <translation type="obsolete">enca guess taal</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="910"/>
-        <location filename="configpages.cpp" line="986"/>
+        <location filename="configpages.cpp" line="911"/>
+        <location filename="configpages.cpp" line="987"/>
         <source>Default language to use with
 the enca utility</source>
         <translation>Standaard taal gebruiken met
 de enca utility</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="916"/>
-        <location filename="configpages.cpp" line="988"/>
+        <location filename="configpages.cpp" line="917"/>
+        <location filename="configpages.cpp" line="989"/>
         <source>External programs</source>
         <translation>Externe programma&apos;s</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="926"/>
-        <location filename="configpages.cpp" line="987"/>
+        <location filename="configpages.cpp" line="927"/>
+        <location filename="configpages.cpp" line="988"/>
         <source>Cue files encoding</source>
         <translation>Cue bestanden codering</translation>
     </message>
@@ -3791,7 +3798,7 @@ in the ReplayGain dialog</source>
 in het ReplayGain dialoogvenster</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1001"/>
+        <location filename="configpages.cpp" line="1002"/>
         <source>Cannot find in </source>
         <translation type="unfinished"></translation>
     </message>
@@ -3800,18 +3807,18 @@ in het ReplayGain dialoogvenster</translation>
         <translation type="obsolete">Niet geinstalleerd</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="972"/>
+        <location filename="configpages.cpp" line="973"/>
         <source>Utilities</source>
         <translation>Hulpprogramma</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1019"/>
-        <location filename="configpages.cpp" line="1022"/>
+        <location filename="configpages.cpp" line="1020"/>
+        <location filename="configpages.cpp" line="1023"/>
         <source>Executable files (*.exe)</source>
         <translation>Uitvoerbare bestanden (*.exe)</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1024"/>
+        <location filename="configpages.cpp" line="1025"/>
         <source>Choose a player file</source>
         <translation>Kies een speel bestand</translation>
     </message>
