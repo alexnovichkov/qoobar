@@ -154,7 +154,6 @@ Application::Application(int &argc, char **argv, bool useGui)
     QStringList themePaths = QIcon::themeSearchPaths();
     themePaths.prepend(ApplicationPaths::iconsPath());
     QIcon::setThemeSearchPaths(themePaths);
-    qDebug()<<themePaths;
 }
 
 template <class T>

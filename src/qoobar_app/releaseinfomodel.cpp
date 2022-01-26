@@ -38,7 +38,7 @@ QVariant ReleaseInfoModel::data(const QModelIndex &index, int role) const
     if (index.isValid() && role==Qt::DisplayRole) {
         const int row = index.row();
         const int col = index.column();
-        if (row < 0 || row >= info.tracks.size()) qDebug()<<"wrong row";
+        //if (row < 0 || row >= info.tracks.size()) qDebug()<<"wrong row";
         const auto &track = info.tracks.at(row);
         switch (col) {
         case 0: return track.fields.value(QSL("tracknumber"));

@@ -296,11 +296,11 @@ void processFunctions(QStringList &args, QString &pattern, Tag &tag, int index, 
         int capturedLength = match.capturedLength();
         const QString functionName=match.captured(1);
         QString functionArg = getFunctionArg(pos, capturedLength, pattern);
-        qDebug()<<functionArg;
+//        qDebug()<<functionArg;
         functionArg.replace("\\,",QChar(0x25da));
         functionArg.replace(',',QChar(0x25a0));
         functionArg.replace(QChar(0x25da),',');
-        qDebug()<<functionArg;
+//        qDebug()<<functionArg;
 
         if (functionArg.contains("$"))
             processFunctions(args1, functionArg, tag, index, size);

@@ -488,7 +488,7 @@ void CommandLineProcessor::parse()
             if (App->verbose) {
                 appendMessage("<font color=blue>Removing tag with key \""+key+"\" ...</font>");
             }
-            if (key>=0) model.setRow(row, "");
+            if (row>=0) model.setRow(row, "");
             else model.setRow(key,"");
         }
         if (App->verbose && success) {
@@ -557,7 +557,7 @@ void CommandLineProcessor::parse()
             if (App->verbose) {
                 appendMessage("<font color=blue>Changing tags with key \""+key+"\" to \""+value+"\" ...</font>");
             }
-            if (key>=0) model.setRow(row, value);
+            if (row>=0) model.setRow(row, value);
             else model.setRow(key,value);
         }
         if (App->verbose && success) {

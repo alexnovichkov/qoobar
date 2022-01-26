@@ -57,6 +57,13 @@ int main(int argc, char *argv[])
 {DD;
 #ifdef Q_OS_WIN
     qt_ntfs_permission_lookup++; // turn NTFS ownership and permissions checking on
+
+    //redirect output to console
+    if (AttachConsole(ATTACH_PARENT_PROCESS)) {
+        freopen("CONOUT$", "w", stdout);
+        freopen("CONOUT$", "w", stderr);
+    }
+
 #endif
 
 #if QT_VERSION >= QT_VERSION_CHECK(5,14,0)
@@ -122,18 +129,5 @@ int main(int argc, char *argv[])
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 #endif
 
-//    QList<QPair<QVariant, int>> map;
-//    using P = QPair<QVariant, int>;
-//    map.append({QString("aaa"),0});
-//    map.append({QString("Aab"),1});
-//    map.append({QString("Aac"),2});
-//    map.append({QString("aad"),3});
-//    for (auto it = map.begin(); it!=map.end(); ++it)
-//        qDebug()<<*it;
-//    std::sort(map.begin(), map.end(), [](const P &first, const P &second){
-//        return first.first.toString().toLower() < second.first.toString().toLower();
-//    });
-//    for (auto it = map.begin(); it!=map.end(); ++it)
-//        qDebug()<<*it;
     return app.exec();
 }

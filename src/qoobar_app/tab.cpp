@@ -703,7 +703,9 @@ void Tab::cellChanged(QTableWidgetItem *item) /*SLOT*/
 void Tab::changeSingleTag(const QString &value, int tagID)
 {DD;
     QStringList newValues=model->tagsByPattern(tagID, value);
-    if (newValues.size()>1) qDebug()<<"size mismatch";
+    if (newValues.size()>1) {
+//        qDebug()<<"size mismatch";
+    }
     tagsChanged(tagID, newValues);
 }
 
