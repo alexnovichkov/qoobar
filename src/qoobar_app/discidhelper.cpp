@@ -30,7 +30,8 @@
 #include <QtDebug>
 
 #ifndef DISCID_LOADABLE
-#include <discid.h>
+#include <discid/discid.h>
+
 #endif
 
 #include "enums.h"

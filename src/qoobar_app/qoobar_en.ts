@@ -2922,23 +2922,23 @@ GAIN and PEAK tags are written</source>
     <name>SettingsDialog</name>
     <message>
         <location filename="settingsdialog.cpp" line="50"/>
-        <location filename="settingsdialog.cpp" line="167"/>
+        <location filename="settingsdialog.cpp" line="169"/>
         <source>Qoobar settings</source>
         <translation></translation>
     </message>
     <message>
         <location filename="settingsdialog.cpp" line="119"/>
-        <location filename="settingsdialog.cpp" line="179"/>
+        <location filename="settingsdialog.cpp" line="181"/>
         <source>Reset Settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="197"/>
+        <location filename="settingsdialog.cpp" line="199"/>
         <source>Qoobar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="197"/>
+        <location filename="settingsdialog.cpp" line="199"/>
         <source>Reset settings to defaults?</source>
         <translation></translation>
     </message>
