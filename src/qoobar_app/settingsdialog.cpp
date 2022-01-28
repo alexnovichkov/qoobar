@@ -112,7 +112,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
         pageList->addItem(item);
     }
-    pageList->setSizePolicy(QSizePolicy::Minimum, pageList->sizePolicy().verticalPolicy());
+//    pageList->setSizePolicy(QSizePolicy::Minimum, pageList->sizePolicy().verticalPolicy());
     connect(pageList, &QListWidget::currentRowChanged, this, &SettingsDialog::switchPage);
 #endif
 
@@ -155,10 +155,12 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 #else
 //    mainLayout->setMargin(0);
     horizontalLayout->setContentsMargins(0,0,0,0);
+    horizontalLayout->setStretch(0,1);
+    horizontalLayout->setStretch(1,4);
     setLayout(mainLayout);
 #endif
-    resize({qApp->primaryScreen()->availableSize().width()/3,
-            qApp->primaryScreen()->availableSize().height()/3});
+//    resize({qApp->primaryScreen()->availableSize().width()/3,
+//            qApp->primaryScreen()->availableSize().height()/3});
     retranslateUI();
 }
 
