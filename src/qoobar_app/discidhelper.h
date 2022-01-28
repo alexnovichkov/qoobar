@@ -29,7 +29,10 @@
 
 #include <QObject>
 
-#ifndef Q_OS_MACOS
+// if discid is not linked we need to resolve its symbols
+//#define DISCID_LOADABLE
+
+#ifdef DISCID_LOADABLE
 typedef void *DiscId;
 
 typedef DiscId * (*Discid_new)();
@@ -54,7 +57,7 @@ public:
     QString errorString;
 private:
     bool libdiscidResolved = false;
-#ifndef Q_OS_MACOS
+#ifdef DISCID_LOADABLE
     bool resolveLibdiscid();
     Discid_new discid_new = nullptr;
     Discid_free discid_free = nullptr;

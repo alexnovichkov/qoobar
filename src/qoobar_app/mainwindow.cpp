@@ -607,9 +607,6 @@ void MainWindow::showAboutDialog()
                    .arg(TAGLIB_PATCH_VERSION);
 
     QString libdiscid=QSL("libdiscid");
-#ifndef Q_OS_MACOS
-    if (App->discidLibraryPath.isEmpty()) libdiscid.append(notInstalled);
-#endif
 
     unsigned lavf_ver;
     scan_get_library_version(&lavf_ver, 0);
@@ -636,6 +633,9 @@ void MainWindow::showAboutDialog()
                             "<li>%6</li>"
 #ifdef Q_OS_WIN
                             "<li>Winsparkle</li>"
+#endif
+#ifdef Q_OS_MACOS
+                              "<li>Sparkle</li>"
 #endif
                             "<li>loudgain</li>"
                             "</ul>")

@@ -29,17 +29,15 @@
 #include <QLibrary>
 #include <QtDebug>
 
-#ifdef Q_OS_MACOS
-#include "discid.h"
+#ifndef DISCID_LOADABLE
+#include <discid.h>
 #endif
-
-//#include <discid/discid.h>
 
 #include "enums.h"
 
 DiscIDHelper::DiscIDHelper()
 {
-#ifdef Q_OS_MACOS
+#ifndef DISCID_LOADABLE
     libdiscidResolved = true;
 #else
     libdiscidResolved = resolveLibdiscid();
@@ -48,7 +46,7 @@ DiscIDHelper::DiscIDHelper()
 #endif
 }
 
-#ifndef Q_OS_MACOS
+#ifdef DISCID_LOADABLE
 bool DiscIDHelper::resolveLibdiscid()
 {
     QString libName=App->discidLibraryPath;

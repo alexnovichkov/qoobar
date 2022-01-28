@@ -25,14 +25,4 @@ SOURCES += ../../qoobar_app/logging.cpp
 os2:TARGET = muscbrnz
 !os2:TARGET = musicbrainz
 
-#include(../../libdiscid.pri)
-mac {
-    LIBS += -F../../../mac_os/ -framework discid
-    INCLUDEPATH += ../../../mac_os/discid.framework/Versions/A/Headers
-    DEPENDPATH += ../../../mac_os/discid.framework/Versions/A/Headers
-}
-win32|win {
-  LIBDISCID_PATH = E:/My/programming/sources/libdiscid-x64
-  INCLUDEPATH *= $${LIBDISCID_PATH}/include
-  LIBS *= $${LIBDISCID_PATH}/lib/libdiscid.dll.a
-}
+include(../../3rdparty/libdiscid.pri)
