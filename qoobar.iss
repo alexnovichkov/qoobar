@@ -136,7 +136,7 @@ Source: "G:/soft/Programming/taglib-1.12.1-x64/bin/libtag.dll"; DestDir: "{app}"
 ; ffmpeg libraries
 Source: "G:/soft/Programming/ffmpeg-4.4-shared-win64/bin/*.dll"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
 Source: "G:/soft/Programming/ffmpeg-4.4-shared-win64/bin/ffmpeg.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly replacesameversion; Attribs: readonly; Components: main
-;Source: "..\windows\flac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
+Source: "..\windows\flac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
 ;Source: "..\windows\mac.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
 Source: "..\windows\shntool.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities
 Source: "..\windows\enca.exe"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: utilities

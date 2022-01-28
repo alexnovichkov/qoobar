@@ -4,6 +4,10 @@ include(../../portable.pri)
 PVERSION = 1.1.0
 DEFINES += PLUGIN_VERSION=\\\"$$PVERSION\\\"
 
+greaterThan(QT_MAJOR_VERSION, 5) {
+  QT *= core5compat
+}
+
 HEADERS = freedb.h
 SOURCES = freedb.cpp
 OTHER_FILES += freedb.json

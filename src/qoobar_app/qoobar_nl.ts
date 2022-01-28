@@ -388,12 +388,12 @@ Please compile Qoobar with another Qt version</source>
 <context>
     <name>DiscIDHelper</name>
     <message>
-        <location filename="discidhelper.cpp" line="47"/>
+        <location filename="discidhelper.cpp" line="45"/>
         <source>Please install libdiscid</source>
         <translation>Installeer AUB libdiscid</translation>
     </message>
     <message>
-        <location filename="discidhelper.cpp" line="109"/>
+        <location filename="discidhelper.cpp" line="107"/>
         <source>Cannot read CD</source>
         <translation>Kan CD niet lezen</translation>
     </message>

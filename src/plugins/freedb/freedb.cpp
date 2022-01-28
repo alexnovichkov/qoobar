@@ -7,6 +7,12 @@
 #include "qoobarglobals.h"
 
 #include <QtDebug>
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+#include <QtCore5Compat/QRegExp>
+#else
+#include <QRegExp>
+#endif
+#include <QRegularExpression>
 
 const int FRREEDB_EXACT_MATCH = 200;
 const int FREEDB_MULTIPLE_MATCHES = 210;
@@ -77,7 +83,7 @@ QList<SearchResult> FreedbPlugin::parseResponse(const QByteArray &response)
             results << r;
         }
         else if (code==FREEDB_MULTIPLE_MATCHES || code == FREEDB_INEXACT_MATCH) {//multiple exact matches or inexact matches
-            QStringList list = s.split(QRegExp("[\\r\\n]+"));
+            QStringList list = s.split(QRegularExpression("[\\r\\n]+"));
             for (int i=1; i<list.size()-2; ++i) {
                 SearchResult r;
                 r.fields.insert("url", frame.arg(list.at(i).section(" ",0,1)));
