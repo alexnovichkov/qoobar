@@ -26,4 +26,4 @@ SOURCES += ../../qoobar_app/tagger.cpp \
 
 TARGET = beatport
 
-include(../../libz.pri)
+include(../../3rdparty/libz.pri)

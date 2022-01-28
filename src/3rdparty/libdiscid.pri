@@ -1,5 +1,5 @@
 win32|win {
-
+    include(../../../win-libs/libdiscid.pri)
 }
 
 mac {
@@ -10,7 +10,8 @@ mac {
 
 unix {
 !mac {
-
+    CONFIG *= link_pkgconfig
+    PKGCONFIG *= libdiscid
 }
 }
 

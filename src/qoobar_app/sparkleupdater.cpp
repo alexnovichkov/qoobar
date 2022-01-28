@@ -1,5 +1,6 @@
 #include "sparkleupdater.h"
 
+#ifdef Q_OS_WIN
 #include <winsparkle.h>
 #include "mainwindow.h"
 
@@ -47,3 +48,4 @@ void SparkleUpdater::checkNow(bool silent)
         win_sparkle_check_update_with_ui();
     }
 }
+#endif

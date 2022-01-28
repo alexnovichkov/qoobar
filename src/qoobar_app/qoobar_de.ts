@@ -3040,23 +3040,23 @@ GAIN and PEAK tags are written</source>
     <name>SettingsDialog</name>
     <message>
         <location filename="settingsdialog.cpp" line="50"/>
-        <location filename="settingsdialog.cpp" line="152"/>
+        <location filename="settingsdialog.cpp" line="167"/>
         <source>Qoobar settings</source>
         <translation>Qoobar Einstellungen</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="109"/>
-        <location filename="settingsdialog.cpp" line="160"/>
+        <location filename="settingsdialog.cpp" line="119"/>
+        <location filename="settingsdialog.cpp" line="179"/>
         <source>Reset Settings</source>
         <translation>Einstellungen zurücksetzen</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="178"/>
+        <location filename="settingsdialog.cpp" line="197"/>
         <source>Qoobar</source>
         <translation type="unfinished">Qoobar</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="178"/>
+        <location filename="settingsdialog.cpp" line="197"/>
         <source>Reset settings to defaults?</source>
         <translation type="unfinished"></translation>
     </message>

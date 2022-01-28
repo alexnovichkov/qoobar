@@ -19,6 +19,14 @@ CONFIG *= no_keywords
 # When compiling into AppImage should be something like ~/deploy/qoobar/AppDir
 INSTALL_ROOT = /
 
+# used for non-shadow building
+CONFIG(release, debug|release):BUILD_DIR = ../../release
+CONFIG(debug, debug|release):BUILD_DIR = ../../debug
+
+DESTDIR = $$BUILD_DIR
+OBJECTS_DIR = $$BUILD_DIR/build
+RCC_DIR = $$BUILD_DIR/build
+MOC_DIR = $$BUILD_DIR/build
 
 
 message(The install path is $${INSTALL_ROOT})
@@ -32,13 +40,20 @@ DEFINES *= QOOBAR_DOC_PATH=\\\"$${DOC_PATH}/$${TARGET}-doc\\\"
 
 include(../portable.pri)
 
+# 3rdparty libraries Qoobar links with
+include(../3rdparty/libz.pri)
+include(../3rdparty/libtag.pri)
+include(../3rdparty/libffmpeg.pri)
+include(../3rdparty/libdiscid.pri)
+include(../3rdparty/libebur128.pri)
+include(../3rdparty/libsparkle.pri)
+
 # this define adds the OS X specific features to the app.
 # Right now all OS X support is switched off as I have no possibility to test it properly
 # DEFINES *= OSX_SUPPORT_ENABLED
 
 # place this define in OS-specific section to enable command-line interface
 # DEFINES *= QOOBAR_ENABLE_CLI
-
 
 
 # main sources and headers
@@ -113,7 +128,8 @@ SOURCES = main.cpp \
     treeview.cpp \
     styledbar.cpp \
     logging.cpp \
-    autonumber.cpp
+    autonumber.cpp \
+    argsparser.cpp
 
 HEADERS = mainwindow.h \
     checkabletablemodel.h \
@@ -191,9 +207,12 @@ HEADERS = mainwindow.h \
     styledbar.h \
     logging.h \
     qoobarhelp.h \
-    autonumber.h
+    autonumber.h \
+    sparkleupdater.h \
+    argsparser.h
 
 # loudgain-master
+# Qoobar uses parts of the loudgain sources. TODO: rewrite them
   HEADERS += loudgain-master/src/lg-util.h \
   loudgain-master/src/scan.h \
   loudgain-master/src/printf.h
@@ -201,6 +220,7 @@ HEADERS = mainwindow.h \
   SOURCES += loudgain-master/src/scan.c \
   loudgain-master/src/printf.c
 
+# Scripts for splitting images by cue
 OTHER_FILES *= splitandconvert.bat \
                splitandconvert.sh
 
@@ -215,10 +235,6 @@ TRANSLATIONS = qoobar_ru.ts \
 RESOURCES *= qoobar.qrc
 
 system(lupdate qoobar_app.pro&&lrelease qoobar_app.pro)
-
-HEADERS += sparkleupdater.h
-HEADERS += argsparser.h
-SOURCES += argsparser.cpp
 
 # QOCOA wrappers for OS X
 INCLUDEPATH += qocoa
@@ -241,15 +257,7 @@ mac {
     HEADERS += impl.h
 }
 
-CONFIG(release, debug|release):BUILD_DIR = ../../release
-CONFIG(debug, debug|release):BUILD_DIR = ../../debug
-
-DESTDIR = $$BUILD_DIR
-OBJECTS_DIR = $$BUILD_DIR/build
-RCC_DIR = $$BUILD_DIR/build
-MOC_DIR = $$BUILD_DIR/build
-
-include(../libz.pri)
+# OS-specific settings
 
 unix {
 !mac {
@@ -260,14 +268,6 @@ unix {
     DEFINES *= QOOBAR_ENABLE_CLI
 
     SOURCES += sparkleupdater_dummy.cpp
-
-    PKGCONFIG += libavcodec
-    PKGCONFIG += libavformat
-    PKGCONFIG += libavutil
-    PKGCONFIG += libswresample
-    PKGCONFIG += libebur128
-    PKGCONFIG += taglib
-
 
     EXEC_PATH = $${INSTALL_ROOT}/usr/bin
 # Ubuntu 20.04 requires the app icons be placed into /usr/local/share/  
@@ -353,47 +353,12 @@ win32|win {
                   winextras/qwineventfilter.cpp \
                   winextras/windowsguidsdefs.cpp
   }
-
+    SOURCES += sparkleupdater.cpp
 
   # So far no cli support in Win
 #  DEFINES *= QOOBAR_ENABLE_CLI
 
   RC_FILE = qoobar.rc
-
-# Paths to shared libraries
-# Edit these to compile on your mashine
-  WINSPARKLE_PATH = E:/My\programming/sources/WinSparkle-0.7.0/x64
-  TAGLIB_PATH = E:/My/programming/sources/taglib-1.12.1-x64
-  FFMPEG_PATH = E:/My/programming/sources/ffmpeg-4.4-shared-win64
-  LIBEBUR_PATH = E:/My/programming/sources/libebur128
-#  LIBDISCID_PATH = G:/soft/Programming/libdiscid-x64
-
-# Winsparkle library
-  INCLUDEPATH *= $${WINSPARKLE_PATH}/include
-  LIBS *= $${WINSPARKLE_PATH}/Release/WinSparkle.lib
-  SOURCES += sparkleupdater.cpp
-
-# Taglib library
-  INCLUDEPATH *= $${TAGLIB_PATH}/include
-  LIBS *= $${TAGLIB_PATH}/lib/libtag.dll.a
-
-# ffmpeg libraries
-  INCLUDEPATH *= $${FFMPEG_PATH}/include
-  LIBS *= $${FFMPEG_PATH}/lib/libavcodec.dll.a \
-          $${FFMPEG_PATH}/lib/libavdevice.dll.a \
-          $${FFMPEG_PATH}/lib/libavfilter.dll.a \
-          $${FFMPEG_PATH}/lib/libavformat.dll.a \
-          $${FFMPEG_PATH}/lib/libavutil.dll.a \
-          $${FFMPEG_PATH}/lib/libswresample.dll.a \
-          $${FFMPEG_PATH}/lib/libswscale.dll.a
-
-# libebur
-  INCLUDEPATH *= $${LIBEBUR_PATH}/include
-  LIBS *= $${LIBEBUR_PATH}/lib/libebur128.dll.a
-
-## libdiscid
-#  INCLUDEPATH *= $${LIBDISCID_PATH}/include
-#  LIBS *= $${LIBDISCID_PATH}/lib/libdiscid.dll.a
 }
 
 os2 {
@@ -467,16 +432,6 @@ os2 {
 #    qtHaveModule(macextras) {
 #      QT *= macextras
 #    }
-
-#    LIBS += -F../../mac_os/ -framework discid
-#    INCLUDEPATH += ../../mac_os/discid.framework/Versions/A/Headers
-#    DEPENDPATH += ../../mac_os/discid.framework/Versions/A/Headers
-
-#    LIBS += -framework AppKit -framework Foundation
-#    LIBS += -F$$PWD/../../mac_os/ -framework Sparkle
-#    INCLUDEPATH += $$PWD/../../mac_os/Sparkle.framework/Versions/A/Headers
-
-
 
 #    ICON = icons/app/qoobar.icns
 #    INSTALL_PATH = $$DESTDIR/qoobar.app/Contents

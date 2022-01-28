@@ -7,6 +7,7 @@ SUBDIRS += src/plugins/beatport \
            src/plugins/discogs \
            src/plugins/musicbrainz \
            src/plugins/gd3 \
+           src/plugins/freedb \
            src/plugins/playlists
 
 
