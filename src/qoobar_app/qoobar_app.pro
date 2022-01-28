@@ -362,10 +362,10 @@ win32|win {
 
 # Paths to shared libraries
 # Edit these to compile on your mashine
-  WINSPARKLE_PATH = G:/soft/Programming/WinSparkle-0.7.0/x64
-  TAGLIB_PATH = G:/soft/Programming/taglib-1.12.1-x64
-  FFMPEG_PATH = G:/soft/Programming/ffmpeg-4.4-shared-win64
-  LIBEBUR_PATH = G:/soft/Programming/libebur128
+  WINSPARKLE_PATH = E:/My\programming/sources/WinSparkle-0.7.0/x64
+  TAGLIB_PATH = E:/My/programming/sources/taglib-1.12.1-x64
+  FFMPEG_PATH = E:/My/programming/sources/ffmpeg-4.4-shared-win64
+  LIBEBUR_PATH = E:/My/programming/sources/libebur128
 #  LIBDISCID_PATH = G:/soft/Programming/libdiscid-x64
 
 # Winsparkle library

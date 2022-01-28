@@ -216,7 +216,7 @@ Removes ReplayGain info from the file.
 Switches on skipping files that already have ReplayGain info.
 .TP
 \fB\-\-mpc\-replaygain\-format \fI<header|tags>\fR
-Sets the format of ReplayGain information to be written into Musepack files.
+Sets the format of ReplayGain information to be written into Musepack files. The options are:
 .RS
 .IP - 2
 \fI<header>\fR: ReplayGain information will be written into the file header.
@@ -224,6 +224,32 @@ It is the default value.
 .IP - 2
 \fI<tags>\fR: ReplayGain information will be written into APEv2 tags and can be changed or deleted.
 .RE
+.TP
+\fB\-\-rg\-loudness \fI<\-18dB|\-23dB>\fR
+Sets the target ReplayGain loudness.
+.RS
+.IP - 2
+\fI<\-18dB>\fR: ReplayGain 2.0 standard loudness. It is the default value.
+.IP - 2
+\fI<\-23dB>\fR: EBU R128 standard loudness.
+.RE
+.TP
+\fB\-\-rg\-mode \fI<standard|enhanced>\fR
+Sets the ReplayGain tags mode.
+.RS
+\fI<standard>\fR: Only the TRACKGAIN, TRACKPEAK, ALBUMGAIN, ALBUMPEAK tags are added.
+\fI<enhanced>\fR: The additional TRACKRANGE, TRACKLOUDNESS, ALBUMRANGE, ALBUMLOUDNESS are added to the standard ones. 
+.RE
+The default value is <standard>.
+.TP
+\fB\-\-rg\-prevent\-clipping \fI<on|off>\fR
+Switches on/off clipping prevention in the replaygain calculations. The default value is "on".
+.TP
+\fB\-\-rg\-tags\-case \fI<upper|lower>\fR
+Sets the ReplayGain tags case formatting. The default value is "upper".
+.TP
+\fB\-\-rg\-units \fI<dB|LU>\fR
+Sets the ReplayGain loudness unit. The default value is "dB".
 .SS Filling tags
 .TP
 \fB\-\-fill \fI<PATTERN>\fR
@@ -483,13 +509,14 @@ Global options:
 .BR \-\-recursive ", " \-\-verbose ", " \-\-simplify-whitespaces ", "
 .BR \-\-read\-id3v2 ", " \-\-read\-ape ", " \-\-write\-id3v2 ", "
 .BR \-\-write\-ape ", " \-\-force\-id3v23 ", " \-\-delete\-id3v1 ", "
-.BR \-\-id3v1\-transliterate ", " \-\-ogg\-image\-new
+.BR \-\-id3v1\-transliterate ", " \-\-ogg\-image\-new 
 .IP 3. 4
 Other options:
 .BR \-\-maximum\-length ", " \-\-replace\-win\-chars  ", " \-\-output\-dir ", "
 .BR \-\-replace\-spaces   ", " \-\-remove\-diacritics ", "
-.BR \-\-apply\-to\-folders ", " \-\-change\-case ", "
-.BR \-\-mpc\-replaygain\-format ", " \-\-format
+.BR \-\-apply\-to\-folders ", " \-\-change\-case ", " \-\-format 
+.BR \-\-mpc\-replaygain\-format ", " \-\-rg\-loudness ", " \-\-rg\-mode 
+.BR \-\-rg\-prevent\-clipping ", " \-\-rg\-tags\-case ", " \-\-rg\-units 
 .IP 4. 4
 .B \-\-split
 .IP 5. 4

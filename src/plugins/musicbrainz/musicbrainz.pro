@@ -32,7 +32,7 @@ mac {
     DEPENDPATH += ../../../mac_os/discid.framework/Versions/A/Headers
 }
 win32|win {
-  LIBDISCID_PATH = G:/soft/Programming/libdiscid-x64
+  LIBDISCID_PATH = E:/My/programming/sources/libdiscid-x64
   INCLUDEPATH *= $${LIBDISCID_PATH}/include
   LIBS *= $${LIBDISCID_PATH}/lib/libdiscid.dll.a
 }

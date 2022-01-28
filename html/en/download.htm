@@ -76,7 +76,6 @@
 							        	<li>Install the full <a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">Visual C++ 2015, 2017, 2019 and 2022 packages</a></li>
 							        	<li>If nothing previous helped, install <span class="windows_old_installer">this version</span>, compiled with the previous Qt version (5.15)</li>
 							        </ol>
-
 						        <hr/>
 						        <h2><span class="icon brands fa-apple">&nbsp;&nbsp;</span>Mac OS X</h2>
 						        <p>The Mac version of Qoobar can be downloaded from
@@ -93,12 +92,20 @@
 						        <hr>
 						        <h2><span class="icon solid fa-code">&nbsp;&nbsp;</span>Building Qoobar manually</h2>
 						        <dl>
-						        	<dt>Under Unix:</dt>
+						        	<dt>Sources</dt>
+						        	<dd>
+						        		<P>The Git repository of Qoobar is <a href="https://github.com/alexnovichkov/qoobar.git">https://github.com/alexnovichkov/qoobar.git</a>. You can easily clone it with </P>
+									    <pre><code>git clone https://github.com/alexnovichkov/qoobar.git</code></pre>
+									    <p>or with GitHub CLI:</p>
+									    <pre><code>gh repo clone alexnovichkov/qoobar</code></pre>
+									    <p>You can also download the tar.gz archive from <span class="sources_installer">here</span>.</p>
+						        	</dd>
+						        	<dt>Building under Unix:</dt>
 						        	<dd>
 						        		<OL>
 									        <li>Install Qt-devel &gt;= 5.0, ffmpeg-devel, libswresample-devel, libebur128-devel, libtag1-devel, libdiscid, enca, shntool and gcc tools
 									        <li>Download <span class="sources_installer">sources</span>
-									        source files and unpack the archive or clone the Qoobar repo (see below).</li>
+									        source files and unpack the archive or clone the Qoobar repo.</li>
 									        <li>Go into the folder and in the console type:
 									        <pre><code>$ qmake
 $ make
@@ -106,12 +113,12 @@ $ sudo make install
 $ make clean</code></pre></LI>
 										</OL>
 									</dd>
-							        <dt>Under Windows:</dt>
+							        <dt>Building under Windows:</dt>
 							        <dd>
 							        	<OL>
-									        <li>Install Qt/Windows 
+									        <li>Install Qt for Windows 
 									        <li>Download <span class="sources_installer">sources</span>
-									        source files and unpack the archive or clone the Qoobar repo (see below).</li>
+									        source files and unpack the archive or clone the Qoobar repo.</li>
 									        <li>Download <a href="http://sourceforge.net/projects/qoobar/files/utils/win_utils.tar.gz">win_utils.tar.gz</a>
 									          archive with necessary dlls and execs and unpack it into the source folder.</li>
 									        <li> In the console go into the source folder and type:
@@ -122,10 +129,7 @@ $ make clean</code></pre></LI>
 									    </OL>
 							        </dd>
 							    </dl>
-							    <P>The Git repository of Qoobar is <a href="https://github.com/alexnovichkov/qoobar.git">https://github.com/alexnovichkov/qoobar.git</a>. You can easily clone it with </P>
-							    <pre><code>git clone https://github.com/alexnovichkov/qoobar.git</code></pre>
-							    <p>or with GitHub CLI:</p>
-							    <pre><code>gh repo clone alexnovichkov/qoobar</code></pre>
+							    
 
 							    <hr>
 							    <h2>Older versions</h2>
@@ -157,11 +161,10 @@ $ make clean</code></pre></LI>
 									<header class="major">
 										<h2>Get in touch</h2>
 									</header>
-									<p>Any feedback, wishes, bugs please send via</p>
 									<ul class="contact">
 										<li class="icon solid fa-envelope"><a href="mailto:novichkov.qoobar@gmail.com">novichkov.qoobar@gmail.com</a></li>
-										<li class="icon brands fa-github"><a href="https://github.com/alexnovichkov/qoobar.git">Qoobar</a></li>
-
+										<li class="icon solid fa-home"><a href="https://sf.net/alexnovichkov/qoobar">Home</a></li>
+										<li class="icon brands fa-github"><a href="https://github.com/alexnovichkov/qoobar.git">Qoobar git</a></li>
 									</ul>
 								</section>
 

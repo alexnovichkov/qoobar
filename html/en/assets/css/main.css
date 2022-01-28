@@ -205,14 +205,18 @@ code {
 
 pre {
   -webkit-overflow-scrolling: touch;
-  font-family: "Courier New", monospace;
   font-size: 0.9em;
   margin: 0 0 2em 0; }
   pre code {
     display: block;
     line-height: 1.75;
     padding: 1em 1.5em;
-    overflow-x: auto; }
+    overflow-x: auto; 
+    border-left: solid 3px rgba(9,88,10,0.75);
+  }
+    pre.narrow {
+      margin-bottom: 0.5em;
+    }
 
 hr {
   border: 0;
@@ -1963,6 +1967,7 @@ button,
   -webkit-flex-shrink: 1;
   -ms-flex-shrink: 1;
   flex-shrink: 1;
+  overflow-y: auto;
   width: 100%; }
   #main > .inner {
     padding: 0 6em 0.1em 6em ;
@@ -2041,6 +2046,7 @@ button,
   background-color: #f5f6f7;
   font-size: 0.9em;
   position: relative;
+  /*overflow-y: scroll;*/
   width: 26em; }
   #sidebar h2 {
     font-size: 1.38889em; }

@@ -47,11 +47,13 @@
 							<li><a href="#importing">Importing tags from the Internet</a></li>
 							<li><a href="#renaming">Renaming files</a></li>
 							<li><a href="#replaygain">Adding ReplayGain info to files</a></li>
+							<li><a href="#cli">Command-line interface</a></li>
 							<li><a href="#settings">Qoobar Settings</a></li>
 							<li><a href="#tags">Appendix 1. Tags fields supported by Qoobar</a></li>
 							<li><a href="#shortcuts">Appendix 2. Qoobar Shortcuts</a></li>
 							<li><a href="#placeholders">Appendix 3. Placeholders and functions</a></li>
 							<li><a href="#regular_expressions">Appendix 4. Regular expressions</a></li>
+							<li><a href="#cli-options">Appendix 5. Command-line options</a></li>
 						</ul>
 
 					</div>
@@ -714,10 +716,8 @@ sudo port install flac</code></pre></li>
                             <li>Track number=2,</li>
                             <li>Title = "Ostinato"</li>
                         </ul>
-                        <p>yields the new file name </p>
-                        <pre><code>Bela Bartok (1905-1975)/Microcosmos/02. Ostinato.ogg</code></pre>
-                        <p>If you remove the track number, the new file name will be</p>
-                        <pre><code>Bela Bartok (1905-1975)/Microcosmos/Ostinato.ogg</code></pre>
+                        <p>yields the new file name <strong>Bela Bartok (1905-1975)/Microcosmos/02. Ostinato.ogg</strong></p>
+                        <p>If you remove the track number, the new file name will be <strong>Bela Bartok (1905-1975)/Microcosmos/Ostinato.ogg</strong></p>
                     </div>
                 </section>
 
@@ -749,13 +749,106 @@ sudo port install flac</code></pre></li>
                             </li>
                         </ol>
                         <div class="box"><p><strong>Note:</strong> Qoobar can skip already scanned files. Just check on the "Skip already scanned files" box.</p></div>
-                        <div class="box"><p><strong>Note:</strong> If you are encountering messages like "Couldn't find file" or
-                        "The FLAC file could not be opened", open the Qoobar settings dialog
-                        and on the Utilities page set the "Copy files into temp folder before replaygaining them" option.</p></div>
                         <p>After scanning is complete, the replaygain info table will be updated. Now you can click the <span class="hotkey-button">Update file tags</span> button to save changes or click <span class="hotkey-button">Cancel</span> to close the dialog.</p>
                         <p>The Files Table has the "RG" column that displays the presence of the replaygain info in the file tags.</p>
                         <p>The <a href="#replaygain-settings">ReplayGain</a> tab of the Settings dialog allows you to fine-tune the replaygain process.</p>
                     </div>
+                </section>
+
+                <section>
+                	<div class="content">
+                		<h2><a id=cli>Command-line interface</a></h2>
+                		<p>Qoobar can work in the command-line mode. You can automate your work by launching Qoobar in the console and by writing bash scripts. So far only Unix-like systems are supported.</p>
+                		<p>There is a man file shipped with Qoobar. To see the man file run</p>
+                		<pre><code>man qoobar</code></pre>
+                		<p>To see the help on the command-line options run</p>
+                		<pre><code>qoobar -h</code></pre>
+                		<p>There is the possibility to run Qoobar in both command-line and GUI mode, that is to perform some scripting and then show the Qoobar window. For more info see examples below.</p>
+                		<p>The description of all the options can be found in the <a href="#cli-options">Appendix 5</a></p>
+						
+						<h3>Examples</h3>
+						<h4>The GUI mode</h4>
+							<pre class="narrow"><code>qoobar</code></pre>
+							<p>Runs Qoobar in the GUI mode.</p>
+							<pre class="narrow"><code>qoobar --force-id3v23</code></pre>
+							<p>Switches on writing of id3v2 tags to id3v2.3 format and
+							runs Qoobar in the GUI mode. Other global options can be specified.</p>
+							<div class="box"><p><strong>Note:</strong> These global options will be saved when closing the Qoobar window. See <a href="#cli-options">Appendix 5</a> for the list of supported global options.</p></div>
+							<pre class="narrow"><code>qoobar "~/Music/Artist/Album 1"</code></pre>
+							<p>Runs Qoobar in the GUI mode and adds the content of "~/Music/Artist/Album 1" directory.</p>
+						<h4>The command line mode</h4>
+							<p>The command line mode is automatically used if any of the following arguments is specified:</p>
+							<p><code>-c, --composer, -a, --album, -t, --title,
+							-A, --artist, -C, --comment, -g, --genre, -y, --year,
+							-n, --track-number, -T, --total-tracks, --s,
+							--set, --remove, --remove-user-tags,
+							--remove-all, --set-image, --set-image-description, --set-image-type,
+							--remove-image, --write-image, --scan-rg, --write-rg, --remove-rg,
+							--list-image-types, --list-keys, --show-tags, -f, --fill, --rename, --split.</code></p>
+							<div class="box"><p><strong>Note:</strong> 
+							Any global option that is specified in the command line mode will not
+							be saved automatically. If you want to change the default settings, either
+							edit the ~/.config/qoobar/global.ini
+							file, or set them in the qoobar preferences dialog.</p></div>
+							<pre class="narrow"><code>qoobar -a "Sonata No.29 Hammerklavier" "~/Music/Beethoven, L./Sonata 29 (Richter)"</code></pre>
+							<p>Sets the album to be "Sonata No.29 Hammerklavier" in every file in "~/Music/Beethoven, L./Sonata 29 (Richter)"
+							directory.</p>
+							<pre class="narrow"><code>qoobar --write-id3v2 on --write-ape off --delete-id3v1 delete -n 1 "~/Music/ABBA/*.mp3"</code></pre>
+							<p>Automatically sets track numbers from 1 to number of files for all mp3 files
+							in the "~/Music/ABBA/" directory. When saving files writes id3v2
+							tags only, and strips all ape tags and all id3v1 tags.</p>
+							<pre class="narrow"><code>qoobar -s "ARTIST:%A (piano)" "~/Music/SKRIABIN A./Compilation"</code></pre>
+							<p>Takes ARTIST tag, appends " (piano)" text and writes back into ARTIST tag
+							for all files in the "~/Music/SKRIABIN A./Compilation" directory.<br>
+							This is equivalent to <code>qoobar -A "%A (piano)" "~/Music/SKRIABIN A./Compilation"</code></p>
+							<pre class="narrow"><code>qoobar --fill "%c/%a (%A)/%n - %t" "~/Music/Beethoven, L./Piano concerto No.5 (Arrau)/"</code></pre>
+							<p>Fills tags from files names for all files in
+							"~/Music/Beethoven, L./Piano concerto No.5 (Arrau)/"
+							directory. The tags to write are:</p>
+							<p><strong>Composer</strong> will be "Beethoven, L."<br>
+							<strong>Album</strong> will be "Piano concerto No.5"<br>
+							<strong>Artist</strong> will be "Arrau"<br>
+							<strong>Track numbers</strong> will be all symbols in files names before the first " - "<br>
+							<strong>Track titles</strong> will be all symbols in files names after the first " - " (excluding the file extension).</p>
+							<pre class="narrow"><code>qoobar --split  ~/Music/Ellington/compilation/cd.cue --artist "Edward \\"Duke\\" Ellington" --rename "%N. %t" --force-gui</code></pre>
+							<p>Splits an audio image file to separate tracks by the CUE sheet file "~/Music/Ellington/compilation/cd.cue"
+							(the audio file is taken from this file data),
+							sets artist to "Edward \\"Duke\\" Ellington" (note the double backslashes
+							in the text) and renames newly created files according to the pattern
+							"%N. %t", that is track number (01, 02, 03...) followed by a dot and a space
+							followed by track title. After that launches Qoobar in the GUI mode and opens these created files for fine tuning.</p>
+
+					<h3>Arguments order</h3>
+					<p>The order in which the command-line arguments are processed is independent of their order in the command line and is as follows:</p>
+					<ol>
+						<li><p><code>-h, --help, --version, --list-image-types,
+						--list-keys, --list-placeholders</code></p>
+						<p>After executing these commands Qoobar quits.</p></li>
+						<li><p>Global options:</p>
+						<p><code>--recursive, --verbose, --simplify-whitespaces,
+						--read-id3v2, --read-ape, --write-id3v2,
+						--write-ape, --force-id3v23, --delete-id3v1,
+						--id3v1-transliterate, --ogg-image-new</code></p></li>
+						<li><p>Other options:</p>
+						<p><code>--maximum-length, --replace-win-chars, --output-dir,
+						--replace-spaces, --remove-diacritics,
+						--apply-to-folders, --change-case, --format
+						--mpc-replaygain-format, --rg-loudness, --rg-mode, --rg-prevent-clipping,
+					    --rg-tags-case, --rg-units </code></p></li>
+						<li><code>--split</code></li>
+						<li><code>--show-tags</code></li>
+						<li><code>--write-image, --scan-rg, --write-rg, --remove-rg</code></li>
+						<li><code>--remove, --remove-user-tags, --remove-image, --remove-all</code></li>
+						<li><code>--fill</code></li>
+						<li><code>-s, --set, -c, --composer, -a, --album, -t,
+						--title, -A, --artist, -C, --comment, -g,
+						--genre, -y, --year, -n, --track-number,
+						-T, --total-tracks, --set-image,
+						--set-image-description, --set-image-type</code></li>
+						<li>After these Qoobar saves tags.</li>
+						<li><code>--rename</code></li>
+					</ol>
+					</div>
                 </section>
 
                 <section>
@@ -915,7 +1008,7 @@ sudo port install flac</code></pre></li>
                         
                         
                         <hr/>
-                        <h3><span class="image right"><img src="images/qoobar-settings6.png" alt="ReplayGain settings"></span><a id=settings-replaygain></a>ReplayGain</h3>
+                        <h3><span class="image right"><img src="images/qoobar-settings6.png" alt="ReplayGain settings"></span><a id=replaygain-settings></a>ReplayGain</h3>
                         <p>This tab contains the settings of the replaygain process. They loosely correspond to the settings of the loudgain utility. For more info on their meaning please go to <a href="https://github.com/Moonbase59/loudgain" target="_blank">loudgain page</a>.</p>
                         <dl>
                         	<dt>Replaygain tags</dt><dd>Uppercase or lowercase depending on your favourite player.</dd>
@@ -949,7 +1042,7 @@ sudo port install flac</code></pre></li>
                 </section>
 
                 <section>
-                    <div class="content">
+                    <div class="content" id="appendices">
                         <h2><a id=tags>Appendix 1. The default tagging scheme supported by Qoobar</a></h2>
                         <p>The table contains all fields that Qoobar read and write in 5 different tag types:
                         ID3v2.4, APE, Xiph, Asf, MP4.</p>
@@ -1638,6 +1731,206 @@ sudo port install flac</code></pre></li>
                           </table>
                     </div>
                 </section>
+
+                <section>
+                    <div class="content">
+                        <h2><a id=cli-options>Appendix 5. Command-line options</a></h2>
+						<h4>Changing tags</h4>
+						<div class="table-wrapper">
+                            <table>
+                                <tbody>
+									<tr><td><code>-c &lt;STRING&gt;, --composer &lt;STRING&gt;</code></td><td>Sets composer.</td></tr>
+									<tr><td><code>-a &lt;STRING&gt;, --album &lt;STRING&gt;</code></td><td>Sets album.</td></tr>
+									<tr><td><code>-t &lt;STRING&gt;, --title &lt;STRING&gt;</code></td><td>Sets title.</td></tr>
+									<tr><td><code>-A &lt;STRING&gt;, --artist &lt;STRING&gt;</code></td><td>Sets artist.</td></tr>
+									<tr><td><code>-C &lt;STRING&gt;, --comment &lt;STRING&gt;</code></td><td>Sets comment.</td></tr>
+									<tr><td><code>-g &lt;STRING&gt;, --genre &lt;STRING&gt;</code></td><td>Sets genre.</td></tr>
+									<tr><td><code>-y &lt;NUM&gt;, --year &lt;NUM&gt;</code></td><td>Sets year.</td></tr>
+									<tr><td><code>-n &lt;NUM&gt;, --track-number &lt;NUM&gt;</code></td><td>Sets track number.</td></tr>
+									<tr><td><code>-T &lt;NUM&gt;,  --total-tracks &lt;NUM&gt;</code></td><td>Sets total tracks.</td></tr>
+									<tr><td><code>--set &lt;KEY:STRING&gt;</code>  (accepted multiple times)</td><td>Sets tag with KEY to STRING. See <code>--list-keys</code> for complete
+									list of standard keys. If KEY is not standard, the user tag with key
+									KEY will be set.</td></tr>
+									<tr><td><code>--remove &lt;KEY&gt;</code>  (accepted multiple times)</td><td>Removes tags by their KEY. See <code>--list-keys</code> for complete list of
+									standard keys. If KEY is not standard, the user tag with
+									key KEY will be removed.</td></tr>
+									<tr><td><code>--remove-user-tags</code></td><td>Removes all non-standard tags.</td></tr>
+									<tr><td><code>--remove-all</code></td><td>Removes all tags, including standard tags, user tags, image, and replaygain info.</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<h4>Changing image</h4>
+						<div class="table-wrapper">
+                            <table>
+                                 <tbody>
+									<tr><td><code>--set-image [&lt;PATH&gt;]</code></td><td>Sets an image to the file. If PATH is empty, image will be removed.</td></tr>
+									<tr><td><code>--set-image-description &lt;STRING&gt;</code></td><td>Sets an image description.</td></tr>
+									<tr><td><code>--set-image-type &lt;TYPE&gt;</code></td><td>Sets an image type. For list of possible types see --list-image-types.</td></tr>
+									<tr><td><code>--remove-image</code></td><td>Removes the image from the file.</td></tr>
+									<tr><td><code>--write-image [&lt;DIR&gt;]</code></td><td>Causes the attached image to be written into DIR directory.
+									If DIR is empty, the image will be written where the audio file is.</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<h4>ReplayGain info</h4>
+						<div class="table-wrapper">
+                            <table>
+                                <tbody>
+									<tr><td><code>--scan-rg &lt;file|album|dir|tag&gt;</code></td><td>
+									Scans the file without writing ReplayGain info into files. The options are:<br>
+									<code>file</code>: Scans per file track gain
+									<br>
+									<code>album</code>: Scans all files as a single album
+									<br>
+									<code>dir</code>: Scans each directory as a single album
+									<br>
+									<code>tag</code>: Scans each ALBUM as a single album</td></tr>
+									<tr><td><code>--write-rg &lt;file|album|dir|tag&gt;</code></td>
+										<td>Scans the file and writes ReplayGain info into files. The options are:<br>
+									<code>file</code>: Scans per file track gain<br>
+									<code>album</code>: Scans all files as a single album<br>
+									<code>dir</code>: Scans each directory as a single album<br>
+									<code>tag</code>: Scans each ALBUM as a single album<br></td></tr>
+									<tr><td><code>--remove-rg</code></td><td>Removes ReplayGain info from the file.</td></tr>
+									<tr><td><code>--skip-scanned-rg</code></td><td>Switches on skipping files that already have ReplayGain info.</td></tr>
+									<tr><td><code>--mpc-replaygain-format &lt;header|tags&gt;</code></td><td>Sets the format of ReplayGain information to be written into Musepack files.<br>
+									<code>header</code>: ReplayGain information will be written into the file header. It is the default value.<br>
+									<code>tags</code>: ReplayGain information will be written into APEv2 tags and can be changed or deleted.</td></tr>
+									</tbody>
+							</table>
+						</div>
+						<h4>Filling tags</h4>
+						<div class="table-wrapper">
+                            <table>
+                                <tbody>
+									<tr><td><code>--fill &lt;PATTERN&gt;</code></td><td>
+									Fills tags from file name by a pattern using placeholders: %A (artist),
+									%a (album), %t (title), etc. See <code>--list-placeholders</code> for complete list
+									of placeholders.</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<h4>Renaming files</h4>
+						<div class="table-wrapper">
+                            <table>
+                                <tbody>
+								<tr><td><code>--rename &lt;PATTERN&gt;</code></td><td>
+								Rename file (the extension is not affected) based on data in the tag
+								using placeholders: %A (artist), %a (album), %t (title), etc.
+								See <code>--list-placeholders</code> for complete list of placeholders.</td></tr>
+								<tr><td><code>--maximum-length &lt;NUM&gt;</code></td><td>
+								Sets maximum file name length for <code>--rename</code> option to a specified
+								value. If value is 0, file name will not be truncated. The default
+								value is 0.</td></tr>
+								<tr><td><code>--replace-win-chars &lt;on|off&gt;</code></td><td>
+								Switches on/off Windows chars replacement for <code>--rename</code> option. The
+								default value is <code>on</code>.</td></tr>
+								<tr><td><code>--output-dir &lt;DIR&gt;</code></td><td>
+								Specifies the destination directory for <code>--rename</code> option.
+								If &lt;DIR&gt; is empty, the source directory will be used.</td></tr>
+								<tr><td><code>--replace-spaces &lt;on|off&gt;</code></td><td>
+								Switches on/off spaces replacement for <code>--rename</code> option. The default
+								value is <code>off</code>.</td></tr>
+								<tr><td><code>--remove-diacritics &lt;on|off&gt;</code></td><td>
+								Switches on/off diacritics removing for <code>--rename</code> option. The
+								default value is <code>off</code>.</td></tr>
+								<tr><td><code>--apply-to-folders &lt;on|off&gt;</code></td><td>
+								If this option is set, all other options for <code>--rename</code> option will
+								take place for created folders names as well. The default value is
+								<code>off</code>.</td></tr>
+								<tr><td><code>--change-case &lt;lower|upper|first-up|every-first-up|dont-change&gt;</code></td><td>
+								If this option is set, created file and folders names will be in case
+								specified by this option. The default value is <code>dont-change</code>.</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<h4>Splitting files</h4>
+						<div class="table-wrapper">
+                            <table>
+                                <tbody>
+								<tr><td><code>--split &lt;CUE&gt;</code></td><td>Splits an audio file by its CUE sheet.</td></tr>
+								<tr><td><code>--format &lt;flac|m4a|alac|mp3|ogg|wma|wv|speex|opus&gt;</code></td><td>
+								Sets format of splitted files. The default value is <code>flac</code>. If no ffmpeg or
+								avconv is installed, this option is ignored and the format is set to <code>flac</code>.
+								If format is <code>m4a</code>, AAC codec is used. If format is <code>alac</code>, <i>m4a</i> file extension is used.</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<h4>Global options</h4>
+						<div class="table-wrapper">
+                            <table>
+                                <tbody>
+									<tr><td><code>-r, --recursive</code></td><td>
+									If set, directories to process are added recursively, that is with all
+									their subdirectories. The default behavior is non-recursive.
+									</td></tr>
+									<tr><td><code>--simplify-whitespaces &lt;on|off&gt;</code></td><td>
+									Switches on/off tags simplifying when saving files. The default value
+									is <code>on</code>.
+									</td></tr>
+									<tr><td><code>--read-id3v2 &lt;on|off&gt;</code></td><td>
+									Switches on/off reading of id3v2 tags in mp3 files. The default value
+									is <code>on</code>.
+									</td></tr>
+									<tr><td><code>--read-ape &lt;on|off&gt;</code></td><td>
+									Switches on/off reading of ape tags in mp3 files. The default value is
+									<code>off</code>.
+									</td></tr>
+									<tr><td><code>--write-id3v2 &lt;on|off&gt;</code></td><td>
+									Switches on/off writing of id3v2 tags in mp3 files. The default value
+									is <code>on</code>.
+									</td></tr>
+									<tr><td><code>--write-ape &lt;on|off&gt;</code></td><td>
+									Switches on/off writing of ape tags in mp3 files. The default value is
+									<code>off</code>.
+									</td></tr>
+									<tr><td><code>--force-id3v23 &lt;on|off&gt;</code></td><td>
+									Switches on/off writing of id3v2 tags to id3v2.3 format. The default
+									value is <code>off</code>.
+									</td></tr>
+									<tr><td><code>--id3v1-behavior &lt;update-always|update-existing|delete&gt;</code></td><td>
+									Switches on/off deleting of id3v1 tags when saving mp3 files. The
+									default value is <code>delete</code>.
+									</td></tr>
+									<tr><td><code>--id3v1-transliterate &lt;on|off&gt;</code></td><td>
+									Switches on/off transliteration of id3v1 tags when saving mp3 files.
+									The default value is <code>on</code>.
+									</td></tr>
+									<tr><td><code>--ogg-image-new &lt;on|off&gt;</code></td><td>
+									Switches on/off new ogg image format. The default value is <code>on</code>.</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<h4>Other options</h4>
+						<div class="table-wrapper">
+                            <table>
+                                <tbody>
+									<tr><td><code>-h, --help</code></td><td>
+									Displays usage information and exits.</td></tr>
+									<tr><td><code>--version</code></td><td>
+									Displays version information and exits.</td></tr>
+									<tr><td><code>--,  --ignore_rest</code></td><td>
+									Ignores the rest of the labeled arguments following this flag.</td></tr>
+									<tr><td><code>--list-image-types</code></td><td>
+									Lists all possible image types and exits.</td></tr>
+									<tr><td><code>--list-keys</code></td><td>
+									Lists all possible tags keys and exits.</td></tr>
+									<tr><td><code>--list-placeholders</code></td><td>
+									Lists all possible placeholders and exits.</td></tr>
+									<tr><td><code>--show-tags</code></td><td>
+									Shows all tags of files.</td></tr>
+									<tr><td><code>--verbose</code></td><td>
+									Switches on verbose mode, in which all messages are shown. By default
+									only errors and warnings are shown.</td></tr>
+									<tr><td><code>--force-gui</code></td><td>
+									Forces the GUI mode after completing all command-line options specified.</td></tr>
+									<tr><td><code>&lt;file&gt;</code>  (accepted multiple times)</td><td>
+									Files and directories to process</td></tr>
+								</tbody>
+							</table>
+						</div>
+                    </div>
+                </section>
             </div>
         </div>
 
@@ -1667,6 +1960,7 @@ sudo port install flac</code></pre></li>
                                 <li><a href="documentation.htm#importing">Importing</a></li>
                                 <li><a href="documentation.htm#renaming">Renaming</a></li>
                                 <li><a href="documentation.htm#replaygain">ReplayGain</a></li>
+                                <li><a href="documentation.htm#cli">Command line</a></li>
                                 <li><a href="documentation.htm#settings">Settings</a></li>
                                 <li><a href="documentation.htm#appendices">Appendices</a></li>
                             </ul>
@@ -1680,11 +1974,11 @@ sudo port install flac</code></pre></li>
                     <header class="major">
                         <h2>Get in touch</h2>
                     </header>
-                    <p>Any feedback, wishes, bugs please send via</p>
                     <ul class="contact">
-                        <li class="icon solid fa-envelope"><a href="mailto:novichkov.qoobar@gmail.com">novichkov.qoobar@gmail.com</a></li>
-                        <li class="icon brands fa-github"><a href="https://github.com/alexnovichkov/qoobar.git">Qoobar</a></li>
-                    </ul>
+						<li class="icon solid fa-envelope"><a href="mailto:novichkov.qoobar@gmail.com">novichkov.qoobar@gmail.com</a></li>
+						<li class="icon solid fa-home"><a href="https://sf.net/alexnovichkov/qoobar">Home</a></li>
+						<li class="icon brands fa-github"><a href="https://github.com/alexnovichkov/qoobar.git">Qoobar git</a></li>
+					</ul>
                 </section>
 
                 <!-- Footer -->

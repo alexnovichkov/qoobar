@@ -4,13 +4,13 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="application.cpp" line="444"/>
+        <location filename="application.cpp" line="443"/>
         <source>Qoobar</source>
         <translatorcomment>file:///K:/Qt/Qt5.2.0/5.2.0/Src/qttranslations/translations/qtbase_it.ts</translatorcomment>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="444"/>
+        <location filename="application.cpp" line="443"/>
         <source>Cannot write settings. The settings file is read-only</source>
         <translation>Impossibile scrivere le impostazioni. Il file di impostazioni è di sola lettura</translation>
     </message>
@@ -32,13 +32,13 @@ Controllare il file</translation>
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="724"/>
-        <location filename="application.cpp" line="749"/>
+        <location filename="application.cpp" line="723"/>
+        <location filename="application.cpp" line="748"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="724"/>
+        <location filename="application.cpp" line="723"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
@@ -47,7 +47,7 @@ Please check the folder</source>
 Si prega di controllare la cartella</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="749"/>
+        <location filename="application.cpp" line="748"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation>Impossibile scrivere %1.
@@ -3219,56 +3219,56 @@ Scegli un altra codifica:</translation>
         <location filename="tab.cpp" line="346"/>
         <location filename="tab.cpp" line="631"/>
         <location filename="tab.cpp" line="635"/>
-        <location filename="tab.cpp" line="1435"/>
+        <location filename="tab.cpp" line="1437"/>
         <source>changing tags</source>
         <translatorcomment>Second part of the phrase &quot;Undo ...&quot;</translatorcomment>
         <translation>tags modificati</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="924"/>
+        <location filename="tab.cpp" line="926"/>
         <source>Player is not set in the Settings dialog.
 Open the Settings dialog?</source>
         <translation>Non è indicato alcun riproduttore nelle impostazioni. Apro la finestra delle impostazioni?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1004"/>
+        <location filename="tab.cpp" line="1006"/>
         <source>Some files have been modified</source>
         <translation>Alcuni file sono stati modificati</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1006"/>
+        <location filename="tab.cpp" line="1008"/>
         <source>Remove them anyway?</source>
         <translation>Li rimuovo comunque?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1007"/>
+        <location filename="tab.cpp" line="1009"/>
         <source>Yes, remove without saving</source>
         <translation>Sì, rimuovili senza salvarli</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1009"/>
+        <location filename="tab.cpp" line="1011"/>
         <source>No, save them and then remove</source>
         <translation>No, salvali e poi rimuovili</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1141"/>
+        <location filename="tab.cpp" line="1143"/>
         <source>Files in %1 have been modified.</source>
         <translation>I file in %1 sono stati modificati.</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1294"/>
+        <location filename="tab.cpp" line="1296"/>
         <source>Qoobar - ReplayGain Info</source>
         <translation>Qoobar -  ReplayGain</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1295"/>
+        <location filename="tab.cpp" line="1297"/>
         <source>Qoobar can only scan saved files.
 Do you want to save changes?</source>
         <translation>Qoobar possibile eseguire la scansione solo i file salvati.
 Vuoi salvare i cambiamenti?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="896"/>
+        <location filename="tab.cpp" line="898"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
         <translation>&lt;&lt;diversi&gt;&gt;</translation>
     </message>
@@ -3318,34 +3318,34 @@ Vuoi salvare i cambiamenti?</translation>
         <translation>&amp;Raccogliere per un uso futuro</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1059"/>
+        <location filename="tab.cpp" line="1061"/>
         <source>Please wait while Qoobar is adding files</source>
         <translation>Per favore attendi che Qoobar è scegliere i file</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1125"/>
+        <location filename="tab.cpp" line="1127"/>
         <source>Cannot write tags to file:
 %1</source>
         <translation>Impossibile scrivere i tag sul file:
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1140"/>
+        <location filename="tab.cpp" line="1142"/>
         <source>Closing Qoobar</source>
         <translation>Chiusura in corso</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1144"/>
+        <location filename="tab.cpp" line="1146"/>
         <source>Do you want to save your changes?</source>
         <translation>Vuoi salvare i cambiamenti?</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1145"/>
+        <location filename="tab.cpp" line="1147"/>
         <source>Yes, save</source>
         <translation>Si, salva</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="1147"/>
+        <location filename="tab.cpp" line="1149"/>
         <source>No, don&apos;t save</source>
         <translation>No, non salvare</translation>
     </message>
@@ -3356,7 +3356,7 @@ Vuoi salvare i cambiamenti?</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="224"/>
-        <location filename="tab.cpp" line="1003"/>
+        <location filename="tab.cpp" line="1005"/>
         <source>Qoobar</source>
         <translation></translation>
     </message>
@@ -3380,8 +3380,8 @@ Vuoi salvare i cambiamenti?</translation>
         <translation>rileggendo i tag</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="717"/>
-        <location filename="tab.cpp" line="778"/>
+        <location filename="tab.cpp" line="719"/>
+        <location filename="tab.cpp" line="780"/>
         <source>pasting tags</source>
         <translatorcomment>Second part of the phrase &quot;Undo ...&quot;</translatorcomment>
         <translation>incollando i tag</translation>

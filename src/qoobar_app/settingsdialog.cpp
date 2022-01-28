@@ -54,8 +54,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     setWindowModality(Qt::ApplicationModal);
 #endif
 
-    QSignalMapper *mapper = new QSignalMapper(this);
-
     InterfacePage *page = new InterfacePage;
     connect(page,SIGNAL(retranslate()),this,SLOT(retranslateUI()));
     connect(page,SIGNAL(retranslate()),this,SIGNAL(retranslate()));
@@ -76,20 +74,19 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     Q_FOREACH (ConfigPage *page, configPages)
         pagesWidget->addWidget(page);
 #endif
+
+    currentPage = 0;
+
+#ifdef OSX_SUPPORT_ENABLED
+    QSignalMapper *mapper = new QSignalMapper(this);
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
     connect(mapper, &QSignalMapper::mappedInt, this, &SettingsDialog::switchPage);
 #else
     connect(mapper,SIGNAL(mapped(int)),this,SLOT(switchPage(int)));
 #endif
-    currentPage = 0;
 
-#ifdef OSX_SUPPORT_ENABLED
     setUnifiedTitleAndToolBarOnMac(true);
     toolBar = addToolBar("ttolbar");
-#else
-    toolBar = new QToolBar(this);
-#endif
-
     toolBar->setMovable(false);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolBar->setIconSize(QSize(LARGE_ICON_SIZE, LARGE_ICON_SIZE));
@@ -105,6 +102,19 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
         connect(a,SIGNAL(triggered()),mapper,SLOT(map()));
         toolBar->addAction(a);
     }
+#else
+    pageList = new QListWidget(this);
+    pageList->setIconSize(QSize(16,16));
+
+    for (int i=0; i<configPages.size(); ++i) {
+        ConfigPage *page = configPages.at(i);
+        auto item = new QListWidgetItem(QIcon::fromTheme(page->iconFilename()), page->description(), pageList);
+
+        pageList->addItem(item);
+    }
+    pageList->setSizePolicy(QSizePolicy::Minimum, pageList->sizePolicy().verticalPolicy());
+    connect(pageList, &QListWidget::currentRowChanged, this, &SettingsDialog::switchPage);
+#endif
 
     resetSettingsButton = new QPushButton(tr("Reset Settings"),this);
     connect(resetSettingsButton,SIGNAL(clicked()),this,SLOT(resetSettings()));
@@ -123,7 +133,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
     //laying out
     auto *horizontalLayout = new QHBoxLayout;
-    horizontalLayout->addWidget(pagesWidget, 1);
+#ifndef OSX_SUPPORT_ENABLED
+    horizontalLayout->addWidget(pageList);
+#endif
+    horizontalLayout->addWidget(pagesWidget);
 
     auto *bottomLayout = new QHBoxLayout;
     bottomLayout->addWidget(resetSettingsButton);
@@ -138,8 +151,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     auto *w = new QWidget(this);
     w->setLayout(mainLayout);
     setCentralWidget(w);
-#else
     mainLayout->setMenuBar(toolBar);
+#else
+//    mainLayout->setMargin(0);
+    horizontalLayout->setContentsMargins(0,0,0,0);
     setLayout(mainLayout);
 #endif
     resize({qApp->primaryScreen()->availableSize().width()/3,
@@ -151,12 +166,16 @@ void SettingsDialog::retranslateUI()
 {DD;
     setWindowTitle(tr("Qoobar settings"));
     Q_FOREACH (ConfigPage *page,configPages) page->retranslateUI();
-
+#ifdef OSX_SUPPORT_ENABLED
     QList<QAction *> actions = toolBar->actions();
     for (int i=0; i<configPages.size(); ++i) {
         actions[i]->setText(configPages.at(i)->description());
     }
-
+#else
+    for (int i=0; i<configPages.size(); ++i) {
+        pageList->item(i)->setText(configPages.at(i)->description());
+    }
+#endif
     resetSettingsButton->setText(tr("Reset Settings"));
 }
 

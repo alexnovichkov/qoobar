@@ -34,7 +34,7 @@ class QStackedWidget;
 class ConfigPage;
 class QPushButton;
 class QToolBar;
-
+class QListWidget;
 
 class SettingsDialog : public
         #ifdef OSX_SUPPORT_ENABLED
@@ -61,8 +61,11 @@ private:
     QStackedWidget *pagesWidget;
     QList<ConfigPage *> configPages;
     QPushButton *resetSettingsButton;
-
+#ifdef OSX_SUPPORT_ENABLED
     QToolBar * toolBar;
+#else
+    QListWidget *pageList;
+#endif
     int currentPage;
 };
 
