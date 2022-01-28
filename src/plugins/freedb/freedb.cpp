@@ -12,7 +12,7 @@ const int FRREEDB_EXACT_MATCH = 200;
 const int FREEDB_MULTIPLE_MATCHES = 210;
 const int FREEDB_INEXACT_MATCH = 211;
 
-const QString freedbHello = QString("&hello=novichkov+qoobar.sourceforge.net+freedbplugin+1.0.1&proto=6");
+const QString freedbHello = QString("&hello=novichkov+qoobar.sourceforge.net+freedbplugin+1.1.0&proto=6");
 
 Request FreedbPlugin::queryForManualSearch(const QStringList &list)
 {
@@ -55,7 +55,7 @@ Request FreedbPlugin::query(const QVector<int> &lengths)
     QString request = helper.getDiscID(lengths,0);
     m_errorString = helper.errorString;
 
-    return Request(QString("http://freedb.freedb.org/~cddb/cddb.cgi?cmd=cddb+query+%1%2")
+    return Request(QString("http://gnudb.gnudb.org/~cddb/cddb.cgi?cmd=cddb+query+%1%2")
             .arg(request, freedbHello));
 }
 
@@ -64,7 +64,7 @@ QList<SearchResult> FreedbPlugin::parseResponse(const QByteArray &response)
     QList<SearchResult> results;
     m_errorString.clear();
 
-    QString frame="http://freedb.freedb.org/~cddb/cddb.cgi?cmd=cddb+read+%1"
+    QString frame="http://gnudb.gnudb.org/~cddb/cddb.cgi?cmd=cddb+read+%1"
             + freedbHello;
     QString s = QString::fromUtf8(response);
     bool ok;

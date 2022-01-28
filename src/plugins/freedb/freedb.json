@@ -1,16 +1,16 @@
 ﻿{
   "interface": "IDownloadPlugin",
-  "key": "freedb",
+  "key": "gnudb",
   "icon": "",
   "version": "1.0.1",
   "text": {
-    "default": "freedb"
+    "default": "gnudb"
   },
   "description": {
-    "default": "Fill tags from freedb database",
-    "en": "Fill tags from freedb database",
-    "ru": "Заполнить теги из базы freedb",
-    "it": "Recupera il tag dal database freedb"
+    "default": "Fill tags from gnudb database",
+    "en": "Fill tags from gnudb database",
+    "ru": "Заполнить теги из базы gnudb",
+    "it": "Recupera il tag dal database gnudb"
   },
   "canSearchByFiles": true,
   "canSearchByCD": true,

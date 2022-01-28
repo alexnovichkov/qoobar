@@ -40,7 +40,7 @@ Description: Simple tagger for classical music.
  .
  - Generate tags from filenames and filepaths.
  .
- - Import tags from Discogs, Musicbraiz, GD3 and freedb.
+ - Import tags from Discogs, Musicbraiz, GD3 and gnudb.
  .
  - Rename / copy / move files by their tags, creating folders if necessary.
  .

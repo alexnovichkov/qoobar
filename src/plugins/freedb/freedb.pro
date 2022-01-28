@@ -1,7 +1,7 @@
 include(../plugins.pri)
 include(../../portable.pri)
 
-PVERSION = 1.0.0
+PVERSION = 1.1.0
 DEFINES += PLUGIN_VERSION=\\\"$$PVERSION\\\"
 
 HEADERS = freedb.h
@@ -24,4 +24,4 @@ SOURCES += ../../qoobar_app/logging.cpp
 
 TARGET = freedb
 
-include(../../libdiscid.pri)
+include(../../3rdparty/libdiscid.pri)
