@@ -4,6 +4,8 @@ IDI_ICON1   ICON  DISCARDABLE  "icons/app/qoobar.ico"
 
 // Get updates from this appcast feed:
 FeedURL APPCAST {"http://qoobar.sourceforge.net/appcast.xml"}
+//Get public key from
+DSAPub DSAPEM "G:/build/keys/dsa_pub.pem"
 
 // Version information; this, too, is used by WinSparkle
 1 VERSIONINFO

@@ -28,6 +28,7 @@
               sparkle:os="windows"
               sparkle:version="1.7.0"
               url="http://sourceforge.net/projects/qoobar/files/qoobar-1.7.0/Windows/qoobar-1.7.0.exe"
+              sparkle:dsaSignature="MDwCHBEP6VA6mk6hTvGfQ3H7AQee5pJKde2aFYVm3v4CHEzGSSFAc6rZIuYycnYAL7Xy6E03w+jdPTAK9ek="
               length="10424261"
               type="application/octet-stream"/>
          </item>
