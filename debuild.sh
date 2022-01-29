@@ -5,7 +5,7 @@ VERSION=${tmp%\\*}
 do_debuild () {
   debuild -S -sa
   cd ..
-  # dput ppa:aleksej-novichkov/ppa qoobar_$VERSION_source.changes
+  dput ppa:aleksej-novichkov/ppa "qoobar_$VERSION_source.changes"
 }
 
 work_dir=qoobar-$VERSION
@@ -32,7 +32,7 @@ DEBFULLNAME="Alex Novichkov" dh_make --single -c gpl3 --native -e aleksej.novich
 #edit 
 cp -f debian1/control-qt5 debian/control
 cp -f debian1/copyright debian
-rm debian/qoobar.doc-base.ex
+rm debian/qoobar.doc-base.EX
 rm debian/post*
 rm debian/pre*
 cp -f debian1/qoobar.doc-base debian

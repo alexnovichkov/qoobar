@@ -1,0 +1,19 @@
+app-id: io.sourceforge.qoobar.Qoobar
+runtime: org.kde.Platform
+runtime-version: '5.15'
+sdk: org.kde.Sdk
+command: qoobar
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --share=network
+  - --device=dri
+  - --filesystem=host
+  - --metadata=X-DConf=migrate-path=/org/gnome/dictionary/
+modules:
+  - name: qoobar
+    buildsystem: qmake
+    sources:
+      - type: git
+        url: https://github.com/alexnovichkov/qoobar.git
