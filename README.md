@@ -19,7 +19,7 @@
 - Edit all other tags written in your music files.
 - Add your own tags and save them.
 - Generate tags from filenames and filepaths.
-- Import tags from Discogs and Musicbraiz.
+- Import tags from gnudb, Discogs and Musicbraiz.
 - Rename / copy / move files by their tags, creating folders if necessary.
 - Convert tags with Windows 1251, KOI8-R, CP866 encodings into UTF8.
 - Edit cover art pictures in all supported file types.
@@ -28,8 +28,6 @@
 
 Qoobar uses Qt for GUI and TagLib for tags manipulation and runs
 under GNU/Linux and Windows.
-
-**Current version:** 1.7.0
 
 **License:** GPL v3.0
 

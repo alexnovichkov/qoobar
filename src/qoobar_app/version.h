@@ -1,0 +1,2 @@
+#define QOOBAR_VERSION_STR "1.7.0\0"
+#define QOOBAR_VERSION 1,7,0,0

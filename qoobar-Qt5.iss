@@ -4,12 +4,14 @@
 #pragma option -v+
 #pragma verboselevel 9
 
+#define FileHandle  FileOpen("src/qoobar_app/version.h")
+#define FileLine Copy(FileRead(FileHandle), 29,10)
+#define VERSION StringChange(FileLine, "\0""","")
+
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-
-#define VERSION "1.7.0"
 
 AppId={{59A39891-F88A-49E6-A738-AC5580273280}
 AppName=Qoobar

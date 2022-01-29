@@ -1,5 +1,13 @@
 TEMPLATE = app
-VERSION = 1.7.0
+
+# reading file version.h to get the actual app version
+VERSIONH = $$cat(version.h, lines)
+VERSIONH = $$first(VERSIONH)
+VERSIONH = $$section(VERSIONH, \",1,1)
+VERSION = $$section(VERSIONH, \\,0,0)
+DEFINES *= QOOBAR_VERSION=\\\"$$VERSION\\\"
+
+message(Version is $${VERSION})
 
 QT *= widgets concurrent network
 
@@ -34,7 +42,6 @@ message(The install path is $${INSTALL_ROOT})
 SHARED_PATH = $${INSTALL_ROOT}/usr/share
 DOC_PATH = $${SHARED_PATH}/doc
 
-DEFINES *= QOOBAR_VERSION=\\\"$$VERSION\\\"
 DEFINES *= QOOBAR_SHARED_PATH=\\\"$${SHARED_PATH}/$${TARGET}\\\"
 DEFINES *= QOOBAR_DOC_PATH=\\\"$${DOC_PATH}/$${TARGET}-doc\\\"
 
@@ -329,6 +336,9 @@ unix {
 }
 
 win32|win {
+  # we need to generate the version.h file for qoobar.rc and qoobar-qt5.rc
+
+
   # winextras module, or just QWinTaskbarProgress in case of Qt6
   lessThan(QT_MAJOR_VERSION, 6) {
       QT *= winextras
@@ -358,7 +368,16 @@ win32|win {
   # So far no cli support in Win
 #  DEFINES *= QOOBAR_ENABLE_CLI
 
+# Two distinct RC files with different appcast.xml to separately update
+# Qt6 version and Qt5 version
+greaterThan(QT_MAJOR_VERSION, 5) {
+  message(Qt6 appcast.xml is used)
   RC_FILE = qoobar.rc
+}
+else {
+  message(Qt5 appcast-qt5.xml is used)
+  RC_FILE = qoobar-qt5.rc
+}
 }
 
 os2 {

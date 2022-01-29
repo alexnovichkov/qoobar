@@ -2,7 +2,13 @@
 set -x
 set -e
 
-VERSION=1.7.0
+line=$(head -n 1 src/qoobar_app/version.h)
+tmp=${line#*\"}   # remove prefix ending in "\""
+VERSION=${tmp%\\*}
+
+echo("$VERSION")
+
+# VERSION=1.7.0
 
 DEPLOY_DIR=$(mktemp -d -p ~/deployment/qoobar appimage-build-XXXXXX)
 
@@ -24,8 +30,6 @@ qmake
 # build project and install files into DEPLOY_DIR
 make -j$(nproc)
 make install INSTALL_ROOT="$DEPLOY_DIR"
-
-read -p 'Qoobar installed. Continue?' uservar
 
 # now, build AppImage using linuxdeployqt
 # download linuxdeployqt 
