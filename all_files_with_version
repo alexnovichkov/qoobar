@@ -1,7 +1,6 @@
 ﻿files_to_process =
 src/qoobar_app/version.h
 Info.plist
-debian1/qoobar.dsc
 html/appcast.xml
 html/appcast-qt5.xml
 html/version.js

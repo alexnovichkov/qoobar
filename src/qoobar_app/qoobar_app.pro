@@ -336,9 +336,6 @@ unix {
 }
 
 win32|win {
-  # we need to generate the version.h file for qoobar.rc and qoobar-qt5.rc
-
-
   # winextras module, or just QWinTaskbarProgress in case of Qt6
   lessThan(QT_MAJOR_VERSION, 6) {
       QT *= winextras
