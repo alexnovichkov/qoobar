@@ -538,7 +538,11 @@ void testSection(QString &section, QString &result, QRegularExpression &re)
         result.append(section);
     // roman numeral
     else {
+#if QT_VERSION >= QT_VERSION_CHECK(5,12,0)
         re.setPattern(QRegularExpression::anchoredPattern(re.pattern()));
+#else
+        re.setPattern("\\A(?:"+re.pattern()+")\\z");
+#endif
         if (re.match(section).hasMatch())
             result.append(section);
         else result.append(section.at(0));

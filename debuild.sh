@@ -33,7 +33,8 @@ make clean
 # reading last line of file
 # tag=$( tail -n 1 history.txt )
 
-for ubuntu in impish focal bionic ; do
+# for ubuntu in impish focal bionic ; do
+for ubuntu in bionic ; do
    rm -rf debian
 
    DEBFULLNAME="Alex Novichkov" dh_make --single -c gpl3 --native -e aleksej.novichkov@gmail.com
