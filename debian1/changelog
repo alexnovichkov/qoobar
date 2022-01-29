@@ -1,23 +1,23 @@
 qoobar (?.?.?) unstable; urgency=low
 
-  Added: hiDPI support, including icons
-  Added: regexp captures in the Tags Edit dialog
-  Added: escape sequence for commas in the functions args
-  Added: case sensitivity option for sorting filenames etc.
-  Added: id3v2 line endings option (for lyrics and other tags)
-  Added: 'rate' tag to the default Mp4 file tag scheme
-  Added: options for replaygaining
-  Fixed: Bug with closing the tabs text editor
-  Fixed: removing id3v1 tags from flac files
-  Fixed: bug with undo/redo actions that are always disabled
-  Fixed: broken cue splitting
-  Fixed: possible crashes when reading mp4 files with no tags
-  Changed: freedb to gnudb
-  Changed: Replaygaining is now done with ffmpeg, both in Linux and Windows
-  Changed: Replaygain info calculation now uses the loudgain library
-  Changed: Qoobar now uses Qt 6 in Windows
-  Changed: Qoobar is now 64-bit in Windows
-  Changed: Temporarily removed OS X version
-  Changed: The embedded taglib files were replaced by linking to the latest taglib 1.12
+  * Added: hiDPI support, including icons
+  * Added: regexp captures in the Tags Edit dialog
+  * Added: escape sequence for commas in the functions args
+  * Added: case sensitivity option for sorting filenames etc.
+  * Added: id3v2 line endings option (for lyrics and other tags)
+  * Added: 'rate' tag to the default Mp4 file tag scheme
+  * Added: options for replaygaining
+  * Fixed: Bug with closing the tabs text editor
+  * Fixed: removing id3v1 tags from flac files
+  * Fixed: bug with undo/redo actions that are always disabled
+  * Fixed: broken cue splitting
+  * Fixed: possible crashes when reading mp4 files with no tags
+  * Changed: freedb to gnudb
+  * Changed: Replaygaining is now done with ffmpeg, both in Linux and Windows
+  * Changed: Replaygain info calculation now uses the loudgain library
+  * Changed: Qoobar now uses Qt 6 in Windows
+  * Changed: Qoobar is now 64-bit in Windows
+  * Changed: Temporarily removed OS X version
+  * Changed: The embedded taglib files were replaced by linking to the latest taglib 1.12
 
  -- Alex Novichkov <aleksej.novichkov@gmail.com>  Thu, 25 Jan 2022 10:10:49 +0300
