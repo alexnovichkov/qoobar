@@ -6,7 +6,7 @@ line=$(head -n 1 src/qoobar_app/version.h)
 tmp=${line#*\"}   # remove prefix ending in "\""
 VERSION=${tmp%\\*}
 
-echo("$VERSION")
+echo $VERSION
 
 # VERSION=1.7.0
 
@@ -17,6 +17,8 @@ cleanup () {
     if [ -d "$DEPLOY_DIR" ]; then
         rm -rf "$DEPLOY_DIR"
     fi
+    # remove not-needed linuxdeployqt-5-x86_64.AppImage
+    rm -f linuxdeployqt-5-x86_64.AppImage
 }
 
 trap cleanup EXIT
@@ -43,3 +45,4 @@ chmod +x linuxdeployqt*.AppImage
 
 # move built AppImage back into original CWD
 mv Qoobar*.AppImage ~/deployment/qoobar/Qoobar-"$VERSION".AppImage
+

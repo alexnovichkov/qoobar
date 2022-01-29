@@ -10,7 +10,6 @@ Package: qoobar
 Section: sound
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, flac, shntool, enca
-Suggests: mp3gain, wavpack, vorbisgain, musepack-tools
 Description: Simple tagger for classical music.
  Qoobar is designed specially for tagging classical music. With Qoobar you can:
  .
