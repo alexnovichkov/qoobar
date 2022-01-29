@@ -4,7 +4,7 @@ Binary: qoobar
 Architecture: any
 Version: 1.7.0
 Maintainer: Alex Novichkov <novichkov.qoobar@gmail.com>
-Homepage: http://qoobar.sourceforge.net
+Homepage: https://qoobar.sourceforge.io
 Standards-Version: 3.9.3
 Build-Depends: debhelper (>= 7.0.50~), libqt4-dev (>= 4.6), libtag1-dev (>= 1.5), pkg-config, libglib2.0-dev, libgstreamer-plugins-base0.10-dev
 Files:

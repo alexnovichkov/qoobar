@@ -18,7 +18,7 @@ const int FRREEDB_EXACT_MATCH = 200;
 const int FREEDB_MULTIPLE_MATCHES = 210;
 const int FREEDB_INEXACT_MATCH = 211;
 
-const QString freedbHello = QString("&hello=novichkov+qoobar.sourceforge.net+freedbplugin+1.1.0&proto=6");
+const QString freedbHello = QString("&hello=novichkov+qoobar.sourceforge.io+freedbplugin+1.1.0&proto=6");
 
 Request FreedbPlugin::queryForManualSearch(const QStringList &list)
 {

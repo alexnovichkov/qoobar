@@ -42,7 +42,7 @@
 //{DD;
 //    QString path = ApplicationPaths::documentationPath();
 //    if (!QFileInfo(path).exists())
-//        path = QSL("http://qoobar.sourceforge.net/en/documentation.htm");
+//        path = QSL("https://qoobar.sourceforge.io/en/documentation.htm");
 //    else path = QString("file:///%1").arg(path);
 //    if (!section.isEmpty())
 //        path.append(QSL("#") + section);

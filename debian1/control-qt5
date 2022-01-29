@@ -4,7 +4,7 @@ Section: sound
 Maintainer: Alex Novichkov <aleksej.novichkov@gmail.com>
 Standards-Version: 4.4.1
 Build-Depends: debhelper-compat (= 12), qtbase5-dev, qttools5-dev-tools, qtchooser, qt5-qmake, pkg-config, libglib2.0-dev, libavcodec-dev, libavformat-dev, libavutil-dev, libswresample-dev, libebur128-dev, libtag1-dev, libdiscid-dev
-Homepage: http://qoobar.sourceforge.net
+Homepage: https://qoobar.sourceforge.io
 
 Package: qoobar
 Section: sound

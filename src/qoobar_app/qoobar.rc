@@ -3,7 +3,7 @@ IDI_ICON1   ICON  DISCARDABLE  "icons/app/qoobar.ico"
 #include <winver.h>
 
 // Get updates from this appcast feed:
-FeedURL APPCAST {"http://qoobar.sourceforge.net/appcast.xml"}
+FeedURL APPCAST {"https://qoobar.sourceforge.io/appcast.xml"}
 //Get public key from
 DSAPub DSAPEM "G:/build/keys/dsa_pub.pem"
 

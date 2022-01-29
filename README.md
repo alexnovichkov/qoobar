@@ -33,6 +33,6 @@ under GNU/Linux and Windows.
 
 **License:** GPL v3.0
 
-**Homepage:** [qoobar.sourceforge.net](http://qoobar.sourceforge.net)
+**Homepage:** [qoobar.sourceforge.io](https://qoobar.sourceforge.io)
 
 **Copyright:** 2009-2022 Alex Novichkov, novichkov.qoobar@gmail.com

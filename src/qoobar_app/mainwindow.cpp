@@ -594,7 +594,7 @@ void MainWindow::showAboutDialog()
 {DD
     QString about=tr("<b>Qoobar, a Simple Tag Editor</b><br>released under the GPL 3"
                            "<br>Version: %1<br>Copyright 2009-2022 Alex Novichkov"
-                           "<p>Web site: <a href=http://qoobar.sourceforge.net>http://qoobar.sourceforge.net</a>\n"
+                           "<p>Web site: <a href=https://qoobar.sourceforge.io>https://qoobar.sourceforge.io</a>\n"
                            "<br>E-mail: <a href=mailto:novichkov.qoobar@gmail.com>novichkov.qoobar@gmail.com</a>"
                            "<br><hr>")
             .arg(QOOBAR_VERSION);
@@ -969,7 +969,7 @@ void MainWindow::showHelp()
 
 void MainWindow::showOnlineHelp()
 {
-    QString path = QSL("http://qoobar.sourceforge.net/en/index.htm");
+    QString path = QSL("https://qoobar.sourceforge.io/en/index.htm");
     QDesktopServices::openUrl(QUrl(path));
 }
 

@@ -4,7 +4,7 @@ Section: sound
 Maintainer: Alex Novichkov <aleksej.novichkov@gmail.com>
 Standards-Version: 3.9.3
 Build-Depends: debhelper, libqt4-dev, pkg-config, libglib2.0-dev, libgstreamer-plugins-base0.10-dev
-Homepage: http://qoobar.sourceforge.net
+Homepage: https://qoobar.sourceforge.io
 
 Package: qoobar
 Section: sound

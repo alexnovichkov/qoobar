@@ -19,8 +19,8 @@ Release: 1
 Summary: A simple tagger for tagging classical music
 Group: %{GROUP}
 License: GPLv3+
-URL: http://qoobar.sourceforge.net
-Source0: http://sourceforge.net/projects/qoobar/files/%{name}-%{version}/%{name}-%{version}.tar.gz
+URL: https://qoobar.sourceforge.io
+Source0: https://sourceforge.net/projects/qoobar/files/%{name}-%{version}/%{name}-%{version}.tar.gz
 %if 0%{?fedora} || 0%{?rhel_version}
 BuildRequires: qt-devel >= 4.5, desktop-file-utils, gcc-c++, zlib-devel
 BuildRequires: glib-devel, gstreamer-devel, gstreamer-plugins-base-devel

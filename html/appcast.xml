@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
    <channel>
       <title>Qoobar - The Tag Editor for Classical Music</title>
-      <link>http://qoobar.sourceforge.net/appcast.xml</link>
+      <link>https://qoobar.sourceforge.io/appcast.xml</link>
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 
@@ -10,11 +10,11 @@
             <title>Version 1.7.0 for OS X</title>
             <description>This version fixes the bug with restoring the tags table fields.</description>
             <pubDate>Mon, 25 Jan 2016 16:40:42 +0300</pubDate>
-            <sparkle:releaseNotesLink>http://qoobar.sourceforge.net/en/changelog_latest.htm</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink>https://qoobar.sourceforge.io/en/changelog_latest.htm</sparkle:releaseNotesLink>
             <enclosure
               sparkle:version="1.7.0"
               sparkle:dsaSignature="MC0CFAUMW8jWlhkQ6ZDmp8jeNzQ+S1j4AhUAjOXlZUtvBUCKwP+Cli23WdUAOWc="
-              url="http://sourceforge.net/projects/qoobar/files/qoobar-1.7.0/Mac_OS_X/qoobar-1.7.0.dmg/download"
+              url="https://sourceforge.net/projects/qoobar/files/qoobar-1.7.0/Mac_OS_X/qoobar-1.7.0.dmg/download"
               length="14334789"
               type="application/octet-stream"/>
          </item> -->
@@ -23,7 +23,7 @@
             <title>Version 1.7.0 for Windows</title>
             <description>This version is a long avaited update that adds the hidpi screens support.</description>
             <pubDate>Mon, 25 Jan 2016  16:40:42 +0300</pubDate>
-            <sparkle:releaseNotesLink>http://qoobar.sourceforge.net/en/changelog_latest.htm</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink>https://qoobar.sourceforge.io/en/changelog_latest.htm</sparkle:releaseNotesLink>
             <enclosure
               sparkle:os="windows"
               sparkle:version="1.7.0"

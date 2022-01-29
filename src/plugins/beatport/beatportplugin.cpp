@@ -307,7 +307,7 @@ Dialog::Dialog(const QList<Tag> &oldTags, QWidget *parent)
 {
     setWindowTitle(tr("Search in Beatport database"));
     search = new CoreNetworkSearch(this);
-    search->setUserAgent("Qoobar/1.6.0+http://qoobar.sourceforge.net");
+    search->setUserAgent("Qoobar/1.6.0+https://qoobar.sourceforge.io");
     searchButton = new QPushButton(tr("Search"),this);
     connect(searchButton,SIGNAL(clicked()),this,SLOT(startSearch()));
 

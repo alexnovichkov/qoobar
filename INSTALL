@@ -21,7 +21,7 @@ $ sudo make install
 $ make clean
 
 Or you can install qoobar from deb or rpm package
-  (see http://qoobar.sourceforge.net/en/download.htm).
+  (see https://qoobar.sourceforge.io/en/download.htm).
 
 Or chmod +x and run this AppImage: 
   http://sourceforge.net/projects/qoobar/files/qoobar-1.7.0/Linux/Qoobar-1.7.0.AppImage
@@ -36,7 +36,7 @@ Manual compilation: (MinGW support only)
 3. Download FFmpeg (https://www.ffmpeg.org/download.html)
 4. Download and compile libebur (https://github.com/jiixyj/libebur128)
 5. Download WinSparkle (https://github.com/vslavik/winsparkle/releases)
-6. Download http://sourceforge.net/projects/qoobar/files/utils/win_utils.tar.gz
+6. Download https://sourceforge.net/projects/qoobar/files/utils/win_utils.tar.gz
    archive with necessary dlls and execs and unpack it into qoobar-1.7.0
 3. Build manually:
 

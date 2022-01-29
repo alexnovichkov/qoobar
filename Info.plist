@@ -35,7 +35,7 @@
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>
-	<string>http://qoobar.sourceforge.net/appcast.xml</string>
+	<string>https://qoobar.sourceforge.io/appcast.xml</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
 	<key>SUAllowsAutomaticUpdates</key>

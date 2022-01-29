@@ -282,7 +282,7 @@ TagsFillDialog::TagsFillDialog(const QList<Tag> &oldTags, QWidget *parent)
 
     search = new CoreNetworkSearch(this);
     connect(search,SIGNAL(error(QString)),networkErrorInfo,SLOT(setText(QString)));
-    search->setUserAgent(QString("Qoobar/%1+http://qoobar.sourceforge.net").arg(QOOBAR_VERSION));
+    search->setUserAgent(QString("Qoobar/%1+https://qoobar.sourceforge.io").arg(QOOBAR_VERSION));
 
 
     QHBoxLayout *dLayout = new QHBoxLayout;
