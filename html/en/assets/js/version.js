@@ -14,6 +14,11 @@ var _version="1.7.0";
 		var path="https://sourceforge.net/projects/qoobar/files/qoobar-"+_version+"/Windows/qoobar-"+_version+".Qt5.exe";
 		return "<a href=\""+path+"/download\">"+oldText+"</a>";
 	});
+	$("span.windows-portable-installer").html(function(){
+		var oldText = $("span.windows-portable-installer").html();
+		var path="https://sourceforge.net/projects/qoobar/files/qoobar-"+_version+"/Windows/qoobar-"+_version+"-portable.zip";
+		return "<a href=\""+path+"/download\">"+oldText+"</a>";
+	});
 	$("span.mac_installer").html(function(){
 		var path="https://sourceforge.net/projects/qoobar/files/qoobar-"+_version+"/Mac_OS_X/qoobar-"+_version+".dmg";
 		var oldText = $("span.mac_installer").html();
@@ -25,8 +30,8 @@ var _version="1.7.0";
 		return "<a href=\""+path+"/download\">" + name + "</a>";
 	});
 	$("span.sources_installer").html(function(){
-		var path="https://sourceforge.net/projects/qoobar/files/qoobar-"+_version+"/src/qoobar-"+_version+".tar.gz";
-		var name = "qoobar-"+_version+".tar.gz";
+		var path="https://sourceforge.net/projects/qoobar/files/qoobar-"+_version+"/src/qoobar-master.zip";
+		var name = "qoobar-master.zip";
 		return "<a href=\""+path+"/download\">"+name+"</a>";
 	});
 

@@ -35,7 +35,7 @@
 									</header>
 
 									<h2><span class="icon brands fa-linux">&nbsp;&nbsp;</span>Linux</h2>
-							        <p>The Qoobar project now uses <a href="https://build.opensuse.org/">openSUSE Build Service</a>
+							        <!-- <p>The Qoobar project now uses <a href="https://build.opensuse.org/">openSUSE Build Service</a>
 							        to build its packages. So it is much easier now to install Qoobar if you have one
 							        of the following systems:</p>
 							        <ul>
@@ -53,29 +53,35 @@
 								        <li>Choose your system type and click <b>Search</b>.</li>
 								        <li>Choose the right architecture and download the package.</li>
 							        </ol>
-							        <p>If you are using one of SUSE systems, feel free to use <b>1 Click Install</b>.</p>
+							        <p>If you are using one of SUSE systems, feel free to use <b>1 Click Install</b>.</p> -->
+
+							        <p>As of now the openSUSE Build Service builds are not supported. As soon as I get enough time to 
+							        edit, check and upload the valid qoobar.spec, I will update the repository and this file.</p>
 							        
 							        <h3><span class="icon brands fa-ubuntu">&nbsp;&nbsp;</span>Ubuntu PPA</h3>
 							        <p>Ubuntu users can add this PPA repository: ppa:aleksej-novichkov/ppa. The installation process is as follows:
 							        <pre><code>&gt; sudo add-apt-repository ppa:aleksej-novichkov/ppa
 &gt; sudo apt-get update
 &gt; sudo apt-get install qoobar</code></pre>
-							        <p>The supported Ubuntu versions: 12.04 (precise), 14.04 (trusty), 14.10 (utopic), 15.04 (vivid), 15.10 (wily). 
+							        <p>The supported Ubuntu versions: 18.04 (bionic), 20.04 (focal), 21.10 (impish). 
 							          Other Ubuntu releases may contain outdated Qoobar packages, as they are no longer supported by PPA.</p>
 							          <h3>AppImage</h3>
 							        <p>All Linux users can download, chmod +x and run this 64-bit
 							          <span class = "appimage_installer">AppImage</span>. 
-							        It has been tested on Ubuntu 20.04, Linux Mint 20.2, ADD MORE RELEASES</p>
+							        It has been tested on Ubuntu 20.04 and Linux Mint 20.2.</p>
 							        <h3>Flatpack</h3>
+							        <p>Flatpak releases are planned for the nearest future, via flathub.</p>
 							        <hr/>
 							        <h2><span class="icon brands fa-windows">&nbsp;&nbsp;</span>Windows</h2>
 							        <p>Windows users can download the full 64-bit installer <b>qoobar-<span class="version">version</span>.exe</b> from	<span class = "windows_installer">sourceforge.net</span>.</p>
-							        <p class = "box"><strong>Note:</strong> If you are encountering a problem with running Qoobar on Windows 7 or 8, you can perform these steps:</p>
+							        <div class="box"><p><strong>Note:</strong> If you are encountering a problem with running Qoobar on Windows 7 or 8, you can perform these steps:</p>
 							        <ol>
 							        	<li>Install the <a href="https://support.microsoft.com/en-us/help/2999226/update-for-universal-c-runtime-in-windows">Update for Universal C Runtime</a></li>
 							        	<li>Install the full <a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">Visual C++ 2015, 2017, 2019 and 2022 packages</a></li>
 							        	<li>If nothing previous helped, install <span class="windows_old_installer">this version</span>, compiled with the previous Qt version (5.15)</li>
-							        </ol>
+							        </ol></div>
+							        <p>There is also a portable version of Qoobar, build with Qt6, that can be downloaded from
+							        	<span class="windows-portable-installer">here</span>. Unpack the archive and run qoobar.exe.</p>
 						        <hr/>
 						        <h2><span class="icon brands fa-apple">&nbsp;&nbsp;</span>Mac OS X</h2>
 						        <p>The Mac version of Qoobar can be downloaded from
@@ -119,8 +125,18 @@ $ make clean</code></pre></LI>
 									        <li>Install Qt for Windows 
 									        <li>Download <span class="sources_installer">sources</span>
 									        source files and unpack the archive or clone the Qoobar repo.</li>
-									        <li>Download <a href="http://sourceforge.net/projects/qoobar/files/utils/win_utils.tar.gz">win_utils.tar.gz</a>
-									          archive with necessary dlls and execs and unpack it into the source folder.</li>
+									        <li>Download/install/compile all the necessary dependencies:
+									        	<ol>
+									        		<li>libdiscid</li>
+									        		<li>libebur128</li>
+									        		<li>libffmpeg</li>
+									        		<li>libsparkle</li>
+									        		<li>libtag</li>
+									        		<li>libz</li>
+									        	</ol>
+									        	See the src/3rdparty/*.pri files for the list of libraries.<br>
+									        	You also need to install flac, enca, ffmpeg executables to have the full Qoobar features. 
+									        </li>
 									        <li> In the console go into the source folder and type:
 									        <pre><code>&gt; qmake
 &gt; mingw32-make
@@ -133,7 +149,7 @@ $ make clean</code></pre></LI>
 
 							    <hr>
 							    <h2>Older versions</h2>
-							    <p>Older versions of Qoobar can be found here: <a href="http://sourceforge.net/projects/qoobar/files">http://sourceforge.net/projects/qoobar/files</a></p>
+							    <p>Older versions of Qoobar can be found here: <a href="https://sourceforge.net/projects/qoobar/files">https://sourceforge.net/projects/qoobar/files</a></p>
 
 							</section>
 
