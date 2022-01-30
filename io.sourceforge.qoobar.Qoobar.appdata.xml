@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop">
+    <id>io.sourceforge.qoobar.Qoobar</id>
+    <metadata_license>FSFAP</metadata_license>
+    <project_license>GPL-3.0+</project_license>
+    <name>Qoobar</name>
+    <summary>Qoobar is a simple tags editor for classical music</summary>
+    <icon type="stock">qoobar</icon>
+    <description>
+        <p>Qoobar is a simple tagger which is designed for editing tags in files of classical music.</p>
+        <p>Qoobar allows you to</p>
+        <ul>
+            <li>Generate tags from filenames and filepaths</li>
+            <li>Batch edit your files - edit any tags in group of files</li>
+            <li>Easy copy&amp;paste any tags between groups of files</li>
+            <li>Remember the text you are typing for future use</li>
+            <li>Use autocompletion for selected tags</li>
+            <li>Add and remove cover art pictures</li>
+        </ul>
+        <p>You also can</p>
+        <ul>
+            <li>Import tags and covers from Discogs, Musicbraiz, GD3, gnudb.</li>
+            <li>Rename / copy / move files by their tags, creating folders if necessary</li>
+            <li>Convert tags from local encoding into UTF8</li>
+            <li>Change the scheme of tags reading and writing</li>
+            <li>Add ReplayGain info into most of file types</li>
+            <li>Use Qoobar as a command-line utility (in Unix-like systems)</li>
+        </ul>
+    </description>
+    <categories>
+        <category>AudioVideo</category>
+        <category>Audio</category>
+        <category>AudioVideoEditing</category>
+        <category>Music</category>
+        <category>Qt</category>
+    </categories>
+    <developer_name>Alex Novichkov</developer_name>
+    <url type="homepage">https://qoobar.sourceforge.io</url>
+    <url type="help">https://qoobar.sourceforge.io/en/documentation.htm</url>
+    <launchable type="desktop-id">io.sourceforge.qoobar.Qoobar.desktop</launchable>
+    <releases>
+        <release version="1.7.0" date="2022-01-29"/>
+  </releases>
+</component>

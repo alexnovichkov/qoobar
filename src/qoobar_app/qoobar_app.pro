@@ -322,8 +322,11 @@ unix {
 #    coloredicons.files += icons/coloured/*.gif
 #    coloredicons.files += icons/coloured/*.json
     coloredicons.path = $${SHARED_PATH}/qoobar/icons
+    appdata.path = $${SHARED_PATH}/metainfo
+    appdata.files += ../../io.sourceforge.qoobar.Qoobar.appdata.xml
     INSTALLS += target docfiles resources icons coloredicons
     INSTALLS += schemes desktop manfiles completions
+    INSTALLS += appdata
 
     # documentation
     htmldocfiles.path = $${DOC_PATH}/qoobar-doc/html
