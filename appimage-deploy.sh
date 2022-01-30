@@ -29,11 +29,11 @@ trap cleanup EXIT
 pushd ~/build/qoobar
 
 # configure build files with qmake
-qmake
+qmake INSTALL_ROOT="$DEPLOY_DIR"/usr
 
 # build project and install files into DEPLOY_DIR
 make -j$(nproc)
-make install INSTALL_ROOT="$DEPLOY_DIR"
+make install INSTALL_ROOT="$DEPLOY_DIR"/usr
 
 # now, build AppImage using linuxdeployqt
 # download linuxdeployqt 

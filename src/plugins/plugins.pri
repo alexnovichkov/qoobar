@@ -21,7 +21,7 @@ mac {
 
 unix {
 !mac {
-    PLUGINS_PATH = $${INSTALL_ROOT}/usr/lib/qoobar/plugins
+    PLUGINS_PATH = $${INSTALL_ROOT}/lib/qoobar/plugins
     target.path = $$PLUGINS_PATH
     INSTALLS += target
 }

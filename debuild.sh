@@ -25,7 +25,7 @@ cleanup
 git clone https://github.com/alexnovichkov/qoobar.git "$work_dir"
 cd $work_dir
 
-qmake
+qmake INSTALL_ROOT=/usr
 make clean
 
 # reading last line of file
