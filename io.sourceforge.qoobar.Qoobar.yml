@@ -75,4 +75,4 @@ modules:
       - type: git
         url: https://github.com/alexnovichkov/qoobar.git
         tag: v1.7.0flatpak
-        
+        commit: 674dce84fce712b779193ac176ee4258bec753b3
