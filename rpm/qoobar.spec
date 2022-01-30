@@ -21,28 +21,41 @@ Group: %{GROUP}
 License: GPLv3+
 URL: https://qoobar.sourceforge.io
 Source0: https://sourceforge.net/projects/qoobar/files/%{name}-%{version}/%{name}-%{version}.tar.gz
+
+# BuildRequires section for all distros
+# =====================================
+
+# Fedora / RHEL
 %if 0%{?fedora} || 0%{?rhel_version}
-BuildRequires: qt-devel >= 4.5, desktop-file-utils, gcc-c++, zlib-devel
+BuildRequires: qt6-qtbase-devel, desktop-file-utils, gcc-c++, zlib-devel
 BuildRequires: glib-devel, gstreamer-devel, gstreamer-plugins-base-devel
 %endif
+
+# CentOS
 %if 0%{?centos_version}
 %if 0%{?centos_version} <= 600
 BuildRequires: qt4-devel >= 4.5
 %else
 BuildRequires: qt-devel >= 4.5
 %endif
-BuildRequires: desktop-file-utils, gcc-c++, zlib-devel
+BuildRequires: gcc-c++, zlib-devel
 BuildRequires: glib2-devel, gstreamer-devel, gstreamer-plugins-base-devel
 %endif
+
+# Suse
 %if 0%{?suse_version}
-BuildRequires: libqt4-devel >= 4.5, update-desktop-files, zlib-devel
+BuildRequires: libqt4-devel >= 4.5, zlib-devel
 BuildRequires: glib2-devel, gstreamer-0_10-devel, gstreamer-0_10-plugins-base-devel
+BuildRequires:  update-desktop-files
+Requires(post): update-desktop-files
+Requires(postun): update-desktop-files
 %endif
+
+# Mandrake
 %if 0%{?mdkversion}
 BuildRequires: libqt4-devel >= 4.5, desktop-file-utils, gcc-c++, zlib1-devel
 BuildRequires: libglib2.0-devel, gstreamer-devel, gstreamer-plugins-base-devel
 %endif
-
 
 %if 0%{?suse_version}
 Requires: libdiscid1
@@ -50,6 +63,9 @@ Requires: libdiscid1
 Requires: libdiscid, shntool
 %endif
 Requires: flac, enca
+
+# Package description
+# ===================
 
 %description
 Qoobar is a tagger for tagging classical music.
@@ -90,6 +106,9 @@ wavpack, wma, mp4, ape, opus and true audio files.
 Other features: filling in tags from file names, pattern-based file renaming,
 cover art support, importing tags from the Internet, undo / redo system.
 
+# Installation
+# ============
+
 %prep
 %setup -q
 
@@ -113,6 +132,16 @@ install -Dpm 644 qoobar.1 %{buildroot}%{_mandir}/man1/qoobar.1
 
 %clean
 rm -rf %{buildroot}
+
+%if 0%{?suse_version} < 1330
+%post
+%desktop_database_post
+%endif
+
+%if 0%{?suse_version} < 1330
+%postun
+%desktop_database_postun
+%endif
 
 %files
 %defattr(-,root,root)
@@ -141,8 +170,7 @@ rm -rf %{buildroot}
 %{_datadir}/icons/hicolor/128x128/apps/qoobar.png
 %{_datadir}/icons/hicolor/256x256/apps/qoobar.png
 %{_prefix}/lib/%{name}
-%doc %{_mandir}/man1/qoobar.1*
-
+%_mandir/*/*
 
 %files doc
 %defattr(-,root,root)
