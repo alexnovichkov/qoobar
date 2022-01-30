@@ -66,13 +66,12 @@ modules:
         url: https://taglib.org/releases/taglib-1.12.tar.gz
         sha256: 7fccd07669a523b07a15bd24c8da1bbb92206cb19e9366c3692af3d79253b703
   - name: qoobar
-    buildsystem: qmake
-    config-opts:
-      - INSTALL_ROOT=/app
-      #- EXEC_PATH=/app/bin
-      #- SHARED_PATH=/app/share
+    buildsystem: simple
+    buildcommands:
+      - qmake
+      - make install INSTALL_ROOT=/app
+    # config-opts:
+    #   - INSTALL_ROOT=/app
     sources:
       - type: git
         url: https://github.com/alexnovichkov/qoobar.git
-    # post-install:
-    #   - install -Dm644 -t $FLATPAK_DEST/usr/share/applications qoobar.desktop

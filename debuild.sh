@@ -61,5 +61,7 @@ for ubuntu in impish focal bionic ; do
    read -n 1 answer
    if [ "$answer" = "y" ]; then
       do_debuild
+   else
+      exit 1
    fi
 done

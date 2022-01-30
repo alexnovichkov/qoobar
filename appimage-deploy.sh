@@ -10,6 +10,8 @@ echo $VERSION
 
 # VERSION=1.7.0
 
+mkdir -p ~/deployment/qoobar
+
 DEPLOY_DIR=$(mktemp -d -p ~/deployment/qoobar appimage-build-XXXXXX)
 
 # make sure to clean up build dir, even if errors occur
@@ -18,7 +20,7 @@ cleanup () {
         rm -rf "$DEPLOY_DIR"
     fi
     # remove not-needed linuxdeployqt-5-x86_64.AppImage
-    rm -f linuxdeployqt-5-x86_64.AppImage
+    rm -f linuxdeployqt-5-x86_64.AppImage*
 }
 
 trap cleanup EXIT
@@ -27,7 +29,7 @@ trap cleanup EXIT
 pushd ~/build/qoobar
 
 # configure build files with qmake
-qmake 
+qmake
 
 # build project and install files into DEPLOY_DIR
 make -j$(nproc)

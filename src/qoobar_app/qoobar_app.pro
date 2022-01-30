@@ -39,7 +39,7 @@ MOC_DIR = $$BUILD_DIR/build
 
 message(The install path is $${INSTALL_ROOT})
 
-SHARED_PATH = $${INSTALL_ROOT}/share
+SHARED_PATH = $${INSTALL_ROOT}/usr/share
 DOC_PATH = $${SHARED_PATH}/doc
 
 DEFINES *= QOOBAR_SHARED_PATH=\\\"$${SHARED_PATH}/$${TARGET}\\\"
@@ -276,8 +276,7 @@ unix {
 
     SOURCES += sparkleupdater_dummy.cpp
 
-    # EXEC_PATH = $${INSTALL_ROOT}/usr/bin
-    EXEC_PATH = $${INSTALL_ROOT}/bin
+    EXEC_PATH = $${INSTALL_ROOT}/usr/bin
 # Ubuntu 20.04 requires the app icons be placed into /usr/local/share/  
 # if install from make install, and into /usr/share/  if installed from deb
     PIXMAP_PATH = $${SHARED_PATH}/icons/hicolor
