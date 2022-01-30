@@ -25,7 +25,7 @@ CONFIG *= no_keywords
 
 # The install directory. When compiling into deb should be /usr. When make-installed should be /usr/local.
 # When compiling into AppImage should be something like ~/deploy/qoobar/AppDir
-INSTALL_ROOT = /
+# INSTALL_ROOT = /
 
 # used for non-shadow building
 CONFIG(release, debug|release):BUILD_DIR = ../../release
