@@ -69,6 +69,8 @@ modules:
     buildsystem: qmake
     config-opts:
       - INSTALL_ROOT=/app
+      - EXEC_PATH=/app/bin
+      - SHARED_PATH=/app/share
     sources:
       - type: git
         url: https://github.com/alexnovichkov/qoobar.git

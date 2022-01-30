@@ -17,3 +17,5 @@ debug
 *.cpp~
 *.pri~
 /src/qoobar_app/loudgain-master/src
+.flatpak-builder
+build-dir

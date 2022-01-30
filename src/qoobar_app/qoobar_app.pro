@@ -279,12 +279,10 @@ unix {
     EXEC_PATH = $${INSTALL_ROOT}/usr/bin
 # Ubuntu 20.04 requires the app icons be placed into /usr/local/share/  
 # if install from make install, and into /usr/share/  if installed from deb
-    # PIXMAP_PATH = $${SHARED_PATH}/icons/hicolor
-    PIXMAP_PATH = $${INSTALL_ROOT}/share/icons/hicolor
+    PIXMAP_PATH = $${SHARED_PATH}/icons/hicolor
     ICON_PATH = $${SHARED_PATH}/qoobar/icons
     MAN_PATH = $${SHARED_PATH}/man/man1
-    # DESKTOP_PATH = $${SHARED_PATH}/applications
-    DESKTOP_PATH = $${INSTALL_ROOT}/share/applications
+    DESKTOP_PATH = $${SHARED_PATH}/applications
 
     # targets for binary package
     icon16.path = $$PIXMAP_PATH/16x16/apps
