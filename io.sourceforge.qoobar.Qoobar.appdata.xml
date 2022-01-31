@@ -7,7 +7,7 @@
     <summary>Qoobar is a simple tags editor for classical music</summary>
     <description>
         <p>Qoobar is a simple tagger which is designed for editing tags in files of classical music.</p>
-        <p>Qoobar allows you to</p>
+        <p>Qoobar allows you to perform these operations:</p>
         <ul>
             <li>Generate tags from filenames and filepaths</li>
             <li>Batch edit your files - edit any tags in group of files</li>
@@ -15,10 +15,7 @@
             <li>Remember the text you are typing for future use</li>
             <li>Use autocompletion for selected tags</li>
             <li>Add and remove cover art pictures</li>
-        </ul>
-        <p>You also can</p>
-        <ul>
-            <li>Import tags and covers from Discogs, Musicbraiz, GD3, gnudb.</li>
+            <li>Import tags and covers from Discogs, Musicbraiz, GD3, gnudb</li>
             <li>Rename / copy / move files by their tags, creating folders if necessary</li>
             <li>Convert tags from local encoding into UTF8</li>
             <li>Change the scheme of tags reading and writing</li>
