@@ -5,7 +5,6 @@
     <project_license>GPL-3.0+</project_license>
     <name>Qoobar</name>
     <summary>Qoobar is a simple tags editor for classical music</summary>
-    <icon type="stock">io.sourceforge.qoobar.Qoobar</icon>
     <description>
         <p>Qoobar is a simple tagger which is designed for editing tags in files of classical music.</p>
         <p>Qoobar allows you to</p>
@@ -34,11 +33,18 @@
         <category>Music</category>
         <category>Qt</category>
     </categories>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://qoobar.sourceforge.io/en/screenshots/main.png</image>
+        </screenshot>
+    </screenshots>
     <developer_name>Alex Novichkov</developer_name>
+    <update_contact>aleksej.novichkov@gmail.com</update_contact>
     <url type="homepage">https://qoobar.sourceforge.io</url>
     <url type="help">https://qoobar.sourceforge.io/en/documentation.htm</url>
     <launchable type="desktop-id">io.sourceforge.qoobar.Qoobar.desktop</launchable>
     <releases>
         <release version="1.7.0" date="2022-01-29"/>
-  </releases>
+    </releases>
+    <content_rating type="oars-1.0" />
 </component>
