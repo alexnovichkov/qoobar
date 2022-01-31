@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component type="desktop">
+<component type="desktop-application">
     <id>io.sourceforge.qoobar.Qoobar</id>
     <metadata_license>FSFAP</metadata_license>
     <project_license>GPL-3.0+</project_license>
     <name>Qoobar</name>
     <summary>Qoobar is a simple tags editor for classical music</summary>
-    <icon type="stock">qoobar</icon>
+    <icon type="stock">io.sourceforge.qoobar.Qoobar</icon>
     <description>
         <p>Qoobar is a simple tagger which is designed for editing tags in files of classical music.</p>
         <p>Qoobar allows you to</p>
