@@ -72,26 +72,21 @@ public:
 Q_SIGNALS:
     void retranslate();
 private Q_SLOTS:
-    void changeCharsFont();
     void updateLanguage(const int);
     void chooseDirRoot();
 private:
-    QLabel *charsBox;
-    FancyLineEdit *chars;
-    QComboBox *lang;
-    QCheckBox *autoexpand;
-    QLabel *langLabel;
     QCheckBox *useUndo;
-    QCheckBox *dirBox;
     QCheckBox *hideTabBar;
+    QCheckBox *dirBox;
     FancyLineEdit *dirRoot;
-    QLabel *dirRootLabel;
-    QLabel *iconThemeLabel;
-    QComboBox *iconTheme;
-    QLabel *statusBarTrackLabel;
-    QComboBox *statusBarTrack;
     QComboBox *sortOptions;
     QLabel *sortOptionsLabel;
+    QLabel *statusBarTrackLabel;
+    QComboBox *statusBarTrack;
+    QComboBox *lang;
+    QLabel *langLabel;
+    QLabel *iconThemeLabel;
+    QComboBox *iconTheme;
 };
 
 class QFormLayout;
@@ -129,30 +124,45 @@ public:
     void retranslateUI();
     void saveSettings();
     void setSettings();
+private Q_SLOTS:
+    void changeCharsFont();
 private:
+    QLabel *charsBox;
+    FancyLineEdit *chars;
+    QCheckBox *showChars;
+
+    QCheckBox *autoexpand;
+
     QCheckBox *saveChanges;
     QCheckBox *trim;
-//    QCheckBox *readID3;
-//    QCheckBox *writeID3;
-//    QCheckBox *readAPE;
-//    QCheckBox *writeAPE;
-    QLabel *readMp3;
-    QLabel *writeMp3;
-    QToolButton *readID3;
-    QToolButton *writeID3;
-    QToolButton *readAPE;
-    QToolButton *writeAPE;
 
-//    QGroupBox *flacBox;
-//    QLabel *readFlac;
-//    QLabel *writeFlac;
-//    QToolButton *flacreadID3;
-//    QToolButton *flacwriteID3;
-//    QToolButton *flacreadOgg;
-//    QToolButton *flacwriteOgg;
+    QCheckBox *writeFieldsSeparately;
+};
 
-    QGroupBox *box;
-    QGroupBox *oggbox;
+class TagsPage : public ConfigPage
+{
+    Q_OBJECT
+public:
+    TagsPage(QWidget *parent = 0);
+
+    // ConfigPage interface
+public:
+    virtual QString description() override;
+    virtual QString iconFilename() override;
+    virtual void retranslateUI() override;
+    virtual void saveSettings() override;
+    virtual void setSettings() override;
+private Q_SLOTS:
+    void removeScheme();
+    void editScheme();
+    void addScheme();
+    void schemesComboBoxIndexChanged(const int);
+private:
+    QLabel *readMp3Label;
+    QLabel *writeMp3Label;
+    QComboBox *readMp3;
+    QComboBox *writeMp3;
+
     QLabel *id3v1writeLabel;
     QComboBox *id3v1write;
     QCheckBox *id3v1transliterate;
@@ -164,16 +174,18 @@ private:
     QLabel *id3v2lineEndingLabel;
     QComboBox *id3v2LineEnding;
 
-    QGroupBox *id3v1box;
     QLabel *id3Label;
     QLabel *oggLabel;
 
-    QCheckBox *writeFieldsSeparately;
-#ifdef Q_OS_LINUX
     QComboBox *mpcReplayGain;
-    QGroupBox *mpcbox;
     QLabel *mpcLabel;
-#endif
+
+    QLabel *schemesLabel;
+    QComboBox *schemesComboBox;
+    QPushButton *addSchemeButton;
+    QPushButton *removeSchemeButton;
+    QPushButton *editSchemeButton;
+    QMenu *schemesMenu;
 };
 
 class PatternsPage : public ConfigPage
@@ -191,24 +203,11 @@ private Q_SLOTS:
     void removePattern();
     void updatePatterns();
     void insertLegend(const QString &);
-    void removeScheme();
-    void editScheme();
-    void addScheme();
-    void schemesComboBoxIndexChanged(const int);
 private:
     QListWidget *patterns;
-    QGroupBox *renamingPatternsBox;
-    QGroupBox *schemesBox;
     QPushButton *addPatternButton;
     QPushButton *removePatternButton;
     LegendButton *legendButton;
-
-    QLabel *schemesLabel;
-    QComboBox *schemesComboBox;
-    QPushButton *addSchemeButton;
-    QPushButton *removeSchemeButton;
-    QPushButton *editSchemeButton;
-    QMenu *schemesMenu;
 };
 
 

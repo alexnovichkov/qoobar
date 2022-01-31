@@ -92,28 +92,13 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     dirRoot->setButtonToolTip(FancyLineEdit::Right, tr("Choose..."));
     dirRoot->setAutoHideButton(FancyLineEdit::Right, false);
     dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
-    dirRoot->setPlaceholderText(tr("All disks"));
+    dirRoot->setPlaceholderText(tr("Folder tree root"));
+    dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
     connect(dirRoot, SIGNAL(rightButtonClicked()), this, SLOT(chooseDirRoot()));
 
-    dirRootLabel = new QLabel(tr("Folder tree root"),this);
-    dirRootLabel->setBuddy(dirRoot);
-    dirRootLabel->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
     useUndo = new QCheckBox(tr("Use undo / redo"),this);
     useUndo->setWhatsThis(tr("This box allows you to turn off the Undo/Redo system in Qoobar"));
 
-    autoexpand = new QCheckBox(tr("Automatically fill a tag "
-                                  "when pasting a single line"),this);
-#ifndef OSX_SUPPORT_ENABLED
-    chars=new FancyLineEdit(this);
-    chars->setButtonPixmap(FancyLineEdit::Right, QIcon::fromTheme("font").pixmap(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
-    chars->setButtonVisible(FancyLineEdit::Right, true);
-    chars->setButtonToolTip(FancyLineEdit::Right, tr("Font..."));
-    chars->setAutoHideButton(FancyLineEdit::Right, false);
-    connect(chars, SIGNAL(rightButtonClicked()), this, SLOT(changeCharsFont()));
-    chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
-    charsBox = new QLabel(tr("Characters"),this);
-    charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
-#endif
     lang = new QComboBox(this);
     const QStringList ts=QDir(ApplicationPaths::translationsPath()).entryList(QStringList(QSL("*.qm")), QDir::Files | QDir::Readable);
     QTranslator translator;
@@ -154,26 +139,18 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
     sortOptions->addItem(tr("case insensitively"));
 
     auto *UIlayout = new QFormLayout;
-#ifdef OSX_SUPPORT_ENABLED
-    UIlayout->addRow("",useUndo);
-    UIlayout->addRow("",autoexpand);
-    UIlayout->addRow("",hideTabBar);
-    UIlayout->addRow("",dirBox);
-#else
-    UIlayout->addRow(useUndo);
-    UIlayout->addRow(autoexpand);
-    UIlayout->addRow(hideTabBar);
-    UIlayout->addRow(dirBox);
-#endif
-    UIlayout->addRow(dirRootLabel,dirRoot);
-#ifndef OSX_SUPPORT_ENABLED
-    UIlayout->addRow(charsBox, chars);
-#endif
-    UIlayout->addRow(sortOptionsLabel, sortOptions);
-    UIlayout->addRow(statusBarTrackLabel, statusBarTrack);
     UIlayout->addRow(langLabel, lang);
     UIlayout->addRow(iconThemeLabel, iconTheme);
-//    UIlayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
+    UIlayout->addRow(statusBarTrackLabel, statusBarTrack);
+    UIlayout->addRow(sortOptionsLabel, sortOptions);
+    UIlayout->addRow(dirBox,dirRoot);
+    UIlayout->addRow(useUndo);
+    UIlayout->addRow(hideTabBar);
+
+
+
+
+
 
     auto *UIML = new QVBoxLayout;
     UIML->addLayout(UIlayout);
@@ -188,12 +165,8 @@ void InterfacePage::setSettings()
     dirBox->setChecked(App->showDirView);
     dirRoot->setText(App->dirViewRoot);
     useUndo->setChecked(App->useUndo);
-    autoexpand->setChecked(App->autoexpand);
     sortOptions->setCurrentIndex(App->sortOption);
-#ifndef OSX_SUPPORT_ENABLED
-    chars->setText(App->chars);
-    chars->setCursorPosition(0);
-#endif
+
     int langIndex = lang->findData(App->langID);
     if (langIndex>=0) lang->setCurrentIndex(langIndex);
 
@@ -208,7 +181,7 @@ void InterfacePage::setSettings()
 
 QString InterfacePage::description()
 {DD;
-    return tr("Interface");
+    return tr("General");
 }
 QString InterfacePage::iconFilename()
 {DD;
@@ -226,33 +199,18 @@ void InterfacePage::retranslateUI()
     sortOptions->setItemText(0, tr("case sensitively"));
     sortOptions->setItemText(1, tr("case insensitively"));
 
-    autoexpand->setText(tr("Automatically fill a tag "
-                           "when pasting a single line"));
-#ifndef OSX_SUPPORT_ENABLED
-    chars->setButtonToolTip(FancyLineEdit::Right, tr("Font..."));
-    charsBox->setText(tr("Characters"));
-    chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
-    charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
-#endif
     langLabel->setText(tr("User interface language"));
     useUndo->setText(tr("Use undo / redo"));
     dirBox->setText(tr("Show folder tree"));
     hideTabBar->setText(tr("Hide Tab bar with only one tab"));
-    dirRoot->setPlaceholderText(tr("All disks"));
-    dirRootLabel->setText(tr("Folder tree root"));
+    dirRoot->setPlaceholderText(tr("Folder tree root"));
     iconThemeLabel->setText(tr("Toolbar icons theme"));
     dirBox->setWhatsThis(tr("Check this box to show or hide the Folders navigation tree"));
     dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
-    dirRootLabel->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
     useUndo->setWhatsThis(tr("This box allows you to turn off the Undo/Redo system in Qoobar"));
-
 }
 void InterfacePage::saveSettings()
 {DD;
-#ifndef OSX_SUPPORT_ENABLED
-    App->chars=chars->text();
-#endif
-    App->autoexpand=autoexpand->isChecked();
     App->useUndo = useUndo->isChecked();
     App->showDirView = dirBox->isChecked();
     App->hideTabBar = hideTabBar->isChecked();
@@ -263,15 +221,6 @@ void InterfacePage::saveSettings()
     App->iconTheme = iconTheme->itemData(iconTheme->currentIndex()).toString();
     App->statusBarTrack = statusBarTrack->currentIndex();
     App->sortOption = sortOptions->currentIndex();
-}
-
-void InterfacePage::changeCharsFont()
-{DD;
-    bool ok;
-    QFont font = QFontDialog::getFont(&ok, App->charsFont, this, tr("Choose a Chars list font"));
-    if (ok) {
-        App->charsFont=font;
-    }
 }
 
 void InterfacePage::updateLanguage(const int index)
@@ -426,257 +375,96 @@ void CompletionPage::saveSettings()
 
 WritingPage::WritingPage(QWidget *parent) : ConfigPage(parent)
 {DD;
+    autoexpand = new QCheckBox(tr("Automatically fill a tag "
+                                  "when pasting a single line"),this);
+#ifndef OSX_SUPPORT_ENABLED
+    chars=new FancyLineEdit(this);
+    chars->setButtonPixmap(FancyLineEdit::Right, QIcon::fromTheme("font").pixmap(SMALL_ICON_SIZE,SMALL_ICON_SIZE));
+    chars->setButtonVisible(FancyLineEdit::Right, true);
+    chars->setButtonToolTip(FancyLineEdit::Right, tr("Font..."));
+    chars->setAutoHideButton(FancyLineEdit::Right, false);
+    connect(chars, SIGNAL(rightButtonClicked()), this, SLOT(changeCharsFont()));
+    chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
+    charsBox = new QLabel(tr("Characters"),this);
+    charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
+#endif
+
     saveChanges = new QCheckBox(tr("Save changes when closing Qoobar"),this);
     trim = new QCheckBox(tr("Simplify whitespaces when saving files"),this);
     writeFieldsSeparately = new QCheckBox(tr("Write tags separated by ; in different fields"),this);
-//    readID3 = new QCheckBox(tr("Read ID3v2 tags"), this);
-//    writeID3 = new QCheckBox(tr("Write ID3v2 tags"), this);
-//    readAPE = new QCheckBox(tr("Read APE tags"), this);
-//    writeAPE = new QCheckBox(tr("Write APE tags"), this);
 
-    readMp3 = new QLabel(tr("Read:"), this);
-    writeMp3 = new QLabel(tr("Write:"), this);
-    readID3 = new QToolButton(this); readID3->setText(tr("ID3v2")); readID3->setCheckable(true);
-    writeID3 = new QToolButton(this); writeID3->setText(tr("ID3v2")); writeID3->setCheckable(true);
-    readAPE = new QToolButton(this); readAPE->setText(tr("APE")); readAPE->setCheckable(true);
-    writeAPE = new QToolButton(this); writeAPE->setText(tr("APE")); writeAPE->setCheckable(true);
+    auto *rwLayout = new QFormLayout;
+    rwLayout->addRow(saveChanges);
+    rwLayout->addRow(trim);
+    rwLayout->addRow(writeFieldsSeparately);
+    rwLayout->addRow(autoexpand);
+    rwLayout->addRow(charsBox, chars);
 
-//    flacBox = new QGroupBox(tr("Flac files"),this);
-//    readFlac = new QLabel(tr("Read:"),this);
-//    writeFlac = new QLabel(tr("Write:"), this);
-//    flacreadID3 = new QToolButton(this); flacreadID3->setText(tr("ID3v2")); flacreadID3->setCheckable(true);
-//    flacwriteID3 = new QToolButton(this); flacwriteID3->setText(tr("ID3v2")); flacwriteID3->setCheckable(true);
-//    flacreadOgg = new QToolButton(this); flacreadOgg->setText(tr("Ogg")); flacreadOgg->setCheckable(true);
-//    flacwriteOgg = new QToolButton(this); flacwriteOgg->setText(tr("Ogg")); flacwriteOgg->setCheckable(true);
-//    QHBoxLayout *flac1 = new QHBoxLayout;
-//    flac1->addWidget(readFlac);
-//    flac1->addWidget(flacreadOgg);
-//    flac1->addWidget(flacreadID3);
-//    flac1->addWidget(writeFlac);
-//    flac1->addWidget(flacwriteOgg);
-//    flac1->addWidget(flacwriteID3);
-//    flac1->addStretch();
-//    flacBox->setLayout(flac1);
-
-    id3v2lineEndingLabel = new QLabel(tr("ID3v2 frames line ending"), this);
-
-    id3v2LineEnding = new QComboBox(this);
-    id3v2LineEnding->addItem(tr("CRLF - Windows style"));
-    id3v2LineEnding->addItem(tr("LF - Unix and OS X style"));
-    id3v2LineEnding->addItem(tr("CR - pre-OS X style"));
-    id3v2lineEndingLabel->setBuddy(id3v2LineEnding);
-
-    id3v2version = new QComboBox(this);
-    id3v2version->setEditable(false);
-    id3v2version->addItem(QSL("2.3"));
-    id3v2version->addItem(QSL("2.4"));
-    id3v2versionLabel = new QLabel(tr("ID3v2 tags version"),this);
-    id3v2versionLabel->setBuddy(id3v2version);
-    auto *id3v2versionLayout = new QHBoxLayout;
-    id3v2versionLayout->addWidget(id3v2versionLabel);
-    id3v2versionLayout->addWidget(id3v2version);
-
-    box=new QGroupBox(tr("Mp3 files"));
-    auto *mp3Layout=new QVBoxLayout;
-    auto *mp3l1 = new QHBoxLayout;
-    mp3l1->addWidget(readMp3);
-    mp3l1->addWidget(readID3);
-    mp3l1->addWidget(readAPE);
-    mp3l1->addWidget(writeMp3);
-    mp3l1->addWidget(writeID3);
-    mp3l1->addWidget(writeAPE);
-    mp3l1->addStretch();
-    auto *mp3l2 = new QHBoxLayout;
-    mp3l2->addWidget(id3v2versionLabel);
-    mp3l2->addWidget(id3v2version);
-    mp3l2->addStretch();
-    auto mp3l3 = new QHBoxLayout;
-    mp3l3->addWidget(id3v2lineEndingLabel);
-    mp3l3->addWidget(id3v2LineEnding);
-    mp3l3->addStretch();
-    mp3Layout->addLayout(mp3l1);
-    mp3Layout->addLayout(mp3l2);
-    mp3Layout->addLayout(mp3l3);
-//    QFormLayout *mp3Layout=new QFormLayout;
-//    mp3Layout->addRow(readID3,writeID3);
-//    mp3Layout->addRow(readAPE,writeAPE);
-//    mp3Layout->addRow(id3v2versionLabel,id3v2version);
-//    mp3Layout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
-    box->setLayout(mp3Layout);
-
-    oggbox = new QGroupBox(tr("Ogg / Speex files"));
-    oggLabel = new QLabel(tr("Write picture into tag"),this);
-    auto *oggBoxLayout = new QFormLayout;
-    oggPicture = new QComboBox(this);
-    oggPicture->addItem(tr("COVERART (old standard)"));
-    oggPicture->addItem(tr("METADATA_BLOCK_PICTURE (new standard)"));
-    oggBoxLayout->addRow(oggLabel,oggPicture);
-    oggBoxLayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
-    oggbox->setLayout(oggBoxLayout);
-
-
-    id3v1box=new QGroupBox(tr("ID3v1 tags"));
-    id3v1writeLabel = new QLabel(tr("When writing tags"), this);
-    id3v1write = new QComboBox(this);
-    id3v1write->setEditable(false);
-    id3v1write->addItem(tr("update ID3v1 tag"));
-    id3v1write->addItem(tr("update ID3v1 tag only if it exists"));
-    id3v1write->addItem(tr("delete ID3v1 tag"));
-    id3v1transliterate = new QCheckBox(tr("Transliterate Russian words"),this);
-    id3v1encoding = new QComboBox(this);
-    QStringList codecs;
-    QList<int> codecMibs = QTextCodec::availableMibs();
-    Q_FOREACH(const int &mib,codecMibs)
-        codecs << QString(QTextCodec::codecForMib(mib)->name());
-    codecs.sort();
-    id3v1encoding->addItem("Locale");
-    id3v1encoding->addItems(codecs);
-    id3v1encoding->setEditable(false);
-
-    id3Label = new QLabel(tr("ID3v1 tag encoding"),this);
-    auto *id3v1L = new QFormLayout;
-    id3v1L->addRow(id3v1writeLabel, id3v1write);
-    id3v1L->addRow(new QLabel("<small>"+tr("(for mp3, flac, tta, mpc, wv, ape files)")
-                              +"</small>", this));
-    id3v1L->addRow(id3Label,id3v1encoding);
-    id3v1L->addWidget(id3v1transliterate);
-    id3v1L->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
-    id3v1box->setLayout(id3v1L);
-
-#ifdef Q_OS_LINUX
-    mpcbox = new QGroupBox(tr("Musepack files"), this);
-    mpcLabel = new QLabel(tr("Write ReplayGain info of Musepack files into"), this);
-    mpcReplayGain = new QComboBox(this);
-    mpcReplayGain->setEditable(false);
-    mpcReplayGain->addItem(tr("File header"));
-    mpcReplayGain->addItem(tr("APE tags"));
-    auto *mpcL = new QFormLayout;
-    mpcL->addRow(mpcLabel, mpcReplayGain);
-    mpcL->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
-    mpcbox->setLayout(mpcL);
-#endif
-
-    auto *rwLayout = new QVBoxLayout;
-    rwLayout->addWidget(saveChanges);
-    rwLayout->addWidget(trim);
-    rwLayout->addWidget(writeFieldsSeparately);
-    rwLayout->addWidget(box);
-    rwLayout->addWidget(oggbox);
-#ifdef Q_OS_LINUX
-    rwLayout->addWidget(mpcbox);
-#endif
-    rwLayout->addWidget(id3v1box);
-    rwLayout->addStretch();
 
     finalize(rwLayout);
 }
 void WritingPage::setSettings()
 {DD;
+    autoexpand->setChecked(App->autoexpand);
+#ifndef OSX_SUPPORT_ENABLED
+    chars->setText(App->chars);
+    chars->setCursorPosition(0);
+#endif
+
     saveChanges->setCheckState(App->saveChanges ? Qt::Checked : Qt::Unchecked);
     trim->setCheckState(App->trim ? Qt::Checked : Qt::Unchecked);
     writeFieldsSeparately->setChecked(App->writeFieldsSeparately);
-    readID3->setChecked(App->mp3readid3);
-    writeID3->setChecked(App->mp3writeid3);
-    readAPE ->setChecked(App->mp3readape);
-    writeAPE->setChecked(App->mp3writeape);
-    oggPicture->setCurrentIndex(App->oggPictureNew?1:0);
-    id3v1write->setCurrentIndex(App->id3v1Synchro);
-    id3v1transliterate->setChecked(App->id3v1Transliterate);
-    id3v1encoding->setCurrentIndex(id3v1encoding->findText(App->id3v1Encoding));
-    id3v2version->setCurrentIndex(App->id3v2version==4?1:0);
-    id3v2LineEnding->setCurrentIndex(App->id3v2LineEnding);
-//    flacreadID3->setChecked(App->flacreadid3);
-//    flacreadOgg->setChecked(App->flacreadogg);
-//    flacwriteID3->setChecked(App->flacwriteid3);
-//    flacwriteOgg->setChecked(App->flacwriteogg);
-#ifdef Q_OS_LINUX
-    mpcReplayGain->setCurrentIndex(App->mpcWriteRg?0:1);
-#endif
+}
+
+void WritingPage::changeCharsFont()
+{DD;
+    bool ok;
+    QFont font = QFontDialog::getFont(&ok, App->charsFont, this, tr("Choose a Chars list font"));
+    if (ok) {
+        App->charsFont=font;
+    }
 }
 
 
 QString WritingPage::description()
 {DD;
-    return tr("Tags Writing");
+    return tr("Edit & Save");
 }
 QString WritingPage::iconFilename()
 {DD;
-    return "tag-write";
+    return "document-save";
 }
 void WritingPage::retranslateUI()
 {DD;
     ConfigPage::retranslateUI();
+
+    autoexpand->setText(tr("Automatically fill a tag "
+                           "when pasting a single line"));
+#ifndef OSX_SUPPORT_ENABLED
+    chars->setButtonToolTip(FancyLineEdit::Right, tr("Font..."));
+    charsBox->setText(tr("Characters"));
+    chars->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
+    charsBox->setWhatsThis(tr("Characters that will be shown in the Tags edit dialog"));
+#endif
     saveChanges->setText(tr("Save changes when closing Qoobar"));
     trim->setText(tr("Simplify whitespaces when saving files"));
-    readMp3->setText(tr("Read:"));
-    writeMp3->setText(tr("Write:"));
-    readID3->setText(tr("ID3v2"));
-    writeID3->setText(tr("ID3v2"));
-    readAPE->setText(tr("APE"));
-    writeAPE->setText(tr("APE"));
-//    flacBox->setTitle(tr("Flac files"));
-//    readFlac->setText(tr("Read:"));
-//    writeFlac->setText(tr("Write:"));
-//    flacreadID3->setText(tr("ID3v2"));
-//    flacwriteID3->setText(tr("ID3v2"));
-//    flacreadOgg->setText(tr("Ogg"));
-//    flacwriteOgg->setText(tr("Ogg"));
-    id3v1writeLabel->setText(tr("When writing tags"));
-
-    box->setTitle(tr("Mp3 files"));
-    oggbox->setTitle(tr("Ogg / Speex files"));
-    oggPicture->setItemText(0,tr("COVERART (old standard)"));
-    oggPicture->setItemText(1,tr("METADATA_BLOCK_PICTURE (new standard)"));
-
-    oggLabel->setText(tr("Write picture into tag"));
-    id3v1box->setTitle(tr("ID3v1 tags"));
-    id3v1write->setItemText(0,tr("update ID3v1 tag"));
-    id3v1write->setItemText(1,tr("update ID3v1 tag only if it exists"));
-    id3v1write->setItemText(2,tr("delete ID3v1 tag"));
-    id3v1transliterate->setText(tr("Transliterate Russian words"));
-    id3Label->setText(tr("ID3v1 tag encoding"));
-    id3v2LineEnding->setItemText(0,tr("CRLF - Windows style"));
-    id3v2LineEnding->setItemText(1,tr("LF - Unix and OS X style"));
-    id3v2LineEnding->setItemText(2,tr("CR - pre-OS X style"));
-    id3v2lineEndingLabel->setText(tr("ID3v2 frames line ending"));
-#ifdef Q_OS_LINUX
-    mpcbox->setTitle(tr("Musepack files"));
-    mpcLabel->setText(tr("Write ReplayGain info of Musepack files into"));
-    mpcReplayGain->setItemText(0,tr("File header"));
-    mpcReplayGain->setItemText(1,tr("APE tags"));
-#endif
     writeFieldsSeparately->setText(tr("Write tags separated by ; in different fields"));
-
-    id3v2versionLabel->setText(tr("ID3v2 tags version"));
 }
 void WritingPage::saveSettings()
 {DD;
+#ifndef OSX_SUPPORT_ENABLED
+    App->chars=chars->text();
+#endif
+    App->autoexpand=autoexpand->isChecked();
+
     App->saveChanges=saveChanges->isChecked();
     App->trim=trim->isChecked();
-    App->mp3readape=readAPE->isChecked();
-    App->mp3readid3=readID3->isChecked();
-    App->mp3writeape=writeAPE->isChecked();
-    App->mp3writeid3=writeID3->isChecked();
-    App->oggPictureNew = (oggPicture->currentIndex()==1);
-    App->id3v1Synchro=id3v1write->currentIndex();
-    App->id3v1Transliterate=id3v1transliterate->isChecked();
-    App->setId3v1Encoding(id3v1encoding->currentText());
     App->writeFieldsSeparately = writeFieldsSeparately->isChecked();
-    App->id3v2version = id3v2version->currentIndex()==0?3:4;
-    App->id3v2LineEnding = id3v2LineEnding->currentIndex();
-#ifdef Q_OS_LINUX
-    App->mpcWriteRg = mpcReplayGain->currentIndex()==0;
-#endif
-//    App->flacreadid3=flacreadID3->isChecked();
-//    App->flacreadogg=flacreadOgg->isChecked();
-//    App->flacwriteid3=flacwriteID3->isChecked();
-//    App->flacwriteogg=flacwriteOgg->isChecked();
 }
 
 
 PatternsPage::PatternsPage(QWidget *parent) : ConfigPage(parent)
 {DD;
-    renamingPatternsBox = new QGroupBox(tr("Renaming patterns"),this);
     patterns = new QListWidget(this);
     patterns->setDragEnabled(true);
     patterns->viewport()->setAcceptDrops(true);
@@ -701,57 +489,14 @@ PatternsPage::PatternsPage(QWidget *parent) : ConfigPage(parent)
     renamingLayout->addWidget(removePatternButton,1,2);
     renamingLayout->addWidget(legendButton,2,2);
     renamingLayout->setColumnStretch(0,1);
-    renamingPatternsBox->setLayout(renamingLayout);
 
+//    auto *patternsLayout = new QVBoxLayout;
+//    patternsLayout->addWidget(renamingPatternsBox);
+//    patternsLayout->setStretch(0,1);
+//    //patternsLayout->addStretch();
 
-    schemesBox = new QGroupBox(tr("Tagging schemes"),this);
-    schemesLabel = new QLabel(tr("Current scheme"),this);
-    schemesComboBox = new QComboBox(this);
-    schemesComboBox->setEditable(false);
-    schemesComboBox->addItem(tr("Default"),":/src/default.xml");
-    const QFileInfoList schemeFiles = QDir(ApplicationPaths::userSchemesPath()).entryInfoList(QStringList(QLS("*.xml")))
-            +QDir(ApplicationPaths::schemesPath()).entryInfoList(QStringList(QLS("*.xml")));
-
-    for (const auto &file: schemeFiles) {
-        const QString schemePath = file.canonicalFilePath();
-        TaggingScheme scheme(schemePath);
-        scheme.read(true);
-        QString schemeName = scheme.name();
-        if (!schemeName.isEmpty()) {
-            schemesComboBox->addItem(schemeName,schemePath);
-        }
-    }
-    connect(schemesComboBox,SIGNAL(currentIndexChanged(int)),SLOT(schemesComboBoxIndexChanged(int)));
-
-    editSchemeButton  = new QPushButton(tr("Edit"),this);
-    connect(editSchemeButton,SIGNAL(clicked()),SLOT(editScheme()));
-
-    addSchemeButton = new QPushButton(tr("Add"),this);
-    schemesMenu = new QMenu(this);
-    QAction *a=schemesMenu->addAction(tr("Clone this"),this,SLOT(addScheme()));
-    a->setData("clone");
-    a=schemesMenu->addAction(tr("Using Default"),this,SLOT(addScheme()));
-    a->setData("default");
-    addSchemeButton->setMenu(schemesMenu);
-
-    removeSchemeButton = new QPushButton(tr("Remove"),this);
-    connect(removeSchemeButton,SIGNAL(clicked()),SLOT(removeScheme()));
-
-    auto *schemesListLayout = new QGridLayout;
-    schemesListLayout->addWidget(schemesLabel,0,0);
-    schemesListLayout->addWidget(schemesComboBox,0,1);
-    schemesListLayout->addWidget(editSchemeButton,0,2);
-    schemesListLayout->addWidget(addSchemeButton,0,3);
-    schemesListLayout->addWidget(removeSchemeButton,0,4);
-    schemesBox->setLayout(schemesListLayout);
-
-    auto *patternsLayout = new QVBoxLayout;
-    patternsLayout->addWidget(renamingPatternsBox);
-    patternsLayout->addWidget(schemesBox);
-    patternsLayout->setStretch(0,1);
-    //patternsLayout->addStretch();
-
-    finalize(patternsLayout);
+//    finalize(patternsLayout);
+    finalize(renamingLayout);
 }
 
 void PatternsPage::setSettings()
@@ -760,11 +505,6 @@ void PatternsPage::setSettings()
     patterns->addItems(App->patterns);
     for (int i=0; i<patterns->count();++i)
         patterns->item(i)->setFlags(patterns->item(i)->flags() | Qt::ItemIsEditable);
-
-    int schemeIndex = schemesComboBox->findData(App->currentSchemeName);
-    if (schemeIndex < 0) schemeIndex = 0;
-    schemesComboBox->setCurrentIndex(schemeIndex);
-    schemesComboBoxIndexChanged(schemeIndex);
 }
 
 QString PatternsPage::description()
@@ -778,84 +518,12 @@ QString PatternsPage::iconFilename()
 void PatternsPage::retranslateUI()
 {DD;
     ConfigPage::retranslateUI();
-    renamingPatternsBox->setTitle(tr("Renaming patterns"));
     addPatternButton->setText(tr("Add pattern"));
     removePatternButton->setText(tr("Remove pattern"));
-
-    schemesBox->setTitle(tr("Tagging schemes"));
-    schemesLabel->setText(tr("Current scheme"));
-    schemesComboBox->setItemText(0,tr("Default"));
-    addSchemeButton->setText(tr("Add"));
-    editSchemeButton->setText(tr("Edit"));
-
-    const auto schemesActions = schemesMenu->actions();
-    schemesActions[0]->setText(tr("Clone this"));
-    schemesActions[1]->setText(tr("Using Default"));
-
-    removeSchemeButton->setText(tr("Remove"));
 }
 void PatternsPage::saveSettings()
 {DD;
     updatePatterns();
-    int index = schemesComboBox->currentIndex();
-    if (index>=0) {
-        QString currentSchemeName=schemesComboBox->itemData(index).toString();
-//        if (index != schemeIndex)
-        //if (App->currentSchemeName != currentSchemeName || )
-        App->currentSchemeName = currentSchemeName;
-        delete App->currentScheme;
-        App->currentScheme = new TaggingScheme(currentSchemeName);
-        App->currentScheme->read();
-    }
-}
-void PatternsPage::schemesComboBoxIndexChanged(const int index)
-{DD;
-    removeSchemeButton->setEnabled(index!=0);
-}
-void PatternsPage::removeScheme()
-{DD;
-    int curIndex = schemesComboBox->currentIndex();
-    if (curIndex <= 0) return;
-
-    QFile f(schemesComboBox->itemData(curIndex).toString());
-    if (f.remove())
-        schemesComboBox->removeItem(curIndex);
-    else {
-        criticalMessage(nullptr, QSL("Qoobar"), tr("Cannot delete the file\n%1.").arg(f.fileName()));
-    }
-}
-
-void PatternsPage::editScheme()
-{DD;
-    int curIndex = schemesComboBox->currentIndex();
-    if (curIndex < 0) return;
-
-    QString schemePath=schemesComboBox->itemData(curIndex).toString();
-    SchemeEditor editor(schemePath, (curIndex > 0) ? SchemeEditor::Modify : SchemeEditor::Copy, this);
-
-    if (editor.exec()) {
-        if (curIndex==0) {
-            schemesComboBox->addItem(editor.scheme->name(), editor.scheme->filePath());
-            schemesComboBox->setCurrentIndex(schemesComboBox->count()-1);
-        }
-    }
-}
-
-void PatternsPage::addScheme()
-{DD;
-    if (auto *a = qobject_cast<QAction *>(sender())) {
-        int curIndex = schemesComboBox->currentIndex();
-        if (a->data().toString()=="default")
-            curIndex=0;
-        if (curIndex<0) return;
-
-        SchemeEditor editor(schemesComboBox->itemData(curIndex).toString(),SchemeEditor::Copy,this);
-
-        if (editor.exec()) {
-            schemesComboBox->addItem(editor.scheme->name(), editor.scheme->filePath());
-            schemesComboBox->setCurrentIndex(schemesComboBox->count()-1);
-        }
-    }
 }
 
 void PatternsPage::updatePatterns()
@@ -1302,5 +970,312 @@ void ReplaygainPage::updateModeInfo(int index)
         if (index==1) //enhanced mode
             modeInfoLabel->setText("<small>"+tr("In this mode the additional RANGE and LOUDNESS tags are written")
                                    +"</small>");
+    }
+}
+
+
+TagsPage::TagsPage(QWidget *parent) : ConfigPage(parent)
+{
+    readMp3Label = new QLabel(tr("Read in MP3 files"), this);
+    writeMp3Label = new QLabel(tr("Write to MP3 files"), this);
+
+    readMp3 = new QComboBox(this);
+    readMp3->addItems(QStringList()<<tr("ID3v2 and APE tags")<<tr("ID3v2 tags only")<<tr("APE tags only"));
+    writeMp3 = new QComboBox(this);
+    writeMp3->addItems(QStringList()<<tr("ID3v2 and APE tags")<<tr("ID3v2 tags only")<<tr("APE tags only"));
+
+    //    flacBox = new QGroupBox(tr("Flac files"),this);
+    //    readFlac = new QLabel(tr("Read:"),this);
+    //    writeFlac = new QLabel(tr("Write:"), this);
+    //    flacreadID3 = new QToolButton(this); flacreadID3->setText(tr("ID3v2")); flacreadID3->setCheckable(true);
+    //    flacwriteID3 = new QToolButton(this); flacwriteID3->setText(tr("ID3v2")); flacwriteID3->setCheckable(true);
+    //    flacreadOgg = new QToolButton(this); flacreadOgg->setText(tr("Ogg")); flacreadOgg->setCheckable(true);
+    //    flacwriteOgg = new QToolButton(this); flacwriteOgg->setText(tr("Ogg")); flacwriteOgg->setCheckable(true);
+    //    QHBoxLayout *flac1 = new QHBoxLayout;
+    //    flac1->addWidget(readFlac);
+    //    flac1->addWidget(flacreadOgg);
+    //    flac1->addWidget(flacreadID3);
+    //    flac1->addWidget(writeFlac);
+    //    flac1->addWidget(flacwriteOgg);
+    //    flac1->addWidget(flacwriteID3);
+    //    flac1->addStretch();
+    //    flacBox->setLayout(flac1);
+
+    id3v2lineEndingLabel = new QLabel(tr("ID3v2 frames line ending"), this);
+
+    id3v2LineEnding = new QComboBox(this);
+    id3v2LineEnding->addItem(tr("CRLF - Windows style"));
+    id3v2LineEnding->addItem(tr("LF - Unix and OS X style"));
+    id3v2LineEnding->addItem(tr("CR - pre-OS X style"));
+    id3v2lineEndingLabel->setBuddy(id3v2LineEnding);
+
+    id3v2version = new QComboBox(this);
+    id3v2version->setEditable(false);
+    id3v2version->addItem(QSL("ID3 v2.3"));
+    id3v2version->addItem(QSL("ID3 v2.4"));
+    id3v2versionLabel = new QLabel(tr("ID3v2 tags version"),this);
+    id3v2versionLabel->setBuddy(id3v2version);
+    auto *id3v2versionLayout = new QHBoxLayout;
+    id3v2versionLayout->addWidget(id3v2versionLabel);
+    id3v2versionLayout->addWidget(id3v2version);
+
+    oggLabel = new QLabel(tr("Ogg & Speex picture tag"),this);
+    oggPicture = new QComboBox(this);
+    oggPicture->addItem(tr("COVERART (old standard)"));
+    oggPicture->addItem(tr("METADATA_BLOCK_PICTURE (new standard)"));
+
+    id3v1writeLabel = new QLabel(tr("When writing tags"), this);
+    id3v1write = new QComboBox(this);
+    id3v1write->setEditable(false);
+    id3v1write->addItem(tr("update ID3v1 tag"));
+    id3v1write->addItem(tr("update ID3v1 tag only if it exists"));
+    id3v1write->addItem(tr("delete ID3v1 tag"));
+    id3v1transliterate = new QCheckBox(tr("Transliterate Russian words"),this);
+    id3v1encoding = new QComboBox(this);
+    QStringList codecs;
+    QList<int> codecMibs = QTextCodec::availableMibs();
+    Q_FOREACH(const int &mib,codecMibs)
+        codecs << QString(QTextCodec::codecForMib(mib)->name());
+    codecs.sort();
+    id3v1encoding->addItem("Locale");
+    id3v1encoding->addItems(codecs);
+    id3v1encoding->setEditable(false);
+
+    id3Label = new QLabel(tr("ID3v1 tag encoding"),this);
+
+    mpcLabel = new QLabel(tr("Write ReplayGain info of Musepack files into"), this);
+    mpcReplayGain = new QComboBox(this);
+    mpcReplayGain->setEditable(false);
+    mpcReplayGain->addItem(tr("File header"));
+    mpcReplayGain->addItem(tr("APE tags"));
+
+    schemesLabel = new QLabel(tr("Current tagging scheme"),this);
+    schemesComboBox = new QComboBox(this);
+    schemesComboBox->setEditable(false);
+    schemesComboBox->addItem(tr("Default"),":/src/default.xml");
+    const QFileInfoList schemeFiles = QDir(ApplicationPaths::userSchemesPath()).entryInfoList(QStringList(QLS("*.xml")))
+            +QDir(ApplicationPaths::schemesPath()).entryInfoList(QStringList(QLS("*.xml")));
+
+    for (const auto &file: schemeFiles) {
+        const QString schemePath = file.canonicalFilePath();
+        TaggingScheme scheme(schemePath);
+        scheme.read(true);
+        QString schemeName = scheme.name();
+        if (!schemeName.isEmpty()) {
+            schemesComboBox->addItem(schemeName,schemePath);
+        }
+    }
+    connect(schemesComboBox,SIGNAL(currentIndexChanged(int)),SLOT(schemesComboBoxIndexChanged(int)));
+
+    editSchemeButton  = new QPushButton(tr("Edit"),this);
+    connect(editSchemeButton,SIGNAL(clicked()),SLOT(editScheme()));
+
+    addSchemeButton = new QPushButton(tr("Add"),this);
+    schemesMenu = new QMenu(this);
+    QAction *a=schemesMenu->addAction(tr("Clone this"),this,SLOT(addScheme()));
+    a->setData("clone");
+    a=schemesMenu->addAction(tr("Using Default"),this,SLOT(addScheme()));
+    a->setData("default");
+    addSchemeButton->setMenu(schemesMenu);
+
+    removeSchemeButton = new QPushButton(tr("Remove"),this);
+    connect(removeSchemeButton,SIGNAL(clicked()),SLOT(removeScheme()));
+
+    auto *schemesListLayout = new QGridLayout;
+    schemesListLayout->addWidget(schemesLabel,0,0);
+    schemesListLayout->addWidget(schemesComboBox,0,1);
+    schemesListLayout->addWidget(editSchemeButton,0,2);
+    schemesListLayout->addWidget(addSchemeButton,0,3);
+    schemesListLayout->addWidget(removeSchemeButton,0,4);
+
+    QFormLayout *mainL =new QFormLayout;
+    mainL->addRow(readMp3Label, readMp3);
+    mainL->addRow(writeMp3Label, writeMp3);
+    mainL->addRow(id3v2versionLabel, id3v2version);
+    mainL->addRow(id3v2lineEndingLabel, id3v2LineEnding);
+    mainL->addItem(new QSpacerItem(10,10));
+    mainL->addRow(id3v1writeLabel, id3v1write);
+    mainL->addRow(new QLabel("<small>"+tr("(for mp3, flac, tta, mpc, wv, ape files)")
+                              +"</small>", this));
+    mainL->addRow(id3Label,id3v1encoding);
+    mainL->addWidget(id3v1transliterate);
+    mainL->addItem(new QSpacerItem(10,10));
+    mainL->addRow(oggLabel,oggPicture);
+    mainL->addRow(mpcLabel, mpcReplayGain);
+    mainL->addItem(new QSpacerItem(10,10));
+    mainL->addRow(schemesListLayout);
+
+//    mainL->addStretch();
+    finalize(mainL);
+}
+
+QString TagsPage::description()
+{
+    return tr("Tags");
+}
+
+QString TagsPage::iconFilename()
+{
+    return "tag-write";
+}
+
+void TagsPage::retranslateUI()
+{
+    ConfigPage::retranslateUI();
+    readMp3Label->setText(tr("Read in MP3 files"));
+    writeMp3Label->setText(tr("Write to MP3 files"));
+    readMp3->setItemText(0, tr("ID3v2 and APE tags"));
+    readMp3->setItemText(1, tr("ID3v2 tags only"));
+    readMp3->setItemText(2, tr("APE tags only"));
+    writeMp3->setItemText(0, tr("ID3v2 and APE tags"));
+    writeMp3->setItemText(1, tr("ID3v2 tags only"));
+    writeMp3->setItemText(2, tr("APE tags only"));
+//    flacBox->setTitle(tr("Flac files"));
+//    readFlac->setText(tr("Read:"));
+//    writeFlac->setText(tr("Write:"));
+//    flacreadID3->setText(tr("ID3v2"));
+//    flacwriteID3->setText(tr("ID3v2"));
+//    flacreadOgg->setText(tr("Ogg"));
+//    flacwriteOgg->setText(tr("Ogg"));
+    id3v1writeLabel->setText(tr("When writing tags"));
+
+    oggPicture->setItemText(0,tr("COVERART (old standard)"));
+    oggPicture->setItemText(1,tr("METADATA_BLOCK_PICTURE (new standard)"));
+
+    oggLabel->setText(tr("Ogg & Speex picture tag"));
+    id3v1write->setItemText(0,tr("update ID3v1 tag"));
+    id3v1write->setItemText(1,tr("update ID3v1 tag only if it exists"));
+    id3v1write->setItemText(2,tr("delete ID3v1 tag"));
+    id3v1transliterate->setText(tr("Transliterate Russian words"));
+    id3Label->setText(tr("ID3v1 tag encoding"));
+    id3v2LineEnding->setItemText(0,tr("CRLF - Windows style"));
+    id3v2LineEnding->setItemText(1,tr("LF - Unix and OS X style"));
+    id3v2LineEnding->setItemText(2,tr("CR - pre-OS X style"));
+    id3v2lineEndingLabel->setText(tr("ID3v2 frames line ending"));
+
+    mpcLabel->setText(tr("Write ReplayGain info of Musepack files into"));
+    mpcReplayGain->setItemText(0,tr("File header"));
+    mpcReplayGain->setItemText(1,tr("APE tags"));
+
+    id3v2versionLabel->setText(tr("ID3v2 tags version"));
+
+    schemesLabel->setText(tr("Current tagging scheme"));
+    schemesComboBox->setItemText(0,tr("Default"));
+    addSchemeButton->setText(tr("Add"));
+    editSchemeButton->setText(tr("Edit"));
+
+    const auto schemesActions = schemesMenu->actions();
+    schemesActions[0]->setText(tr("Clone this"));
+    schemesActions[1]->setText(tr("Using Default"));
+
+    removeSchemeButton->setText(tr("Remove"));
+}
+
+void TagsPage::saveSettings()
+{
+    App->mp3readape = readMp3->currentIndex()==0 || readMp3->currentIndex()==2;
+    App->mp3readid3 = readMp3->currentIndex()==0 || readMp3->currentIndex()==1;
+    App->mp3writeape = writeMp3->currentIndex()==0 || writeMp3->currentIndex()==2;
+    App->mp3writeid3 = writeMp3->currentIndex()==0 || writeMp3->currentIndex()==1;
+    App->oggPictureNew = (oggPicture->currentIndex()==1);
+    App->id3v1Synchro=id3v1write->currentIndex();
+    App->id3v1Transliterate=id3v1transliterate->isChecked();
+    App->setId3v1Encoding(id3v1encoding->currentText());
+    App->id3v2version = id3v2version->currentIndex()==0?3:4;
+    App->id3v2LineEnding = id3v2LineEnding->currentIndex();
+    App->mpcWriteRg = mpcReplayGain->currentIndex()==0;
+
+//    App->flacreadid3=flacreadID3->isChecked();
+//    App->flacreadogg=flacreadOgg->isChecked();
+//    App->flacwriteid3=flacwriteID3->isChecked();
+//    App->flacwriteogg=flacwriteOgg->isChecked();
+
+    int index = schemesComboBox->currentIndex();
+    if (index>=0) {
+        QString currentSchemeName=schemesComboBox->itemData(index).toString();
+//        if (index != schemeIndex)
+        //if (App->currentSchemeName != currentSchemeName || )
+        App->currentSchemeName = currentSchemeName;
+        delete App->currentScheme;
+        App->currentScheme = new TaggingScheme(currentSchemeName);
+        App->currentScheme->read();
+    }
+}
+
+void TagsPage::setSettings()
+{
+    if (App->mp3readid3 && App->mp3readape) readMp3->setCurrentIndex(0);
+    else if (App->mp3readid3) readMp3->setCurrentIndex(1);
+    else if (App->mp3readape) readMp3->setCurrentIndex(2);
+
+    if (App->mp3writeid3 && App->mp3writeape) writeMp3->setCurrentIndex(0);
+    else if (App->mp3writeid3) writeMp3->setCurrentIndex(1);
+    else if (App->mp3writeape) writeMp3->setCurrentIndex(2);
+
+    oggPicture->setCurrentIndex(App->oggPictureNew?1:0);
+    id3v1write->setCurrentIndex(App->id3v1Synchro);
+    id3v1transliterate->setChecked(App->id3v1Transliterate);
+    id3v1encoding->setCurrentIndex(id3v1encoding->findText(App->id3v1Encoding));
+    id3v2version->setCurrentIndex(App->id3v2version==4?1:0);
+    id3v2LineEnding->setCurrentIndex(App->id3v2LineEnding);
+//    flacreadID3->setChecked(App->flacreadid3);
+//    flacreadOgg->setChecked(App->flacreadogg);
+//    flacwriteID3->setChecked(App->flacwriteid3);
+//    flacwriteOgg->setChecked(App->flacwriteogg);
+    mpcReplayGain->setCurrentIndex(App->mpcWriteRg?0:1);
+
+    int schemeIndex = schemesComboBox->findData(App->currentSchemeName);
+    if (schemeIndex < 0) schemeIndex = 0;
+    schemesComboBox->setCurrentIndex(schemeIndex);
+    schemesComboBoxIndexChanged(schemeIndex);
+}
+
+void TagsPage::schemesComboBoxIndexChanged(const int index)
+{DD;
+    removeSchemeButton->setEnabled(index!=0);
+}
+void TagsPage::removeScheme()
+{DD;
+    int curIndex = schemesComboBox->currentIndex();
+    if (curIndex <= 0) return;
+
+    QFile f(schemesComboBox->itemData(curIndex).toString());
+    if (f.remove())
+        schemesComboBox->removeItem(curIndex);
+    else {
+        criticalMessage(nullptr, QSL("Qoobar"), tr("Cannot delete the file\n%1.").arg(f.fileName()));
+    }
+}
+
+void TagsPage::editScheme()
+{DD;
+    int curIndex = schemesComboBox->currentIndex();
+    if (curIndex < 0) return;
+
+    QString schemePath=schemesComboBox->itemData(curIndex).toString();
+    SchemeEditor editor(schemePath, (curIndex > 0) ? SchemeEditor::Modify : SchemeEditor::Copy, this);
+
+    if (editor.exec()) {
+        if (curIndex==0) {
+            schemesComboBox->addItem(editor.scheme->name(), editor.scheme->filePath());
+            schemesComboBox->setCurrentIndex(schemesComboBox->count()-1);
+        }
+    }
+}
+
+void TagsPage::addScheme()
+{DD;
+    if (auto *a = qobject_cast<QAction *>(sender())) {
+        int curIndex = schemesComboBox->currentIndex();
+        if (a->data().toString()=="default")
+            curIndex=0;
+        if (curIndex<0) return;
+
+        SchemeEditor editor(schemesComboBox->itemData(curIndex).toString(),SchemeEditor::Copy,this);
+
+        if (editor.exec()) {
+            schemesComboBox->addItem(editor.scheme->name(), editor.scheme->filePath());
+            schemesComboBox->setCurrentIndex(schemesComboBox->count()-1);
+        }
     }
 }

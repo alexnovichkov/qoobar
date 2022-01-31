@@ -59,8 +59,9 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect(page,SIGNAL(retranslate()),this,SIGNAL(retranslate()));
 //    connect(page,SIGNAL(tableUpdateModeChanged(bool)),this,SIGNAL(tableUpdateModeChanged(bool)));
     configPages << page;
-    configPages << new CompletionPage;
     configPages << new WritingPage;
+    configPages << new TagsPage;
+    configPages << new CompletionPage;
     configPages << new PatternsPage;
     configPages << new UtilitiesPage;
     configPages << new ReplaygainPage;
