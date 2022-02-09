@@ -223,8 +223,11 @@ void QEasySettings::changePalette(QEasySettings::Palette _palette) {
     mPalette.setColor(QPalette::ButtonText, Qt::white);
     mPalette.setColor(QPalette::BrightText, Qt::red);
     mPalette.setColor(QPalette::Link, QColor(42, 130, 218));
-    mPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
+    mPalette.setColor(QPalette::Highlight, QColor(107, 107, 107));
     mPalette.setColor(QPalette::HighlightedText, Qt::white);
+
+    mPalette.setColor(QPalette::Active, QPalette::Highlight, QColor(42, 130, 218));
+
     mPalette.setColor(QPalette::Disabled, QPalette::Text, QColor(164, 166, 168));
     mPalette.setColor(QPalette::Disabled, QPalette::WindowText, QColor(164, 166, 168));
     mPalette.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(164, 166, 168));
