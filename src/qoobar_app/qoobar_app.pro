@@ -373,6 +373,9 @@ win32|win {
   # So far no cli support in Win
 #  DEFINES *= QOOBAR_ENABLE_CLI
 
+HEADERS += qeasysettings.hpp
+SOURCES += qeasysettings.cpp
+
 # Two distinct RC files with different appcast.xml to separately update
 # Qt6 version and Qt5 version
 greaterThan(QT_MAJOR_VERSION, 5) {
