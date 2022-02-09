@@ -257,6 +257,10 @@ public:
     int statusBarTrack;
     int lastSearchServer = 0;
     QByteArray tagsFillerGeometry;
+
+    //The "slightly lighter" or "slightly darker" color of text in the status bar,
+    //depending on the style (light/dark)
+    QString alternateTextColor;
 Q_SIGNALS:
     void settingsCleared();
     void dockClicked();

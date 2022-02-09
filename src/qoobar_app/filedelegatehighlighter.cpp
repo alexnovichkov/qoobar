@@ -28,6 +28,7 @@
 
 #include <QtWidgets>
 #include "qoobarglobals.h"
+#include "application.h"
 
 FileDelegateHighlighter::FileDelegateHighlighter()
 {
@@ -56,7 +57,7 @@ QList<QTextLayout::FormatRange> FileDelegateHighlighter::generateFormats(
         int length=elidedText.length()-text.length()+prefix.length()+1;
         if (length<0) length=0;
         if (length>0) {
-            formats << formatRange(0,length, charFormat(option->font, Qt::darkGray));
+            formats << formatRange(0,length, charFormat(option->font, QBrush(QColor(App->alternateTextColor))));
         }
         if (elidedText.length()-length>0) {
             formats << formatRange(length, elidedText.length()-length, charFormat(option->font));

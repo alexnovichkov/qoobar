@@ -130,7 +130,6 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     currentHover = Tag();
 
     fileIconLabel = new QLabel(this);
-
     fileNameLabel = new ElidingLabel(this);
     fileNameLabel->setMinimumWidth(200);
     fileNameLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
@@ -138,7 +137,9 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     fileNameLabel->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
     fileNameLabel->setAttribute(Qt::WA_MacSmallSize);
 
-    readOnlyLabel = new QLabel(QSL("<font color=#505050>RO</font>"),this);
+
+
+    readOnlyLabel = new QLabel(QSL("<font color=%1>RO</font>").arg(App->alternateTextColor),this);
     readOnlyLabel->setToolTip(tr("File is read only"));
     readOnlyLabel->setAttribute(Qt::WA_MacSmallSize);
 
@@ -147,7 +148,7 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     typeLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     typeLabel->setAttribute(Qt::WA_MacSmallSize);
 
-    sizeLabel = new QLabel(QString("<font color=#505050>%1:</font>").arg(tr("Size")),this);
+    sizeLabel = new QLabel(QString("<font color=%1>%2:</font>").arg(App->alternateTextColor).arg(tr("Size")),this);
     sizeLabel->setAlignment(Qt::AlignTop | Qt::AlignRight);
     sizeLabel->setAttribute(Qt::WA_MacSmallSize);
 
@@ -157,7 +158,7 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
     sizeContentsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     sizeContentsLabel->setAttribute(Qt::WA_MacSmallSize);
 
-    lengthLabel = new QLabel(QString("<font color=#505050>%1:</font>").arg(tr("Length")),this);
+    lengthLabel = new QLabel(QString("<font color=%1>%2:</font>").arg(App->alternateTextColor).arg(tr("Length")),this);
     lengthLabel->setAlignment(Qt::AlignTop | Qt::AlignRight);
     lengthLabel->setAttribute(Qt::WA_MacSmallSize);
 
@@ -207,8 +208,8 @@ PropertiesPanel::PropertiesPanel(QWidget *parent) : QWidget(parent)
 void PropertiesPanel::retranslateUI()
 {DD;
     readOnlyLabel->setToolTip(tr("File is read only"));
-    sizeLabel->setText(QString("<font color=#505050>%1:</font>").arg(tr("Size")));
-    lengthLabel->setText(QString("<font color=#505050>%1:</font>").arg(tr("Length")));
+    sizeLabel->setText(QString("<font color=%1>%2:</font>").arg(App->alternateTextColor).arg(tr("Size")));
+    lengthLabel->setText(QString("<font color=%1>%2:</font>").arg(App->alternateTextColor).arg(tr("Length")));
     updateSelected();
     updateFileName();
     updateLengthContents();
@@ -283,16 +284,16 @@ void PropertiesPanel::updateSelected()
         selectedLengthLabel->clear();
     }
     else if (selectedCount==0) {//there are some files
-        selectedLabel->setText(QString("<font color=#505050>")+tr("%n file(s)","",overallCount)+QString("</font>"));
-        selectedLengthLabel->setText(QString("<font color=#505050>")
+        selectedLabel->setText(QString("<font color=%1>").arg(App->alternateTextColor)+tr("%n file(s)","",overallCount)+QString("</font>"));
+        selectedLengthLabel->setText(QString("<font color=%1>").arg(App->alternateTextColor)
                                      +tr("Overall length %1").arg(Qoobar::formatLength(overallLength))
                                      +QString("</font>"));
     }
     else {
-        selectedLabel->setText(QString("<font color=#505050>")
+        selectedLabel->setText(QString("<font color=%1>").arg(App->alternateTextColor)
                                +tr("Selected %n file(s) of %1","",selectedCount).arg(overallCount)
                                +QString("</font>"));
-        selectedLengthLabel->setText(QString("<font color=#505050>")
+        selectedLengthLabel->setText(QString("<font color=%1>").arg(App->alternateTextColor)
                                      +tr("Selected length %1 of %2").arg(Qoobar::formatLength(selectedLength))
                                      .arg(Qoobar::formatLength(overallLength))
                                      +QString("</font>"));

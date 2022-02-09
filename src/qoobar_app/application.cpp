@@ -320,6 +320,38 @@ void Application::readGuiSettings()
     tagsFillerGeometry = se->value(QSL("tagsFillerGeometry")).toByteArray();
 
 //    showFullFilesProperties = se->value(QSL("showFullFilesProperties"),false).toBool();
+
+
+    //reading and applying style
+#ifdef Q_OS_WIN
+    auto style = QEasySettings::readStyle();
+    QEasySettings::setStyle(style);
+
+    QString themePrefix;
+    //follow system theme
+    if (style == QEasySettings::Style::autoFusion) {
+        QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",QSettings::NativeFormat);
+        if(settings.value("AppsUseLightTheme")==0)
+            themePrefix = "[dark]";
+        else
+            themePrefix = "[light]";
+    }
+    else if (style == QEasySettings::Style::darkFusion)
+        themePrefix = "[dark]";
+    else {
+        themePrefix = "[light]";
+    }
+    if (themePrefix == "[light]") alternateTextColor = "#505050";
+    if (themePrefix == "[dark]") alternateTextColor = "#b0b0b0";
+
+    //some icon themes may have no dark mode
+    iconTheme = se->value(QSL("iconTheme"),QSL("maia")).toString();
+    if (QFileInfo::exists("icons/"+iconTheme+themePrefix))
+        QIcon::setThemeName(iconTheme+themePrefix);
+    else
+#endif
+        QIcon::setThemeName(iconTheme);
+
     delete se;
 }
 
@@ -440,35 +472,6 @@ void Application::readGlobalSettings()
 #else
     defaultSplitFormat = se->value("default-split-format", "flac").toString();
 #endif
-    //reading and applying style
-
-#ifdef Q_OS_WIN
-    auto style = QEasySettings::readStyle();
-    QEasySettings::setStyle(style);
-
-    QString themePrefix;
-    //follow system theme
-    if (style == QEasySettings::Style::autoFusion) {
-        QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",QSettings::NativeFormat);
-        if(settings.value("AppsUseLightTheme")==0)
-            themePrefix = "[dark]";
-        else
-            themePrefix = "[light]";
-    }
-    else if (style == QEasySettings::Style::darkFusion)
-        themePrefix = "[dark]";
-    else {
-        themePrefix = "[light]";
-//        QEasySettings::setAutoPalette(true);
-    }
-
-    //some icon themes may have no dark mode
-    iconTheme = se->value(QSL("iconTheme"),QSL("maia")).toString();
-    if (QFileInfo::exists("icons/"+iconTheme+themePrefix))
-        QIcon::setThemeName(iconTheme+themePrefix);
-    else
-#endif
-        QIcon::setThemeName(iconTheme);
 
     delete se;
 }

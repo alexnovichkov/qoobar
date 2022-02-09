@@ -952,8 +952,8 @@ QVariant Model::data(const QModelIndex &index, int role) const
     }
     if (role == Qt::ForegroundRole) {
         switch (column) {
-            case 2: return tag.readOnly()?QBrush(Qt::gray) : qApp->style()->standardPalette().brush(QPalette::WindowText); break;
-            default: return qApp->style()->standardPalette().brush(QPalette::WindowText);
+            case 2: return tag.readOnly()?QBrush(QColor(App->alternateTextColor)) : App->palette().brush(QPalette::Text); break;
+            default: return App->palette().brush(QPalette::Text);
         }
     }
     if (role == Qt::FontRole) {

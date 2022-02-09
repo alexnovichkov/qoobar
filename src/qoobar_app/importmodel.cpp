@@ -69,7 +69,7 @@ QVariant ImportModel::data(const QModelIndex &index, int role) const
             break;
         }
         case Qt::ForegroundRole: {
-            if (!checkedRows.value(row, true)) return QVariant(QColor(Qt::gray));
+            if (!checkedRows.value(row, true)) return QColor(App->alternateTextColor);
             break;
         }
         default: break;
