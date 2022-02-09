@@ -28,32 +28,12 @@
 #define TAGSFILLER_H
 
 #include <QDialog>
-#include <QItemDelegate>
-#include <QAbstractTableModel>
-
-class QTableWidget;
-class QComboBox;
-class QTreeWidget;
-class QLabel;
-class QRadioButton;
-class LegendButton;
-class CoreNetworkSearch;
-class QListWidget;
-class ReleaseInfoWidget;
-class QProgressBar;
-class HeaderView;
-class QTableView;
-class DownloadHelper;
-class IDownloadPlugin;
-class ClearLineEdit;
 
 #include "tagger.h"
-#include "searchresults.h"
 
-class Tab;
-class QTreeWidgetItem;
-class QProgressIndicatorSpinning;
-class ImportModel;
+class GeneratorWidget;
+class OnlineWidget;
+class QTabWidget;
 
 class TagsFillDialog : public QDialog
 {
@@ -66,59 +46,13 @@ public:
 public Q_SLOTS:
     void accept() override;
 private Q_SLOTS:
-    void updateTags();
-    void setSource(int n);
-    void insertLegend(const QString &);
-    void handleSourceComboBox(int);
-    void handleManualSearchRadioButton();
-    void swapArtistAndAlbum();
-    void startSearch();
-    void handleAlbumSelection(QTreeWidgetItem*);
-    void found(const QList<SearchResult> &);
-    void resultFinished(const SearchResult &,int);
-    //void downloadingImageFinished(const QByteArray &,int);
-    void downloadRelease(QTreeWidgetItem*);
-
     void showHelp();
 private:
-    void updateTagsFromNetwork();
-    void downloadRelease(const QString &url, const int releaseIndex);
-    void setNewTag(const QString &tagValue, Tag &tag, const QString &field, int fieldID);
-    IDownloadPlugin *maybeLoadPlugin(const QString &path);
-
     QList<Tag> newTags;
-    QList<Tag> oldTags;
     QTabWidget *tab;
-    int count;
 
-    //from tags
-    QComboBox *tagsSourceComboBox;
-    QComboBox *patternEdit;
-    QTableView *table;
-    ImportModel *importModel;
-    LegendButton *legendButton;
-    QStringList tagsSource;
-    HeaderView *header;
-
-    //from Network
-    QComboBox *sourceComboBox;
-    QRadioButton *manualSearchRadioButton;
-    QRadioButton *cdSearchRadioButton;
-    QRadioButton *filesSearchRadioButton;
-    ClearLineEdit *artistEdit;
-    ClearLineEdit *albumEdit;
-    QPushButton *startSearchButton;
-    QTreeWidget *searchResultsList;
-    QLabel *networkStatusInfo;
-    QLabel *networkErrorInfo;
-    CoreNetworkSearch *search;
-    QProgressIndicatorSpinning *progress;
-    //QProgressBar *progress;
-
-    int currentAlbum;
-    QList<SearchResult> searchResults;
-    ReleaseInfoWidget *releaseInfoWidget;
-    QHash<QString, IDownloadPlugin *> loadedPlugins;
+    GeneratorWidget *generator = nullptr;
+    OnlineWidget *onlineWidget = nullptr;
 
     // QWidget interface
 protected:
