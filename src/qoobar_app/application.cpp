@@ -53,8 +53,8 @@ public:
         if (iconMode == QIcon::Disabled && App->isDarkTheme) {
             QPixmap pix = pixmap;
             QPainter p( &pix );
-            p.fillRect( pixmap.rect(), QColor( 48, 47, 47, 128 ) );
-
+            p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+            p.fillRect( pixmap.rect(), QColor( 120, 120, 120, 128 ) );
             return pix;
         }
         return QProxyStyle::generatedIconPixmap(iconMode, pixmap, opt);
