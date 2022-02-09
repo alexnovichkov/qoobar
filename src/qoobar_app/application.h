@@ -255,6 +255,8 @@ public:
     bool hideTabBar = false;
     QString defaultSplitFormat;
     int statusBarTrack;
+    int lastSearchServer = 0;
+    QByteArray tagsFillerGeometry;
 Q_SIGNALS:
     void settingsCleared();
     void dockClicked();

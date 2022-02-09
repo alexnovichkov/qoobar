@@ -316,6 +316,9 @@ void Application::readGuiSettings()
 
     sortOption = se->value(QSL("sortOption"), 0).toInt();
 
+    lastSearchServer = se->value(QSL("lastSearchServer"), 0).toInt();
+    tagsFillerGeometry = se->value(QSL("tagsFillerGeometry")).toByteArray();
+
 //    showFullFilesProperties = se->value(QSL("showFullFilesProperties"),false).toBool();
     delete se;
 }
@@ -519,6 +522,8 @@ void Application::writeGuiSettings()
     se->setValue(QSL("hideTabBar"), hideTabBar);
     se->setValue(QSL("statusBarTrack"), statusBarTrack);
     se->setValue(QSL("sortOption"), sortOption);
+    se->setValue(QSL("lastSearchServer"), lastSearchServer);
+    se->setValue(QSL("tagsFillerGeometry"), tagsFillerGeometry);
 
 //    se->setValue(QSL("showFullFilesProperties"), showFullFilesProperties);
 
