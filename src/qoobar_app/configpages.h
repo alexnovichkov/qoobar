@@ -87,6 +87,8 @@ private:
     QLabel *langLabel;
     QLabel *iconThemeLabel;
     QComboBox *iconTheme;
+    QLabel *styleLabel;
+    QComboBox *style;
 };
 
 class QFormLayout;

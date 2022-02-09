@@ -71,9 +71,11 @@ SOURCES = main.cpp \
     dsffile.cpp \
     dsfproperties.cpp \
     fileiconprovider.cpp \
+    generatorwidget.cpp \
     headerview.cpp \
     importmodel.cpp \
     mainwindow.cpp \
+    onlinewidget.cpp \
     releaseinfomodel.cpp \
     tagseditor.cpp \
     tablewidget.cpp \
@@ -145,8 +147,10 @@ HEADERS = mainwindow.h \
     dsffile.h \
     dsfproperties.h \
     fileiconprovider.h \
+    generatorwidget.h \
     headerview.h \
     importmodel.h \
+    onlinewidget.h \
     releaseinfomodel.h \
     tagseditor.h \
     tablewidget.h \

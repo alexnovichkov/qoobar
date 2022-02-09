@@ -204,64 +204,64 @@ or album includes only one track</source>
 <context>
     <name>CompletionPage</name>
     <message>
-        <location filename="configpages.cpp" line="302"/>
-        <location filename="configpages.cpp" line="404"/>
+        <location filename="configpages.cpp" line="251"/>
+        <location filename="configpages.cpp" line="353"/>
         <source>Automatically</source>
         <translation>Automatycznie</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="303"/>
-        <location filename="configpages.cpp" line="405"/>
+        <location filename="configpages.cpp" line="252"/>
+        <location filename="configpages.cpp" line="354"/>
         <source>Manually</source>
         <translation>Ręcznie</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="304"/>
-        <location filename="configpages.cpp" line="406"/>
+        <location filename="configpages.cpp" line="253"/>
+        <location filename="configpages.cpp" line="355"/>
         <source>Collect text</source>
         <translation>Zbieraj tekst</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="305"/>
-        <location filename="configpages.cpp" line="309"/>
-        <location filename="configpages.cpp" line="407"/>
-        <location filename="configpages.cpp" line="411"/>
+        <location filename="configpages.cpp" line="254"/>
+        <location filename="configpages.cpp" line="258"/>
+        <location filename="configpages.cpp" line="356"/>
+        <location filename="configpages.cpp" line="360"/>
         <source>Sets the mode of remembering the text you are typing for future use.&lt;br&gt;&lt;b&gt;Automatically&lt;/b&gt; - every text line you are typing will be remembered.&lt;br&gt;&lt;b&gt;Manually&lt;/b&gt; - the text line will be remembered only after you press the &lt;i&gt;Ctrl+H&lt;/i&gt; shortcut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="316"/>
-        <location filename="configpages.cpp" line="401"/>
+        <location filename="configpages.cpp" line="265"/>
+        <location filename="configpages.cpp" line="350"/>
         <source>Completer matches the previous word</source>
         <translation>Uzupełnianie dopasowuje do poprzedniego słowa</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="317"/>
-        <location filename="configpages.cpp" line="402"/>
+        <location filename="configpages.cpp" line="266"/>
+        <location filename="configpages.cpp" line="351"/>
         <source>Completer matches the whole string</source>
         <translation>Uzupełnianie dopasowuje do całego tekstu</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="318"/>
-        <location filename="configpages.cpp" line="400"/>
+        <location filename="configpages.cpp" line="267"/>
+        <location filename="configpages.cpp" line="349"/>
         <source>Completion style</source>
         <translation>Styl uzupełniania</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="332"/>
-        <location filename="configpages.cpp" line="415"/>
+        <location filename="configpages.cpp" line="281"/>
+        <location filename="configpages.cpp" line="364"/>
         <source>Check the tags for which you wish to use the autocompletion.&lt;br&gt;&lt;br&gt;The &lt;i&gt;Edit...&lt;/i&gt; buttons allows you to manually change the remembered text lines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="376"/>
-        <location filename="configpages.cpp" line="397"/>
+        <location filename="configpages.cpp" line="325"/>
+        <location filename="configpages.cpp" line="346"/>
         <source>Empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="configpages.cpp" line="377"/>
-        <location filename="configpages.cpp" line="398"/>
+        <location filename="configpages.cpp" line="326"/>
+        <location filename="configpages.cpp" line="347"/>
         <source>%n record(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -270,12 +270,12 @@ or album includes only one track</source>
         </translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="395"/>
+        <location filename="configpages.cpp" line="344"/>
         <source>Edit...</source>
         <translation>Edytuj...</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="383"/>
+        <location filename="configpages.cpp" line="332"/>
         <source>Autocompletion</source>
         <translation>Autouzupełnianie</translation>
     </message>
@@ -824,8 +824,8 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
 <context>
     <name>InterfacePage</name>
     <message>
-        <location filename="configpages.cpp" line="101"/>
-        <location filename="configpages.cpp" line="238"/>
+        <location filename="configpages.cpp" line="99"/>
+        <location filename="configpages.cpp" line="203"/>
         <source>Use undo / redo</source>
         <translation>Używaj akcji cofnij / ponów</translation>
     </message>
@@ -834,32 +834,26 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
         <translation type="obsolete">Używaj opóźnionego uaktualniania tabeli</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="104"/>
-        <location filename="configpages.cpp" line="229"/>
         <source>Automatically fill a tag when pasting a single line</source>
-        <translation>Automatycznie uzupełnij tagi przy wklejaniu pojedynczej linii</translation>
+        <translation type="vanished">Automatycznie uzupełnij tagi przy wklejaniu pojedynczej linii</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="114"/>
-        <location filename="configpages.cpp" line="233"/>
         <source>Characters</source>
-        <translation>Znaki</translation>
+        <translation type="vanished">Znaki</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="110"/>
-        <location filename="configpages.cpp" line="232"/>
         <source>Font...</source>
-        <translation>Czcionka...</translation>
+        <translation type="vanished">Czcionka...</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="82"/>
-        <location filename="configpages.cpp" line="239"/>
+        <location filename="configpages.cpp" line="204"/>
         <source>Show folder tree</source>
         <translation>Pokaż drzewo katalogów</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="83"/>
-        <location filename="configpages.cpp" line="244"/>
+        <location filename="configpages.cpp" line="208"/>
         <source>Check this box to show or hide the Folders navigation tree</source>
         <translation type="unfinished"></translation>
     </message>
@@ -870,115 +864,103 @@ natomiast cudzysłów &quot; przez dwa pojedyncze apostrofy &apos;&apos;</transl
     </message>
     <message>
         <location filename="configpages.cpp" line="94"/>
-        <location filename="configpages.cpp" line="100"/>
-        <location filename="configpages.cpp" line="245"/>
-        <location filename="configpages.cpp" line="246"/>
+        <location filename="configpages.cpp" line="96"/>
+        <location filename="configpages.cpp" line="209"/>
         <source>Sets the top level folder for the Folders navigation tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="95"/>
-        <location filename="configpages.cpp" line="241"/>
-        <source>All disks</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="98"/>
-        <location filename="configpages.cpp" line="242"/>
+        <location filename="configpages.cpp" line="206"/>
         <source>Folder tree root</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="102"/>
-        <location filename="configpages.cpp" line="247"/>
+        <location filename="configpages.cpp" line="100"/>
+        <location filename="configpages.cpp" line="210"/>
         <source>This box allows you to turn off the Undo/Redo system in Qoobar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="113"/>
-        <location filename="configpages.cpp" line="115"/>
-        <location filename="configpages.cpp" line="234"/>
-        <location filename="configpages.cpp" line="235"/>
-        <source>Characters that will be shown in the Tags edit dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="133"/>
-        <location filename="configpages.cpp" line="237"/>
+        <location filename="configpages.cpp" line="118"/>
+        <location filename="configpages.cpp" line="202"/>
         <source>User interface language</source>
         <translation>Język interfejsu użytkownika</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="134"/>
-        <location filename="configpages.cpp" line="240"/>
+        <location filename="configpages.cpp" line="119"/>
+        <location filename="configpages.cpp" line="205"/>
         <source>Hide Tab bar with only one tab</source>
         <translation>Ukryj pasek kart z tylko jedną kartę</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="136"/>
-        <location filename="configpages.cpp" line="243"/>
+        <location filename="configpages.cpp" line="121"/>
+        <location filename="configpages.cpp" line="207"/>
         <source>Toolbar icons theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="146"/>
-        <location filename="configpages.cpp" line="221"/>
+        <location filename="configpages.cpp" line="131"/>
+        <location filename="configpages.cpp" line="194"/>
         <source>Status bar is tracking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="148"/>
-        <location filename="configpages.cpp" line="222"/>
+        <location filename="configpages.cpp" line="133"/>
+        <location filename="configpages.cpp" line="195"/>
         <source>current hovered file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="149"/>
-        <location filename="configpages.cpp" line="223"/>
+        <location filename="configpages.cpp" line="134"/>
+        <location filename="configpages.cpp" line="196"/>
         <source>current selected file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="151"/>
-        <location filename="configpages.cpp" line="225"/>
+        <location filename="configpages.cpp" line="136"/>
+        <location filename="configpages.cpp" line="198"/>
         <source>Sort file names and other text fields</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="153"/>
-        <location filename="configpages.cpp" line="226"/>
+        <location filename="configpages.cpp" line="138"/>
+        <location filename="configpages.cpp" line="199"/>
         <source>case sensitively</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="154"/>
-        <location filename="configpages.cpp" line="227"/>
+        <location filename="configpages.cpp" line="139"/>
+        <location filename="configpages.cpp" line="200"/>
         <source>case insensitively</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="211"/>
-        <source>Interface</source>
-        <translation>Interfejs</translation>
+        <location filename="configpages.cpp" line="184"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="261"/>
+        <source>Interface</source>
+        <translation type="vanished">Interfejs</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="219"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="261"/>
+        <location filename="configpages.cpp" line="219"/>
         <source>The toolbar icons theme will be changed
 after you restart Qoobar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="271"/>
         <source>Choose a Chars list font</source>
-        <translation>Wybierz czcionkę listy znaków</translation>
+        <translation type="vanished">Wybierz czcionkę listy znaków</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="288"/>
+        <location filename="configpages.cpp" line="237"/>
         <source>Choose a folder tree root</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1796,37 +1778,37 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
 <context>
     <name>NetworkPage</name>
     <message>
-        <location filename="configpages.cpp" line="1032"/>
-        <location filename="configpages.cpp" line="1079"/>
+        <location filename="configpages.cpp" line="700"/>
+        <location filename="configpages.cpp" line="747"/>
         <source>Use proxy server</source>
         <translation>Użyj serwera proxy</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1040"/>
-        <location filename="configpages.cpp" line="1081"/>
+        <location filename="configpages.cpp" line="708"/>
+        <location filename="configpages.cpp" line="749"/>
         <source>Proxy server</source>
         <translation>Serwer proxy</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1041"/>
-        <location filename="configpages.cpp" line="1082"/>
+        <location filename="configpages.cpp" line="709"/>
+        <location filename="configpages.cpp" line="750"/>
         <source>Port</source>
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1042"/>
-        <location filename="configpages.cpp" line="1083"/>
+        <location filename="configpages.cpp" line="710"/>
+        <location filename="configpages.cpp" line="751"/>
         <source>Login</source>
         <translation>Użytkownik</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1043"/>
-        <location filename="configpages.cpp" line="1084"/>
+        <location filename="configpages.cpp" line="711"/>
+        <location filename="configpages.cpp" line="752"/>
         <source>Password</source>
         <translation>Hasło</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1070"/>
+        <location filename="configpages.cpp" line="738"/>
         <source>Network</source>
         <translation>Sieć</translation>
     </message>
@@ -1855,73 +1837,55 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
 <context>
     <name>PatternsPage</name>
     <message>
-        <location filename="configpages.cpp" line="679"/>
-        <location filename="configpages.cpp" line="781"/>
         <source>Renaming patterns</source>
-        <translation>Schematy zmiany nazw</translation>
+        <translation type="vanished">Schematy zmiany nazw</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="688"/>
-        <location filename="configpages.cpp" line="782"/>
+        <location filename="configpages.cpp" line="476"/>
+        <location filename="configpages.cpp" line="521"/>
         <source>Add pattern</source>
         <translation>Dodaj schemat</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="690"/>
-        <location filename="configpages.cpp" line="783"/>
+        <location filename="configpages.cpp" line="478"/>
+        <location filename="configpages.cpp" line="522"/>
         <source>Remove pattern</source>
         <translation>Usuń schemat</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="707"/>
-        <location filename="configpages.cpp" line="785"/>
         <source>Tagging schemes</source>
-        <translation>Schematy tagowania</translation>
+        <translation type="vanished">Schematy tagowania</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="708"/>
-        <location filename="configpages.cpp" line="786"/>
         <source>Current scheme</source>
-        <translation>Obecny schemat</translation>
+        <translation type="vanished">Obecny schemat</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="711"/>
-        <location filename="configpages.cpp" line="787"/>
         <source>Default</source>
-        <translation>Domyślny</translation>
+        <translation type="vanished">Domyślny</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="726"/>
-        <location filename="configpages.cpp" line="789"/>
         <source>Edit</source>
-        <translation>Edytuj</translation>
+        <translation type="vanished">Edytuj</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="729"/>
-        <location filename="configpages.cpp" line="788"/>
         <source>Add</source>
-        <translation>Dodaj</translation>
+        <translation type="vanished">Dodaj</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="731"/>
-        <location filename="configpages.cpp" line="792"/>
         <source>Clone this</source>
-        <translation>Klonuj obecny</translation>
+        <translation type="vanished">Klonuj obecny</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="733"/>
-        <location filename="configpages.cpp" line="793"/>
         <source>Using Default</source>
-        <translation>Użyj domyślnego</translation>
+        <translation type="vanished">Użyj domyślnego</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="737"/>
-        <location filename="configpages.cpp" line="795"/>
         <source>Remove</source>
-        <translation>Usuń</translation>
+        <translation type="vanished">Usuń</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="772"/>
+        <location filename="configpages.cpp" line="512"/>
         <source>Patterns</source>
         <translation>Schematy</translation>
     </message>
@@ -1930,10 +1894,9 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         <translation type="obsolete">Qoobar</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="824"/>
         <source>Cannot delete the file
 %1.</source>
-        <translation>Nie można usunąć pliku
+        <translation type="vanished">Nie można usunąć pliku
 %1.</translation>
     </message>
 </context>
@@ -2159,52 +2122,52 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
 <context>
     <name>PluginsPage</name>
     <message>
-        <location filename="configpages.cpp" line="1098"/>
-        <location filename="configpages.cpp" line="1148"/>
+        <location filename="configpages.cpp" line="766"/>
+        <location filename="configpages.cpp" line="816"/>
         <source>Download plugins:</source>
         <translation>Wtyczki pobierania:</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1099"/>
-        <location filename="configpages.cpp" line="1149"/>
+        <location filename="configpages.cpp" line="767"/>
+        <location filename="configpages.cpp" line="817"/>
         <source>Tags editing plugins:</source>
         <translation>Wtyczki edycji tagów:</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1137"/>
+        <location filename="configpages.cpp" line="805"/>
         <source>Plugins</source>
         <translation>Wtyczki</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1150"/>
-        <location filename="configpages.cpp" line="1155"/>
+        <location filename="configpages.cpp" line="818"/>
+        <location filename="configpages.cpp" line="823"/>
         <source>Name</source>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1150"/>
-        <location filename="configpages.cpp" line="1155"/>
+        <location filename="configpages.cpp" line="818"/>
+        <location filename="configpages.cpp" line="823"/>
         <source>Version</source>
         <translation>Wersja</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1150"/>
-        <location filename="configpages.cpp" line="1155"/>
+        <location filename="configpages.cpp" line="818"/>
+        <location filename="configpages.cpp" line="823"/>
         <source>Description</source>
         <translation>Opis</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1151"/>
+        <location filename="configpages.cpp" line="819"/>
         <source>Manual</source>
         <translation>Ręcznie</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1152"/>
+        <location filename="configpages.cpp" line="820"/>
         <source>By CD</source>
         <translation>Dla CD</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1153"/>
+        <location filename="configpages.cpp" line="821"/>
         <source>By files</source>
         <translation>Dla plików</translation>
     </message>
@@ -2793,70 +2756,70 @@ Proszę go zainstalować.</translation>
 <context>
     <name>ReplaygainPage</name>
     <message>
-        <location filename="configpages.cpp" line="1215"/>
-        <location filename="configpages.cpp" line="1262"/>
+        <location filename="configpages.cpp" line="883"/>
+        <location filename="configpages.cpp" line="930"/>
         <source>Replaygain tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1217"/>
-        <location filename="configpages.cpp" line="1263"/>
+        <location filename="configpages.cpp" line="885"/>
+        <location filename="configpages.cpp" line="931"/>
         <source>UPPERCASE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1217"/>
-        <location filename="configpages.cpp" line="1264"/>
+        <location filename="configpages.cpp" line="885"/>
+        <location filename="configpages.cpp" line="932"/>
         <source>lowercase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1220"/>
-        <location filename="configpages.cpp" line="1265"/>
+        <location filename="configpages.cpp" line="888"/>
+        <location filename="configpages.cpp" line="933"/>
         <source>Replaygain mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1222"/>
-        <location filename="configpages.cpp" line="1266"/>
+        <location filename="configpages.cpp" line="890"/>
+        <location filename="configpages.cpp" line="934"/>
         <source>Standard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1222"/>
-        <location filename="configpages.cpp" line="1267"/>
+        <location filename="configpages.cpp" line="890"/>
+        <location filename="configpages.cpp" line="935"/>
         <source>Enhanced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1227"/>
-        <location filename="configpages.cpp" line="1269"/>
+        <location filename="configpages.cpp" line="895"/>
+        <location filename="configpages.cpp" line="937"/>
         <source>Loudness target</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1229"/>
+        <location filename="configpages.cpp" line="897"/>
         <source>-18 LUFS (Replaygain 2.0)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1229"/>
+        <location filename="configpages.cpp" line="897"/>
         <source>-23 LUFS (EBU R128)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1232"/>
-        <location filename="configpages.cpp" line="1270"/>
+        <location filename="configpages.cpp" line="900"/>
+        <location filename="configpages.cpp" line="938"/>
         <source>Loudness units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1234"/>
+        <location filename="configpages.cpp" line="902"/>
         <source>dB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1234"/>
+        <location filename="configpages.cpp" line="902"/>
         <source>LU</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2871,24 +2834,24 @@ in the ReplayGain dialog</source>
 w oknie dialogowym ReplayGain</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1237"/>
-        <location filename="configpages.cpp" line="1273"/>
+        <location filename="configpages.cpp" line="905"/>
+        <location filename="configpages.cpp" line="941"/>
         <source>Prevent clipping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1252"/>
+        <location filename="configpages.cpp" line="920"/>
         <source>Replaygain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1300"/>
+        <location filename="configpages.cpp" line="968"/>
         <source>In this mode only the standard
 GAIN and PEAK tags are written</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1303"/>
+        <location filename="configpages.cpp" line="971"/>
         <source>In this mode the additional RANGE and LOUDNESS tags are written</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3069,12 +3032,12 @@ GAIN and PEAK tags are written</source>
 <context>
     <name>Settings</name>
     <message>
-        <location filename="configpages.cpp" line="123"/>
+        <location filename="configpages.cpp" line="108"/>
         <source>en</source>
         <translation>pl</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="125"/>
+        <location filename="configpages.cpp" line="110"/>
         <source>English</source>
         <translation>Polski</translation>
     </message>
@@ -3083,23 +3046,23 @@ GAIN and PEAK tags are written</source>
     <name>SettingsDialog</name>
     <message>
         <location filename="settingsdialog.cpp" line="50"/>
-        <location filename="settingsdialog.cpp" line="169"/>
+        <location filename="settingsdialog.cpp" line="170"/>
         <source>Qoobar settings</source>
         <translation>Ustawienia Qoobar</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="119"/>
-        <location filename="settingsdialog.cpp" line="181"/>
+        <location filename="settingsdialog.cpp" line="120"/>
+        <location filename="settingsdialog.cpp" line="182"/>
         <source>Reset Settings</source>
         <translation>Resetuj ustawienia</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="199"/>
+        <location filename="settingsdialog.cpp" line="200"/>
         <source>Qoobar</source>
         <translation type="unfinished">Qoobar</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="199"/>
+        <location filename="settingsdialog.cpp" line="200"/>
         <source>Reset settings to defaults?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3652,6 +3615,206 @@ Czy zapisać zmiany?</translation>
     </message>
 </context>
 <context>
+    <name>TagsPage</name>
+    <message>
+        <location filename="configpages.cpp" line="979"/>
+        <location filename="configpages.cpp" line="1125"/>
+        <source>Read in MP3 files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="980"/>
+        <location filename="configpages.cpp" line="1126"/>
+        <source>Write to MP3 files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="983"/>
+        <location filename="configpages.cpp" line="985"/>
+        <location filename="configpages.cpp" line="1127"/>
+        <location filename="configpages.cpp" line="1130"/>
+        <source>ID3v2 and APE tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="983"/>
+        <location filename="configpages.cpp" line="985"/>
+        <location filename="configpages.cpp" line="1128"/>
+        <location filename="configpages.cpp" line="1131"/>
+        <source>ID3v2 tags only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="983"/>
+        <location filename="configpages.cpp" line="985"/>
+        <location filename="configpages.cpp" line="1129"/>
+        <location filename="configpages.cpp" line="1132"/>
+        <source>APE tags only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1004"/>
+        <location filename="configpages.cpp" line="1154"/>
+        <source>ID3v2 frames line ending</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1007"/>
+        <location filename="configpages.cpp" line="1151"/>
+        <source>CRLF - Windows style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1008"/>
+        <location filename="configpages.cpp" line="1152"/>
+        <source>LF - Unix and OS X style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1009"/>
+        <location filename="configpages.cpp" line="1153"/>
+        <source>CR - pre-OS X style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1016"/>
+        <location filename="configpages.cpp" line="1160"/>
+        <source>ID3v2 tags version</source>
+        <translation type="unfinished">Wersja tagów ID3v2</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1022"/>
+        <location filename="configpages.cpp" line="1145"/>
+        <source>Ogg &amp; Speex picture tag</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1024"/>
+        <location filename="configpages.cpp" line="1142"/>
+        <source>COVERART (old standard)</source>
+        <translation type="unfinished">COVERART (stary standard)</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1025"/>
+        <location filename="configpages.cpp" line="1143"/>
+        <source>METADATA_BLOCK_PICTURE (new standard)</source>
+        <translation type="unfinished">METADATA_BLOCK_PICTURE (nowy standard)</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1027"/>
+        <location filename="configpages.cpp" line="1140"/>
+        <source>When writing tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1030"/>
+        <location filename="configpages.cpp" line="1146"/>
+        <source>update ID3v1 tag</source>
+        <translation type="unfinished">uaktualnij tagi ID3v1</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1031"/>
+        <location filename="configpages.cpp" line="1147"/>
+        <source>update ID3v1 tag only if it exists</source>
+        <translation type="unfinished">uaktualnij tagi ID3v1 tylko, jeśli istnieją</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1032"/>
+        <location filename="configpages.cpp" line="1148"/>
+        <source>delete ID3v1 tag</source>
+        <translation type="unfinished">usuń tagi ID3v1</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1033"/>
+        <location filename="configpages.cpp" line="1149"/>
+        <source>Transliterate Russian words</source>
+        <translation type="unfinished">Przeliteruj rosyjskie słowa</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1044"/>
+        <location filename="configpages.cpp" line="1150"/>
+        <source>ID3v1 tag encoding</source>
+        <translation type="unfinished">Kodowanie tagów ID3v1</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1046"/>
+        <location filename="configpages.cpp" line="1156"/>
+        <source>Write ReplayGain info of Musepack files into</source>
+        <translation type="unfinished">Zapisz informacje replaygain do plików Musepack jako</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1049"/>
+        <location filename="configpages.cpp" line="1157"/>
+        <source>File header</source>
+        <translation type="unfinished">Nagłówek pliku</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1050"/>
+        <location filename="configpages.cpp" line="1158"/>
+        <source>APE tags</source>
+        <translation type="unfinished">Tagi APE</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1052"/>
+        <location filename="configpages.cpp" line="1162"/>
+        <source>Current tagging scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1055"/>
+        <location filename="configpages.cpp" line="1163"/>
+        <source>Default</source>
+        <translation type="unfinished">Domyślny</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1070"/>
+        <location filename="configpages.cpp" line="1165"/>
+        <source>Edit</source>
+        <translation type="unfinished">Edytuj</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1073"/>
+        <location filename="configpages.cpp" line="1164"/>
+        <source>Add</source>
+        <translation type="unfinished">Dodaj</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1075"/>
+        <location filename="configpages.cpp" line="1168"/>
+        <source>Clone this</source>
+        <translation type="unfinished">Klonuj obecny</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1077"/>
+        <location filename="configpages.cpp" line="1169"/>
+        <source>Using Default</source>
+        <translation type="unfinished">Użyj domyślnego</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1081"/>
+        <location filename="configpages.cpp" line="1171"/>
+        <source>Remove</source>
+        <translation type="unfinished">Usuń</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1098"/>
+        <source>(for mp3, flac, tta, mpc, wv, ape files)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1114"/>
+        <source>Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="1246"/>
+        <source>Cannot delete the file
+%1.</source>
+        <translation type="unfinished">Nie można usunąć pliku
+%1.</translation>
+    </message>
+</context>
+<context>
     <name>TreeView</name>
     <message>
         <location filename="treeview.cpp" line="52"/>
@@ -3728,32 +3891,32 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
 <context>
     <name>UtilitiesPage</name>
     <message>
-        <location filename="configpages.cpp" line="899"/>
-        <location filename="configpages.cpp" line="984"/>
+        <location filename="configpages.cpp" line="567"/>
+        <location filename="configpages.cpp" line="652"/>
         <source>Choose...</source>
         <translation>Wybierz...</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="901"/>
-        <location filename="configpages.cpp" line="991"/>
+        <location filename="configpages.cpp" line="569"/>
+        <location filename="configpages.cpp" line="659"/>
         <source>Path/to/player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="906"/>
-        <location filename="configpages.cpp" line="990"/>
+        <location filename="configpages.cpp" line="574"/>
+        <location filename="configpages.cpp" line="658"/>
         <source>default device</source>
         <translation>domyślne urządzenie</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="908"/>
-        <location filename="configpages.cpp" line="985"/>
+        <location filename="configpages.cpp" line="576"/>
+        <location filename="configpages.cpp" line="653"/>
         <source>Player command</source>
         <translation>Polecenie odtwarzacza</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="909"/>
-        <location filename="configpages.cpp" line="986"/>
+        <location filename="configpages.cpp" line="577"/>
+        <location filename="configpages.cpp" line="654"/>
         <source>CD-ROM device</source>
         <translation>Urządzenie CD-ROM</translation>
     </message>
@@ -3762,21 +3925,21 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         <translation type="obsolete">odgadnij język enca</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="911"/>
-        <location filename="configpages.cpp" line="987"/>
+        <location filename="configpages.cpp" line="579"/>
+        <location filename="configpages.cpp" line="655"/>
         <source>Default language to use with
 the enca utility</source>
         <translation>Domyślny język korzystać z narzędzia enca</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="917"/>
-        <location filename="configpages.cpp" line="989"/>
+        <location filename="configpages.cpp" line="585"/>
+        <location filename="configpages.cpp" line="657"/>
         <source>External programs</source>
         <translation>Zewnętrzne programy</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="927"/>
-        <location filename="configpages.cpp" line="988"/>
+        <location filename="configpages.cpp" line="595"/>
+        <location filename="configpages.cpp" line="656"/>
         <source>Cue files encoding</source>
         <translation>Kodowanie pliku cue</translation>
     </message>
@@ -3791,7 +3954,7 @@ in the ReplayGain dialog</source>
 w oknie dialogowym ReplayGain</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1002"/>
+        <location filename="configpages.cpp" line="670"/>
         <source>Cannot find in </source>
         <translation type="unfinished"></translation>
     </message>
@@ -3800,18 +3963,18 @@ w oknie dialogowym ReplayGain</translation>
         <translation type="obsolete">Nie zainstalowane</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="973"/>
+        <location filename="configpages.cpp" line="641"/>
         <source>Utilities</source>
         <translation>Narzędzia</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1020"/>
-        <location filename="configpages.cpp" line="1023"/>
+        <location filename="configpages.cpp" line="688"/>
+        <location filename="configpages.cpp" line="691"/>
         <source>Executable files (*.exe)</source>
         <translation>Pliki wykonywalne (*.exe)</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="1025"/>
+        <location filename="configpages.cpp" line="693"/>
         <source>Choose a player file</source>
         <translation>Proszę wybrać plik odtwarzacza</translation>
     </message>
@@ -3819,22 +3982,58 @@ w oknie dialogowym ReplayGain</translation>
 <context>
     <name>WritingPage</name>
     <message>
-        <location filename="configpages.cpp" line="429"/>
-        <location filename="configpages.cpp" line="609"/>
+        <location filename="configpages.cpp" line="378"/>
+        <location filename="configpages.cpp" line="441"/>
+        <source>Automatically fill a tag when pasting a single line</source>
+        <translation type="unfinished">Automatycznie uzupełnij tagi przy wklejaniu pojedynczej linii</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="384"/>
+        <location filename="configpages.cpp" line="444"/>
+        <source>Font...</source>
+        <translation type="unfinished">Czcionka...</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="387"/>
+        <location filename="configpages.cpp" line="389"/>
+        <location filename="configpages.cpp" line="446"/>
+        <location filename="configpages.cpp" line="447"/>
+        <source>Characters that will be shown in the Tags edit dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="388"/>
+        <location filename="configpages.cpp" line="445"/>
+        <source>Characters</source>
+        <translation type="unfinished">Znaki</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="392"/>
+        <location filename="configpages.cpp" line="449"/>
         <source>Save changes when closing Qoobar</source>
         <translation>Zapisz zmiany podczas zamykania programu Qoobar</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="430"/>
-        <location filename="configpages.cpp" line="610"/>
+        <location filename="configpages.cpp" line="393"/>
+        <location filename="configpages.cpp" line="450"/>
         <source>Simplify whitespaces when saving files</source>
         <translation>Uprość białe znaki podczas zapisywania plików</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="431"/>
-        <location filename="configpages.cpp" line="648"/>
+        <location filename="configpages.cpp" line="394"/>
+        <location filename="configpages.cpp" line="451"/>
         <source>Write tags separated by ; in different fields</source>
         <translation>Zapisz tagi oddzielane przez ; w oddzielnych polach</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="422"/>
+        <source>Choose a Chars list font</source>
+        <translation type="unfinished">Wybierz czcionkę listy znaków</translation>
+    </message>
+    <message>
+        <location filename="configpages.cpp" line="431"/>
+        <source>Edit &amp; Save</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Read ID3v2 tags</source>
@@ -3853,168 +4052,80 @@ w oknie dialogowym ReplayGain</translation>
         <translation type="obsolete">Zapisuj tagi APE</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="437"/>
-        <location filename="configpages.cpp" line="611"/>
         <source>Read:</source>
-        <translation>Czytaj:</translation>
+        <translation type="vanished">Czytaj:</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="438"/>
-        <location filename="configpages.cpp" line="612"/>
         <source>Write:</source>
-        <translation>Zapisuj:</translation>
+        <translation type="vanished">Zapisuj:</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="439"/>
-        <location filename="configpages.cpp" line="440"/>
-        <location filename="configpages.cpp" line="613"/>
-        <location filename="configpages.cpp" line="614"/>
-        <source>ID3v2</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="441"/>
-        <location filename="configpages.cpp" line="442"/>
-        <location filename="configpages.cpp" line="615"/>
-        <location filename="configpages.cpp" line="616"/>
-        <source>APE</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="461"/>
-        <location filename="configpages.cpp" line="641"/>
-        <source>ID3v2 frames line ending</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="464"/>
-        <location filename="configpages.cpp" line="638"/>
-        <source>CRLF - Windows style</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="465"/>
-        <location filename="configpages.cpp" line="639"/>
-        <source>LF - Unix and OS X style</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="466"/>
-        <location filename="configpages.cpp" line="640"/>
-        <source>CR - pre-OS X style</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="473"/>
-        <location filename="configpages.cpp" line="650"/>
         <source>ID3v2 tags version</source>
-        <translation>Wersja tagów ID3v2</translation>
+        <translation type="vanished">Wersja tagów ID3v2</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="479"/>
-        <location filename="configpages.cpp" line="626"/>
         <source>Mp3 files</source>
-        <translation>Pliki mp3</translation>
+        <translation type="vanished">Pliki mp3</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="507"/>
-        <location filename="configpages.cpp" line="627"/>
         <source>Ogg / Speex files</source>
-        <translation>Pliki ogg / speex</translation>
+        <translation type="vanished">Pliki ogg / speex</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="508"/>
-        <location filename="configpages.cpp" line="631"/>
         <source>Write picture into tag</source>
-        <translation>Zapisuj obrazy do tagu</translation>
+        <translation type="vanished">Zapisuj obrazy do tagu</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="511"/>
-        <location filename="configpages.cpp" line="628"/>
         <source>COVERART (old standard)</source>
-        <translation>COVERART (stary standard)</translation>
+        <translation type="vanished">COVERART (stary standard)</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="512"/>
-        <location filename="configpages.cpp" line="629"/>
         <source>METADATA_BLOCK_PICTURE (new standard)</source>
-        <translation>METADATA_BLOCK_PICTURE (nowy standard)</translation>
+        <translation type="vanished">METADATA_BLOCK_PICTURE (nowy standard)</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="518"/>
-        <location filename="configpages.cpp" line="632"/>
         <source>ID3v1 tags</source>
-        <translation>Tagi ID3v1</translation>
+        <translation type="vanished">Tagi ID3v1</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="519"/>
-        <location filename="configpages.cpp" line="624"/>
-        <source>When writing tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="522"/>
-        <location filename="configpages.cpp" line="633"/>
         <source>update ID3v1 tag</source>
-        <translation>uaktualnij tagi ID3v1</translation>
+        <translation type="vanished">uaktualnij tagi ID3v1</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="523"/>
-        <location filename="configpages.cpp" line="634"/>
         <source>update ID3v1 tag only if it exists</source>
-        <translation>uaktualnij tagi ID3v1 tylko, jeśli istnieją</translation>
+        <translation type="vanished">uaktualnij tagi ID3v1 tylko, jeśli istnieją</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="524"/>
-        <location filename="configpages.cpp" line="635"/>
         <source>delete ID3v1 tag</source>
-        <translation>usuń tagi ID3v1</translation>
+        <translation type="vanished">usuń tagi ID3v1</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="525"/>
-        <location filename="configpages.cpp" line="636"/>
         <source>Transliterate Russian words</source>
-        <translation>Przeliteruj rosyjskie słowa</translation>
+        <translation type="vanished">Przeliteruj rosyjskie słowa</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="536"/>
-        <location filename="configpages.cpp" line="637"/>
         <source>ID3v1 tag encoding</source>
-        <translation>Kodowanie tagów ID3v1</translation>
+        <translation type="vanished">Kodowanie tagów ID3v1</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="539"/>
-        <source>(for mp3, flac, tta, mpc, wv, ape files)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configpages.cpp" line="547"/>
-        <location filename="configpages.cpp" line="643"/>
         <source>Musepack files</source>
-        <translation>Pliki Musepack</translation>
+        <translation type="vanished">Pliki Musepack</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="548"/>
-        <location filename="configpages.cpp" line="644"/>
         <source>Write ReplayGain info of Musepack files into</source>
-        <translation>Zapisz informacje replaygain do plików Musepack jako</translation>
+        <translation type="vanished">Zapisz informacje replaygain do plików Musepack jako</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="551"/>
-        <location filename="configpages.cpp" line="645"/>
         <source>File header</source>
-        <translation>Nagłówek pliku</translation>
+        <translation type="vanished">Nagłówek pliku</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="552"/>
-        <location filename="configpages.cpp" line="646"/>
         <source>APE tags</source>
-        <translation>Tagi APE</translation>
+        <translation type="vanished">Tagi APE</translation>
     </message>
     <message>
-        <location filename="configpages.cpp" line="600"/>
         <source>Tags Writing</source>
-        <translation>Zapisywanie tagów</translation>
+        <translation type="vanished">Zapisywanie tagów</translation>
     </message>
 </context>
 </TS>

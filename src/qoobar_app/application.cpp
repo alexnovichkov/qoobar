@@ -38,6 +38,7 @@
 #include "idownloadplugin.h"
 #include "enums.h"
 #include "qoobarglobals.h"
+#include "qeasysettings.hpp"
 
 bool isValidLibrary(const QFileInfo &path)
 {DD;
@@ -89,6 +90,14 @@ Application::Application(int &argc, char **argv, bool useGui)
 #ifdef Q_OS_LINUX
     setWindowIcon(QIcon(ApplicationPaths::bundlePath()+"/share/icons/hicolor/128x128/apps/qoobar.png"));
 #endif
+#ifdef Q_OS_WIN
+#ifdef QOOBAR_PORTABLE
+    QEasySettings::init(QEasySettings::Format::iniFormat, "Qoobar");
+#else
+    QEasySettings::init(QEasySettings::Format::regFormat, "Qoobar");
+#endif
+#endif
+
     // Setting default values
     langID = QSL("en");
 
@@ -428,9 +437,35 @@ void Application::readGlobalSettings()
 #else
     defaultSplitFormat = se->value("default-split-format", "flac").toString();
 #endif
+    //reading and applying style
 
+#ifdef Q_OS_WIN
+    auto style = QEasySettings::readStyle();
+    QEasySettings::setStyle(style);
+
+    QString themePrefix;
+    //follow system theme
+    if (style == QEasySettings::Style::autoFusion) {
+        QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",QSettings::NativeFormat);
+        if(settings.value("AppsUseLightTheme")==0)
+            themePrefix = "[dark]";
+        else
+            themePrefix = "[light]";
+    }
+    else if (style == QEasySettings::Style::darkFusion)
+        themePrefix = "[dark]";
+    else {
+        themePrefix = "[light]";
+//        QEasySettings::setAutoPalette(true);
+    }
+
+    //some icon themes may have no dark mode
     iconTheme = se->value(QSL("iconTheme"),QSL("maia")).toString();
-    QIcon::setThemeName(iconTheme);
+    if (QFileInfo::exists("icons/"+iconTheme+themePrefix))
+        QIcon::setThemeName(iconTheme+themePrefix);
+    else
+#endif
+        QIcon::setThemeName(iconTheme);
 
     delete se;
 }

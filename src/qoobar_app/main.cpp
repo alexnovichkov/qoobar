@@ -48,7 +48,6 @@
 #include <QProcess>
 
 #include <QVariantMap>
-
 #ifdef Q_OS_WIN
 extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 #endif

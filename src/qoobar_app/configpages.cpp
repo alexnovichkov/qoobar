@@ -46,6 +46,7 @@
 
 #include <QVector>
 #include <QtConcurrentRun>
+#include "qeasysettings.hpp"
 
 constexpr int canSearchManuallyColumn = 3;
 constexpr int canSearchByCDColumn = 4;
@@ -120,13 +121,22 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 
     iconThemeLabel = new QLabel(tr("Toolbar icons theme"),this);
     iconTheme = new QComboBox(this);
-    const QStringList iconThemes = QDir(ApplicationPaths::sharedPath()+"/icons").entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
+    QStringList iconThemes = QDir(ApplicationPaths::sharedPath()+"/icons").entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
+    iconThemes.replaceInStrings("[dark]","");
+    iconThemes.replaceInStrings("[light]","");
+    iconThemes.removeDuplicates();
     for (const QString &dir: iconThemes) {
-        if (QFile::exists(ApplicationPaths::sharedPath()+"/icons/"+dir+"/index.theme")) {
+        //if (QFile::exists(ApplicationPaths::sharedPath()+"/icons/"+dir+"/index.theme")) {
             iconTheme->addItem(dir);
-            iconTheme->setItemData(iconTheme->count()-1, dir);
-        }
+       // }
     }
+
+#ifdef Q_OS_WIN
+    styleLabel = new QLabel(tr("Style"), this);
+    style = new QComboBox(this);
+    styleLabel->setBuddy(style);
+    style->addItems(QEasySettings::supportedStyles());
+#endif
 
     statusBarTrackLabel = new QLabel(tr("Status bar is tracking"), this);
     statusBarTrack = new QComboBox(this);
@@ -140,6 +150,9 @@ InterfacePage::InterfacePage(QWidget *parent) : ConfigPage(parent)
 
     auto *UIlayout = new QFormLayout;
     UIlayout->addRow(langLabel, lang);
+#ifdef Q_OS_WIN
+    UIlayout->addRow(styleLabel, style);
+#endif
     UIlayout->addRow(iconThemeLabel, iconTheme);
     UIlayout->addRow(statusBarTrackLabel, statusBarTrack);
     UIlayout->addRow(sortOptionsLabel, sortOptions);
@@ -170,10 +183,13 @@ void InterfacePage::setSettings()
     int langIndex = lang->findData(App->langID);
     if (langIndex>=0) lang->setCurrentIndex(langIndex);
 
-    int iconThemeIndex = iconTheme->findData(App->iconTheme);
-    if (iconThemeIndex<0) iconThemeIndex = iconTheme->findData(QSL("default"));
+    int iconThemeIndex = iconTheme->findText(App->iconTheme);
+    if (iconThemeIndex<0) iconThemeIndex = 0;
     if (iconThemeIndex>=0) iconTheme->setCurrentIndex(iconThemeIndex);
-
+#ifdef Q_OS_WIN
+    int styleIndex = static_cast<int>(QEasySettings::readStyle());
+    style->setCurrentIndex(styleIndex);
+#endif
     hideTabBar->setChecked(App->hideTabBar);
 
     statusBarTrack->setCurrentIndex(App->statusBarTrack);
@@ -205,6 +221,9 @@ void InterfacePage::retranslateUI()
     hideTabBar->setText(tr("Hide Tab bar with only one tab"));
     dirRoot->setPlaceholderText(tr("Folder tree root"));
     iconThemeLabel->setText(tr("Toolbar icons theme"));
+#ifdef Q_OS_WIN
+    styleLabel->setText(tr("Style"));
+#endif
     dirBox->setWhatsThis(tr("Check this box to show or hide the Folders navigation tree"));
     dirRoot->setWhatsThis(tr("Sets the top level folder for the Folders navigation tree"));
     useUndo->setWhatsThis(tr("This box allows you to turn off the Undo/Redo system in Qoobar"));
@@ -215,10 +234,17 @@ void InterfacePage::saveSettings()
     App->showDirView = dirBox->isChecked();
     App->hideTabBar = hideTabBar->isChecked();
     App->dirViewRoot = dirRoot->text();
-    if (App->iconTheme != iconTheme->itemData(iconTheme->currentIndex()).toString())
+    if (App->iconTheme != iconTheme->itemText(iconTheme->currentIndex()))
         QMessageBox::information(this,tr("Qoobar"),tr("The toolbar icons theme will be changed\n"
                                                       "after you restart Qoobar"));
-    App->iconTheme = iconTheme->itemData(iconTheme->currentIndex()).toString();
+    App->iconTheme = iconTheme->itemText(iconTheme->currentIndex());
+#ifdef Q_OS_WIN
+    auto st = static_cast<QEasySettings::Style>(style->currentIndex());
+    if (st != QEasySettings::readStyle())
+        QMessageBox::information(this,tr("Qoobar"),tr("The style theme will be changed\n"
+                                                      "after you restart Qoobar"));
+    QEasySettings::writeStyle(st);
+#endif
     App->statusBarTrack = statusBarTrack->currentIndex();
     App->sortOption = sortOptions->currentIndex();
 }
