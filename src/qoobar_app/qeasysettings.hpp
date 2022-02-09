@@ -42,6 +42,8 @@ public:
 
     static QStringList supportedStyles();
 
+    static bool isDarkStyle(Style style);
+
     ~QEasySettings();
 
 #ifndef QT_QUICK_LIB

@@ -40,6 +40,27 @@
 #include "qoobarglobals.h"
 #include "qeasysettings.hpp"
 
+#include <QProxyStyle>
+#include <QPainter>
+//This class overrides the disabled icons for dark themes
+class MyProxyStyle : public QProxyStyle
+{
+public:
+    MyProxyStyle(QStyle *style = nullptr): QProxyStyle(style) {}
+    virtual QPixmap generatedIconPixmap(QIcon::Mode iconMode, const QPixmap &pixmap,
+                                        const QStyleOption *opt) const override
+    {
+        if (iconMode == QIcon::Disabled && App->isDarkTheme) {
+            QPixmap pix = pixmap;
+            QPainter p( &pix );
+            p.fillRect( pixmap.rect(), QColor( 48, 47, 47, 128 ) );
+
+            return pix;
+        }
+        return QProxyStyle::generatedIconPixmap(iconMode, pixmap, opt);
+    }
+};
+
 bool isValidLibrary(const QFileInfo &path)
 {DD;
     QLibrary lib(path.canonicalFilePath());
@@ -324,19 +345,20 @@ void Application::readGuiSettings()
 
     //reading and applying style
 #ifdef Q_OS_WIN
-    auto style = QEasySettings::readStyle();
-    QEasySettings::setStyle(style);
+    auto currentStyle = QEasySettings::readStyle();
+    QEasySettings::setStyle(currentStyle);
 
     QString themePrefix;
     //follow system theme
-    if (style == QEasySettings::Style::autoFusion) {
-        QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",QSettings::NativeFormat);
+    if (currentStyle == QEasySettings::Style::autoFusion) {
+        QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+                           QSettings::NativeFormat);
         if(settings.value("AppsUseLightTheme")==0)
             themePrefix = "[dark]";
         else
             themePrefix = "[light]";
     }
-    else if (style == QEasySettings::Style::darkFusion)
+    else if (currentStyle == QEasySettings::Style::darkFusion)
         themePrefix = "[dark]";
     else {
         themePrefix = "[light]";
@@ -346,11 +368,15 @@ void Application::readGuiSettings()
 
     //some icon themes may have no dark mode
     iconTheme = se->value(QSL("iconTheme"),QSL("maia")).toString();
-    if (QFileInfo::exists("icons/"+iconTheme+themePrefix))
+    if (QFileInfo::exists("icons/"+iconTheme+themePrefix)) {
         QIcon::setThemeName(iconTheme+themePrefix);
+        isDarkTheme = themePrefix == "[dark]";
+    }
     else
 #endif
         QIcon::setThemeName(iconTheme);
+
+    setStyle(new MyProxyStyle(style()));
 
     delete se;
 }

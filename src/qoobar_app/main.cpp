@@ -52,6 +52,9 @@
 extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 #endif
 
+
+
+
 int main(int argc, char *argv[])
 {DD;
 #ifdef Q_OS_WIN

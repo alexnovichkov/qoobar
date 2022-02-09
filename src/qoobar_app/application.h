@@ -261,6 +261,7 @@ public:
     //The "slightly lighter" or "slightly darker" color of text in the status bar,
     //depending on the style (light/dark)
     QString alternateTextColor;
+    bool isDarkTheme = false;
 Q_SIGNALS:
     void settingsCleared();
     void dockClicked();

@@ -65,6 +65,19 @@ QStringList QEasySettings::supportedStyles()
     return result;
 }
 
+bool QEasySettings::isDarkStyle(QEasySettings::Style style)
+{
+    switch (style) {
+        case Style::vista:
+        case Style::classic:
+        case Style::lightFusion: return false;
+        case Style::darkFusion: return true;
+        case Style::autoFusion: {
+            return m_settings.value("AppsUseLightTheme").toBool()==false;
+        }
+    }
+}
+
 QEasySettings::~QEasySettings() {
   delete m_settingsObj;
   delete m_instance;
@@ -211,19 +224,14 @@ void QEasySettings::changePalette(QEasySettings::Palette _palette) {
     mPalette.setColor(QPalette::BrightText, Qt::red);
     mPalette.setColor(QPalette::Link, QColor(42, 130, 218));
     mPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
-    mPalette.setColor(QPalette::HighlightedText, Qt::black);
-    mPalette.setColor(QPalette::Disabled, QPalette::Text,
-                      QColor(164, 166, 168));
-    mPalette.setColor(QPalette::Disabled, QPalette::WindowText,
-                      QColor(164, 166, 168));
-    mPalette.setColor(QPalette::Disabled, QPalette::ButtonText,
-                      QColor(164, 166, 168));
-    mPalette.setColor(QPalette::Disabled, QPalette::HighlightedText,
-                      QColor(164, 166, 168));
+    mPalette.setColor(QPalette::HighlightedText, Qt::white);
+    mPalette.setColor(QPalette::Disabled, QPalette::Text, QColor(164, 166, 168));
+    mPalette.setColor(QPalette::Disabled, QPalette::WindowText, QColor(164, 166, 168));
+    mPalette.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(164, 166, 168));
+    mPalette.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(164, 166, 168));
     mPalette.setColor(QPalette::Disabled, QPalette::Base, QColor(68, 68, 68));
     mPalette.setColor(QPalette::Disabled, QPalette::Window, QColor(68, 68, 68));
-    mPalette.setColor(QPalette::Disabled, QPalette::Highlight,
-                      QColor(68, 68, 68));
+    mPalette.setColor(QPalette::Disabled, QPalette::Highlight, QColor(68, 68, 68));
   }
 
   QToolTip::setPalette(mPalette);
