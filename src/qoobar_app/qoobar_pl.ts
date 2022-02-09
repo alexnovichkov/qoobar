@@ -4,12 +4,12 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="application.cpp" line="481"/>
+        <location filename="application.cpp" line="510"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="481"/>
+        <location filename="application.cpp" line="510"/>
         <source>Cannot write settings. The settings file is read-only</source>
         <translation>Nie można zapisać ustawień. Plik z ustawieniami jest tylko do odczytu</translation>
     </message>
@@ -31,13 +31,13 @@ Proszę sprawdzić ten plik</translation>
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="763"/>
-        <location filename="application.cpp" line="788"/>
+        <location filename="application.cpp" line="792"/>
+        <location filename="application.cpp" line="817"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="763"/>
+        <location filename="application.cpp" line="792"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
@@ -46,7 +46,7 @@ Please check the folder</source>
 Proszę sprawdzić ten katalog</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="788"/>
+        <location filename="application.cpp" line="817"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation>Nie można zapisać %1
@@ -354,8 +354,8 @@ Please compile Qoobar with another Qt version</source>
     </message>
     <message>
         <location filename="cuesplitter.cpp" line="209"/>
-        <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://shnutils.freeshell.org/shntool/&quot;&gt;http://shnutils.freeshell.org/shntool/&lt;/a&gt;</source>
-        <oldsource>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</oldsource>
+        <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from %1</source>
+        <oldsource>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://shnutils.freeshell.org/shntool/&quot;&gt;http://shnutils.freeshell.org/shntool/&lt;/a&gt;</oldsource>
         <translation type="unfinished">Proszę upewnić się, że mac.exe jest skopiowany do katalogu z programem qoobar.exe.&lt;br&gt;Program ten można pobrać z adresu &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</translation>
     </message>
     <message>
@@ -1261,7 +1261,7 @@ after you restart Qoobar</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="102"/>
-        <location filename="mainwindow.cpp" line="654"/>
+        <location filename="mainwindow.cpp" line="659"/>
         <source>About Qoobar</source>
         <translation>O programie Qoobar</translation>
     </message>
@@ -1617,11 +1617,10 @@ after you restart Qoobar</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="595"/>
-        <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2022 Alex Novichkov&lt;p&gt;Web site: &lt;a href=https://qoobar.sourceforge.io&gt;https://qoobar.sourceforge.io&lt;/a&gt;
-&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
-        <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2020 Alex Novichkov&lt;p&gt;Web site: &lt;a href=https://qoobar.sourceforge.io&gt;https://qoobar.sourceforge.io&lt;/a&gt;
+        <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright %2 Alex Novichkov&lt;p&gt;Web site: %3&lt;br&gt;E-mail: %4&lt;br&gt;&lt;hr&gt;</source>
+        <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2022 Alex Novichkov&lt;p&gt;Web site: &lt;a href=https://qoobar.sourceforge.io&gt;https://qoobar.sourceforge.io&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</oldsource>
-        <translation>&lt;b&gt;Qoobar, prosty edytor tagów&lt;/b&gt;&lt;br&gt;wydany na licencji GPL 3&lt;br&gt;Wersja: %1&lt;br&gt;Prawa autorskie 2009-2022 Alex Novichkov&lt;p&gt;Strona internetowa: &lt;a href=https://qoobar.sourceforge.io&gt;https://qoobar.sourceforge.io&lt;/a&gt;
+        <translation type="unfinished">&lt;b&gt;Qoobar, prosty edytor tagów&lt;/b&gt;&lt;br&gt;wydany na licencji GPL 3&lt;br&gt;Wersja: %1&lt;br&gt;Prawa autorskie 2009-2022 Alex Novichkov&lt;p&gt;Strona internetowa: &lt;a href=https://qoobar.sourceforge.io&gt;https://qoobar.sourceforge.io&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
@@ -1677,43 +1676,43 @@ after you restart Qoobar</source>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="603"/>
+        <location filename="mainwindow.cpp" line="608"/>
         <source>not installed</source>
         <translation>nie zainstalowane</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="642"/>
+        <location filename="mainwindow.cpp" line="647"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</oldsource>
         <translation>&lt;b&gt;Qoobar używa:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="651"/>
+        <location filename="mainwindow.cpp" line="656"/>
         <source>&lt;p&gt;This version is compiled as portable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="661"/>
+        <location filename="mainwindow.cpp" line="666"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - dodawanie plików</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="662"/>
+        <location filename="mainwindow.cpp" line="667"/>
         <source>audio files (%1)</source>
         <translation>pliki audio (%1)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="669"/>
+        <location filename="mainwindow.cpp" line="674"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - dodawanie katalogów</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="953"/>
+        <location filename="mainwindow.cpp" line="958"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - zmienianie nazwy karty</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="954"/>
+        <location filename="mainwindow.cpp" line="959"/>
         <source>Set a tab name</source>
         <translation>Ustaw nazwę karty</translation>
     </message>
@@ -2298,35 +2297,35 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
 <context>
     <name>PropertiesPanel</name>
     <message>
-        <location filename="statusbar.cpp" line="142"/>
-        <location filename="statusbar.cpp" line="209"/>
+        <location filename="statusbar.cpp" line="143"/>
+        <location filename="statusbar.cpp" line="210"/>
         <source>File is read only</source>
         <translation>Plik jest tylko do odczytu</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="150"/>
-        <location filename="statusbar.cpp" line="210"/>
+        <location filename="statusbar.cpp" line="151"/>
+        <location filename="statusbar.cpp" line="211"/>
         <source>Size</source>
         <translation>Rozmiar</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="160"/>
-        <location filename="statusbar.cpp" line="211"/>
+        <location filename="statusbar.cpp" line="161"/>
+        <location filename="statusbar.cpp" line="212"/>
         <source>Length</source>
         <translation>Długość</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="235"/>
+        <location filename="statusbar.cpp" line="236"/>
         <source>%1 kbps, %2 Hz, %3 ch.</source>
         <translation>%1 kbps, %2 Hz, %3 ch.</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="237"/>
+        <location filename="statusbar.cpp" line="238"/>
         <source>no tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="286"/>
+        <location filename="statusbar.cpp" line="287"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2335,12 +2334,12 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="288"/>
+        <location filename="statusbar.cpp" line="289"/>
         <source>Overall length %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="293"/>
+        <location filename="statusbar.cpp" line="294"/>
         <source>Selected %n file(s) of %1</source>
         <oldsource>Selected %n file(s) of </oldsource>
         <translation type="unfinished">
@@ -2350,7 +2349,7 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="296"/>
+        <location filename="statusbar.cpp" line="297"/>
         <source>Selected length %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2602,14 +2601,18 @@ wszystkie wprowadzone w nich zmiany nie zostaną zapisane!</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="402"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
-        <translation>&lt;&lt;wiele wartości&gt;&gt;</translation>
+        <translation type="vanished">&lt;&lt;wiele wartości&gt;&gt;</translation>
     </message>
     <message>
         <location filename="schemeeditor.cpp" line="56"/>
         <source>Default</source>
         <translation>Domyślny</translation>
+    </message>
+    <message>
+        <location filename="tab.cpp" line="402"/>
+        <source>&lt;&lt;different&gt;&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3240,17 +3243,21 @@ Proszę wybrać kodowanie:</translation>
     </message>
     <message>
         <location filename="splitdialog.cpp" line="140"/>
-        <source>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&quot;&gt;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</source>
-        <oldsource>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</oldsource>
-        <translation type="unfinished">Jeśli chcesz zmienić domyślny format wyjścia, proszę skopiować ffmpeg.exe do katalogu instalacyjnego Qoobar. Można go pobrać z &lt; href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;</translation>
+        <source>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from %1.&lt;br&gt;OS/2 users can find ffmpeg.exe %2here%3</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="198"/>
+        <source>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&quot;&gt;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</source>
+        <oldsource>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</oldsource>
+        <translation type="obsolete">Jeśli chcesz zmienić domyślny format wyjścia, proszę skopiować ffmpeg.exe do katalogu instalacyjnego Qoobar. Można go pobrać z &lt; href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="splitdialog.cpp" line="201"/>
         <source>Choose a folder to save files</source>
         <translation>Proszę wybrać katalog do zapisania plików</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="223"/>
+        <location filename="splitdialog.cpp" line="226"/>
         <source>Choose a cue file</source>
         <translation>Proszę wybrać plik cue</translation>
     </message>
@@ -3338,9 +3345,8 @@ Proszę wybrać kodowanie:</translation>
         <translation>zmienianie tagów</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="898"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
-        <translation>&lt;&lt;wiele wartości&gt;&gt;</translation>
+        <translation type="vanished">&lt;&lt;wiele wartości&gt;&gt;</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="472"/>
@@ -3409,6 +3415,11 @@ Proszę wybrać kodowanie:</translation>
 %1</source>
         <translation>Nie można zapisać tagów do plików:
 %1</translation>
+    </message>
+    <message>
+        <location filename="tab.cpp" line="898"/>
+        <source>&lt;&lt;different&gt;&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tab.cpp" line="926"/>
@@ -3526,8 +3537,9 @@ Czy zapisać zmiany?</translation>
     <name>TagsEditDialog</name>
     <message>
         <location filename="tagseditor.cpp" line="71"/>
-        <source>Multiple values:</source>
-        <translation>Wiele wartości:</translation>
+        <source>Different values:</source>
+        <oldsource>Multiple values:</oldsource>
+        <translation type="unfinished">Wiele wartości:</translation>
     </message>
     <message>
         <location filename="tagseditor.cpp" line="126"/>

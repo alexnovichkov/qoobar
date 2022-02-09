@@ -139,9 +139,12 @@ SplitDialog::SplitDialog(QWidget *parent) :
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
         warningString = tr("If you want to change the default output format, please copy "
                            "<br>ffmpeg.exe into the Qoobar installation folder. "
-                           "<br>You can download it from <a href=\"https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z\">"
-                           "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z</a>."
-                           "<br>OS/2 users can find ffmpeg.exe <a href=\"http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip\">here</a>");
+                           "<br>You can download it from %1."
+                           "<br>OS/2 users can find ffmpeg.exe %2here%3")
+                        .arg("<a href=\"https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z\">"
+                             "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z</a>")
+                        .arg("<a href=\"http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip\">")
+                        .arg("</a>");
 #endif
         formatBox->setToolTip(warningString);
         grid->itemAtPosition(4,0)->widget()->setToolTip(warningString);

@@ -399,7 +399,7 @@ struct Reduce
             set.insert(s);
         }
         if (set.count()<=1) return current;
-        return QObject::tr("<<multiple>>") + current;
+        return QObject::tr("<<different>>") + current;
     }
 
     bool needToAdd(const QString &s, QString &current) {
@@ -895,7 +895,7 @@ void Tab::updateImageBox()
     if (!model->hasSelection()) return;
 
     if (!model->imagesAreSame()) //images are different
-        imageBox->updatePicture(tr("<<multiple>>"));
+        imageBox->updatePicture(tr("<<different>>"));
     else {//images are the same
         CoverImage img=model->fileAtSelection(0).image();
         imageBox->updatePicture(img,model->fileAtSelection(0).fullFileName());

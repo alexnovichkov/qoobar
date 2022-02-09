@@ -208,7 +208,7 @@ void CueSplitter::split()
 #ifdef Q_OS_WIN
             errorMessage = tr("Make sure you have mac.exe "
                               "copied into the folder with qoobar.exe.<br>"
-                              "You can download it from"
+                              "You can download it from %1").arg(
                               " <a href=\"http://shnutils.freeshell.org/shntool/\">"
                               "http://shnutils.freeshell.org/shntool/</a>");
 #elif defined(Q_OS_LINUX)

@@ -591,13 +591,18 @@ void MainWindow::aboutQt()
 }
 
 void MainWindow::showAboutDialog()
-{DD
-    QString about=tr("<b>Qoobar, a Simple Tag Editor</b><br>released under the GPL 3"
-                           "<br>Version: %1<br>Copyright 2009-2022 Alex Novichkov"
-                           "<p>Web site: <a href=https://qoobar.sourceforge.io>https://qoobar.sourceforge.io</a>\n"
-                           "<br>E-mail: <a href=mailto:novichkov.qoobar@gmail.com>novichkov.qoobar@gmail.com</a>"
-                           "<br><hr>")
-            .arg(QOOBAR_VERSION);
+{DD;
+    QString about=tr("<b>Qoobar, a Simple Tag Editor</b>"
+                     "<br>released under the GPL 3"
+                     "<br>Version: %1"
+                     "<br>Copyright %2 Alex Novichkov"
+                     "<p>Web site: %3"
+                     "<br>E-mail: %4"
+                     "<br><hr>")
+                  .arg(QOOBAR_VERSION)
+                  .arg("2009-2022")
+                  .arg("<a href=https://qoobar.sourceforge.io>https://qoobar.sourceforge.io</a>")
+                  .arg("<a href=mailto:novichkov.qoobar@gmail.com>novichkov.qoobar@gmail.com</a>");
 
     // Libraries
     QString notInstalled = QString(" - <font color=red>%1</font>").arg(tr("not installed"));

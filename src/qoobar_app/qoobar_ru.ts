@@ -4,12 +4,12 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="application.cpp" line="481"/>
+        <location filename="application.cpp" line="510"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="481"/>
+        <location filename="application.cpp" line="510"/>
         <source>Cannot write settings. The settings file is read-only</source>
         <translation>Не могу сохранить настройки программы. Файл настроек только для чтения</translation>
     </message>
@@ -31,13 +31,13 @@ Please check the file</source>
 <context>
     <name>Autocompletions</name>
     <message>
-        <location filename="application.cpp" line="763"/>
-        <location filename="application.cpp" line="788"/>
+        <location filename="application.cpp" line="792"/>
+        <location filename="application.cpp" line="817"/>
         <source>Qoobar</source>
         <translation>Qoobar</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="763"/>
+        <location filename="application.cpp" line="792"/>
         <source>Cannot write resource files into
 %1.
 Please check the folder</source>
@@ -46,7 +46,7 @@ Please check the folder</source>
 Пожалуйста, проверьте папку</translation>
     </message>
     <message>
-        <location filename="application.cpp" line="788"/>
+        <location filename="application.cpp" line="817"/>
         <source>Cannot write %1.
 Please check the file</source>
         <translation>Не могу записать %1.
@@ -358,9 +358,9 @@ Please compile Qoobar with another Qt version</source>
     </message>
     <message>
         <location filename="cuesplitter.cpp" line="209"/>
-        <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://shnutils.freeshell.org/shntool/&quot;&gt;http://shnutils.freeshell.org/shntool/&lt;/a&gt;</source>
-        <oldsource>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://etree.org/shnutils/shntool/&quot;&gt;http://etree.org/shnutils/shntool/&lt;/a&gt;</oldsource>
-        <translation>Убедитесь, что в папке с qoobar.exe имеется файл mac.exe.&lt;br&gt;Вы можете скачать его с &lt;a href=&quot;http://shnutils.freeshell.org/shntool/&quot;&gt;http://shnutils.freeshell.org/shntool/&lt;/a&gt;</translation>
+        <source>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from %1</source>
+        <oldsource>Make sure you have mac.exe copied into the folder with qoobar.exe.&lt;br&gt;You can download it from &lt;a href=&quot;http://shnutils.freeshell.org/shntool/&quot;&gt;http://shnutils.freeshell.org/shntool/&lt;/a&gt;</oldsource>
+        <translation>Убедитесь, что в папке с qoobar.exe имеется файл mac.exe.&lt;br&gt;Вы можете скачать его с %1</translation>
     </message>
     <message>
         <source>Please install mac. You can download it from &lt;a href=http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&gt;http://members.iinet.net.au/~aidanjm/mac-3.99-u4_b3-1_i386.deb&lt;/a&gt;.</source>
@@ -565,22 +565,22 @@ and &quot; by two single quotes &apos;&apos;</source>
     <message>
         <location filename="generatorwidget.cpp" line="16"/>
         <source>Pattern:</source>
-        <translation type="unfinished">Шаблон:</translation>
+        <translation>Шаблон:</translation>
     </message>
     <message>
         <location filename="generatorwidget.cpp" line="20"/>
         <source>File name</source>
-        <translation type="unfinished">Имя файла</translation>
+        <translation>Имя файла</translation>
     </message>
     <message>
         <location filename="generatorwidget.cpp" line="20"/>
         <source>Clipboard</source>
-        <translation type="unfinished">Буфер обмена</translation>
+        <translation>Буфер обмена</translation>
     </message>
     <message>
         <location filename="generatorwidget.cpp" line="70"/>
         <source>Source:</source>
-        <translation type="unfinished">Источник:</translation>
+        <translation>Источник:</translation>
     </message>
 </context>
 <context>
@@ -939,7 +939,7 @@ and &quot; by two single quotes &apos;&apos;</source>
         <location filename="configpages.cpp" line="135"/>
         <location filename="configpages.cpp" line="225"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="141"/>
@@ -980,13 +980,14 @@ and &quot; by two single quotes &apos;&apos;</source>
     <message>
         <location filename="configpages.cpp" line="200"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Общие</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="244"/>
         <source>The style theme will be changed
 after you restart Qoobar</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль будет изменён
+после перезапуска программы</translation>
     </message>
     <message>
         <source>Quit Qoobar on its window closed</source>
@@ -1137,7 +1138,7 @@ after you restart Qoobar</source>
         <translation>Qoobar - редактор тегов для классической музыки</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="953"/>
+        <location filename="mainwindow.cpp" line="958"/>
         <source>Qoobar - renaming the tab</source>
         <translation>Qoobar - переименование вкладки</translation>
     </message>
@@ -1164,7 +1165,7 @@ after you restart Qoobar</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="102"/>
-        <location filename="mainwindow.cpp" line="654"/>
+        <location filename="mainwindow.cpp" line="659"/>
         <source>About Qoobar</source>
         <translation>О Qoobar</translation>
     </message>
@@ -1606,12 +1607,12 @@ after you restart Qoobar</source>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="603"/>
+        <location filename="mainwindow.cpp" line="608"/>
         <source>not installed</source>
         <translation>не установлена</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="642"/>
+        <location filename="mainwindow.cpp" line="647"/>
         <source>&lt;b&gt;Qoobar uses:&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;Qoobar uses:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Libraries:&lt;/b&gt;</oldsource>
         <translation>&lt;b&gt;Qoobar использует:&lt;/b&gt;</translation>
@@ -1623,25 +1624,23 @@ after you restart Qoobar</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="595"/>
-        <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2022 Alex Novichkov&lt;p&gt;Web site: &lt;a href=https://qoobar.sourceforge.io&gt;https://qoobar.sourceforge.io&lt;/a&gt;
-&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</source>
-        <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2020 Alex Novichkov&lt;p&gt;Web site: &lt;a href=https://qoobar.sourceforge.io&gt;https://qoobar.sourceforge.io&lt;/a&gt;
+        <source>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright %2 Alex Novichkov&lt;p&gt;Web site: %3&lt;br&gt;E-mail: %4&lt;br&gt;&lt;hr&gt;</source>
+        <oldsource>&lt;b&gt;Qoobar, a Simple Tag Editor&lt;/b&gt;&lt;br&gt;released under the GPL 3&lt;br&gt;Version: %1&lt;br&gt;Copyright 2009-2022 Alex Novichkov&lt;p&gt;Web site: &lt;a href=https://qoobar.sourceforge.io&gt;https://qoobar.sourceforge.io&lt;/a&gt;
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</oldsource>
-        <translation>&lt;b&gt;Qoobar, простой редактор тегов&lt;/b&gt;&lt;br&gt;под лицензией GPL 3&lt;br&gt;Версия: %1&lt;br&gt;Copyright 2009-2022 Алексей Новичков&lt;p&gt;Сайт: &lt;a href=https://qoobar.sourceforge.io&gt;https://qoobar.sourceforge.io&lt;/a&gt;
-&lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;br&gt;&lt;hr&gt;</translation>
+        <translation>&lt;b&gt;Qoobar, простой редактор тегов&lt;/b&gt;&lt;br&gt;под лицензией GPL 3&lt;br&gt;Версия: %1&lt;br&gt;Copyright %2 Алексей Новичков&lt;p&gt;Сайт: %3&lt;br&gt;E-mail: %4&lt;br&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="661"/>
+        <location filename="mainwindow.cpp" line="666"/>
         <source>Qoobar - adding files</source>
         <translation>Qoobar - добавление файлов</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="662"/>
+        <location filename="mainwindow.cpp" line="667"/>
         <source>audio files (%1)</source>
         <translation>Файлы аудио (%1)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="669"/>
+        <location filename="mainwindow.cpp" line="674"/>
         <source>Qoobar - adding folder</source>
         <translation>Qoobar - добавление папки</translation>
     </message>
@@ -1707,12 +1706,12 @@ after you restart Qoobar</source>
 &lt;br&gt;E-mail: &lt;a href=mailto:novichkov.qoobar@gmail.com&gt;novichkov.qoobar@gmail.com&lt;/a&gt;&lt;hr&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="651"/>
+        <location filename="mainwindow.cpp" line="656"/>
         <source>&lt;p&gt;This version is compiled as portable</source>
         <translation>&lt;p&gt;Эта версия скомпилирована как переносимая (portable)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="954"/>
+        <location filename="mainwindow.cpp" line="959"/>
         <source>Set a tab name</source>
         <translation>Введите новое название</translation>
     </message>
@@ -1887,72 +1886,72 @@ all changes in them will not be saved!</source>
     <message>
         <location filename="onlinewidget.cpp" line="117"/>
         <source>manually</source>
-        <translation type="unfinished">вручную</translation>
+        <translation>вручную</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="119"/>
         <source>by CD in CD-ROM</source>
-        <translation type="unfinished">по диску в CD-ROM</translation>
+        <translation>по диску в CD-ROM</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="121"/>
         <source>by selected files</source>
-        <translation type="unfinished">по выделенным файлам</translation>
+        <translation>по выделенным файлам</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="129"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Искать</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="137"/>
         <source>Search results</source>
-        <translation type="unfinished">Результаты поиска</translation>
+        <translation>Результаты поиска</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="160"/>
         <source>Export search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспортировать результаты поиска</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="170"/>
         <source>artist:</source>
-        <translation type="unfinished">артист:</translation>
+        <translation>артист:</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="173"/>
         <source>album:</source>
-        <translation type="unfinished">альбом:</translation>
+        <translation>альбом:</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="177"/>
         <source>Search in</source>
-        <translation type="unfinished">Искать в</translation>
+        <translation>Искать в</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="220"/>
         <source>No download plugins found. Internet search is inaccessible</source>
-        <translation type="unfinished">Не найдено ни одного плагина для скачивания. Поиск в интернете недоступен</translation>
+        <translation>Не найдено ни одного плагина для скачивания. Поиск в интернете недоступен</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="333"/>
         <source>Please specify an album and/or an artist for the manual search</source>
-        <translation type="unfinished">Задайте альбом и/или исполнителя для поиска вручную</translation>
+        <translation>Задайте альбом и/или исполнителя для поиска вручную</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="338"/>
         <source>Searching %1...</source>
-        <translation type="unfinished">Поиск в %1...</translation>
+        <translation>Поиск в %1...</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="368"/>
         <source>Nothing found</source>
-        <translation type="unfinished">Ничего не найдено</translation>
+        <translation>Ничего не найдено</translation>
     </message>
     <message numerus="yes">
         <location filename="onlinewidget.cpp" line="374"/>
         <source>Found %n album(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>Найден %n альбом</numerusform>
             <numerusform>Найдено %n альбома</numerusform>
             <numerusform>Найдено %n альбомов</numerusform>
@@ -1961,12 +1960,12 @@ all changes in them will not be saved!</source>
     <message>
         <location filename="onlinewidget.cpp" line="416"/>
         <source>Retrieving release info...</source>
-        <translation type="unfinished">Получаю данные релиза...</translation>
+        <translation>Получаю данные релиза...</translation>
     </message>
     <message>
         <location filename="onlinewidget.cpp" line="429"/>
         <source>Done</source>
-        <translation type="unfinished">Готово</translation>
+        <translation>Готово</translation>
     </message>
 </context>
 <context>
@@ -2318,35 +2317,35 @@ all changes in them will not be saved!</source>
 <context>
     <name>PropertiesPanel</name>
     <message>
-        <location filename="statusbar.cpp" line="142"/>
-        <location filename="statusbar.cpp" line="209"/>
+        <location filename="statusbar.cpp" line="143"/>
+        <location filename="statusbar.cpp" line="210"/>
         <source>File is read only</source>
         <translation>Файл только для чтения</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="150"/>
-        <location filename="statusbar.cpp" line="210"/>
+        <location filename="statusbar.cpp" line="151"/>
+        <location filename="statusbar.cpp" line="211"/>
         <source>Size</source>
         <translation>Размер</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="160"/>
-        <location filename="statusbar.cpp" line="211"/>
+        <location filename="statusbar.cpp" line="161"/>
+        <location filename="statusbar.cpp" line="212"/>
         <source>Length</source>
         <translation>Длина</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="235"/>
+        <location filename="statusbar.cpp" line="236"/>
         <source>%1 kbps, %2 Hz, %3 ch.</source>
         <translation>%1 kbps, %2 Hz, %3 ch.</translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="237"/>
+        <location filename="statusbar.cpp" line="238"/>
         <source>no tags</source>
         <translation>нет тегов</translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="286"/>
+        <location filename="statusbar.cpp" line="287"/>
         <source>%n file(s)</source>
         <translation>
             <numerusform>%n файл</numerusform>
@@ -2355,12 +2354,12 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="288"/>
+        <location filename="statusbar.cpp" line="289"/>
         <source>Overall length %1</source>
         <translation>Общая длина %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="statusbar.cpp" line="293"/>
+        <location filename="statusbar.cpp" line="294"/>
         <source>Selected %n file(s) of %1</source>
         <oldsource>Selected %n file(s) of </oldsource>
         <translation>
@@ -2378,7 +2377,7 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="statusbar.cpp" line="296"/>
+        <location filename="statusbar.cpp" line="297"/>
         <source>Selected length %1 of %2</source>
         <translation>Выделено %1 из %2</translation>
     </message>
@@ -2630,14 +2629,18 @@ all changes in them will not be saved!</source>
         <translation>Скрывать</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="402"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
-        <translation>&lt;&lt;разные&gt;&gt;</translation>
+        <translation type="vanished">&lt;&lt;разные&gt;&gt;</translation>
     </message>
     <message>
         <location filename="schemeeditor.cpp" line="56"/>
         <source>Default</source>
         <translation>Схема по умолчанию</translation>
+    </message>
+    <message>
+        <location filename="tab.cpp" line="402"/>
+        <source>&lt;&lt;different&gt;&gt;</source>
+        <translation>&lt;&lt;разные&gt;&gt;</translation>
     </message>
 </context>
 <context>
@@ -3302,10 +3305,9 @@ Please choose the encoding:</source>
         <translation>Если вы хотите изменить формат файлов по умолчанию, установите ffmpeg или avconv</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="140"/>
         <source>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&quot;&gt;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</source>
         <oldsource>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from &lt;a href=&quot;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&quot;&gt;http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.7z&lt;/a&gt;.&lt;br&gt;OS/2 users can find ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;here&lt;/a&gt;</oldsource>
-        <translation>Если вы хотите изменить формат файлов по умолчанию, скопируйте ffmpeg.exe в папку с qoobar.exe. &lt;br&gt;FFmpeg можно взять здесь: &lt;a href=&quot;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&quot;&gt;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&lt;/a&gt;.&lt;br&gt;Пользователи OS/2 могут взять ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;здесь&lt;/a&gt;</translation>
+        <translation type="vanished">Если вы хотите изменить формат файлов по умолчанию, скопируйте ffmpeg.exe в папку с qoobar.exe. &lt;br&gt;FFmpeg можно взять здесь: &lt;a href=&quot;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&quot;&gt;https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z&lt;/a&gt;.&lt;br&gt;Пользователи OS/2 могут взять ffmpeg.exe &lt;a href=&quot;http://hobbes.nmsu.edu/download/pub/os2/apps/mmedia/ffmpeg-os2-r2_5_1-Fourier.zip&quot;&gt;здесь&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="splitdialog.cpp" line="128"/>
@@ -3318,12 +3320,17 @@ Please choose the encoding:</source>
         <translation>Разрезать образ диска по cue файлу</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="198"/>
+        <location filename="splitdialog.cpp" line="140"/>
+        <source>If you want to change the default output format, please copy &lt;br&gt;ffmpeg.exe into the Qoobar installation folder. &lt;br&gt;You can download it from %1.&lt;br&gt;OS/2 users can find ffmpeg.exe %2here%3</source>
+        <translation>Если вы хотите изменить тип файлов, скопируйте&lt;br&gt;ffmpeg.exe в папку установки Qoobar. &lt;br&gt;Вы можете скачать ffmpeg из %1.&lt;br&gt;Пользователи OS/2 могут найти ffmpeg.exe %2здесь%3</translation>
+    </message>
+    <message>
+        <location filename="splitdialog.cpp" line="201"/>
         <source>Choose a folder to save files</source>
         <translation>Выберите папку для сохранения файлов</translation>
     </message>
     <message>
-        <location filename="splitdialog.cpp" line="223"/>
+        <location filename="splitdialog.cpp" line="226"/>
         <source>Choose a cue file</source>
         <translation>Выберите файл cue</translation>
     </message>
@@ -3475,6 +3482,11 @@ Do you want to save changes?</source>
         <translation>&amp;Запомнить на будущее</translation>
     </message>
     <message>
+        <location filename="tab.cpp" line="898"/>
+        <source>&lt;&lt;different&gt;&gt;</source>
+        <translation>&lt;&lt;разные&gt;&gt;</translation>
+    </message>
+    <message>
         <location filename="tab.cpp" line="926"/>
         <source>Player is not set in the Settings dialog.
 Open the Settings dialog?</source>
@@ -3521,9 +3533,8 @@ Open the Settings dialog?</source>
 %1</translation>
     </message>
     <message>
-        <location filename="tab.cpp" line="898"/>
         <source>&lt;&lt;multiple&gt;&gt;</source>
-        <translation>&lt;&lt;разные&gt;&gt;</translation>
+        <translation type="vanished">&lt;&lt;разные&gt;&gt;</translation>
     </message>
     <message>
         <location filename="tab.cpp" line="617"/>
@@ -3606,7 +3617,8 @@ Open the Settings dialog?</source>
     <name>TagsEditDialog</name>
     <message>
         <location filename="tagseditor.cpp" line="71"/>
-        <source>Multiple values:</source>
+        <source>Different values:</source>
+        <oldsource>Multiple values:</oldsource>
         <translation>Разные значения:</translation>
     </message>
     <message>
@@ -3804,13 +3816,13 @@ Open the Settings dialog?</source>
         <location filename="configpages.cpp" line="1005"/>
         <location filename="configpages.cpp" line="1151"/>
         <source>Read in MP3 files</source>
-        <translation type="unfinished"></translation>
+        <translation>Читать в файлах MP3</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1006"/>
         <location filename="configpages.cpp" line="1152"/>
         <source>Write to MP3 files</source>
-        <translation type="unfinished"></translation>
+        <translation>Писать в файлы MP3</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1009"/>
@@ -3818,7 +3830,7 @@ Open the Settings dialog?</source>
         <location filename="configpages.cpp" line="1153"/>
         <location filename="configpages.cpp" line="1156"/>
         <source>ID3v2 and APE tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Теги ID3v2 и APE</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1009"/>
@@ -3826,7 +3838,7 @@ Open the Settings dialog?</source>
         <location filename="configpages.cpp" line="1154"/>
         <location filename="configpages.cpp" line="1157"/>
         <source>ID3v2 tags only</source>
-        <translation type="unfinished"></translation>
+        <translation>Только теги ID3v2</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1009"/>
@@ -3834,167 +3846,167 @@ Open the Settings dialog?</source>
         <location filename="configpages.cpp" line="1155"/>
         <location filename="configpages.cpp" line="1158"/>
         <source>APE tags only</source>
-        <translation type="unfinished"></translation>
+        <translation>Только теги APE</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1030"/>
         <location filename="configpages.cpp" line="1180"/>
         <source>ID3v2 frames line ending</source>
-        <translation type="unfinished">Перевод строки в тегах ID3V2</translation>
+        <translation>Перевод строки в тегах ID3V2</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1033"/>
         <location filename="configpages.cpp" line="1177"/>
         <source>CRLF - Windows style</source>
-        <translation type="unfinished">CRLF - как в Windows</translation>
+        <translation>CRLF - как в Windows</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1034"/>
         <location filename="configpages.cpp" line="1178"/>
         <source>LF - Unix and OS X style</source>
-        <translation type="unfinished">LF - как в Unix и OS X</translation>
+        <translation>LF - как в Unix и OS X</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1035"/>
         <location filename="configpages.cpp" line="1179"/>
         <source>CR - pre-OS X style</source>
-        <translation type="unfinished">CR - как в старых OS X</translation>
+        <translation>CR - как в старых OS X</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1042"/>
         <location filename="configpages.cpp" line="1186"/>
         <source>ID3v2 tags version</source>
-        <translation type="unfinished">Версия тегов ID3v2</translation>
+        <translation>Версия тегов ID3v2</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1048"/>
         <location filename="configpages.cpp" line="1171"/>
         <source>Ogg &amp; Speex picture tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Картинка в файлах Ogg / Speex</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1050"/>
         <location filename="configpages.cpp" line="1168"/>
         <source>COVERART (old standard)</source>
-        <translation type="unfinished">COVERART (старый формат)</translation>
+        <translation>COVERART (старый формат)</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1051"/>
         <location filename="configpages.cpp" line="1169"/>
         <source>METADATA_BLOCK_PICTURE (new standard)</source>
-        <translation type="unfinished">METADATA_BLOCK_PICTURE (новый формат)</translation>
+        <translation>METADATA_BLOCK_PICTURE (новый формат)</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1053"/>
         <location filename="configpages.cpp" line="1166"/>
         <source>When writing tags</source>
-        <translation type="unfinished">При сохранении тегов</translation>
+        <translation>При сохранении тегов</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1056"/>
         <location filename="configpages.cpp" line="1172"/>
         <source>update ID3v1 tag</source>
-        <translation type="unfinished">обновлять теги ID3v1</translation>
+        <translation>обновлять теги ID3v1</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1057"/>
         <location filename="configpages.cpp" line="1173"/>
         <source>update ID3v1 tag only if it exists</source>
-        <translation type="unfinished">обновлять теги ID3v1, только если они уже существуют</translation>
+        <translation>обновлять теги ID3v1, только если они уже существуют</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1058"/>
         <location filename="configpages.cpp" line="1174"/>
         <source>delete ID3v1 tag</source>
-        <translation type="unfinished">удалять теги ID3v1</translation>
+        <translation>удалять теги ID3v1</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1059"/>
         <location filename="configpages.cpp" line="1175"/>
         <source>Transliterate Russian words</source>
-        <translation type="unfinished">Транслитерировать русские слова</translation>
+        <translation>Транслитерировать русские слова</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1070"/>
         <location filename="configpages.cpp" line="1176"/>
         <source>ID3v1 tag encoding</source>
-        <translation type="unfinished">Кодировка тегов ID3v1</translation>
+        <translation>Кодировка тегов ID3v1</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1072"/>
         <location filename="configpages.cpp" line="1182"/>
         <source>Write ReplayGain info of Musepack files into</source>
-        <translation type="unfinished">Записывать ReplayGain данные в файлы Musepack в</translation>
+        <translation>Записывать ReplayGain данные в файлы Musepack в</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1075"/>
         <location filename="configpages.cpp" line="1183"/>
         <source>File header</source>
-        <translation type="unfinished">Заголовок файла</translation>
+        <translation>Заголовок файла</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1076"/>
         <location filename="configpages.cpp" line="1184"/>
         <source>APE tags</source>
-        <translation type="unfinished">Теги APE</translation>
+        <translation>Теги APE</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1078"/>
         <location filename="configpages.cpp" line="1188"/>
         <source>Current tagging scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущая схема</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1081"/>
         <location filename="configpages.cpp" line="1189"/>
         <source>Default</source>
-        <translation type="unfinished">Схема по умолчанию</translation>
+        <translation>Схема по умолчанию</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1096"/>
         <location filename="configpages.cpp" line="1191"/>
         <source>Edit</source>
-        <translation type="unfinished">Редактировать</translation>
+        <translation>Редактировать</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1099"/>
         <location filename="configpages.cpp" line="1190"/>
         <source>Add</source>
-        <translation type="unfinished">Добавить</translation>
+        <translation>Добавить</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1101"/>
         <location filename="configpages.cpp" line="1194"/>
         <source>Clone this</source>
-        <translation type="unfinished">Копировать текущую</translation>
+        <translation>Копировать текущую</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1103"/>
         <location filename="configpages.cpp" line="1195"/>
         <source>Using Default</source>
-        <translation type="unfinished">Копировать Default</translation>
+        <translation>Копировать Default</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1107"/>
         <location filename="configpages.cpp" line="1197"/>
         <source>Remove</source>
-        <translation type="unfinished">Удалить</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1124"/>
         <source>(for mp3, flac, tta, mpc, wv, ape files)</source>
-        <translation type="unfinished">(для файлов mp3, flac, tta, mpc, wv, ape)</translation>
+        <translation>(для файлов mp3, flac, tta, mpc, wv, ape)</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1140"/>
         <source>Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Теги</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="1272"/>
         <source>Cannot delete the file
 %1.</source>
-        <translation type="unfinished">Не могу удалить файл
+        <translation>Не могу удалить файл
 %1.</translation>
     </message>
 </context>
@@ -4170,13 +4182,13 @@ in the ReplayGain dialog</source>
         <location filename="configpages.cpp" line="404"/>
         <location filename="configpages.cpp" line="467"/>
         <source>Automatically fill a tag when pasting a single line</source>
-        <translation type="unfinished">При вставке одной строки распространять ее на все выделенные файлы</translation>
+        <translation>При вставке одной строки распространять ее на все выделенные файлы</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="410"/>
         <location filename="configpages.cpp" line="470"/>
         <source>Font...</source>
-        <translation type="unfinished">Шрифт...</translation>
+        <translation>Шрифт...</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="413"/>
@@ -4184,13 +4196,13 @@ in the ReplayGain dialog</source>
         <location filename="configpages.cpp" line="472"/>
         <location filename="configpages.cpp" line="473"/>
         <source>Characters that will be shown in the Tags edit dialog</source>
-        <translation type="unfinished">Символы, которые будут показаны в диалоге изменения тегов</translation>
+        <translation>Символы, которые будут показаны в диалоге изменения тегов</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="414"/>
         <location filename="configpages.cpp" line="471"/>
         <source>Characters</source>
-        <translation type="unfinished">Символы</translation>
+        <translation>Символы</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="418"/>
@@ -4213,12 +4225,12 @@ in the ReplayGain dialog</source>
     <message>
         <location filename="configpages.cpp" line="448"/>
         <source>Choose a Chars list font</source>
-        <translation type="unfinished">Выберите шрифт для списка символов</translation>
+        <translation>Выберите шрифт для списка символов</translation>
     </message>
     <message>
         <location filename="configpages.cpp" line="457"/>
         <source>Edit &amp; Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактирование</translation>
     </message>
     <message>
         <source>Read ID3v2 tags</source>

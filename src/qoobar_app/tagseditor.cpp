@@ -68,7 +68,7 @@ TagsEditDialog::TagsEditDialog(int type, const QString &caption,
     highlighter=0;
 
     count=list.count();
-    QLabel *mLabel = new QLabel(tr("Multiple values:"));
+    QLabel *mLabel = new QLabel(tr("Different values:"));
 
     legendButton = new LegendButton(this);
     legendButton->setCategories(LegendButton::WritablePlaceholders | LegendButton::ReadOnlyPlaceholders);
