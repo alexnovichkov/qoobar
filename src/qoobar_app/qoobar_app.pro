@@ -318,28 +318,21 @@ unix {
     docfiles.path = $${DOC_PATH}/qoobar
     docfiles.files = ../../README*
     icons.files = icons/maia
-#    icons.files += icons/*.png
-#    icons.files += icons/*.gif
     icons.path = $${SHARED_PATH}/qoobar/icons
     coloredicons.files = icons/coloured
-#    coloredicons.files += icons/coloured/*.png
-#    coloredicons.files += icons/coloured/*.gif
-#    coloredicons.files += icons/coloured/*.json
     coloredicons.path = $${SHARED_PATH}/qoobar/icons
+    darkicons.files = icons/maia[dark]
+    darkicons.path = $${SHARED_PATH}/qoobar/icons
     appdata.path = $${SHARED_PATH}/metainfo
     appdata.files += ../../io.sourceforge.qoobar.Qoobar.appdata.xml
-    INSTALLS += target docfiles resources icons coloredicons
+    INSTALLS += target docfiles resources icons coloredicons darkicons
     INSTALLS += schemes desktop manfiles completions
     INSTALLS += appdata
 
     # documentation
-    htmldocfiles.path = $${DOC_PATH}/qoobar-doc/html
-    htmldocfiles.files = ../../html/*
-    htmldocfiles_html_en.path = $${DOC_PATH}/qoobar-doc/html/en
-    htmldocfiles_html_en.files = ../../html/en/*.htm
-    htmldocfiles_imgs_en.path = $${DOC_PATH}/qoobar-doc/html/en/images
-    htmldocfiles_imgs_en.files = ../../html/en/images/*.png
-    INSTALLS += htmldocfiles htmldocfiles_html_en htmldocfiles_imgs_en
+    htmldocfiles.path = $${DOC_PATH}/qoobar-doc/html/en
+    htmldocfiles.files = ../../html/en
+    INSTALLS += htmldocfiles
 }
 }
 
@@ -436,13 +429,9 @@ os2 {
     INSTALLS += schemes manfiles completions
 
     # documentation
-    htmldocfiles.path = $${DOC_PATH}/html
-    htmldocfiles.files = html/*
-    htmldocfiles_html_en.path = $${DOC_PATH}/html/en
-    htmldocfiles_html_en.files = html/en/*.htm
-    htmldocfiles_imgs_en.path = $${DOC_PATH}/html/en/images
-    htmldocfiles_imgs_en.files = html/en/images/*.png
-    INSTALLS += htmldocfiles htmldocfiles_html_en htmldocfiles_imgs_en
+    htmldocfiles.path = $${DOC_PATH}/html/en
+    htmldocfiles.files = html/en
+    INSTALLS += htmldocfiles
 
     RC_FILE = qoobar_os2.rc
     INCLUDEPATH += . \

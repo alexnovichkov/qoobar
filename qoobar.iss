@@ -92,16 +92,16 @@ Name: "help"; Description: "{cm:Help}"; Types: full custom
 Name: "utilities"; Description: "{cm:RG}"; Types: custom full
 Name: "plugins"; Description: "{cm:Plugins}"; Types: custom full
 
-[Dirs]
-Name: "{app}\html\en"; Flags: uninsalwaysuninstall; Components: help
-Name: "{app}\html\en\images"; Flags: uninsalwaysuninstall; Components: help
-Name: "{app}\html\en\assets"; Flags: uninsalwaysuninstall; Components: help
-Name: "{app}\imageformats"; Flags: uninsalwaysuninstall; Components: main
-Name: "{app}\schemes"; Flags: uninsalwaysuninstall; Components: main
-Name: "{app}\completions"; Flags: uninsalwaysuninstall; Components: main
-Name: "{app}\platforms"; Flags: uninsalwaysuninstall; Components: main
-Name: "{app}\plugins"; Flags: uninsalwaysuninstall; Components: plugins
-Name: "{app}\icons"; Flags: uninsalwaysuninstall; Components: main
+; [Dirs]
+; Name: "{app}\html\en"; Flags: uninsalwaysuninstall; Components: help
+; Name: "{app}\html\en\images"; Flags: uninsalwaysuninstall; Components: help
+; Name: "{app}\html\en\assets"; Flags: uninsalwaysuninstall; Components: help
+; Name: "{app}\imageformats"; Flags: uninsalwaysuninstall; Components: main
+; Name: "{app}\schemes"; Flags: uninsalwaysuninstall; Components: main
+; Name: "{app}\completions"; Flags: uninsalwaysuninstall; Components: main
+; Name: "{app}\platforms"; Flags: uninsalwaysuninstall; Components: main
+; Name: "{app}\plugins"; Flags: uninsalwaysuninstall; Components: plugins
+; Name: "{app}\icons"; Flags: uninsalwaysuninstall; Components: main
 
 [Files]
 #define PATH_TO_QT "C:/Qt6/6.2.0/mingw81_64"
@@ -158,6 +158,7 @@ Source: "src\qoobar_app\completions\*.txt"; DestDir: "{app}\completions"; Flags:
 Source: "COPYING"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: "LICENSE.rtf"; DestDir: "{app}"; Flags: ignoreversion overwritereadonly uninsremovereadonly; Attribs: readonly; Components: main
 Source: "src\qoobar_app\icons\maia\*"; DestDir: "{app}\icons\maia"; Flags: ignoreversion overwritereadonly createallsubdirs recursesubdirs; Components: main
+Source: "src\qoobar_app\icons\maia[dark]\*"; DestDir: "{app}\icons\maia[dark]"; Flags: ignoreversion overwritereadonly createallsubdirs recursesubdirs; Components: main
 Source: "src\qoobar_app\icons\coloured\*"; DestDir: "{app}\icons\coloured"; Flags: ignoreversion overwritereadonly createallsubdirs recursesubdirs; Components: main
 
 ; help
