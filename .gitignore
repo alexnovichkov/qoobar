@@ -6,7 +6,7 @@ debug/*
 windows/*
 *.qm
 *.bak
-*.user
+*pro.user*
 /src/qoobar_app/qoobar_resource.rc
 windows
 release
