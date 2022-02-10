@@ -46,6 +46,7 @@ message(== Shared path is $${SHARED_PATH})
 DEFINES *= QOOBAR_SHARED_PATH=\\\"$${SHARED_PATH}/$${TARGET}\\\"
 DEFINES *= QOOBAR_DOC_PATH=\\\"$${DOC_PATH}/$${TARGET}-doc\\\"
 
+#file with the only parameter that defines the portable version
 include(../portable.pri)
 
 # 3rdparty libraries Qoobar links with
@@ -366,6 +367,8 @@ win32|win {
   # So far no cli support in Win
 #  DEFINES *= QOOBAR_ENABLE_CLI
 
+# these files are used to add the styles support into Windows
+# so far only classic, vista & fusion styles are supported.
 HEADERS += qeasysettings.hpp
 SOURCES += qeasysettings.cpp
 
