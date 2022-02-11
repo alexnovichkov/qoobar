@@ -135,8 +135,8 @@ QList<SearchResult> DiscogsPlugin::parseResponse(const QByteArray &response)
         return results;
     }
 
-    QVariantList filtered=QtConcurrent::blockingFiltered(result["results"].toList(), isCD);
-    results = parseToList(filtered,toSearchResult);
+    QVariantList filtered = QtConcurrent::blockingFiltered(result["results"].toList(), isCD);
+    results = parseToList(filtered, toSearchResult);
 
     return results;
 }

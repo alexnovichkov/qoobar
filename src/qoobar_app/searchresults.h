@@ -34,6 +34,7 @@
 #include <qjsonobject.h>
 #include <qjsonvalue.h>
 #include <QJsonArray>
+#include <QVariant>
 
 struct Artist {
     QMap<QString,QString> fields;
@@ -59,6 +60,14 @@ struct Artist {
         QJsonObject v;
         for (const auto &a: fields) v.insert(a, fields.value(a));
         return v;
+    }
+    static Artist fromJson(const QJsonObject &json)
+    {
+        Artist a;
+        const auto map = json.toVariantMap();
+        for (const auto &key: map.keys()) a.fields.insert(key, map.value(key).toString());
+
+        return a;
     }
 };
 
@@ -102,6 +111,20 @@ struct Track {
         }
         return v;
     }
+    static Track fromJson(const QJsonObject &json)
+    {
+        Track t;
+        t.cd = json["cd"].toInt();
+        if (json.contains("artists")) {
+            auto list = json["artists"].toArray();
+            for (const auto &l: list) t.artists.append(Artist::fromJson(l.toObject()));
+        }
+
+        const auto map = json["fields"].toObject().toVariantMap();
+        for (const auto &key: map.keys()) t.fields.insert(key, map.value(key).toString());
+
+        return t;
+    }
 };
 
 struct SearchResult {
@@ -121,13 +144,14 @@ struct SearchResult {
         QJsonObject o;
         o.insert("loaded", loaded);
         o.insert("cdCount", cdCount);
-        //if (!artists.isEmpty())
+        o.insert("cached", true);
+        if (!artists.isEmpty())
         {
             QJsonArray artistsList;
             for(const auto &a: this->artists) artistsList.append(a.toJson());
             o.insert("artists", artistsList);
         }
-        //if (!tracks.isEmpty())
+        if (!tracks.isEmpty())
         {
             QJsonArray tracksList;
             for(const auto &a: this->tracks) tracksList.append(a.toJson());
@@ -137,7 +161,7 @@ struct SearchResult {
         for (const auto &a: fields.keys())
             f.insert(a, fields.value(a));
         o.insert("fields", f);
-        //if (!image.isEmpty())
+        if (!image.isEmpty())
         {
             QJsonObject im;
             im.insert("type", image.type());
@@ -149,6 +173,42 @@ struct SearchResult {
 
         return o;
     }
+    static SearchResult fromJson(const QJsonObject &json)
+    {
+        SearchResult r;
+        r.query = json["query"].toString();
+        r.cached = json["cached"].toBool();
+        r.loaded = json["loaded"].toBool();
+        r.cdCount = json["cdCount"].toInt();
+
+        if (json.contains("image")) {
+            CoverImage image;
+            auto img = json["image"].toObject();
+            image.setType(img["type"].toInt());
+            image.setMimetype(img["mimetype"].toString());
+            image.setDescription(img["description"].toString());
+            image.setPixmap(QByteArray::fromBase64(img["data"].toString().toLatin1()));
+            r.image = image;
+        }
+
+        if (json.contains("fields")) {
+            auto map = json["fields"].toObject().toVariantMap();
+            for (const auto &key: map.keys()) r.fields.insert(key, map.value(key).toString());
+        }
+        if (json.contains("artists")) {
+            auto list = json["artists"].toArray();
+            for (const auto &l: list) r.artists.append(Artist::fromJson(l.toObject()));
+        }
+        if (json.contains("tracks")) {
+            auto list = json["tracks"].toArray();
+            for (const auto &l: list) r.tracks.append(Track::fromJson(l.toObject()));
+        }
+        return r;
+    }
+    QString lengths() const
+    {
+        QList<int> lengths;
+    }
 
     bool loaded;
     int cdCount;
@@ -156,6 +216,8 @@ struct SearchResult {
     QList<Artist> artists;
     QList<Track> tracks;
     CoverImage image;
+    bool cached = false;
+    QString query;
 };
 
 

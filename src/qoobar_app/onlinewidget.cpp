@@ -336,25 +336,32 @@ void OnlineWidget::startSearch()
         networkErrorInfo->setText(tr("Please specify an album and/or an artist for the manual search"));
         return;
     }
+    SearchType searchType = manualSearchRadioButton->isChecked() ? SearchManually :
+                 (filesSearchRadioButton->isChecked() ? SearchByFiles : SearchByCD);
 
     QProgressIndicatorSpinningHandle progressHandle(progress);
     networkStatusInfo->setText(tr("Searching %1...").arg(sourceComboBox->currentText()));
 
     Request query;
-    if (manually) {
-        query = plugin->queryForManualSearch({artist, album});
+    switch (searchType) {
+        case SearchManually: query = plugin->queryForManualSearch({artist, album});
+            break;
+        case SearchByFiles: {
+            QVector<int> filesLengths;
+            for (const Tag &tag: qAsConst(oldTags)) filesLengths << tag.length();
+            query = plugin->queryForSearchByFiles(filesLengths);
+            break;
+        }
+        case SearchByCD: query = plugin->queryForCD();
+            break;
     }
-    else if (fromFiles) {//search by files;
-        QVector<int> filesLengths;
-        for (const Tag &tag: qAsConst(oldTags)) filesLengths << tag.length();
-        query = plugin->queryForSearchByFiles(filesLengths);
-    }
-    else {//try to search by CD
-        query = plugin->queryForCD();
-    }
+
     if (!query.isEmpty()) {
         QByteArray response = search->get(query);
         QList<SearchResult> releases = plugin->parseResponse(response);
+
+        if (App->searchInCachedResults)
+            releases.append(searchInCachedResults(query.request, searchType));
 
         found(releases, query.request);
     }
@@ -383,38 +390,14 @@ void OnlineWidget::found(const QList<SearchResult> &releases, const QString &que
         item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         searchResultsList->addTopLevelItem(item);
     }
-
-//    if (App->cacheSearchResults) {
-//        const auto base64 = query.toUtf8().toBase64();
-//        QFile f(ApplicationPaths::cachePath()+"/"+base64+".json");
-//        if (f.open(QFile::Text | QFile::Append)) {
-//            cacheResults(&f, query);
-//        }
-//    }
-
-//    if (App->searchInCachedResults) {
-//        searchInCachedResults(query);
-//    }
 }
-
-//void OnlineWidget::cacheResults(QFile *file, const QString &query)
-//{
-//    file->write("{");
-//    file->write(QString("query: %1,\n").arg(query).toUtf8());
-//    file->write("results: [\n");
-//    for (const auto &release: searchResults) {
-//        file->write(release.toJson());
-//        file->write("\n");
-//    }
-//    file->write("]\n}");
-//}
 
 void OnlineWidget::cacheResult(const SearchResult &r)
 {
     if (lastQuery.isEmpty()) return;
 
     QFile f(ApplicationPaths::cachePath()+"/"+QUuid::createUuid().toString()+".json");
-    if (f.open(QFile::Text | QFile::Append)) {
+    if (f.open(QFile::Text | QFile::WriteOnly)) {
         QJsonObject o;
         o.insert("query", lastQuery);
         o.insert("release", r.toJson());
@@ -478,9 +461,46 @@ IDownloadPlugin *OnlineWidget::maybeLoadPlugin(const QString &path)
     return plugin;
 }
 
-void OnlineWidget::searchInCachedResults(const QString &query)
+bool compareLengths(const QString &query, const SearchResult &r)
 {
-    //We need to
+
+}
+
+QList<SearchResult> OnlineWidget::searchInCachedResults(const QString &query, SearchType searchType)
+{
+    QList<SearchResult> result;
+    QDir dir(ApplicationPaths::cachePath());
+    if (!dir.exists()) return result;
+    auto list = dir.entryInfoList({"*.json"});
+    if (list.isEmpty()) return result;
+
+    for (auto &entry: list) {
+        QFile f(entry.canonicalFilePath());
+        if (f.open(QFile::ReadOnly | QFile::Text)) {
+            auto data = f.readAll();
+            QJsonParseError error;
+            QJsonDocument doc = QJsonDocument::fromJson(data, &error);
+            if (doc.isNull()) {
+                qDebug()<<error.errorString();
+                continue;
+            }
+            auto o = doc.object();
+            auto r = SearchResult::fromJson(o);
+
+            switch (searchType) {
+                case SearchManually: {
+                    //compare query
+                    if (o["query"].toString() == query) result.append(r);
+                    break;
+                }
+                case SearchByFiles:
+                case SearchByCD: {
+                    if (compareLengths(query, r)) result.append(r);
+                    break;
+                }
+            }
+        }
+    }
 }
 
 void OnlineWidget::resultFinished(const SearchResult &r, int n)

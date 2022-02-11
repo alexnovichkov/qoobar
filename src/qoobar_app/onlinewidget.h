@@ -40,8 +40,7 @@ private:
     void downloadRelease(const QString &url, const int releaseIndex);
     void setNewTag(const QString &tagValue, Tag &tag, const QString &field, int fieldID);
     IDownloadPlugin *maybeLoadPlugin(const QString &path);
-    void searchInCachedResults(const QString &query);
-//    void cacheResults(QFile *file, const QString &query);
+    QList<SearchResult> searchInCachedResults(const QString &query, SearchType searchType);
     void cacheResult(const SearchResult &r);
 
     QComboBox *sourceComboBox;

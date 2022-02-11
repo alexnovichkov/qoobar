@@ -124,4 +124,11 @@ enum SortType {
     SortFloat
 };
 
+enum SearchType
+{
+    SearchManually,
+    SearchByFiles,
+    SearchByCD
+};
+
 #endif // ENUMS_H
