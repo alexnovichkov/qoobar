@@ -14,6 +14,7 @@ struct Request {
         rawHeaders.insert(header,data);
     }
 
+    QString request;
     QUrl url;
     QByteArray data;
     QMap<QByteArray, QByteArray> rawHeaders;

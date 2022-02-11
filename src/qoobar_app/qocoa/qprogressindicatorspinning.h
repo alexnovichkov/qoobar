@@ -26,4 +26,17 @@ private:
     QPointer<QProgressIndicatorSpinningPrivate> pimpl;
 };
 
+struct QProgressIndicatorSpinningHandle
+{
+    QProgressIndicatorSpinningHandle(QProgressIndicatorSpinning *indicator) : indicator(indicator)
+    {
+        if (indicator) indicator->animate();
+    }
+    ~QProgressIndicatorSpinningHandle()
+    {
+        if (indicator) indicator->animate(false);
+    }
+    QProgressIndicatorSpinning *indicator;
+};
+
 #endif // QPROGRESSINDICATORSPINNING_H

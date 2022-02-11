@@ -316,25 +316,28 @@ void OnlineWidget::startSearch()
     QString path=sourceComboBox->itemData(sourceComboBox->currentIndex()).toString();
     IDownloadPlugin *plugin = maybeLoadPlugin(path);
 
-    if (!plugin) return;
+    if (!plugin) {
+        networkErrorInfo->setText(tr("Could not load plugin %1").arg(path));
+        return;
+    }
 
     networkErrorInfo->clear();
     networkStatusInfo->clear();
     searchResults.clear();
     searchResultsList->clear();
-    currentAlbum=-1;
+    currentAlbum = -1;
 
-    bool fromFiles = filesSearchRadioButton->isChecked();
-    bool manually = manualSearchRadioButton->isChecked();
+    const bool fromFiles = filesSearchRadioButton->isChecked();
+    const bool manually = manualSearchRadioButton->isChecked();
 
-    QString artist = artistEdit->text();
-    QString album = albumEdit->text();
+    const QString artist = artistEdit->text();
+    const QString album = albumEdit->text();
     if (manually && artist.isEmpty() && album.isEmpty()) {
         networkErrorInfo->setText(tr("Please specify an album and/or an artist for the manual search"));
         return;
     }
 
-    progress->animate(true);
+    QProgressIndicatorSpinningHandle progressHandle(progress);
     networkStatusInfo->setText(tr("Searching %1...").arg(sourceComboBox->currentText()));
 
     Request query;
@@ -353,13 +356,12 @@ void OnlineWidget::startSearch()
         QByteArray response = search->get(query);
         QList<SearchResult> releases = plugin->parseResponse(response);
 
-        found(releases);
+        found(releases, query.request);
     }
-    progress->animate(false);
     networkErrorInfo->setText(plugin->errorString());
 }
 
-void OnlineWidget::found(const QList<SearchResult> &releases)
+void OnlineWidget::found(const QList<SearchResult> &releases, const QString &query)
 {DD;
     QString path=sourceComboBox->itemData(sourceComboBox->currentIndex()).toString();
     IDownloadPlugin *plugin = maybeLoadPlugin(path);
@@ -368,6 +370,7 @@ void OnlineWidget::found(const QList<SearchResult> &releases)
         networkStatusInfo->setText(tr("Nothing found"));
         return;
     }
+    lastQuery = query;
     saveResultsAct->setEnabled(true);
     searchResultsList->clear();
     searchResults = releases;
@@ -376,9 +379,47 @@ void OnlineWidget::found(const QList<SearchResult> &releases)
     if (!plugin) return;
     for (int i=0; i<releases.size(); ++i) {
         QTreeWidgetItem *item = new QTreeWidgetItem();
-        item->setData(0,Qt::DisplayRole, plugin->releaseToList(releases.at(i)));
+        item->setData(0, Qt::DisplayRole, plugin->releaseToList(releases.at(i)));
         item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         searchResultsList->addTopLevelItem(item);
+    }
+
+//    if (App->cacheSearchResults) {
+//        const auto base64 = query.toUtf8().toBase64();
+//        QFile f(ApplicationPaths::cachePath()+"/"+base64+".json");
+//        if (f.open(QFile::Text | QFile::Append)) {
+//            cacheResults(&f, query);
+//        }
+//    }
+
+//    if (App->searchInCachedResults) {
+//        searchInCachedResults(query);
+//    }
+}
+
+//void OnlineWidget::cacheResults(QFile *file, const QString &query)
+//{
+//    file->write("{");
+//    file->write(QString("query: %1,\n").arg(query).toUtf8());
+//    file->write("results: [\n");
+//    for (const auto &release: searchResults) {
+//        file->write(release.toJson());
+//        file->write("\n");
+//    }
+//    file->write("]\n}");
+//}
+
+void OnlineWidget::cacheResult(const SearchResult &r)
+{
+    if (lastQuery.isEmpty()) return;
+
+    QFile f(ApplicationPaths::cachePath()+"/"+QUuid::createUuid().toString()+".json");
+    if (f.open(QFile::Text | QFile::Append)) {
+        QJsonObject o;
+        o.insert("query", lastQuery);
+        o.insert("release", r.toJson());
+        QJsonDocument doc(o);
+        f.write(doc.toJson());
     }
 }
 
@@ -395,18 +436,13 @@ void OnlineWidget::downloadRelease(QTreeWidgetItem *item)
     downloadRelease(searchResults.at(row).fields.value("url"),row);
 }
 
-void OnlineWidget::saveResults()
-{
-
-}
-
 void OnlineWidget::downloadRelease(const QString &url, const int releaseIndex)
 {DD;
     QString path=sourceComboBox->itemData(sourceComboBox->currentIndex()).toString();
     IDownloadPlugin *plugin = maybeLoadPlugin(path);
     if (!plugin) return;
 
-    progress->animate(true);
+    QProgressIndicatorSpinningHandle handle(progress);
 
     if (plugin->needsPause()) {
         QEventLoop loop;
@@ -428,7 +464,6 @@ void OnlineWidget::downloadRelease(const QString &url, const int releaseIndex)
     resultFinished(release, releaseIndex);
     networkStatusInfo->setText(tr("Done"));
     networkErrorInfo->setText(plugin->errorString());
-    progress->animate(false);
 }
 
 IDownloadPlugin *OnlineWidget::maybeLoadPlugin(const QString &path)
@@ -443,6 +478,11 @@ IDownloadPlugin *OnlineWidget::maybeLoadPlugin(const QString &path)
     return plugin;
 }
 
+void OnlineWidget::searchInCachedResults(const QString &query)
+{
+    //We need to
+}
+
 void OnlineWidget::resultFinished(const SearchResult &r, int n)
 {DD;
     if (n<0 || n>=searchResults.size()) return;
@@ -451,6 +491,8 @@ void OnlineWidget::resultFinished(const SearchResult &r, int n)
     searchResults.replace(n,r);
     searchResults[n].fields.insert("url", url);
     releaseInfoWidget->setSearchResult(searchResults[n]);
+
+    if (App->cacheSearchResults) cacheResult(r);
 
     const int cdCount = r.cdCount;
     if (cdCount>1) {

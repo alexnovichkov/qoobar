@@ -275,6 +275,7 @@ public:
     void saveSettings();
     void setSettings();
 private:
+    void clearCache();
     QGroupBox *useProxy;
     ClearLineEdit *proxyServer;
     ClearLineEdit *proxyPort;
@@ -284,6 +285,9 @@ private:
     QLabel *portLabel;
     QLabel *loginLabel;
     QLabel *passwordLabel;
+    QCheckBox *cacheSearchResults;
+    QCheckBox *searchInCachedResults;
+    QPushButton *clearCacheBtn;
 };
 
 class PluginsPage : public ConfigPage

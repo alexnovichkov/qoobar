@@ -26,6 +26,8 @@ QString documentationPath();
 QString pluginsPath();
 
 QString iconsPath();
+
+QString cachePath();
 } // namespace
 
 #endif // APPLICATIONPATHS_H

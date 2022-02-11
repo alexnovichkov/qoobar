@@ -30,6 +30,10 @@
 #include "coverimage.h"
 #include <QMap>
 #include "enums.h"
+#include <qjsondocument.h>
+#include <qjsonobject.h>
+#include <qjsonvalue.h>
+#include <QJsonArray>
 
 struct Artist {
     QMap<QString,QString> fields;
@@ -51,6 +55,11 @@ struct Artist {
                       .arg(artist.at(0), artist.at(1));
         return artist.at(0);
     }
+    QJsonValue toJson() const {
+        QJsonObject v;
+        for (const auto &a: fields) v.insert(a, fields.value(a));
+        return v;
+    }
 };
 
 static QString artistsText(const QList<Artist> &l)
@@ -64,6 +73,8 @@ static QString artistsText(const QList<Artist> &l)
 struct Track {
     QMap<QString,QString> fields;
     QList<Artist> artists;
+    int cd;
+
     Track() : cd(1) {}
     const QStringList toStringList() const
     {
@@ -77,7 +88,20 @@ struct Track {
         return result;
     }
 
-    int cd;
+    QJsonValue toJson() const {
+        QJsonObject v;
+        v.insert("cd", cd);
+
+        for (const auto &a: fields) v.insert(a, fields.value(a));
+
+        //if (!artists.isEmpty())
+        {
+            QJsonArray artistsList;
+            for(const auto &a: artists) artistsList.append(a.toJson());
+            v.insert("artists", artistsList);
+        }
+        return v;
+    }
 };
 
 struct SearchResult {
@@ -91,6 +115,39 @@ struct SearchResult {
         l << fields.value(QSL("extraData"));
         l.removeAll(QLS(""));
         return l;
+    }
+
+    QJsonObject toJson() const {
+        QJsonObject o;
+        o.insert("loaded", loaded);
+        o.insert("cdCount", cdCount);
+        //if (!artists.isEmpty())
+        {
+            QJsonArray artistsList;
+            for(const auto &a: this->artists) artistsList.append(a.toJson());
+            o.insert("artists", artistsList);
+        }
+        //if (!tracks.isEmpty())
+        {
+            QJsonArray tracksList;
+            for(const auto &a: this->tracks) tracksList.append(a.toJson());
+            o.insert("tracks", tracksList);
+        }
+        QJsonObject f;
+        for (const auto &a: fields.keys())
+            f.insert(a, fields.value(a));
+        o.insert("fields", f);
+        //if (!image.isEmpty())
+        {
+            QJsonObject im;
+            im.insert("type", image.type());
+            im.insert("mimetype", image.mimetype());
+            im.insert("description", image.description());
+            im.insert("data", QString::fromLatin1(image.pixmap().toBase64()));
+            o.insert("image", im);
+        }
+
+        return o;
     }
 
     bool loaded;

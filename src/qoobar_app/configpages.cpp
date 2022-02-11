@@ -743,8 +743,17 @@ NetworkPage::NetworkPage(QWidget *parent) : ConfigPage(parent)
     proxyLayout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
     useProxy->setLayout(proxyLayout);
 
+    cacheSearchResults = new QCheckBox(tr("Cache search results"), this);
+    searchInCachedResults = new QCheckBox(tr("Perform search in cached results"), this);
+    clearCacheBtn = new QPushButton(tr("Clear cache"), this);
+    connect(clearCacheBtn, &QPushButton::clicked, this, &NetworkPage::clearCache);
+
+
     auto *networkLayout = new QVBoxLayout;
     networkLayout->addWidget(useProxy);
+    networkLayout->addWidget(cacheSearchResults);
+    networkLayout->addWidget(searchInCachedResults);
+    networkLayout->addWidget(clearCacheBtn);
     networkLayout->addStretch();
 
     finalize(networkLayout);
@@ -757,6 +766,21 @@ void NetworkPage::setSettings()
     proxyPort->setText(App->proxyPort);
     proxyLogin->setText(App->proxyLogin);
     proxyPassword->setText(App->proxyPassword);
+    cacheSearchResults->setChecked(App->cacheSearchResults);
+    searchInCachedResults->setChecked(App->searchInCachedResults);
+}
+
+void NetworkPage::clearCache()
+{DD;
+    QDir dir(ApplicationPaths::cachePath());
+    if (!dir.exists()) return;
+    auto list = dir.entryInfoList({"*.json"});
+    if (list.isEmpty()) return;
+    if (QMessageBox::question(this, tr("Clearing search cache"),
+                              tr("Delete %n downloaded release(s) from the cache?").arg(list.size()))
+        ==QMessageBox::Yes) {
+        for (auto &f: list) QFile(f.canonicalFilePath()).remove();
+    }
 }
 
 QString NetworkPage::description()
@@ -776,6 +800,9 @@ void NetworkPage::retranslateUI()
     portLabel->setText(tr("Port"));
     loginLabel->setText(tr("Login"));
     passwordLabel->setText(tr("Password"));
+    cacheSearchResults->setText(tr("Cache search results"));
+    searchInCachedResults->setText(tr("Perform search in cached results"));
+    clearCacheBtn->setText(tr("Clear cache"));
 }
 void NetworkPage::saveSettings()
 {DD;
@@ -784,6 +811,8 @@ void NetworkPage::saveSettings()
     App->proxyPort = proxyPort->text();
     App->proxyLogin = proxyLogin->text();
     App->proxyPassword = proxyPassword->text();
+    App->cacheSearchResults = cacheSearchResults->isChecked();
+    App->searchInCachedResults = searchInCachedResults->isChecked();
 }
 
 

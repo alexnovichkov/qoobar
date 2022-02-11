@@ -78,3 +78,14 @@ QString ApplicationPaths::iconsPath()
 {DD;
     return sharedPath()+"/icons";
 }
+
+QString ApplicationPaths::cachePath()
+{DD;
+#ifdef Q_OS_MACOS
+    return sharedPath()+"/cache";
+#endif
+#ifdef Q_OS_LINUX
+    return QDir::homePath() + "/.config/qoobar/cache";
+#endif
+    return sharedPath()+"/cache";
+}

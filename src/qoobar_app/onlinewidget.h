@@ -18,6 +18,7 @@ class ReleaseInfoWidget;
 class IDownloadPlugin;
 class QTreeWidgetItem;
 class QAction;
+class QFile;
 
 class OnlineWidget : public QWidget
 {
@@ -32,14 +33,16 @@ private Q_SLOTS:
     void handleManualSearchRadioButton();
     void swapArtistAndAlbum();
     void handleAlbumSelection(QTreeWidgetItem*);
-    void found(const QList<SearchResult> &);
+    void found(const QList<SearchResult> &, const QString &query);
     void resultFinished(const SearchResult &,int);
     void downloadRelease(QTreeWidgetItem*);
-    void saveResults();
 private:
     void downloadRelease(const QString &url, const int releaseIndex);
     void setNewTag(const QString &tagValue, Tag &tag, const QString &field, int fieldID);
     IDownloadPlugin *maybeLoadPlugin(const QString &path);
+    void searchInCachedResults(const QString &query);
+//    void cacheResults(QFile *file, const QString &query);
+    void cacheResult(const SearchResult &r);
 
     QComboBox *sourceComboBox;
     QRadioButton *manualSearchRadioButton;
@@ -54,6 +57,7 @@ private:
     CoreNetworkSearch *search;
     QProgressIndicatorSpinning *progress;
     QAction *saveResultsAct;
+    QString lastQuery;
 
     int currentAlbum;
     QList<SearchResult> searchResults;

@@ -262,6 +262,8 @@ public:
     //depending on the style (light/dark)
     QString alternateTextColor;
     bool isDarkTheme = false;
+    bool cacheSearchResults = true;
+    bool searchInCachedResults = true;
 Q_SIGNALS:
     void settingsCleared();
     void dockClicked();
