@@ -52,11 +52,21 @@ en.Main=Main Program Files
 en.Help=Help Files
 en.RG=Additional utilities (recommended)
 en.Plugins=Additional tags processing plugins
+en.open=Open in Qoobar
+en.addtocontextmenu=Add Qoobar to the Explorer context menu
+en.contextmenu=Context menu
+en.allusers=For all users
+en.currentuser=For the current user only
 
 ru.Main=Основные файлы программы
 ru.Help=Файлы справки
 ru.RG=Дополнительные утилиты
 ru.Plugins=Дополнительные плагины обработки тегов
+ru.open=Открыть в Qoobar
+ru.addtocontextmenu=Добавить Qoobar в контекстное меню проводника
+ru.contextmenu=Контекстное меню
+ru.allusers=Для всех пользователей
+ru.currentuser=Только для текущего пользователя
 
 nl.Main=Belangrijkste bestanden
 nl.Help=Helpbestanden
@@ -85,6 +95,9 @@ fr.Plugins=Plugins supplémentaires
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: addtocontextmenu; Description: "{cm:addtocontextmenu}"; GroupDescription: "{cm:contextmenu}"; Components: main
+Name: addtocontextmenu\common; Description: "{cm:allusers}"; GroupDescription: "{cm:contextmenu}"; Components: main; Flags: exclusive
+Name: addtocontextmenu\user; Description: "{cm:currentuser}"; GroupDescription: "{cm:contextmenu}"; Components: main; Flags: exclusive unchecked
 
 [Components]
 Name: "main"; Description: "{cm:Main}"; Types: full compact custom; Flags: fixed
@@ -176,6 +189,13 @@ Filename: "{app}\qoobar.exe"; Description: "{cm:LaunchProgram,Qoobar}"; Flags: n
 
 [Registry]
 Root: "HKCU"; Subkey: "Software\qoobar\gui"; ValueType: string; ValueName: "lang"; ValueData: "{language}"; Flags: createvalueifdoesntexist
+Root: "HKCU"; Subkey: "Software\Classes\Directory\shell\OpenWithQoobar"; Tasks: addtocontextmenu\user; ValueType: string; ValueData: "{cm:open}"; Flags: uninsdeletekey
+Root: "HKCU"; Subkey: "Software\Classes\Directory\shell\OpenWithQoobar\command"; Tasks: addtocontextmenu\user; ValueType: string; ValueData: "{app}\qoobar.exe ""%1"""; Flags: uninsdeletekey
+Root: "HKCU"; Subkey: "Software\Classes\Directory\shell\OpenWithQoobar"; Tasks: addtocontextmenu\user; ValueType: string; ValueName: "Icon"; ValueData: "{app}\qoobar.exe"; Flags: uninsdeletekey
+
+Root: "HKCR"; Subkey: "Directory\shell\OpenWithQoobar\command"; Tasks: addtocontextmenu\common; ValueType: string; ValueData: "{app}\qoobar.exe ""%1"""; Flags: uninsdeletekey
+Root: "HKCR"; Subkey: "Directory\shell\OpenWithQoobar"; Tasks: addtocontextmenu\common; ValueType: string; ValueData: "{cm:open}"; Flags: uninsdeletekey
+Root: "HKCR"; Subkey: "Directory\shell\OpenWithQoobar"; Tasks: addtocontextmenu\common; ValueType: string; ValueName: "Icon"; ValueData: "{app}\qoobar.exe"; Flags: uninsdeletekey
 
 [UninstallDelete]
 Type: dirifempty; Name: "{app}\html"
