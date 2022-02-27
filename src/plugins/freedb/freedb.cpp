@@ -130,6 +130,7 @@ QList<SearchResult> FreedbPlugin::parseResponse(const QByteArray &response)
                     r.fields.insert("url", frame.arg(catIdRe.cap(1) + "+" + catIdRe.cap(2)));
                     pos+=catIdRe.matchedLength();
                 }
+                r.releaseInfo = releaseToList(r);
                 results << r;
             }
         }
@@ -203,6 +204,7 @@ SearchResult FreedbPlugin::parseRelease(const QByteArray &response)
         Q_FOREACH (const int &offset,offsets) {
             Track t; t.cd=-1;
             t.fields.insert("length",Qoobar::formatLength(offset));
+            t.length = offset;
             r.tracks << t;
         }
 
@@ -266,6 +268,7 @@ SearchResult FreedbPlugin::parseRelease(const QByteArray &response)
         }
     }
     else m_errorString=QString::fromUtf8(response).mid(4);
+    r.releaseInfo = releaseToList(r);
 
     return r;
 }

@@ -46,6 +46,7 @@ public:
                   const QString &proxyPassword);
     void setUserAgent(const QString &userAgent);
     QByteArray get(const Request &request);
+    QByteArray get(const QUrl &url, const QByteArray &data, const QMap<QByteArray, QByteArray> &rawHeaders);
 Q_SIGNALS:
     void error(const QString &);
 private Q_SLOTS:

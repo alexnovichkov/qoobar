@@ -137,6 +137,7 @@ QList<SearchResult> DiscogsPlugin::parseResponse(const QByteArray &response)
 
     QVariantList filtered = QtConcurrent::blockingFiltered(result["results"].toList(), isCD);
     results = parseToList(filtered, toSearchResult);
+    for (auto &r : results) r.releaseInfo = releaseToList(r);
 
     return results;
 }
@@ -181,7 +182,7 @@ SearchResult DiscogsPlugin::parseRelease(const QByteArray &response)
                             toArtist);
     r.tracks = parseToList(result["tracklist"].toList(),toTrack);
     r.fields.insert("comment", result["notes"].toString());
-
+    r.releaseInfo = releaseToList(r);
     return r;
 }
 

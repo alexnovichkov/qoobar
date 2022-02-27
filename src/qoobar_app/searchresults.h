@@ -38,6 +38,9 @@
 
 struct Artist {
     QMap<QString,QString> fields;
+    bool operator==(const Artist &other) const {
+        return fields==other.fields;
+    }
 
     const QString toString() const
     {
@@ -58,7 +61,7 @@ struct Artist {
     }
     QJsonValue toJson() const {
         QJsonObject v;
-        for (const auto &a: fields) v.insert(a, fields.value(a));
+        for (const auto &a: fields.keys()) v.insert(a, fields.value(a));
         return v;
     }
     static Artist fromJson(const QJsonObject &json)
@@ -83,8 +86,13 @@ struct Track {
     QMap<QString,QString> fields;
     QList<Artist> artists;
     int cd;
+    int length; //in seconds
 
-    Track() : cd(1) {}
+    bool operator==(const Track &other) const {
+        return fields==other.fields && artists==other.artists && cd==other.cd && length==other.length;
+    }
+
+    Track() : cd(1), length(0) {}
     const QStringList toStringList() const
     {
         QStringList result;
@@ -100,10 +108,13 @@ struct Track {
     QJsonValue toJson() const {
         QJsonObject v;
         v.insert("cd", cd);
+        v.insert("lengthInSec",length);
 
-        for (const auto &a: fields) v.insert(a, fields.value(a));
+        QJsonObject f;
+        for (const auto &a: fields.keys()) f.insert(a, fields.value(a));
+        v.insert("fields", f);
 
-        //if (!artists.isEmpty())
+        if (!artists.isEmpty())
         {
             QJsonArray artistsList;
             for(const auto &a: artists) artistsList.append(a.toJson());
@@ -115,6 +126,7 @@ struct Track {
     {
         Track t;
         t.cd = json["cd"].toInt();
+        t.length = json["lengthInSec"].toInt();
         if (json.contains("artists")) {
             auto list = json["artists"].toArray();
             for (const auto &l: list) t.artists.append(Artist::fromJson(l.toObject()));
@@ -128,7 +140,12 @@ struct Track {
 };
 
 struct SearchResult {
-    SearchResult() : loaded(false), cdCount(1) {}
+    SearchResult() {
+        static quint32 i = 0;
+        index = i*0x100000000;
+//        qDebug()<<"new index"<<index;
+        i++;
+    }
 
     const QStringList toStringList() const
     {
@@ -140,11 +157,30 @@ struct SearchResult {
         return l;
     }
 
+    int tracksCount(int cd = -1) const
+    {
+        if (tracks.isEmpty()) return 0;
+        if (cd == -1) return tracks.size();
+        return std::count_if(tracks.cbegin(), tracks.cend(), [cd](const Track &t){return t.cd==cd;});
+    }
+
+    int duration(int cd = -1) const
+    {
+        if (tracks.isEmpty()) return 0;
+        return std::accumulate(tracks.cbegin(), tracks.cend(), 0,
+                                             [cd](int sum, const Track &t)
+        {
+            if (t.cd == cd || cd == -1) return t.length+sum;
+            return sum;
+        });
+    }
+
     QJsonObject toJson() const {
         QJsonObject o;
         o.insert("loaded", loaded);
         o.insert("cdCount", cdCount);
         o.insert("cached", true);
+        o.insert("releaseInfo", releaseInfo.join('\n'));
         if (!artists.isEmpty())
         {
             QJsonArray artistsList;
@@ -173,6 +209,14 @@ struct SearchResult {
 
         return o;
     }
+    static SearchResult emptyResult()
+    {
+        SearchResult result;
+        result.query="<<Cached>>";
+        result.cached=true;
+        result.releaseInfo=QStringList()<<""<<QObject::tr("Cached releases")<<"";
+        return result;
+    }
     static SearchResult fromJson(const QJsonObject &json)
     {
         SearchResult r;
@@ -180,6 +224,7 @@ struct SearchResult {
         r.cached = json["cached"].toBool();
         r.loaded = json["loaded"].toBool();
         r.cdCount = json["cdCount"].toInt();
+        r.releaseInfo = json["releaseInfo"].toString().split('\n');
 
         if (json.contains("image")) {
             CoverImage image;
@@ -205,20 +250,53 @@ struct SearchResult {
         }
         return r;
     }
-    QString lengths() const
+    bool operator==(const SearchResult &other) const
     {
-        QList<int> lengths;
+        return loaded==other.loaded && cdCount==other.cdCount && fields==other.fields
+                && artists==other.artists && tracks==other.tracks && image==other.image
+                && cached==other.cached && releaseInfo==other.releaseInfo;
     }
 
-    bool loaded;
-    int cdCount;
+    bool loaded=false;
+    int cdCount=1;
     QMap<QString,QString> fields;
     QList<Artist> artists;
     QList<Track> tracks;
     CoverImage image;
     bool cached = false;
     QString query;
+    QStringList releaseInfo;
+
+    quint64 index;
 };
+
+//#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+//using qhash_result_t = uint;
+//#else
+//using qhash_result_t = size_t;
+//#endif
+
+//inline qhash_result_t qHash(const Artist &key, qhash_result_t seed) noexcept
+//{
+//    return qHashRange(key.fields.begin(), key.fields.end(), seed);
+//}
+
+//inline qhash_result_t qHash(const QList<Artist> &key, qhash_result_t seed) noexcept
+//{
+//    return qHashRange(key.begin(), key.end(), seed);
+//}
+
+////inline qhash_result_t qHash(const QMap<QString,QString> &key, qhash_result_t seed) noexcept
+////{
+////    return qHashRange(key.begin(), key.end(), seed);
+////}
+
+//inline qhash_result_t qHash(const SearchResult &key, qhash_result_t seed) noexcept
+//{
+//    QtPrivate::QHashCombine hash;
+//    seed = hash(seed, key.artists);
+//    return seed;
+//}
 
 
 #endif // SEARCHRESULTS_H

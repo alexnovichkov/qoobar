@@ -9,11 +9,12 @@
 #include "corenetworksearch.h"
 #include "logging.h"
 #include "idownloadplugin.h"
+#include "onlinemodel.h"
 
 class SearchResultsListDelegate : public QItemDelegate
 {
 public:
-    SearchResultsListDelegate(QObject *parent) : QItemDelegate(parent) {}
+    explicit SearchResultsListDelegate(QObject *parent) : QItemDelegate(parent) {}
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
     {
         if (!painter) return;
@@ -21,20 +22,22 @@ public:
         painter->save();
 
         if (index.isValid()) {
-            if (!index.parent().isValid()) {
+            if (!index.parent().isValid() /*|| index.row()!=1*/) {
                 QStringList albumInfo = index.data(Qt::DisplayRole).toStringList();
                 if (albumInfo.isEmpty()) {
                     QItemDelegate::paint(painter,option,index);
                     painter->restore();
                     return;
                 }
+
                 drawBackground(painter, option, index);
                 drawFocus(painter, option, option.rect);
 
-                QRectF albumRect=option.rect;
-                albumRect.setLeft(albumRect.left()+5);
+                QRect albumRect = option.rect;
+                albumRect.setLeft(albumRect.left()+25);
+                albumRect.setWidth(option.rect.width()-25);
                 int num = albumInfo.size();
-                int h=albumRect.height()/num;
+                int h = albumRect.height()/num;
                 albumRect.setHeight(h);
                 int w = albumRect.width();
 
@@ -53,10 +56,21 @@ public:
                     painter->drawText(extraDataRect,Qt::AlignLeft | Qt::TextSingleLine,
                                       option.fontMetrics.elidedText(albumInfo.at(i),Qt::ElideRight,w));
                 }
+                auto icon = index.data(Qt::DecorationRole);
+                if (icon.isValid()) {
+                    QRect iconRect = option.rect;
+                    iconRect.setWidth(20);
+                    iconRect.setHeight(20);
+                    iconRect.translate(10,10);
+                    drawDecoration(painter, option, iconRect, icon.value<QIcon>().pixmap(16,16));
+                }
             }
-            else QItemDelegate::paint(painter,option,index);
+            else {
+                QItemDelegate::paint(painter,option,index);
+            }
         }
-        else QItemDelegate::paint(painter,option,index);
+        else
+            QItemDelegate::paint(painter,option,index);
 
         painter->restore();
     }
@@ -64,7 +78,7 @@ public:
     {
         if (!index.isValid()) return option.rect.size();
         QStringList albumInfo = index.data(Qt::DisplayRole).toStringList();
-        return QSize(option.rect.width(),option.fontMetrics.height()*albumInfo.size());
+        return QSize(option.rect.width()+20,option.fontMetrics.height()*albumInfo.size()+5);
     }
 };
 
@@ -100,6 +114,8 @@ OnlineWidget::OnlineWidget(const QList<Tag> &oldTags, QWidget *parent)
     sourceComboBox = new QComboBox(this);
     sourceComboBox->setEditable(false);
 
+    model = new OnlineModel(this);
+
     for (const auto &metaData: qAsConst(App->downloadPlugins)) {
         QString text = metaData.value(QSL("text")).toObject().value(App->langID).toString();
         if (text.isEmpty())
@@ -115,11 +131,11 @@ OnlineWidget::OnlineWidget(const QList<Tag> &oldTags, QWidget *parent)
     albumEdit->setEnabled(false);
 
     manualSearchRadioButton = new QRadioButton(tr("manually"),this);
-    connect(manualSearchRadioButton,SIGNAL(clicked()),SLOT(handleManualSearchRadioButton()));
+    connect(manualSearchRadioButton,SIGNAL(clicked()),SLOT(updateManualSearchEdits()));
     cdSearchRadioButton = new QRadioButton(tr("by CD in CD-ROM"),this);
-    connect(cdSearchRadioButton,SIGNAL(clicked()),SLOT(handleManualSearchRadioButton()));
+    connect(cdSearchRadioButton,SIGNAL(clicked()),SLOT(updateManualSearchEdits()));
     filesSearchRadioButton = new QRadioButton(tr("by selected files"),this);
-    connect(filesSearchRadioButton,SIGNAL(clicked()),SLOT(handleManualSearchRadioButton()));
+    connect(filesSearchRadioButton,SIGNAL(clicked()),SLOT(updateManualSearchEdits()));
     filesSearchRadioButton->setChecked(true);
 
     QPushButton *swapButton = new QPushButton(QIcon::fromTheme("flip"),QString(),this);
@@ -129,23 +145,24 @@ OnlineWidget::OnlineWidget(const QList<Tag> &oldTags, QWidget *parent)
     startSearchButton = new QPushButton(tr("Search"),this);
     connect(startSearchButton,SIGNAL(clicked()),SLOT(startSearch()));
 
-    searchResultsList = new QTreeWidget(this);
-    searchResultsList->setAlternatingRowColors(true);
-    searchResultsList->setColumnCount(1);
-    searchResultsList->setRootIsDecorated(false);
-#ifdef OSX_SUPPORT_ENABLED
-    searchResultsList->setHeaderLabels(QStringList()<<tr("Search results"));
-    searchResultsList->header()->setDefaultAlignment(Qt::AlignCenter);
-#else
-    searchResultsList->header()->hide();
+    tree = new QTreeView(this);
+    tree->setModel(model);
+    tree->setAlternatingRowColors(true);
+    tree->setAllColumnsShowFocus(true);
+    tree->setRootIsDecorated(true);
+    tree->setItemsExpandable(true);
+    tree->setContextMenuPolicy(Qt::CustomContextMenu);
+#ifndef OSX_SUPPORT_ENABLED
+    tree->header()->hide();
 #endif
-    searchResultsList->setSelectionMode(QAbstractItemView::SingleSelection);
+    tree->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    connect(searchResultsList,SIGNAL(itemClicked(QTreeWidgetItem*,int)),
-            SLOT(handleAlbumSelection(QTreeWidgetItem*)));
-    connect(searchResultsList,SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
-            SLOT(downloadRelease(QTreeWidgetItem*)));
-    searchResultsList->setItemDelegate(new SearchResultsListDelegate(this));
+
+
+    connect(tree,SIGNAL(clicked(QModelIndex)), this, SLOT(onTreeItemClicked(QModelIndex)));
+    connect(tree->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+            this, SLOT(onItemsSelectionChanged(QItemSelection,QItemSelection)));
+    tree->setItemDelegate(new SearchResultsListDelegate(this));
 
     releaseInfoWidget = new ReleaseInfoWidget(this);
 
@@ -157,12 +174,27 @@ OnlineWidget::OnlineWidget(const QList<Tag> &oldTags, QWidget *parent)
     connect(search,SIGNAL(error(QString)),networkErrorInfo,SLOT(setText(QString)));
     search->setUserAgent(QString("Qoobar/%1+https://qoobar.sourceforge.io").arg(QOOBAR_VERSION));
 
-    saveResultsAct = new QAction(tr("Export search results"), this);
+    saveResultsAct = new QAction(tr("Cache this release"), this);
     saveResultsAct->setIcon(QIcon::fromTheme("document-save"));
     saveResultsAct->setEnabled(false);
+    connect(saveResultsAct, SIGNAL(triggered()), this, SLOT(cacheResult()));
+
+    clearCacheAct = new QAction(tr("Delete cached releases"), this);
+    clearCacheAct->setIcon(QIcon::fromTheme("edit-delete"));
+    connect(model, SIGNAL(cacheEmpty(bool)), clearCacheAct, SLOT(setDisabled(bool)));
+    connect(clearCacheAct, SIGNAL(triggered()), this, SLOT(clearCache()));
+    model->loadCachedReleases();
+
+    downloadReleaseAct = new QAction(tr("Download this release"), this);
+    downloadReleaseAct->setIcon(QIcon::fromTheme("edit-download"));
+    connect(downloadReleaseAct, SIGNAL(triggered()), this, SLOT(downloadRelease()));
+
+    tree->addAction(saveResultsAct);
+    tree->addAction(downloadReleaseAct);
 
     QToolBar *toolBar = new QToolBar(this);
     toolBar->addAction(saveResultsAct);
+    toolBar->addAction(clearCacheAct);
     toolBar->setIconSize(QSize(16,16));
 
 
@@ -191,7 +223,7 @@ OnlineWidget::OnlineWidget(const QList<Tag> &oldTags, QWidget *parent)
 
     QSplitter *splitter = new QSplitter(Qt::Horizontal,this);
     QVBoxLayout *leftSplitterL = new QVBoxLayout;
-    leftSplitterL->addWidget(searchResultsList);
+    leftSplitterL->addWidget(tree);
     leftSplitterL->setContentsMargins(0,0,10,0);
     leftSplitterL->setMenuBar(toolBar);
     auto *leftSplitterW = new QWidget(this);
@@ -229,28 +261,243 @@ OnlineWidget::OnlineWidget(const QList<Tag> &oldTags, QWidget *parent)
     else {
         sourceComboBox->setCurrentIndex(App->lastSearchServer);
     }
+}
 
-    currentAlbum = -1;
+void OnlineWidget::swapArtistAndAlbum()
+{DD;
+    QString s = artistEdit->text();
+    artistEdit->setText(albumEdit->text());
+    albumEdit->setText(s);
+}
+
+void OnlineWidget::onTreeItemClicked(const QModelIndex &idx, bool force)
+{
+    if (idx.isValid()) {
+        int row = -1;
+        int cd = -1;
+        if (!idx.parent().isValid()) //top-level item, release
+            row = idx.row();
+        else {// a CD in a release
+            row = idx.parent().row();
+            cd = idx.row()+1;
+        }
+        if (row<0) return;
+
+        if (model->item(row)==SearchResult::emptyResult())
+            return;
+
+        if (!model->item(row).loaded || force)
+            downloadRelease(model->item(row).fields.value(QSL("url")),row);
+        else
+            releaseInfoWidget->setSearchResult(model->item(row), cd);
+        model->select(row, cd);
+    }
+    else model->select(-1, -1);
+}
+
+QList<int> lengths(const QList<Tag> &tags)
+{
+    QList<int> result;
+    for (const auto &t: tags) result << t.length();
+    return result;
+}
+
+void OnlineWidget::startSearch()
+{DD;
+    QString path = sourceComboBox->itemData(sourceComboBox->currentIndex()).toString();
+    IDownloadPlugin *plugin = maybeLoadPlugin(path);
+
+    if (!plugin) {
+        networkErrorInfo->setText(tr("Could not load plugin %1").arg(path));
+        return;
+    }
+
+    networkErrorInfo->clear();
+    networkStatusInfo->clear();
+
+    const SearchType searchType = manualSearchRadioButton->isChecked() ? SearchManually :
+                 (filesSearchRadioButton->isChecked() ? SearchByFiles : SearchByCD);
+    const QString artist = artistEdit->text();
+    const QString album = albumEdit->text();
+
+    if (searchType == SearchManually && artist.isEmpty() && album.isEmpty()) {
+        networkErrorInfo->setText(tr("Please specify an album and/or an artist for the manual search"));
+        return;
+    }
+
+    QProgressIndicatorSpinningHandle progressHandle(progress);
+    networkStatusInfo->setText(tr("Searching %1...").arg(sourceComboBox->currentText()));
+
+    Request query;
+    switch (searchType) {
+        case SearchManually: query = plugin->queryForManualSearch({artist, album});
+            break;
+        case SearchByFiles: {
+            QList<int> filesLengths = lengths(oldTags);
+            QJsonArray array;
+            for (int i: qAsConst(filesLengths)) {
+                array.append(i);
+            }
+            query = plugin->queryForSearchByFiles(filesLengths);
+            break;
+        }
+        case SearchByCD: query = plugin->queryForCD();
+            break;
+    }
+
+    if (!query.isEmpty()) {
+        QByteArray response = search->get(query);
+        QList<SearchResult> releases = plugin->parseResponse(response);
+
+        model->setFoundReleases(releases);
+        if (releases.isEmpty()) {
+            networkStatusInfo->setText(tr("Nothing found"));
+        }
+        else
+            networkStatusInfo->setText(tr("Found %n album(s)", "", releases.size()));
+    }
+    networkErrorInfo->setText(plugin->errorString());
+}
+
+void OnlineWidget::onItemsSelectionChanged(const QItemSelection& selected, const QItemSelection&)
+{DD;
+    if (selected.isEmpty()) saveResultsAct->setDisabled(true);
+    else {
+        auto r = model->item(selected.indexes().first());
+        saveResultsAct->setEnabled(r.loaded && !r.cached);
+    }
+}
+
+void OnlineWidget::downloadRelease(const QString &url, const int releaseIndex)
+{DD;
+    QString path=sourceComboBox->itemData(sourceComboBox->currentIndex()).toString();
+    IDownloadPlugin *plugin = maybeLoadPlugin(path);
+    if (!plugin) return;
+
+    QProgressIndicatorSpinningHandle handle(progress);
+
+    if (plugin->needsPause()) {
+        QEventLoop loop;
+        QTimer::singleShot(plugin->preferredPauseSize(), &loop, SLOT(quit()));
+        loop.exec();
+    }
+    networkStatusInfo->setText(tr("Retrieving release info..."));
+    networkErrorInfo->clear();
+
+    QByteArray response = search->get(plugin->queryForRelease(url));
+    SearchResult release = plugin->parseRelease(response);
+    QString imageUrl = release.image.description();
+    if (!imageUrl.isEmpty()) {
+        QByteArray data = search->get(plugin->queryForPicture(imageUrl));
+        QPixmap img;
+        if (img.loadFromData(data))
+            release.image.setPixmap(data);
+    }
+
+    networkStatusInfo->setText(tr("Done"));
+    networkErrorInfo->setText(plugin->errorString());
+
+    resultFinished(release, releaseIndex);
+}
+
+void OnlineWidget::resultFinished(const SearchResult &r, int n)
+{DD;
+    model->setResult(r, n);
+    releaseInfoWidget->setSearchResult(model->item(n));
+    tree->setExpanded(model->index(n,0,QModelIndex()), true);
+    tree->selectionModel()->select(model->index(n,0,QModelIndex()), QItemSelectionModel::ClearAndSelect);
+}
+
+IDownloadPlugin *OnlineWidget::maybeLoadPlugin(const QString &path)
+{DD;
+    IDownloadPlugin *plugin = loadedPlugins.value(path, 0);
+    if (!plugin) {
+        QPluginLoader loader(path);
+        QObject *o = loader.instance();
+        if (o) plugin = qobject_cast<IDownloadPlugin *>(o);
+        if (plugin) loadedPlugins.insert(path, plugin);
+    }
+    return plugin;
+}
+
+void OnlineWidget::cacheResult()
+{
+    if (!tree->selectionModel()->hasSelection()) return;
+    auto r = model->item(tree->selectionModel()->selectedIndexes().first());
+
+    if (r.cached) return;
+
+    model->cacheResult(r);
+}
+
+void OnlineWidget::clearCache()
+{
+    QDir dir(ApplicationPaths::cachePath());
+    if (!dir.exists()) return;
+    auto list = dir.entryInfoList({"*.json"});
+    if (list.isEmpty()) return;
+
+    const bool cached = model->currentResult().cached;
+
+    if (QMessageBox::question(this, tr("Qoobar - Clearing download cache"),
+                              tr("Do you want to delete all of %n cached releases?", "", list.size()))==QMessageBox::Yes) {
+        for (auto &fi: list) QFile::remove(fi.canonicalFilePath());
+    }
+    clearCacheAct->setDisabled(dir.isEmpty());
+    model->clearCache();
+    //clear releaseinfowidget if there was a cached release displayed there
+    if (cached)
+        releaseInfoWidget->clear();
+}
+
+void OnlineWidget::downloadRelease()
+{
+    auto selection = tree->selectionModel()->selectedIndexes();
+    if (selection.isEmpty()) return;
+
+    onTreeItemClicked(selection.first(), true);
+}
+
+void OnlineWidget::handleSourceComboBox(int row)
+{DD;
+    if (row<0 || row>=App->downloadPlugins.size()) return;
+    App->lastSearchServer = row;
+
+    QJsonObject meta = App->downloadPlugins.at(row);
+    bool canSearchByFiles=meta.value(QSL("canSearchByFiles")).toBool(false);
+    bool canSearchByCD=meta.value(QSL("canSearchByCD")).toBool(false);
+    bool canSearchManually=meta.value(QSL("canSearchManually")).toBool(false);
+
+    filesSearchRadioButton->setEnabled(canSearchByFiles);
+    cdSearchRadioButton->setEnabled(canSearchByCD);
+    manualSearchRadioButton->setEnabled(canSearchManually);
+
+    if (filesSearchRadioButton->isEnabled()) filesSearchRadioButton->setChecked(true);
+    else if (cdSearchRadioButton->isEnabled()) cdSearchRadioButton->setChecked(true);
+    else  manualSearchRadioButton->setChecked(true);
+    updateManualSearchEdits();
+}
+
+void OnlineWidget::updateManualSearchEdits()
+{DD;
+    artistEdit->setEnabled(manualSearchRadioButton->isChecked());
+    albumEdit->setEnabled(manualSearchRadioButton->isChecked());
+    if (manualSearchRadioButton->isChecked()) artistEdit->setFocus();
 }
 
 QList<Tag> OnlineWidget::getTags()
-{DD;
+{
     QList<Tag> newTags = oldTags;
 
-    if (searchResults.isEmpty() || currentAlbum==-1)
+    if (model->isEmpty())
         return newTags;
 
-    SearchResult &res = searchResults[currentAlbum];
+    SearchResult res = model->currentResult();
 
     int c = 0;
     QString prefix;
-    QList<Track> cdTracks;
-    if (res.cdCount <= 1) cdTracks = res.tracks;
-    else {
-        for (int i=0; i<res.tracks.size(); ++i) {
-            if (res.tracks[i].cd == releaseInfoWidget->cd()) cdTracks << res.tracks[i];
-        }
-    }
+    QList<Track> cdTracks = res.tracks;
+
     for (int i=0; i<cdTracks.size(); ++i) {
         if (!releaseInfoWidget->useTrack(i)) continue;
 
@@ -287,6 +534,8 @@ QList<Tag> OnlineWidget::getTags()
             setNewTag(trackConductors.join(QSL("; ")), tag, QSL("artist"), CONDUCTOR);
             setNewTag(tracklyricists.join(QSL("; ")), tag, QSL("artist"), LYRICIST);
             setNewTag(artist, tag, QSL("artist"), ARTIST);
+            setNewTag(QString::number(cdTracks[i].cd), tag, DISCNUMBER);
+            setNewTag(QString::number(res.cdCount), tag, TOTALDISCS);
 
             if (!res.image.pixmap().isNull() && releaseInfoWidget->use("image")) tag.setImage(res.image);
             if (releaseInfoWidget->use("titles")) tag.setTag(TRACKNUMBER,no);
@@ -304,276 +553,13 @@ QList<Tag> OnlineWidget::getTags()
     return newTags;
 }
 
-void OnlineWidget::swapArtistAndAlbum()
-{DD;
-    QString s = artistEdit->text();
-    artistEdit->setText(albumEdit->text());
-    albumEdit->setText(s);
-}
-
-void OnlineWidget::startSearch()
-{DD;
-    QString path=sourceComboBox->itemData(sourceComboBox->currentIndex()).toString();
-    IDownloadPlugin *plugin = maybeLoadPlugin(path);
-
-    if (!plugin) {
-        networkErrorInfo->setText(tr("Could not load plugin %1").arg(path));
-        return;
-    }
-
-    networkErrorInfo->clear();
-    networkStatusInfo->clear();
-    searchResults.clear();
-    searchResultsList->clear();
-    currentAlbum = -1;
-
-    const bool fromFiles = filesSearchRadioButton->isChecked();
-    const bool manually = manualSearchRadioButton->isChecked();
-
-    const QString artist = artistEdit->text();
-    const QString album = albumEdit->text();
-    if (manually && artist.isEmpty() && album.isEmpty()) {
-        networkErrorInfo->setText(tr("Please specify an album and/or an artist for the manual search"));
-        return;
-    }
-    SearchType searchType = manualSearchRadioButton->isChecked() ? SearchManually :
-                 (filesSearchRadioButton->isChecked() ? SearchByFiles : SearchByCD);
-
-    QProgressIndicatorSpinningHandle progressHandle(progress);
-    networkStatusInfo->setText(tr("Searching %1...").arg(sourceComboBox->currentText()));
-
-    Request query;
-    switch (searchType) {
-        case SearchManually: query = plugin->queryForManualSearch({artist, album});
-            break;
-        case SearchByFiles: {
-            QVector<int> filesLengths;
-            for (const Tag &tag: qAsConst(oldTags)) filesLengths << tag.length();
-            query = plugin->queryForSearchByFiles(filesLengths);
-            break;
-        }
-        case SearchByCD: query = plugin->queryForCD();
-            break;
-    }
-
-    if (!query.isEmpty()) {
-        QByteArray response = search->get(query);
-        QList<SearchResult> releases = plugin->parseResponse(response);
-
-        if (App->searchInCachedResults)
-            releases.append(searchInCachedResults(query.request, searchType));
-
-        found(releases, query.request);
-    }
-    networkErrorInfo->setText(plugin->errorString());
-}
-
-void OnlineWidget::found(const QList<SearchResult> &releases, const QString &query)
-{DD;
-    QString path=sourceComboBox->itemData(sourceComboBox->currentIndex()).toString();
-    IDownloadPlugin *plugin = maybeLoadPlugin(path);
-
-    if (releases.isEmpty()) {
-        networkStatusInfo->setText(tr("Nothing found"));
-        return;
-    }
-    lastQuery = query;
-    saveResultsAct->setEnabled(true);
-    searchResultsList->clear();
-    searchResults = releases;
-    networkStatusInfo->setText(tr("Found %n album(s)","",releases.size()));
-
-    if (!plugin) return;
-    for (int i=0; i<releases.size(); ++i) {
-        QTreeWidgetItem *item = new QTreeWidgetItem();
-        item->setData(0, Qt::DisplayRole, plugin->releaseToList(releases.at(i)));
-        item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-        searchResultsList->addTopLevelItem(item);
-    }
-}
-
-void OnlineWidget::cacheResult(const SearchResult &r)
-{
-    if (lastQuery.isEmpty()) return;
-
-    QFile f(ApplicationPaths::cachePath()+"/"+QUuid::createUuid().toString()+".json");
-    if (f.open(QFile::Text | QFile::WriteOnly)) {
-        QJsonObject o;
-        o.insert("query", lastQuery);
-        o.insert("release", r.toJson());
-        QJsonDocument doc(o);
-        f.write(doc.toJson());
-    }
-}
-
-void OnlineWidget::downloadRelease(QTreeWidgetItem *item)
-{DD;
-    int row = -1;
-    if (item->parent()==0) //top-level item, release
-        row = searchResultsList->indexOfTopLevelItem(item);
-    else // a CD in a release
-        row = searchResultsList->indexOfTopLevelItem(item->parent());
-    if (row<0) return;
-
-    currentAlbum = row;
-    downloadRelease(searchResults.at(row).fields.value("url"),row);
-}
-
-void OnlineWidget::downloadRelease(const QString &url, const int releaseIndex)
-{DD;
-    QString path=sourceComboBox->itemData(sourceComboBox->currentIndex()).toString();
-    IDownloadPlugin *plugin = maybeLoadPlugin(path);
-    if (!plugin) return;
-
-    QProgressIndicatorSpinningHandle handle(progress);
-
-    if (plugin->needsPause()) {
-        QEventLoop loop;
-        QTimer::singleShot(plugin->preferredPauseSize(), &loop, SLOT(quit()));
-        loop.exec();
-    }
-    networkStatusInfo->setText(tr("Retrieving release info..."));
-    networkErrorInfo->clear();
-
-    QByteArray response = search->get(plugin->queryForRelease(url));
-    SearchResult release = plugin->parseRelease(response);
-    QString imageUrl = release.image.description();
-    if (!imageUrl.isEmpty()) {
-        QByteArray data = search->get(plugin->queryForPicture(imageUrl));
-        QPixmap img;
-        if (img.loadFromData(data))
-            release.image.setPixmap(data);
-    }
-    resultFinished(release, releaseIndex);
-    networkStatusInfo->setText(tr("Done"));
-    networkErrorInfo->setText(plugin->errorString());
-}
-
-IDownloadPlugin *OnlineWidget::maybeLoadPlugin(const QString &path)
-{DD;
-    IDownloadPlugin *plugin = loadedPlugins.value(path, 0);
-    if (!plugin) {
-        QPluginLoader loader(path);
-        QObject *o = loader.instance();
-        if (o) plugin = qobject_cast<IDownloadPlugin *>(o);
-        if (plugin) loadedPlugins.insert(path, plugin);
-    }
-    return plugin;
-}
-
-bool compareLengths(const QString &query, const SearchResult &r)
-{
-
-}
-
-QList<SearchResult> OnlineWidget::searchInCachedResults(const QString &query, SearchType searchType)
-{
-    QList<SearchResult> result;
-    QDir dir(ApplicationPaths::cachePath());
-    if (!dir.exists()) return result;
-    auto list = dir.entryInfoList({"*.json"});
-    if (list.isEmpty()) return result;
-
-    for (auto &entry: list) {
-        QFile f(entry.canonicalFilePath());
-        if (f.open(QFile::ReadOnly | QFile::Text)) {
-            auto data = f.readAll();
-            QJsonParseError error;
-            QJsonDocument doc = QJsonDocument::fromJson(data, &error);
-            if (doc.isNull()) {
-                qDebug()<<error.errorString();
-                continue;
-            }
-            auto o = doc.object();
-            auto r = SearchResult::fromJson(o);
-
-            switch (searchType) {
-                case SearchManually: {
-                    //compare query
-                    if (o["query"].toString() == query) result.append(r);
-                    break;
-                }
-                case SearchByFiles:
-                case SearchByCD: {
-                    if (compareLengths(query, r)) result.append(r);
-                    break;
-                }
-            }
-        }
-    }
-}
-
-void OnlineWidget::resultFinished(const SearchResult &r, int n)
-{DD;
-    if (n<0 || n>=searchResults.size()) return;
-
-    const QString url = searchResults.at(n).fields.value("url");
-    searchResults.replace(n,r);
-    searchResults[n].fields.insert("url", url);
-    releaseInfoWidget->setSearchResult(searchResults[n]);
-
-    if (App->cacheSearchResults) cacheResult(r);
-
-    const int cdCount = r.cdCount;
-    if (cdCount>1) {
-        for (int i=1; i<=cdCount; ++i) {
-            QTreeWidgetItem *it = new QTreeWidgetItem(searchResultsList->topLevelItem(n),
-                                                      QStringList(QString("CD %1").arg(i)));
-            it->setData(0,Qt::UserRole+1,i);
-        }
-        searchResultsList->topLevelItem(n)->setExpanded(true);
-    }
-}
-
-void OnlineWidget::handleAlbumSelection(QTreeWidgetItem *item)
-{DD;
-    int row = -1;
-    int cd = 1;
-    if (item->parent()==nullptr) //top-level item, release
-        row = searchResultsList->indexOfTopLevelItem(item);
-    else {// a CD in a release
-        row = searchResultsList->indexOfTopLevelItem(item->parent());
-        cd = item->data(0,Qt::UserRole+1).toInt();
-    }
-    if (row<0) return;
-
-    currentAlbum = row;
-    if (!searchResults.isEmpty()) {
-        if (!searchResults.at(row).loaded)
-            downloadRelease(searchResults.at(row).fields.value(QSL("url")),row);
-        else
-            releaseInfoWidget->setSearchResult(searchResults[row],cd);
-    }
-}
-
-void OnlineWidget::handleSourceComboBox(int row)
-{DD;
-    if (row<0 || row>=App->downloadPlugins.size()) return;
-    App->lastSearchServer = row;
-
-    QJsonObject meta = App->downloadPlugins.at(row);
-    bool canSearchByFiles=meta.value(QSL("canSearchByFiles")).toBool(false);
-    bool canSearchByCD=meta.value(QSL("canSearchByCD")).toBool(false);
-    bool canSearchManually=meta.value(QSL("canSearchManually")).toBool(false);
-
-    filesSearchRadioButton->setEnabled(canSearchByFiles);
-    cdSearchRadioButton->setEnabled(canSearchByCD);
-    manualSearchRadioButton->setEnabled(canSearchManually);
-
-    if (filesSearchRadioButton->isEnabled()) filesSearchRadioButton->setChecked(true);
-    else if (cdSearchRadioButton->isEnabled()) cdSearchRadioButton->setChecked(true);
-    else  manualSearchRadioButton->setChecked(true);
-    handleManualSearchRadioButton();
-}
-
-void OnlineWidget::handleManualSearchRadioButton()
-{DD
-    artistEdit->setEnabled(manualSearchRadioButton->isChecked());
-    albumEdit->setEnabled(manualSearchRadioButton->isChecked());
-    if (manualSearchRadioButton->isChecked()) artistEdit->setFocus();
-}
 
 void OnlineWidget::setNewTag(const QString &tagValue, Tag &tag, const QString &field, int fieldID)
-{DD
+{DD;
     if (!tagValue.isEmpty() && releaseInfoWidget->use(field)) tag.setTag(fieldID, tagValue);
+}
+
+void OnlineWidget::setNewTag(const QString &tagValue, Tag &tag, int fieldID)
+{DD;
+    if (!tagValue.isEmpty()) tag.setTag(fieldID, tagValue);
 }

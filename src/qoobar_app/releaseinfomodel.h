@@ -11,7 +11,7 @@ public:
     ReleaseInfoModel(QObject *parent=nullptr);
 
     void setReleaseInfo(const SearchResult &releaseInfo, int cdNumber);
-
+    void clear();
 
     // QAbstractItemModel interface
 public:

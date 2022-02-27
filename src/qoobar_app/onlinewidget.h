@@ -5,20 +5,23 @@
 
 #include "tagger.h"
 #include "searchresults.h"
+#include <QItemSelection>
 
 class QComboBox;
 class QRadioButton;
 class ClearLineEdit;
 class QPushButton;
-class QTreeWidget;
 class QLabel;
 class CoreNetworkSearch;
 class QProgressIndicatorSpinning;
 class ReleaseInfoWidget;
 class IDownloadPlugin;
-class QTreeWidgetItem;
+class QTreeView;
 class QAction;
 class QFile;
+class OnlineModel;
+
+#include <QJsonObject>
 
 class OnlineWidget : public QWidget
 {
@@ -30,18 +33,21 @@ public Q_SLOTS:
     void startSearch();
 private Q_SLOTS:
     void handleSourceComboBox(int);
-    void handleManualSearchRadioButton();
+    void updateManualSearchEdits();
     void swapArtistAndAlbum();
-    void handleAlbumSelection(QTreeWidgetItem*);
-    void found(const QList<SearchResult> &, const QString &query);
+    void onTreeItemClicked(const QModelIndex&, bool force = false);
+//    void onTreeItemDoubleClicked(QTreeWidgetItem*);
+    void onItemsSelectionChanged(const QItemSelection&, const QItemSelection&);
     void resultFinished(const SearchResult &,int);
-    void downloadRelease(QTreeWidgetItem*);
+    void cacheResult();
+    void clearCache();
+    void downloadRelease();
 private:
     void downloadRelease(const QString &url, const int releaseIndex);
     void setNewTag(const QString &tagValue, Tag &tag, const QString &field, int fieldID);
+    void setNewTag(const QString &tagValue, Tag &tag, int fieldID);
     IDownloadPlugin *maybeLoadPlugin(const QString &path);
-    QList<SearchResult> searchInCachedResults(const QString &query, SearchType searchType);
-    void cacheResult(const SearchResult &r);
+    void addCachedResults();
 
     QComboBox *sourceComboBox;
     QRadioButton *manualSearchRadioButton;
@@ -50,16 +56,16 @@ private:
     ClearLineEdit *artistEdit;
     ClearLineEdit *albumEdit;
     QPushButton *startSearchButton;
-    QTreeWidget *searchResultsList;
+    QTreeView *tree;
     QLabel *networkStatusInfo;
     QLabel *networkErrorInfo;
     CoreNetworkSearch *search;
     QProgressIndicatorSpinning *progress;
     QAction *saveResultsAct;
-    QString lastQuery;
+    QAction *clearCacheAct;
+    QAction *downloadReleaseAct;
+    OnlineModel *model;
 
-    int currentAlbum;
-    QList<SearchResult> searchResults;
     ReleaseInfoWidget *releaseInfoWidget;
     QHash<QString, IDownloadPlugin *> loadedPlugins;
     QList<Tag> oldTags;

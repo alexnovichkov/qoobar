@@ -21,6 +21,14 @@ void ReleaseInfoModel::setReleaseInfo(const SearchResult &releaseInfo, int cdNum
     endResetModel();
 }
 
+void ReleaseInfoModel::clear()
+{
+    beginResetModel();
+    cdNumber = -1;
+    info = SearchResult();
+    endResetModel();
+}
+
 int ReleaseInfoModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)

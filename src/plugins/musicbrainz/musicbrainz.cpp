@@ -133,7 +133,7 @@ QList<Artist> parseRelations(QXmlStreamReader &x/*relation-list*/)
 {
     QList<Artist> result;
 
-    if (!x.attributes().value("target-type").compare(QLS("artist"))==0) return result;
+    if (x.attributes().value("target-type").compare(QLS("artist"))!=0) return result;
 
     QString type;
     QString attributes;
@@ -182,8 +182,11 @@ QList<Track> parseTracks(QXmlStreamReader &trackList, int cdNum)
             }
             else if (name.compare(QLS("position"))==0)
                 result.last().fields.insert("tracknumber", trackList.readElementText());
-            else if (name.compare(QLS("length"))==0)
-                result.last().fields.insert("length", Qoobar::formatLength(trackList.readElementText().toInt()/1000));
+            else if (name.compare(QLS("length"))==0) {
+                auto len = trackList.readElementText().toInt()/1000; //length in seconds
+                result.last().fields.insert("length", Qoobar::formatLength(len));
+                result.last().length = len;
+            }
             else if (name.compare(QLS("title"))==0)
                 result.last().fields.insert("title", trackList.readElementText());
             else if (name.compare(QLS("artist-credit"))==0)
@@ -285,6 +288,7 @@ QList<SearchResult> MusicbrainzPlugin::parseResponse(const QByteArray &response)
                 || results.at(i).fields.value("format").isEmpty()) continue;
         results.removeAt(i);
     }
+    for (auto &r : results) r.releaseInfo = releaseToList(r);
 
     return results;
 }
@@ -335,6 +339,8 @@ SearchResult MusicbrainzPlugin::parseRelease(const QByteArray &response)
     shrinkArtists(r.artists);
     for (auto &track: r.tracks)
         shrinkArtists(track.artists);
+
+    r.releaseInfo = releaseToList(r);
 
     return r;
 }

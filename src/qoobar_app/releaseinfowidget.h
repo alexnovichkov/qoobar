@@ -42,7 +42,8 @@ class ReleaseInfoWidget : public QWidget
     Q_OBJECT
 public:
     explicit ReleaseInfoWidget(QWidget *parent = 0);
-    void setSearchResult(SearchResult &r, int cdNum=-1);
+    void setSearchResult(SearchResult &r, int cdNum=1);
+    void clear();
     bool use(const QString &key);
     bool useTrack(const int track);
     int cd() {return _cd;}
@@ -55,7 +56,7 @@ private:
     QCheckBox *imageCheckBox;
     QLabel *imageLabel;
 
-    int _cd;
+    int _cd = 1;
 };
 
 #endif // RELEASEINFOWIDGET_H

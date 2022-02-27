@@ -115,6 +115,7 @@ QByteArray CoreNetworkSearch::get(const Request &request)
     //if (acceptGzipped)
     //    r.setRawHeader("Accept-Encoding", "gzip");
     r.setRawHeader("User-Agent",userAgent.toLatin1());
+//    qDebug()<<request.url;
     r.setUrl(request.url);
 
     QNetworkReply * reply=nullptr;
@@ -124,18 +125,66 @@ QByteArray CoreNetworkSearch::get(const Request &request)
         reply = m->post(r, request.data);
 
     connect(reply, SIGNAL(finished()),loop, SLOT(quit()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(analyseError()));
+    connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), this, SLOT(analyseError()));
     connect(reply, SIGNAL(sslErrors(QList<QSslError>)), this, SLOT(analyseError()));
     loop->exec();
 
 //qDebug()<<reply->error()<<reply->errorString();
 
     if (reply->error()==QNetworkReply::NoError) {
-
-        response = reply->readAll(); //qDebug()<<response;
+        response = reply->readAll();
         if (reply->hasRawHeader("Content-Encoding") && reply->rawHeader("Content-Encoding")=="gzip") {
             //we have to unzip the response
             unzipResponse(response);
+//            qDebug()<<response;
+        }
+    }
+    else {
+
+    }
+    reply->deleteLater();
+    loop->deleteLater();
+
+    return response;
+}
+
+QByteArray CoreNetworkSearch::get(const QUrl &url, const QByteArray &data, const QMap<QByteArray, QByteArray> &rawHeaders)
+{
+    QByteArray response;
+    auto *loop = new QEventLoop();
+
+    QNetworkRequest r;
+
+    QMapIterator<QByteArray,QByteArray> i(rawHeaders);
+    while (i.hasNext()) {
+        i.next();
+        r.setRawHeader(i.key(), i.value());
+    }
+    //if (acceptGzipped)
+    //    r.setRawHeader("Accept-Encoding", "gzip");
+    r.setRawHeader("User-Agent",userAgent.toLatin1());
+//    qDebug()<<url;
+    r.setUrl(url);
+
+    QNetworkReply * reply=nullptr;
+    if (data.isEmpty())
+        reply = m->get(r);
+    else
+        reply = m->post(r, data);
+
+    connect(reply, SIGNAL(finished()),loop, SLOT(quit()));
+    connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), this, SLOT(analyseError()));
+    connect(reply, SIGNAL(sslErrors(QList<QSslError>)), this, SLOT(analyseError()));
+    loop->exec();
+
+//qDebug()<<reply->error()<<reply->errorString();
+
+    if (reply->error()==QNetworkReply::NoError) {
+        response = reply->readAll();
+        if (reply->hasRawHeader("Content-Encoding") && reply->rawHeader("Content-Encoding")=="gzip") {
+            //we have to unzip the response
+            unzipResponse(response);
+//            qDebug()<<response;
         }
     }
     else {

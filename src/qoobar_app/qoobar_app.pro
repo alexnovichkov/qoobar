@@ -76,6 +76,7 @@ SOURCES = main.cpp \
     headerview.cpp \
     importmodel.cpp \
     mainwindow.cpp \
+    onlinemodel.cpp \
     onlinewidget.cpp \
     releaseinfomodel.cpp \
     tagseditor.cpp \
@@ -151,6 +152,7 @@ HEADERS = mainwindow.h \
     generatorwidget.h \
     headerview.h \
     importmodel.h \
+    onlinemodel.h \
     onlinewidget.h \
     releaseinfomodel.h \
     tagseditor.h \

@@ -262,6 +262,7 @@ QList<SearchResult> GD3Plugin::parseResponse(const QByteArray &response)
     if (!results.isEmpty())
         if (results.last().fields.value("url").isEmpty())
             results.removeLast();
+    for (auto &r : results) r.releaseInfo = releaseToList(r);
     m_errorString="Sample error from gd3 plugin";
     return results;
 }
@@ -316,8 +317,10 @@ SearchResult GD3Plugin::parseRelease(const QByteArray &response)
                 insertToMap(r.tracks.last().fields,"title", x.readElementText());
             }
             else if (name.compare(QSL("TrackLength"))==0) {
+                auto len = x.readElementText().toInt() / 1000;
                 insertToMap(r.tracks.last().fields,"length",
-                            Qoobar::formatLength(x.readElementText().toInt() / 1000));
+                            Qoobar::formatLength(len));
+                r.tracks.last().length = len;
             }
             else if (name.compare(QSL("TrackNumber"))==0) {
                 insertToMap(r.tracks.last().fields,"tracknumber", x.readElementText());
@@ -371,6 +374,7 @@ SearchResult GD3Plugin::parseRelease(const QByteArray &response)
     if (x.hasError()) {
         m_errorString=x.errorString();
     }
+    r.releaseInfo = releaseToList(r);
 
     return r;
 }
