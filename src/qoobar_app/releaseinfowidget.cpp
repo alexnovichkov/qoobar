@@ -114,12 +114,20 @@ void ReleaseInfoWidget::setSearchResult(SearchResult &r,int cdNum)
                        | Qt::ItemIsEnabled);
         item->setCheckState(0,Qt::Checked);
     }
+    _cd = cdNum;
 
     tracksModel->setReleaseInfo(r, cdNum);
 
     imageLabel->clear();
     QPixmap p;
     if (p.loadFromData(r.image.pixmap())) imageLabel->setPixmap(previewIcon(p, devicePixelRatioF()));
+}
+
+void ReleaseInfoWidget::clear()
+{
+    albumTable->clear();
+    tracksModel->clear();
+    imageLabel->clear();
 }
 
 bool ReleaseInfoWidget::use(const QString &key)
