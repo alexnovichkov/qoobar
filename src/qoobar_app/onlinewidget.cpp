@@ -347,6 +347,7 @@ void OnlineWidget::startSearch()
 
     if (!query.isEmpty()) {
         QByteArray response = search->get(query);
+        qDebug()<<response;
         QList<SearchResult> releases = plugin->parseResponse(response);
 
         model->setFoundReleases(releases);

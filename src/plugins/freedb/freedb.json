@@ -2,7 +2,7 @@
   "interface": "IDownloadPlugin",
   "key": "gnudb",
   "icon": "",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "text": {
     "default": "gnudb"
   },

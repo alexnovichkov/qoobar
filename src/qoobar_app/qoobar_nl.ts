@@ -1893,7 +1893,7 @@ alle veranderingen worden niet opgeslagen!</translation>
 <context>
     <name>OnlineModel</name>
     <message numerus="yes">
-        <location filename="onlinemodel.cpp" line="236"/>
+        <location filename="onlinemodel.cpp" line="240"/>
         <source>%n tracks</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1901,7 +1901,7 @@ alle veranderingen worden niet opgeslagen!</translation>
         </translation>
     </message>
     <message>
-        <location filename="onlinemodel.cpp" line="258"/>
+        <location filename="onlinemodel.cpp" line="263"/>
         <source>Search results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2002,12 +2002,12 @@ alle veranderingen worden niet opgeslagen!</translation>
         <translation type="unfinished">Uitgevoerd</translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="440"/>
+        <location filename="onlinewidget.cpp" line="442"/>
         <source>Qoobar - Clearing download cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="onlinewidget.cpp" line="441"/>
+        <location filename="onlinewidget.cpp" line="443"/>
         <source>Do you want to delete all of %n cached releases?</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2687,27 +2687,27 @@ alle veranderingen worden niet opgeslagen!</translation>
 <context>
     <name>ReleaseInfoModel</name>
     <message>
-        <location filename="releaseinfomodel.cpp" line="58"/>
+        <location filename="releaseinfomodel.cpp" line="66"/>
         <source>No.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="releaseinfomodel.cpp" line="59"/>
+        <location filename="releaseinfomodel.cpp" line="67"/>
         <source>Title</source>
         <translation type="unfinished">Titel</translation>
     </message>
     <message>
-        <location filename="releaseinfomodel.cpp" line="60"/>
+        <location filename="releaseinfomodel.cpp" line="68"/>
         <source>Artists</source>
         <translation type="unfinished">Artiest</translation>
     </message>
     <message>
-        <location filename="releaseinfomodel.cpp" line="61"/>
+        <location filename="releaseinfomodel.cpp" line="69"/>
         <source>Comment</source>
         <translation type="unfinished">Opmerking</translation>
     </message>
     <message>
-        <location filename="releaseinfomodel.cpp" line="62"/>
+        <location filename="releaseinfomodel.cpp" line="70"/>
         <source>Length</source>
         <translation type="unfinished">Lengte</translation>
     </message>

@@ -1800,7 +1800,7 @@ all changes in them will not be saved!</source>
 <context>
     <name>OnlineModel</name>
     <message numerus="yes">
-        <location filename="onlinemodel.cpp" line="236"/>
+        <location filename="onlinemodel.cpp" line="240"/>
         <source>%n tracks</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1808,7 +1808,7 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="onlinemodel.cpp" line="258"/>
+        <location filename="onlinemodel.cpp" line="263"/>
         <source>Search results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1909,12 +1909,12 @@ all changes in them will not be saved!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="440"/>
+        <location filename="onlinewidget.cpp" line="442"/>
         <source>Qoobar - Clearing download cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="onlinewidget.cpp" line="441"/>
+        <location filename="onlinewidget.cpp" line="443"/>
         <source>Do you want to delete all of %n cached releases?</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2551,27 +2551,27 @@ all changes in them will not be saved!</source>
 <context>
     <name>ReleaseInfoModel</name>
     <message>
-        <location filename="releaseinfomodel.cpp" line="58"/>
+        <location filename="releaseinfomodel.cpp" line="66"/>
         <source>No.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="releaseinfomodel.cpp" line="59"/>
+        <location filename="releaseinfomodel.cpp" line="67"/>
         <source>Title</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="releaseinfomodel.cpp" line="60"/>
+        <location filename="releaseinfomodel.cpp" line="68"/>
         <source>Artists</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="releaseinfomodel.cpp" line="61"/>
+        <location filename="releaseinfomodel.cpp" line="69"/>
         <source>Comment</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="releaseinfomodel.cpp" line="62"/>
+        <location filename="releaseinfomodel.cpp" line="70"/>
         <source>Length</source>
         <translation></translation>
     </message>

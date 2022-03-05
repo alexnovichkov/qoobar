@@ -77,10 +77,15 @@ QList<SearchResult> FreedbPlugin::parseResponse(const QByteArray &response)
     int code = response.left(3).toInt(&ok);
     if (ok) {
         if (code==FRREEDB_EXACT_MATCH) {//exact match
-            SearchResult r;
-            r.fields.insert("url", frame.arg(s.section(" ",1,2)));
-            r.fields.insert("album", s.section(" ",1).simplified());
-            results << r;
+            if (s.simplified().contains("GnuDB is closed for Russia / In sympathy with the Ukrainian people")) {
+                m_errorString = "GnuDB is closed for Russia / In sympathy with the Ukrainian people";
+            }
+            else {
+                SearchResult r;
+                r.fields.insert("url", frame.arg(s.section(" ",1,2)));
+                r.fields.insert("album", s.section(" ",1).simplified());
+                results << r;
+            }
         }
         else if (code==FREEDB_MULTIPLE_MATCHES || code == FREEDB_INEXACT_MATCH) {//multiple exact matches or inexact matches
             QStringList list = s.split(QRegularExpression("[\\r\\n]+"));
