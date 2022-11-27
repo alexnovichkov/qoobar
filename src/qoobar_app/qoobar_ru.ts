@@ -2007,12 +2007,12 @@ all changes in them will not be saved!</source>
         <translation>Поиск в %1...</translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="354"/>
+        <location filename="onlinewidget.cpp" line="355"/>
         <source>Nothing found</source>
         <translation>Ничего не найдено</translation>
     </message>
     <message numerus="yes">
-        <location filename="onlinewidget.cpp" line="357"/>
+        <location filename="onlinewidget.cpp" line="358"/>
         <source>Found %n album(s)</source>
         <translation>
             <numerusform>Найден %n альбом</numerusform>
@@ -2021,22 +2021,22 @@ all changes in them will not be saved!</source>
         </translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="384"/>
+        <location filename="onlinewidget.cpp" line="385"/>
         <source>Retrieving release info...</source>
         <translation>Получаю данные релиза...</translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="397"/>
+        <location filename="onlinewidget.cpp" line="398"/>
         <source>Done</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="442"/>
+        <location filename="onlinewidget.cpp" line="443"/>
         <source>Qoobar - Clearing download cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="onlinewidget.cpp" line="443"/>
+        <location filename="onlinewidget.cpp" line="444"/>
         <source>Do you want to delete all of %n cached releases?</source>
         <translation type="unfinished">
             <numerusform></numerusform>

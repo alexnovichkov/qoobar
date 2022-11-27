@@ -1985,12 +1985,12 @@ le modifiche non verranno registrate!</translation>
         <translation type="unfinished">Ricerca in %1...</translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="354"/>
+        <location filename="onlinewidget.cpp" line="355"/>
         <source>Nothing found</source>
         <translation type="unfinished">Nessun dato trovato</translation>
     </message>
     <message numerus="yes">
-        <location filename="onlinewidget.cpp" line="357"/>
+        <location filename="onlinewidget.cpp" line="358"/>
         <source>Found %n album(s)</source>
         <translation type="unfinished">
             <numerusform>Trovati %n album</numerusform>
@@ -1998,22 +1998,22 @@ le modifiche non verranno registrate!</translation>
         </translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="384"/>
+        <location filename="onlinewidget.cpp" line="385"/>
         <source>Retrieving release info...</source>
         <translation type="unfinished">Ricezione dati...</translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="397"/>
+        <location filename="onlinewidget.cpp" line="398"/>
         <source>Done</source>
         <translation type="unfinished">Fatto</translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="442"/>
+        <location filename="onlinewidget.cpp" line="443"/>
         <source>Qoobar - Clearing download cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="onlinewidget.cpp" line="443"/>
+        <location filename="onlinewidget.cpp" line="444"/>
         <source>Do you want to delete all of %n cached releases?</source>
         <translation type="unfinished">
             <numerusform></numerusform>

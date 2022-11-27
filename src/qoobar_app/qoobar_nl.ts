@@ -1979,12 +1979,12 @@ alle veranderingen worden niet opgeslagen!</translation>
         <translation type="unfinished">Zoeken %1...</translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="354"/>
+        <location filename="onlinewidget.cpp" line="355"/>
         <source>Nothing found</source>
         <translation type="unfinished">Niets gevonden</translation>
     </message>
     <message numerus="yes">
-        <location filename="onlinewidget.cpp" line="357"/>
+        <location filename="onlinewidget.cpp" line="358"/>
         <source>Found %n album(s)</source>
         <translation type="unfinished">
             <numerusform>Found %n album</numerusform>
@@ -1992,22 +1992,22 @@ alle veranderingen worden niet opgeslagen!</translation>
         </translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="384"/>
+        <location filename="onlinewidget.cpp" line="385"/>
         <source>Retrieving release info...</source>
         <translation type="unfinished">Ophalen versie info...</translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="397"/>
+        <location filename="onlinewidget.cpp" line="398"/>
         <source>Done</source>
         <translation type="unfinished">Uitgevoerd</translation>
     </message>
     <message>
-        <location filename="onlinewidget.cpp" line="442"/>
+        <location filename="onlinewidget.cpp" line="443"/>
         <source>Qoobar - Clearing download cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="onlinewidget.cpp" line="443"/>
+        <location filename="onlinewidget.cpp" line="444"/>
         <source>Do you want to delete all of %n cached releases?</source>
         <translation type="unfinished">
             <numerusform></numerusform>
