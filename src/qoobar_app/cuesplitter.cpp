@@ -261,7 +261,9 @@ void CueSplitter::split()
         Q_EMIT message(MT_ERROR, tr("Cannot find the necessary script file: ").append(pathToScript));
         return;
     }
-    arguments << QDir::toNativeSeparators(App->applicationDirPath()+"/splitandconvert.bat");
+    QString scriptFile = QDir::toNativeSeparators(App->applicationDirPath()+"/splitandconvert.bat");
+    QString sFile = getShortFileName(scriptFile);
+    arguments << (sFile.isEmpty()?scriptFile:sFile);
 
     //cmd.exe cannot handle &s at all, so escaping them
     cFile.replace("&","^^^&");

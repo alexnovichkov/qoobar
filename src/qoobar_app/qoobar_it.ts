@@ -330,19 +330,19 @@ Please compile Qoobar with another Qt version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="320"/>
+        <location filename="cuesplitter.cpp" line="322"/>
         <source>Now invoking the script file with arguments:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="471"/>
+        <location filename="cuesplitter.cpp" line="473"/>
         <source>Cannot find the file to split: %1</source>
         <translation>Impossibile trovare il file di dividere:
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="513"/>
+        <location filename="cuesplitter.cpp" line="515"/>
         <source>Processing %1 ...
 
 </source>
@@ -382,7 +382,7 @@ Please compile Qoobar with another Qt version</source>
 %1</translation>
     </message>
     <message>
-        <location filename="cuesplitter.cpp" line="491"/>
+        <location filename="cuesplitter.cpp" line="493"/>
         <source>Total track count: &quot;%1&quot;</source>
         <translation>Numero totale dei brani: &quot;%1&quot;</translation>
     </message>
