@@ -478,7 +478,7 @@ void ImageBox::resizeImage()
         if (x.width()==dialog.newWidth && x.height()==dialog.newHeight) return;
         x=x.scaled(dialog.newWidth, dialog.newHeight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
-        QTemporaryFile tf("XXXXXX.jpg");
+        QTemporaryFile tf(QStandardPaths::writableLocation(QStandardPaths::TempLocation)+"/qoobar-XXXXXX.jpg");
         if (tf.open()) {
             x.save(&tf);
             tf.close();

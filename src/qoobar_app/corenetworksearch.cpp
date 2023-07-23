@@ -31,6 +31,7 @@
 #include <QNetworkProxy>
 #include <QAuthenticator>
 #include <QEventLoop>
+#include <QStandardPaths>
 #include <QTimer>
 #include <QPixmap>
 #include "zlib.h"
@@ -42,7 +43,7 @@ const int bufferSize = 4096;
 
 void unzipResponse(QByteArray& response)
 {
-    QTemporaryFile file;
+    QTemporaryFile file(QStandardPaths::writableLocation(QStandardPaths::TempLocation)+"/qoobar-XXXXXX.tmp");
     if (file.open()) {
         file.write(response);
         QByteArray fname = file.fileName().toLatin1();

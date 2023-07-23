@@ -15,7 +15,7 @@
 
 AppId={{59A39891-F88A-49E6-A738-AC5580273280}
 AppName=Qoobar
-AppCopyright=Copyright (C) 2009-2022 Alex Novichkov
+AppCopyright=Copyright (C) 2009-2023 Alex Novichkov
 AppVersion={#VERSION}
 AppVerName=Qoobar {#VERSION}
 AppPublisher=Alex Novichkov
