@@ -284,7 +284,7 @@ or album includes only one track</source>
 <context>
     <name>CoreNetworkSearch</name>
     <message>
-        <location filename="corenetworksearch.cpp" line="68"/>
+        <location filename="corenetworksearch.cpp" line="69"/>
         <source>This Qt version doesn&apos;t support SSL.
 Please compile Qoobar with another Qt version</source>
         <translation>Эта версия Qt не поддерживает SSL.

@@ -249,6 +249,14 @@ void CueSplitter::split()
 #elif defined(Q_OS_WIN)
     arguments << "/C";
 
+    QString powershellPath;
+    bool powerShell = Qoobar::programInstalled("powershell", &powershellPath);
+
+    if (powerShell)
+        programToRun = QDir::toNativeSeparators(powershellPath);
+    else
+        programToRun = QSL("c:\\windows\\system32\\cmd.exe");
+
     // We need to use short file names in Windows
     // because shntool cannot split files not in locale encoding
 
@@ -270,20 +278,18 @@ void CueSplitter::split()
     oDir.replace("&","^^^&");
     iFile.replace("&","^^^&");
 
-    arguments << QDir::toNativeSeparators(cFile.isEmpty()?_cueFile:cFile);
-    arguments << QDir::toNativeSeparators(oDir.isEmpty()?_outputDir:oDir);
-    arguments << QDir::toNativeSeparators(iFile.isEmpty()?_inputFile:iFile);
-
+    if (programToRun != QSL("c:\\windows\\system32\\cmd.exe")) {
+        arguments << "\""+QDir::toNativeSeparators(cFile.isEmpty()?_cueFile:cFile)+"\"";
+        arguments << "\""+QDir::toNativeSeparators(oDir.isEmpty()?_outputDir:oDir)+"\"";
+        arguments << "\""+QDir::toNativeSeparators(iFile.isEmpty()?_inputFile:iFile)+"\"";
+    }
+    else {
+        arguments << QDir::toNativeSeparators(cFile.isEmpty()?_cueFile:cFile);
+        arguments << QDir::toNativeSeparators(oDir.isEmpty()?_outputDir:oDir);
+        arguments << QDir::toNativeSeparators(iFile.isEmpty()?_inputFile:iFile);
+    }
     arguments << formatExt;
     arguments << (ffmpegInstalled?"1":"0");
-
-    QString powershellPath;
-    bool powerShell = Qoobar::programInstalled("powershell", &powershellPath);
-
-    if (powerShell)
-        programToRun = QDir::toNativeSeparators(powershellPath);
-    else
-        programToRun = QSL("c:\\windows\\system32\\cmd.exe");
 
 #elif defined (Q_OS_OS2)
     /** TODO: 1. Find out how to invoke splitandconvert.cmd on OS/2
